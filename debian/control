@@ -1,0 +1,15 @@
+Source: audience
+Section: video
+Priority: optional
+Maintainer: Cody Garver <codygarver@gmail.com>
+Build-Depends: cmake (>= 2.6), debhelper (>= 7.0.50~), libgstreamer0.10-dev (>= 0.10), libgtk-3-dev (>= 3.0), libgstreamermm-0.10-dev (>= 0.10), valac (>= 0.12)
+Standards-Version: 3.9.2
+Homepage: https://launchpad.net/audience
+Vcs-Bzr: lp:audience
+Vcs-Browser: https://code.launchpad.net/~audience-team/audience/trunk
+
+Package: audience
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Pre-Depends: dpkg (>= 1.15.6)
+Description: A simple, modern media player.

@@ -1,0 +1,19 @@
+                               Compile and Run                                    
+--------------------------------------------------------------------------------
+
+• Build and run Audience
+
+  If you don't have the source yet:
+  bzr branch lp:audience
+  cd audience
+  mkdir build; cd build
+  cmake ..
+  make
+  ./audience
+
+• Bugs
+
+  If you find bugs in this installation guide or in Audience itself, please report them at
+  https://launchpad.net/audience/+filebug
+
+
