@@ -222,7 +222,7 @@ class player_window : Gtk.Window
         string window_title = "";
         for (int n = 0; n<= filename_split.length-2; n++)
             window_title += filename_split[n];
-        this.title = window_title;
+        this.title = window_title.replace ("%20", " ");
     }
     
     private bool on_click()
