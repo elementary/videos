@@ -27,6 +27,7 @@ class player_window : Gtk.Window
     private HBox hbox = new HBox(false, 1);
     private Pipeline pipeline = new Pipeline("pipe");
     private dynamic Element playbin = ElementFactory.make("playbin2", "playbin");
+    //private Gst.Bus bus;
     private Label position_label = new Label("");
     private Scale progress_slider = new HScale.with_range(0, 1, 1);
     private Button play_button = new Button();
@@ -38,6 +39,8 @@ class player_window : Gtk.Window
         create_widgets();
         Timeout.add(1000, (GLib.SourceFunc) update_slide);
         Timeout.add(100, (GLib.SourceFunc) update_label);
+        //bus = pipeline.get_bus();
+        //bus.add_watch (bus_callback);
         if (args.length > 1)
         {
             var uri = args[1];
@@ -71,6 +74,7 @@ class player_window : Gtk.Window
         play_button.tooltip_text = "Play/Pause";
         play_button.can_focus = false;
         play_button.clicked.connect(on_play);
+        play_button.sensitive = false;
         hbox.pack_start(play_button, false, true, 0);
         
         progress_slider.can_focus = false;
@@ -137,6 +141,8 @@ class player_window : Gtk.Window
         ((XOverlay) sink).set_xwindow_id (Gdk.X11Window.get_xid (drawing_area.get_window ()));
         set_window_title (uri);
         pipeline.add(playbin);
+        var bus = pipeline.get_bus();
+        bus.add_watch (bus_callback);
         on_play();
     }
     
@@ -165,6 +171,33 @@ class player_window : Gtk.Window
         position_label.set_text(min.to_string() + ":" + seconds);
     }
     
+    private bool bus_callback(Gst.Bus bus, Gst.Message message)
+    {
+        switch(message.type)
+        {
+            case Gst.MessageType.EOS:
+                pipeline.set_state(State.READY);
+                state = false;
+                play_button.set_image(PLAY_IMAGE);
+                play_button.sensitive = false;
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
+    
+    private void set_window_title (string uri) 
+    {
+        var path = uri.replace ("file://", "");
+        string filename = Path.get_basename (path);
+        var filename_split = filename.split (".");
+        string window_title = "";
+        for (int n = 0; n<= filename_split.length-2; n++)
+            window_title += filename_split[n];
+        this.title = window_title.replace ("%20", " ");
+    }
+    
     private void on_play()
     {
         if (state)
@@ -177,6 +210,7 @@ class player_window : Gtk.Window
         {
             pipeline.set_state (State.PLAYING);
             state = true;
+            play_button.sensitive = true;
             play_button.set_image(PAUSE_IMAGE);
         }
     }
@@ -212,17 +246,6 @@ class player_window : Gtk.Window
             fullscreened = false;
             hbox.show();
         }
-    }
-    
-    void set_window_title (string uri) 
-    {
-        var path = uri.replace ("file://", "");
-        string filename = Path.get_basename (path);
-        var filename_split = filename.split (".");
-        string window_title = "";
-        for (int n = 0; n<= filename_split.length-2; n++)
-            window_title += filename_split[n];
-        this.title = window_title.replace ("%20", " ");
     }
     
     private bool on_click()
