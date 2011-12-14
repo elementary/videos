@@ -135,7 +135,7 @@ class player_window : Gtk.Window
         playbin.video_sink = sink;
         sink.set("force-aspect-ratio", true);
         ((XOverlay) sink).set_xwindow_id (Gdk.X11Window.get_xid (drawing_area.get_window ()));
-        title = uri;
+        set_window_title (uri);
         pipeline.add(playbin);
         on_play();
     }
@@ -212,6 +212,17 @@ class player_window : Gtk.Window
             fullscreened = false;
             hbox.show();
         }
+    }
+    
+    void set_window_title (string uri) 
+    {
+        var path = uri.replace ("file://", "");
+        string filename = Path.get_basename (path);
+        var filename_split = filename.split (".");
+        string window_title = "";
+        for (int n = 0; n<= filename_split.length-2; n++)
+            window_title += filename_split[n];
+        this.title = window_title;
     }
     
     private bool on_click()
