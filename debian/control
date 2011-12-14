@@ -12,4 +12,4 @@ Package: audience
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: dpkg (>= 1.15.6)
-Description: A simple, modern media player.
+Description: A simple, modern media player
