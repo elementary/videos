@@ -27,7 +27,6 @@ class player_window : Gtk.Window
     private HBox hbox = new HBox(false, 1);
     private Pipeline pipeline = new Pipeline("pipe");
     private dynamic Element playbin = ElementFactory.make("playbin2", "playbin");
-    //private Gst.Bus bus;
     private Label position_label = new Label("");
     private Scale progress_slider = new HScale.with_range(0, 1, 1);
     private Button play_button = new Button();
@@ -39,8 +38,6 @@ class player_window : Gtk.Window
         create_widgets();
         Timeout.add(1000, (GLib.SourceFunc) update_slide);
         Timeout.add(100, (GLib.SourceFunc) update_label);
-        //bus = pipeline.get_bus();
-        //bus.add_watch (bus_callback);
         if (args.length > 1)
         {
             var uri = args[1];
@@ -180,6 +177,7 @@ class player_window : Gtk.Window
                 state = false;
                 play_button.set_image(PLAY_IMAGE);
                 play_button.sensitive = false;
+                title = WINDOW_TITLE;
                 break;
             default:
                 break;
