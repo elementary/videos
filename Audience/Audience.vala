@@ -31,7 +31,7 @@ class player_window : Gtk.Window {
     }*/
 
     private const string WINDOW_TITLE = "Audience";
-    private Image PLAY_IMAGE = new Image.from_file (/*PKGDATADIR + */"/usr/share/audience" + "/style/images/play.png");
+    private Image PLAY_IMAGE = new Image.from_file (/*PKGDATADIR + */"/usr/share/audience" + "/style/images/play.svg");
     private Image PAUSE_IMAGE = new Image.from_file (/*PKGDATADIR + */"/usr/share/audience" + "/style/images/pause.png");
     private DrawingArea drawing_area = new DrawingArea();
     private HBox hbox = new HBox(false, 1);
