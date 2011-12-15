@@ -32,7 +32,7 @@ class player_window : Gtk.Window {
 
     private const string WINDOW_TITLE = "Audience";
     private Image PLAY_IMAGE = new Image.from_file (/*PKGDATADIR + */"/usr/share/audience" + "/style/images/play.svg");
-    private Image PAUSE_IMAGE = new Image.from_file (/*PKGDATADIR + */"/usr/share/audience" + "/style/images/pause.png");
+    private Image PAUSE_IMAGE = new Image.from_file (/*PKGDATADIR + */"/usr/share/audience" + "/style/images/pause.svg");
     private DrawingArea drawing_area = new DrawingArea();
     private HBox hbox = new HBox(false, 1);
     private Pipeline pipeline = new Pipeline("pipe");
@@ -130,7 +130,7 @@ class player_window : Gtk.Window {
         hbox.pack_start(fullscreen_button, false, true, 0);
         
         Button open_button = new Button();
-        open_button.set_image(new Image.from_file (/*PKGDATADIR + */"/usr/share/audience" + "/style/images/appmenu.png"));
+        open_button.set_image(new Image.from_file (/*PKGDATADIR + */"/usr/share/audience" + "/style/images/appmenu.svg"));
         open_button.set_relief(Gtk.ReliefStyle.NONE);
         open_button.margin_left = 10;
         open_button.margin_right = 10;
