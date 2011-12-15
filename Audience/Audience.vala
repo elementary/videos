@@ -55,7 +55,7 @@ class player_window : Gtk.Window
             var file = File.new_for_uri(uri);
             if (!file.query_exists())
             {
-                var uri_error_dialog = new MessageDialog(this, DialogFlags.MODAL, Gtk.MessageType.ERROR, ButtonsType.OK,  "URI not valid.");
+                var uri_error_dialog = new MessageDialog(this, DialogFlags.MODAL, Gtk.MessageType.ERROR, ButtonsType.OK,  _("URI not valid."));
                 if (uri_error_dialog.run() == ResponseType.OK) uri_error_dialog.destroy();
             }
             else create_pipeline(uri);
@@ -68,9 +68,10 @@ class player_window : Gtk.Window
 
         play_button.set_image(PLAY_IMAGE);
         play_button.set_relief(Gtk.ReliefStyle.NONE);
-        play_button.tooltip_text = "Play/Pause";
+        play_button.tooltip_text = _("Play/Pause");
         play_button.can_focus = false;
         play_button.clicked.connect(on_play);
+        play_button.sensitive = false;
         hbox.pack_start(play_button, false, true, 0);
         
         progress_slider.can_focus = false;
@@ -87,7 +88,7 @@ class player_window : Gtk.Window
         Button fullscreen_button = new Button();
         fullscreen_button.set_image(new Image.from_stock (Stock.FULLSCREEN, IconSize.BUTTON));
         fullscreen_button.set_relief(Gtk.ReliefStyle.NONE);
-        fullscreen_button.tooltip_text = "Fullscreen";
+        fullscreen_button.tooltip_text = _("Fullscreen");
         fullscreen_button.can_focus = false;
         fullscreen_button.clicked.connect(on_fullscreen);
         hbox.pack_start(fullscreen_button, false, true, 0);
@@ -95,7 +96,7 @@ class player_window : Gtk.Window
         Button open_button = new Button();
         open_button.set_image(new Image.from_stock (Stock.OPEN, IconSize.BUTTON));
         open_button.set_relief(Gtk.ReliefStyle.NONE);
-        open_button.tooltip_text = "Open";
+        open_button.tooltip_text = _("Open");
         open_button.can_focus = false;
         open_button.clicked.connect(on_open);
         hbox.pack_start(open_button, false, true, 0);
@@ -135,8 +136,10 @@ class player_window : Gtk.Window
         playbin.video_sink = sink;
         sink.set("force-aspect-ratio", true);
         ((XOverlay) sink).set_xwindow_id (Gdk.X11Window.get_xid (drawing_area.get_window ()));
-        title = uri;
+        set_window_title (uri);
         pipeline.add(playbin);
+        var bus = pipeline.get_bus();
+        bus.add_watch (bus_callback);
         on_play();
     }
     
@@ -165,6 +168,34 @@ class player_window : Gtk.Window
         position_label.set_text(min.to_string() + ":" + seconds);
     }
     
+    private bool bus_callback(Gst.Bus bus, Gst.Message message)
+    {
+        switch(message.type)
+        {
+            case Gst.MessageType.EOS:
+                pipeline.set_state(State.READY);
+                state = false;
+                play_button.set_image(PLAY_IMAGE);
+                play_button.sensitive = false;
+                title = WINDOW_TITLE;
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
+    
+    private void set_window_title (string uri) 
+    {
+        var path = uri.replace ("file://", "");
+        string filename = Path.get_basename (path);
+        var filename_split = filename.split (".");
+        string window_title = "";
+        for (int n = 0; n<= filename_split.length-2; n++)
+            window_title += filename_split[n];
+        this.title = window_title.replace ("%20", " ");
+    }
+    
     private void on_play()
     {
         if (state)
@@ -177,13 +208,14 @@ class player_window : Gtk.Window
         {
             pipeline.set_state (State.PLAYING);
             state = true;
+            play_button.sensitive = true;
             play_button.set_image(PAUSE_IMAGE);
         }
     }
     
     private void on_open()
     {
-        var file_chooser = new FileChooserDialog("Select media", this, FileChooserAction.OPEN, Stock.CANCEL, ResponseType.CANCEL, Stock.OPEN, ResponseType.ACCEPT, null);
+        var file_chooser = new FileChooserDialog(_("Select media"), this, FileChooserAction.OPEN, Stock.CANCEL, ResponseType.CANCEL, Stock.OPEN, ResponseType.ACCEPT, null);
         if (file_chooser.run() == ResponseType.ACCEPT) 
         {
             if (state) state = false;
