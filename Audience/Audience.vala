@@ -18,11 +18,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using Gtk;
 using Gst;
 
-class player_window : Gtk.Window
-{
+class player_window : Gtk.Window {
+
+    /*construct {
+    
+    build_data_dir = Build.DATADIR;
+    build_pkg_data_dir = Build.PKGDATADIR;
+    build_release_name = Build.RELEASE_NAME;
+    build_version = Build.VERSION;
+    build_version_info = Build.VERSION_INFO;
+    
+    }*/
+
     private const string WINDOW_TITLE = "Audience";
-    private Image PLAY_IMAGE = new Image.from_stock (Stock.MEDIA_PLAY, IconSize.BUTTON);
-    private Image PAUSE_IMAGE = new Image.from_stock (Stock.MEDIA_PAUSE, IconSize.BUTTON);
+    private Image PLAY_IMAGE = new Image.from_file (/*Build.PKGDATADIR + */"/usr/share/audience/style/images/play.png");
+    private Image PAUSE_IMAGE = new Image.from_file (/*Build.PKGDATADIR + */"/usr/share/audience/style/images/pause.png");
     private DrawingArea drawing_area = new DrawingArea();
     private HBox hbox = new HBox(false, 1);
     private Pipeline pipeline = new Pipeline("pipe");
@@ -86,7 +96,7 @@ class player_window : Gtk.Window
         hbox.pack_start(progress_slider, true, true, 0);
         
         Button fullscreen_button = new Button();
-        fullscreen_button.set_image(new Image.from_stock (Stock.FULLSCREEN, IconSize.BUTTON));
+        fullscreen_button.set_image(new Image.from_file (/*Build.PKGDATADIR + */"/usr/share/audience/style/images/fullscreen.png"));
         fullscreen_button.set_relief(Gtk.ReliefStyle.NONE);
         fullscreen_button.tooltip_text = _("Fullscreen");
         fullscreen_button.can_focus = false;
@@ -94,7 +104,7 @@ class player_window : Gtk.Window
         hbox.pack_start(fullscreen_button, false, true, 0);
         
         Button open_button = new Button();
-        open_button.set_image(new Image.from_stock (Stock.OPEN, IconSize.BUTTON));
+        open_button.set_image(new Image.from_file (/*Build.PKGDATADIR + */"/usr/share/audience/style/images/appmenu.png"));
         open_button.set_relief(Gtk.ReliefStyle.NONE);
         open_button.tooltip_text = _("Open");
         open_button.can_focus = false;
