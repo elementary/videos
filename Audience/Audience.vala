@@ -78,6 +78,10 @@ class player_window : Gtk.Window {
 
         play_button.set_image(PLAY_IMAGE);
         play_button.set_relief(Gtk.ReliefStyle.NONE);
+        play_button.margin_left = 10;
+        // play_button.margin_right = 10;
+        play_button.margin_top = 10;
+        play_button.margin_bottom = 10;
         play_button.tooltip_text = _("Play/Pause");
         play_button.can_focus = false;
         play_button.clicked.connect(on_play);
@@ -89,6 +93,8 @@ class player_window : Gtk.Window {
         progress_slider.set_size_request(380, -1);
         progress_slider.margin_left = 10;
         progress_slider.margin_right = 10;
+        progress_slider.margin_top = 10;
+        progress_slider.margin_bottom = 10;
         progress_slider.set_range(0, 100);
         progress_slider.set_increments(0, 10);
         progress_slider.value_changed.connect(on_slide);
@@ -98,6 +104,10 @@ class player_window : Gtk.Window {
         Button fullscreen_button = new Button();
         fullscreen_button.set_image(new Image.from_file (/*Build.PKGDATADIR + */"/usr/share/audience/style/images/fullscreen.png"));
         fullscreen_button.set_relief(Gtk.ReliefStyle.NONE);
+        // fullscreen_button.margin_left = 10;
+        // fullscreen_button.margin_right = 10;
+        fullscreen_button.margin_top = 10;
+        fullscreen_button.margin_bottom = 10;
         fullscreen_button.tooltip_text = _("Fullscreen");
         fullscreen_button.can_focus = false;
         fullscreen_button.clicked.connect(on_fullscreen);
@@ -106,6 +116,10 @@ class player_window : Gtk.Window {
         Button open_button = new Button();
         open_button.set_image(new Image.from_file (/*Build.PKGDATADIR + */"/usr/share/audience/style/images/appmenu.png"));
         open_button.set_relief(Gtk.ReliefStyle.NONE);
+        open_button.margin_left = 10;
+        open_button.margin_right = 10;
+        open_button.margin_top = 10;
+        open_button.margin_bottom = 10;
         open_button.tooltip_text = _("Open");
         open_button.can_focus = false;
         open_button.clicked.connect(on_open);
