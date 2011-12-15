@@ -92,7 +92,7 @@ class player_window : Gtk.Window {
         progress_slider.set_range(0, 100);
         progress_slider.set_increments(0, 10);
         progress_slider.value_changed.connect(on_slide);
-        hbox.pack_start(position_label, false, true, 0);
+        // hbox.pack_start(position_label, false, true, 0);
         hbox.pack_start(progress_slider, true, true, 0);
         
         Button fullscreen_button = new Button();
