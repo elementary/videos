@@ -72,8 +72,17 @@ class player_window : Gtk.Window {
         }
     }
     
-    private void create_widgets()
-    {
+    public static CssProvider style_provider { get; private set; default = null; }
+    
+    private void create_widgets() {
+    
+        style_provider = new CssProvider ();
+        try {
+               style_provider.load_from_path (/*Build.PKGDATADIR + */"/usr/share/audience/style/default.css");
+        } catch (Error e) {
+               warning ("Could not add css provider. Some widgets will not look as intended. %s", e.message);
+        }
+        
         title = WINDOW_TITLE;
 
         play_button.set_image(PLAY_IMAGE);
@@ -91,14 +100,21 @@ class player_window : Gtk.Window {
         progress_slider.can_focus = false;
         progress_slider.set_draw_value (false);
         progress_slider.set_size_request(380, -1);
-        progress_slider.margin_left = 10;
-        progress_slider.margin_right = 10;
+        progress_slider.margin_left = 20;
+        progress_slider.margin_right = 20;
         progress_slider.margin_top = 10;
         progress_slider.margin_bottom = 10;
         progress_slider.set_range(0, 100);
         progress_slider.set_increments(0, 10);
         progress_slider.value_changed.connect(on_slide);
-        // hbox.pack_start(position_label, false, true, 0);
+        
+        position_label.get_style_context ().add_provider (style_provider, 600);
+        position_label.name = "TimePast";
+        position_label.margin_left = 10;
+        position_label.margin_top = 10;
+        position_label.margin_bottom = 10;
+        
+        hbox.pack_start(position_label, false, true, 0);
         hbox.pack_start(progress_slider, true, true, 0);
         
         Button fullscreen_button = new Button();
