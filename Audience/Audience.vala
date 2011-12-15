@@ -55,7 +55,7 @@ class player_window : Gtk.Window
             var file = File.new_for_uri(uri);
             if (!file.query_exists())
             {
-                var uri_error_dialog = new MessageDialog(this, DialogFlags.MODAL, Gtk.MessageType.ERROR, ButtonsType.OK,  "URI not valid.");
+                var uri_error_dialog = new MessageDialog(this, DialogFlags.MODAL, Gtk.MessageType.ERROR, ButtonsType.OK,  _("URI not valid."));
                 if (uri_error_dialog.run() == ResponseType.OK) uri_error_dialog.destroy();
             }
             else create_pipeline(uri);
@@ -68,7 +68,7 @@ class player_window : Gtk.Window
 
         play_button.set_image(PLAY_IMAGE);
         play_button.set_relief(Gtk.ReliefStyle.NONE);
-        play_button.tooltip_text = "Play/Pause";
+        play_button.tooltip_text = _("Play/Pause");
         play_button.can_focus = false;
         play_button.clicked.connect(on_play);
         play_button.sensitive = false;
@@ -88,7 +88,7 @@ class player_window : Gtk.Window
         Button fullscreen_button = new Button();
         fullscreen_button.set_image(new Image.from_stock (Stock.FULLSCREEN, IconSize.BUTTON));
         fullscreen_button.set_relief(Gtk.ReliefStyle.NONE);
-        fullscreen_button.tooltip_text = "Fullscreen";
+        fullscreen_button.tooltip_text = _("Fullscreen");
         fullscreen_button.can_focus = false;
         fullscreen_button.clicked.connect(on_fullscreen);
         hbox.pack_start(fullscreen_button, false, true, 0);
@@ -96,7 +96,7 @@ class player_window : Gtk.Window
         Button open_button = new Button();
         open_button.set_image(new Image.from_stock (Stock.OPEN, IconSize.BUTTON));
         open_button.set_relief(Gtk.ReliefStyle.NONE);
-        open_button.tooltip_text = "Open";
+        open_button.tooltip_text = _("Open");
         open_button.can_focus = false;
         open_button.clicked.connect(on_open);
         hbox.pack_start(open_button, false, true, 0);
@@ -215,7 +215,7 @@ class player_window : Gtk.Window
     
     private void on_open()
     {
-        var file_chooser = new FileChooserDialog("Select media", this, FileChooserAction.OPEN, Stock.CANCEL, ResponseType.CANCEL, Stock.OPEN, ResponseType.ACCEPT, null);
+        var file_chooser = new FileChooserDialog(_("Select media"), this, FileChooserAction.OPEN, Stock.CANCEL, ResponseType.CANCEL, Stock.OPEN, ResponseType.ACCEPT, null);
         if (file_chooser.run() == ResponseType.ACCEPT) 
         {
             if (state) state = false;
