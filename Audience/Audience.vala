@@ -28,7 +28,7 @@ class player_window : Gtk.Window
     private Pipeline pipeline = new Pipeline("pipe");
     private dynamic Element playbin = ElementFactory.make("playbin2", "playbin");
     private Label position_label = new Label("");
-    private Scale progress_slider = new HScale.with_range(0, 1, 1);
+    private HScale progress_slider = new HScale.with_range(0, 1, 1);
     private Button play_button = new Button();
     private bool state = false;
     private bool fullscreened = false;
@@ -112,6 +112,8 @@ class player_window : Gtk.Window
         vbox.pack_start(drawing_area, true, true, 0);
         vbox.pack_start(hbox, false, true, 0);
         add(vbox);
+        
+        modify_bg(Gtk.StateType.NORMAL, black);
         
         destroy.connect (on_quit);
         show_all();
