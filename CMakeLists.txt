@@ -12,6 +12,10 @@ set (VERSION "0.1")
 set (VERSION_INFO "The Red Comet")
 
 # Data
+file (GLOB _datafiles "${CMAKE_CURRENT_SOURCE_DIR}/data/style/*.css")
+install (FILES ${_datafiles} DESTINATION ${PKGDATADIR}/style)
+file (GLOB _imagefiles "${CMAKE_CURRENT_SOURCE_DIR}/data/style/images/*")
+install (FILES ${_imagefiles} DESTINATION ${PKGDATADIR}/style/images)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/scalable/audience.svg DESTINATION ${DATADIR}/icons/hicolor/scalable/apps/)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/audience.desktop DESTINATION ${DATADIR}/applications/)
 
