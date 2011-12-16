@@ -37,6 +37,8 @@ vala_precompile (VALA_C
 #   Audience/Widgets/AppMenu.vala
 PACKAGES
 	${AUDIENCE_DEPS}
+CUSTOM_VAPIS
+	vapi/config.vapi
 OPTIONS
 	--thread
 )
