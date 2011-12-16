@@ -20,19 +20,9 @@ using Gst;
 
 class player_window : Gtk.Window {
 
-    /*construct {
-    
-    build_data_dir = Build.DATADIR;
-    build_pkg_data_dir = Build.PKGDATADIR;
-    build_release_name = Build.RELEASE_NAME;
-    build_version = Build.VERSION;
-    build_version_info = Build.VERSION_INFO;
-    
-    }*/
-
     private const string WINDOW_TITLE = "Audience";
-    private Image PLAY_IMAGE = new Image.from_file (Build.PKGDATADIR + /*"/usr/share/audience" + */"/style/images/play.svg");
-    private Image PAUSE_IMAGE = new Image.from_file (Build.PKGDATADIR + /*"/usr/share/audience" + */"/style/images/pause.svg");
+    private Image PLAY_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/play.svg");
+    private Image PAUSE_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/pause.svg");
     private DrawingArea drawing_area = new DrawingArea();
     private HBox hbox = new HBox(false, 1);
     private Pipeline pipeline = new Pipeline("pipe");
@@ -78,7 +68,7 @@ class player_window : Gtk.Window {
     
         style_provider = new CssProvider ();
         try {
-               style_provider.load_from_path (Build.PKGDATADIR + /*"/usr/share/audience" + */"/style/default.css");
+               style_provider.load_from_path (Build.PKGDATADIR + "/style/default.css");
         } catch (Error e) {
                warning ("Could not add css provider. Some widgets will not look as intended. %s", e.message);
         }
@@ -88,7 +78,6 @@ class player_window : Gtk.Window {
         play_button.set_image(PLAY_IMAGE);
         play_button.set_relief(Gtk.ReliefStyle.NONE);
         play_button.margin_left = 10;
-        // play_button.margin_right = 10;
         play_button.margin_top = 10;
         play_button.margin_bottom = 10;
         play_button.tooltip_text = _("Play/Pause");
@@ -118,10 +107,8 @@ class player_window : Gtk.Window {
         hbox.pack_start(progress_slider, true, true, 0);
         
         Button fullscreen_button = new Button();
-        fullscreen_button.set_image(new Image.from_file (Build.PKGDATADIR + /*"/usr/share/audience" + */"/style/images/fullscreen.png"));
+        fullscreen_button.set_image(new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.png"));
         fullscreen_button.set_relief(Gtk.ReliefStyle.NONE);
-        // fullscreen_button.margin_left = 10;
-        // fullscreen_button.margin_right = 10;
         fullscreen_button.margin_top = 10;
         fullscreen_button.margin_bottom = 10;
         fullscreen_button.tooltip_text = _("Fullscreen");
@@ -130,7 +117,7 @@ class player_window : Gtk.Window {
         hbox.pack_start(fullscreen_button, false, true, 0);
         
         Button open_button = new Button();
-        open_button.set_image(new Image.from_file (Build.PKGDATADIR + /*"/usr/share/audience" + */"/style/images/appmenu.svg"));
+        open_button.set_image(new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg"));
         open_button.set_relief(Gtk.ReliefStyle.NONE);
         open_button.margin_left = 10;
         open_button.margin_right = 10;
@@ -161,8 +148,8 @@ class player_window : Gtk.Window {
     
     private int64 get_time(int which)
     {
-        //which = 0: Get the current position in time
-        //which = 1: Get the duration of the media
+     /* which = 0: Get the current position in time
+        which = 1: Get the duration of the media */
         Format fmt = Format.TIME;
         int64 pos;
         if (which == 0) pipeline.query_position(ref fmt, out pos);
