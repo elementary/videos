@@ -18,17 +18,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using Gtk;
 using Gst;
 
-class player_window : Gtk.Window
-{
+class player_window : Gtk.Window {
+
     private const string WINDOW_TITLE = "Audience";
-    private Image PLAY_IMAGE = new Image.from_stock (Stock.MEDIA_PLAY, IconSize.BUTTON);
-    private Image PAUSE_IMAGE = new Image.from_stock (Stock.MEDIA_PAUSE, IconSize.BUTTON);
+    private Image PLAY_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/play.svg");
+    private Image PAUSE_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/pause.svg");
     private DrawingArea drawing_area = new DrawingArea();
     private HBox hbox = new HBox(false, 1);
     private Pipeline pipeline = new Pipeline("pipe");
     private dynamic Element playbin = ElementFactory.make("playbin2", "playbin");
     private Label position_label = new Label("");
-    private Scale progress_slider = new HScale.with_range(0, 1, 1);
+    private HScale progress_slider = new HScale.with_range(0, 1, 1);
     private Button play_button = new Button();
     private bool state = false;
     private bool fullscreened = false;
@@ -62,12 +62,24 @@ class player_window : Gtk.Window
         }
     }
     
-    private void create_widgets()
-    {
+    public static CssProvider style_provider { get; private set; default = null; }
+    
+    private void create_widgets() {
+    
+        style_provider = new CssProvider ();
+        try {
+               style_provider.load_from_path (Build.PKGDATADIR + "/style/default.css");
+        } catch (Error e) {
+               warning ("Could not add css provider. Some widgets will not look as intended. %s", e.message);
+        }
+        
         title = WINDOW_TITLE;
 
         play_button.set_image(PLAY_IMAGE);
         play_button.set_relief(Gtk.ReliefStyle.NONE);
+        play_button.margin_left = 10;
+        play_button.margin_top = 10;
+        play_button.margin_bottom = 10;
         play_button.tooltip_text = _("Play/Pause");
         play_button.can_focus = false;
         play_button.clicked.connect(on_play);
@@ -77,25 +89,40 @@ class player_window : Gtk.Window
         progress_slider.can_focus = false;
         progress_slider.set_draw_value (false);
         progress_slider.set_size_request(380, -1);
-        progress_slider.margin_left = 10;
-        progress_slider.margin_right = 10;
+        progress_slider.margin_left = 20;
+        progress_slider.margin_right = 20;
+        progress_slider.margin_top = 10;
+        progress_slider.margin_bottom = 10;
         progress_slider.set_range(0, 100);
         progress_slider.set_increments(0, 10);
         progress_slider.value_changed.connect(on_slide);
+        
+        position_label.get_style_context ().add_provider (style_provider, 600);
+        position_label.name = "TimePast";
+        position_label.margin_left = 10;
+        position_label.margin_top = 10;
+        position_label.margin_bottom = 10;
+        
         hbox.pack_start(position_label, false, true, 0);
         hbox.pack_start(progress_slider, true, true, 0);
         
         Button fullscreen_button = new Button();
-        fullscreen_button.set_image(new Image.from_stock (Stock.FULLSCREEN, IconSize.BUTTON));
+        fullscreen_button.set_image(new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.png"));
         fullscreen_button.set_relief(Gtk.ReliefStyle.NONE);
+        fullscreen_button.margin_top = 10;
+        fullscreen_button.margin_bottom = 10;
         fullscreen_button.tooltip_text = _("Fullscreen");
         fullscreen_button.can_focus = false;
         fullscreen_button.clicked.connect(on_fullscreen);
         hbox.pack_start(fullscreen_button, false, true, 0);
         
         Button open_button = new Button();
-        open_button.set_image(new Image.from_stock (Stock.OPEN, IconSize.BUTTON));
+        open_button.set_image(new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg"));
         open_button.set_relief(Gtk.ReliefStyle.NONE);
+        open_button.margin_left = 10;
+        open_button.margin_right = 10;
+        open_button.margin_top = 10;
+        open_button.margin_bottom = 10;
         open_button.tooltip_text = _("Open");
         open_button.can_focus = false;
         open_button.clicked.connect(on_open);
@@ -113,14 +140,16 @@ class player_window : Gtk.Window
         vbox.pack_start(hbox, false, true, 0);
         add(vbox);
         
+        modify_bg(Gtk.StateType.NORMAL, black);
+        
         destroy.connect (on_quit);
         show_all();
     }
     
     private int64 get_time(int which)
     {
-        //which = 0: Get the current position in time
-        //which = 1: Get the duration of the media
+     /* which = 0: Get the current position in time
+        which = 1: Get the duration of the media */
         Format fmt = Format.TIME;
         int64 pos;
         if (which == 0) pipeline.query_position(ref fmt, out pos);
