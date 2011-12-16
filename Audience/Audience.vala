@@ -110,7 +110,7 @@ class player_window : Gtk.Window
         hbox.pack_start(progress_slider, true, true, 0);
         
         Button fullscreen_button = new Button();
-        fullscreen_button.set_image(new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.png"));
+        fullscreen_button.set_image(new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.svg"));
         fullscreen_button.set_relief(Gtk.ReliefStyle.NONE);
         fullscreen_button.margin_top = 10;
         fullscreen_button.margin_bottom = 10;
