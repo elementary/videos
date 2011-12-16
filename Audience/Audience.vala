@@ -223,9 +223,14 @@ class player_window : Gtk.Window
         string filename = Path.get_basename (path);
         var filename_split = filename.split (".");
         string window_title = "";
-        for (int n = 0; n<= filename_split.length-2; n++)
-            window_title += filename_split[n];
-        this.title = window_title.replace ("%20", " ");
+        for (int n = 0; n<= filename_split.length-2; n++) {
+            if (n<= filename_split.length-3)
+                window_title += filename_split[n] + ".";
+            else 
+                window_title += filename_split[n];
+        }
+        this.title = window_title.replace ("%20", " ").replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").replace ("%7D", "}");
+        
     }
     
     private void on_play()
