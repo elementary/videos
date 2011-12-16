@@ -110,7 +110,7 @@ class player_window : Gtk.Window
         hbox.pack_start(progress_slider, true, true, 0);
         
         Button fullscreen_button = new Button();
-        fullscreen_button.set_image(new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.png"));
+        fullscreen_button.set_image(new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.svg"));
         fullscreen_button.set_relief(Gtk.ReliefStyle.NONE);
         fullscreen_button.margin_top = 10;
         fullscreen_button.margin_bottom = 10;
@@ -144,6 +144,8 @@ class player_window : Gtk.Window
         add(vbox);
         
         modify_bg(Gtk.StateType.NORMAL, black);
+        
+        this.key_press_event.connect(hotkeys);
         
         destroy.connect (on_quit);
         show_all();
@@ -229,8 +231,37 @@ class player_window : Gtk.Window
             else 
                 window_title += filename_split[n];
         }
-        this.title = window_title.replace ("%20", " ").replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").replace ("%7D", "}");
+        this.title = window_title.replace ("%20", " ").replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").replace ("%7D", "}").replace ("_", " ").replace ("."," ").replace ("  "," ");
         
+    }
+    
+    public bool hotkeys(Gdk.EventKey e)
+    {
+          switch (Gdk.keyval_name(e.keyval))
+          {
+               case "Escape":
+               case "q":
+                    on_quit();
+                    return true;
+               /* what happened to skip back and skip forward?
+               case "Left":
+                    skip_back();
+               case "Right"
+                    skip_forward(); */
+               case "f":
+               case "F11":
+                    on_fullscreen();
+                    return true;
+               case "Return":
+               case "space":
+                    on_play();
+                    return true;
+               case "o":
+                    on_open();
+                    return true;
+               default:
+                    return false;
+          }
     }
     
     private void on_play()
