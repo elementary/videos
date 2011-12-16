@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using Gtk;
 using Gst;
 
-class player_window : Gtk.Window {
-
+class player_window : Gtk.Window 
+{
     private const string WINDOW_TITLE = "Audience";
     private Image PLAY_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/play.svg");
     private Image PAUSE_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/pause.svg");
@@ -64,12 +64,15 @@ class player_window : Gtk.Window {
     
     public static CssProvider style_provider { get; private set; default = null; }
     
-    private void create_widgets() {
-    
+    private void create_widgets() 
+    {
         style_provider = new CssProvider ();
-        try {
+        try 
+        {
                style_provider.load_from_path (Build.PKGDATADIR + "/style/default.css");
-        } catch (Error e) {
+        } 
+        catch (Error e) 
+        {
                warning ("Could not add css provider. Some widgets will not look as intended. %s", e.message);
         }
         
@@ -80,7 +83,7 @@ class player_window : Gtk.Window {
         play_button.margin_left = 10;
         play_button.margin_top = 10;
         play_button.margin_bottom = 10;
-        play_button.tooltip_text = _("Play/Pause");
+        play_button.tooltip_text = _("Play");
         play_button.can_focus = false;
         play_button.clicked.connect(on_play);
         play_button.sensitive = false;
@@ -232,6 +235,7 @@ class player_window : Gtk.Window {
             pipeline.set_state(State.PAUSED);
             state = false;
             play_button.set_image(PLAY_IMAGE);
+            play_button.tooltip_text = _("Play");
         }
         else
         {
@@ -239,6 +243,7 @@ class player_window : Gtk.Window {
             state = true;
             play_button.sensitive = true;
             play_button.set_image(PAUSE_IMAGE);
+            play_button.tooltip_text = _("Pause");
         }
     }
     
