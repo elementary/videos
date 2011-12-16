@@ -231,7 +231,7 @@ class player_window : Gtk.Window
             else 
                 window_title += filename_split[n];
         }
-        this.title = window_title.replace ("%20", " ").replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").replace ("%7D", "}");
+        this.title = window_title.replace ("%20", " ").replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").replace ("%7D", "}").replace ("_", " ").replace ("."," ").replace ("  "," ");
         
     }
     
