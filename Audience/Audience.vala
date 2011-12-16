@@ -145,6 +145,8 @@ class player_window : Gtk.Window
         
         modify_bg(Gtk.StateType.NORMAL, black);
         
+        this.key_press_event.connect(hotkeys);
+        
         destroy.connect (on_quit);
         show_all();
     }
@@ -231,6 +233,35 @@ class player_window : Gtk.Window
         }
         this.title = window_title.replace ("%20", " ").replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").replace ("%7D", "}");
         
+    }
+    
+    public bool hotkeys(Gdk.EventKey e)
+    {
+          switch (Gdk.keyval_name(e.keyval))
+          {
+               case "Escape":
+               case "q":
+                    on_quit();
+                    return true;
+               /* what happened to skip back and skip forward?
+               case "Left":
+                    skip_back();
+               case "Right"
+                    skip_forward(); */
+               case "f":
+               case "F11":
+                    on_fullscreen();
+                    return true;
+               case "Return":
+               case "space":
+                    on_play();
+                    return true;
+               case "o":
+                    on_open();
+                    return true;
+               default:
+                    return false;
+          }
     }
     
     private void on_play()
