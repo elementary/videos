@@ -145,7 +145,7 @@ class player_window : Gtk.Window
         
         modify_bg(Gtk.StateType.NORMAL, black);
         
-        this.key_press_event.connect(hotkeys);
+        // this.key_press_event.connect(hotkeys);
         
         destroy.connect (on_quit);
         show_all();
@@ -235,20 +235,20 @@ class player_window : Gtk.Window
         
     }
     
-    public bool hotkeys(Gdk.EventKey e)
+    /* public bool hotkeys(Gdk.EventKey e)
     {
           switch (Gdk.keyval_name(e.keyval))
           {
                case "Escape":
                case "q":
                     on_quit();
-                    return true;
+                    return true; */
                /* what happened to skip back and skip forward?
                case "Left":
                     skip_back();
                case "Right"
                     skip_forward(); */
-               case "f":
+               /* case "f":
                case "F11":
                     on_fullscreen();
                     return true;
@@ -262,7 +262,7 @@ class player_window : Gtk.Window
                default:
                     return false;
           }
-    }
+    }*/
     
     private void on_play()
     {
