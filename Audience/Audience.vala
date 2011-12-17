@@ -21,8 +21,19 @@ using Gst;
 class player_window : Gtk.Window 
 {
     private const string WINDOW_TITLE = "Audience";
+    private const string PLAY_TOOLTIP = _("Play");
+    private const string PAUSE_TOOLTIP = _("Pause");
+    private const string FULLSCREEN_TOOLTIP = _("Fullscreen");
+    private const string UNFULLSCREEN_TOOLTIP = _("Unfullscreen");
+    private const string OPEN_TOOLTIP = _("Open");
+    private const string OPEN_WINDOWTITLE = _("Select media");
     private Image PLAY_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/play.svg");
     private Image PAUSE_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/pause.svg");
+    // Replace Open button with AppMenu https://bugs.launchpad.net/audience/+bug/903868
+    private Image OPEN_BUTTON = new Image.from_file (Build.PKGDATADIR + "/style/images/open.svg");
+    private Image OPEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg");
+    private Image FULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.svg");
+    private Image UNFULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/unfullscreen.svg");
     private DrawingArea drawing_area = new DrawingArea();
     private HBox hbox = new HBox(false, 1);
     private Pipeline pipeline = new Pipeline("pipe");
@@ -30,6 +41,8 @@ class player_window : Gtk.Window
     private Label position_label = new Label("");
     private HScale progress_slider = new HScale.with_range(0, 1, 1);
     private Button play_button = new Button();
+    private Button fullscreen_button = new Button();
+    private Button open_button = new Button();
     private bool state = false;
     private bool fullscreened = false;
 
@@ -83,7 +96,7 @@ class player_window : Gtk.Window
         play_button.margin_left = 10;
         play_button.margin_top = 10;
         play_button.margin_bottom = 10;
-        play_button.tooltip_text = _("Play");
+        play_button.tooltip_text = PLAY_TOOLTIP;
         play_button.can_focus = false;
         play_button.clicked.connect(on_play);
         play_button.sensitive = false;
@@ -109,24 +122,22 @@ class player_window : Gtk.Window
         hbox.pack_start(position_label, false, true, 0);
         hbox.pack_start(progress_slider, true, true, 0);
         
-        Button fullscreen_button = new Button();
-        fullscreen_button.set_image(new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.svg"));
+        fullscreen_button.set_image(FULLSCREEN_IMAGE);
         fullscreen_button.set_relief(Gtk.ReliefStyle.NONE);
         fullscreen_button.margin_top = 10;
         fullscreen_button.margin_bottom = 10;
-        fullscreen_button.tooltip_text = _("Fullscreen");
+        fullscreen_button.tooltip_text = FULLSCREEN_TOOLTIP;
         fullscreen_button.can_focus = false;
         fullscreen_button.clicked.connect(on_fullscreen);
         hbox.pack_start(fullscreen_button, false, true, 0);
         
-        Button open_button = new Button();
-        open_button.set_image(new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg"));
+        open_button.set_image(OPEN_IMAGE);
         open_button.set_relief(Gtk.ReliefStyle.NONE);
         open_button.margin_left = 10;
         open_button.margin_right = 10;
         open_button.margin_top = 10;
         open_button.margin_bottom = 10;
-        open_button.tooltip_text = _("Open");
+        open_button.tooltip_text = OPEN_TOOLTIP;
         open_button.can_focus = false;
         open_button.clicked.connect(on_open);
         hbox.pack_start(open_button, false, true, 0);
@@ -271,7 +282,7 @@ class player_window : Gtk.Window
             pipeline.set_state(State.PAUSED);
             state = false;
             play_button.set_image(PLAY_IMAGE);
-            play_button.tooltip_text = _("Play");
+            play_button.tooltip_text = (PLAY_TOOLTIP);
         }
         else
         {
@@ -279,13 +290,13 @@ class player_window : Gtk.Window
             state = true;
             play_button.sensitive = true;
             play_button.set_image(PAUSE_IMAGE);
-            play_button.tooltip_text = _("Pause");
+            play_button.tooltip_text = (PAUSE_TOOLTIP);
         }
     }
     
     private void on_open()
     {
-        var file_chooser = new FileChooserDialog(_("Select media"), this, FileChooserAction.OPEN, Stock.CANCEL, ResponseType.CANCEL, Stock.OPEN, ResponseType.ACCEPT, null);
+        var file_chooser = new FileChooserDialog(OPEN_WINDOWTITLE, this, FileChooserAction.OPEN, Stock.CANCEL, ResponseType.CANCEL, Stock.OPEN, ResponseType.ACCEPT, null);
         if (file_chooser.run() == ResponseType.ACCEPT) 
         {
             if (state) state = false;
@@ -307,12 +318,16 @@ class player_window : Gtk.Window
             fullscreen();
             fullscreened = true;
             hbox.hide();
+            fullscreen_button.tooltip_text = UNFULLSCREEN_TOOLTIP;
+            fullscreen_button.set_image(UNFULLSCREEN_IMAGE);
         }
         else
         {
             unfullscreen();
             fullscreened = false;
             hbox.show();
+            fullscreen_button.tooltip_text = FULLSCREEN_TOOLTIP;
+            fullscreen_button.set_image(FULLSCREEN_IMAGE);
         }
     }
     
