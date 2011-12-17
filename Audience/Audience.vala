@@ -218,11 +218,10 @@ class player_window : Gtk.Window
         switch(message.type)
         {
             case Gst.MessageType.EOS:
-                pipeline.set_state(State.READY);
+                pipeline.set_state(State.PAUSED);
                 state = false;
                 play_button.set_image(PLAY_IMAGE);
-                play_button.sensitive = false;
-                title = WINDOW_TITLE;
+                pipeline.seek_simple(Format.TIME, SeekFlags.FLUSH | SeekFlags.ACCURATE, 0);
                 break;
             default:
                 break;
@@ -236,7 +235,8 @@ class player_window : Gtk.Window
         string filename = Path.get_basename (path);
         var filename_split = filename.split (".");
         string window_title = "";
-        for (int n = 0; n<= filename_split.length-2; n++) {
+        for (int n = 0; n<= filename_split.length-2; n++) 
+        {
             if (n<= filename_split.length-3)
                 window_title += filename_split[n] + ".";
             else 
