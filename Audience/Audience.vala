@@ -26,7 +26,7 @@ class player_window : Gtk.Window
     private const string FULLSCREEN_TOOLTIP = _("Fullscreen");
     private const string UNFULLSCREEN_TOOLTIP = _("Unfullscreen");
     private const string OPEN_TOOLTIP = _("Open");
-    private const string OPEN_WINDOWTITLE = _("Select media");
+    private const string OPEN_WINDOW_TITLE = _("Select media");
     private Image PLAY_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/play.svg");
     private Image PAUSE_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/pause.svg");
     // Replace Open button with AppMenu https://bugs.launchpad.net/audience/+bug/903868
@@ -38,6 +38,7 @@ class player_window : Gtk.Window
     private HBox hbox = new HBox(false, 1);
     private Pipeline pipeline = new Pipeline("pipe");
     private dynamic Element playbin = ElementFactory.make("playbin2", "playbin");
+    private XOverlay xoverlay;
     private Label position_label = new Label("");
     private HScale progress_slider = new HScale.with_range(0, 1, 1);
     private Button play_button = new Button();
@@ -153,10 +154,10 @@ class player_window : Gtk.Window
         vbox.pack_start(drawing_area, true, true, 0);
         vbox.pack_start(hbox, false, true, 0);
         add(vbox);
-        
+
         modify_bg(Gtk.StateType.NORMAL, black);
-        
-        // this.key_press_event.connect(hotkeys);
+
+        key_press_event.connect(hotkeys);
         
         destroy.connect (on_quit);
         show_all();
@@ -180,11 +181,14 @@ class player_window : Gtk.Window
         playbin.uri = uri;
         playbin.video_sink = sink;
         sink.set("force-aspect-ratio", true);
-        ((XOverlay) sink).set_xwindow_id (Gdk.X11Window.get_xid (drawing_area.get_window ()));
+        xoverlay = sink as XOverlay;
+        xoverlay.set_xwindow_id (Gdk.X11Window.get_xid (drawing_area.get_window ()));
+        xoverlay.handle_events (false);
         set_window_title (uri);
         pipeline.add(playbin);
         var bus = pipeline.get_bus();
         bus.add_watch (bus_callback);
+        Timeout.add(100, (GLib.SourceFunc) xoverlay.expose);
         on_play();
     }
     
@@ -246,34 +250,35 @@ class player_window : Gtk.Window
         
     }
     
-    /* public bool hotkeys(Gdk.EventKey e)
+    public bool hotkeys(Gdk.EventKey e)
     {
-          switch (Gdk.keyval_name(e.keyval))
-          {
-               case "Escape":
-               case "q":
-                    on_quit();
-                    return true; */
-               /* what happened to skip back and skip forward?
-               case "Left":
-                    skip_back();
-               case "Right"
-                    skip_forward(); */
-               /* case "f":
-               case "F11":
-                    on_fullscreen();
-                    return true;
-               case "Return":
-               case "space":
-                    on_play();
-                    return true;
-               case "o":
-                    on_open();
-                    return true;
-               default:
-                    return false;
-          }
-    }*/
+        switch (Gdk.keyval_name(e.keyval))
+        {
+           case "Escape":
+           case "q":
+                on_quit();
+                return true;
+           case "Left":
+                on_seek(-7);
+                return true;
+           case "Right":
+                on_seek(7);
+                return true;
+           case "f":
+           case "F11":
+                on_fullscreen();
+                return true;
+           case "Return":
+           case "space":
+                if (play_button.sensitive) on_play();
+                return true;
+           case "o":
+                on_open();
+                return true;
+           default:
+                return false;
+        }
+    }
     
     private void on_play()
     {
@@ -296,7 +301,7 @@ class player_window : Gtk.Window
     
     private void on_open()
     {
-        var file_chooser = new FileChooserDialog(OPEN_WINDOWTITLE, this, FileChooserAction.OPEN, Stock.CANCEL, ResponseType.CANCEL, Stock.OPEN, ResponseType.ACCEPT, null);
+        var file_chooser = new FileChooserDialog(OPEN_WINDOW_TITLE, this, FileChooserAction.OPEN, Stock.CANCEL, ResponseType.CANCEL, Stock.OPEN, ResponseType.ACCEPT, null);
         if (file_chooser.run() == ResponseType.ACCEPT) 
         {
             if (state) state = false;
@@ -309,6 +314,23 @@ class player_window : Gtk.Window
     {
         int64 secs = (int64) progress_slider.get_value();
         pipeline.seek_simple(Format.TIME, SeekFlags.FLUSH | SeekFlags.ACCURATE, secs * SECOND);
+    }
+    
+    private void on_seek(int seek)
+    {
+        if (state)
+        {
+            update_slide();
+            int secs = (int) progress_slider.get_value();
+            int64 seek_to = (int64) (secs + seek);
+            int64 dur = get_time(1) / SECOND;
+            if ((seek_to > 0) && (seek_to < dur))
+                pipeline.seek_simple(Format.TIME, SeekFlags.FLUSH | SeekFlags.ACCURATE, seek_to * SECOND);
+            else if (seek_to < 0)
+                pipeline.seek_simple(Format.TIME, SeekFlags.FLUSH | SeekFlags.ACCURATE, 0);
+            else
+                pipeline.seek_simple(Format.TIME, SeekFlags.FLUSH | SeekFlags.ACCURATE, dur * SECOND);
+        }
     }
     
     private void on_fullscreen()
