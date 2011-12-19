@@ -46,13 +46,11 @@ class player_window : Gtk.Window
     private bool state = false;
     private bool fullscreened = false;
 
-    public player_window (string[] args)
+    public player_window(string[] args)
     {
-        create_widgets ();
-        Timeout.add (1000, (GLib.SourceFunc) update_slide);
-        Timeout.add (100, (GLib.SourceFunc) update_label);
-        //send a keyboard event every few seconds to disable screensaver
-        Timeout.add (5000, (GLib.SourceFunc) send_fake_event);
+        create_widgets();
+        Timeout.add(1000, (GLib.SourceFunc) update_slide);
+        Timeout.add(100, (GLib.SourceFunc) update_label);
         if (args.length > 1)
         {
             var uri = args[1];
@@ -67,19 +65,19 @@ class player_window : Gtk.Window
                     error ("%s", e.message);
                 }
             }
-            var file = File.new_for_uri (uri);
+            var file = File.new_for_uri(uri);
             if (!file.query_exists())
             {
-                var uri_error_dialog = new MessageDialog (this, DialogFlags.MODAL, Gtk.MessageType.ERROR, ButtonsType.OK,  _("URI not valid."));
+                var uri_error_dialog = new MessageDialog(this, DialogFlags.MODAL, Gtk.MessageType.ERROR, ButtonsType.OK,  _("URI not valid."));
                 if (uri_error_dialog.run() == ResponseType.OK) uri_error_dialog.destroy();
             }
-            else create_pipeline (uri);
+            else create_pipeline(uri);
         }
     }
     
     public static CssProvider style_provider { get; private set; default = null; }
     
-    private void create_widgets () 
+    private void create_widgets() 
     {
         style_provider = new CssProvider ();
         try 
@@ -93,149 +91,140 @@ class player_window : Gtk.Window
         
         title = WINDOW_TITLE;
 
-        play_button.set_image (PLAY_IMAGE);
-        play_button.set_relief (Gtk.ReliefStyle.NONE);
+        play_button.set_image(PLAY_IMAGE);
+        play_button.set_relief(Gtk.ReliefStyle.NONE);
         play_button.margin_left = 10;
         play_button.margin_top = 10;
         play_button.margin_bottom = 10;
         play_button.tooltip_text = PLAY_TOOLTIP;
         play_button.can_focus = false;
-        play_button.clicked.connect (on_play);
+        play_button.clicked.connect(on_play);
         play_button.sensitive = false;
-        hbox.pack_start (play_button, false, true, 0);
+        hbox.pack_start(play_button, false, true, 0);
         
         progress_slider.can_focus = false;
         progress_slider.set_draw_value (false);
-        progress_slider.set_size_request (380, -1);
+        progress_slider.set_size_request(380, -1);
         progress_slider.margin_left = 20;
         progress_slider.margin_right = 20;
         progress_slider.margin_top = 10;
         progress_slider.margin_bottom = 10;
-        progress_slider.set_range (0, 100);
-        progress_slider.set_increments (0, 10);
-        progress_slider.value_changed.connect (on_slide);
+        progress_slider.set_range(0, 100);
+        progress_slider.set_increments(0, 10);
+        progress_slider.value_changed.connect(on_slide);
         
         position_label.get_style_context ().add_provider (style_provider, 600);
         position_label.name = "TimePast";
         position_label.margin_left = 10;
         position_label.margin_top = 10;
         position_label.margin_bottom = 10;
-        hbox.pack_start (position_label, false, true, 0);
-        hbox.pack_start (progress_slider, true, true, 0);
         
-        fullscreen_button.set_image (FULLSCREEN_IMAGE);
-        fullscreen_button.set_relief (Gtk.ReliefStyle.NONE);
+        hbox.pack_start(position_label, false, true, 0);
+        hbox.pack_start(progress_slider, true, true, 0);
+        
+        fullscreen_button.set_image(FULLSCREEN_IMAGE);
+        fullscreen_button.set_relief(Gtk.ReliefStyle.NONE);
         fullscreen_button.margin_top = 10;
         fullscreen_button.margin_bottom = 10;
         fullscreen_button.tooltip_text = FULLSCREEN_TOOLTIP;
         fullscreen_button.can_focus = false;
-        fullscreen_button.clicked.connect (on_fullscreen);
-        hbox.pack_start (fullscreen_button, false, true, 0);
+        fullscreen_button.clicked.connect(on_fullscreen);
+        hbox.pack_start(fullscreen_button, false, true, 0);
         
-        open_button.set_image (OPEN_IMAGE);
-        open_button.set_relief (Gtk.ReliefStyle.NONE);
+        open_button.set_image(OPEN_IMAGE);
+        open_button.set_relief(Gtk.ReliefStyle.NONE);
         open_button.margin_left = 10;
         open_button.margin_right = 10;
         open_button.margin_top = 10;
         open_button.margin_bottom = 10;
         open_button.tooltip_text = OPEN_TOOLTIP;
         open_button.can_focus = false;
-        open_button.clicked.connect (on_open);
-        hbox.pack_start (open_button, false, true, 0);
+        open_button.clicked.connect(on_open);
+        hbox.pack_start(open_button, false, true, 0);
 
         Gdk.Color black;
-        Gdk.Color.parse ("black", out black);
-        drawing_area.set_size_request (624, 352);
-        drawing_area.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
-        drawing_area.button_press_event.connect (on_click);
-        drawing_area.modify_bg (Gtk.StateType.NORMAL, black);
+        Gdk.Color.parse("black", out black);
+        drawing_area.set_size_request(624, 352);
+        drawing_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK);
+        drawing_area.button_press_event.connect(on_click);
+        drawing_area.modify_bg(Gtk.StateType.NORMAL, black);
 
-        VBox vbox = new VBox (false, 0);
-        vbox.pack_start (drawing_area, true, true, 0);
-        vbox.pack_start (hbox, false, true, 0);
-        add (vbox);
+        VBox vbox = new VBox(false, 0);
+        vbox.pack_start(drawing_area, true, true, 0);
+        vbox.pack_start(hbox, false, true, 0);
+        add(vbox);
 
-        modify_bg (Gtk.StateType.NORMAL, black);
+        modify_bg(Gtk.StateType.NORMAL, black);
 
-        key_press_event.connect (hotkeys);
+        key_press_event.connect(hotkeys);
         
         destroy.connect (on_quit);
-        show_all ();
+        show_all();
     }
     
-    private int64 get_time (int which)
+    private int64 get_time(int which)
     {
      /* which = 0: Get the current position in time
         which = 1: Get the duration of the media */
         Format fmt = Format.TIME;
         int64 pos;
-        if (which == 0) pipeline.query_position (ref fmt, out pos);
-        else pipeline.query_duration (ref fmt, out pos);
+        if (which == 0) pipeline.query_position(ref fmt, out pos);
+        else pipeline.query_duration(ref fmt, out pos);
         return pos;
     }
-
-    private bool send_fake_event ()
-    {
-        var fake_event = Gdk.EventKey ();
-        //need to pass a bool to suppress warnings, no I have no idea what I'm doing
-        bool test;
-        fake_event.keyval = 126;
-        Signal.emit_by_name (this, "key-press-event", fake_event, &test);
-        return true;
-    }
     
-    private void create_pipeline (string uri)
+    private void create_pipeline(string uri)
     {
         dynamic Element sink = ElementFactory.make ("xvimagesink", "sink");
-        pipeline.set_state (State.READY);
+        pipeline.set_state(State.READY);
         playbin.uri = uri;
         playbin.video_sink = sink;
-        sink.set ("force-aspect-ratio", true);
-        var xoverlay = sink as XOverlay;
+        sink.set("force-aspect-ratio", true);
+        xoverlay = sink as XOverlay;
         xoverlay.set_xwindow_id (Gdk.X11Window.get_xid (drawing_area.get_window ()));
         xoverlay.handle_events (false);
         set_window_title (uri);
-        pipeline.add (playbin);
+        pipeline.add(playbin);
         var bus = pipeline.get_bus();
         bus.add_watch (bus_callback);
-        Timeout.add (100, (GLib.SourceFunc) xoverlay.expose);
+        Timeout.add(100, (GLib.SourceFunc) xoverlay.expose);
         on_play();
     }
     
-    private void update_slide ()
+    private void update_slide()
     {
-        var pos = get_time (0) / SECOND;
-        var dur = get_time (1) / SECOND;
-        progress_slider.value_changed.disconnect (on_slide);
-        progress_slider.set_range (0, dur);
-        progress_slider.set_value (pos);
-        progress_slider.value_changed.connect (on_slide);
+        var pos = get_time(0) / SECOND;
+        var dur = get_time(1) / SECOND;
+        progress_slider.value_changed.disconnect(on_slide);
+        progress_slider.set_range(0, dur);
+        progress_slider.set_value(pos);
+        progress_slider.value_changed.connect(on_slide);
     }
     
-    private void update_label ()
+    private void update_label()
     {
         int min = 0;
-        int secs = (int) progress_slider.get_value ();
-        string time;
+        int secs = (int) progress_slider.get_value();
+        string seconds;
         while (secs >= 60)
         {
             ++min;
             secs -= 60;
         }
-        if (secs < 10) time = "0" + secs.to_string ();
-        else time = secs.to_string ();
-        position_label.set_text (min.to_string () + ":" + time);
+        if (secs < 10) seconds = "0" + secs.to_string();
+        else seconds = secs.to_string();
+        position_label.set_text(min.to_string() + ":" + seconds);
     }
     
-    private bool bus_callback (Gst.Bus bus, Gst.Message message)
+    private bool bus_callback(Gst.Bus bus, Gst.Message message)
     {
-        switch (message.type)
+        switch(message.type)
         {
             case Gst.MessageType.EOS:
-                pipeline.set_state (State.PAUSED);
+                pipeline.set_state(State.PAUSED);
                 state = false;
-                play_button.set_image (PLAY_IMAGE);
-                pipeline.seek_simple (Format.TIME, SeekFlags.FLUSH | SeekFlags.ACCURATE, 0);
+                play_button.set_image(PLAY_IMAGE);
+                pipeline.seek_simple(Format.TIME, SeekFlags.FLUSH | SeekFlags.ACCURATE, 0);
                 break;
             default:
                 break;
@@ -260,44 +249,43 @@ class player_window : Gtk.Window
         
     }
     
-    public bool hotkeys (Gdk.EventKey e)
+    public bool hotkeys(Gdk.EventKey e)
     {
-        switch (Gdk.keyval_name (e.keyval))
+        switch (Gdk.keyval_name(e.keyval))
         {
-            case "Escape":
-            case "q":
-                on_quit ();
+           case "Escape":
+           case "q":
+                on_quit();
                 return true;
-            case "Left":
-                on_seek (-7);
+           case "Left":
+                on_seek(-7);
                 return true;
-            case "Right":
-                on_seek (7);
+           case "Right":
+                on_seek(7);
                 return true;
-
-            case "f":
-            case "F11":
-                on_fullscreen ();
+           case "f":
+           case "F11":
+                on_fullscreen();
                 return true;
-            case "Return":
-            case "space":
-                if (play_button.sensitive) on_play ();
+           case "Return":
+           case "space":
+                if (play_button.sensitive) on_play();
                 return true;
-            case "o":
-                on_open ();
+           case "o":
+                on_open();
                 return true;
-            default:
+           default:
                 return false;
         }
     }
     
-    private void on_play ()
+    private void on_play()
     {
         if (state)
         {
-            pipeline.set_state (State.PAUSED);
+            pipeline.set_state(State.PAUSED);
             state = false;
-            play_button.set_image (PLAY_IMAGE);
+            play_button.set_image(PLAY_IMAGE);
             play_button.tooltip_text = (PLAY_TOOLTIP);
         }
         else
@@ -305,76 +293,76 @@ class player_window : Gtk.Window
             pipeline.set_state (State.PLAYING);
             state = true;
             play_button.sensitive = true;
-            play_button.set_image (PAUSE_IMAGE);
+            play_button.set_image(PAUSE_IMAGE);
             play_button.tooltip_text = (PAUSE_TOOLTIP);
         }
     }
     
-    private void on_open ()
+    private void on_open()
     {
-        var file_chooser = new FileChooserDialog (OPEN_WINDOW_TITLE, this, FileChooserAction.OPEN, Stock.CANCEL, ResponseType.CANCEL, Stock.OPEN, ResponseType.ACCEPT, null);
-        if (file_chooser.run () == ResponseType.ACCEPT) 
+        var file_chooser = new FileChooserDialog(OPEN_WINDOW_TITLE, this, FileChooserAction.OPEN, Stock.CANCEL, ResponseType.CANCEL, Stock.OPEN, ResponseType.ACCEPT, null);
+        if (file_chooser.run() == ResponseType.ACCEPT) 
         {
             if (state) state = false;
-            create_pipeline (file_chooser.get_uri());
+            create_pipeline(file_chooser.get_uri());
         }
-        file_chooser.destroy ();
+        file_chooser.destroy();
     }
     
-    private void on_slide ()
+    private void on_slide()
     {
-        int64 secs = (int64) progress_slider.get_value ();
+        int64 secs = (int64) progress_slider.get_value();
         pipeline.seek_simple(Format.TIME, SeekFlags.FLUSH | SeekFlags.ACCURATE, secs * SECOND);
     }
     
-    private void on_seek (int seek)
+    private void on_seek(int seek)
     {
         if (state)
         {
-            update_slide ();
-            int secs = (int) progress_slider.get_value ();
+            update_slide();
+            int secs = (int) progress_slider.get_value();
             int64 seek_to = (int64) (secs + seek);
-            int64 dur = get_time (1) / SECOND;
+            int64 dur = get_time(1) / SECOND;
             if ((seek_to > 0) && (seek_to < dur))
-                pipeline.seek_simple (Format.TIME, SeekFlags.FLUSH | SeekFlags.ACCURATE, seek_to * SECOND);
+                pipeline.seek_simple(Format.TIME, SeekFlags.FLUSH | SeekFlags.ACCURATE, seek_to * SECOND);
             else if (seek_to < 0)
-                pipeline.seek_simple (Format.TIME, SeekFlags.FLUSH | SeekFlags.ACCURATE, 0);
+                pipeline.seek_simple(Format.TIME, SeekFlags.FLUSH | SeekFlags.ACCURATE, 0);
             else
-                pipeline.seek_simple (Format.TIME, SeekFlags.FLUSH | SeekFlags.ACCURATE, dur * SECOND);
+                pipeline.seek_simple(Format.TIME, SeekFlags.FLUSH | SeekFlags.ACCURATE, dur * SECOND);
         }
     }
     
-    private void on_fullscreen ()
+    private void on_fullscreen()
     {
         if (!fullscreened)
         {
-            fullscreen ();
+            fullscreen();
             fullscreened = true;
-            hbox.hide ();
+            hbox.hide();
             fullscreen_button.tooltip_text = UNFULLSCREEN_TOOLTIP;
-            fullscreen_button.set_image (UNFULLSCREEN_IMAGE);
+            fullscreen_button.set_image(UNFULLSCREEN_IMAGE);
         }
         else
         {
-            unfullscreen ();
+            unfullscreen();
             fullscreened = false;
-            hbox.show ();
+            hbox.show();
             fullscreen_button.tooltip_text = FULLSCREEN_TOOLTIP;
-            fullscreen_button.set_image (FULLSCREEN_IMAGE);
+            fullscreen_button.set_image(FULLSCREEN_IMAGE);
         }
     }
     
-    private bool on_click ()
+    private bool on_click()
     {
         if (fullscreened)
         {
-            if (hbox.visible) hbox.hide ();
-            else hbox.show ();
+            if (hbox.visible) hbox.hide();
+            else hbox.show();
         }
         return true;
     }
     
-    private void on_quit ()
+    private void on_quit()
     {
         // Avoids memory issues
         pipeline.set_state (State.NULL);
@@ -383,11 +371,11 @@ class player_window : Gtk.Window
 
 }
 
-int main (string[] args)
+int main(string[] args)
 {
-    Gtk.init (ref args);
-    Gst.init (ref args);
-    new player_window (args);
-    Gtk.main ();
+    Gtk.init(ref args);
+    Gst.init(ref args);
+    new player_window(args);
+    Gtk.main();
     return 0;
 }
