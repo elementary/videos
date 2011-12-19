@@ -180,7 +180,7 @@ class player_window : Gtk.Window
         playbin.uri = uri;
         playbin.video_sink = sink;
         sink.set("force-aspect-ratio", true);
-        xoverlay = sink as XOverlay;
+        var xoverlay = sink as XOverlay;
         xoverlay.set_xwindow_id (Gdk.X11Window.get_xid (drawing_area.get_window ()));
         xoverlay.handle_events (false);
         set_window_title (uri);
