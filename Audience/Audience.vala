@@ -27,7 +27,10 @@ class player_window : Gtk.Window
     private const string UNFULLSCREEN_TOOLTIP = _("Unfullscreen");
     private const string OPEN_TOOLTIP = _("Open");
     private const string OPEN_WINDOW_TITLE = _("Select media");
+    private const string ALL_FILES = _("All files");
     private const string SUPPORTED_FILES = _("Supported files");
+    private const string VIDEO_FILES = _("Video files");
+    private const string AUDIO_FILES = _("Audio files");
     private Image PLAY_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/play.svg");
     private Image PAUSE_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/pause.svg");
     // Replace Open button with AppMenu https://bugs.launchpad.net/audience/+bug/903868
@@ -301,14 +304,26 @@ class player_window : Gtk.Window
     private void on_open()
     {
         var file_chooser = new FileChooserDialog(OPEN_WINDOW_TITLE, this, FileChooserAction.OPEN, Stock.CANCEL, ResponseType.CANCEL, Stock.OPEN, ResponseType.ACCEPT, null);
-        var filter = new FileFilter ();
-
-			filter.set_filter_name (SUPPORTED_FILES);
-			filter.add_mime_type ("video/*");
-			filter.add_pattern ("*.ogg");
-			file_chooser.add_filter (filter);
-			file_chooser.set_filter (filter);
-			file_chooser.set_select_multiple (false);
+        var all_files_filter = new FileFilter ();
+            all_files_filter.set_filter_name (ALL_FILES);
+            all_files_filter.add_pattern ("*");
+        var supported_filter = new FileFilter ();
+            supported_filter.set_filter_name (SUPPORTED_FILES);
+            supported_filter.add_mime_type ("video/*");
+            supported_filter.add_mime_type ("audio/*");
+        var video_filter = new FileFilter ();
+            video_filter.set_filter_name (VIDEO_FILES);
+            video_filter.add_mime_type ("video/*");
+            video_filter.add_pattern ("*.ogg");
+        var audio_filter = new FileFilter ();
+            audio_filter.set_filter_name (AUDIO_FILES);
+            audio_filter.add_mime_type ("audio/*");
+            file_chooser.add_filter (all_files_filter);
+            file_chooser.add_filter (supported_filter);
+            file_chooser.add_filter (video_filter);
+            file_chooser.add_filter (audio_filter);
+            file_chooser.set_filter (supported_filter);
+            file_chooser.set_select_multiple (false);
         if (file_chooser.run() == ResponseType.ACCEPT) 
         {
             if (state) state = false;
