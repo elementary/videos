@@ -27,10 +27,10 @@ class player_window : Gtk.Window
     private const string UNFULLSCREEN_TOOLTIP = _("Unfullscreen");
     private const string OPEN_TOOLTIP = _("Open");
     private const string OPEN_WINDOW_TITLE = _("Select media");
+    private const string SUPPORTED_FILES = _("Supported files");
     private Image PLAY_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/play.svg");
     private Image PAUSE_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/pause.svg");
     // Replace Open button with AppMenu https://bugs.launchpad.net/audience/+bug/903868
-    private Image OPEN_BUTTON = new Image.from_file (Build.PKGDATADIR + "/style/images/open.svg");
     private Image OPEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg");
     private Image FULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.svg");
     private Image UNFULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/unfullscreen.svg");
@@ -301,6 +301,14 @@ class player_window : Gtk.Window
     private void on_open()
     {
         var file_chooser = new FileChooserDialog(OPEN_WINDOW_TITLE, this, FileChooserAction.OPEN, Stock.CANCEL, ResponseType.CANCEL, Stock.OPEN, ResponseType.ACCEPT, null);
+        var filter = new FileFilter ();
+
+			filter.set_filter_name (SUPPORTED_FILES);
+			filter.add_mime_type ("video/*");
+			filter.add_pattern ("*.ogg");
+			file_chooser.add_filter (filter);
+			file_chooser.set_filter (filter);
+			file_chooser.set_select_multiple (false);
         if (file_chooser.run() == ResponseType.ACCEPT) 
         {
             if (state) state = false;
