@@ -328,7 +328,6 @@ class player_window : Gtk.Window
         if (file_chooser.run() == ResponseType.ACCEPT) 
         {
             if (state) state = false;
-            //file = file_chooser.get_uri();
             create_pipeline(file_chooser.get_uri());
             register_recent_file();
         }
