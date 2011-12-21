@@ -48,7 +48,6 @@ class player_window : Gtk.Window
     private Button open_button = new Button();
     private bool state = false;
     private bool fullscreened = false;
-    private File file;
 
     public player_window(string[] args)
     {
@@ -177,7 +176,7 @@ class player_window : Gtk.Window
         return pos;
     }
     
-    private void create_pipeline(string uri)
+    public void create_pipeline(string uri)
     {
         dynamic Element sink = ElementFactory.make ("xvimagesink", "sink");
         pipeline.set_state(State.READY);
@@ -193,6 +192,7 @@ class player_window : Gtk.Window
         bus.add_watch (bus_callback);
         Timeout.add(100, (GLib.SourceFunc) xoverlay.expose);
         on_play();
+        register_recent_file(uri);
     }
     
     private void update_slide()
@@ -329,7 +329,6 @@ class player_window : Gtk.Window
         {
             if (state) state = false;
             create_pipeline(file_chooser.get_uri());
-            register_recent_file();
         }
         file_chooser.destroy();
     }
@@ -387,10 +386,10 @@ class player_window : Gtk.Window
         return true;
     }
 
-    private void register_recent_file()
+    private void register_recent_file(string uri)
     {
         Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default();
-        recent_manager.add_item (file.get_uri());
+        recent_manager.add_item (uri);
     }
 
     private void on_quit()
