@@ -48,6 +48,7 @@ class player_window : Gtk.Window
     private Button open_button = new Button();
     private bool state = false;
     private bool fullscreened = false;
+    private File file;
 
     public player_window(string[] args)
     {
@@ -301,7 +302,7 @@ class player_window : Gtk.Window
         }
     }
     
-    private void on_open()
+    public void on_open()
     {
         var file_chooser = new FileChooserDialog(OPEN_WINDOW_TITLE, this, FileChooserAction.OPEN, Stock.CANCEL, ResponseType.CANCEL, Stock.OPEN, ResponseType.ACCEPT, null);
         var all_files_filter = new FileFilter ();
@@ -327,7 +328,9 @@ class player_window : Gtk.Window
         if (file_chooser.run() == ResponseType.ACCEPT) 
         {
             if (state) state = false;
+            //file = file_chooser.get_uri();
             create_pipeline(file_chooser.get_uri());
+            register_recent_file();
         }
         file_chooser.destroy();
     }
@@ -384,7 +387,13 @@ class player_window : Gtk.Window
         }
         return true;
     }
-    
+
+    private void register_recent_file()
+    {
+        Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default();
+        recent_manager.add_item (file.get_uri());
+    }
+
     private void on_quit()
     {
         // Avoids memory issues
