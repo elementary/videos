@@ -81,7 +81,8 @@ namespace Audience {
                 menu.attach_widget.set_state(Gtk.StateType.NORMAL);
         }
         
-        public override void show_all(){
+        public override void show_all()
+        {
             base.show_all();
             menu.show_all();
         }
@@ -125,58 +126,37 @@ namespace Audience {
 
     public class AppMenu : ToolButtonWithMenu
     {
-        
-        /* string APP_NAME;
-        string LAUNCHPAD_NAME;
-        string WEBSITE;
-        string VERSION;
-        string ICON_NAME;
-        string COPYRIGHT;
-        string[] AUTHORS;*/
         Window WINDOW;
 
         public AppMenu (Window window, Menu menu)
-                        /* string app_name, 
-                        string launchpad_name,
-                        string website,
-                        string version,
-                        string copyright,
-                        string[] authors,
-                        string icon_name*/
-
         {
-Image image = new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg");
 
-	    MenuItem open_item = new MenuItem.with_label("Open");
-	    MenuItem info_item = new MenuItem.with_label ("Info");
-	    /*MenuItem scan_item = new MenuItem.with_label ("Scan for New Nodes");
-	    MenuItem export_item = new MenuItem.with_label ("Save Map as an Image");
-	    MenuItem preferences_item = new MenuItem.with_label ("Preferences");
+            Image image = new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg");
+
+            MenuItem open_item = new MenuItem.with_label("Open");
+            MenuItem info_item = new MenuItem.with_label ("Info");
+            /*MenuItem scan_item = new MenuItem.with_label ("Scan for New Nodes");
+            MenuItem export_item = new MenuItem.with_label ("Save Map as an Image");
+            MenuItem preferences_item = new MenuItem.with_label ("Preferences");
             MenuItem help_item = new MenuItem.with_label ("Get Help Online...");
             MenuItem translate_item = new MenuItem.with_label ("Translate This Application...");
             MenuItem report_item = new MenuItem.with_label ("Report a Problem...");
             MenuItem about_item = new MenuItem.with_label ("About");*/
 
-	    menu.append (open_item);
-	    menu.append (info_item);
-	    /*menu.append (scan_item);
-	    menu.append (export_item);
+            menu.append (open_item);
+            menu.append (info_item);
+            /*menu.append (scan_item);
+            menu.append (export_item);
             menu.append(new SeparatorMenuItem());
-	    menu.append (help_item);
+            menu.append (help_item);
             menu.append (translate_item);
             menu.append (report_item);
             menu.append(new SeparatorMenuItem());
-	    menu.append (preferences_item);
+            menu.append (preferences_item);
             menu.append (about_item);*/
             base(image, "Menu", menu);
-            // APP_NAME = app_name;
-            // LAUNCHPAD_NAME = launchpad_name;
+
             WINDOW = window;
-            /* WEBSITE = website;
-            VERSION = version;
-            AUTHORS = authors;
-            COPYRIGHT = copyright;
-            ICON_NAME = icon_name;*/
 	    
             info_item.activate.connect(info_dialog);
             // open_item.activate.connect(on_open);
@@ -189,55 +169,18 @@ Image image = new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg
             about_item.activate.connect(about_dialog);*/
         }
 
-        /*private void launch_launchpad (string service) {
-            try {
-                GLib.Process.spawn_async ("/usr/bin/", 
-                    {"x-www-browser", 
-                    "https://"+service+".launchpad.net/"+LAUNCHPAD_NAME}, 
-                    null, GLib.SpawnFlags.STDERR_TO_DEV_NULL, null, null);
-            } catch { }
+        private void info_dialog()
+        {
+
+	        stdout.printf("Info not yet available.\n");
         }
 
-        private void about_dialog () {
-            Gtk.show_about_dialog (WINDOW,
-                "program-name", APP_NAME,
-                "version", VERSION,
-                "website", WEBSITE,
-                "copyright", COPYRIGHT,
-                "authors", AUTHORS,
-                "logo-icon-name", ICON_NAME,
-                null);
-        }*/
-
-        private void info_dialog () {
-            /*Gtk.show_about_dialog (WINDOW,
-                "program-name", APP_NAME,
-                "version", VERSION,
-                "website", WEBSITE,
-                "copyright", COPYRIGHT,
-                "authors", AUTHORS,
-                "logo-icon-name", ICON_NAME,
-                null); */
-	    stdout.printf("Info not yet available.\n");
-        }
-
-	/*private void on_open_menuitem () {
+        /*private void on_open_menuitem()
+        {
 
 		stdout.printf("Exporting not yet available.\n");
 
-	}*/
-
-	//private void preferences_dialog () {
-          /*Gtk.show_about_dialog (WINDOW,
-                "program-name", APP_NAME,
-                "version", VERSION,
-                "website", WEBSITE,
-                "copyright", COPYRIGHT,
-                "authors", AUTHORS,
-                "logo-icon-name", ICON_NAME,
-                null); */
-	  //stdout.printf("Preferences not yet available.\n");
-        //}
+        }*/
 
     }
 }
