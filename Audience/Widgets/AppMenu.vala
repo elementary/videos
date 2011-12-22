@@ -1,10 +1,6 @@
-
-
 namespace Audience {
 
     using Gtk;
-
-
 
     public abstract class ToolButtonWithMenu : ToggleToolButton
     {
