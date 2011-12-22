@@ -18,6 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using Gtk;
 using Gst;
 
+using Audience;
+
 class player_window : Gtk.Window 
 {
     private const string WINDOW_TITLE = "Audience";
@@ -34,7 +36,7 @@ class player_window : Gtk.Window
     private Image PLAY_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/play.svg");
     private Image PAUSE_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/pause.svg");
     // Replace Open button with AppMenu https://bugs.launchpad.net/audience/+bug/903868
-    private Image OPEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg");
+    public Image OPEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg");
     private Image FULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.svg");
     private Image UNFULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/unfullscreen.svg");
     private DrawingArea drawing_area = new DrawingArea();
@@ -48,6 +50,7 @@ class player_window : Gtk.Window
     private Button open_button = new Button();
     private bool state = false;
     private bool fullscreened = false;
+    public AppMenu app_menu;
 
     public player_window(string[] args)
     {
@@ -134,7 +137,7 @@ class player_window : Gtk.Window
         fullscreen_button.clicked.connect(on_fullscreen);
         hbox.pack_start(fullscreen_button, false, true, 0);
         
-        open_button.set_image(OPEN_IMAGE);
+        /*open_button.set_image(OPEN_IMAGE);
         open_button.set_relief(Gtk.ReliefStyle.NONE);
         open_button.margin_left = 10;
         open_button.margin_right = 10;
@@ -143,7 +146,7 @@ class player_window : Gtk.Window
         open_button.tooltip_text = OPEN_TOOLTIP;
         open_button.can_focus = false;
         open_button.clicked.connect(on_open);
-        hbox.pack_start(open_button, false, true, 0);
+        hbox.pack_start(open_button, false, true, 0);*/
 
         Gdk.Color black;
         Gdk.Color.parse("black", out black);
@@ -151,6 +154,15 @@ class player_window : Gtk.Window
         drawing_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK);
         drawing_area.button_press_event.connect(on_click);
         drawing_area.modify_bg(Gtk.StateType.NORMAL, black);
+
+        var menu = new Menu ();
+
+        this.app_menu = new AppMenu (this, menu);
+     /* app_menu.margin_left = 10;
+        app_menu.margin_right = 10; */
+        app_menu.margin_top = 10;
+        app_menu.margin_bottom = 10;
+        hbox.pack_start(app_menu);
 
         VBox vbox = new VBox(false, 0);
         vbox.pack_start(drawing_area, true, true, 0);
