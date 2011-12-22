@@ -20,7 +20,7 @@ using Gst;
 
 using Audience;
 
-class player_window : Gtk.Window 
+class AudienceWindow : Window 
 {
     private const string WINDOW_TITLE = "Audience";
     private const string PLAY_TOOLTIP = _("Play");
@@ -48,7 +48,7 @@ class player_window : Gtk.Window
     private bool state = false;
     private bool fullscreened = false;
 
-    public player_window(string[] args)
+    public AudienceWindow(string[] args)
     {
         create_widgets();
         Timeout.add(1000, (GLib.SourceFunc) update_slide);
@@ -402,7 +402,7 @@ int main(string[] args)
 {
     Gtk.init(ref args);
     Gst.init(ref args);
-    new player_window(args);
+    new AudienceWindow(args);
     Gtk.main();
     return 0;
 }
