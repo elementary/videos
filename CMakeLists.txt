@@ -34,7 +34,7 @@ ensure_vala_version ("0.12.0" MINIMUM)
 include (ValaPrecompile)
 vala_precompile (VALA_C
     Audience/Audience.vala
-#   Audience/Widgets/AppMenu.vala
+    Audience/Widgets/AppMenu.vala
 PACKAGES
 	${AUDIENCE_DEPS}
 CUSTOM_VAPIS

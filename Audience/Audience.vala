@@ -15,41 +15,40 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Audience {
+
 using Gtk;
 using Gst;
 
-class player_window : Gtk.Window 
+public class AudienceWindow : Gtk.Window 
 {
     private const string WINDOW_TITLE = "Audience";
     private const string PLAY_TOOLTIP = _("Play");
     private const string PAUSE_TOOLTIP = _("Pause");
     private const string FULLSCREEN_TOOLTIP = _("Fullscreen");
     private const string UNFULLSCREEN_TOOLTIP = _("Unfullscreen");
-    private const string OPEN_TOOLTIP = _("Open");
-    private const string OPEN_WINDOW_TITLE = _("Select media");
+    private const string OPEN_WINDOW_TITLE = _("Select Media");
     private const string ALL_FILES = _("All files");
     private const string SUPPORTED_FILES = _("Supported files");
     private const string VIDEO_FILES = _("Video files");
     private const string AUDIO_FILES = _("Audio files");
     private Image PLAY_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/play.svg");
     private Image PAUSE_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/pause.svg");
-    // Replace Open button with AppMenu https://bugs.launchpad.net/audience/+bug/903868
-    private Image OPEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg");
     private Image FULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.svg");
     private Image UNFULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/unfullscreen.svg");
     private DrawingArea drawing_area = new DrawingArea();
     private HBox hbox = new HBox(false, 1);
-    private Pipeline pipeline = new Pipeline("pipe");
+    private dynamic Pipeline pipeline = new Pipeline("pipe");
     private dynamic Element playbin = ElementFactory.make("playbin2", "playbin");
     private Label position_label = new Label("");
     private HScale progress_slider = new HScale.with_range(0, 1, 1);
     private Button play_button = new Button();
     private Button fullscreen_button = new Button();
-    private Button open_button = new Button();
+    public AppMenu app_menu;
     private bool state = false;
     private bool fullscreened = false;
 
-    public player_window(string[] args)
+    public AudienceWindow(string[] args)
     {
         create_widgets();
         Timeout.add(1000, (GLib.SourceFunc) update_slide);
@@ -133,17 +132,6 @@ class player_window : Gtk.Window
         fullscreen_button.can_focus = false;
         fullscreen_button.clicked.connect(on_fullscreen);
         hbox.pack_start(fullscreen_button, false, true, 0);
-        
-        open_button.set_image(OPEN_IMAGE);
-        open_button.set_relief(Gtk.ReliefStyle.NONE);
-        open_button.margin_left = 10;
-        open_button.margin_right = 10;
-        open_button.margin_top = 10;
-        open_button.margin_bottom = 10;
-        open_button.tooltip_text = OPEN_TOOLTIP;
-        open_button.can_focus = false;
-        open_button.clicked.connect(on_open);
-        hbox.pack_start(open_button, false, true, 0);
 
         Gdk.Color black;
         Gdk.Color.parse("black", out black);
@@ -151,6 +139,15 @@ class player_window : Gtk.Window
         drawing_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK);
         drawing_area.button_press_event.connect(on_click);
         drawing_area.modify_bg(Gtk.StateType.NORMAL, black);
+
+        var menu = new Menu ();
+
+        this.app_menu = new AppMenu (this, menu);
+        app_menu.margin_left = 10;
+        app_menu.margin_right = 10;
+        app_menu.margin_top = 10;
+        app_menu.margin_bottom = 10;
+        hbox.pack_start(app_menu, false, false, 0);
 
         VBox vbox = new VBox(false, 0);
         vbox.pack_start(drawing_area, true, true, 0);
@@ -401,11 +398,12 @@ class player_window : Gtk.Window
 
 }
 
-int main(string[] args)
+public void main(string[] args)
 {
     Gtk.init(ref args);
     Gst.init(ref args);
-    new player_window(args);
+    new AudienceWindow(args);
     Gtk.main();
-    return 0;
+}
+
 }
