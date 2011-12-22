@@ -35,10 +35,9 @@ class player_window : Gtk.Window
     private const string AUDIO_FILES = _("Audio files");
     private Image PLAY_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/play.svg");
     private Image PAUSE_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/pause.svg");
-    // Replace Open button with AppMenu https://bugs.launchpad.net/audience/+bug/903868
-    public Image OPEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg");
     private Image FULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.svg");
     private Image UNFULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/unfullscreen.svg");
+    private AppMenu app_menu;
     private DrawingArea drawing_area = new DrawingArea();
     private HBox hbox = new HBox(false, 1);
     private Pipeline pipeline = new Pipeline("pipe");
@@ -47,10 +46,8 @@ class player_window : Gtk.Window
     private HScale progress_slider = new HScale.with_range(0, 1, 1);
     private Button play_button = new Button();
     private Button fullscreen_button = new Button();
-    private Button open_button = new Button();
     private bool state = false;
     private bool fullscreened = false;
-    public AppMenu app_menu;
 
     public player_window(string[] args)
     {
@@ -136,17 +133,6 @@ class player_window : Gtk.Window
         fullscreen_button.can_focus = false;
         fullscreen_button.clicked.connect(on_fullscreen);
         hbox.pack_start(fullscreen_button, false, true, 0);
-        
-        /*open_button.set_image(OPEN_IMAGE);
-        open_button.set_relief(Gtk.ReliefStyle.NONE);
-        open_button.margin_left = 10;
-        open_button.margin_right = 10;
-        open_button.margin_top = 10;
-        open_button.margin_bottom = 10;
-        open_button.tooltip_text = OPEN_TOOLTIP;
-        open_button.can_focus = false;
-        open_button.clicked.connect(on_open);
-        hbox.pack_start(open_button, false, true, 0);*/
 
         Gdk.Color black;
         Gdk.Color.parse("black", out black);
