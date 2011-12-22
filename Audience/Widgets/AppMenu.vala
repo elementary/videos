@@ -2,8 +2,6 @@ namespace Audience {
 
     using Gtk;
 
-    //using Audience
-
     public abstract class ToolButtonWithMenu : ToggleToolButton
     {
         protected Menu menu;
@@ -131,13 +129,14 @@ namespace Audience {
 
             Image image = new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg");
 
-            MenuItem open_item = new MenuItem.with_label("Open");
-         /* MenuItem audio_item = new MenuItem.with_label("Audio");
-            CheckMenuItem en_item = new CheckMenuItem.with_label("English");
-            CheckMenuItem en_item2 = new CheckMenuItem.with_label("English");
-            CheckMenuItem fr_item = new CheckMenuItem.with_label("French");
-            CheckMenuItem fr_item2 = new CheckMenuItem.with_label("French");
+            MenuItem open_item = new MenuItem.with_label(_("Open"));
+         /* MenuItem open_location_item = new MenuItem.with_label(_("Open Location"));
+            MenuItem audio_item = new MenuItem.with_label(_("Audio"));
+            CheckMenuItem en_item = new CheckMenuItem.with_label("Ex. English");
+            CheckMenuItem fr_item = new CheckMenuItem.with_label("Ex. French");
             MenuItem subtitles_item = new MenuItem.with_label("Subtitles");
+            CheckMenuItem en_item2 = new CheckMenuItem.with_label("Ex. English");
+            CheckMenuItem fr_item2 = new CheckMenuItem.with_label("Ex. French");
             var audio_submenu = new Gtk.Menu();
             audio_submenu.append(en_item);
             audio_submenu.append(fr_item);
@@ -149,7 +148,8 @@ namespace Audience {
           */
 
             menu.append(open_item);
-         /* menu.append(new Gtk.SeparatorMenuItem());
+         /* menu.append(open_location_item);
+            menu.append(new Gtk.SeparatorMenuItem());
             menu.append(audio_item);
             menu.append(subtitles_item);
           */
@@ -164,10 +164,5 @@ namespace Audience {
             http://bazaar.launchpad.net/~elementary-apps/lingo-dictionary/lingo/view/head:/src/lingo-window.vala
           */
         }
-         
-        /*public void on_open_menuitem()
-        {
-        the_menu_item.on_open();
-          }*/
     }
 }
