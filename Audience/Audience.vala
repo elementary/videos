@@ -32,7 +32,6 @@ public class AudienceWindow : Gtk.Window
     private const string SUPPORTED_FILES = _("Supported files");
     private const string VIDEO_FILES = _("Video files");
     private const string AUDIO_FILES = _("Audio files");
-    public const string OPEN = _("Open");
     private Image PLAY_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/play.svg");
     private Image PAUSE_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/pause.svg");
     private Image FULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.svg");
