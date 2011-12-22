@@ -15,12 +15,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Audience {
+
 using Gtk;
 using Gst;
 
-using Audience;
+//using Audience;
 
-class AudienceWindow : Window 
+public class AudienceWindow : Gtk.Window 
 {
     private const string WINDOW_TITLE = "Audience";
     private const string PLAY_TOOLTIP = _("Play");
@@ -38,13 +40,13 @@ class AudienceWindow : Window
     private Image UNFULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/unfullscreen.svg");
     private DrawingArea drawing_area = new DrawingArea();
     private HBox hbox = new HBox(false, 1);
-    private Pipeline pipeline = new Pipeline("pipe");
+    private dynamic Pipeline pipeline = new Pipeline("pipe");
     private dynamic Element playbin = ElementFactory.make("playbin2", "playbin");
     private Label position_label = new Label("");
     private HScale progress_slider = new HScale.with_range(0, 1, 1);
     private Button play_button = new Button();
     private Button fullscreen_button = new Button();
-    private AppMenu app_menu;
+    public AppMenu app_menu;
     private bool state = false;
     private bool fullscreened = false;
 
@@ -404,4 +406,6 @@ public void main(string[] args)
     Gst.init(ref args);
     new AudienceWindow(args);
     Gtk.main();
+}
+
 }

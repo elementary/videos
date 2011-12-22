@@ -2,6 +2,8 @@ namespace Audience {
 
     using Gtk;
 
+    //using Audience
+
     public abstract class ToolButtonWithMenu : ToggleToolButton
     {
         protected Menu menu;
@@ -155,19 +157,19 @@ namespace Audience {
             base(image, "Menu", menu);
 
             WINDOW = window;
-	    
-         /* open_item.activate.connect(on_open);
-            For CheckMenuItems see line 156 of
+            
+var w = get_toplevel () as AudienceWindow;
+
+            
+            open_item.activate.connect(w.on_open);
+         /* For CheckMenuItems see line 156 of
             http://bazaar.launchpad.net/~elementary-apps/lingo-dictionary/lingo/view/head:/src/lingo-window.vala
           */
         }
-         /*
-        private void on_open_menuitem()
+         
+        /*public void on_open_menuitem()
         {
-
-		stdout.printf("Open not yet available.\n");
-
-        }
-          */
+        the_menu_item.on_open();
+          }*/
     }
 }
