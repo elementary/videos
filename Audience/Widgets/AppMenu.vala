@@ -126,7 +126,7 @@ namespace Audience {
     {
         Window WINDOW;
 
-        public AppMenu (Window window, Menu menu)
+        public AppMenu (AudienceWindow window, Menu menu)
         {
 
             Image image = new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg");
@@ -158,10 +158,8 @@ namespace Audience {
 
             WINDOW = window;
             
-var w = get_toplevel () as AudienceWindow;
-
-            
-            open_item.activate.connect(w.on_open);
+   
+            open_item.activate.connect(window.on_open);
          /* For CheckMenuItems see line 156 of
             http://bazaar.launchpad.net/~elementary-apps/lingo-dictionary/lingo/view/head:/src/lingo-window.vala
           */
