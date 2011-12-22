@@ -398,11 +398,10 @@ class AudienceWindow : Window
 
 }
 
-int main(string[] args)
+public void main(string[] args)
 {
     Gtk.init(ref args);
     Gst.init(ref args);
     new AudienceWindow(args);
     Gtk.main();
-    return 0;
 }
