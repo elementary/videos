@@ -161,13 +161,13 @@ namespace Audience {
             http://bazaar.launchpad.net/~elementary-apps/lingo-dictionary/lingo/view/head:/src/lingo-window.vala
           */
         }
-
-     /* private void on_open_menuitem()
+         /*
+        private void on_open_menuitem()
         {
 
-		stdout.printf("Exporting not yet available.\n");
+		stdout.printf("Open not yet available.\n");
 
         }
-      */
+          */
     }
 }
