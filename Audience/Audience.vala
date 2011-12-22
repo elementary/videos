@@ -27,8 +27,7 @@ class player_window : Gtk.Window
     private const string PAUSE_TOOLTIP = _("Pause");
     private const string FULLSCREEN_TOOLTIP = _("Fullscreen");
     private const string UNFULLSCREEN_TOOLTIP = _("Unfullscreen");
-    private const string OPEN_TOOLTIP = _("Open");
-    private const string OPEN_WINDOW_TITLE = _("Select media");
+    private const string OPEN_WINDOW_TITLE = _("Select Media");
     private const string ALL_FILES = _("All files");
     private const string SUPPORTED_FILES = _("Supported files");
     private const string VIDEO_FILES = _("Video files");
@@ -37,7 +36,6 @@ class player_window : Gtk.Window
     private Image PAUSE_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/pause.svg");
     private Image FULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.svg");
     private Image UNFULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/unfullscreen.svg");
-    private AppMenu app_menu;
     private DrawingArea drawing_area = new DrawingArea();
     private HBox hbox = new HBox(false, 1);
     private Pipeline pipeline = new Pipeline("pipe");
@@ -46,6 +44,7 @@ class player_window : Gtk.Window
     private HScale progress_slider = new HScale.with_range(0, 1, 1);
     private Button play_button = new Button();
     private Button fullscreen_button = new Button();
+    private AppMenu app_menu;
     private bool state = false;
     private bool fullscreened = false;
 
