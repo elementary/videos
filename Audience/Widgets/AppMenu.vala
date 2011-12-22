@@ -160,7 +160,8 @@ namespace Audience {
             
    
             open_item.activate.connect(window.on_open);
-         /* For CheckMenuItems see line 156 of
+         /* open_location_item.active.connect(window.on_open_location);
+            For CheckMenuItems see line 156 of
             http://bazaar.launchpad.net/~elementary-apps/lingo-dictionary/lingo/view/head:/src/lingo-window.vala
           */
         }

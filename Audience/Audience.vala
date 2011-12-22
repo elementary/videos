@@ -143,11 +143,11 @@ public class AudienceWindow : Gtk.Window
         var menu = new Menu ();
 
         this.app_menu = new AppMenu (this, menu);
-     /* app_menu.margin_left = 10;
-        app_menu.margin_right = 10; */
+        app_menu.margin_left = 10;
+        app_menu.margin_right = 10;
         app_menu.margin_top = 10;
         app_menu.margin_bottom = 10;
-        hbox.pack_start(app_menu);
+        hbox.pack_start(app_menu, false, false, 0);
 
         VBox vbox = new VBox(false, 0);
         vbox.pack_start(drawing_area, true, true, 0);
