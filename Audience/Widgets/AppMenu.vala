@@ -130,53 +130,44 @@ namespace Audience {
             Image image = new Image.from_file (Build.PKGDATADIR + "/style/images/appmenu.svg");
 
             MenuItem open_item = new MenuItem.with_label("Open");
-            MenuItem info_item = new MenuItem.with_label ("Info");
-            /*MenuItem scan_item = new MenuItem.with_label ("Scan for New Nodes");
-            MenuItem export_item = new MenuItem.with_label ("Save Map as an Image");
-            MenuItem preferences_item = new MenuItem.with_label ("Preferences");
-            MenuItem help_item = new MenuItem.with_label ("Get Help Online...");
-            MenuItem translate_item = new MenuItem.with_label ("Translate This Application...");
-            MenuItem report_item = new MenuItem.with_label ("Report a Problem...");
-            MenuItem about_item = new MenuItem.with_label ("About");*/
+         /* MenuItem audio_item = new MenuItem.with_label("Audio");
+            CheckMenuItem en_item = new CheckMenuItem.with_label("English");
+            CheckMenuItem en_item2 = new CheckMenuItem.with_label("English");
+            CheckMenuItem fr_item = new CheckMenuItem.with_label("French");
+            CheckMenuItem fr_item2 = new CheckMenuItem.with_label("French");
+            MenuItem subtitles_item = new MenuItem.with_label("Subtitles");
+            var audio_submenu = new Gtk.Menu();
+            audio_submenu.append(en_item);
+            audio_submenu.append(fr_item);
+            audio_item.set_submenu(audio_submenu);
+            var subtitles_submenu = new Gtk.Menu();
+            subtitles_submenu.append(en_item2);
+            subtitles_submenu.append(fr_item2);
+            subtitles_item.set_submenu(subtitles_submenu);
+          */
 
-            menu.append (open_item);
-            menu.append (info_item);
-            /*menu.append (scan_item);
-            menu.append (export_item);
-            menu.append(new SeparatorMenuItem());
-            menu.append (help_item);
-            menu.append (translate_item);
-            menu.append (report_item);
-            menu.append(new SeparatorMenuItem());
-            menu.append (preferences_item);
-            menu.append (about_item);*/
+            menu.append(open_item);
+         /* menu.append(new Gtk.SeparatorMenuItem());
+            menu.append(audio_item);
+            menu.append(subtitles_item);
+          */
+
             base(image, "Menu", menu);
 
             WINDOW = window;
 	    
-            info_item.activate.connect(info_dialog);
-            // open_item.activate.connect(on_open);
-            /*scan_item.activate.connect(nmap_scan);
-            export_item.activate.connect(save_map);
-            preferences_item.activate.connect(preferences_dialog);
-            help_item.activate.connect(() => launch_launchpad("answers"));
-            translate_item.activate.connect(() => launch_launchpad("translations"));
-            report_item.activate.connect(() => launch_launchpad("bugs"));
-            about_item.activate.connect(about_dialog);*/
+         /* open_item.activate.connect(on_open);
+            For CheckMenuItems see line 156 of
+            http://bazaar.launchpad.net/~elementary-apps/lingo-dictionary/lingo/view/head:/src/lingo-window.vala
+          */
         }
 
-        private void info_dialog()
-        {
-
-	        stdout.printf("Info not yet available.\n");
-        }
-
-        /*private void on_open_menuitem()
+     /* private void on_open_menuitem()
         {
 
 		stdout.printf("Exporting not yet available.\n");
 
-        }*/
-
+        }
+      */
     }
 }
