@@ -150,13 +150,6 @@ public class AudienceWindow : Gtk.Window
         
         app_menu = new AppMenu (this, menu);
         app_menu.margin = 10;
-        /*open_button.margin_left = 10;
-        open_button.margin_right = 10;
-        open_button.margin_top = 10;
-        open_button.margin_bottom = 10;
-        open_button.tooltip_text = OPEN_TOOLTIP;
-        open_button.can_focus = false;
-        open_button.clicked.connect(on_open);*/
         controls.pack_start(app_menu, false, true, 0);
 
         var overlay = new Overlay();
