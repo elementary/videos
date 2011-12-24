@@ -95,13 +95,16 @@ public class AudienceWindow : Gtk.Window
         
         title = WINDOW_TITLE;
 
-        Gdk.RGBA black = Gdk.RGBA();
+        var black = Gdk.RGBA();
         black.parse("black");
+        override_background_color(Gtk.StateFlags.NORMAL, black);
+
         drawing_area.set_size_request(624, 352);
         drawing_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK);
         drawing_area.button_press_event.connect(on_click);
         drawing_area.override_background_color(Gtk.StateFlags.NORMAL, black);
 
+        controls_box.add(controls);
         controls_overlay.set_valign(Gtk.Align.END);
 
         play_button.set_image(PLAY_IMAGE);
@@ -145,7 +148,7 @@ public class AudienceWindow : Gtk.Window
 
         var menu = new Menu();
         
-        this.app_menu = new AppMenu (this, menu);
+        app_menu = new AppMenu (this, menu);
         app_menu.margin = 10;
         /*open_button.margin_left = 10;
         open_button.margin_right = 10;
@@ -156,11 +159,10 @@ public class AudienceWindow : Gtk.Window
         open_button.clicked.connect(on_open);*/
         controls.pack_start(app_menu, false, true, 0);
 
-        controls_box.add(controls);
-
         var overlay = new Overlay();
         overlay.add(drawing_area);
         overlay.add_overlay(controls_overlay);
+        overlay.override_background_color(Gtk.StateFlags.NORMAL, black);
 
         var box = new Box(Orientation.VERTICAL, 0);
         box.pack_start(overlay, true, true, 0);
