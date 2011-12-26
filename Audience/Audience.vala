@@ -37,7 +37,9 @@ public class AudienceWindow : Gtk.Window
     private Image FULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/fullscreen.svg");
     private Image UNFULLSCREEN_IMAGE = new Image.from_file (Build.PKGDATADIR + "/style/images/unfullscreen.svg");
     private DrawingArea drawing_area = new DrawingArea();
-    private HBox hbox = new HBox(false, 1);
+    private Box controls = new Box(Orientation.HORIZONTAL, 1);
+    private Box controls_box = new Box(Orientation.VERTICAL, 0);
+    private Box controls_overlay = new Box(Orientation.VERTICAL, 0);
     private dynamic Pipeline pipeline = new Pipeline("pipe");
     private dynamic Element playbin = ElementFactory.make("playbin2", "playbin");
     private Label position_label = new Label("");
@@ -93,6 +95,18 @@ public class AudienceWindow : Gtk.Window
         
         title = WINDOW_TITLE;
 
+        var black = Gdk.RGBA();
+        black.parse("black");
+        override_background_color(Gtk.StateFlags.NORMAL, black);
+
+        drawing_area.set_size_request(624, 352);
+        drawing_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK);
+        drawing_area.button_press_event.connect(on_click);
+        drawing_area.override_background_color(Gtk.StateFlags.NORMAL, black);
+
+        controls_box.add(controls);
+        controls_overlay.set_valign(Gtk.Align.END);
+
         play_button.set_image(PLAY_IMAGE);
         play_button.set_relief(Gtk.ReliefStyle.NONE);
         play_button.margin_left = 10;
@@ -102,8 +116,15 @@ public class AudienceWindow : Gtk.Window
         play_button.can_focus = false;
         play_button.clicked.connect(on_play);
         play_button.sensitive = false;
-        hbox.pack_start(play_button, false, true, 0);
+        controls.pack_start(play_button, false, true, 0);
         
+        position_label.get_style_context ().add_provider (style_provider, 600);
+        position_label.name = "TimePast";
+        position_label.margin_left = 10;
+        position_label.margin_top = 10;
+        position_label.margin_bottom = 10;
+        controls.pack_start(position_label, false, true, 0);
+
         progress_slider.can_focus = false;
         progress_slider.set_draw_value (false);
         progress_slider.set_size_request(380, -1);
@@ -113,16 +134,8 @@ public class AudienceWindow : Gtk.Window
         progress_slider.margin_bottom = 10;
         progress_slider.set_range(0, 100);
         progress_slider.set_increments(0, 10);
-        progress_slider.value_changed.connect(on_slide);
-        
-        position_label.get_style_context ().add_provider (style_provider, 600);
-        position_label.name = "TimePast";
-        position_label.margin_left = 10;
-        position_label.margin_top = 10;
-        position_label.margin_bottom = 10;
-        
-        hbox.pack_start(position_label, false, true, 0);
-        hbox.pack_start(progress_slider, true, true, 0);
+        progress_slider.value_changed.connect(on_slide);        
+        controls.pack_start(progress_slider, true, true, 0);
         
         fullscreen_button.set_image(FULLSCREEN_IMAGE);
         fullscreen_button.set_relief(Gtk.ReliefStyle.NONE);
@@ -131,30 +144,23 @@ public class AudienceWindow : Gtk.Window
         fullscreen_button.tooltip_text = FULLSCREEN_TOOLTIP;
         fullscreen_button.can_focus = false;
         fullscreen_button.clicked.connect(on_fullscreen);
-        hbox.pack_start(fullscreen_button, false, true, 0);
+        controls.pack_start(fullscreen_button, false, true, 0);
 
-        Gdk.Color black;
-        Gdk.Color.parse("black", out black);
-        drawing_area.set_size_request(624, 352);
-        drawing_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK);
-        drawing_area.button_press_event.connect(on_click);
-        drawing_area.modify_bg(Gtk.StateType.NORMAL, black);
+        var menu = new Menu();
+        
+        app_menu = new AppMenu (this, menu);
+        app_menu.margin = 10;
+        controls.pack_start(app_menu, false, true, 0);
 
-        var menu = new Menu ();
+        var overlay = new Overlay();
+        overlay.add(drawing_area);
+        overlay.add_overlay(controls_overlay);
+        overlay.override_background_color(Gtk.StateFlags.NORMAL, black);
 
-        this.app_menu = new AppMenu (this, menu);
-        app_menu.margin_left = 10;
-        app_menu.margin_right = 10;
-        app_menu.margin_top = 10;
-        app_menu.margin_bottom = 10;
-        hbox.pack_start(app_menu, false, false, 0);
-
-        VBox vbox = new VBox(false, 0);
-        vbox.pack_start(drawing_area, true, true, 0);
-        vbox.pack_start(hbox, false, true, 0);
-        add(vbox);
-
-        modify_bg(Gtk.StateType.NORMAL, black);
+        var box = new Box(Orientation.VERTICAL, 0);
+        box.pack_start(overlay, true, true, 0);
+        box.pack_end(controls_box, false, true, 0);
+        add(box);
 
         key_press_event.connect(hotkeys);
         
@@ -359,7 +365,9 @@ public class AudienceWindow : Gtk.Window
         {
             fullscreen();
             fullscreened = true;
-            hbox.hide();
+            controls.hide();
+            controls_box.remove(controls);
+            controls_overlay.add(controls);
             fullscreen_button.tooltip_text = UNFULLSCREEN_TOOLTIP;
             fullscreen_button.set_image(UNFULLSCREEN_IMAGE);
         }
@@ -367,7 +375,9 @@ public class AudienceWindow : Gtk.Window
         {
             unfullscreen();
             fullscreened = false;
-            hbox.show();
+            controls_overlay.remove(controls);
+            controls_box.add(controls);
+            controls.show();
             fullscreen_button.tooltip_text = FULLSCREEN_TOOLTIP;
             fullscreen_button.set_image(FULLSCREEN_IMAGE);
         }
@@ -377,8 +387,8 @@ public class AudienceWindow : Gtk.Window
     {
         if (fullscreened)
         {
-            if (hbox.visible) hbox.hide();
-            else hbox.show();
+            if (controls.visible) controls.hide();
+            else controls.show();
         }
         return true;
     }
