@@ -46,6 +46,7 @@ public class AudienceWindow : Gtk.Window
     private HScale progress_slider = new HScale.with_range(0, 1, 1);
     private Button play_button = new Button();
     private Button fullscreen_button = new Button();
+    private uint controls_hide_timeout = 0;
     public AppMenu app_menu;
     private bool state = false;
     private bool fullscreened = false;
@@ -94,6 +95,8 @@ public class AudienceWindow : Gtk.Window
         }
         
         title = WINDOW_TITLE;
+        events |= Gdk.EventMask.POINTER_MOTION_MASK;
+        motion_notify_event.connect(on_mouse_move);
 
         var black = Gdk.RGBA();
         black.parse("black");
@@ -391,6 +394,37 @@ public class AudienceWindow : Gtk.Window
             else controls.show();
         }
         return true;
+    }
+
+    private bool on_mouse_move()
+    {
+        if (fullscreened)
+        {
+            if (controls.visible) reset_controls_hide_timeout();
+            else 
+            {
+                controls.show();
+                reset_controls_hide_timeout();
+            }
+        }
+        
+        return true;
+    }
+
+    private void reset_controls_hide_timeout()
+    {
+        if (controls_hide_timeout > 0)
+        {
+            Source.remove(controls_hide_timeout);
+            controls_hide_timeout = 0;
+        }
+
+        controls_hide_timeout = Timeout.add(3000, (GLib.SourceFunc) hide_controls);
+    }
+
+    private void hide_controls() 
+    {
+        controls.hide();
     }
 
     private void register_recent_file(string uri)
