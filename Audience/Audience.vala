@@ -104,7 +104,6 @@ public class AudienceWindow : Gtk.Window
 
         drawing_area.set_size_request(624, 352);
         drawing_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK);
-        drawing_area.button_press_event.connect(on_click);
         drawing_area.override_background_color(Gtk.StateFlags.NORMAL, black);
 
         controls_box.add(controls);
@@ -386,45 +385,35 @@ public class AudienceWindow : Gtk.Window
         }
     }
     
-    private bool on_click()
-    {
-        if (fullscreened)
-        {
-            if (controls.visible) controls.hide();
-            else controls.show();
-        }
-        return true;
-    }
-
     private bool on_mouse_move()
     {
         if (fullscreened)
         {
-            if (controls.visible) reset_controls_hide_timeout();
-            else 
-            {
-                controls.show();
-                reset_controls_hide_timeout();
-            }
+            controls.show();
+            reset_controls_hide_timeout();
         }
         
         return true;
     }
 
+    private void hide_controls()
+    {
+        if (fullscreened) controls.hide();
+    }
+
     private void reset_controls_hide_timeout()
     {
-        if (controls_hide_timeout > 0)
+        unset_controls_hide_timeout();
+        controls_hide_timeout = Timeout.add(3000, (GLib.SourceFunc) hide_controls);
+    }
+
+    private void unset_controls_hide_timeout()
+    {
+        if (controls_hide_timeout > 0) 
         {
             Source.remove(controls_hide_timeout);
             controls_hide_timeout = 0;
         }
-
-        controls_hide_timeout = Timeout.add(3000, (GLib.SourceFunc) hide_controls);
-    }
-
-    private void hide_controls() 
-    {
-        controls.hide();
     }
 
     private void register_recent_file(string uri)
