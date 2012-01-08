@@ -46,6 +46,8 @@ public class AudienceWindow : Gtk.Window
     private HScale progress_slider = new HScale.with_range(0, 1, 1);
     private Button play_button = new Button();
     private Button fullscreen_button = new Button();
+    private Gdk.Cursor blank_cursor = new Gdk.Cursor(Gdk.CursorType.BLANK_CURSOR);
+    private Gdk.Cursor normal_cursor;
     private uint controls_hide_timeout = 0;
     public AppMenu app_menu;
     private bool state = false;
@@ -54,6 +56,7 @@ public class AudienceWindow : Gtk.Window
     public AudienceWindow(string[] args)
     {
         create_widgets();
+        normal_cursor = get_window().get_cursor();
         Timeout.add(1000, (GLib.SourceFunc) update_slide);
         Timeout.add(100, (GLib.SourceFunc) update_label);
         if (args.length > 1)
@@ -367,7 +370,7 @@ public class AudienceWindow : Gtk.Window
         {
             fullscreen();
             fullscreened = true;
-            controls.hide();
+            hide_controls();
             controls_box.remove(controls);
             controls_overlay.add(controls);
             fullscreen_button.tooltip_text = UNFULLSCREEN_TOOLTIP;
@@ -379,7 +382,7 @@ public class AudienceWindow : Gtk.Window
             fullscreened = false;
             controls_overlay.remove(controls);
             controls_box.add(controls);
-            controls.show();
+            show_controls();
             fullscreen_button.tooltip_text = FULLSCREEN_TOOLTIP;
             fullscreen_button.set_image(FULLSCREEN_IMAGE);
         }
@@ -389,7 +392,7 @@ public class AudienceWindow : Gtk.Window
     {
         if (fullscreened)
         {
-            controls.show();
+            show_controls();
             reset_controls_hide_timeout();
         }
         
@@ -398,7 +401,17 @@ public class AudienceWindow : Gtk.Window
 
     private void hide_controls()
     {
-        if (fullscreened) controls.hide();
+        if (fullscreened) 
+        {
+            controls.hide();
+            get_window().set_cursor(blank_cursor);
+        }
+    }
+
+    private void show_controls()
+    {
+        controls.show();
+        get_window().set_cursor(normal_cursor);
     }
 
     private void reset_controls_hide_timeout()
