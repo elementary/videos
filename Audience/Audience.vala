@@ -5,7 +5,8 @@ namespace Audience{
     public const string [] video = {
     "mpg",
     "flv",
-    "mp4"
+    "mp4",
+    "avi"
     };
     public const string [] audio = {
     "mp3",
@@ -171,6 +172,46 @@ namespace Audience{
             this.blank_cursor  = new Gdk.Cursor (Gdk.CursorType.BLANK_CURSOR);
             this.normal_cursor = this.mainwindow.get_window ().get_cursor ();
             
+            var welcome = new Granite.Widgets.Welcome ("Audience", "Watching films has never been better");
+            welcome.append ("document-open", "Open a file", "Get file from your disk");
+            welcome.append ("media-cdrom", "Watch a DVD", "Open a film");
+            welcome.append ("internet-web-browser", "Open a location", "Watch something from the infinity of the internet");
+            
+            welcome.activated.connect ( (index) => {
+                if (index == 0){
+                    welcome.hide ();
+                    clutter.show_all ();
+                    run_open (0);
+                }else if (index == 1){
+                    welcome.hide ();
+                    clutter.show_all ();
+                    run_open (2);
+                }else{
+                    var d = new Gtk.Dialog.with_buttons ("Open location", 
+                        this.mainwindow, Gtk.DialogFlags.MODAL, 
+                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+                        Gtk.Stock.OK,     Gtk.ResponseType.OK);
+                    var grid  = new Gtk.Grid ();
+                    var entry = new Gtk.Entry ();
+                    
+                    grid.attach (new Gtk.Image.from_icon_name ("internet-web-browser",
+                        Gtk.IconSize.DIALOG), 0, 0, 1, 2);
+                    grid.attach (new Gtk.Label (_("Choose location")), 1, 0, 1, 1);
+                    grid.attach (entry, 1, 1, 1, 1);
+                    
+                    ((Gtk.Container)d.get_content_area ()).add (grid);
+                    grid.show_all ();
+                    
+                    if (d.run () == Gtk.ResponseType.OK){
+                        open_file (entry.text);
+                        canvas.get_pipeline ().set_state (Gst.State.PLAYING);
+                        welcome.hide ();
+                        clutter.show_all ();
+                    }
+                    d.destroy ();
+                }
+            });
+            
             /*UI*/
             this.canvas.reactive = true;
             this.canvas.width    = 654;
@@ -184,10 +225,6 @@ namespace Audience{
             
             this.tagview.x      = stage.width;
             this.tagview.width  = 350;
-            
-            this.mainwindow.set_application (this);
-            this.mainwindow.add (mainbox);
-            this.mainwindow.set_default_size (654, 352);
             
             slider_item.set_expand (true);
             slider_item.add (slider);
@@ -242,9 +279,15 @@ namespace Audience{
             toolbar.show_all ();
             ((Gtk.Container)bar.get_widget ()).add (toolbar);
             
+            mainbox.pack_start (welcome);
             mainbox.pack_start (clutter);
             
-            this.previewer.get_pipeline ().set_state (Gst.State.PLAYING);
+            this.mainwindow.set_application (this);
+            this.mainwindow.add (mainbox);
+            this.mainwindow.set_default_size (654, 352);
+            this.mainwindow.show_all ();
+            
+            clutter.hide ();
             
             /*events*/
             //end
@@ -340,22 +383,14 @@ namespace Audience{
                 
                 fil.clicked.connect ( () => {
                     pop.destroy ();
-                    var file = new Gtk.FileChooserDialog ("Open", this.mainwindow, Gtk.FileChooserAction.OPEN,
-                        Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT,
-                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
-                    if (file.run () == Gtk.ResponseType.ACCEPT){
-                        open_file (file.get_uri ());
-                    }
-                    file.destroy ();
+                    run_open (0);
                 });
                 cd.clicked.connect ( () => {
-                    open_file ("cdda://");
-                    canvas.get_pipeline ().set_state (Gst.State.PLAYING);
+                    run_open (1);
                     pop.destroy ();
                 });
                 dvd.clicked.connect ( () => {
-                    open_file ("dvd://");
-                    canvas.get_pipeline ().set_state (Gst.State.PLAYING);
+                    run_open (2);
                     pop.destroy ();
                 });
                 net.clicked.connect ( () => {
@@ -423,8 +458,6 @@ namespace Audience{
                 return;
             });
             
-            this.mainwindow.show_all ();
-            
             /*moving the window by drag, fullscreen for dbl-click*/
             bool moving = false;
             this.canvas.button_press_event.connect ( (e) => {
@@ -460,6 +493,24 @@ namespace Audience{
                 this.open_file (sel.get_uris ()[0]);
                 this.toggle_play (true);
             });
+        }
+        
+        public void run_open (int type){ //0=file, 1=cd, 2=dvd
+            if (type == 0){
+                var file = new Gtk.FileChooserDialog ("Open", this.mainwindow, Gtk.FileChooserAction.OPEN,
+                    Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+                    Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
+                if (file.run () == Gtk.ResponseType.ACCEPT){
+                    open_file (file.get_uri ());
+                }
+                file.destroy ();
+            }else if (type == 1){
+                open_file ("cdda://");
+                canvas.get_pipeline ().set_state (Gst.State.PLAYING);
+            }else if (type == 2){
+                open_file ("dvd://");
+                canvas.get_pipeline ().set_state (Gst.State.PLAYING);
+            }
         }
         
         private void toggle_play (bool start){
@@ -527,6 +578,7 @@ namespace Audience{
             Timeout.add (100, () => {this.place ();return false;});
             
             this.toggle_play (true);
+            this.place ();
         }
         
         private void place (){
@@ -572,7 +624,6 @@ namespace Audience{
         
         public void set_screensaver (bool enable){
             var xid = (ulong)Gdk.X11Window.get_xid (mainwindow.get_window ());
-            print ("ULong: %f\n", xid);
             try{
                 if (enable){
                     Process.spawn_command_line_sync (
