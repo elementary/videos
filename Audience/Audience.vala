@@ -172,6 +172,10 @@ namespace Audience{
             this.normal_cursor = this.mainwindow.get_window ().get_cursor ();
             
             /*UI*/
+            this.canvas.reactive = true;
+            this.canvas.width    = 654;
+            this.canvas.height   = 352;
+            
             stage.add_actor (canvas);
             stage.add_actor (tagview);
             stage.add_actor (previewer);
@@ -441,6 +445,31 @@ namespace Audience{
             
             this.mainwindow.show_all ();
             
+            /*moving the window by drag, fullscreen for dbl-click*/
+            bool moving = false;
+            this.canvas.button_press_event.connect ( (e) => {
+                if (e.click_count > 1){
+                    toggle_fullscreen ();
+                    return true;
+                }else{
+                    moving = true;
+                    return true;
+                }
+            });
+            clutter.motion_notify_event.connect ( (e) => {
+                if (moving){
+                    moving = false;
+                    this.mainwindow.begin_move_drag (1, 
+                        (int)e.x_root, (int)e.y_root, e.time);
+                    return true;
+                }
+                return false;
+            });
+            this.canvas.button_release_event.connect ( (e) => {
+                moving = false;
+                return false;
+            });
+            
             /*DnD*/
             Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
             Gtk.drag_dest_set (this.mainwindow, 
@@ -567,7 +596,6 @@ namespace Audience{
 public static void main (string [] args){
     GtkClutter.init (ref args);
     ClutterGst.init (ref args);
-    Gtk.init (ref args);
     
     var app = new Audience.AudienceApp ();
     
