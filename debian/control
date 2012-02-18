@@ -10,6 +10,6 @@ Vcs-Browser: https://code.launchpad.net/~audience-team/audience/trunk
 
 Package: audience
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, xdg-utils
 Pre-Depends: dpkg (>= 1.15.6)
 Description: A modern media player
