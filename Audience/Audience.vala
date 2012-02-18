@@ -162,7 +162,8 @@ namespace Audience{
             var info        = new Gtk.ToggleToolButton ();
             var open        = new Gtk.ToolButton (sym ("document-export-symbolic"),"");
             var menu        = new Gtk.Menu ();
-            var appm        = this.create_appmenu (menu);
+            /* The AppMenu is disabled until it contains something useful
+            var appm        = this.create_appmenu (menu); */
             this.slider     = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 100, 1);
             var volume      = new Gtk.VolumeButton ();
             var time        = new Gtk.Label ("0");
@@ -237,12 +238,13 @@ namespace Audience{
             remain_item.add (remaining);
             
             info.icon_widget = sym ("view-list-filter-symbolic");
-            appm.icon_widget = sym ("document-properties-symbolic");
+            /* The AppMenu is disabled until it contains something useful
+            appm.icon_widget = sym ("document-properties-symbolic"); */
             
             play.sensitive = false;
             
             play.margin = time_item.margin = slider_item.margin = pause.margin = 
-            volm.margin = info.margin = open.margin = appm.margin = 5;
+            volm.margin = info.margin = open.margin /* The AppMenu is disabled until it contains something useful = appm.margin */ = 5;
             
             toolbar.insert (play, -1);
             toolbar.insert (volm, -1);
@@ -251,7 +253,8 @@ namespace Audience{
             toolbar.insert (remain_item, -1);
             toolbar.insert (info, -1);
             toolbar.insert (open, -1);
-            toolbar.insert (appm, -1);
+            /* The AppMenu is disabled until it contains something useful
+            toolbar.insert (appm, -1); */
             
             var css = new Gtk.CssProvider ();
             try{
