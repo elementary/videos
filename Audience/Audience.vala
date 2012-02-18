@@ -565,6 +565,15 @@ namespace Audience{
             }else if (just_opened){
                 canvas.get_base_size (out video_w, out video_h);
                 this.just_opened = false;
+                if (Gdk.Screen.get_default ().width ()  > this.video_w &&
+                    Gdk.Screen.get_default ().height () > this.video_h){
+                    this.mainwindow.resize (
+                        (int)this.video_w, (int)this.video_h);
+                }else{
+                    this.mainwindow.resize (
+                        (int)(Gdk.Screen.get_default ().width () * 0.9),
+                        (int)(Gdk.Screen.get_default ().height () * 0.9));
+                }
             }
             if (stage.width > stage.height){
                 this.canvas.height = stage.height;
