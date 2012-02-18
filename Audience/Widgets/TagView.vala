@@ -102,11 +102,10 @@ namespace Audience.Widgets{
                 "<span weight='bold' font='20'>Playlist</span>"), 0, 0, 1, 1);
             playlistgrid.attach (playlisttree, 0, 1, 1, 1);
             
-            
-            notebook.append_page (taggrid, new Gtk.Label ("Details"));
-            notebook.append_page (chaptergrid, new Gtk.Label ("Chapters"));
-            notebook.append_page (setupgrid, new Gtk.Label ("Setup"));
             notebook.append_page (playlistgrid, new Gtk.Label ("Playlist"));
+            notebook.append_page (setupgrid, new Gtk.Label ("Setup"));
+            notebook.append_page (chaptergrid, new Gtk.Label ("Chapters"));
+            notebook.append_page (taggrid, new Gtk.Label ("Details"));
             
             ((Gtk.Bin)this.get_widget ()).add (notebook);
             
