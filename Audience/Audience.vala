@@ -545,9 +545,9 @@ namespace Audience{
 }
 
 public static void main (string [] args){
-    Gtk.init (ref args);
     GtkClutter.init (ref args);
     ClutterGst.init (ref args);
+    Gtk.init (ref args);
     
     var app = new Audience.AudienceApp ();
     

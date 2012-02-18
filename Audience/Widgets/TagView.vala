@@ -146,7 +146,7 @@ namespace Audience.Widgets{
             this.expanded = false;
         }
         
-        public void get_tags (string filename){
+        public void get_tags (string filename, bool set_title){
             var pipe = new Gst.Pipeline ("tagpipe");
             var src  = Gst.ElementFactory.make ("uridecodebin", "src");
             var sink = Gst.ElementFactory.make ("fakesink", "sink");
@@ -165,6 +165,8 @@ namespace Audience.Widgets{
                     tag_list.foreach ( (list, tag) => {
                         for (var i=0;i<list.get_tag_size (tag);i++){
                             var val = list.get_value_index (tag, i);
+                            if (set_title && tag == "title")
+                                this.app.mainwindow.title = val.strdup_contents ();
                             taggrid.attach (new LLabel.markup ("<b>"+tag+"</b>"), 0, index, 1, 1);
                             taggrid.attach (new LLabel (val.strdup_contents ()),  1, index, 1, 1);
                             taggrid.show_all ();
