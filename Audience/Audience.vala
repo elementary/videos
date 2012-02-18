@@ -208,10 +208,10 @@ namespace Audience{
             volm.margin = info.margin = open.margin = appm.margin = 5;
             
             toolbar.insert (play, -1);
+            toolbar.insert (volm, -1);
             toolbar.insert (time_item,   -1);
             toolbar.insert (slider_item, -1);
             toolbar.insert (remain_item, -1);
-            toolbar.insert (volm, -1);
             toolbar.insert (info, -1);
             toolbar.insert (open, -1);
             toolbar.insert (appm, -1);
