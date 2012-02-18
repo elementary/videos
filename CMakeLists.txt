@@ -33,6 +33,7 @@ PACKAGES
     granite
     clutter-gst-1.0
     clutter-gtk-1.0
+    gdk-x11-3.0
 OPTIONS
     --thread
 )

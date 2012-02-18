@@ -341,28 +341,8 @@ namespace Audience{
                 fil.clicked.connect ( () => {
                     pop.destroy ();
                     var file = new Gtk.FileChooserDialog ("Open", this.mainwindow, Gtk.FileChooserAction.OPEN,
-                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                        Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
-                    var all_files_filter = new Gtk.FileFilter ();
-                    all_files_filter.set_filter_name (_("All files"));
-                    all_files_filter.add_pattern ("*");
-                    var supported_filter = new Gtk.FileFilter ();
-                    supported_filter.set_filter_name (_("Supported files"));
-                    supported_filter.add_mime_type ("video/*");
-                    supported_filter.add_mime_type ("audio/*");
-                    var video_filter = new Gtk.FileFilter ();
-                    video_filter.set_filter_name (_("Video files"));
-                    video_filter.add_mime_type ("video/*");
-                    video_filter.add_pattern ("*.ogg");
-                    var audio_filter = new Gtk.FileFilter ();
-                    audio_filter.set_filter_name (_("Audio files"));
-                    audio_filter.add_mime_type ("audio/*");
-                    file.add_filter (all_files_filter);
-                    file.add_filter (supported_filter);
-                    file.add_filter (video_filter);
-                    file.add_filter (audio_filter);
-                    file.set_filter (supported_filter);
-                    file.set_select_multiple (false);
+                        Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT,
+                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
                     if (file.run () == Gtk.ResponseType.ACCEPT){
                         open_file (file.get_uri ());
                     }
@@ -491,6 +471,7 @@ namespace Audience{
                 play.show_all ();
                 canvas.get_pipeline ().set_state (Gst.State.PAUSED);
                 Source.remove (this.hiding_timer);
+                this.set_screensaver (true);
             }else{
                 if (this.reached_end){
                     canvas.progress = 0.0;
@@ -508,6 +489,7 @@ namespace Audience{
                     this.bar.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 1000, y:y2);
                     return false;
                 });
+                this.set_screensaver (false);
             }
             this.place ();
         }
@@ -586,6 +568,20 @@ namespace Audience{
                 this.canvas.y      = (stage.height - this.canvas.height) / 2.0f;
                 this.canvas.x      = 0.0f;
             }
+        }
+        
+        public void set_screensaver (bool enable){
+            var xid = (ulong)Gdk.X11Window.get_xid (mainwindow.get_window ());
+            print ("ULong: %f\n", xid);
+            try{
+                if (enable){
+                    Process.spawn_command_line_sync (
+                        "xdg-screensaver resume "+xid.to_string ());
+                }else{
+                    Process.spawn_command_line_sync (
+                        "xdg-screensaver suspend "+xid.to_string ());
+                }
+            }catch (Error e){warning (e.message);}
         }
         
         //the application started
