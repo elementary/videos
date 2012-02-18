@@ -341,8 +341,8 @@ namespace Audience{
                 fil.clicked.connect ( () => {
                     pop.destroy ();
                     var file = new Gtk.FileChooserDialog ("Open", this.mainwindow, Gtk.FileChooserAction.OPEN,
-                        Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT,
-                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
+                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+                        Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
                     var all_files_filter = new Gtk.FileFilter ();
                     all_files_filter.set_filter_name (_("All files"));
                     all_files_filter.add_pattern ("*");
