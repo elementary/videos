@@ -341,8 +341,28 @@ namespace Audience{
                 fil.clicked.connect ( () => {
                     pop.destroy ();
                     var file = new Gtk.FileChooserDialog ("Open", this.mainwindow, Gtk.FileChooserAction.OPEN,
-                        Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT,
-                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
+                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+                        Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
+                    var all_files_filter = new Gtk.FileFilter ();
+                    all_files_filter.set_filter_name (_("All files"));
+                    all_files_filter.add_pattern ("*");
+                    var supported_filter = new Gtk.FileFilter ();
+                    supported_filter.set_filter_name (_("Supported files"));
+                    supported_filter.add_mime_type ("video/*");
+                    supported_filter.add_mime_type ("audio/*");
+                    var video_filter = new Gtk.FileFilter ();
+                    video_filter.set_filter_name (_("Video files"));
+                    video_filter.add_mime_type ("video/*");
+                    video_filter.add_pattern ("*.ogg");
+                    var audio_filter = new Gtk.FileFilter ();
+                    audio_filter.set_filter_name (_("Audio files"));
+                    audio_filter.add_mime_type ("audio/*");
+                    file.add_filter (all_files_filter);
+                    file.add_filter (supported_filter);
+                    file.add_filter (video_filter);
+                    file.add_filter (audio_filter);
+                    file.set_filter (supported_filter);
+                    file.set_select_multiple (false);
                     if (file.run () == Gtk.ResponseType.ACCEPT){
                         open_file (file.get_uri ());
                     }
