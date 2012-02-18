@@ -251,10 +251,10 @@ namespace Audience{
             toolbar.insert (time_item,   -1);
             toolbar.insert (slider_item, -1);
             toolbar.insert (remain_item, -1);
-            toolbar.insert (info, -1);
             toolbar.insert (open, -1);
             /* The AppMenu is disabled until it contains something useful
             toolbar.insert (appm, -1); */
+            toolbar.insert (info, -1);
             
             var css = new Gtk.CssProvider ();
             try{
