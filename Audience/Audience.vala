@@ -215,7 +215,7 @@ namespace Audience{
             
             /*UI*/
             this.canvas.reactive = true;
-            this.canvas.width    = 654;
+            this.canvas.width    = 624;
             this.canvas.height   = 352;
             
             stage.add_actor (canvas);
@@ -287,7 +287,7 @@ namespace Audience{
             
             this.mainwindow.set_application (this);
             this.mainwindow.add (mainbox);
-            this.mainwindow.set_default_size (654, 352);
+            this.mainwindow.set_default_size (624, 352);
             this.mainwindow.show_all ();
             
             clutter.hide ();
