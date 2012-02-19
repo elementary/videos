@@ -285,6 +285,7 @@ namespace Audience{
             mainbox.pack_start (welcome);
             mainbox.pack_start (clutter);
             
+            this.mainwindow.title = program_name;
             this.mainwindow.set_application (this);
             this.mainwindow.add (mainbox);
             this.mainwindow.set_default_size (624, 352);
