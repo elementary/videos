@@ -173,6 +173,7 @@ namespace Audience{
             this.blank_cursor  = new Gdk.Cursor (Gdk.CursorType.BLANK_CURSOR);
             this.normal_cursor = this.mainwindow.get_window ().get_cursor ();
             
+            /* Welcome has been disabled until bugs surrounding it have been dealt with
             var welcome = new Granite.Widgets.Welcome ("Audience", "Watching films has never been better");
             welcome.append ("document-open", "Open a file", "Get file from your disk");
             welcome.append ("media-cdrom", "Watch a DVD", "Open a film");
@@ -211,7 +212,8 @@ namespace Audience{
                     }
                     d.destroy ();
                 }
-            });
+            }); */
+            // End Welcome
             
             /*UI*/
             this.canvas.reactive = true;
@@ -282,7 +284,8 @@ namespace Audience{
             toolbar.show_all ();
             ((Gtk.Container)bar.get_widget ()).add (toolbar);
             
-            mainbox.pack_start (welcome);
+            /* Welcome has been disabled until bugs surrounding it have been dealt with
+            mainbox.pack_start (welcome); */
             mainbox.pack_start (clutter);
             
             this.mainwindow.set_application (this);
@@ -290,7 +293,8 @@ namespace Audience{
             this.mainwindow.set_default_size (654, 352);
             this.mainwindow.show_all ();
             
-            clutter.hide ();
+            /* Welcome has been disabled until bugs surrounding it have been dealt with
+            clutter.hide (); */
             
             /*events*/
             //end
