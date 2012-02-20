@@ -242,6 +242,15 @@ namespace Audience{
             appm.icon_widget = sym ("document-properties-symbolic"); */
             
             play.sensitive = false;
+
+            play.tooltip_text = _("Play");
+            pause.tooltip_text = _("Pause");
+            time_item.tooltip_text = _("Time In");
+            slider_item.tooltip_text = _("Progress");
+            remain_item.tooltip_text = _("Time Remaining");
+            open.tooltip_text = _("Open");
+            info.tooltip_text = _("Sidebar");
+            unfullscreen.tooltip_text = _("Leave Fullscreen");
             
             play.margin = time_item.margin = slider_item.margin = pause.margin = 
             volm.margin = info.margin = open.margin /* The AppMenu is disabled until it contains something useful = appm.margin */ = 5;
