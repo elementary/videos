@@ -130,11 +130,18 @@ namespace Audience{
         private Gdk.Cursor normal_cursor;
         private Gdk.Cursor blank_cursor;
         
-        private inline Gtk.Image? sym (string name){
+        private inline Gtk.Image? sym (string name, string fallback){
             try{
-            return new Gtk.Image.from_pixbuf (Gtk.IconTheme.get_default ().lookup_icon 
-                (name, 24, 0).load_symbolic ({1.0,1.0,1.0,1.0}, null, null, null, null));
-            }catch (Error e){warning (e.message);return null;}
+                var icon = Gtk.IconTheme.get_default ().lookup_icon 
+                    (name, 24, 0);
+                if (icon == null)
+                    return new Gtk.Image.from_stock (fallback, Gtk.IconSize.BUTTON);
+                return new Gtk.Image.from_pixbuf (icon.load_symbolic
+                    ({1.0,1.0,1.0,1.0}, null, null, null, null));
+            }catch (Error e){
+                warning (e.message);
+            }
+            return new Gtk.Image.from_stock (Gtk.Stock.MISSING_IMAGE, Gtk.IconSize.BUTTON);
         }
         
         public AudienceApp (){
@@ -153,14 +160,14 @@ namespace Audience{
             var mainbox     = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
             var clutter     = new GtkClutter.Embed ();
             this.stage      = (Clutter.Stage)clutter.get_stage ();
-            this.play       = new Gtk.ToolButton (sym ("media-playback-start-symbolic"), "");
-            this.pause      = new Gtk.ToolButton (sym ("media-playback-pause-symbolic"), "");
+            this.play       = new Gtk.ToolButton (sym ("media-playback-start-symbolic", Gtk.Stock.MEDIA_PLAY), "");
+            this.pause      = new Gtk.ToolButton (sym ("media-playback-pause-symbolic", Gtk.Stock.MEDIA_PAUSE), "");
             var time_item   = new Gtk.ToolItem ();
             var slider_item = new Gtk.ToolItem ();
             var remain_item = new Gtk.ToolItem ();
             var volm        = new Gtk.ToolItem ();
             var info        = new Gtk.ToggleToolButton ();
-            var open        = new Gtk.ToolButton (sym ("document-export-symbolic"),"");
+            var open        = new Gtk.ToolButton (sym ("document-export-symbolic", Gtk.Stock.OPEN),"");
             var menu        = new Gtk.Menu ();
             /* The AppMenu is disabled until it contains something useful
             var appm        = this.create_appmenu (menu); */
@@ -237,7 +244,7 @@ namespace Audience{
             time_item.add (time);
             remain_item.add (remaining);
             
-            info.icon_widget = sym ("view-list-filter-symbolic");
+            info.icon_widget = sym ("view-list-filter-symbolic", Gtk.Stock.JUSTIFY_LEFT);
             /* The AppMenu is disabled until it contains something useful
             appm.icon_widget = sym ("document-properties-symbolic"); */
             
@@ -683,7 +690,11 @@ namespace Audience{
 }
 
 public static void main (string [] args){
-    GtkClutter.init (ref args);
+    var err = GtkClutter.init (ref args);
+    if (err != Clutter.InitError.SUCCESS){
+        error ("Could not initalize clutter! (a fallback will be available soon) "+err.to_string ());
+        return;
+    }
     ClutterGst.init (ref args);
     
     var app = new Audience.AudienceApp ();
