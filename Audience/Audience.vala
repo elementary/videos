@@ -549,7 +549,8 @@ namespace Audience{
                 for (var i=0;i<sel.get_uris ().length; i++)
                     this.tagview.add_play_item (sel.get_uris ()[i]);
                 this.open_file (sel.get_uris ()[0]);
-                this.toggle_play (true);
+                welcome.hide ();
+                clutter.show_all ();
             });
         }
         
