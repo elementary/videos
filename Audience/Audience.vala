@@ -144,6 +144,9 @@ namespace Audience{
             return new Gtk.Image.from_stock (Gtk.Stock.MISSING_IMAGE, Gtk.IconSize.BUTTON);
         }
         
+        public GtkClutter.Embed        clutter;
+        public Granite.Widgets.Welcome welcome;
+        
         public AudienceApp (){
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
             
@@ -158,7 +161,7 @@ namespace Audience{
             this.bar        = new GtkClutter.Actor ();
             this.toolbar    = new Gtk.Toolbar ();
             var mainbox     = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-            var clutter     = new GtkClutter.Embed ();
+            this.clutter     = new GtkClutter.Embed ();
             this.stage      = (Clutter.Stage)clutter.get_stage ();
             this.play       = new Gtk.ToolButton (sym ("media-playback-start-symbolic", Gtk.Stock.MEDIA_PLAY), "");
             this.pause      = new Gtk.ToolButton (sym ("media-playback-pause-symbolic", Gtk.Stock.MEDIA_PAUSE), "");
@@ -180,19 +183,15 @@ namespace Audience{
             this.blank_cursor  = new Gdk.Cursor (Gdk.CursorType.BLANK_CURSOR);
             this.normal_cursor = this.mainwindow.get_window ().get_cursor ();
             
-            var welcome = new Granite.Widgets.Welcome ("Audience", "Watching films has never been better");
+            this.welcome = new Granite.Widgets.Welcome ("Audience", "Watching films has never been better");
             welcome.append ("document-open", "Open a file", "Get file from your disk");
             welcome.append ("media-cdrom", "Watch a DVD", "Open a film");
             welcome.append ("internet-web-browser", "Open a location", "Watch something from the infinity of the internet");
             
             welcome.activated.connect ( (index) => {
                 if (index == 0){
-                    welcome.hide ();
-                    clutter.show_all ();
                     run_open (0);
                 }else if (index == 1){
-                    welcome.hide ();
-                    clutter.show_all ();
                     run_open (2);
                 }else{
                     var d = new Gtk.Dialog.with_buttons ("Open location", 
@@ -542,6 +541,8 @@ namespace Audience{
                     file.set_select_multiple (false);
                 if (file.run () == Gtk.ResponseType.ACCEPT){
                     open_file (file.get_uri ());
+                    welcome.hide ();
+                    clutter.show_all ();
                 }
                 file.destroy ();
             }else if (type == 1){
@@ -685,6 +686,8 @@ namespace Audience{
             for (var i=0;i<files.length;i++)
                 this.tagview.add_play_item (files[i].get_path ());
             this.open_file (files[0].get_path ());
+            this.welcome.hide ();
+            this.clutter.show_all ();
         }
     }
 }
@@ -693,7 +696,6 @@ public static void main (string [] args){
     var err = GtkClutter.init (ref args);
     if (err != Clutter.InitError.SUCCESS){
         error ("Could not initalize clutter! (a fallback will be available soon) "+err.to_string ());
-        return;
     }
     ClutterGst.init (ref args);
     
