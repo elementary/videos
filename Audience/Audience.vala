@@ -130,6 +130,11 @@ namespace Audience{
         private Gdk.Cursor normal_cursor;
         private Gdk.Cursor blank_cursor;
         
+        
+        public GtkClutter.Embed        clutter;
+        public Granite.Widgets.Welcome welcome;
+        public bool playing;
+        
         private inline Gtk.Image? sym (string name, string fallback){
             try{
                 var icon = Gtk.IconTheme.get_default ().lookup_icon 
@@ -143,9 +148,6 @@ namespace Audience{
             }
             return new Gtk.Image.from_stock (Gtk.Stock.MISSING_IMAGE, Gtk.IconSize.BUTTON);
         }
-        
-        public GtkClutter.Embed        clutter;
-        public Granite.Widgets.Welcome welcome;
         
         public AudienceApp (){
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
@@ -309,6 +311,43 @@ namespace Audience{
             clutter.hide ();
             
             /*events*/
+            //shortcuts
+            this.mainwindow.key_press_event.connect ( (e) => {
+                switch (e.keyval){
+                    case Gdk.Key.space:
+                        this.toggle_play (!this.playing);
+                        break;
+                    case Gdk.Key.Escape:
+                        if (this.fullscreened)
+                            this.toggle_fullscreen ();
+                        else
+                            this.mainwindow.destroy ();
+                        break;
+                    case Gdk.Key.o:
+                        this.run_open (0);
+                        break;
+                    case Gdk.Key.f:
+                    case Gdk.Key.F11:
+                        this.toggle_fullscreen ();
+                        break;
+                    case Gdk.Key.q:
+                        this.mainwindow.destroy ();
+                        break;
+                    case Gdk.Key.Left:
+                        if ((this.canvas.progress - 0.05) < 0)
+                            this.canvas.progress = 0.0;
+                        else
+                            this.canvas.progress -= 0.05;
+                        break;
+                    case Gdk.Key.Right:
+                        this.canvas.progress += 0.05;
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            });
+            
             //end
             this.canvas.eos.connect ( () => {
                 reached_end = true;
@@ -555,8 +594,6 @@ namespace Audience{
         }
         
         private void toggle_play (bool start){
-            Gst.State state;
-            canvas.get_pipeline ().get_state (out state, null, 0);
             if (!start){
                 toolbar.remove (this.pause);
                 toolbar.insert (this.play, 0);
@@ -564,6 +601,7 @@ namespace Audience{
                 canvas.get_pipeline ().set_state (Gst.State.PAUSED);
                 Source.remove (this.hiding_timer);
                 this.set_screensaver (true);
+                this.playing = false;
             }else{
                 if (this.reached_end){
                     canvas.progress = 0.0;
@@ -582,6 +620,7 @@ namespace Audience{
                     return false;
                 });
                 this.set_screensaver (false);
+                this.playing = true;
             }
             this.place ();
         }
