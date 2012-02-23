@@ -701,6 +701,15 @@ namespace Audience{
                 this.canvas.y      = (stage.height - this.canvas.height) / 2.0f;
                 this.canvas.x      = 0.0f;
             }
+            if (this.canvas.height < 30){
+                Timeout.add (10, () => {
+                    print ("Hello world\n");
+                    this.place ();
+                    if (this.canvas.height < 30)
+                        return true;
+                    return false;
+                });
+            }
         }
         
         public void set_screensaver (bool enable){
