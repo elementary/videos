@@ -185,10 +185,10 @@ namespace Audience{
             this.blank_cursor  = new Gdk.Cursor (Gdk.CursorType.BLANK_CURSOR);
             this.normal_cursor = this.mainwindow.get_window ().get_cursor ();
             
-            this.welcome = new Granite.Widgets.Welcome ("Audience", "Watching films has never been better");
-            welcome.append ("document-open", "Open a file", "Get file from your disk");
-            welcome.append ("media-cdrom", "Watch a DVD", "Open a film");
-            welcome.append ("internet-web-browser", "Open a location", "Watch something from the infinity of the internet");
+            this.welcome = new Granite.Widgets.Welcome ("Audience", _("Watching films has never been better"));
+            welcome.append ("document-open", _("Open a file"), _("Get file from your disk"));
+            welcome.append ("media-cdrom", _("Watch a DVD"), _("Open a film"));
+            welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
             
             welcome.activated.connect ( (index) => {
                 if (index == 0){
@@ -196,7 +196,7 @@ namespace Audience{
                 }else if (index == 1){
                     run_open (2);
                 }else{
-                    var d = new Gtk.Dialog.with_buttons ("Open location", 
+                    var d = new Gtk.Dialog.with_buttons (_("Open location"), 
                         this.mainwindow, Gtk.DialogFlags.MODAL, 
                         Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
                         Gtk.Stock.OK,     Gtk.ResponseType.OK);
@@ -430,13 +430,13 @@ namespace Audience{
                 box.row_spacing    = 5;
                 box.column_spacing = 12;
                 
-                var fil   = new Gtk.Button.with_label ("File");
+                var fil   = new Gtk.Button.with_label (_("File"));
                 var fil_i = new Gtk.Image.from_stock (Gtk.Stock.OPEN, Gtk.IconSize.DND);
                 var cd    = new Gtk.Button.with_label ("CD");
                 var cd_i  = new Gtk.Image.from_icon_name ("media-cdrom-audio", Gtk.IconSize.DND);
                 var dvd   = new Gtk.Button.with_label ("DVD");
                 var dvd_i = new Gtk.Image.from_icon_name ("media-cdrom", Gtk.IconSize.DND);
-                var net   = new Gtk.Button.with_label ("Network File");
+                var net   = new Gtk.Button.with_label (_("Network File"));
                 var net_i = new Gtk.Image.from_icon_name ("internet-web-browser", Gtk.IconSize.DND);
                 
                 fil.clicked.connect ( () => {
@@ -555,7 +555,7 @@ namespace Audience{
         
         public void run_open (int type){ //0=file, 1=cd, 2=dvd
             if (type == 0){
-                var file = new Gtk.FileChooserDialog ("Open", this.mainwindow, Gtk.FileChooserAction.OPEN,
+                var file = new Gtk.FileChooserDialog (_("Open"), this.mainwindow, Gtk.FileChooserAction.OPEN,
                     Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
                     Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
                     var all_files_filter = new Gtk.FileFilter ();
