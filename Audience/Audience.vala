@@ -633,7 +633,7 @@ namespace Audience{
                 this.toolbar.remove (this.unfullscreen);
             }else{
                 this.mainwindow.fullscreen ();
-                this.toolbar.insert (this.unfullscreen, 3);
+                this.toolbar.insert (this.unfullscreen, 5);
                 this.unfullscreen.show_all ();
                 this.fullscreened = true;
             }
