@@ -1,0 +1,111 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-23 17:37+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:188
+msgid "Watching films has never been better"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:189
+msgid "Open a file"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:189
+msgid "Get file from your disk"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:190
+msgid "Watch a DVD"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:190
+msgid "Open a film"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:191
+msgid "Open a location"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:191
+msgid "Watch something from the infinity of the internet"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:199
+msgid "Open location"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:208
+msgid "Choose location"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:254
+msgid "Play"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:255
+msgid "Pause"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:256
+msgid "Time In"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:257
+msgid "Progress"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:258
+msgid "Time Remaining"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:259
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:558
+msgid "Open"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:260
+msgid "Sidebar"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:261
+msgid "Leave Fullscreen"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:433
+msgid "File"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:439
+msgid "Network File"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:562
+msgid "All files"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:565
+msgid "Supported files"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:569
+msgid "Video files"
+msgstr ""
+
+#: /home/mefrio/elementary/audience/po/../Audience/Audience.vala:573
+msgid "Audio files"
+msgstr ""
