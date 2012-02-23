@@ -6,6 +6,13 @@ list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 project (audience)
 
+set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
+set (PKGDATADIR "${DATADIR}/audience")
+set (GETTEXT_PACKAGE "audience")
+set (RELEASE_NAME "A modern media player.")
+set (VERSION "0.1")
+set (VERSION_INFO "The Red Comet")
+
 # Data
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/scalable/audience.svg DESTINATION ${DATADIR}/icons/hicolor/scalable/apps/)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/audience.desktop DESTINATION ${DATADIR}/applications/)
