@@ -110,8 +110,6 @@ namespace Audience.Widgets{
             ((Gtk.Bin)this.get_widget ()).add (notebook);
             
             notebook.show_all ();
-            
-            this.height = this.get_stage ().height;
             this.width  = 200;
             this.expanded = false;
         }

@@ -124,7 +124,6 @@ namespace Audience{
         
         private float video_w;
         private float video_h;
-        private bool  just_opened;
         private bool  reached_end;
         
         private Gdk.Cursor normal_cursor;
@@ -134,6 +133,7 @@ namespace Audience{
         public GtkClutter.Embed        clutter;
         public Granite.Widgets.Welcome welcome;
         public bool playing;
+        public File current_file;
         
         private inline Gtk.Image? sym (string name, string fallback){
             try{
@@ -183,7 +183,6 @@ namespace Audience{
             this.unfullscreen = new Gtk.ToolButton (
                 new Gtk.Image.from_stock (Gtk.Stock.LEAVE_FULLSCREEN, Gtk.IconSize.BUTTON), "");
             this.blank_cursor  = new Gdk.Cursor (Gdk.CursorType.BLANK_CURSOR);
-            this.normal_cursor = this.mainwindow.get_window ().get_cursor ();
             
             this.welcome = new Granite.Widgets.Welcome ("Audience", _("Watching films has never been better"));
             welcome.append ("document-open", _("Open a file"), _("Get file from your disk"));
@@ -250,7 +249,7 @@ namespace Audience{
             appm.icon_widget = sym ("document-properties-symbolic"); */
             
             play.sensitive = false;
-
+            
             play.tooltip_text = _("Play");
             pause.tooltip_text = _("Pause");
             time_item.tooltip_text = _("Time In");
@@ -505,11 +504,12 @@ namespace Audience{
             });
             
             //positioning
-            this.just_opened = true;int old_h=0, old_w=0;
+            int old_h=0, old_w=0;
             this.mainwindow.size_allocate.connect ( () => {
                 if (this.mainwindow.get_allocated_width () != old_w || 
                     this.mainwindow.get_allocated_height () != old_h){
-                    this.place ();
+                    if (this.current_file != null)
+                        this.place ();
                     old_w = this.mainwindow.get_allocated_width  ();
                     old_h = this.mainwindow.get_allocated_height ();
                 }
@@ -623,7 +623,6 @@ namespace Audience{
                 this.set_screensaver (false);
                 this.playing = true;
             }
-            this.place ();
         }
         
         private void toggle_fullscreen (){
@@ -641,10 +640,10 @@ namespace Audience{
         }
         
         internal void open_file (string filename){
-            var uri = File.new_for_commandline_arg (filename).get_uri ();
+            this.current_file = File.new_for_commandline_arg (filename);
+            var uri = this.current_file.get_uri ();
             canvas.uri = uri;
             canvas.audio_volume = 1.0;
-            this.just_opened = true;
             previewer.uri = uri;
             previewer.audio_volume = 0.0;
             
@@ -659,13 +658,13 @@ namespace Audience{
             Timeout.add (100, () => {this.place ();return false;});
             
             this.toggle_play (true);
-            this.place ();
-
+            this.place (true);
+            
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default();
             recent_manager.add_item (uri);
         }
         
-        private void place (){
+        private void place (bool resize_window = false){
             this.tagview.height   = stage.height;
             this.tagview.x        = (this.tagview.expanded)?stage.width-this.tagview.width:stage.width;
             
@@ -677,22 +676,8 @@ namespace Audience{
             toolbar.width_request = (int)this.bar.width;
             toolbar.height_request = tb_height;
             
+            canvas.get_base_size (out video_w, out video_h);
             //aspect ratio handling
-            if (this.just_opened && canvas.width == 0.0f){
-                return;
-            }else if (just_opened){
-                canvas.get_base_size (out video_w, out video_h);
-                this.just_opened = false;
-                if (Gdk.Screen.get_default ().width ()  > this.video_w &&
-                    Gdk.Screen.get_default ().height () > this.video_h){
-                    this.mainwindow.resize (
-                        (int)this.video_w, (int)this.video_h);
-                }else{
-                    this.mainwindow.resize (
-                        (int)(Gdk.Screen.get_default ().width () * 0.9),
-                        (int)(Gdk.Screen.get_default ().height () * 0.9));
-                }
-            }
             if (stage.width > stage.height){
                 this.canvas.height = stage.height;
                 this.canvas.width  = stage.height / video_h * video_w;
@@ -704,14 +689,28 @@ namespace Audience{
                 this.canvas.y      = (stage.height - this.canvas.height) / 2.0f;
                 this.canvas.x      = 0.0f;
             }
-            if (this.canvas.height < 30){
-                Timeout.add (10, () => {
-                    print ("Hello world\n");
+            if (video_h < 30){ //video wasn't loaded fast enough, repeat untill it is
+                Timeout.add (100, () => {
                     this.place ();
-                    if (this.canvas.height < 30)
+                    if (video_h < 30){
                         return true;
+                    }
+                    fit_window ();
                     return false;
                 });
+            }else if (resize_window){
+                fit_window ();
+            }
+        }
+        private void fit_window (){
+            if (Gdk.Screen.get_default ().width ()  > this.video_w &&
+                Gdk.Screen.get_default ().height () > this.video_h){
+                this.mainwindow.resize (
+                    (int)this.video_w, (int)this.video_h);
+            }else{
+                this.mainwindow.resize (
+                    (int)(Gdk.Screen.get_default ().width () * 0.9),
+                    (int)(Gdk.Screen.get_default ().height () * 0.9));
             }
         }
         
