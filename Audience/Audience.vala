@@ -173,8 +173,8 @@ namespace Audience{
             var volm        = new Gtk.ToolItem ();
             var info        = new Gtk.ToggleToolButton ();
             var open        = new Gtk.ToolButton (sym ("document-export-symbolic", Gtk.Stock.OPEN),"");
-            var menu        = new Gtk.Menu ();
-            /* The AppMenu is disabled until it contains something useful
+            /*var menu        = new Gtk.Menu ();
+             The AppMenu is disabled until it contains something useful
             var appm        = this.create_appmenu (menu); */
             this.slider     = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 100, 1);
             var volume      = new Gtk.VolumeButton ();
@@ -310,6 +310,49 @@ namespace Audience{
             clutter.hide ();
             
             /*events*/
+            //check for errors on pipe's bus
+            this.canvas.get_pipeline ().get_bus ().add_watch ( (bus, msg) => {
+                switch (msg.type){
+                    case Gst.MessageType.ERROR:
+                        GLib.Error e;
+                        string debug;
+                        msg.parse_error (out e, out debug);
+                        warning (e.message);
+                        print (debug+"\n");
+                        break;
+                    case Gst.MessageType.ELEMENT:
+                        if (msg.get_structure () != null && 
+                            Gst.is_missing_plugin_message (msg)){
+                                var detail = Gst.missing_plugin_message_get_description (msg);
+                                var err = new Gtk.InfoBar.with_buttons (
+                                    "Do nothing", 0,
+                                    "Install missing plugins", 1);
+                                ((Gtk.Container)err.get_content_area ()).add (new Gtk.Label (
+                                    "There's something missing to play this file! What now? ("+detail+")"));
+                                err.message_type = Gtk.MessageType.ERROR;
+                                mainbox.pack_start (err);
+                                mainbox.reorder_child (err, 0);
+                                err.show_all ();
+                                
+                                err.response.connect ( (id) => {
+                                    if (id == 1){
+		                                var installer = Gst.missing_plugin_message_get_installer_detail
+		                                    (msg);
+		                                var context = new Gst.InstallPluginsContext ();
+		                                Gst.install_plugins_async ({installer}, context,
+	                                    () => { //finished
+	                                        Gst.update_registry();
+	                                    });
+                                    }
+                                });
+                            }
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            });
+            
             //shortcuts
             this.mainwindow.key_press_event.connect ( (e) => {
                 switch (e.keyval){
