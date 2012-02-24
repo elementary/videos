@@ -660,6 +660,9 @@ namespace Audience{
             
             this.toggle_play (true);
             this.place ();
+
+            Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default();
+            recent_manager.add_item (uri);
         }
         
         private void place (){
