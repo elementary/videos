@@ -125,6 +125,7 @@ namespace Audience{
         private float video_w;
         private float video_h;
         private bool  reached_end;
+        private bool  error;
         
         private Gdk.Cursor normal_cursor;
         private Gdk.Cursor blank_cursor;
@@ -311,47 +312,60 @@ namespace Audience{
             
             /*events*/
             //check for errors on pipe's bus
-            this.canvas.get_pipeline ().get_bus ().add_watch ( (bus, msg) => {
+            /*this.canvas.error.connect ( () => {
+                print ("Error\n");
+                this.error = true;
+            });
+            this.canvas.get_pipeline ().get_bus ().message.connect ( () => {
+                var msg = this.canvas.get_pipeline ().get_bus ().peek ();
                 switch (msg.type){
                     case Gst.MessageType.ERROR:
                         GLib.Error e;
-                        string debug;
-                        msg.parse_error (out e, out debug);
+                        string detail;
+                        msg.parse_error (out e, out detail);
                         warning (e.message);
-                        print (debug+"\n");
+                        debug (detail+"\n");
+                        this.canvas.get_pipeline ().set_state (Gst.State.NULL);
                         break;
                     case Gst.MessageType.ELEMENT:
+                        this.canvas.get_pipeline ().set_state (Gst.State.NULL);
                         if (msg.get_structure () != null && 
                             Gst.is_missing_plugin_message (msg)){
-                                var detail = Gst.missing_plugin_message_get_description (msg);
-                                var err = new Gtk.InfoBar.with_buttons (
-                                    "Do nothing", 0,
-                                    "Install missing plugins", 1);
-                                ((Gtk.Container)err.get_content_area ()).add (new Gtk.Label (
-                                    "There's something missing to play this file! What now? ("+detail+")"));
-                                err.message_type = Gtk.MessageType.ERROR;
-                                mainbox.pack_start (err);
-                                mainbox.reorder_child (err, 0);
-                                err.show_all ();
-                                
-                                err.response.connect ( (id) => {
-                                    if (id == 1){
-		                                var installer = Gst.missing_plugin_message_get_installer_detail
-		                                    (msg);
-		                                var context = new Gst.InstallPluginsContext ();
-		                                Gst.install_plugins_async ({installer}, context,
-	                                    () => { //finished
-	                                        Gst.update_registry();
-	                                    });
-                                    }
-                                });
-                            }
+                            debug ("Missing plugin\n");
+                            this.error = true;
+                            var detail = Gst.missing_plugin_message_get_description (msg);
+                            var err = new Gtk.InfoBar.with_buttons (
+                                "Do nothing", 0,
+                                "Install missing plugins", 1);
+                            ((Gtk.Container)err.get_content_area ()).add (new Gtk.Label (
+                                "There's something missing to play this file! What now? ("+detail+")"));
+                            err.message_type = Gtk.MessageType.ERROR;
+                            mainbox.pack_start (err, false);
+                            mainbox.reorder_child (err, 0);
+                            err.show_all ();
+                            
+                            err.response.connect ( (id) => {
+                                if (id == 1){
+	                                var installer = Gst.missing_plugin_message_get_installer_detail
+	                                    (msg);
+	                                var context = new Gst.InstallPluginsContext ();
+	                                Gst.install_plugins_async ({installer}, context,
+                                    () => { //finished
+                                        debug ("Finished plugin install\n");
+                                        Gst.update_registry ();
+                                        mainbox.remove (err);
+                                        this.canvas.get_pipeline ().set_state (Gst.State.PLAYING);
+                                    });
+                                }else{
+                                    mainbox.remove (err);
+                                }
+                            });
+                        }
                         break;
                     default:
                         break;
                 }
-                return true;
-            });
+            });*/
             
             //shortcuts
             this.mainwindow.key_press_event.connect ( (e) => {
@@ -683,6 +697,7 @@ namespace Audience{
         }
         
         internal void open_file (string filename){
+            this.error = false; //reset error
             this.current_file = File.new_for_commandline_arg (filename);
             var uri = this.current_file.get_uri ();
             canvas.uri = uri;
@@ -696,10 +711,9 @@ namespace Audience{
                 replace ("%7D", "}").replace ("_", " ").replace ("."," ").replace ("  "," ");
             tagview.get_tags (uri, true);
             
-            play.sensitive  = true;
+            play.sensitive = true;
             
             Timeout.add (100, () => {this.place ();return false;});
-            
             this.toggle_play (true);
             this.place (true);
             
@@ -721,28 +735,30 @@ namespace Audience{
             
             canvas.get_base_size (out video_w, out video_h);
             //aspect ratio handling
-            if (stage.width > stage.height){
-                this.canvas.height = stage.height;
-                this.canvas.width  = stage.height / video_h * video_w;
-                this.canvas.x      = (stage.width - this.canvas.width) / 2.0f;
-                this.canvas.y      = 0.0f;
-            }else{
-                this.canvas.width  = stage.width;
-                this.canvas.height = stage.width / video_w *  video_h;
-                this.canvas.y      = (stage.height - this.canvas.height) / 2.0f;
-                this.canvas.x      = 0.0f;
-            }
-            if (video_h < 30){ //video wasn't loaded fast enough, repeat untill it is
-                Timeout.add (100, () => {
-                    this.place ();
-                    if (video_h < 30){
-                        return true;
-                    }
+            if (!this.error){
+                if (stage.width > stage.height){
+                    this.canvas.height = stage.height;
+                    this.canvas.width  = stage.height / video_h * video_w;
+                    this.canvas.x      = (stage.width - this.canvas.width) / 2.0f;
+                    this.canvas.y      = 0.0f;
+                }else{
+                    this.canvas.width  = stage.width;
+                    this.canvas.height = stage.width / video_w *  video_h;
+                    this.canvas.y      = (stage.height - this.canvas.height) / 2.0f;
+                    this.canvas.x      = 0.0f;
+                }
+                if (video_h < 30){ //video wasn't loaded fast enough, repeat untill it is
+                    Timeout.add (100, () => {
+                        this.place ();
+                        if (video_h < 30){
+                            return true;
+                        }
+                        fit_window ();
+                        return false;
+                    });
+                }else if (resize_window){
                     fit_window ();
-                    return false;
-                });
-            }else if (resize_window){
-                fit_window ();
+                }
             }
         }
         private void fit_window (){
