@@ -712,6 +712,9 @@ namespace Audience{
                     (int)(Gdk.Screen.get_default ().width () * 0.9),
                     (int)(Gdk.Screen.get_default ().height () * 0.9));
             }
+            var g = Gdk.Geometry ();
+            g.min_aspect = g.max_aspect = this.video_w / this.video_h;
+            this.mainwindow.set_geometry_hints (this.mainwindow, g, Gdk.WindowHints.ASPECT);
         }
         
         public void set_screensaver (bool enable){
