@@ -1,4 +1,11 @@
 
+[DBus (name = "org.gnome.SettingsDaemon.MediaKeys")]
+public interface GnomeMediaKeys : GLib.Object {
+    public abstract void GrabMediaPlayerKeys (string application, uint32 time) throws GLib.IOError;
+    public abstract void ReleaseMediaPlayerKeys (string application) throws GLib.IOError;
+    public signal void MediaPlayerKeyPressed (string application, string key);
+}
+
 
 namespace Audience{
     
@@ -121,6 +128,7 @@ namespace Audience{
         public Clutter.Stage              stage;
         public bool                       fullscreened;
         public uint                       hiding_timer;
+        public GnomeMediaKeys             mediakeys;
         
         private float video_w;
         private float video_h;
@@ -184,6 +192,29 @@ namespace Audience{
             this.unfullscreen = new Gtk.ToolButton (
                 new Gtk.Image.from_stock (Gtk.Stock.LEAVE_FULLSCREEN, Gtk.IconSize.BUTTON), "");
             this.blank_cursor  = new Gdk.Cursor (Gdk.CursorType.BLANK_CURSOR);
+            
+            try {
+                this.mediakeys = Bus.get_proxy_sync (BusType.SESSION, 
+                    "org.gnome.SettingsDaemon", "/org/gnome/SettingsDaemon/MediaKeys");
+                this.mediakeys.MediaPlayerKeyPressed.connect ( (bus, app, key) => {
+            		if (app != "audience")
+			            return;
+		            switch (key){
+		                case "Previous":
+		                    break;
+	                    case "Next":
+	                        break;
+                        case "Play":
+                            this.toggle_play (!this.playing);
+                            break;
+                        default:
+                            break;
+		            }
+                });
+                this.mediakeys.GrabMediaPlayerKeys("audience", (uint32)0);
+            } catch (Error e) {
+                warning (e.message);
+            }
             
             this.welcome = new Granite.Widgets.Welcome ("Audience", _("Watching films has never been better"));
             welcome.append ("document-open", _("Open a file"), _("Get file from your disk"));
