@@ -87,8 +87,9 @@ namespace Audience{
     
     public class AudienceSettings : Granite.Services.Settings {
         
-        public bool move_window {get; set;}
-        public bool keep_aspect {get; set;}
+        public bool move_window  {get; set;}
+        public bool keep_aspect  {get; set;}
+        public bool show_details {get; set;}
         public string last_played_videos {get; set;} /*video1:time,video2:time,*/
         
         public AudienceSettings (){
@@ -178,6 +179,7 @@ namespace Audience{
             
             this.fullscreened = false;
             
+            this.settings   = new AudienceSettings ();
             this.canvas     = new ClutterGst.VideoTexture ();
             this.mainwindow = new Gtk.Window ();
             this.tagview    = new Audience.Widgets.TagView (this);
@@ -205,7 +207,6 @@ namespace Audience{
             this.unfullscreen = new Gtk.ToolButton (
                 new Gtk.Image.from_stock (Gtk.Stock.LEAVE_FULLSCREEN, Gtk.IconSize.BUTTON), "");
             this.blank_cursor  = new Gdk.Cursor (Gdk.CursorType.BLANK_CURSOR);
-            this.settings   = new AudienceSettings ();
             
             this.welcome = new Granite.Widgets.Welcome ("Audience", _("Watching films has never been better"));
             welcome.append ("document-open", _("Open a file"), _("Get file from your disk"));
@@ -334,10 +335,11 @@ namespace Audience{
             
             /*events*/
             //check for errors on pipe's bus
-            /*this.canvas.error.connect ( () => {
+            this.canvas.error.connect ( () => {
                 print ("Error\n");
                 this.error = true;
             });
+            /*this.canvas.get_pipeline ().get_bus ().add_signal_watch ();
             this.canvas.get_pipeline ().get_bus ().message.connect ( () => {
                 var msg = this.canvas.get_pipeline ().get_bus ().peek ();
                 switch (msg.type){
@@ -755,7 +757,8 @@ namespace Audience{
             mainwindow.title = mainwindow.title.replace ("%20", " ").
                 replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").
                 replace ("%7D", "}").replace ("_", " ").replace ("."," ").replace ("  "," ");
-            tagview.get_tags (uri, true);
+            if (this.settings.show_details)
+                tagview.get_tags (uri, true);
             
             play.sensitive = true;
             

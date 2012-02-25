@@ -10,6 +10,11 @@
 			<summary>Keep the video's aspect ratio</summary>
 			<description>Lock window resizing to the aspect ration of the current video</description>
 		</key>
+		<key name="show-details" type="b">
+		    <default>false</default>
+		    <summary>Show the details tab</summary>
+		    <description>Show or hide the details tab of the sidebar</description>
+		</key>
 		<key name="last-played-videos" type="s">
 			<default>""</default>
 			<summary>List of last played videos and the time they stopped</summary>
