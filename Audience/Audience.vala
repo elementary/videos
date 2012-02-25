@@ -736,7 +736,7 @@ namespace Audience{
             canvas.get_base_size (out video_w, out video_h);
             //aspect ratio handling
             if (!this.error){
-                if (stage.width > stage.height){
+                if (stage.width < stage.height){
                     this.canvas.height = stage.height;
                     this.canvas.width  = stage.height / video_h * video_w;
                     this.canvas.x      = (stage.width - this.canvas.width) / 2.0f;
