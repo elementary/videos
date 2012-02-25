@@ -85,6 +85,18 @@ namespace Audience{
         }
     }
     
+    public class AudienceSettings : Granite.Services.Settings {
+        
+        public bool move_window {get; set;}
+        public bool keep_aspect {get; set;}
+        public string last_played_videos {get; set;} /*video1:time,video2:time,*/
+        
+        public AudienceSettings (){
+            base ("org.elementary.Audience");
+        }
+        
+    }
+    
     public class AudienceApp : Granite.Application{
         
         construct{
@@ -129,6 +141,7 @@ namespace Audience{
         public bool                       fullscreened;
         public uint                       hiding_timer;
         public GnomeMediaKeys             mediakeys;
+        public AudienceSettings           settings;
         
         private float video_w;
         private float video_h;
@@ -192,29 +205,7 @@ namespace Audience{
             this.unfullscreen = new Gtk.ToolButton (
                 new Gtk.Image.from_stock (Gtk.Stock.LEAVE_FULLSCREEN, Gtk.IconSize.BUTTON), "");
             this.blank_cursor  = new Gdk.Cursor (Gdk.CursorType.BLANK_CURSOR);
-            
-            try {
-                this.mediakeys = Bus.get_proxy_sync (BusType.SESSION, 
-                    "org.gnome.SettingsDaemon", "/org/gnome/SettingsDaemon/MediaKeys");
-                this.mediakeys.MediaPlayerKeyPressed.connect ( (bus, app, key) => {
-            		if (app != "audience")
-			            return;
-		            switch (key){
-		                case "Previous":
-		                    break;
-	                    case "Next":
-	                        break;
-                        case "Play":
-                            this.toggle_play (!this.playing);
-                            break;
-                        default:
-                            break;
-		            }
-                });
-                this.mediakeys.GrabMediaPlayerKeys("audience", (uint32)0);
-            } catch (Error e) {
-                warning (e.message);
-            }
+            this.settings   = new AudienceSettings ();
             
             this.welcome = new Granite.Widgets.Welcome ("Audience", _("Watching films has never been better"));
             welcome.append ("document-open", _("Open a file"), _("Get file from your disk"));
@@ -397,6 +388,30 @@ namespace Audience{
                         break;
                 }
             });*/
+            
+            //media keys
+            try {
+                this.mediakeys = Bus.get_proxy_sync (BusType.SESSION, 
+                    "org.gnome.SettingsDaemon", "/org/gnome/SettingsDaemon/MediaKeys");
+                this.mediakeys.MediaPlayerKeyPressed.connect ( (bus, app, key) => {
+            		if (app != "audience")
+			            return;
+		            switch (key){
+		                case "Previous":
+		                    break;
+	                    case "Next":
+	                        break;
+                        case "Play":
+                            this.toggle_play (!this.playing);
+                            break;
+                        default:
+                            break;
+		            }
+                });
+                this.mediakeys.GrabMediaPlayerKeys("audience", (uint32)0);
+            } catch (Error e) {
+                warning (e.message);
+            }
             
             //shortcuts
             this.mainwindow.key_press_event.connect ( (e) => {
@@ -616,7 +631,7 @@ namespace Audience{
                 }
             });
             clutter.motion_notify_event.connect ( (e) => {
-                if (moving){
+                if (moving && this.settings.move_window){
                     moving = false;
                     this.mainwindow.begin_move_drag (1, 
                         (int)e.x_root, (int)e.y_root, e.time);
@@ -784,7 +799,8 @@ namespace Audience{
                         if (video_h < 30){
                             return true;
                         }
-                        fit_window ();
+                        if (resize_window)
+                            fit_window ();
                         return false;
                     });
                 }else if (resize_window){
@@ -793,6 +809,11 @@ namespace Audience{
             }
         }
         private void fit_window (){
+            var ung = Gdk.Geometry (); /*unlock*/
+            ung.min_aspect = 0.0;
+            ung.max_aspect = 99999999.0;
+            this.mainwindow.set_geometry_hints (this.mainwindow, ung, Gdk.WindowHints.ASPECT);
+            
             if (Gdk.Screen.get_default ().width ()  > this.video_w &&
                 Gdk.Screen.get_default ().height () > this.video_h){
                 this.mainwindow.resize (
@@ -802,9 +823,12 @@ namespace Audience{
                     (int)(Gdk.Screen.get_default ().width () * 0.9),
                     (int)(Gdk.Screen.get_default ().height () * 0.9));
             }
-            var g = Gdk.Geometry ();
-            g.min_aspect = g.max_aspect = this.video_w / this.video_h;
-            this.mainwindow.set_geometry_hints (this.mainwindow, g, Gdk.WindowHints.ASPECT);
+            
+            if (this.settings.keep_aspect){
+                var g = Gdk.Geometry (); /*lock*/
+                g.min_aspect = g.max_aspect = this.video_w / this.video_h;
+                this.mainwindow.set_geometry_hints (this.mainwindow, g, Gdk.WindowHints.ASPECT);
+            }
         }
         
         public void set_screensaver (bool enable){

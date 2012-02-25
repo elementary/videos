@@ -1,0 +1,19 @@
+<schemalist>
+	<schema path="/apps/audience/" id="org.elementary.Audience" gettext-domain="audience">
+		<key name="move-window" type="b">
+			<default>true</default>
+			<summary>Move the window</summary>
+			<description>Allow moving the window by dragging on the canvas</description>
+		</key>
+		<key name="keep-aspect" type="b">
+			<default>true</default>
+			<summary>Keep the video's aspect ratio</summary>
+			<description>Lock window resizing to the aspect ration of the current video</description>
+		</key>
+		<key name="last-played-videos" type="s">
+			<default>""</default>
+			<summary>List of last played videos and the time they stopped</summary>
+			<description>A list of the last played and the time they were stopped</description>
+		</key>
+	</schema>
+</schemalist>

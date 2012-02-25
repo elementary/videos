@@ -46,6 +46,10 @@ OPTIONS
     --thread
 )
 
+
+include(GSettings)
+add_schema ("org.elementary.audience.gschema.xml")
+
 add_subdirectory (po)
 add_executable(audience ${VALA_C})
 install (TARGETS audience RUNTIME DESTINATION bin)
