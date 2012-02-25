@@ -339,9 +339,11 @@ namespace Audience{
                 print ("Error\n");
                 this.error = true;
             });
-            /*this.canvas.get_pipeline ().get_bus ().add_signal_watch ();
+            this.canvas.get_pipeline ().get_bus ().add_signal_watch ();
             this.canvas.get_pipeline ().get_bus ().message.connect ( () => {
                 var msg = this.canvas.get_pipeline ().get_bus ().peek ();
+                if (msg == null)
+                    return;
                 switch (msg.type){
                     case Gst.MessageType.ERROR:
                         GLib.Error e;
@@ -352,9 +354,9 @@ namespace Audience{
                         this.canvas.get_pipeline ().set_state (Gst.State.NULL);
                         break;
                     case Gst.MessageType.ELEMENT:
-                        this.canvas.get_pipeline ().set_state (Gst.State.NULL);
                         if (msg.get_structure () != null && 
                             Gst.is_missing_plugin_message (msg)){
+                            this.canvas.get_pipeline ().set_state (Gst.State.NULL);
                             debug ("Missing plugin\n");
                             this.error = true;
                             var detail = Gst.missing_plugin_message_get_description (msg);
@@ -389,7 +391,7 @@ namespace Audience{
                     default:
                         break;
                 }
-            });*/
+            });
             
             //media keys
             try {
@@ -718,7 +720,8 @@ namespace Audience{
                 toolbar.insert (this.pause, 0);
                 pause.show_all ();
                 this.place ();
-                Source.remove (this.hiding_timer);
+                if (this.hiding_timer != 0)
+                    Source.remove (this.hiding_timer);
                 this.hiding_timer = GLib.Timeout.add (2000, () => {
                     this.mainwindow.get_window ().set_cursor (blank_cursor);
                     float y2 = this.stage.height;
