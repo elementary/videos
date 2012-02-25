@@ -175,6 +175,7 @@ namespace Audience{
         public AudienceApp (){
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
             
+            Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
             
             this.fullscreened = false;
@@ -196,7 +197,7 @@ namespace Audience{
             var remain_item = new Gtk.ToolItem ();
             var volm        = new Gtk.ToolItem ();
             var info        = new Gtk.ToggleToolButton ();
-            var open        = new Gtk.ToolButton (sym ("document-export-symbolic", Gtk.Stock.OPEN),"");
+            var open        = new Gtk.ToolButton (sym ("list-add-symbolic", Gtk.Stock.OPEN),"");
             /*var menu        = new Gtk.Menu ();
              The AppMenu is disabled until it contains something useful
             var appm        = this.create_appmenu (menu); */
@@ -204,8 +205,7 @@ namespace Audience{
             var volume      = new Gtk.VolumeButton ();
             var time        = new Gtk.Label ("0");
             var remaining   = new Gtk.Label ("0");
-            this.unfullscreen = new Gtk.ToolButton (
-                new Gtk.Image.from_stock (Gtk.Stock.LEAVE_FULLSCREEN, Gtk.IconSize.BUTTON), "");
+            this.unfullscreen = new Gtk.ToolButton (sym ("view-restore-symbolic", Gtk.Stock.LEAVE_FULLSCREEN), "");
             this.blank_cursor  = new Gdk.Cursor (Gdk.CursorType.BLANK_CURSOR);
             
             this.welcome = new Granite.Widgets.Welcome ("Audience", _("Watching films has never been better"));
@@ -268,7 +268,7 @@ namespace Audience{
             time_item.add (time);
             remain_item.add (remaining);
             
-            info.icon_widget = sym ("view-list-filter-symbolic", Gtk.Stock.JUSTIFY_LEFT);
+            info.icon_widget = sym ("go-previous-symbolic", Gtk.Stock.JUSTIFY_LEFT);
             /* The AppMenu is disabled until it contains something useful
             appm.icon_widget = sym ("document-properties-symbolic"); */
             
@@ -372,10 +372,10 @@ namespace Audience{
                             
                             err.response.connect ( (id) => {
                                 if (id == 1){
-	                                var installer = Gst.missing_plugin_message_get_installer_detail
-	                                    (msg);
-	                                var context = new Gst.InstallPluginsContext ();
-	                                Gst.install_plugins_async ({installer}, context,
+                                    var installer = Gst.missing_plugin_message_get_installer_detail
+                                       (msg);
+                                var context = new Gst.InstallPluginsContext ();
+                                    Gst.install_plugins_async ({installer}, context,
                                     () => { //finished
                                         debug ("Finished plugin install\n");
                                         Gst.update_registry ();
@@ -398,19 +398,19 @@ namespace Audience{
                 this.mediakeys = Bus.get_proxy_sync (BusType.SESSION, 
                     "org.gnome.SettingsDaemon", "/org/gnome/SettingsDaemon/MediaKeys");
                 this.mediakeys.MediaPlayerKeyPressed.connect ( (bus, app, key) => {
-            		if (app != "audience")
-			            return;
-		            switch (key){
-		                case "Previous":
-		                    break;
-	                    case "Next":
-	                        break;
+                    if (app != "audience")
+                       return;
+                    switch (key){
+                        case "Previous":
+                            break;
+                        case "Next":
+                            break;
                         case "Play":
                             this.toggle_play (!this.playing);
                             break;
                         default:
                             break;
-		            }
+                    }
                 });
                 this.mediakeys.GrabMediaPlayerKeys("audience", (uint32)0);
             } catch (Error e) {
@@ -464,7 +464,7 @@ namespace Audience{
             ulong id = slider.value_changed.connect ( () => {
                 canvas.progress = slider.get_value () / canvas.duration;
             });
-            Timeout.add (1000, () => {
+            canvas.notify["progress"].connect ( () => {
                 SignalHandler.block (slider, id);
                 slider.set_range (0, canvas.duration);
                 slider.set_value (canvas.duration * canvas.progress);
@@ -474,7 +474,6 @@ namespace Audience{
                 
                 remaining.label = "-" + seconds_to_time ((int)(canvas.duration - 
                     slider.get_value ()));
-                return true;
             });
             
             //volume
@@ -769,7 +768,7 @@ namespace Audience{
             this.toggle_play (true);
             this.place (true);
             
-            Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default();
+            Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
         }
         
