@@ -48,9 +48,10 @@ namespace Audience.Widgets {
         }
         
         private inline void change_current_symbol (Gtk.TreeIter new_item){
-            playlist.set (new_item, 0, Gtk.IconTheme.get_default ().
-                load_icon ("media-playback-start-symbolic", 16, 0));
-            
+            try{
+                playlist.set (new_item, 0, Gtk.IconTheme.get_default ().
+                    load_icon ("media-playback-start-symbolic", 16, 0));
+            }catch (Error e){warning (e.message);}
             Gtk.TreeIter old_item;
             playlist.get_iter_from_string (out old_item, this.current.to_string ());
             playlist.set (old_item, 0, null);

@@ -98,7 +98,8 @@ namespace Audience{
         public bool move_window          {get; set;}
         public bool keep_aspect          {get; set;}
         public bool show_details         {get; set;}
-        public string last_played_videos {get; set;} /*video1:time,video2:time,*/
+        public bool resume_videos        {get; set;}
+        public string last_played_videos {get; set;} /*video1,time,video2,time2*/
         public string last_folder        {get; set;}
         
         public AudienceSettings (){
@@ -164,9 +165,9 @@ namespace Audience{
         private Gdk.Cursor normal_cursor;
         private Gdk.Cursor blank_cursor;
         
-        public bool      playing;
-        public File      current_file;
-        public string [] last_played_videos; //taken from settings, but splitted
+        public bool         playing;
+        public File         current_file;
+        public List<string> last_played_videos; //taken from settings, but splitted
         
         private inline Gtk.Image? sym (string name, string fallback){
             try{
@@ -218,7 +219,14 @@ namespace Audience{
             var remaining   = new Gtk.Label ("0");
             this.unfullscreen = new Gtk.ToolButton (sym ("view-restore-symbolic", Gtk.Stock.LEAVE_FULLSCREEN), "");
             this.blank_cursor  = new Gdk.Cursor (Gdk.CursorType.BLANK_CURSOR);
-            this.last_played_videos = this.settings.last_played_videos.split (",");
+            
+            //prepare last played videos
+            this.last_played_videos = new List<string> ();
+            var split = this.settings.last_played_videos.split (",");;
+            for (var i=0;i<split.length;i++){
+                this.last_played_videos.append (split[i]);
+            }
+            
             
             this.welcome = new Granite.Widgets.Welcome ("Audience", _("Watching films has never been better"));
             welcome.append ("document-open", _("Open a file"), _("Get file from your disk"));
@@ -353,7 +361,7 @@ namespace Audience{
             
             //check for errors on pipe's bus
             this.canvas.error.connect ( () => {
-                print ("Error\n");
+                warning ("An error occured!\n");
                 this.error = true;
             });
             this.canvas.get_pipeline ().get_bus ().add_signal_watch ();
@@ -475,7 +483,7 @@ namespace Audience{
             
             //end
             this.canvas.eos.connect ( () => {
-                reached_end = true;
+                this.reached_end = true;
                 this.toggle_play (false);
                 this.playlist.next ();
             });
@@ -678,6 +686,36 @@ namespace Audience{
                 welcome.hide ();
                 clutter.show_all ();
             });
+            
+            //save position in video when not finished playing
+            this.mainwindow.destroy.connect ( () => {
+                if (!reached_end){
+                    for (var i=0;i<this.last_played_videos.length ();i+=2){
+                        if (this.current_file.get_uri () == this.last_played_videos.nth_data (i)){
+                            this.last_played_videos.nth (i+1).data = this.canvas.progress.to_string ();
+                            this.save_last_played_videos ();
+                            return;
+                        }
+                    }
+                    //not in list yet, insert at start
+                    this.last_played_videos.insert (this.current_file.get_uri (), 0);
+                    this.last_played_videos.insert (this.canvas.progress.to_string (), 1);
+                    if (this.last_played_videos.length () > 10){
+                        this.last_played_videos.delete_link (this.last_played_videos.nth (10));
+                        this.last_played_videos.delete_link (this.last_played_videos.nth (11));
+                    }
+                    this.save_last_played_videos ();
+                }
+            });
+        }
+        
+        private inline void save_last_played_videos (){
+            string res = "";
+            for (var i=0;i<this.last_played_videos.length () - 1;i++){
+                res += this.last_played_videos.nth_data (i) + ",";
+            }
+            res += this.last_played_videos.nth_data (this.last_played_videos.length () - 1);
+            this.settings.last_played_videos = res;
         }
         
         public void run_open (int type){ //0=file, 1=cd, 2=dvd
@@ -783,6 +821,7 @@ namespace Audience{
         internal void open_file (string filename){
             this.error = false; //reset error
             this.current_file = File.new_for_commandline_arg (filename);
+            this.reached_end = false;
             var uri = this.current_file.get_uri ();
             canvas.uri = uri;
             canvas.audio_volume = 1.0;
@@ -797,6 +836,20 @@ namespace Audience{
             
             this.toggle_play (true);
             this.place (true);
+            
+            if (this.settings.resume_videos && !(get_extension (uri) in audio)){
+                int i;
+                for (i=0;i<this.last_played_videos.length () && i!=-1;i+=2){
+                    if (this.current_file.get_uri () == this.last_played_videos.nth_data (i))
+                        break;
+                    if (i == this.last_played_videos.length () - 1)
+                        i = -1;
+                }
+                if (i != -1){
+                    this.canvas.progress = double.parse (this.last_played_videos.nth_data (i + 1));
+                    debug ("Resuming video from "+this.last_played_videos.nth_data (i + 1));
+                }
+            }
             
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
