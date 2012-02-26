@@ -377,6 +377,7 @@ namespace Audience{
                         warning (e.message);
                         debug (detail+"\n");
                         this.canvas.get_pipeline ().set_state (Gst.State.NULL);
+                        this.error = true;
                         break;
                     case Gst.MessageType.ELEMENT:
                         if (msg.get_structure () != null && 
