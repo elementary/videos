@@ -13,7 +13,8 @@ namespace Audience.Widgets{
         public AudienceApp app;
         
         public TagView (AudienceApp app){
-            this.app = app;
+            this.app      = app;
+            this.reactive = true;
             
             var notebook = new Granite.Widgets.StaticNotebook ();
             

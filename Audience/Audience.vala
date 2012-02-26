@@ -20,6 +20,14 @@ namespace Audience{
     "ogg"
     };
     
+    public static string get_title (string filename){
+        var title = get_basename (filename);
+        title = title.replace ("%20", " ").
+            replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").
+            replace ("%7D", "}").replace ("_", " ").replace ("."," ").replace ("  "," ");
+        return title;
+    }
+    
     public static string get_extension (string filename){
         int i=0;
         for (i=filename.length;i!=0;i--){
@@ -716,9 +724,11 @@ namespace Audience{
         
         private void toggle_play (bool start){
             if (!start){
-                toolbar.remove (this.pause);
-                toolbar.insert (this.play, 0);
-                play.show_all ();
+                if (this.pause.parent == toolbar){
+                    toolbar.remove (this.pause);
+                    toolbar.insert (this.play, 0);
+                    play.show_all ();
+                }
                 canvas.get_pipeline ().set_state (Gst.State.PAUSED);
                 Source.remove (this.hiding_timer);
                 this.set_screensaver (true);
@@ -729,9 +739,11 @@ namespace Audience{
                     this.reached_end = false;
                 }
                 canvas.get_pipeline ().set_state (Gst.State.PLAYING);
-                toolbar.remove (this.play);
-                toolbar.insert (this.pause, 0);
-                pause.show_all ();
+                if (this.play.parent == toolbar){
+                    toolbar.remove (this.play);
+                    toolbar.insert (this.pause, 0);
+                    pause.show_all ();
+                }
                 this.place ();
                 if (this.hiding_timer != 0)
                     Source.remove (this.hiding_timer);
@@ -769,16 +781,12 @@ namespace Audience{
             previewer.uri = uri;
             previewer.audio_volume = 0.0;
             
-            mainwindow.title = get_basename (uri);
-            mainwindow.title = mainwindow.title.replace ("%20", " ").
-                replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").
-                replace ("%7D", "}").replace ("_", " ").replace ("."," ").replace ("  "," ");
+            this.mainwindow.title = get_title (uri);
             if (this.settings.show_details)
                 tagview.get_tags (uri, true);
             
             play.sensitive = true;
             
-            Timeout.add (100, () => {this.place ();return false;});
             this.toggle_play (true);
             this.place (true);
             

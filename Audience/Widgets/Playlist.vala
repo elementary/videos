@@ -2,22 +2,16 @@
 
 namespace Audience.Widgets {
     
-    struct Item {
-        File path;
-        Gtk.TreeIter iter;
-    }
-    
     public class Playlist : Gtk.TreeView{
         
         /*the player is requested to play path*/
         public signal void play (File path);
         
-        private unowned List<Item?> current;
-        private List<Item?>         files;
+        private int                 current;
         private Gtk.ListStore       playlist;
         
         public Playlist (){
-            files    = new List<Item?> ();
+            this.current  = 0;
             this.playlist = new Gtk.ListStore (4, typeof (Gdk.Pixbuf),  /*playing*/
                                                   typeof (Gdk.Pixbuf),  /*icon*/
                                                   typeof (string),      /*title*/
@@ -38,32 +32,50 @@ namespace Audience.Widgets {
                 string filename;
                 playlist.get (iter, 3, out filename);
                 play (File.new_for_commandline_arg (filename));
+                change_current_symbol (iter);
+                this.current = int.parse (path.to_string ());
             });
             
             this.reorderable = true;
-            unowned List<Item?> reorder_del = null; //deleted item when DnDing an item
-            this.model.row_deleted.connect ( (path) => {
-                reorder_del = this.files.nth (int.parse (path.to_string ()));
-                this.files.delete_link (reorder_del);
-            });
             this.model.row_inserted.connect ( (path, iter) => {
-                if (reorder_del != null){
-                    this.files.insert (reorder_del.data, int.parse (path.to_string ()));
-                    reorder_del = null;
-                }
+                Gtk.TreeIter it;
+                playlist.get_iter (out it, path);
+                Gdk.Pixbuf playing;
+                playlist.get (it, 0, out playing);
+                if (playing != null) //if playing is not null it's the current item
+                    this.current = int.parse (path.to_string ());
             });
+        }
+        
+        private inline void change_current_symbol (Gtk.TreeIter new_item){
+            playlist.set (new_item, 0, Gtk.IconTheme.get_default ().
+                load_icon ("media-playback-start-symbolic", 16, 0));
+            
+            Gtk.TreeIter old_item;
+            playlist.get_iter_from_string (out old_item, this.current.to_string ());
+            playlist.set (old_item, 0, null);
         }
         
         public void next (){
-            if (current.next != null)
-                current = current.next;
-            play (current.data.path);
+            Gtk.TreeIter it;
+            if (playlist.get_iter_from_string (out it, (this.current + 1).to_string ())){
+                string filename;
+                playlist.get (it, 3, out filename);
+                change_current_symbol (it);
+                current++;
+                play (File.new_for_commandline_arg (filename));
+            }
         }
         
         public void previous (){
-            if (current.prev != null)
-                current = current.prev;
-            play (current.data.path);
+            Gtk.TreeIter it;
+            if (playlist.get_iter_from_string (out it, (this.current - 1).to_string ())){
+                string filename;
+                playlist.get (it, 3, out filename);
+                change_current_symbol (it);
+                current--;
+                play (File.new_for_commandline_arg (filename));
+            }
         }
         
         public void add_item (File path){
@@ -71,18 +83,23 @@ namespace Audience.Widgets {
                 Gtk.TreeIter iter;
                 var ext = Audience.get_extension (path.get_path ());
                 Gdk.Pixbuf pix = null;
+                
                 if (ext in Audience.audio)
                     pix = Gtk.IconTheme.get_default ().load_icon ("folder-music-symbolic", 16, 0);
                 else
                     pix = Gtk.IconTheme.get_default ().load_icon ("folder-videos-symbolic", 16, 0);
-                var playing = Gtk.IconTheme.get_default ().load_icon ("media-playback-start-symbolic", 16, 0);
+                
+                Gdk.Pixbuf? playing;
+                Gtk.TreeIter dummy;
+                if (!playlist.get_iter_first (out dummy)){ //first item
+                    playing = Gtk.IconTheme.get_default ().load_icon ("media-playback-start-symbolic", 16, 0);
+                }else{
+                    playing = null;
+                }
+                
                 playlist.append (out iter);
                 playlist.set (iter, 0, playing, 1, pix, 
-                                    2, Audience.get_basename (path.get_basename ()), 3, path.get_path ());
-                Item item = {path, iter};
-                files.append (item);
-                if (files.length () == 1)
-                    current = files.nth (0);
+                                    2, Audience.get_title (path.get_path ()), 3, path.get_path ());
             }catch (Error e){warning (e.message);}
         }
         
