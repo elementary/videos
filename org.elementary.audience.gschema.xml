@@ -20,5 +20,10 @@
 			<summary>List of last played videos and the time they stopped</summary>
 			<description>A list of the last played and the time they were stopped</description>
 		</key>
+		<key name="last-folder" type="s">
+		    <default>"/home/"</default>
+		    <summary>The last visited folder</summary>
+		    <description>The last folder you visited</description>
+		</key>
 	</schema>
 </schemalist>

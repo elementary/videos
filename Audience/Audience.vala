@@ -95,10 +95,11 @@ namespace Audience{
     
     public class AudienceSettings : Granite.Services.Settings {
         
-        public bool move_window  {get; set;}
-        public bool keep_aspect  {get; set;}
-        public bool show_details {get; set;}
+        public bool move_window          {get; set;}
+        public bool keep_aspect          {get; set;}
+        public bool show_details         {get; set;}
         public string last_played_videos {get; set;} /*video1:time,video2:time,*/
+        public string last_folder        {get; set;}
         
         public AudienceSettings (){
             base ("org.elementary.Audience");
@@ -685,17 +686,21 @@ namespace Audience{
                     Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
                     Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
                 file.select_multiple = true;
+                
                 var all_files_filter = new Gtk.FileFilter ();
                 all_files_filter.set_filter_name (_("All files"));
                 all_files_filter.add_pattern ("*");
+                
                 var supported_filter = new Gtk.FileFilter ();
                 supported_filter.set_filter_name (_("Supported files"));
                 supported_filter.add_mime_type ("video/*");
                 supported_filter.add_mime_type ("audio/*");
+                
                 var video_filter = new Gtk.FileFilter ();
                 video_filter.set_filter_name (_("Video files"));
                 video_filter.add_mime_type ("video/*");
                 video_filter.add_pattern ("*.ogg");
+                
                 var audio_filter = new Gtk.FileFilter ();
                 audio_filter.set_filter_name (_("Audio files"));
                 audio_filter.add_mime_type ("audio/*");
@@ -705,6 +710,7 @@ namespace Audience{
                 file.add_filter (audio_filter);
                 file.set_filter (supported_filter);
                 
+                file.set_current_folder (this.settings.last_folder);
                 if (file.run () == Gtk.ResponseType.ACCEPT){
                     for (var i=0;i<file.get_files ().length ();i++){
                         this.playlist.add_item (file.get_files ().nth_data (i));
@@ -712,6 +718,7 @@ namespace Audience{
                     open_file (file.get_uri ());
                     welcome.hide ();
                     clutter.show_all ();
+                    this.settings.last_folder = file.get_current_folder ();
                 }
                 file.destroy ();
             }else if (type == 1){
