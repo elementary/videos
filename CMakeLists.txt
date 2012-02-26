@@ -35,6 +35,7 @@ vala_precompile(VALA_C
     ${CMAKE_BINARY_DIR}/Audience/Config.vala
     Audience/Widgets/TagView.vala
     Audience/Widgets/Previewer.vala
+    Audience/Widgets/Playlist.vala
 PACKAGES
     gtk+-3.0
     granite

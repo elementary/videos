@@ -143,6 +143,9 @@ namespace Audience{
         public uint                       hiding_timer;
         public GnomeMediaKeys             mediakeys;
         public AudienceSettings           settings;
+        public Audience.Widgets.Playlist  playlist;
+        public GtkClutter.Embed           clutter;
+        public Granite.Widgets.Welcome    welcome;
         
         private float video_w;
         private float video_h;
@@ -152,11 +155,9 @@ namespace Audience{
         private Gdk.Cursor normal_cursor;
         private Gdk.Cursor blank_cursor;
         
-        
-        public GtkClutter.Embed        clutter;
-        public Granite.Widgets.Welcome welcome;
-        public bool playing;
-        public File current_file;
+        public bool      playing;
+        public File      current_file;
+        public string [] last_played_videos; //taken from settings, but splitted
         
         private inline Gtk.Image? sym (string name, string fallback){
             try{
@@ -180,6 +181,7 @@ namespace Audience{
             
             this.fullscreened = false;
             
+            this.playlist   = new Audience.Widgets.Playlist ();
             this.settings   = new AudienceSettings ();
             this.canvas     = new ClutterGst.VideoTexture ();
             this.mainwindow = new Gtk.Window ();
@@ -207,42 +209,12 @@ namespace Audience{
             var remaining   = new Gtk.Label ("0");
             this.unfullscreen = new Gtk.ToolButton (sym ("view-restore-symbolic", Gtk.Stock.LEAVE_FULLSCREEN), "");
             this.blank_cursor  = new Gdk.Cursor (Gdk.CursorType.BLANK_CURSOR);
+            this.last_played_videos = this.settings.last_played_videos.split (",");
             
             this.welcome = new Granite.Widgets.Welcome ("Audience", _("Watching films has never been better"));
             welcome.append ("document-open", _("Open a file"), _("Get file from your disk"));
             welcome.append ("media-cdrom", _("Watch a DVD"), _("Open a film"));
             welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
-            
-            welcome.activated.connect ( (index) => {
-                if (index == 0){
-                    run_open (0);
-                }else if (index == 1){
-                    run_open (2);
-                }else{
-                    var d = new Gtk.Dialog.with_buttons (_("Open location"), 
-                        this.mainwindow, Gtk.DialogFlags.MODAL, 
-                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                        Gtk.Stock.OK,     Gtk.ResponseType.OK);
-                    var grid  = new Gtk.Grid ();
-                    var entry = new Gtk.Entry ();
-                    
-                    grid.attach (new Gtk.Image.from_icon_name ("internet-web-browser",
-                        Gtk.IconSize.DIALOG), 0, 0, 1, 2);
-                    grid.attach (new Gtk.Label (_("Choose location")), 1, 0, 1, 1);
-                    grid.attach (entry, 1, 1, 1, 1);
-                    
-                    ((Gtk.Container)d.get_content_area ()).add (grid);
-                    grid.show_all ();
-                    
-                    if (d.run () == Gtk.ResponseType.OK){
-                        open_file (entry.text);
-                        canvas.get_pipeline ().set_state (Gst.State.PLAYING);
-                        welcome.hide ();
-                        clutter.show_all ();
-                    }
-                    d.destroy ();
-                }
-            });
             
             /*UI*/
             this.canvas.reactive = true;
@@ -334,6 +306,42 @@ namespace Audience{
             clutter.hide ();
             
             /*events*/
+            playlist.play.connect ( (file) => {
+                this.open_file (file.get_path ());
+            });
+            
+            //handle welcome
+            welcome.activated.connect ( (index) => {
+                if (index == 0){
+                    run_open (0);
+                }else if (index == 1){
+                    run_open (2);
+                }else{
+                    var d = new Gtk.Dialog.with_buttons (_("Open location"), 
+                        this.mainwindow, Gtk.DialogFlags.MODAL, 
+                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+                        Gtk.Stock.OK,     Gtk.ResponseType.OK);
+                    var grid  = new Gtk.Grid ();
+                    var entry = new Gtk.Entry ();
+                    
+                    grid.attach (new Gtk.Image.from_icon_name ("internet-web-browser",
+                        Gtk.IconSize.DIALOG), 0, 0, 1, 2);
+                    grid.attach (new Gtk.Label (_("Choose location")), 1, 0, 1, 1);
+                    grid.attach (entry, 1, 1, 1, 1);
+                    
+                    ((Gtk.Container)d.get_content_area ()).add (grid);
+                    grid.show_all ();
+                    
+                    if (d.run () == Gtk.ResponseType.OK){
+                        open_file (entry.text);
+                        canvas.get_pipeline ().set_state (Gst.State.PLAYING);
+                        welcome.hide ();
+                        clutter.show_all ();
+                    }
+                    d.destroy ();
+                }
+            });
+            
             //check for errors on pipe's bus
             this.canvas.error.connect ( () => {
                 print ("Error\n");
@@ -402,8 +410,10 @@ namespace Audience{
                        return;
                     switch (key){
                         case "Previous":
+                            this.playlist.previous ();
                             break;
                         case "Next":
+                            this.playlist.next ();
                             break;
                         case "Play":
                             this.toggle_play (!this.playing);
@@ -653,7 +663,7 @@ namespace Audience{
                 Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
             this.mainwindow.drag_data_received.connect ( (ctx, x, y, sel, info, time) => {
                 for (var i=0;i<sel.get_uris ().length; i++)
-                    this.tagview.add_play_item (sel.get_uris ()[i]);
+                    this.playlist.add_item (File.new_for_uri (sel.get_uris ()[i]));
                 this.open_file (sel.get_uris ()[0]);
                 welcome.hide ();
                 clutter.show_all ();
@@ -665,27 +675,31 @@ namespace Audience{
                 var file = new Gtk.FileChooserDialog (_("Open"), this.mainwindow, Gtk.FileChooserAction.OPEN,
                     Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
                     Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
-                    var all_files_filter = new Gtk.FileFilter ();
-                    all_files_filter.set_filter_name (_("All files"));
-                    all_files_filter.add_pattern ("*");
-                    var supported_filter = new Gtk.FileFilter ();
-                    supported_filter.set_filter_name (_("Supported files"));
-                    supported_filter.add_mime_type ("video/*");
-                    supported_filter.add_mime_type ("audio/*");
-                    var video_filter = new Gtk.FileFilter ();
-                    video_filter.set_filter_name (_("Video files"));
-                    video_filter.add_mime_type ("video/*");
-                    video_filter.add_pattern ("*.ogg");
-                    var audio_filter = new Gtk.FileFilter ();
-                    audio_filter.set_filter_name (_("Audio files"));
-                    audio_filter.add_mime_type ("audio/*");
-                    file.add_filter (all_files_filter);
-                    file.add_filter (supported_filter);
-                    file.add_filter (video_filter);
-                    file.add_filter (audio_filter);
-                    file.set_filter (supported_filter);
-                    file.set_select_multiple (false);
+                file.select_multiple = true;
+                var all_files_filter = new Gtk.FileFilter ();
+                all_files_filter.set_filter_name (_("All files"));
+                all_files_filter.add_pattern ("*");
+                var supported_filter = new Gtk.FileFilter ();
+                supported_filter.set_filter_name (_("Supported files"));
+                supported_filter.add_mime_type ("video/*");
+                supported_filter.add_mime_type ("audio/*");
+                var video_filter = new Gtk.FileFilter ();
+                video_filter.set_filter_name (_("Video files"));
+                video_filter.add_mime_type ("video/*");
+                video_filter.add_pattern ("*.ogg");
+                var audio_filter = new Gtk.FileFilter ();
+                audio_filter.set_filter_name (_("Audio files"));
+                audio_filter.add_mime_type ("audio/*");
+                file.add_filter (all_files_filter);
+                file.add_filter (supported_filter);
+                file.add_filter (video_filter);
+                file.add_filter (audio_filter);
+                file.set_filter (supported_filter);
+                
                 if (file.run () == Gtk.ResponseType.ACCEPT){
+                    for (var i=0;i<file.get_files ().length ();i++){
+                        this.playlist.add_item (file.get_files ().nth_data (i));
+                    }
                     open_file (file.get_uri ());
                     welcome.hide ();
                     clutter.show_all ();
@@ -857,7 +871,7 @@ namespace Audience{
         //the application was requested to open some files
         public override void open (File [] files, string hint){
             for (var i=0;i<files.length;i++)
-                this.tagview.add_play_item (files[i].get_path ());
+                this.playlist.add_item (files[i]);
             this.open_file (files[0].get_path ());
             this.welcome.hide ();
             this.clutter.show_all ();
