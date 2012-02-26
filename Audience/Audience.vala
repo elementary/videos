@@ -476,6 +476,7 @@ namespace Audience{
             this.canvas.eos.connect ( () => {
                 reached_end = true;
                 this.toggle_play (false);
+                this.playlist.next ();
             });
             
             //slider
