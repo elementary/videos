@@ -9,6 +9,8 @@ public interface GnomeMediaKeys : GLib.Object {
 
 namespace Audience{
     
+    public const int CONTROLS_HEIGHT = 56;
+    
     public const string [] video = {
     "mpg",
     "flv",
@@ -141,13 +143,7 @@ namespace Audience{
         public ClutterGst.VideoTexture    canvas;
         public Gtk.Window                 mainwindow;
         public Audience.Widgets.TagView   tagview;
-        public Gtk.Scale                  slider;
-        public Audience.Widgets.Previewer previewer;
-        public GtkClutter.Actor           bar;
-        public Gtk.Toolbar                toolbar;
-        public Gtk.ToolButton             play;
-        public Gtk.ToolButton             pause;
-        public Gtk.ToolButton             unfullscreen;
+        public Audience.Widgets.Controls  controls;
         public Clutter.Stage              stage;
         public bool                       fullscreened;
         public uint                       hiding_timer;
@@ -162,26 +158,9 @@ namespace Audience{
         private bool  reached_end;
         private bool  error;
         
-        private Gdk.Cursor normal_cursor;
-        private Gdk.Cursor blank_cursor;
-        
         public bool         playing;
         public File         current_file;
         public List<string> last_played_videos; //taken from settings, but splitted
-        
-        private inline Gtk.Image? sym (string name, string fallback){
-            try{
-                var icon = Gtk.IconTheme.get_default ().lookup_icon 
-                    (name, 24, 0);
-                if (icon == null)
-                    return new Gtk.Image.from_stock (fallback, Gtk.IconSize.BUTTON);
-                return new Gtk.Image.from_pixbuf (icon.load_symbolic
-                    ({1.0,1.0,1.0,1.0}, null, null, null, null));
-            }catch (Error e){
-                warning (e.message);
-            }
-            return new Gtk.Image.from_stock (Gtk.Stock.MISSING_IMAGE, Gtk.IconSize.BUTTON);
-        }
         
         public AudienceApp (){
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
@@ -196,29 +175,11 @@ namespace Audience{
             this.canvas     = new ClutterGst.VideoTexture ();
             this.mainwindow = new Gtk.Window ();
             this.tagview    = new Audience.Widgets.TagView (this);
-            this.previewer  = new Audience.Widgets.Previewer ();
-            this.bar        = new GtkClutter.Actor ();
-            this.toolbar    = new Gtk.Toolbar ();
+            
             var mainbox     = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-            this.clutter     = new GtkClutter.Embed ();
+            this.clutter    = new GtkClutter.Embed ();
             this.stage      = (Clutter.Stage)clutter.get_stage ();
-            this.play       = new Gtk.ToolButton (sym ("media-playback-start-symbolic", Gtk.Stock.MEDIA_PLAY), "");
-            this.pause      = new Gtk.ToolButton (sym ("media-playback-pause-symbolic", Gtk.Stock.MEDIA_PAUSE), "");
-            var time_item   = new Gtk.ToolItem ();
-            var slider_item = new Gtk.ToolItem ();
-            var remain_item = new Gtk.ToolItem ();
-            var volm        = new Gtk.ToolItem ();
-            var info        = new Gtk.ToggleToolButton ();
-            var open        = new Gtk.ToolButton (sym ("list-add-symbolic", Gtk.Stock.OPEN),"");
-            /*var menu        = new Gtk.Menu ();
-             The AppMenu is disabled until it contains something useful
-            var appm        = this.create_appmenu (menu); */
-            this.slider     = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 100, 1);
-            var volume      = new Gtk.VolumeButton ();
-            var time        = new Gtk.Label ("0");
-            var remaining   = new Gtk.Label ("0");
-            this.unfullscreen = new Gtk.ToolButton (sym ("view-restore-symbolic", Gtk.Stock.LEAVE_FULLSCREEN), "");
-            this.blank_cursor  = new Gdk.Cursor (Gdk.CursorType.BLANK_CURSOR);
+            this.controls   = new Audience.Widgets.Controls ();
             
             //prepare last played videos
             this.last_played_videos = new List<string> ();
@@ -240,81 +201,24 @@ namespace Audience{
             
             stage.add_actor (canvas);
             stage.add_actor (tagview);
-            stage.add_actor (previewer);
-            stage.add_actor (bar);
+            stage.add_actor (controls);
             stage.color = Clutter.Color.from_string ("#000");
             
             this.tagview.x      = stage.width;
             this.tagview.width  = 350;
             
-            slider_item.set_expand (true);
-            slider_item.add (slider);
-            slider.draw_value = false;
             
-            volm.add (volume);
-            volume.use_symbolic = true;
+            this.controls.play.set_tooltip (_("Play"));
+            this.controls.open.set_tooltip (_("Open"));
+            this.controls.view.set_tooltip (_("Sidebar"));
+            this.controls.exit.set_tooltip (_("Leave Fullscreen"));
             
-            time_item.add (time);
-            remain_item.add (remaining);
-            
-            info.icon_widget = sym ("go-previous-symbolic", Gtk.Stock.JUSTIFY_LEFT);
-            /* The AppMenu is disabled until it contains something useful
-            appm.icon_widget = sym ("document-properties-symbolic"); */
-            
-            play.sensitive = false;
-            
-            play.tooltip_text = _("Play");
-            pause.tooltip_text = _("Pause");
-            time_item.tooltip_text = _("Time In");
-            slider_item.tooltip_text = _("Progress");
-            remain_item.tooltip_text = _("Time Remaining");
-            open.tooltip_text = _("Open");
-            info.tooltip_text = _("Sidebar");
-            unfullscreen.tooltip_text = _("Leave Fullscreen");
-            
-            play.margin = time_item.margin = slider_item.margin = pause.margin = 
-            volm.margin = info.margin = open.margin /* The AppMenu is disabled until it contains something useful = appm.margin */ = 5;
-            
-            toolbar.insert (play, -1);
-            toolbar.insert (volm, -1);
-            toolbar.insert (time_item,   -1);
-            toolbar.insert (slider_item, -1);
-            toolbar.insert (remain_item, -1);
-            toolbar.insert (open, -1);
-            /* The AppMenu is disabled until it contains something useful
-            toolbar.insert (appm, -1); */
-            toolbar.insert (info, -1);
-            
-            var css = new Gtk.CssProvider ();
-            try{
-            css.load_from_data ("
-                *{
-                    background-color:rgba(0,0,0,0);
-                    background-image:none;
-                    color:white;
-                }
-                ", -1);
-            }catch (Error e){warning (e.message);}
-            toolbar.get_style_context ().add_provider (css, 12000);
-            remaining.get_style_context ().add_provider (css, 12000);
-            time.get_style_context ().add_provider (css, 12000);
-            
-            bar.get_widget ().draw.connect ( (ctx) => {
-                ctx.set_operator (Cairo.Operator.SOURCE);
-                ctx.rectangle (0, 0, bar.get_widget ().get_allocated_width  (), 
-                                     bar.get_widget ().get_allocated_height ());
-                ctx.set_source_rgba (0.0, 0.0, 0.0, 0.8);
-                ctx.fill ();
-                return false;
-            });
-            
-            toolbar.show_all ();
-            ((Gtk.Container)bar.get_widget ()).add (toolbar);
             
             mainbox.pack_start (welcome);
             mainbox.pack_start (clutter);
             
             this.mainwindow.title = program_name;
+            this.mainwindow.window_position = Gtk.WindowPosition.CENTER;
             this.mainwindow.set_application (this);
             this.mainwindow.add (mainbox);
             this.mainwindow.set_default_size (624, 352);
@@ -323,6 +227,7 @@ namespace Audience{
             clutter.hide ();
             
             /*events*/
+            //playlist wants us to open a file
             playlist.play.connect ( (file) => {
                 this.open_file (file.get_path ());
             });
@@ -490,65 +395,31 @@ namespace Audience{
             });
             
             //slider
-            ulong id = slider.value_changed.connect ( () => {
-                canvas.progress = slider.get_value () / canvas.duration;
+            this.controls.slider.seeked.connect ( (v) => {
+                print ("Seeked to %f!\n", v);
+                canvas.progress = v;
             });
             canvas.notify["progress"].connect ( () => {
-                SignalHandler.block (slider, id);
-                slider.set_range (0, canvas.duration);
-                slider.set_value (canvas.duration * canvas.progress);
-                SignalHandler.unblock (slider, id);
+                this.controls.slider.progress = this.canvas.progress;
                 
-                time.label = seconds_to_time ((int)slider.get_value ());
-                
-                remaining.label = "-" + seconds_to_time ((int)(canvas.duration - 
-                    slider.get_value ()));
-            });
-            
-            //volume
-            volume.value_changed.connect ( () => {
-                canvas.audio_volume = volume.value;
-            });
-            volume.value = 1.0;
-            
-            //preview thing
-            slider.motion_notify_event.connect ( (e) => {
-                previewer.x = (float)e.x;
-                previewer.y = stage.height - 180;
-                Timeout.add (200, () => {
-                    previewer.progress = e.x / slider.get_allocated_width ();
-                    return false;
-                });
-                return false;
-            });
-            slider.enter_notify_event.connect ( (e) => {
-                previewer.get_pipeline ().set_state (Gst.State.PLAYING);
-                var o2 = 255;
-                previewer.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, opacity:o2);
-                previewer.raise_top ();
-                return false;
-            });
-            slider.leave_notify_event.connect ( (e) => {
-                var o2 = 0;
-                previewer.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, opacity:o2);
-                previewer.get_pipeline ().set_state (Gst.State.PAUSED);
-                Timeout.add (400, () => {previewer.lower_bottom ();return false;});
-                return false;
+                this.controls.current.text = seconds_to_time (
+                    (int)(this.controls.slider.progress * this.canvas.duration));
+                this.controls.remaining.text = "-" + seconds_to_time ((int)(canvas.duration - 
+                    this.controls.slider.progress * this.canvas.duration));
             });
             
             /*slide controls back in*/
             this.mainwindow.motion_notify_event.connect ( () => {
-                float y2 = this.stage.height - 56;
-                this.bar.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 100, y:y2);
-                this.mainwindow.get_window ().set_cursor (normal_cursor);
+                this.controls.hidden = false;
+                if (!this.controls.slider.mouse_grabbed)
+                    this.stage.cursor_visible = true;
                 Gst.State state;
                 canvas.get_pipeline ().get_state (out state, null, 0);
                 if (state == Gst.State.PLAYING){
                     Source.remove (this.hiding_timer);
                     this.hiding_timer = GLib.Timeout.add (2000, () => {
-                        this.mainwindow.get_window ().set_cursor (blank_cursor);
-                        float y3 = this.stage.height;
-                        this.bar.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 1000, y:y3);
+                        this.stage.cursor_visible = false;
+                        this.controls.hidden = true;
                         return false;
                     });
                 }
@@ -556,7 +427,7 @@ namespace Audience{
             });
             
             /*open location popover*/
-            open.clicked.connect ( () => {
+            this.controls.open.clicked.connect ( () => {
                 var pop = new Granite.Widgets.PopOver ();
                 var box = new Gtk.Grid ();
                 ((Gtk.Box)pop.get_content_area ()).add (box);
@@ -607,23 +478,29 @@ namespace Audience{
                 box.attach (net_i, 0, 3, 1, 1);
                 box.attach (net,   1, 3, 1, 1);
                 
-                pop.move_to_widget (open);
+                int x_r, y_r;
+                this.mainwindow.get_window ().get_origin (out x_r, out y_r);
+                pop.move_to_coords ((int)(x_r + this.stage.width - 50), 
+                    (int)(y_r + this.stage.height - CONTROLS_HEIGHT));
+                
                 pop.show_all ();
                 pop.present ();
                 pop.run ();
                 pop.destroy ();
             });
             
-            play.clicked.connect  ( () => {toggle_play (true);});
-            pause.clicked.connect ( () => {toggle_play (false);});
+            this.controls.play.clicked.connect  ( () => {toggle_play (!this.playing);});
             
-            unfullscreen.clicked.connect (toggle_fullscreen);
+            this.controls.exit.clicked.connect (toggle_fullscreen);
             
-            info.toggled.connect ( () => {
-                if (info.active)
+            this.controls.view.clicked.connect ( () => {
+                if (!controls.showing_view){
                     tagview.expand ();
-                else
+                    controls.showing_view = true;
+                }else{
                     tagview.collapse ();
+                    controls.showing_view = false;
+                }
             });
             
             //fullscreen on maximize
@@ -631,8 +508,7 @@ namespace Audience{
                 if (!((e.window.get_state () & Gdk.WindowState.MAXIMIZED) == 0) && !this.fullscreened){
                     this.mainwindow.fullscreen ();
                     this.fullscreened = true;
-                    toolbar.insert (unfullscreen, 4);
-                    unfullscreen.show_all ();
+                    this.controls.show_fullscreen_button (true);
                     return true;
                 }
                 return false;
@@ -771,11 +647,7 @@ namespace Audience{
         
         private void toggle_play (bool start){
             if (!start){
-                if (this.pause.parent == toolbar){
-                    toolbar.remove (this.pause);
-                    toolbar.insert (this.play, 0);
-                    play.show_all ();
-                }
+                this.controls.show_play_button (true);
                 canvas.get_pipeline ().set_state (Gst.State.PAUSED);
                 Source.remove (this.hiding_timer);
                 this.set_screensaver (true);
@@ -786,18 +658,13 @@ namespace Audience{
                     this.reached_end = false;
                 }
                 canvas.get_pipeline ().set_state (Gst.State.PLAYING);
-                if (this.play.parent == toolbar){
-                    toolbar.remove (this.play);
-                    toolbar.insert (this.pause, 0);
-                    pause.show_all ();
-                }
+                this.controls.show_play_button (false);
                 this.place ();
                 if (this.hiding_timer != 0)
                     Source.remove (this.hiding_timer);
                 this.hiding_timer = GLib.Timeout.add (2000, () => {
-                    this.mainwindow.get_window ().set_cursor (blank_cursor);
-                    float y2 = this.stage.height;
-                    this.bar.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 1000, y:y2);
+                    this.stage.cursor_visible = false;
+                    this.controls.hidden = true;
                     return false;
                 });
                 this.set_screensaver (false);
@@ -810,12 +677,12 @@ namespace Audience{
                 this.mainwindow.unmaximize ();
                 this.mainwindow.unfullscreen ();
                 this.fullscreened = false;
-                this.toolbar.remove (this.unfullscreen);
+                this.controls.show_fullscreen_button (false);
+                this.place ();
             }else{
                 this.mainwindow.fullscreen ();
-                this.toolbar.insert (this.unfullscreen, 5);
-                this.unfullscreen.show_all ();
                 this.fullscreened = true;
+                this.controls.show_fullscreen_button (true);
             }
         }
         
@@ -826,14 +693,12 @@ namespace Audience{
             var uri = this.current_file.get_uri ();
             canvas.uri = uri;
             canvas.audio_volume = 1.0;
-            previewer.uri = uri;
-            previewer.audio_volume = 0.0;
+            this.controls.slider.preview.uri = uri;
+            this.controls.slider.preview.audio_volume = 0.0;
             
             this.mainwindow.title = get_title (uri);
             if (this.settings.show_details)
                 tagview.get_tags (uri, true);
-            
-            play.sensitive = true;
             
             this.toggle_play (true);
             this.place (true);
@@ -860,13 +725,8 @@ namespace Audience{
             this.tagview.height   = stage.height;
             this.tagview.x        = (this.tagview.expanded)?stage.width-this.tagview.width:stage.width;
             
-            var tb_height = 56;
-            this.bar.width  = stage.width;
-            this.bar.y      = stage.height - tb_height;
-            this.bar.height = tb_height;
-            this.bar.x      = 0;
-            toolbar.width_request = (int)this.bar.width;
-            toolbar.height_request = tb_height;
+            this.controls.width    = stage.width;
+            this.controls.y        = stage.height - CONTROLS_HEIGHT;
             
             canvas.get_base_size (out video_w, out video_h);
             //aspect ratio handling

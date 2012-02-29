@@ -28,13 +28,15 @@ link_libraries(${DEPS_LIBRARIES})
 link_directories(${DEPS_LIBRARY_DIRS})
 find_package(Vala REQUIRED)
 include(ValaVersion)
+
 ensure_vala_version("0.15.1" MINIMUM)
+
 include(ValaPrecompile)
 vala_precompile(VALA_C
     Audience/Audience.vala
     ${CMAKE_BINARY_DIR}/Audience/Config.vala
     Audience/Widgets/TagView.vala
-    Audience/Widgets/Previewer.vala
+    Audience/Widgets/Controls.vala
     Audience/Widgets/Playlist.vala
 PACKAGES
     gtk+-3.0
