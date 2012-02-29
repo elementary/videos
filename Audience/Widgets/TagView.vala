@@ -26,7 +26,6 @@ namespace Audience.Widgets{
             /*chapters*/
             var chaptergrid = new Gtk.Grid ();
             chaptergrid.margin = 12;
-            chaptergrid.attach (new LLabel.markup ("<span weight='bold' font='20'>"+_("Go to...")+"</span>"), 0, 0, 1, 1);
             
             chaptergrid.attach (
                 new Gtk.Image.from_icon_name ("edit-find-symbolic", Gtk.IconSize.MENU), 0, 1, 1, 1);
@@ -49,8 +48,6 @@ namespace Audience.Widgets{
             var setupgrid = new Gtk.Grid ();
             var languages = new Gtk.ComboBoxText ();
             var subtitles = new Gtk.ComboBoxText ();
-            setupgrid.attach (new LLabel.markup (
-                "<span weight='bold' font='20'>Setup</span>"), 0, 0, 1, 1);
             setupgrid.attach (new Gtk.Label (_("Language")),  0, 1, 1, 1);
             setupgrid.attach (languages,                   1, 1, 1, 1);
             setupgrid.attach (new Gtk.Label (_("Subtitles")), 0, 2, 1, 1);
@@ -78,9 +75,7 @@ namespace Audience.Widgets{
             }catch (Error e){warning (e.message);}
             playlisttree.get_style_context ().add_provider (css, 12000);
             */
-            
-            playlistgrid.attach (new LLabel.markup (
-                "<span weight='bold' font='20'>Playlist</span>"), 0, 0, 1, 1);
+
             playlistgrid.attach (this.app.playlist, 0, 1, 1, 1);
             
             notebook.append_page (playlistgrid, new Gtk.Label (_("Playlist")));
@@ -118,7 +113,6 @@ namespace Audience.Widgets{
             pipe.set_state (Gst.State.PAUSED);
             
             taggrid.foreach ( (w) => {taggrid.remove (w);});
-            taggrid.attach (new LLabel.markup ("<span weight='bold' font='20'>"+_("Info")+"</span>"), 0, 0, 1, 1);
             var index = 1;
             pipe.get_bus ().add_watch ( (bus, msg) => {
                 if (msg.type == Gst.MessageType.TAG){
