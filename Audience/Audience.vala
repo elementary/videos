@@ -488,9 +488,11 @@ namespace Audience {
             this.controls.view.clicked.connect ( () => {
                 if (!controls.showing_view){
                     tagview.expand ();
+                    controls.view.set_icon ("pane-hide-symbolic", Gtk.Stock.JUSTIFY_LEFT);
                     controls.showing_view = true;
                 }else{
                     tagview.collapse ();
+                    controls.view.set_icon ("pane-show-symbolic", Gtk.Stock.JUSTIFY_LEFT);
                     controls.showing_view = false;
                 }
             });
