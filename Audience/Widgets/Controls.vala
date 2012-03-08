@@ -141,13 +141,7 @@ namespace Audience.Widgets{
         public signal void clicked ();
         
         public Button (string icon, string fallback){
-            try{
-                var l = Gtk.IconTheme.get_default ().lookup_icon (icon, 24, 0);
-                if (l == null)
-                    this.set_from_stock (new Gtk.Image (), fallback, Gtk.IconSize.LARGE_TOOLBAR);
-                else
-                    this.set_from_pixbuf (l.load_symbolic ({1.0,1.0,1.0,1.0}, null, null, null, null));
-            }catch (Error e){warning (e.message);}
+            set_icon (icon, fallback);
             
             this.reactive = true;
             this.opacity = 170;
@@ -168,6 +162,16 @@ namespace Audience.Widgets{
         
         public void set_tooltip (string text){
             //TODO
+        }
+        
+        public void set_icon (string icon, string fallback) {
+            try{
+                var l = Gtk.IconTheme.get_default ().lookup_icon (icon, 24, 0);
+                if (l == null)
+                    this.set_from_stock (new Gtk.Image (), fallback, Gtk.IconSize.LARGE_TOOLBAR);
+                else
+                    this.set_from_pixbuf (l.load_symbolic ({1.0,1.0,1.0,1.0}, null, null, null, null));
+            }catch (Error e){warning (e.message);}
         }
     }
     
