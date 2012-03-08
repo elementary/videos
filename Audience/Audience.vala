@@ -52,21 +52,15 @@ namespace Audience {
         return filename.substring (j + 1, i - j - 1);
     }
     
-    public static string seconds_to_time (int secs) {
-        int hours = 0;
-        int min = 0;
-        hours = secs / 3600;
-        secs -= hours * 3600;
-        min = secs / 60;
-        secs -= min * 60;
+    public static string seconds_to_time (int seconds) {
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        seconds = seconds % 60;
         
-        string seconds = (secs < 10) ? "0" + secs.to_string () 
-				     : secs.to_string ();
-        string minutes = ((hours > 0) && (min < 10)) ? "0" + min.to_string () 
-						     : min.to_string ();
-        string ret = (hours > 0) ? hours.to_string () + ":" : "";
-        ret += minutes + ":" + seconds;
-        return ret;
+        string time = (hours > 0) ? hours.to_string() + ":" : "";
+        time += (((hours > 0) && (minutes < 10)) ? "0" : "") + minutes.to_string() + ":";
+        time += ((seconds < 10) ? "0" : "") + seconds.to_string();
+        return time;
     }
     
     class LLabel : Gtk.Label {
