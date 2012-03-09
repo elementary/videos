@@ -144,13 +144,13 @@ namespace Audience.Widgets{
             set_icon (icon, fallback);
             
             this.reactive = true;
-            this.opacity = 170;
+            this.opacity = 255;
             this.enter_event.connect ( () => {
-                this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 200, opacity:255);
+                this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 200, opacity:170);
                 return true;
             });
             this.leave_event.connect ( () => {
-                this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 200, opacity:170);
+                this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 200, opacity:255);
                 return true;
             });
             
@@ -166,7 +166,7 @@ namespace Audience.Widgets{
         
         public void set_icon (string icon, string fallback) {
             try{
-                var l = Gtk.IconTheme.get_default ().lookup_icon (icon, 24, 0);
+                var l = Gtk.IconTheme.get_default ().lookup_icon (icon, 18, 0);
                 if (l == null)
                     this.set_from_stock (new Gtk.Image (), fallback, Gtk.IconSize.LARGE_TOOLBAR);
                 else
@@ -193,6 +193,8 @@ namespace Audience.Widgets{
         
         public bool showing_view = false;
         
+        public Clutter.CairoTexture background;
+        
         bool _hidden;
         public bool hidden{
             get { return _hidden; }
@@ -213,7 +215,7 @@ namespace Audience.Widgets{
             this.layout_manager = layout;
             this._hidden        = false;
             
-            this.color = {0, 0, 0, 190};
+            this.background = new Clutter.CairoTexture (100, CONTROLS_HEIGHT);
             
             this.current   = new Clutter.Text.full ("", "0", {255,255,255,255});
             this.remaining = new Clutter.Text.full ("", "0", {255,255,255,255});
@@ -224,6 +226,9 @@ namespace Audience.Widgets{
             this.view = new Button ("pane-show-symbolic", Gtk.Stock.JUSTIFY_LEFT);
             this.open = new Button ("list-add-symbolic", Gtk.Stock.OPEN);
             this.exit = new Button ("view-restore-symbolic", Gtk.Stock.LEAVE_FULLSCREEN);
+            
+            //this.play.margin_left = 15;
+            //this.view.margin_right = 15;
             
             this.add_actor (this.play);
             this.add_actor (this.current);
@@ -236,10 +241,46 @@ namespace Audience.Widgets{
             this.layout.set_expand (this.slider, true);
             this.layout.set_fill (this.slider, true, true);
             
-            slider.preview.uri = "file:///home/tom/Videos/Sintel.2010.720p.mkv";
+            /*setup a css style for the control background*/
+            var style_holder = new Gtk.EventBox ();
+            var css = new Gtk.CssProvider ();
+            try{css.load_from_data ("
+            * {
+                engine: unico;
+                background-image: -gtk-gradient (linear, 
+                    left top, left bottom, 
+                    from (alpha(#323232, 0.698)), 
+                    to   (alpha(#242424, 0.698)));
+                
+                -unico-outer-stroke-gradient: -gtk-gradient (linear, 
+                    left top, left bottom,
+                    from (alpha(#161616, 0.698)), 
+                    to   (alpha(#000000, 0.698)));
+                -unico-inner-stroke-gradient: -gtk-gradient (linear,
+                    left top, left bottom,
+                    from       (alpha(#ffffff, 0.149)),
+                    color-stop (0.1, alpha(#ffffff, 0.035)), 
+                    color-stop (0.9, alpha(#ffffff, 0.024)), 
+                    to         (alpha(#ffffff, 0.059)));
+                -unico-inner-stroke-width: 1;
+                -unico-outer-stroke-width: 1;
+            }
+            ", -1);}catch (Error e){warning (e.message);}
+            style_holder.get_style_context ().add_provider (css, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            
+            this.background.auto_resize = true;
+            this.background.draw.connect ( (ctx) => {
+                style_holder.get_style_context ().render_background (ctx, -2, 0, this.background.width+4, CONTROLS_HEIGHT+1);
+                style_holder.get_style_context ().render_frame (ctx, -2, 0, this.background.width+4, CONTROLS_HEIGHT+1);
+                return true;
+            });
+            this.background.add_constraint (new Clutter.BindConstraint (this, Clutter.BindCoordinate.X, 0.0f));
+            this.background.add_constraint (new Clutter.BindConstraint (this, Clutter.BindCoordinate.Y, 0.0f));
+            this.background.add_constraint (new Clutter.BindConstraint (this, Clutter.BindCoordinate.WIDTH, 0.0f));
+            this.background.add_constraint (new Clutter.BindConstraint (this, Clutter.BindCoordinate.HEIGHT, 0.0f));
             
             try{
-                var l = Gtk.IconTheme.get_default ().lookup_icon ("media-playback-pause-symbolic", 24, 0);
+                var l = Gtk.IconTheme.get_default ().lookup_icon ("media-playback-pause-symbolic", 18, 0);
                 if (l == null)
                     this.pause_pix = new Gtk.Image.from_stock (Gtk.Stock.MEDIA_PAUSE, Gtk.IconSize.LARGE_TOOLBAR).pixbuf;
                 else
@@ -247,7 +288,7 @@ namespace Audience.Widgets{
             }catch (Error e){warning (e.message);}
             
             try{
-                var l = Gtk.IconTheme.get_default ().lookup_icon ("media-playback-start-symbolic", 24, 0);
+                var l = Gtk.IconTheme.get_default ().lookup_icon ("media-playback-start-symbolic", 18, 0);
                 if (l == null)
                     this.play_pix = new Gtk.Image.from_stock (Gtk.Stock.MEDIA_PLAY, Gtk.IconSize.LARGE_TOOLBAR).pixbuf;
                 else

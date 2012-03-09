@@ -12,9 +12,12 @@ namespace Audience.Widgets{
         public Gtk.ListStore playlist;
         public AudienceApp app;
         
+        private Granite.Drawing.BufferSurface buffer;
+        
         public TagView (AudienceApp app){
             this.app      = app;
             this.reactive = true;
+            this.buffer   = new Granite.Drawing.BufferSurface (100, 100);
             
             var notebook = new Granite.Widgets.StaticNotebook ();
             
@@ -66,17 +69,16 @@ namespace Audience.Widgets{
             subtitles.active = 0;
             
             /*playlist*/
-            var playlistgrid    = new Gtk.Grid ();
+            var playlistgrid    = new Gtk.ScrolledWindow (null, null);
             playlistgrid.margin = 12;
             
-            /*var css = new Gtk.CssProvider ();
+            var css = new Gtk.CssProvider ();
             try{
-                css.load_from_data ("*{background-color:@bg_color;}", -1);
+                css.load_from_data ("*{background-color:#ffffff;}", -1);
             }catch (Error e){warning (e.message);}
-            playlisttree.get_style_context ().add_provider (css, 12000);
-            */
-
-            playlistgrid.attach (this.app.playlist, 0, 1, 1, 1);
+            notebook.get_style_context ().add_provider (css, 12000);
+            
+            playlistgrid.add (this.app.playlist);
             
             notebook.append_page (playlistgrid, new Gtk.Label (_("Playlist")));
             notebook.append_page (setupgrid, new Gtk.Label (_("Setup")));
@@ -84,7 +86,42 @@ namespace Audience.Widgets{
             if (app.settings.show_details)
                 notebook.append_page (taggrid, new Gtk.Label (_("Details")));
             
+            notebook.margin = 15;
+            notebook.margin_bottom = CONTROLS_HEIGHT + 25;
             ((Gtk.Bin)this.get_widget ()).add (notebook);
+            
+            var w = 0; var h = 0;
+            this.get_widget ().size_allocate.connect ( () => {
+                if (w != this.get_widget ().get_allocated_width  () || 
+                    h != this.get_widget ().get_allocated_height ()) {
+                    w = this.get_widget ().get_allocated_width  ();
+                    h = this.get_widget ().get_allocated_height ();
+                    
+                    this.buffer = new Granite.Drawing.BufferSurface (w, h);
+                    
+                    Granite.Drawing.Utilities.cairo_rounded_rectangle (this.buffer.context, 10, 10, 
+                        w-20, h-CONTROLS_HEIGHT-30, 10);
+                    
+                    this.buffer.context.set_source_rgba (0.0, 0.0, 0.0, 1.0);
+                    this.buffer.context.fill_preserve ();
+                    this.buffer.exponential_blur (2);
+                    
+                    this.buffer.context.set_source_rgb (1.0, 1.0, 1.0);
+                    this.buffer.context.fill ();
+                }
+            });
+            
+            this.get_widget ().draw.connect ( (ctx) => {
+                ctx.set_operator (Cairo.Operator.SOURCE);
+                ctx.rectangle (0, 0, this.width, this.height);
+                ctx.set_source_rgba (0.0, 0.0, 0.0, 0.0);
+                ctx.fill ();
+                
+                ctx.set_source_surface (this.buffer.surface, 0, 0);
+                ctx.paint ();
+                
+                return false;
+            });
             
             notebook.show_all ();
             this.width  = 200;

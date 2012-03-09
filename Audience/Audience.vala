@@ -193,11 +193,12 @@ namespace Audience {
             
             stage.add_actor (canvas);
             stage.add_actor (tagview);
+            stage.add_actor (controls.background);
             stage.add_actor (controls);
             stage.color = Clutter.Color.from_string ("#000");
             
             this.tagview.x      = stage.width;
-            this.tagview.width  = 350;
+            this.tagview.width  = 300;
             
             
             this.controls.play.set_tooltip (_("Play"));
