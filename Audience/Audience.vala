@@ -389,7 +389,7 @@ namespace Audience {
             
             //slider
             this.controls.slider.seeked.connect ( (v) => {
-                print ("Seeked to %f!\n", v);
+                debug ("Seeked to %f", v);
                 canvas.progress = v;
             });
             canvas.notify["progress"].connect ( () => {
@@ -715,6 +715,14 @@ namespace Audience {
             
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
+            
+            /*disable subtitles by default*/
+            dynamic Gst.Element pipe = this.canvas.get_pipeline ();
+            pipe.flags ^= (1 << 2);
+            
+            /*subtitles/audio tracks*/
+            this.tagview.setup_setup ("text");
+            this.tagview.setup_setup ("audio");
         }
         
         private void place (bool resize_window = false) {

@@ -12,6 +12,9 @@ namespace Audience.Widgets{
         public Gtk.ListStore playlist;
         public AudienceApp app;
         
+        private Gtk.ComboBoxText languages;
+        private Gtk.ComboBoxText subtitles;
+        
         private Granite.Drawing.BufferSurface buffer;
         
         public TagView (AudienceApp app){
@@ -49,8 +52,8 @@ namespace Audience.Widgets{
             
             /*setup*/
             var setupgrid = new Gtk.Grid ();
-            var languages = new Gtk.ComboBoxText ();
-            var subtitles = new Gtk.ComboBoxText ();
+            this.languages = new Gtk.ComboBoxText ();
+            this.subtitles = new Gtk.ComboBoxText ();
             setupgrid.attach (new Gtk.Label (_("Language")),  0, 1, 1, 1);
             setupgrid.attach (languages,                   1, 1, 1, 1);
             setupgrid.attach (new Gtk.Label (_("Subtitles")), 0, 2, 1, 1);
@@ -58,15 +61,23 @@ namespace Audience.Widgets{
             setupgrid.column_homogeneous = true;
             setupgrid.margin = 12;
             
-            languages.append ("eng", "English (UK)");
-            languages.append ("de", "German");
-            languages.append ("fr", "French");
-            languages.active = 0;
-            subtitles.append ("0", "None");
-            subtitles.append ("eng", "English (UK");
-            subtitles.append ("de", "German");
-            subtitles.append ("fr", "French");
-            subtitles.active = 0;
+            this.languages.changed.connect ( () => {
+                debug ("Switching to audio %s\n", this.languages.active_id);
+                this.app.canvas.get_pipeline ().set_property ("current-audio", 
+                    int.parse (this.languages.active_id));
+            });
+            this.subtitles.append ("-1", _("None"));
+            this.subtitles.active = 0;
+            this.subtitles.changed.connect ( () => {
+                debug ("Switching to subtitle %s\n", this.subtitles.active_id);
+                dynamic Gst.Element pipe = this.app.canvas.get_pipeline ();
+                if (this.subtitles.active_id == "-1") {
+                    pipe.flags &= ~(1 << 2);
+                }else {
+                    pipe.flags |= (1 << 2);
+                    pipe.current_text =  int.parse (this.subtitles.active_id);
+                }
+            });
             
             /*playlist*/
             var playlistgrid    = new Gtk.ScrolledWindow (null, null);
@@ -138,6 +149,37 @@ namespace Audience.Widgets{
             var x2 = this.get_stage ().width;
             this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x2);
             this.expanded = false;
+        }
+        
+        /*target is either "text" or "audio"*/
+        public void setup_setup (string target) {
+            Value num = 0;
+            this.app.canvas.get_pipeline ().get_property ("n-"+target, ref num);
+            
+            for (var i=0;i<num.get_int ();i++) {
+                Gst.TagList tags = null;
+                Signal.emit_by_name (this.app.canvas.get_pipeline (), 
+                    "get-"+target+"-tags", i, out tags);
+                if (tags == null)
+                    continue;
+                
+                string desc;
+                tags.get_string (Gst.TAG_LANGUAGE_CODE, out desc);
+                if (desc == null)
+                    tags.get_string (Gst.TAG_CODEC, out desc);
+                
+                if (target == "audio") {
+                    this.languages.append (i.to_string (), desc);
+                }else {
+                    this.subtitles.append (i.to_string (), desc);
+                }
+            }
+            if (target == "audio") {
+                if (num.get_int () <= 1)
+                    this.languages.sensitive = false;
+                else
+                    this.languages.sensitive = true;
+            }
         }
         
         public void get_tags (string filename, bool set_title){
