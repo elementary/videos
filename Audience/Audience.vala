@@ -9,7 +9,7 @@ public interface GnomeMediaKeys : GLib.Object {
 
 namespace Audience {
     
-    public const int CONTROLS_HEIGHT = 56;
+    public const int CONTROLS_HEIGHT = 32;
     
     public const string [] video = {
     "mpg",

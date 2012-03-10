@@ -38,8 +38,39 @@ namespace Audience.Widgets{
             this.preview.scale_x       = 0.0;
             this.preview.scale_y       = 0.0;
             this.preview.scale_gravity = Clutter.Gravity.CENTER;
-            this.preview.height = CONTROLS_HEIGHT;
-            this.preview.width  = CONTROLS_HEIGHT;
+            this.preview.height =  90.0f;
+            this.preview.width  =  120.0f;
+            this.preview.y      = -105.0f;
+            
+            var preview_bg = new Clutter.CairoTexture (90, 90);
+            preview_bg.add_constraint (new Clutter.BindConstraint (preview, Clutter.BindCoordinate.X, -15.0f));
+            preview_bg.add_constraint (new Clutter.BindConstraint (preview, Clutter.BindCoordinate.Y, -15.0f));
+            preview_bg.add_constraint (new Clutter.BindConstraint (preview, Clutter.BindCoordinate.WIDTH, 30.0f));
+            preview_bg.add_constraint (new Clutter.BindConstraint (preview, Clutter.BindCoordinate.HEIGHT, 45.0f));
+            preview_bg.auto_resize = true;
+            preview_bg.opacity = 0;
+            var ARROW_HEIGHT = 17;
+            var ARROW_WIDTH  = 30;
+            var grad = new Cairo.Pattern.linear (0, 0, 0, preview_bg.height);
+            grad.add_color_stop_rgba (0.0, 0.212, 0.212, 0.212, 1.898);
+            grad.add_color_stop_rgba (1.0, 0.141, 0.141, 0.141, 1.898);
+            preview_bg.draw.connect ( (ctx) => {
+                /*stolen from Granite.Widgets.PopOver.cairo_popover*/
+                Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 1, 1,
+                    preview_bg.width - 2, preview_bg.height - ARROW_HEIGHT + 1, 5);
+                ctx.move_to (preview_bg.width/2-ARROW_WIDTH/2, 2 + preview_bg.height - ARROW_HEIGHT);
+                ctx.rel_line_to (ARROW_WIDTH / 2.0, ARROW_HEIGHT);
+                ctx.rel_line_to (ARROW_WIDTH / 2.0, -ARROW_HEIGHT);
+                ctx.close_path ();
+                
+                ctx.set_source_rgba (0.0, 0.0, 0.0, 0.5);
+                ctx.set_line_width (1.0);
+                ctx.stroke_preserve ();
+                
+                ctx.set_source (grad);
+                ctx.fill ();
+                return true;
+            });
             
             this.bar.y = CONTROLS_HEIGHT / 2 - this.BAR_HEIGHT / 2;
             this.bar.auto_resize = true;
@@ -71,16 +102,11 @@ namespace Audience.Widgets{
             /*
              Events
              */
-            //placement
-            /*scalex.update_allocation.connect ( () => {
-                print ("Test\n");
-                this.bar.invalidate ();
-            });
-            */
             //move preview
             this.enter_event.connect ( (e) => {
                 this.preview.animate (Clutter.AnimationMode.EASE_OUT_ELASTIC, 800, 
                     scale_x:1.0, scale_y:1.0);
+                preview_bg.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 500, opacity:240);
                 try{
                     Thread.create<void*> (() => {
                         this.preview.playing = true;
@@ -109,6 +135,7 @@ namespace Audience.Widgets{
             this.leave_event.connect ( (e) => {
                 this.preview.animate (Clutter.AnimationMode.EASE_IN_ELASTIC, 800, 
                     scale_x:0.0, scale_y:0.0);
+                preview_bg.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 500, opacity:0);
                 try{
                     Thread.create<void*> (() => {
                         this.preview.playing = false;
@@ -123,7 +150,7 @@ namespace Audience.Widgets{
             
             //seek
             this.preview.reactive = true;
-            this.preview.button_release_event.connect ( (e) => {
+            this.button_release_event.connect ( (e) => {
                 float x, y;
                 this.transform_stage_point (e.x, e.y, out x, out y);
                 this.seeked (x / this.width);
@@ -132,6 +159,7 @@ namespace Audience.Widgets{
             
             this.reactive = true;
             this.add_actor (this.bar);
+            this.add_actor (preview_bg);
             this.add_actor (this.preview);
         }
     }
@@ -228,18 +256,18 @@ namespace Audience.Widgets{
             this.exit = new Button ("view-restore-symbolic", Gtk.Stock.LEAVE_FULLSCREEN);
             
             var spacer_left = new Clutter.Rectangle.with_color ({0,0,0,0});
-	    spacer_left.width = 5;
+            spacer_left.width = 5;
             var spacer_right = new Clutter.Rectangle.with_color ({0,0,0,0});
-	    spacer_right.width = 5;
-
-	    this.add_actor (spacer_left);
+            spacer_right.width = 5;
+            
+            this.add_actor (spacer_left);
             this.add_actor (this.play);
             this.add_actor (this.current);
             this.add_actor (this.slider);
             this.add_actor (this.remaining);
             this.add_actor (this.open);
             this.add_actor (this.view);
-	    this.add_actor (spacer_right);
+            this.add_actor (spacer_right);
             
             this.layout.set_spacing (10);
             this.layout.set_expand (this.slider, true);
