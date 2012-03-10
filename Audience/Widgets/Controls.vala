@@ -227,15 +227,19 @@ namespace Audience.Widgets{
             this.open = new Button ("list-add-symbolic", Gtk.Stock.OPEN);
             this.exit = new Button ("view-restore-symbolic", Gtk.Stock.LEAVE_FULLSCREEN);
             
-            //this.play.margin_left = 15;
-            //this.view.margin_right = 15;
-            
+            var spacer_left = new Clutter.Rectangle.with_color ({0,0,0,0});
+	    spacer_left.width = 5;
+            var spacer_right = new Clutter.Rectangle.with_color ({0,0,0,0});
+	    spacer_right.width = 5;
+
+	    this.add_actor (spacer_left);
             this.add_actor (this.play);
             this.add_actor (this.current);
             this.add_actor (this.slider);
             this.add_actor (this.remaining);
             this.add_actor (this.open);
             this.add_actor (this.view);
+	    this.add_actor (spacer_right);
             
             this.layout.set_spacing (10);
             this.layout.set_expand (this.slider, true);
