@@ -337,7 +337,7 @@ namespace Audience.Widgets{
         }
         public void show_fullscreen_button (bool show){
             if (show)
-                this.pack_after (this.exit, this.play);
+                this.pack_after (this.exit, this.remaining);
             else
                 this.remove_actor (this.exit);
         }
