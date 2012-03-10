@@ -116,7 +116,7 @@ namespace Audience.Widgets{
                 
                 this.get_stage ().cursor_visible = false;
                 this.mouse_grabbed = true;
-                return true;
+                return false;
             });
             this.motion_event.connect ( (e) => {
                 float x, y;
@@ -145,7 +145,7 @@ namespace Audience.Widgets{
                 
                 this.get_stage ().cursor_visible = true;
                 this.mouse_grabbed = false;
-                return true;
+                return false;
             });
             
             //seek
@@ -222,6 +222,8 @@ namespace Audience.Widgets{
         public bool showing_view = false;
         
         public Clutter.CairoTexture background;
+        
+        public bool hovered;
         
         bool _hidden;
         public bool hidden{
@@ -328,6 +330,18 @@ namespace Audience.Widgets{
             }catch (Error e){warning (e.message);}
             
             this.height = CONTROLS_HEIGHT;
+            
+            this.reactive = true;
+            this.enter_event.connect ( () => {
+                this.hovered = true;
+                print ("Hovered\n");
+                return false;
+            });
+            this.leave_event.connect ( () => {
+                this.hovered = false;
+                print ("Not Hovered\n");
+                return false;
+            });
         }
         
         public void show_play_button (bool show){ /*or show pause button*/

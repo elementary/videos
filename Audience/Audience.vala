@@ -408,13 +408,10 @@ namespace Audience {
                     this.stage.cursor_visible = true;
                 Gst.State state;
                 canvas.get_pipeline ().get_state (out state, null, 0);
-                if (state == Gst.State.PLAYING){
-                    Source.remove (this.hiding_timer);
-                    this.hiding_timer = GLib.Timeout.add (2000, () => {
-                        this.stage.cursor_visible = false;
-                        this.controls.hidden = true;
-                        return false;
-                    });
+                if (state == Gst.State.PLAYING && !this.tagview.expanded && !this.controls.hovered){
+                    this.toggle_timeout (true);
+                }else {
+                    this.toggle_timeout (false);
                 }
                 return false;
             });
@@ -657,15 +654,23 @@ namespace Audience {
                 canvas.get_pipeline ().set_state (Gst.State.PLAYING);
                 this.controls.show_play_button (false);
                 this.place ();
-                if (this.hiding_timer != 0)
-                    Source.remove (this.hiding_timer);
+                
+                toggle_timeout (true);
+                
+                this.set_screensaver (false);
+                this.playing = true;
+            }
+        }
+        /**/
+        private void toggle_timeout (bool enable) {
+            if (this.hiding_timer != 0)
+                Source.remove (this.hiding_timer);
+            if (enable) {
                 this.hiding_timer = GLib.Timeout.add (2000, () => {
                     this.stage.cursor_visible = false;
                     this.controls.hidden = true;
                     return false;
                 });
-                this.set_screensaver (false);
-                this.playing = true;
             }
         }
         
