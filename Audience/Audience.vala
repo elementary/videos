@@ -648,6 +648,7 @@ namespace Audience {
                 Source.remove (this.hiding_timer);
                 this.set_screensaver (true);
                 this.playing = false;
+                this.controls.hidden = false;
             } else {
                 if (this.reached_end) {
                     canvas.progress = 0.0;

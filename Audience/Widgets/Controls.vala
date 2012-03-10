@@ -22,7 +22,7 @@ namespace Audience.Widgets{
         
         private Clutter.CairoTexture bar;
         
-        private const int BAR_HEIGHT = 10;
+        private const int BAR_HEIGHT = 6;
         
         /*the mouse is currently on the controls*/
         public bool mouse_grabbed = false;
@@ -77,20 +77,20 @@ namespace Audience.Widgets{
             this.bar.draw.connect ( (ctx) => {
                 //bg
                 Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 0.5, 0.5, 
-                    this.bar.width - 1, this.BAR_HEIGHT, 5);
+                    this.bar.width - 1, this.BAR_HEIGHT, 3);
                 ctx.set_source_rgb (0.2, 0.2, 0.2);
                 ctx.fill ();
                 //buffering
                 if (this._buffered != 0.0){
                     Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 0.5, 0.5, 
-                        this._buffered / this.preview.duration * this.bar.width - 1, this.BAR_HEIGHT, 5);
+                        this._buffered / this.preview.duration * this.bar.width - 1, this.BAR_HEIGHT, 3);
                     ctx.set_source_rgb (0.6, 0.6, 0.6);
                     ctx.fill ();
                 }
                 //progress
                 if (this._progress != 0.0){
                     Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 0.5, 0.5, 
-                        this._progress * this.width - 1, this.BAR_HEIGHT, 5);
+                        this._progress * this.width - 1, this.BAR_HEIGHT, 3);
                     ctx.set_source_rgb (1.0, 1.0, 1.0);
                     ctx.fill ();
                 }
