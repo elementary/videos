@@ -25,3 +25,26 @@ Description: A modern media player (debugging symbols)
 
  .
  This package contains debugging symbols for audience.
+
+Package: audience-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: audience (= ${binary:Version}), ${misc:Depends}
+Pre-Depends: dpkg (>= 1.15.6)
+Enhances: audience
+Description: A modern media player (debugging symbols)
+
+Package: audience-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: audience (= ${binary:Version}), ${misc:Depends}
+Pre-Depends: dpkg (>= 1.15.6)
+Enhances: audience
+Description: A modern media player (debugging symbols)
+
+ .
+ This package contains debugging symbols for audience.
+ .
+ This package contains debugging symbols for audience.
