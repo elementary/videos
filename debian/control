@@ -13,3 +13,15 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, xdg-utils
 Pre-Depends: dpkg (>= 1.15.6)
 Description: A modern media player
+
+Package: audience-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: audience (= ${binary:Version}), ${misc:Depends}
+Pre-Depends: dpkg (>= 1.15.6)
+Enhances: audience
+Description: A modern media player (debugging symbols)
+
+ .
+ This package contains debugging symbols for audience.
