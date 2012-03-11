@@ -346,6 +346,7 @@ namespace Audience {
             //shortcuts
             this.mainwindow.key_press_event.connect ( (e) => {
                 switch (e.keyval) {
+                    case Gdk.Key.p:
                     case Gdk.Key.space:
                         this.toggle_play (!this.playing);
                         break;
