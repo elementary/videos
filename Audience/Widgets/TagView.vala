@@ -92,8 +92,8 @@ namespace Audience.Widgets{
             playlistgrid.add (this.app.playlist);
             
             notebook.append_page (playlistgrid, new Gtk.Label (_("Playlist")));
-            notebook.append_page (setupgrid, new Gtk.Label (_("Setup")));
             notebook.append_page (chaptergrid, new Gtk.Label (_("Chapters")));
+            notebook.append_page (setupgrid, new Gtk.Label (_("Options")));
             if (app.settings.show_details)
                 notebook.append_page (taggrid, new Gtk.Label (_("Details")));
             
