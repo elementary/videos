@@ -52,8 +52,8 @@ namespace Audience.Widgets{
             var ARROW_HEIGHT = 17;
             var ARROW_WIDTH  = 30;
             var grad = new Cairo.Pattern.linear (0, 0, 0, preview_bg.height);
-            grad.add_color_stop_rgba (0.0, 0.212, 0.212, 0.212, 1.898);
-            grad.add_color_stop_rgba (1.0, 0.141, 0.141, 0.141, 1.898);
+            grad.add_color_stop_rgba (0.0, 0.212, 0.212, 0.212, 1.000);
+            grad.add_color_stop_rgba (1.0, 0.141, 0.141, 0.141, 1.000);
             preview_bg.draw.connect ( (ctx) => {
                 /*stolen from Granite.Widgets.PopOver.cairo_popover*/
                 Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 1, 1,
@@ -334,12 +334,10 @@ namespace Audience.Widgets{
             this.reactive = true;
             this.enter_event.connect ( () => {
                 this.hovered = true;
-                print ("Hovered\n");
                 return false;
             });
             this.leave_event.connect ( () => {
                 this.hovered = false;
-                print ("Not Hovered\n");
                 return false;
             });
         }

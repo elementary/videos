@@ -9,7 +9,6 @@ namespace Audience.Widgets{
         
         public bool expanded;
         public Gtk.Grid taggrid;
-        public Gtk.ListStore playlist;
         public AudienceApp app;
         
         private Gtk.ComboBoxText languages;
@@ -25,30 +24,11 @@ namespace Audience.Widgets{
             var notebook = new Granite.Widgets.StaticNotebook ();
             
             /*tags*/
+            var tagview = new Gtk.ScrolledWindow (null, null);
             taggrid = new Gtk.Grid ();
             taggrid.column_spacing = 10;
             taggrid.margin = 12;
-            
-            /*chapters*/
-            var chaptergrid = new Gtk.Grid ();
-            chaptergrid.margin = 12;
-            
-            chaptergrid.attach (
-                new Gtk.Image.from_icon_name ("edit-find-symbolic", Gtk.IconSize.MENU), 0, 1, 1, 1);
-            chaptergrid.attach (new Gtk.Button.with_label (_("Menu")), 1, 1, 1, 1);
-            chaptergrid.attach (
-                new Gtk.Image.from_icon_name ("folder-music-symbolic", Gtk.IconSize.MENU), 0, 2, 1, 1);
-            chaptergrid.attach (new Gtk.Button.with_label (_("Audio Menu")), 1, 2, 1, 1);
-            chaptergrid.attach (
-                new Gtk.Image.from_icon_name ("folder-videos-symbolic", Gtk.IconSize.MENU), 0, 3, 1, 1);
-            chaptergrid.attach (new Gtk.Button.with_label (_("Chapter Menu")), 1, 3, 1, 1);
-            for (var i=1;i<10;i++){
-                chaptergrid.attach (
-                    new Gtk.Image.from_icon_name ("view-list-video-symbolic", Gtk.IconSize.MENU), 0, i+3, 1, 1);
-                var bt = new Gtk.Button.with_label (_("Chapter")+" 0"+i.to_string ());
-                bt.hexpand = true;
-                chaptergrid.attach (bt, 1, i+3, 1, 1);
-            }
+            tagview.add_with_viewport (taggrid);
             
             /*setup*/
             var setupgrid = new Gtk.Grid ();
@@ -80,25 +60,25 @@ namespace Audience.Widgets{
             });
             
             /*playlist*/
-            var playlistgrid    = new Gtk.ScrolledWindow (null, null);
-            playlistgrid.margin = 12;
-            
-            var css = new Gtk.CssProvider ();
-            try{
-                css.load_from_data ("*{background-color:#ffffff;}", -1);
-            }catch (Error e){warning (e.message);}
-            notebook.get_style_context ().add_provider (css, 12000);
-            
-            playlistgrid.add (this.app.playlist);
+            var playlistgrid    = new Gtk.Label ("Das ist ein Text."); //dummy
             
             notebook.append_page (playlistgrid, new Gtk.Label (_("Playlist")));
-            notebook.append_page (chaptergrid, new Gtk.Label (_("Chapters")));
             notebook.append_page (setupgrid, new Gtk.Label (_("Options")));
             if (app.settings.show_details)
-                notebook.append_page (taggrid, new Gtk.Label (_("Details")));
+                notebook.append_page (tagview, new Gtk.Label (_("Details")));
+            
+            playlistgrid.draw.connect ( (ctx) => {
+                ctx.rectangle (0, 0, playlistgrid.get_allocated_width (), 
+                    playlistgrid.get_allocated_height ());
+                ctx.set_operator (Cairo.Operator.SOURCE);
+                ctx.set_source_rgba (0.141, 0.141, 0.141, 0.698);
+                ctx.fill ();
+                return true;
+            });
+            
             
             notebook.margin = 15;
-            notebook.margin_bottom = CONTROLS_HEIGHT + 25;
+            notebook.margin_top = 0;
             ((Gtk.Bin)this.get_widget ()).add (notebook);
             
             var w = 0; var h = 0;
@@ -110,14 +90,15 @@ namespace Audience.Widgets{
                     
                     this.buffer = new Granite.Drawing.BufferSurface (w, h);
                     
-                    Granite.Drawing.Utilities.cairo_rounded_rectangle (this.buffer.context, 10, 10, 
-                        w-20, h-CONTROLS_HEIGHT-30, 10);
+                    this.buffer.context.rectangle (0, 0, this.width, this.height);
+                    this.buffer.context.set_source_rgba (0.141, 0.141, 0.141, 0.698);
+                    this.buffer.context.fill ();
                     
-                    this.buffer.context.set_source_rgba (0.0, 0.0, 0.0, 1.0);
-                    this.buffer.context.fill_preserve ();
-                    this.buffer.exponential_blur (2);
+                    this.buffer.context.move_to (0, 0);
+                    this.buffer.context.line_to (this.width, 0);
+                    this.buffer.context.set_source_rgba (0.0, 0.0, 0.0, 0.5);
+                    this.buffer.context.stroke ();
                     
-                    this.buffer.context.set_source_rgb (1.0, 1.0, 1.0);
                     this.buffer.context.fill ();
                 }
             });
@@ -137,17 +118,32 @@ namespace Audience.Widgets{
             notebook.show_all ();
             this.width  = 200;
             this.expanded = false;
+            
+            this.add_actor (this.app.playlist);
+            this.app.playlist.add_constraint (new Clutter.BindConstraint (this.app.playlist.get_stage (), 
+                Clutter.BindCoordinate.WIDTH, 0));
+            this.app.playlist.height = 165.0f - CONTROLS_HEIGHT;
+            this.app.playlist.y = 35.0f;
+            
+            notebook.page_changed.connect ( (idx) => {
+                if (idx == 0) {
+                    print ("A: %f : %f\n", this.app.playlist.width, this.app.playlist.get_stage ().width);
+                    this.app.playlist.show ();
+                }else {
+                    this.app.playlist.hide ();
+                }
+            });
         }
         
         public void expand (){
-            var x2 = this.get_stage ().width - this.width;
-            this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x2);
+            var y2 = this.get_stage ().height - this.height;
+            this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y:y2);
             this.expanded = true;
         }
         
         public void collapse (){
-            var x2 = this.get_stage ().width;
-            this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x2);
+            var y2 = this.get_stage ().height;
+            this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y:y2);
             this.expanded = false;
         }
         

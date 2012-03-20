@@ -11,17 +11,6 @@ namespace Audience {
     
     public const int CONTROLS_HEIGHT = 32;
     
-    public const string [] video = {
-    "mpg",
-    "flv",
-    "mp4",
-    "avi"
-    };
-    public const string [] audio = {
-    "mp3",
-    "ogg"
-    };
-    
     public static string get_title (string filename) {
         var title = get_basename (filename);
         title = title.replace ("%20", " ").
@@ -61,6 +50,101 @@ namespace Audience {
         time += (((hours > 0) && (minutes < 10)) ? "0" : "") + minutes.to_string() + ":";
         time += ((seconds < 10) ? "0" : "") + seconds.to_string();
         return time;
+    }
+    
+    /* 
+     * get a thumbnail from a file
+     * @param file the file
+     * @param position the position in the video or -1 for 5%
+     * @param pixbuf gtkclutter texture to put the pixbuf in once it's ready
+     **/
+    public static void get_thumb (File file, int64 position, GtkClutter.Texture tex) {
+        //pipeline
+        bool got_video = false;
+        var pipe = new Gst.Pipeline ("pipeline");
+        var src  = Gst.ElementFactory.make ("filesrc", "file");
+        dynamic Gst.Element dec  = Gst.ElementFactory.make ("decodebin2", "dec");
+        
+        pipe.add_many (src, dec);
+        src.link (dec);
+        src.set ("location", file.get_path ());
+        dynamic Gst.Element sink = null;
+        dec.pad_added.connect ( (new_pad) => {
+            if (got_video)
+                return;
+            
+            var csp    = Gst.ElementFactory.make ("ffmpegcolorspace", "f");
+            var scale  = Gst.ElementFactory.make ("videoscale", "s");
+            var filter = Gst.ElementFactory.make ("capsfilter", "c");
+                sink   = Gst.ElementFactory.make ("gdkpixbufsink", "sink");
+            
+            pipe.add_many (csp, scale, filter, sink);
+            
+            var sinkpad = csp.get_static_pad ("sink");
+            new_pad.link (sinkpad);
+            
+            csp.link (scale);
+            scale.link (filter);
+            filter.link (sink);
+            
+            sink.set_state (Gst.State.PAUSED);
+            filter.set_state (Gst.State.PAUSED);
+            scale.set_state (Gst.State.PAUSED);
+            csp.set_state (Gst.State.PAUSED);
+            
+            got_video = true;
+        });
+        
+        pipe.get_bus ().add_signal_watch ();
+        
+        pipe.set_state (Gst.State.PAUSED);
+        
+        bool ready = false;
+        pipe.get_bus ().message.connect ( (bus, msg) => {
+            switch (msg.type) {
+                case Gst.MessageType.ASYNC_DONE:
+                    if (msg.src != pipe)
+                        break;
+                    var fmt = Gst.Format.TIME;
+                    int64 pos;
+                    pipe.query_position (ref fmt, out pos);
+                    if (pos > 1)
+                        ready = true;
+                    else
+                        break;
+                    if (position == -1) {
+                        int64 dur;
+                        pipe.query_duration (ref fmt, out dur);
+                        pipe.seek_simple (Gst.Format.TIME, Gst.SeekFlags.ACCURATE | 
+                            Gst.SeekFlags.FLUSH, (int64)(dur*0.5));
+                    }else {
+                        pipe.seek_simple (Gst.Format.TIME, Gst.SeekFlags.ACCURATE | 
+                            Gst.SeekFlags.FLUSH, position);
+                    }
+                    break;
+                case Gst.MessageType.ELEMENT:
+                    if (!ready)
+                        break;
+                    if (msg.src != sink)
+                        break;
+                    if (!msg.get_structure ().has_name ("prerollpixbuf") &&
+                        !msg.get_structure ().has_name ("pixbuf"))
+                        break;
+                    var val = msg.get_structure ().get_value ("pixbuf");
+                    if (val == null)
+                        return;
+                    var pixbuf = (Gdk.Pixbuf)val.dup_object ();
+                    try {
+                        tex.set_from_pixbuf (pixbuf);
+                    } catch (Error e) {warning (e.message);}
+                    pipe.set_state (Gst.State.NULL);
+                    break;
+                default:
+                    break;
+            }
+        });
+        
+        pipe.set_state (Gst.State.PLAYING);
     }
     
     class LLabel : Gtk.Label {
@@ -197,15 +281,14 @@ namespace Audience {
             stage.add_actor (controls);
             stage.color = Clutter.Color.from_string ("#000");
             
-            this.tagview.x      = stage.width;
-            this.tagview.width  = 300;
-            
+            this.tagview.y      = stage.height;
+            this.tagview.height = 200;
+            this.tagview.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
             
             this.controls.play.set_tooltip (_("Play"));
             this.controls.open.set_tooltip (_("Open"));
             this.controls.view.set_tooltip (_("Sidebar"));
             this.controls.exit.set_tooltip (_("Leave Fullscreen"));
-            
             
             mainbox.pack_start (welcome);
             mainbox.pack_start (clutter);
@@ -706,7 +789,7 @@ namespace Audience {
             this.toggle_play (true);
             this.place (true);
             
-            if (this.settings.resume_videos && !(get_extension (uri) in audio)) {
+            if (this.settings.resume_videos) {
                 int i;
                 for (i=0;i<this.last_played_videos.length () && i!=-1;i+=2) {
                     if (this.current_file.get_uri () == this.last_played_videos.nth_data (i))
@@ -733,8 +816,8 @@ namespace Audience {
         }
         
         private void place (bool resize_window = false) {
-            this.tagview.height   = stage.height;
-            this.tagview.x        = (this.tagview.expanded)?stage.width-this.tagview.width:stage.width;
+            this.tagview.y        = (this.tagview.expanded)?stage.height-this.tagview.height-
+                this.controls.height:stage.height;
             
             this.controls.width    = stage.width;
             this.controls.y        = stage.height - CONTROLS_HEIGHT;
