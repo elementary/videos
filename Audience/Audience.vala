@@ -57,6 +57,7 @@ namespace Audience {
      * @param file the file
      * @param position the position in the video or -1 for 5%
      * @param pixbuf gtkclutter texture to put the pixbuf in once it's ready
+     * TODO appears not to load thumbs for bigger files
      **/
     public static void get_thumb (File file, int64 position, GtkClutter.Texture tex) {
         //pipeline
@@ -226,6 +227,7 @@ namespace Audience {
         public GnomeMediaKeys             mediakeys;
         public AudienceSettings           settings;
         public Audience.Widgets.Playlist  playlist;
+        public Audience.Widgets.TopPanel  panel;
         public GtkClutter.Embed           clutter;
         public Granite.Widgets.Welcome    welcome;
         
@@ -251,6 +253,7 @@ namespace Audience {
             this.canvas     = new ClutterGst.VideoTexture ();
             this.mainwindow = new Gtk.Window ();
             this.tagview    = new Audience.Widgets.TagView (this);
+            this.panel      = new Audience.Widgets.TopPanel ();
             
             var mainbox     = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
             this.clutter    = new GtkClutter.Embed ();
@@ -279,7 +282,10 @@ namespace Audience {
             stage.add_actor (tagview);
             stage.add_actor (controls.background);
             stage.add_actor (controls);
+            stage.add_actor (panel);
             stage.color = Clutter.Color.from_string ("#000");
+            
+            this.panel.hide ();
             
             this.tagview.y      = stage.height;
             this.tagview.height = 200;
@@ -288,7 +294,7 @@ namespace Audience {
             this.controls.play.set_tooltip (_("Play"));
             this.controls.open.set_tooltip (_("Open"));
             this.controls.view.set_tooltip (_("Sidebar"));
-            this.controls.exit.set_tooltip (_("Leave Fullscreen"));
+            this.panel.exit.set_tooltip (_("Leave Fullscreen"));
             
             mainbox.pack_start (welcome);
             mainbox.pack_start (clutter);
@@ -488,6 +494,8 @@ namespace Audience {
             /*slide controls back in*/
             this.mainwindow.motion_notify_event.connect ( () => {
                 this.controls.hidden = false;
+                if (this.fullscreened)
+                    this.panel.hidden = false;
                 if (!this.controls.slider.mouse_grabbed)
                     this.stage.cursor_visible = true;
                 Gst.State state;
@@ -565,7 +573,7 @@ namespace Audience {
             
             this.controls.play.clicked.connect  ( () => {toggle_play (!this.playing);});
             
-            this.controls.exit.clicked.connect (toggle_fullscreen);
+            this.panel.exit.clicked.connect (toggle_fullscreen);
             
             this.controls.view.clicked.connect ( () => {
                 if (!controls.showing_view){
@@ -584,7 +592,7 @@ namespace Audience {
                 if (!((e.window.get_state () & Gdk.WindowState.MAXIMIZED) == 0) && !this.fullscreened){
                     this.mainwindow.fullscreen ();
                     this.fullscreened = true;
-                    this.controls.show_fullscreen_button (true);
+                    this.panel.toggle (true);
                     return true;
                 }
                 return false;
@@ -730,6 +738,8 @@ namespace Audience {
                 this.set_screensaver (true);
                 this.playing = false;
                 this.controls.hidden = false;
+                if (this.fullscreened)
+                    this.panel.hidden = false;
             } else {
                 if (this.reached_end) {
                     canvas.progress = 0.0;
@@ -753,6 +763,7 @@ namespace Audience {
                 this.hiding_timer = GLib.Timeout.add (2000, () => {
                     this.stage.cursor_visible = false;
                     this.controls.hidden = true;
+                    this.panel.hidden = true;
                     return false;
                 });
             }
@@ -763,12 +774,12 @@ namespace Audience {
                 this.mainwindow.unmaximize ();
                 this.mainwindow.unfullscreen ();
                 this.fullscreened = false;
-                this.controls.show_fullscreen_button (false);
+                this.panel.toggle (false);
                 this.place ();
             } else {
                 this.mainwindow.fullscreen ();
                 this.fullscreened = true;
-                this.controls.show_fullscreen_button (true);
+                this.panel.toggle (true);
             }
         }
         

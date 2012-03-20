@@ -203,13 +203,83 @@ namespace Audience.Widgets{
         }
     }
     
+    /*a bar only shown for fullscreen including volume and unfullscreen*/
+    public class TopPanel : Clutter.Box {
+        
+        public Button exit;
+        public GtkClutter.Actor volume;
+        public Gtk.VolumeButton vol;
+        
+        bool _hidden;
+        public bool hidden{
+            get { return _hidden; }
+            set { 
+                if (_hidden && !value){
+                    float y2 = 0.0f;
+                    this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y:y2);
+                }else if (!_hidden && value){
+                    float y2 = -this.height;
+                    this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 1000, y:y2);
+                }
+                this._hidden = value;
+            }
+        }
+        
+        public TopPanel () {
+            this.layout_manager = new Clutter.BoxLayout ();
+            
+            this.exit   = new Button ("view-restore-symbolic", Gtk.Stock.LEAVE_FULLSCREEN);
+            this.volume = new GtkClutter.Actor ();
+            var buf     = new Clutter.Rectangle.with_color ({0,0,0,0});
+            this.vol    = new Gtk.VolumeButton ();
+            this.vol.use_symbolic = true;
+            this._hidden = true;
+            
+            var css = new Gtk.CssProvider ();
+            try {
+                css.load_from_data ("*{color:white;}", -1);
+            }catch (Error e) { warning (e.message); }
+            this.vol.get_style_context ().add_provider (css, 20000);
+            
+            ((Gtk.Container)this.volume.get_widget ()).add (this.vol);
+            this.volume.get_widget ().draw.connect ( (ctx) => {
+                ctx.rectangle (0, 0, this.volume.width, this.volume.height);
+                ctx.set_operator (Cairo.Operator.SOURCE);
+                ctx.set_source_rgba (0, 0, 0, 0);
+                ctx.fill ();
+                return false;
+            });
+            
+            buf.width = 10;
+            
+            this.add_actor (this.volume);
+            this.add_actor (buf);
+            this.add_actor (this.exit);
+            
+            this.y = this.height;
+            this.x = Gdk.Screen.get_default ().width () - this.width - 30;
+        }
+        
+        public void toggle (bool show) {
+            if (show) {
+                this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y:0.0f);
+                this.show ();
+            }else if (this.y != this.height) {
+                var a = this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y:this.height);
+                a.completed.connect ( () => {
+                    this.hide ();
+                });
+            }
+        }
+    }
+    
+    /*the controls bar at the bottom*/
     public class Controls : Clutter.Box {
         //"media-playback-pause-symbolic", Gtk.Stock.MEDIA_PAUSE
         public MediaSlider slider;
         public Button play;
         public Button view;
         public Button open;
-        public Button exit;
         
         public Clutter.Text current;
         public Clutter.Text remaining;
@@ -230,10 +300,10 @@ namespace Audience.Widgets{
             get { return _hidden; }
             set { 
                 if (_hidden && !value){
-                    var y2 = this.get_stage ().height - CONTROLS_HEIGHT;
+                    float y2 = this.get_stage ().height - CONTROLS_HEIGHT;
                     this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y:y2);
                 }else if (!_hidden && value){
-                    var y2 = this.get_stage ().height;
+                    float y2 = this.get_stage ().height;
                     this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 1000, y:y2);
                 }
                 this._hidden = value;
@@ -255,7 +325,6 @@ namespace Audience.Widgets{
             this.play = new Button ("media-playback-start-symbolic", Gtk.Stock.MEDIA_PLAY);
             this.view = new Button ("pane-show-symbolic", Gtk.Stock.JUSTIFY_LEFT);
             this.open = new Button ("list-add-symbolic", Gtk.Stock.OPEN);
-            this.exit = new Button ("view-restore-symbolic", Gtk.Stock.LEAVE_FULLSCREEN);
             
             var spacer_left = new Clutter.Rectangle.with_color ({0,0,0,0});
             spacer_left.width = 5;
@@ -346,12 +415,6 @@ namespace Audience.Widgets{
             try{
                 this.play.set_from_pixbuf ((show)?play_pix:pause_pix);
             }catch (Error e){warning (e.message);}
-        }
-        public void show_fullscreen_button (bool show){
-            if (show)
-                this.pack_after (this.exit, this.remaining);
-            else
-                this.remove_actor (this.exit);
         }
     }
     
