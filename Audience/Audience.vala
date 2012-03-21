@@ -511,6 +511,7 @@ namespace Audience {
             
             /*open location popover*/
             this.controls.open.clicked.connect ( () => {
+                toggle_timeout (false);
                 var pop = new Granite.Widgets.PopOver ();
                 var box = new Gtk.Grid ();
                 ((Gtk.Box)pop.get_content_area ()).add (box);
@@ -570,6 +571,7 @@ namespace Audience {
                 pop.present ();
                 pop.run ();
                 pop.destroy ();
+                toggle_timeout (true);
             });
             
             this.controls.play.clicked.connect  ( () => {toggle_play (!this.playing);});
