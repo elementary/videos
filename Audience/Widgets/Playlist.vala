@@ -10,6 +10,7 @@ namespace Audience.Widgets {
             public File        path;
             Clutter.Text       title;
             GtkClutter.Texture thumb;
+            Clutter.Rectangle  bg;
             
             public Entry (File file) {
                 
@@ -21,15 +22,20 @@ namespace Audience.Widgets {
                 this.opacity = 150;
                 this.clip_to_allocation = true;
                 
-                this.path  = file;
-                this.title = new Clutter.Text.with_text ("", Audience.get_title (file.get_path ()));
-                this.title.color = {255, 255, 255, 255};
-                this.thumb = new GtkClutter.Texture ();
+                this.path                    = file;
+                this.bg                      = new Clutter.Rectangle.with_color ({50, 50, 50, 200});
+                this.bg.width                = 200;
+                this.bg.height               = 30;
+                this.title                   = new Clutter.Text.with_text ("", Audience.get_title (file.get_path ()));
+                this.title.color             = {255, 255, 255, 255};
+                this.thumb                   = new GtkClutter.Texture ();
                 this.thumb.keep_aspect_ratio = true;
                 
                 Audience.get_thumb (file, -1, this.thumb);
                 
                 this.add_actor (this.thumb);
+                ((Clutter.BinLayout)this.layout_manager).add (this.bg, 
+                    Clutter.BinAlignment.START,  Clutter.BinAlignment.END);
                 ((Clutter.BinLayout)this.layout_manager).add (this.title, 
                     Clutter.BinAlignment.START,  Clutter.BinAlignment.END);
                 
