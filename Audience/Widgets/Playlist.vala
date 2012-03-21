@@ -23,11 +23,12 @@ namespace Audience.Widgets {
                 this.clip_to_allocation = true;
                 
                 this.path                    = file;
-                this.bg                      = new Clutter.Rectangle.with_color ({50, 50, 50, 200});
+                this.bg                      = new Clutter.Rectangle.with_color ({50, 50, 50, 220});
                 this.bg.width                = 200;
                 this.bg.height               = 30;
                 this.title                   = new Clutter.Text.with_text ("", Audience.get_title (file.get_path ()));
                 this.title.color             = {255, 255, 255, 255};
+                this.title.ellipsize         = Pango.EllipsizeMode.END;
                 this.thumb                   = new GtkClutter.Texture ();
                 this.thumb.keep_aspect_ratio = true;
                 
@@ -63,6 +64,16 @@ namespace Audience.Widgets {
         public Playlist (){
             this.current  = 0;
             this.layout_manager = new Clutter.BoxLayout ();
+            
+            this.reactive = true;
+            this.scroll_event.connect ( (e) => {
+                var val = -100.0f;
+                if (e.direction == Clutter.ScrollDirection.UP || 
+                    e.direction == Clutter.ScrollDirection.RIGHT)
+                    val *= -1;
+                this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:this.x+val);
+                return true;
+            });
         }
         
         private inline void change_current_symbol (){
