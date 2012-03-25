@@ -107,13 +107,7 @@ namespace Audience.Widgets{
                 this.preview.animate (Clutter.AnimationMode.EASE_OUT_ELASTIC, 800, 
                     scale_x:1.0, scale_y:1.0);
                 preview_bg.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 500, opacity:240);
-                try{
-                    Thread.create<void*> (() => {
-                        this.preview.playing = true;
-                        return null;
-                    }, false);
-                }catch (Error e){warning (e.message);}
-                
+                this.preview.playing = true;
                 this.get_stage ().cursor_visible = false;
                 this.mouse_grabbed = true;
                 return false;
@@ -136,13 +130,7 @@ namespace Audience.Widgets{
                 this.preview.animate (Clutter.AnimationMode.EASE_IN_ELASTIC, 800, 
                     scale_x:0.0, scale_y:0.0);
                 preview_bg.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 500, opacity:0);
-                try{
-                    Thread.create<void*> (() => {
-                        this.preview.playing = false;
-                        return null;
-                    }, false);
-                }catch (Error e){warning (e.message);}
-                
+                this.preview.playing = false;
                 this.get_stage ().cursor_visible = true;
                 this.mouse_grabbed = false;
                 return false;

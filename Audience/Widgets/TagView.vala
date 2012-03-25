@@ -119,7 +119,7 @@ namespace Audience.Widgets{
             this.width  = 200;
             this.expanded = false;
             
-            this.add_actor (this.app.playlist);
+            this.add_child (this.app.playlist);
             this.app.playlist.add_constraint (new Clutter.BindConstraint (this.app.playlist.get_stage (), 
                 Clutter.BindCoordinate.WIDTH, 0));
             this.app.playlist.height = 165.0f - CONTROLS_HEIGHT;
@@ -127,7 +127,6 @@ namespace Audience.Widgets{
             
             notebook.page_changed.connect ( (idx) => {
                 if (idx == 0) {
-                    print ("A: %f : %f\n", this.app.playlist.width, this.app.playlist.get_stage ().width);
                     this.app.playlist.show ();
                 }else {
                     this.app.playlist.hide ();

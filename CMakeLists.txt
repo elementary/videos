@@ -47,6 +47,7 @@ PACKAGES
     gstreamer-pbutils-0.10
 OPTIONS
     --thread
+    -g
 )
 
 

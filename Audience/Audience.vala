@@ -278,11 +278,11 @@ namespace Audience {
             this.canvas.width    = 624;
             this.canvas.height   = 352;
             
-            stage.add_actor (canvas);
-            stage.add_actor (tagview);
-            stage.add_actor (controls.background);
-            stage.add_actor (controls);
-            stage.add_actor (panel);
+            stage.add_child (canvas);
+            stage.add_child (tagview);
+            stage.add_child (controls.background);
+            stage.add_child (controls);
+            stage.add_child (panel);
             stage.color = Clutter.Color.from_string ("#000");
             
             this.panel.hide ();
@@ -918,11 +918,13 @@ namespace Audience {
 }
 
 public static void main (string [] args) {
+    X.init_threads ();
+    
     var err = GtkClutter.init (ref args);
     if (err != Clutter.InitError.SUCCESS) {
-        error ("Could not initalize clutter! (a fallback will be available soon) "+err.to_string ());
+        error ("Could not initalize clutter! "+err.to_string ());
     }
-    ClutterGst.init (ref args);
+    Gst.init (ref args);
     
     var app = new Audience.AudienceApp ();
     
