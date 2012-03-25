@@ -34,7 +34,7 @@ namespace Audience.Widgets {
                 
                 Audience.get_thumb (file, -1, this.thumb);
                 
-                this.add_child (this.thumb);
+                this.add_actor (this.thumb);
                 ((Clutter.BinLayout)this.layout_manager).add (this.bg, 
                     Clutter.BinAlignment.START,  Clutter.BinAlignment.END);
                 ((Clutter.BinLayout)this.layout_manager).add (this.title, 
@@ -99,7 +99,7 @@ namespace Audience.Widgets {
                 return true;
             });
             
-            this.add_child (e);
+            this.add_actor (e);
             this.playlist.append (e);
         }
     }

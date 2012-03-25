@@ -278,11 +278,12 @@ namespace Audience {
             this.canvas.width    = 624;
             this.canvas.height   = 352;
             
-            stage.add_child (canvas);
-            stage.add_child (tagview);
-            stage.add_child (controls.background);
-            stage.add_child (controls);
-            stage.add_child (panel);
+            stage.add_actor (canvas);
+            stage.add_actor (tagview);
+            stage.add_actor (controls.background);
+            stage.add_actor (controls);
+            stage.add_actor (panel);
+            stage.add_actor (playlist);
             stage.color = Clutter.Color.from_string ("#000");
             
             this.panel.hide ();

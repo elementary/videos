@@ -27,7 +27,7 @@ namespace Audience.Widgets{
         /*the mouse is currently on the controls*/
         public bool mouse_grabbed = false;
         
-        public MediaSlider (){
+        public MediaSlider () {
             this.preview   = new ClutterGst.VideoTexture ();
             this._buffered = 0.0;
             this._progress = 0.0;

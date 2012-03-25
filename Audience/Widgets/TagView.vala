@@ -119,7 +119,7 @@ namespace Audience.Widgets{
             this.width  = 200;
             this.expanded = false;
             
-            this.add_child (this.app.playlist);
+            this.app.playlist.add_constraint (new Clutter.AlignConstraint (this, Clutter.AlignAxis.Y_AXIS, 1));
             this.app.playlist.add_constraint (new Clutter.BindConstraint (this.app.playlist.get_stage (), 
                 Clutter.BindCoordinate.WIDTH, 0));
             this.app.playlist.height = 165.0f - CONTROLS_HEIGHT;
