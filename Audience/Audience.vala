@@ -267,6 +267,8 @@ namespace Audience {
                 this.last_played_videos.append (split[i]);
             }
             
+            if (this.settings.last_folder == "-1")
+                this.settings.last_folder = Environment.get_home_dir ();
             
             this.welcome = new Granite.Widgets.Welcome ("Audience", _("Watching films has never been better"));
             welcome.append ("document-open", _("Open a file"), _("Get file from your disk"));
