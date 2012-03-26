@@ -494,6 +494,9 @@ namespace Audience {
                 this.controls.remaining.text = "-" + seconds_to_time ((int)(canvas.duration - 
                     this.controls.slider.progress * this.canvas.duration));
             });
+            canvas.notify["buffer_fill"].connect ( () => {
+                this.controls.slider.buffered = this.canvas.buffer_fill;
+            });
             
             /*slide controls back in*/
             this.mainwindow.motion_notify_event.connect ( () => {
