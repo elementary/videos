@@ -6,6 +6,10 @@ public interface GnomeMediaKeys : GLib.Object {
     public signal void MediaPlayerKeyPressed (string application, string key);
 }
 
+[CCode (cname="gst_navigation_query_parse_commands_length")]
+public extern bool gst_navigation_query_parse_commands_length (Gst.Query q, out uint n);
+[CCode (cname="gst_navigation_query_parse_commands_nth")]
+public extern bool gst_navigation_query_parse_commands_nth (Gst.Query q, uint n, out Gst.NavigationCommand cmd);
 
 namespace Audience {
     
@@ -341,8 +345,8 @@ namespace Audience {
                     grid.show_all ();
                     
                     if (d.run () == Gtk.ResponseType.OK) {
-                        open_file (entry.text);
-                        canvas.get_pipeline ().set_state (Gst.State.PLAYING);
+                        open_file (entry.text, true);
+                        canvas.playing = true;
                         welcome.hide ();
                         clutter.show_all ();
                     }
@@ -403,6 +407,25 @@ namespace Audience {
                                     mainbox.remove (err);
                                 }
                             });
+                        }else { //may be navigation command
+                            var nav_msg = Gst.Navigation.message_get_type (msg);
+                            
+                            if (nav_msg != Gst.NavigationMessageType.INVALID) {
+                                if (nav_msg == Gst.NavigationMessageType.COMMANDS_CHANGED) {
+                                    var q = Gst.Navigation.query_new_commands ();
+                                    if (this.canvas.get_pipeline ().query (q)) {
+                                        
+                                        uint n;
+                                        if (gst_navigation_query_parse_commands_length (q, out n)) {
+                                            for (var i=0;i<n;i++) {
+                                                Gst.NavigationCommand cmd;
+                                                gst_navigation_query_parse_commands_nth (q, 0, out cmd);
+                                                debug ("Got command: %i", (int)cmd);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                         break;
                     default:
@@ -689,7 +712,7 @@ namespace Audience {
             this.settings.last_played_videos = res;
         }
         
-        public void run_open (int type) { //0=file, 1=cd, 2=dvd
+        public void run_open (int type) { //0=file, 2=dvd
             if (type == 0) {
                 var file = new Gtk.FileChooserDialog (_("Open"), this.mainwindow, Gtk.FileChooserAction.OPEN,
                     Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
@@ -725,18 +748,15 @@ namespace Audience {
                         this.playlist.add_item (file.get_files ().nth_data (i));
                     }
                     open_file (file.get_uri ());
-                    welcome.hide ();
-                    clutter.show_all ();
                     this.settings.last_folder = file.get_current_folder ();
                 }
                 file.destroy ();
-            }else if (type == 1){
-                open_file ("cdda://");
-                canvas.get_pipeline ().set_state (Gst.State.PLAYING);
             }else if (type == 2){
-                open_file ("dvd://");
-                canvas.get_pipeline ().set_state (Gst.State.PLAYING);
+                open_file ("dvd://", true);
+                canvas.playing = true;
             }
+            welcome.hide ();
+            clutter.show_all ();
         }
         
         private void toggle_play (bool start) {
@@ -792,11 +812,14 @@ namespace Audience {
             }
         }
         
-        internal void open_file (string filename) {
+        internal void open_file (string filename, bool dont_modify=false) {
             this.error = false; //reset error
             this.current_file = File.new_for_commandline_arg (filename);
             this.reached_end = false;
+            print (this.current_file.get_uri ());
             var uri = this.current_file.get_uri ();
+            if (dont_modify) //fixes dvd support
+                uri = filename;
             canvas.uri = uri;
             canvas.audio_volume = 1.0;
             this.controls.slider.preview.uri = uri;
@@ -930,7 +953,7 @@ public static void main (string [] args) {
     if (err != Clutter.InitError.SUCCESS) {
         error ("Could not initalize clutter! "+err.to_string ());
     }
-    Gst.init (ref args);
+    ClutterGst.init (ref args);
     
     var app = new Audience.AudienceApp ();
     

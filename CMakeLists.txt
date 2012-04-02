@@ -22,7 +22,7 @@ configure_file (${CMAKE_SOURCE_DIR}/Audience/Config.vala.cmake ${CMAKE_BINARY_DI
 add_definitions(-DGETTEXT_PACKAGE="audience")
 
 find_package(PkgConfig)
-pkg_check_modules(DEPS REQUIRED granite gtk+-3.0 clutter-gtk-1.0 clutter-gst-1.0 gstreamer-pbutils-0.10)
+pkg_check_modules(DEPS REQUIRED granite gtk+-3.0 clutter-gtk-1.0 clutter-gst-1.0 gstreamer-pbutils-0.10 gstreamer-interfaces-0.10)
 add_definitions(${DEPS_CFLAGS})
 link_libraries(${DEPS_LIBRARIES})
 link_directories(${DEPS_LIBRARY_DIRS})
@@ -45,6 +45,7 @@ PACKAGES
     clutter-gtk-1.0
     gdk-x11-3.0
     gstreamer-pbutils-0.10
+    gstreamer-interfaces-0.10
 OPTIONS
     --thread
     -g
