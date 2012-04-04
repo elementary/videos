@@ -607,6 +607,12 @@ namespace Audience {
             
             this.panel.exit.clicked.connect (toggle_fullscreen);
             
+            this.panel.vol.value_changed.connect ( (value) => {
+                this.canvas.audio_volume = value;
+            });
+            this.panel.vol.value = 0.5;
+            this.canvas.audio_volume = 0.5;
+            
             this.controls.view.clicked.connect ( () => {
                 if (!controls.showing_view){
                     tagview.expand ();
