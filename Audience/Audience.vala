@@ -540,7 +540,9 @@ namespace Audience {
             
             /*open location popover*/
             this.controls.open.clicked.connect ( () => {
-                toggle_timeout (false);
+                this.toggle_play (false);
+                this.toggle_timeout (false);
+                
                 var pop = new Granite.Widgets.PopOver ();
                 var box = new Gtk.Grid ();
                 ((Gtk.Box)pop.get_content_area ()).add (box);
@@ -598,18 +600,15 @@ namespace Audience {
                     (int)(y_r + this.stage.height - CONTROLS_HEIGHT));
                 
                 pop.show_all ();
-                pop.present ();
                 
-                try {
-                    Thread.create <void*> ( () => {
-                        this.toggle_play (false);
-                        pop.run ();
-                        pop.destroy ();
-                        toggle_timeout (true);
-                        this.toggle_play (true);
-                        return null;
-                    }, false);
-                } catch (Error e) { warning (e.message); }
+                Timeout.add (300, () => { //for some reason this doesn't cause a crash :)
+                    pop.present ();
+                    pop.run ();
+                    pop.destroy ();
+                    this.toggle_timeout (true);
+                    this.toggle_play (true);
+                    return false;
+                });
             });
             
             /*play pause*/
