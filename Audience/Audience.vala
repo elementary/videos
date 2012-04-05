@@ -182,7 +182,7 @@ namespace Audience {
         public bool keep_aspect          {get; set;}
         public bool show_details         {get; set;}
         public bool resume_videos        {get; set;}
-        public string last_played_videos {get; set;} /*video1,time,video2,time2*/
+        public string last_played_videos {get; set;} /*video1,time,video2,time2,...*/
         public string last_folder        {get; set;}
         
         public AudienceSettings () {
@@ -356,7 +356,7 @@ namespace Audience {
             
             //check for errors on pipe's bus
             this.canvas.error.connect ( () => {
-                warning ("An error occured!\n");
+                warning ("An error occured");
                 this.error = true;
             });
             this.canvas.get_pipeline ().get_bus ().add_signal_watch ();
@@ -370,7 +370,7 @@ namespace Audience {
                         string detail;
                         msg.parse_error (out e, out detail);
                         warning (e.message);
-                        debug (detail+"\n");
+                        debug (detail);
                         this.canvas.get_pipeline ().set_state (Gst.State.NULL);
                         this.error = true;
                         break;
@@ -593,25 +593,37 @@ namespace Audience {
                 
                 int x_r, y_r;
                 this.mainwindow.get_window ().get_origin (out x_r, out y_r);
+                
                 pop.move_to_coords ((int)(x_r + this.stage.width - 50), 
                     (int)(y_r + this.stage.height - CONTROLS_HEIGHT));
                 
                 pop.show_all ();
                 pop.present ();
-                pop.run ();
-                pop.destroy ();
-                toggle_timeout (true);
+                
+                try {
+                    Thread.create <void*> ( () => {
+                        this.toggle_play (false);
+                        pop.run ();
+                        pop.destroy ();
+                        toggle_timeout (true);
+                        this.toggle_play (true);
+                        return null;
+                    }, false);
+                } catch (Error e) { warning (e.message); }
             });
             
+            /*play pause*/
             this.controls.play.clicked.connect  ( () => {toggle_play (!this.playing);});
             
+            /*unfullscreen*/
             this.panel.exit.clicked.connect (toggle_fullscreen);
             
+            /*volume*/
             this.panel.vol.value_changed.connect ( (value) => {
                 this.canvas.audio_volume = value;
             });
-            this.panel.vol.value = 0.5;
-            this.canvas.audio_volume = 0.5;
+            this.panel.vol.value = 1.0;
+            this.canvas.audio_volume = 1.0;
             
             this.controls.view.clicked.connect ( () => {
                 if (!controls.showing_view){
@@ -768,10 +780,11 @@ namespace Audience {
         private void toggle_play (bool start) {
             if (!start) {
                 this.controls.show_play_button (true);
-                canvas.get_pipeline ().set_state (Gst.State.PAUSED);
+                canvas.playing = false;
                 Source.remove (this.hiding_timer);
                 this.set_screensaver (true);
                 this.playing = false;
+                
                 this.controls.hidden = false;
                 if (this.fullscreened)
                     this.panel.hidden = false;
@@ -780,7 +793,8 @@ namespace Audience {
                     canvas.progress = 0.0;
                     this.reached_end = false;
                 }
-                canvas.get_pipeline ().set_state (Gst.State.PLAYING);
+                canvas.playing = true;
+                canvas.progress = canvas.progress + 0.008; //strange error when video doesnt continue
                 this.controls.show_play_button (false);
                 this.place ();
                 
