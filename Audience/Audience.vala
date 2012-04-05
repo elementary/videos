@@ -627,11 +627,11 @@ namespace Audience {
             this.controls.view.clicked.connect ( () => {
                 if (!controls.showing_view){
                     tagview.expand ();
-                    controls.view.set_icon ("pane-hide-symbolic", Gtk.Stock.JUSTIFY_LEFT);
+                    controls.view.set_icon ("go-bottom-symbolic", Gtk.Stock.GOTO_BOTTOM);
                     controls.showing_view = true;
                 }else{
                     tagview.collapse ();
-                    controls.view.set_icon ("pane-show-symbolic", Gtk.Stock.JUSTIFY_LEFT);
+                    controls.view.set_icon ("go-top-symbolic", Gtk.Stock.GOTO_TOP);
                     controls.showing_view = false;
                 }
             });
