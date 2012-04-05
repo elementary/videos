@@ -5,7 +5,7 @@
 
 namespace Audience.Widgets{
     
-    public class TagView : GtkClutter.Actor{
+    public class TagView : GtkClutter.Actor {
         
         public bool expanded;
         public Gtk.Grid taggrid;
@@ -16,7 +16,7 @@ namespace Audience.Widgets{
         
         private Granite.Drawing.BufferSurface buffer;
         
-        public TagView (AudienceApp app){
+        public TagView (AudienceApp app) {
             this.app      = app;
             this.reactive = true;
             this.buffer   = new Granite.Drawing.BufferSurface (100, 100);
@@ -60,7 +60,7 @@ namespace Audience.Widgets{
             });
             
             /*playlist*/
-            var playlistgrid    = new Gtk.Label ("Das ist ein Text."); //dummy
+            var playlistgrid    = new Gtk.Label ("Nothin here"); //dummy
             
             notebook.append_page (playlistgrid, new Gtk.Label (_("Playlist")));
             notebook.append_page (setupgrid, new Gtk.Label (_("Options")));
@@ -119,11 +119,11 @@ namespace Audience.Widgets{
             this.width  = 200;
             this.expanded = false;
             
-            this.app.playlist.add_constraint (new Clutter.AlignConstraint (this, Clutter.AlignAxis.Y_AXIS, 1));
             this.app.playlist.add_constraint (new Clutter.BindConstraint (this.app.playlist.get_stage (), 
                 Clutter.BindCoordinate.WIDTH, 0));
+            this.app.playlist.add_constraint (new Clutter.BindConstraint (this, 
+                Clutter.BindCoordinate.Y, 30));
             this.app.playlist.height = 165.0f - CONTROLS_HEIGHT;
-            this.app.playlist.y = 35.0f;
             
             notebook.page_changed.connect ( (idx) => {
                 if (idx == 0) {

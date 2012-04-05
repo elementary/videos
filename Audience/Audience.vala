@@ -836,7 +836,7 @@ namespace Audience {
             this.error = false; //reset error
             this.current_file = File.new_for_commandline_arg (filename);
             this.reached_end = false;
-            print (this.current_file.get_uri ());
+            debug ("Opening %s", this.current_file.get_uri ());
             var uri = this.current_file.get_uri ();
             if (dont_modify) //fixes dvd support
                 uri = filename;
