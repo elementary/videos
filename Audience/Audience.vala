@@ -769,6 +769,8 @@ namespace Audience {
                 
                 file.set_current_folder (this.settings.last_folder);
                 if (file.run () == Gtk.ResponseType.ACCEPT) {
+                    welcome.hide ();
+                    clutter.show_all ();
                     for (var i=0;i<file.get_files ().length ();i++) {
                         this.playlist.add_item (file.get_files ().nth_data (i));
                     }
@@ -779,9 +781,9 @@ namespace Audience {
             }else if (type == 2){
                 open_file ("dvd://", true);
                 canvas.playing = true;
+                welcome.hide ();
+                clutter.show_all ();
             }
-            welcome.hide ();
-            clutter.show_all ();
         }
         
         private void toggle_play (bool start) {
