@@ -593,6 +593,14 @@ namespace Audience {
                 box.attach (net_i, 0, 3, 1, 1);
                 box.attach (net,   1, 3, 1, 1);
                 
+                /*temporary until popover closing gets fixed*/
+                var canc = new Gtk.Button.from_stock (Gtk.Stock.CANCEL);
+                box.attach (canc,  0, 4, 2, 1);
+                canc.clicked.connect ( () => {
+                    pop.destroy ();
+                });
+                
+                
                 int x_r, y_r;
                 this.mainwindow.get_window ().get_origin (out x_r, out y_r);
                 
