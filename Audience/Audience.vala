@@ -291,7 +291,7 @@ namespace Audience {
             welcome.append ("document-open", _("Open a file"), _("Get file from your disk"));
             if (has_dvd ())
                 welcome.append ("media-cdrom", _("Watch a DVD"), _("Open a film"));
-            welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
+            //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
             
             /*UI*/
             this.canvas.reactive = true;
@@ -598,8 +598,8 @@ namespace Audience {
                     box.attach (dvd_i, 0, 1, 1, 1);
                     box.attach (dvd,   1, 1, 1, 1);
                 }
-                box.attach (net_i, 0, 3, 1, 1);
-                box.attach (net,   1, 3, 1, 1);
+                //box.attach (net_i, 0, 3, 1, 1);
+                //box.attach (net,   1, 3, 1, 1);
                 
                 /*temporary until popover closing gets fixed*/
                 var canc = new Gtk.Button.from_stock (Gtk.Stock.CANCEL);
