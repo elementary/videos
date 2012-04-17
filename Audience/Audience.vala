@@ -56,6 +56,19 @@ namespace Audience {
         return time;
     }
     
+    public static bool has_dvd () {
+        var volume_monitor = GLib.VolumeMonitor.get ();
+        var volumes = volume_monitor.get_connected_drives ();
+        
+        for (var i=0; i < volumes.length ();i++) {
+            if (volumes.nth_data (i).get_name ().index_of ("DVD") != -1 && 
+                volumes.nth_data (i).has_media ())
+                return true;
+        }
+        
+        return false;
+    }
+    
     /* 
      * get a thumbnail from a file
      * @param file the file
@@ -276,7 +289,8 @@ namespace Audience {
             
             this.welcome = new Granite.Widgets.Welcome ("Audience", _("Watching films has never been better"));
             welcome.append ("document-open", _("Open a file"), _("Get file from your disk"));
-            welcome.append ("media-cdrom", _("Watch a DVD"), _("Open a film"));
+            if (has_dvd ())
+                welcome.append ("media-cdrom", _("Watch a DVD"), _("Open a film"));
             welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
             
             /*UI*/
@@ -552,8 +566,6 @@ namespace Audience {
                 
                 var fil   = new Gtk.Button.with_label (_("File"));
                 var fil_i = new Gtk.Image.from_stock (Gtk.Stock.OPEN, Gtk.IconSize.DND);
-                var cd    = new Gtk.Button.with_label ("CD");
-                var cd_i  = new Gtk.Image.from_icon_name ("media-cdrom-audio", Gtk.IconSize.DND);
                 var dvd   = new Gtk.Button.with_label ("DVD");
                 var dvd_i = new Gtk.Image.from_icon_name ("media-cdrom", Gtk.IconSize.DND);
                 var net   = new Gtk.Button.with_label (_("Network File"));
@@ -562,10 +574,6 @@ namespace Audience {
                 fil.clicked.connect ( () => {
                     pop.destroy ();
                     run_open (0);
-                });
-                cd.clicked.connect ( () => {
-                    run_open (1);
-                    pop.destroy ();
                 });
                 dvd.clicked.connect ( () => {
                     run_open (2);
@@ -586,10 +594,10 @@ namespace Audience {
                 
                 box.attach (fil_i, 0, 0, 1, 1);
                 box.attach (fil,   1, 0, 1, 1);
-                box.attach (dvd_i, 0, 1, 1, 1);
-                box.attach (dvd,   1, 1, 1, 1);
-                box.attach (cd_i,  0, 2, 1, 1);
-                box.attach (cd,    1, 2, 1, 1);
+                if (has_dvd ()) {
+                    box.attach (dvd_i, 0, 1, 1, 1);
+                    box.attach (dvd,   1, 1, 1, 1);
+                }
                 box.attach (net_i, 0, 3, 1, 1);
                 box.attach (net,   1, 3, 1, 1);
                 
