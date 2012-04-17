@@ -850,7 +850,7 @@ namespace Audience {
             if (dont_modify) //fixes dvd support
                 uri = filename;
             canvas.uri = uri;
-            canvas.audio_volume = 0.5;
+            canvas.audio_volume = 1.0;
             this.controls.slider.preview.uri = uri;
             this.controls.slider.preview.audio_volume = 0.0;
             
