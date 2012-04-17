@@ -82,12 +82,20 @@ namespace Audience.Widgets {
         
         public void next (){
             this.current ++;
+            if (this.current >= this.playlist.length ())
+                this.current == this.playlist.length () - 1;
+            if (this.playlist.nth (this.current) == null)
+                return;
             play (this.playlist.nth_data (current).path);
             change_current_symbol ();
         }
         
         public void previous (){
             this.current --;
+            if (this.current == -1)
+                this.current = 0;
+            if (this.playlist.nth (this.current) == null)
+                return;
             play (this.playlist.nth_data (current).path);
             change_current_symbol ();
         }

@@ -253,9 +253,13 @@ namespace Audience {
         private bool  reached_end;
         private bool  error;
         
+        public bool has_dvd;
+        
         public bool         playing;
         public File         current_file;
         public List<string> last_played_videos; //taken from settings, but splitted
+        
+        public GLib.VolumeMonitor monitor;
         
         public AudienceApp () {
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
@@ -284,12 +288,14 @@ namespace Audience {
                 this.last_played_videos.append (split[i]);
             }
             
+            this.has_dvd = Audience.has_dvd ();
+            
             if (this.settings.last_folder == "-1")
                 this.settings.last_folder = Environment.get_home_dir ();
             
             this.welcome = new Granite.Widgets.Welcome ("Audience", _("Watching films has never been better"));
             welcome.append ("document-open", _("Open a file"), _("Get file from your disk"));
-            if (has_dvd ())
+            if (has_dvd)
                 welcome.append ("media-cdrom", _("Watch a DVD"), _("Open a film"));
             //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
             
@@ -331,6 +337,16 @@ namespace Audience {
             clutter.hide ();
             
             /*events*/
+            //look for dvd
+            this.monitor = GLib.VolumeMonitor.get ();
+            monitor.drive_connected.connect ( (drive) => {
+                this.has_dvd = Audience.has_dvd ();
+                welcome.set_item_visible (1, this.has_dvd);
+            });
+            monitor.drive_disconnected.connect ( () => {
+                this.has_dvd = Audience.has_dvd ();
+                welcome.set_item_visible (1, this.has_dvd);
+            });
             //playlist wants us to open a file
             playlist.play.connect ( (file) => {
                 this.open_file (file.get_path ());
@@ -599,7 +615,7 @@ namespace Audience {
                 
                 box.attach (fil_i, 0, 0, 1, 1);
                 box.attach (fil,   1, 0, 1, 1);
-                if (has_dvd ()) {
+                if (this.has_dvd) {
                     box.attach (dvd_i, 0, 1, 1, 1);
                     box.attach (dvd,   1, 1, 1, 1);
                 }
@@ -721,6 +737,8 @@ namespace Audience {
             
             //save position in video when not finished playing
             this.mainwindow.destroy.connect ( () => {
+                if (this.current_file == null)
+                    return;
                 if (!reached_end) {
                     for (var i=0;i<this.last_played_videos.length ();i+=2){
                         if (this.current_file.get_uri () == this.last_played_videos.nth_data (i)){
