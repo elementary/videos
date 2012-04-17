@@ -368,6 +368,11 @@ namespace Audience {
                 }
             });
             
+            //video size changed
+            this.canvas.size_change.connect ( () => {
+                this.place (true);
+            });
+            
             //check for errors on pipe's bus
             this.canvas.error.connect ( () => {
                 warning ("An error occured");
@@ -884,8 +889,9 @@ namespace Audience {
         }
         
         private void place (bool resize_window = false) {
-            this.tagview.y        = (this.tagview.expanded)?stage.height-this.tagview.height-
-                this.controls.height:stage.height;
+            this.tagview.y        = (this.tagview.expanded)?
+                stage.height - this.tagview.height - this.controls.height:
+                stage.height;
             
             this.controls.width    = stage.width;
             this.controls.y        = stage.height - CONTROLS_HEIGHT;
@@ -904,21 +910,11 @@ namespace Audience {
                     this.canvas.y      = (stage.height - this.canvas.height) / 2.0f;
                     this.canvas.x      = 0.0f;
                 }
-                if (video_h < 30) { //video wasn't loaded fast enough, repeat untill it is
-                    Timeout.add (100, () => {
-                        this.place ();
-                        if (video_h < 30){
-                            return true;
-                        }
-                        if (resize_window)
-                            fit_window ();
-                        return false;
-                    });
-                } else if (resize_window) {
+                if (resize_window && video_w > 50 && video_h > 50)
                     fit_window ();
-                }
             }
         }
+        
         private void fit_window () {
             var ung = Gdk.Geometry (); /*unlock*/
             ung.min_aspect = 0.0;
