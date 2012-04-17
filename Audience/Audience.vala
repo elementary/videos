@@ -748,24 +748,12 @@ namespace Audience {
                 all_files_filter.set_filter_name (_("All files"));
                 all_files_filter.add_pattern ("*");
                 
-                var supported_filter = new Gtk.FileFilter ();
-                supported_filter.set_filter_name (_("Supported files"));
-                supported_filter.add_mime_type ("video/*");
-                supported_filter.add_mime_type ("audio/*");
-                
                 var video_filter = new Gtk.FileFilter ();
                 video_filter.set_filter_name (_("Video files"));
                 video_filter.add_mime_type ("video/*");
-                video_filter.add_pattern ("*.ogg");
                 
-                var audio_filter = new Gtk.FileFilter ();
-                audio_filter.set_filter_name (_("Audio files"));
-                audio_filter.add_mime_type ("audio/*");
-                file.add_filter (all_files_filter);
-                file.add_filter (supported_filter);
                 file.add_filter (video_filter);
-                file.add_filter (audio_filter);
-                file.set_filter (supported_filter);
+                file.add_filter (all_files_filter);
                 
                 file.set_current_folder (this.settings.last_folder);
                 if (file.run () == Gtk.ResponseType.ACCEPT) {
