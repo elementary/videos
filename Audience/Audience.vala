@@ -445,20 +445,18 @@ namespace Audience {
                         }else { //may be navigation command
                             var nav_msg = Gst.Navigation.message_get_type (msg);
                             
-                            if (nav_msg != Gst.NavigationMessageType.INVALID) {
-                                if (nav_msg == Gst.NavigationMessageType.COMMANDS_CHANGED) {
-                                    var q = Gst.Navigation.query_new_commands ();
-                                    if (this.canvas.get_pipeline ().query (q)) {
-                                        
-                                        uint n;
-                                        if (gst_navigation_query_parse_commands_length (q, out n)) {
-                                            for (var i=0;i<n;i++) {
-                                                Gst.NavigationCommand cmd;
-                                                gst_navigation_query_parse_commands_nth (q, 0, out cmd);
-                                                debug ("Got command: %i", (int)cmd);
-                                            }
-                                        }
-                                    }
+                            if (nav_msg == Gst.NavigationMessageType.COMMANDS_CHANGED) {
+                                var q = Gst.Navigation.query_new_commands ();
+                                print ("Hello world\n");
+                                this.canvas.get_pipeline ().query (q);
+                                
+                                uint n;
+                                gst_navigation_query_parse_commands_length (q, out n);
+                                print ("Length of navigation: %u\n", n);
+                                for (var i=0;i<n;i++) {
+                                    Gst.NavigationCommand cmd;
+                                    gst_navigation_query_parse_commands_nth (q, 0, out cmd);
+                                    debug ("Got command: %i", (int)cmd);
                                 }
                             }
                         }
@@ -737,7 +735,7 @@ namespace Audience {
             
             //save position in video when not finished playing
             this.mainwindow.destroy.connect ( () => {
-                if (this.current_file == null)
+                if (this.current_file == null || this.canvas.uri.has_prefix ("dvd://"))
                     return;
                 if (!reached_end) {
                     for (var i=0;i<this.last_played_videos.length ();i+=2){
@@ -918,12 +916,12 @@ namespace Audience {
             //aspect ratio handling
             if (!this.error) {
                 if (stage.width < stage.height) {
-                    this.canvas.height = stage.height;
+                    this.canvas.height = (stage.height < 10)?10:stage.height;
                     this.canvas.width  = stage.height / video_h * video_w;
                     this.canvas.x      = (stage.width - this.canvas.width) / 2.0f;
                     this.canvas.y      = 0.0f;
-                }else{
-                    this.canvas.width  = stage.width;
+                } else {
+                    this.canvas.width  = (stage.width < 10)?10:stage.width;
                     this.canvas.height = stage.width / video_w *  video_h;
                     this.canvas.y      = (stage.height - this.canvas.height) / 2.0f;
                     this.canvas.x      = 0.0f;

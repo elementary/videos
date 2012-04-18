@@ -43,8 +43,8 @@ namespace Audience.Widgets{
             
             this.languages.changed.connect ( () => {
                 debug ("Switching to audio %s\n", this.languages.active_id);
-                this.app.canvas.get_pipeline ().set_property ("current-audio", 
-                    int.parse (this.languages.active_id));
+                dynamic Gst.Element pipe = this.app.canvas.get_pipeline ();
+                pipe.current_audio =  int.parse (this.languages.active_id);
             });
             this.subtitles.append ("-1", _("None"));
             this.subtitles.active = 0;
@@ -174,6 +174,7 @@ namespace Audience.Widgets{
                     this.languages.sensitive = false;
                 else
                     this.languages.sensitive = true;
+                this.languages.active = 0;
             }
         }
         
