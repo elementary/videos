@@ -52,9 +52,9 @@ namespace Audience.Widgets{
                 debug ("Switching to subtitle %s\n", this.subtitles.active_id);
                 dynamic Gst.Element pipe = this.app.canvas.get_pipeline ();
                 if (this.subtitles.active_id == "-1") {
-                    pipe.flags &= ~(1 << 2);
+                    pipe.flags &= ~SUBTITLES_FLAG;
                 }else {
-                    pipe.flags |= (1 << 2);
+                    pipe.flags |= SUBTITLES_FLAG;
                     pipe.current_text =  int.parse (this.subtitles.active_id);
                 }
             });

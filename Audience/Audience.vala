@@ -15,6 +15,8 @@ namespace Audience {
     
     public const int CONTROLS_HEIGHT = 32;
     
+    public const int SUBTITLES_FLAG = (1 << 2);
+    
     public static string get_title (string filename) {
         var title = get_basename (filename);
         title = title.replace ("%20", " ").
@@ -897,7 +899,7 @@ namespace Audience {
             
             /*disable subtitles by default*/
             dynamic Gst.Element pipe = this.canvas.get_pipeline ();
-            pipe.flags ^= (1 << 2);
+            pipe.flags &= ~SUBTITLES_FLAG;
             
             /*subtitles/audio tracks*/
             this.tagview.setup_setup ("text");
