@@ -41,11 +41,6 @@ namespace Audience.Widgets{
             setupgrid.column_homogeneous = true;
             setupgrid.margin = 12;
             
-            this.languages.changed.connect ( () => {
-                debug ("Switching to audio %s\n", this.languages.active_id);
-                dynamic Gst.Element pipe = this.app.canvas.get_pipeline ();
-                pipe.current_audio =  int.parse (this.languages.active_id);
-            });
             this.subtitles.append ("-1", _("None"));
             this.subtitles.active = 0;
             this.subtitles.changed.connect ( () => {
@@ -172,9 +167,17 @@ namespace Audience.Widgets{
             if (target == "audio") {
                 if (num.get_int () <= 1)
                     this.languages.sensitive = false;
-                else
+                else {
                     this.languages.sensitive = true;
-                this.languages.active = 0;
+                    
+                    this.languages.active = 0;
+                    
+                    this.languages.changed.connect ( () => { //place it here to not get problems
+                        debug ("Switching to audio %s\n", this.languages.active_id);
+                        dynamic Gst.Element pipe = this.app.canvas.get_pipeline ();
+                        pipe.current_audio = int.parse (this.languages.active_id);
+                    });
+                }
             }
         }
         
