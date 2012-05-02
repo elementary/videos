@@ -575,22 +575,29 @@ namespace Audience {
             
             /*open location popover*/
             this.controls.open.clicked.connect ( () => {
+                if (!this.has_dvd) { //just one source, so open that one
+                    Timeout.add (300, () => {
+                        this.toggle_play (false);
+                        this.toggle_timeout (false);
+                        this.run_open (0);
+                        return false;
+                    });
+                    return;
+                }
+                
                 this.toggle_play (false);
                 this.toggle_timeout (false);
                 
                 var pop = new Granite.Widgets.PopOver ();
-                var box = new Gtk.Grid ();
+                var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
                 ((Gtk.Box)pop.get_content_area ()).add (box);
                 
-                box.row_spacing    = 5;
-                box.column_spacing = 12;
-                
-                var fil   = new Gtk.Button.with_label (_("File"));
-                var fil_i = new Gtk.Image.from_stock (Gtk.Stock.OPEN, Gtk.IconSize.DND);
-                var dvd   = new Gtk.Button.with_label ("DVD");
-                var dvd_i = new Gtk.Image.from_icon_name ("media-cdrom", Gtk.IconSize.DND);
+                var fil   = new Gtk.Button.with_label (_("Add from Harddrive"));
+                fil.image = new Gtk.Image.from_icon_name ("document-open", Gtk.IconSize.DIALOG);
+                var dvd   = new Gtk.Button.with_label (_("Play a DVD"));
+                dvd.image = new Gtk.Image.from_icon_name ("media-cdrom", Gtk.IconSize.DIALOG);
                 var net   = new Gtk.Button.with_label (_("Network File"));
-                var net_i = new Gtk.Image.from_icon_name ("internet-web-browser", Gtk.IconSize.DND);
+                net.image = new Gtk.Image.from_icon_name ("internet-web-browser", Gtk.IconSize.DIALOG);
                 
                 fil.clicked.connect ( () => {
                     pop.destroy ();
@@ -609,26 +616,21 @@ namespace Audience {
                         pop.destroy ();
                     });
                     box.remove (net);
-                    box.attach (entry, 1, 3, 1, 1);
+                    box.reorder_child (entry, 2);
                     entry.show ();
                 });
                 
-                box.attach (fil_i, 0, 0, 1, 1);
-                box.attach (fil,   1, 0, 1, 1);
-                if (this.has_dvd) {
-                    box.attach (dvd_i, 0, 1, 1, 1);
-                    box.attach (dvd,   1, 1, 1, 1);
-                }
-                //box.attach (net_i, 0, 3, 1, 1);
-                //box.attach (net,   1, 3, 1, 1);
+                box.pack_start (fil);
+                if (this.has_dvd)
+                    box.pack_start (dvd);
+                //box.pack_start (net); uri temporary dropped
                 
                 /*temporary until popover closing gets fixed*/
                 var canc = new Gtk.Button.from_stock (Gtk.Stock.CANCEL);
-                box.attach (canc,  0, 4, 2, 1);
+                box.pack_start (canc);
                 canc.clicked.connect ( () => {
                     pop.destroy ();
                 });
-                
                 
                 int x_r, y_r;
                 this.mainwindow.get_window ().get_origin (out x_r, out y_r);
