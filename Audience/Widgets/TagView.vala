@@ -34,12 +34,13 @@ namespace Audience.Widgets{
             var setupgrid = new Gtk.Grid ();
             this.languages = new Gtk.ComboBoxText ();
             this.subtitles = new Gtk.ComboBoxText ();
-            setupgrid.attach (new Gtk.Label (_("Language")),  0, 1, 1, 1);
+            setupgrid.attach (new LLabel.right (_("Language")+":"),  0, 1, 1, 1);
             setupgrid.attach (languages,                   1, 1, 1, 1);
-            setupgrid.attach (new Gtk.Label (_("Subtitles")), 0, 2, 1, 1);
+            setupgrid.attach (new LLabel.right (_("Subtitles")+":"), 0, 2, 1, 1);
             setupgrid.attach (subtitles,                   1, 2, 1, 1);
             setupgrid.column_homogeneous = true;
             setupgrid.margin = 12;
+            setupgrid.column_spacing = 12;
             
             this.subtitles.append ("-1", _("None"));
             this.subtitles.active = 0;
