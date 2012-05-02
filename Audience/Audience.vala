@@ -201,7 +201,7 @@ namespace Audience {
         public string last_folder        {get; set;}
         
         public AudienceSettings () {
-            base ("org.elementary.Audience");
+            base ("org.pantheon.Audience");
         }
         
     }

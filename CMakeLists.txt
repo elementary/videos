@@ -53,7 +53,7 @@ OPTIONS
 
 
 include(GSettings)
-add_schema ("org.elementary.audience.gschema.xml")
+add_schema ("data/org.pantheon.audience.gschema.xml")
 
 add_subdirectory (po)
 add_executable(audience ${VALA_C})

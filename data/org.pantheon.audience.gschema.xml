@@ -1,5 +1,5 @@
 <schemalist>
-	<schema path="/apps/audience/" id="org.elementary.Audience" gettext-domain="audience">
+	<schema path="/org/pantheon/audience/" id="org.pantheon.Audience" gettext-domain="audience">
 		<key name="move-window" type="b">
 			<default>true</default>
 			<summary>Move the window</summary>
