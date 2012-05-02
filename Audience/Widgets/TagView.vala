@@ -159,18 +159,17 @@ namespace Audience.Widgets{
                 if (desc == null)
                     tags.get_string (Gst.TAG_CODEC, out desc);
                 
-                if (target == "audio") {
+                if (target == "audio" && desc != null) {
                     this.languages.append (i.to_string (), desc);
-                }else {
+                }else if (desc != null) {
                     this.subtitles.append (i.to_string (), desc);
                 }
             }
             if (target == "audio") {
-                if (num.get_int () <= 1)
-                    this.languages.sensitive = false;
-                else {
-                    this.languages.sensitive = true;
-                    
+                if (num.get_int () <= 1) {
+                    this.languages.append ("def", _("Default"));
+                    this.languages.active = 0;
+                } else {
                     this.languages.active = 0;
                     
                     this.languages.changed.connect ( () => { //place it here to not get problems
