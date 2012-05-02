@@ -225,9 +225,28 @@ namespace Audience.Widgets{
             
             var css = new Gtk.CssProvider ();
             try {
-                css.load_from_data ("*{color:#fff;}", -1);
+                css.load_from_data ("""
+                * {
+                    color: #fff;
+                    transition: 2ms linear;
+                }
+                *:hover {
+                    color: #aaa;
+                    transition: 2ms linear;
+                }
+                .button {
+                    background-image: none;
+                    background-color: alpha (#000, 0);
+                    border-color: alpha (#000, 0);
+                    border-image: none;
+                    -unico-border-gradient: none;
+                    -unico-inner-stroke-width: 0px;
+                    -unico-outer-stroke-width: 0px;
+                }
+                """, -1);
             }catch (Error e) { warning (e.message); }
             this.vol.get_child ().get_style_context ().add_provider (css, 20000);
+            this.vol.get_style_context ().add_provider (css, 20000);
             
             ((Gtk.Container)this.volume.get_widget ()).add (this.vol);
             this.volume.get_widget ().draw.connect ( (ctx) => {
