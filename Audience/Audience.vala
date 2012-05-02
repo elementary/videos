@@ -411,6 +411,23 @@ namespace Audience {
                         debug (detail);
                         this.canvas.get_pipeline ().set_state (Gst.State.NULL);
                         this.error = true;
+                        
+                        var dlg  = new Gtk.Dialog.with_buttons (_("Error"), mainwindow, 
+                            Gtk.DialogFlags.MODAL, Gtk.Stock.OK, Gtk.ResponseType.OK);
+                        var grid = new Gtk.Grid ();
+                        
+                        grid.attach (new Gtk.Image.from_stock (Gtk.Stock.DIALOG_ERROR, 
+                            Gtk.IconSize.DIALOG), 0, 0, 1, 2);
+                        grid.attach (new LLabel.markup ("<b>"+
+                            _("Oops! Audience can't play this file!")+"</b>"), 1, 0, 1, 1);
+                        grid.attach (new LLabel (e.message), 1, 1, 1, 2);
+                        welcome.show_all ();
+                        clutter.hide ();
+                        
+                        ((Gtk.Box)dlg.get_content_area ()).add (grid);
+                        dlg.show_all ();
+                        dlg.run ();
+                        dlg.destroy ();
                         break;
                     case Gst.MessageType.ELEMENT:
                         if (msg.get_structure () != null && 
@@ -894,7 +911,7 @@ namespace Audience {
                     if (i == this.last_played_videos.length () - 1)
                         i = -1;
                 }
-                if (i != -1) {
+                if (i != -1 && this.last_played_videos.nth_data (i + 1) != null) {
                     this.canvas.progress = double.parse (this.last_played_videos.nth_data (i + 1));
                     debug ("Resuming video from "+this.last_played_videos.nth_data (i + 1));
                 }
@@ -908,6 +925,7 @@ namespace Audience {
             int flags;
             pipe.get ("flags", out flags);
             flags &= ~SUBTITLES_FLAG;
+            flags |= DOWNLOAD_FLAG;
             pipe.set ("flags", flags, "current-text", -1);
             
             /*subtitles/audio tracks*/
