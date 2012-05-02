@@ -26,11 +26,12 @@ namespace Audience.Widgets {
                 this.bg                      = new Clutter.Rectangle.with_color ({50, 50, 50, 220});
                 this.bg.width                = 200;
                 this.bg.height               = 30;
-                this.title                   = new Clutter.Text.with_text ("", Audience.get_title (file.get_path ()));
+                this.title                   = new Clutter.Text.with_text ("", 
+                    Audience.get_title (file.get_path ()));
                 this.title.color             = {255, 255, 255, 255};
                 this.title.ellipsize         = Pango.EllipsizeMode.END;
                 this.thumb                   = new GtkClutter.Texture ();
-                this.thumb.keep_aspect_ratio = true;
+                this.thumb.width             = 400;
                 
                 Audience.get_thumb (file, -1, this.thumb);
                 

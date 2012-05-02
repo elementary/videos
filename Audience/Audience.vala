@@ -16,6 +16,7 @@ namespace Audience {
     public const int CONTROLS_HEIGHT = 32;
     
     public const int SUBTITLES_FLAG = (1 << 2);
+    public const int DOWNLOAD_FLAG  = (1 << 7);
     
     public static string get_title (string filename) {
         var title = get_basename (filename);
@@ -904,7 +905,10 @@ namespace Audience {
             
             /*disable subtitles by default*/
             dynamic Gst.Element pipe = this.canvas.get_pipeline ();
-            pipe.flags &= ~SUBTITLES_FLAG;
+            int flags;
+            pipe.get ("flags", out flags);
+            flags &= ~SUBTITLES_FLAG;
+            pipe.set ("flags", flags, "current-text", -1);
             
             /*subtitles/audio tracks*/
             this.tagview.setup_setup ("text");

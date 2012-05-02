@@ -31,12 +31,14 @@ namespace Audience.Widgets{
             tagview.add_with_viewport (taggrid);
             
             /*setup*/
-            var setupgrid = new Gtk.Grid ();
+            var setupgrid  = new Gtk.Grid ();
             this.languages = new Gtk.ComboBoxText ();
             this.subtitles = new Gtk.ComboBoxText ();
-            setupgrid.attach (new LLabel.right (_("Language")+":"),  0, 1, 1, 1);
+            var lang_lbl   = new LLabel.right (_("Language")+":");
+            var sub_lbl    = new LLabel.right (_("Subtitles")+":");
+            setupgrid.attach (lang_lbl,  0, 1, 1, 1);
             setupgrid.attach (languages,                   1, 1, 1, 1);
-            setupgrid.attach (new LLabel.right (_("Subtitles")+":"), 0, 2, 1, 1);
+            setupgrid.attach (sub_lbl, 0, 2, 1, 1);
             setupgrid.attach (subtitles,                   1, 2, 1, 1);
             setupgrid.column_homogeneous = true;
             setupgrid.margin = 12;
@@ -45,33 +47,29 @@ namespace Audience.Widgets{
             this.subtitles.append ("-1", _("None"));
             this.subtitles.active = 0;
             this.subtitles.changed.connect ( () => {
-                debug ("Switching to subtitle %s\n", this.subtitles.active_id);
                 dynamic Gst.Element pipe = this.app.canvas.get_pipeline ();
+                
+                int flags;
+                pipe.get ("flags", out flags);
                 if (this.subtitles.active_id == "-1") {
-                    pipe.flags &= ~SUBTITLES_FLAG;
+                    flags &= ~SUBTITLES_FLAG;
+                    pipe.set ("flags", flags, "current-text", -1);
+                    debug ("Disabling subtitles");
                 }else {
-                    pipe.flags |= SUBTITLES_FLAG;
-                    pipe.current_text =  int.parse (this.subtitles.active_id);
+                    debug ("Switching to subtitle %s", this.subtitles.active_id);
+                    flags |= SUBTITLES_FLAG;
+                    pipe.set ("flags", flags, 
+                        "current-text", int.parse (this.subtitles.active_id));
                 }
             });
             
             /*playlist*/
-            var playlistgrid    = new Gtk.Label ("Nothin here"); //dummy
+            var playlistgrid    = new Gtk.Label (""); //dummy
             
             notebook.append_page (playlistgrid, new Gtk.Label (_("Playlist")));
             notebook.append_page (setupgrid, new Gtk.Label (_("Options")));
             if (app.settings.show_details)
                 notebook.append_page (tagview, new Gtk.Label (_("Details")));
-            
-            playlistgrid.draw.connect ( (ctx) => {
-                ctx.rectangle (0, 0, playlistgrid.get_allocated_width (), 
-                    playlistgrid.get_allocated_height ());
-                ctx.set_operator (Cairo.Operator.SOURCE);
-                ctx.set_source_rgba (0.141, 0.141, 0.141, 0.698);
-                ctx.fill ();
-                return true;
-            });
-            
             
             notebook.margin = 15;
             notebook.margin_top = 0;
@@ -98,6 +96,21 @@ namespace Audience.Widgets{
                     this.buffer.context.fill ();
                 }
             });
+            
+            /*some css styles to fix up things with transparency...*/
+            var white_text = new Gtk.CssProvider ();
+            try {
+                white_text.load_from_data ("*{color: white;}", -1);
+            } catch (Error e) { warning (e.message); }
+            lang_lbl.get_style_context ().add_provider (white_text, 20000);
+            sub_lbl.get_style_context ().add_provider (white_text, 20000);
+            
+            var no_bg = new Gtk.CssProvider ();
+            try {
+                no_bg.load_from_data ("*{background-color:alpha(#fff, 0);}", -1);
+            } catch (Error e) { warning (e.message); }
+            playlistgrid.get_parent ().get_style_context ().add_provider (no_bg, 20000);
+            
             
             this.get_widget ().draw.connect ( (ctx) => {
                 ctx.set_operator (Cairo.Operator.SOURCE);
