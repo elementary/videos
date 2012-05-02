@@ -169,7 +169,9 @@ namespace Audience.Widgets{
                 if (num.get_int () <= 1) {
                     this.languages.append ("def", _("Default"));
                     this.languages.active = 0;
+                    this.languages.sensitive = false;
                 } else {
+                    this.languages.sensitive = true;
                     this.languages.active = 0;
                     
                     this.languages.changed.connect ( () => { //place it here to not get problems
@@ -178,6 +180,11 @@ namespace Audience.Widgets{
                         pipe.current_audio = int.parse (this.languages.active_id);
                     });
                 }
+            } else {
+                if (num.get_int () <= 1)
+                    this.subtitles.sensitive = false;
+                else
+                    this.subtitles.sensitive = true;
             }
         }
         
