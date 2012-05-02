@@ -295,7 +295,7 @@ namespace Audience {
             if (this.settings.last_folder == "-1")
                 this.settings.last_folder = Environment.get_home_dir ();
             
-            this.welcome = new Granite.Widgets.Welcome ("Audience", _("Watching films has never been better"));
+            this.welcome = new Granite.Widgets.Welcome ("Play videos in Audience", _("Select a source below to play a video"));
             welcome.append ("document-open", _("Open a file"), _("Get file from your disk"));
             if (has_dvd)
                 welcome.append ("media-cdrom", _("Watch a DVD"), _("Open a film"));
