@@ -259,7 +259,7 @@ namespace Audience.Widgets{
             
             buf.width = 10;
             
-            this.add_actor (this.volume);
+            //this.add_actor (this.volume); removed until we get it to control global volume
             this.add_actor (buf);
             this.add_actor (this.exit);
             
