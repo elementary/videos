@@ -575,18 +575,20 @@ namespace Audience {
             
             /*open location popover*/
             this.controls.open.clicked.connect ( () => {
+                var has_been_stopped = this.canvas.playing;
+                
+                this.toggle_play (false);
+                this.toggle_timeout (false);
+                
                 if (!this.has_dvd) { //just one source, so open that one
                     Timeout.add (300, () => {
-                        this.toggle_play (false);
-                        this.toggle_timeout (false);
+                        //this.toggle_play (false);
+                        //this.toggle_timeout (false);
                         this.run_open (0);
                         return false;
                     });
                     return;
                 }
-                
-                this.toggle_play (false);
-                this.toggle_timeout (false);
                 
                 var pop = new Granite.Widgets.PopOver ();
                 var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
@@ -645,7 +647,8 @@ namespace Audience {
                     pop.run ();
                     pop.destroy ();
                     this.toggle_timeout (true);
-                    this.toggle_play (true);
+                    if (has_been_stopped)
+                        this.toggle_play (true);
                     return false;
                 });
             });
