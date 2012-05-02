@@ -127,9 +127,9 @@ namespace Audience.Widgets{
                 return true;
             });
             this.leave_event.connect ( (e) => {
-                this.preview.animate (Clutter.AnimationMode.EASE_IN_ELASTIC, 800, 
+                this.preview.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 150, 
                     scale_x:0.0, scale_y:0.0);
-                preview_bg.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 500, opacity:0);
+                preview_bg.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 150, opacity:0);
                 this.preview.playing = false;
                 this.get_stage ().cursor_visible = true;
                 this.mouse_grabbed = false;
