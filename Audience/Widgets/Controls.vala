@@ -330,7 +330,7 @@ namespace Audience.Widgets{
             this.slider = new MediaSlider ();
             
             this.play = new Button ("media-playback-start-symbolic", Gtk.Stock.MEDIA_PLAY);
-            this.view = new Button ("go-top-symbolic", Gtk.Stock.GOTO_TOP);
+            this.view = new Button ("pane-show-symbolic", Gtk.Stock.GO_BACK);
             this.open = new Button ("list-add-symbolic", Gtk.Stock.OPEN);
             
             var spacer_left = new Clutter.Rectangle.with_color ({0,0,0,0});

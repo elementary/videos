@@ -2,115 +2,111 @@
 
 namespace Audience.Widgets {
     
-    public class Playlist : Clutter.Box {
-        
-        /*class representing an item to be displayed*/
-        class Entry : Clutter.Box {
-            
-            public File        path;
-            Clutter.Text       title;
-            GtkClutter.Texture thumb;
-            Clutter.Rectangle  bg;
-            
-            public Entry (File file) {
-                
-                this.reactive = true;
-                this.layout_manager = new Clutter.BinLayout (Clutter.BinAlignment.FILL, 
-                    Clutter.BinAlignment.FILL);
-                this.width   = 80.0f;
-                this.height  = 200.0f;
-                this.opacity = 150;
-                this.clip_to_allocation = true;
-                
-                this.path                    = file;
-                this.bg                      = new Clutter.Rectangle.with_color ({50, 50, 50, 220});
-                this.bg.width                = 200;
-                this.bg.height               = 30;
-                this.title                   = new Clutter.Text.with_text ("", 
-                    Audience.get_title (file.get_path ()));
-                this.title.color             = {255, 255, 255, 255};
-                this.title.ellipsize         = Pango.EllipsizeMode.END;
-                this.thumb                   = new GtkClutter.Texture ();
-                this.thumb.width             = 400;
-                
-                Audience.get_thumb (file, -1, this.thumb);
-                
-                this.add_actor (this.thumb);
-                ((Clutter.BinLayout)this.layout_manager).add (this.bg, 
-                    Clutter.BinAlignment.START,  Clutter.BinAlignment.END);
-                ((Clutter.BinLayout)this.layout_manager).add (this.title, 
-                    Clutter.BinAlignment.START,  Clutter.BinAlignment.END);
-                
-                this.enter_event.connect ( () => {
-                    this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, width:200.0f);
-                    this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, opacity:255);
-                    return true;
-                });
-                
-                this.leave_event.connect ( () => {
-                    this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, width:80.0f);
-                    this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, opacity:150);
-                    return true;
-                });
-            }
-            
-        }
+    public class Playlist : Gtk.TreeView {
         
         /*the player is requested to play path*/
         public signal void play (File path);
         
-        private int               current;
-        private GLib.List<Entry?> playlist;
+        private int                 current;
+        private Gtk.ListStore       playlist;
         
-        public Playlist (){
+        public Playlist () {
             this.current  = 0;
-            this.layout_manager = new Clutter.BoxLayout ();
+            this.playlist = new Gtk.ListStore (4, typeof (Gdk.Pixbuf),  /*playing*/
+                                                  typeof (Gdk.Pixbuf),  /*icon*/
+                                                  typeof (string),      /*title*/
+                                                  typeof (string));     /*filename*/
+            this.model = this.playlist;
+            this.expand = true;
+            this.headers_visible = false;
             
-            this.reactive = true;
-            this.scroll_event.connect ( (e) => {
-                var val = -100.0f;
-                if (e.direction == Clutter.ScrollDirection.UP || 
-                    e.direction == Clutter.ScrollDirection.RIGHT)
-                    val *= -1;
-                this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:this.x+val);
-                return true;
+            var text_render = new Gtk.CellRendererText ();
+            text_render.ellipsize = Pango.EllipsizeMode.END;
+            
+            this.insert_column_with_attributes (-1, "", new Gtk.CellRendererPixbuf (),
+                "pixbuf", 0);
+            this.insert_column_with_attributes (-1, "", new Gtk.CellRendererPixbuf (),
+                "pixbuf", 1);
+            this.insert_column_with_attributes (-1, "", text_render, "text", 2);
+            
+            this.row_activated.connect ( (path ,col) => {
+                Gtk.TreeIter iter;
+                playlist.get_iter (out iter, path);
+                string filename;
+                playlist.get (iter, 3, out filename);
+                play (File.new_for_commandline_arg (filename));
+                change_current_symbol (iter);
+                this.current = int.parse (path.to_string ());
+            });
+            
+            this.reorderable = true;
+            this.model.row_inserted.connect ( (path, iter) => {
+                Gtk.TreeIter it;
+                playlist.get_iter (out it, path);
+                Gdk.Pixbuf playing;
+                playlist.get (it, 0, out playing);
+                if (playing != null) //if playing is not null it's the current item
+                    this.current = int.parse (path.to_string ());
             });
         }
         
-        private inline void change_current_symbol (){
+        private inline void change_current_symbol (Gtk.TreeIter new_item) {
+            try{
+                playlist.set (new_item, 0, Gtk.IconTheme.get_default ().
+                    load_icon ("media-playback-start-symbolic", 16, 0));
+            }catch (Error e) { warning (e.message); }
+            Gtk.TreeIter old_item;
+            playlist.get_iter_from_string (out old_item, this.current.to_string ());
+            playlist.set (old_item, 0, null);
+        }
+        
+        public void next () {
+            Gtk.TreeIter it;
+            if (playlist.get_iter_from_string (out it, (this.current + 1).to_string ())){
+                string filename;
+                playlist.get (it, 3, out filename);
+                change_current_symbol (it);
+                current++;
+                play (File.new_for_commandline_arg (filename));
+            }
+        }
+        
+        public void previous () {
+            Gtk.TreeIter it;
+            if (playlist.get_iter_from_string (out it, (this.current - 1).to_string ())){
+                string filename;
+                playlist.get (it, 3, out filename);
+                change_current_symbol (it);
+                current--;
+                play (File.new_for_commandline_arg (filename));
+            }
+        }
+        
+        public void add_item (File path) {
+            Gtk.TreeIter iter;
+            var ext = Audience.get_extension (path.get_path ());
+            Gdk.Pixbuf pix = null; //may becoming the thumb...
             
-        }
-        
-        public void next (){
-            this.current ++;
-            if (this.current >= this.playlist.length ())
-                this.current == this.playlist.length () - 1;
-            if (this.playlist.nth (this.current) == null)
-                return;
-            play (this.playlist.nth_data (current).path);
-            change_current_symbol ();
-        }
-        
-        public void previous (){
-            this.current --;
-            if (this.current == -1)
-                this.current = 0;
-            if (this.playlist.nth (this.current) == null)
-                return;
-            play (this.playlist.nth_data (current).path);
-            change_current_symbol ();
-        }
-        
-        public void add_item (File path){
-            var e = new Entry (path);
-            e.button_release_event.connect ( () => {
-                play (e.path);
-                return true;
-            });
+            Gdk.Pixbuf? playing = null;
+            Gtk.TreeIter dummy;
+            if (!playlist.get_iter_first (out dummy)){ //first item
+                try {
+                    playing = Gtk.IconTheme.get_default ().lookup_icon ("media-playback-start-symbolic", 
+                        16, 0).load_symbolic ({0, 0, 0, 255}, null, null, null);
+                } catch (Error e) { warning (e.message); }
+            } else {
+                playing = null;
+            }
             
-            this.add_actor (e);
-            this.playlist.append (e);
+            playlist.append (out iter);
+            playlist.set (iter, 0, playing, 1, pix, 
+                                2, Audience.get_title (path.get_path ()), 3, path.get_path ());
         }
+        
+        public void remove_item (File path) {
+            /*not needed up to now*/
+        }
+        
     }
     
 }

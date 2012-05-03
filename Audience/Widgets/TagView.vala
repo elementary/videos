@@ -3,6 +3,19 @@
   The panel on the right hand side
 */
 
+public const string LIGHT_WINDOW_STYLE = """
+    .content-view-window {
+        background-image:none;
+        background-color:@bg_color;
+        
+        border-radius: 6px;
+        
+        border-width:1px;
+        border-style: solid;
+        border-color: alpha (#000, 0.25);
+    }
+""";
+
 namespace Audience.Widgets{
     
     public class TagView : GtkClutter.Actor {
@@ -15,6 +28,10 @@ namespace Audience.Widgets{
         private Gtk.ComboBoxText subtitles;
         
         private Granite.Drawing.BufferSurface buffer;
+        int shadow_blur = 30;
+        int shadow_x    = 0;
+        int shadow_y    = 0;
+        double shadow_alpha = 0.5;
         
         public TagView (AudienceApp app) {
             this.app      = app;
@@ -63,55 +80,44 @@ namespace Audience.Widgets{
                 }
             });
             
-            /*playlist*/
-            var playlistgrid    = new Gtk.Label (""); //dummy
+            var playlist_scrolled = new Gtk.ScrolledWindow (null, null);
+            playlist_scrolled.add (this.app.playlist);
             
-            notebook.append_page (playlistgrid, new Gtk.Label (_("Playlist")));
+            notebook.append_page (playlist_scrolled, new Gtk.Label (_("Playlist")));
             notebook.append_page (setupgrid, new Gtk.Label (_("Options")));
             if (app.settings.show_details)
                 notebook.append_page (tagview, new Gtk.Label (_("Details")));
             
-            notebook.margin = 15;
-            notebook.margin_top = 0;
-            ((Gtk.Bin)this.get_widget ()).add (notebook);
+            /*draw the window stylish!*/
+            var css = new Gtk.CssProvider ();
+            try {
+                css.load_from_data (LIGHT_WINDOW_STYLE, -1);
+            } catch (Error e) { warning (e.message); }
             
-            var w = 0; var h = 0;
+            var draw_ref = new Gtk.Window ();
+            draw_ref.get_style_context ().add_class ("content-view-window");
+            draw_ref.get_style_context ().add_provider (css, Gtk.STYLE_PROVIDER_PRIORITY_FALLBACK);
+            
+            var w = -1; var h = -1;
             this.get_widget ().size_allocate.connect ( () => {
-                if (w != this.get_widget ().get_allocated_width  () || 
-                    h != this.get_widget ().get_allocated_height ()) {
-                    w = this.get_widget ().get_allocated_width  ();
-                    h = this.get_widget ().get_allocated_height ();
-                    
-                    this.buffer = new Granite.Drawing.BufferSurface (w, h);
-                    
-                    this.buffer.context.rectangle (0, 0, this.width, this.height);
-                    this.buffer.context.set_source_rgba (0.141, 0.141, 0.141, 0.698);
-                    this.buffer.context.fill ();
-                    
-                    this.buffer.context.move_to (0, 0);
-                    this.buffer.context.line_to (this.width, 0);
-                    this.buffer.context.set_source_rgba (0.0, 0.0, 0.0, 0.5);
-                    this.buffer.context.stroke ();
-                    
-                    this.buffer.context.fill ();
-                }
+                if (w == this.get_widget ().get_allocated_width () && 
+                    h == this.get_widget ().get_allocated_height ())
+                    return;
+                w = this.get_widget ().get_allocated_width ();
+                h = this.get_widget ().get_allocated_height ();
+                
+                this.buffer = new Granite.Drawing.BufferSurface (w, h);
+                
+                this.buffer.context.rectangle (shadow_blur + shadow_x, 
+                    shadow_blur + shadow_y, w - shadow_blur*2 + shadow_x, h - shadow_blur*2 + shadow_y);
+                this.buffer.context.set_source_rgba (0, 0, 0, shadow_alpha);
+                this.buffer.context.fill ();
+                this.buffer.exponential_blur (shadow_blur / 2);
+                
+                draw_ref.get_style_context ().render_activity (this.buffer.context, 
+                    shadow_blur + shadow_x, shadow_blur + shadow_y, 
+                    w - shadow_blur*2 + shadow_x, h - shadow_blur*2 + shadow_y);
             });
-            
-            /*some css styles to fix up things with transparency...*/
-            var white_text = new Gtk.CssProvider ();
-            try {
-                white_text.load_from_data ("*{color: white;}", -1);
-            } catch (Error e) { warning (e.message); }
-            lang_lbl.get_style_context ().add_provider (white_text, 20000);
-            sub_lbl.get_style_context ().add_provider (white_text, 20000);
-            
-            var no_bg = new Gtk.CssProvider ();
-            try {
-                no_bg.load_from_data ("*{background-color:alpha(#fff, 0);}", -1);
-            } catch (Error e) { warning (e.message); }
-            playlistgrid.get_parent ().get_style_context ().add_provider (no_bg, 20000);
-            
-            
             this.get_widget ().draw.connect ( (ctx) => {
                 ctx.set_operator (Cairo.Operator.SOURCE);
                 ctx.rectangle (0, 0, this.width, this.height);
@@ -124,34 +130,39 @@ namespace Audience.Widgets{
                 return false;
             });
             
-            notebook.show_all ();
-            this.width  = 200;
-            this.expanded = false;
-            
-            this.app.playlist.add_constraint (new Clutter.BindConstraint (this.app.playlist.get_stage (), 
-                Clutter.BindCoordinate.WIDTH, 0));
-            this.app.playlist.add_constraint (new Clutter.BindConstraint (this, 
-                Clutter.BindCoordinate.Y, 30));
-            this.app.playlist.height = 165.0f - CONTROLS_HEIGHT;
-            
-            notebook.page_changed.connect ( (idx) => {
-                if (idx == 0) {
-                    this.app.playlist.show ();
-                }else {
-                    this.app.playlist.hide ();
+            var no_bg = new Gtk.CssProvider ();
+            try {
+                no_bg.load_from_data ("""
+                * {
+                    background-color: alpha(#fff, 0);
                 }
-            });
+                .view:selected:focused {
+                    color: @selected_bg_color;
+                }
+                """, -1);
+            } catch (Error e) { warning (e.message); }
+            setupgrid.get_parent ().get_style_context ().add_provider (no_bg, 20000);
+            app.playlist.get_style_context ().add_provider (no_bg, 20000);
+            
+            playlist_scrolled.margin = 3;
+            notebook.margin = shadow_blur + 2;
+            notebook.margin_top += 3;
+            this.get_widget ().get_style_context ().add_class ("content-view");
+            ((Gtk.Bin)this.get_widget ()).add (notebook);
+            this.get_widget ().show_all ();
+            this.width = 350;
+            this.expanded = false;
         }
         
         public void expand (){
-            var y2 = this.get_stage ().height - this.height;
-            this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y:y2);
+            var x2 = this.get_stage ().width - this.width;
+            this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x2);
             this.expanded = true;
         }
         
         public void collapse (){
-            var y2 = this.get_stage ().height;
-            this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y:y2);
+            var x2 = this.get_stage ().width;
+            this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x2);
             this.expanded = false;
         }
         

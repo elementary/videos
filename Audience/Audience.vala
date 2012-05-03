@@ -312,14 +312,14 @@ namespace Audience {
             stage.add_actor (controls.background);
             stage.add_actor (controls);
             stage.add_actor (panel);
-            stage.add_actor (playlist);
             stage.color = Clutter.Color.from_string ("#000");
             
             this.panel.hide ();
             
-            this.tagview.y      = stage.height;
-            this.tagview.height = 200;
-            this.tagview.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
+            this.tagview.y      = -5;
+            this.tagview.x      = stage.width;
+            this.tagview.add_constraint (new Clutter.BindConstraint (stage, 
+                Clutter.BindCoordinate.HEIGHT, -10));
             
             this.controls.play.set_tooltip (_("Play"));
             this.controls.open.set_tooltip (_("Open"));
@@ -685,13 +685,13 @@ namespace Audience {
             this.canvas.audio_volume = 1.0;
             
             this.controls.view.clicked.connect ( () => {
-                if (!controls.showing_view){
+                if (!controls.showing_view) {
                     tagview.expand ();
-                    controls.view.set_icon ("go-bottom-symbolic", Gtk.Stock.GOTO_BOTTOM);
+                    controls.view.set_icon ("pane-hide-symbolic", Gtk.Stock.GO_FORWARD);
                     controls.showing_view = true;
-                }else{
+                } else {
                     tagview.collapse ();
-                    controls.view.set_icon ("go-top-symbolic", Gtk.Stock.GOTO_TOP);
+                    controls.view.set_icon ("pane-show-symbolic", Gtk.Stock.GO_BACK);
                     controls.showing_view = false;
                 }
             });
@@ -934,9 +934,9 @@ namespace Audience {
         }
         
         private void place (bool resize_window = false) {
-            this.tagview.y        = (this.tagview.expanded)?
-                stage.height - this.tagview.height - this.controls.height:
-                stage.height;
+            this.tagview.x        = (this.tagview.expanded)?
+                stage.width - this.tagview.width:
+                stage.width;
             
             this.controls.width    = stage.width;
             this.controls.y        = stage.height - CONTROLS_HEIGHT;
