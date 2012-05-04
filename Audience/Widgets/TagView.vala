@@ -85,7 +85,7 @@ namespace Audience.Widgets{
             
             notebook.append_page (playlist_scrolled, new Gtk.Label (_("Playlist")));
             notebook.append_page (setupgrid, new Gtk.Label (_("Options")));
-            if (app.settings.show_details)
+            if (settings.show_details)
                 notebook.append_page (tagview, new Gtk.Label (_("Details")));
             
             /*draw the window stylish!*/

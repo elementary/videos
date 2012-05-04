@@ -21,6 +21,7 @@ namespace Audience {
     public static string get_title (string filename) {
         var title = get_basename (filename);
         title = title.replace ("%20", " ").
+            replace ("%3B", ";").
             replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").
             replace ("%7D", "}").replace ("_", " ").replace ("."," ").replace ("  "," ");
         return title;
@@ -194,18 +195,21 @@ namespace Audience {
     
     public class AudienceSettings : Granite.Services.Settings {
         
-        public bool move_window          {get; set;}
-        public bool keep_aspect          {get; set;}
-        public bool show_details         {get; set;}
-        public bool resume_videos        {get; set;}
-        public string last_played_videos {get; set;} /*video1,time,video2,time2,...*/
-        public string last_folder        {get; set;}
+        public bool move_window             {get; set;}
+        public bool keep_aspect             {get; set;}
+        public bool show_details            {get; set;}
+        public bool resume_videos           {get; set;}
+        public string last_played_videos    {get; set;} /*video1,time,video2,time2,...*/
+        public string last_folder           {get; set;}
+        public bool hide_mouse_on_popover   {get; set;}
         
         public AudienceSettings () {
             base ("org.pantheon.Audience");
         }
         
     }
+    
+    public AudienceSettings settings; //global object for easier access
     
     public class AudienceApp : Granite.Application {
         
@@ -245,7 +249,6 @@ namespace Audience {
         public bool                       fullscreened;
         public uint                       hiding_timer;
         public GnomeMediaKeys             mediakeys;
-        public AudienceSettings           settings;
         public Audience.Widgets.Playlist  playlist;
         public Audience.Widgets.TopPanel  panel;
         public GtkClutter.Embed           clutter;
@@ -273,7 +276,7 @@ namespace Audience {
             this.fullscreened = false;
             
             this.playlist   = new Audience.Widgets.Playlist ();
-            this.settings   = new AudienceSettings ();
+            settings         = new AudienceSettings ();
             this.canvas     = new ClutterGst.VideoTexture ();
             this.mainwindow = new Gtk.Window ();
             this.tagview    = new Audience.Widgets.TagView (this);
@@ -286,15 +289,15 @@ namespace Audience {
             
             //prepare last played videos
             this.last_played_videos = new List<string> ();
-            var split = this.settings.last_played_videos.split (",");;
+            var split = settings.last_played_videos.split (",");;
             for (var i=0;i<split.length;i++){
                 this.last_played_videos.append (split[i]);
             }
             
             this.has_dvd = Audience.has_dvd ();
             
-            if (this.settings.last_folder == "-1")
-                this.settings.last_folder = Environment.get_home_dir ();
+            if (settings.last_folder == "-1")
+                settings.last_folder = Environment.get_home_dir ();
             
             this.welcome = new Granite.Widgets.Welcome ("No videos are open.", _("Select a source start playing."));
             welcome.append ("document-open", _("Open file"), _("Open a saved file."));
@@ -336,6 +339,7 @@ namespace Audience {
             this.mainwindow.set_default_size (624, 352);
             this.mainwindow.set_size_request (624, 352);
             this.mainwindow.show_all ();
+            this.mainwindow.has_resize_grip = false;
             
             clutter.hide ();
             
@@ -733,7 +737,7 @@ namespace Audience {
                 }
             });
             clutter.motion_notify_event.connect ( (e) => {
-                if (moving && this.settings.move_window) {
+                if (moving && settings.move_window) {
                     moving = false;
                     this.mainwindow.begin_move_drag (1, 
                         (int)e.x_root, (int)e.y_root, e.time);
@@ -788,7 +792,7 @@ namespace Audience {
                 res += this.last_played_videos.nth_data (i) + ",";
             }
             res += this.last_played_videos.nth_data (this.last_played_videos.length () - 1);
-            this.settings.last_played_videos = res;
+            settings.last_played_videos = res;
         }
         
         public void run_open (int type) { //0=file, 2=dvd
@@ -809,7 +813,7 @@ namespace Audience {
                 file.add_filter (video_filter);
                 file.add_filter (all_files_filter);
                 
-                file.set_current_folder (this.settings.last_folder);
+                file.set_current_folder (settings.last_folder);
                 if (file.run () == Gtk.ResponseType.ACCEPT) {
                     welcome.hide ();
                     clutter.show_all ();
@@ -817,7 +821,7 @@ namespace Audience {
                         this.playlist.add_item (file.get_files ().nth_data (i));
                     }
                     open_file (file.get_uri ());
-                    this.settings.last_folder = file.get_current_folder ();
+                    settings.last_folder = file.get_current_folder ();
                 }
                 file.destroy ();
             }else if (type == 2){
@@ -897,13 +901,13 @@ namespace Audience {
             this.controls.slider.preview.audio_volume = 0.0;
             
             this.mainwindow.title = get_title (uri);
-            if (this.settings.show_details)
+            if (settings.show_details)
                 tagview.get_tags (uri, true);
             
             this.toggle_play (true);
             this.place (true);
             
-            if (this.settings.resume_videos) {
+            if (settings.resume_videos) {
                 int i;
                 for (i=0;i<this.last_played_videos.length () && i!=-1;i+=2) {
                     if (this.current_file.get_uri () == this.last_played_videos.nth_data (i))
@@ -976,7 +980,7 @@ namespace Audience {
                     (int)(Gdk.Screen.get_default ().height () * 0.9));
             }
             
-            if (this.settings.keep_aspect) {
+            if (settings.keep_aspect) {
                 var g = Gdk.Geometry (); /*lock*/
                 g.min_aspect = g.max_aspect = this.video_w / this.video_h;
                 this.mainwindow.set_geometry_hints (this.mainwindow, g, Gdk.WindowHints.ASPECT);

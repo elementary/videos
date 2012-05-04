@@ -1,34 +1,39 @@
 <schemalist>
-	<schema path="/org/pantheon/audience/" id="org.pantheon.Audience" gettext-domain="audience">
-		<key name="move-window" type="b">
-			<default>true</default>
-			<summary>Move the window</summary>
-			<description>Allow moving the window by dragging on the canvas</description>
-		</key>
-		<key name="keep-aspect" type="b">
-			<default>true</default>
-			<summary>Keep the video's aspect ratio</summary>
-			<description>Lock window resizing to the aspect ration of the current video</description>
-		</key>
-		<key name="show-details" type="b">
-		    <default>false</default>
-		    <summary>Show the details tab</summary>
-		    <description>Show or hide the details tab of the sidebar</description>
-		</key>
-		<key name="resume-videos" type="b">
-		    <default>true</default>
-		    <summary>Resume videos</summary>
-		    <description>Resume video at the point they were stopped when audience was closed</description>
-		</key>
-		<key name="last-played-videos" type="s">
-			<default>""</default>
-			<summary>List of last played videos and the time they stopped</summary>
-			<description>A list of the last played and the time they were stopped</description>
-		</key>
-		<key name="last-folder" type="s">
-		    <default>"-1"</default>
-		    <summary>The last visited folder</summary>
-		    <description>The last folder you visited</description>
-		</key>
-	</schema>
+    <schema path="/org/pantheon/audience/" id="org.pantheon.Audience" gettext-domain="audience">
+        <key name="move-window" type="b">
+            <default>true</default>
+            <summary>Move the window</summary>
+            <description>Allow moving the window by dragging on the canvas</description>
+        </key>
+        <key name="keep-aspect" type="b">
+            <default>true</default>
+            <summary>Keep the video's aspect ratio</summary>
+            <description>Lock window resizing to the aspect ration of the current video</description>
+        </key>
+        <key name="show-details" type="b">
+            <default>false</default>
+            <summary>Show the details tab</summary>
+            <description>Show or hide the details tab of the sidebar</description>
+        </key>
+        <key name="resume-videos" type="b">
+            <default>true</default>
+            <summary>Resume videos</summary>
+            <description>Resume video at the point they were stopped when audience was closed</description>
+        </key>
+        <key name="last-played-videos" type="s">
+            <default>""</default>
+            <summary>List of last played videos and the time they stopped</summary>
+            <description>A list of the last played and the time they were stopped</description>
+        </key>
+        <key name="last-folder" type="s">
+            <default>"-1"</default>
+            <summary>The last visited folder</summary>
+            <description>The last folder you visited</description>
+        </key>
+        <key name="hide-mouse-on-popover" type="b">
+            <default>true</default>
+            <summary>Hide the mouse when the preview is show</summary>
+            <description>Set whether the mouse is shown when it's hovering the seekbar and Audience shows its preview window.</description>
+        </key>
+    </schema>
 </schemalist>
