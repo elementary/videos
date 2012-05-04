@@ -22,7 +22,7 @@ namespace Audience.Widgets{
         
         private Clutter.CairoTexture bar;
         
-        private const int BAR_HEIGHT = 6;
+        private const int BAR_HEIGHT = 8;
         
         /*the mouse is currently on the controls*/
         public bool mouse_grabbed = false;
@@ -51,9 +51,9 @@ namespace Audience.Widgets{
             preview_bg.opacity = 0;
             var ARROW_HEIGHT = 17;
             var ARROW_WIDTH  = 30;
-            var grad = new Cairo.Pattern.linear (0, 0, 0, preview_bg.height);
-            grad.add_color_stop_rgba (0.0, 0.212, 0.212, 0.212, 1.000);
-            grad.add_color_stop_rgba (1.0, 0.141, 0.141, 0.141, 1.000);
+            var popover_grad = new Cairo.Pattern.linear (0, 0, 0, preview_bg.height);
+            popover_grad.add_color_stop_rgba (0.0, 0.212, 0.212, 0.212, 1.000);
+            popover_grad.add_color_stop_rgba (1.0, 0.141, 0.141, 0.141, 1.000);
             preview_bg.draw.connect ( (ctx) => {
                 /*stolen from Granite.Widgets.PopOver.cairo_popover*/
                 Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 1, 1,
@@ -67,30 +67,49 @@ namespace Audience.Widgets{
                 ctx.set_line_width (1.0);
                 ctx.stroke_preserve ();
                 
-                ctx.set_source (grad);
+                ctx.set_source (popover_grad);
                 ctx.fill ();
                 return true;
             });
             
             this.bar.y = CONTROLS_HEIGHT / 2 - this.BAR_HEIGHT / 2;
             this.bar.auto_resize = true;
+            var bar_grad = new Cairo.Pattern.linear (0, 0, 0, this.BAR_HEIGHT);
+            bar_grad.add_color_stop_rgba (0.0, 0.254, 0.247, 0.231, 0.4);
+            bar_grad.add_color_stop_rgba (1.0, 0.298, 0.290, 0.282, 0.4);
+            var bar_shadow_grad = new Cairo.Pattern.linear (0, 0, 0, this.BAR_HEIGHT);
+            bar_shadow_grad.add_color_stop_rgba (0.0, 1, 1, 1, 0);
+            bar_shadow_grad.add_color_stop_rgba (1.0, 1, 1, 1, 0.2);
             this.bar.draw.connect ( (ctx) => {
+                this.bar.clear();
+                //drop shadow
+                Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 0, 0, 
+                    this.bar.width, this.BAR_HEIGHT, this.BAR_HEIGHT / 2);
+                ctx.set_source (bar_shadow_grad);
+                ctx.fill ();
+                //outline
+                Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 1, 1, 
+                    this.bar.width - 2, this.BAR_HEIGHT - 2, (this.BAR_HEIGHT - 2) / 2);
+                ctx.set_source_rgba (0, 0, 0, 0.4);
+                ctx.fill ();
                 //bg
-                Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 0.5, 0.5, 
-                    this.bar.width - 1, this.BAR_HEIGHT, 3);
-                ctx.set_source_rgb (0.2, 0.2, 0.2);
+                Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 2, 2, 
+                    this.bar.width - 4, this.BAR_HEIGHT - 4, (this.BAR_HEIGHT - 4) / 2);
+                ctx.set_source (bar_grad);
                 ctx.fill ();
                 //buffering
                 if (this._buffered != 0.0){
-                    Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 0.5, 0.5, 
-                        this._buffered / this.preview.duration * this.bar.width - 1, this.BAR_HEIGHT, 3);
+                    Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 2, 2, 
+                        (this._buffered / this.preview.duration * this.bar.width) - 4,
+                        this.BAR_HEIGHT - 4, (this.BAR_HEIGHT - 4) / 2);
                     ctx.set_source_rgb (0.6, 0.6, 0.6);
                     ctx.fill ();
                 }
                 //progress
                 if (this._progress != 0.0){
-                    Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 0.5, 0.5, 
-                        this._progress * this.width - 1, this.BAR_HEIGHT, 3);
+                    Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 2, 2, 
+                        (this._progress * this.width) - 4, this.BAR_HEIGHT - 4, 
+                        (this.BAR_HEIGHT - 4) / 2);
                     ctx.set_source_rgb (1.0, 1.0, 1.0);
                     ctx.fill ();
                 }
@@ -108,7 +127,7 @@ namespace Audience.Widgets{
                     scale_x:1.0, scale_y:1.0);
                 preview_bg.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 500, opacity:240);
                 this.preview.playing = true;
-                this.get_stage ().cursor_visible = false;
+                this.get_stage ().cursor_visible = true;
                 this.mouse_grabbed = true;
                 return false;
             });
@@ -182,9 +201,9 @@ namespace Audience.Widgets{
         
         public void set_icon (string icon, string fallback) {
             try{
-                var l = Gtk.IconTheme.get_default ().lookup_icon (icon, 18, 0);
+                var l = Gtk.IconTheme.get_default ().lookup_icon (icon, 16, 0);
                 if (l == null)
-                    this.set_from_stock (new Gtk.Image (), fallback, Gtk.IconSize.LARGE_TOOLBAR);
+                    this.set_from_stock (new Gtk.Image (), fallback, Gtk.IconSize.SMALL_TOOLBAR);
                 else
                     this.set_from_pixbuf (l.load_symbolic ({1.0,1.0,1.0,1.0}, null, null, null, null));
             }catch (Error e){warning (e.message);}
@@ -334,9 +353,9 @@ namespace Audience.Widgets{
             this.open = new Button ("list-add-symbolic", Gtk.Stock.OPEN);
             
             var spacer_left = new Clutter.Rectangle.with_color ({0,0,0,0});
-            spacer_left.width = 5;
+            spacer_left.width = 0;
             var spacer_right = new Clutter.Rectangle.with_color ({0,0,0,0});
-            spacer_right.width = 5;
+            spacer_right.width = 0;
             
             this.add_actor (spacer_left);
             this.add_actor (this.play);
@@ -390,7 +409,7 @@ namespace Audience.Widgets{
             this.background.add_constraint (new Clutter.BindConstraint (this, Clutter.BindCoordinate.HEIGHT, 0.0f));
             
             try{
-                var l = Gtk.IconTheme.get_default ().lookup_icon ("media-playback-pause-symbolic", 18, 0);
+                var l = Gtk.IconTheme.get_default ().lookup_icon ("media-playback-pause-symbolic", 16, 0);
                 if (l == null)
                     this.pause_pix = new Gtk.Image.from_stock (Gtk.Stock.MEDIA_PAUSE, Gtk.IconSize.LARGE_TOOLBAR).pixbuf;
                 else
@@ -398,7 +417,7 @@ namespace Audience.Widgets{
             }catch (Error e){warning (e.message);}
             
             try{
-                var l = Gtk.IconTheme.get_default ().lookup_icon ("media-playback-start-symbolic", 18, 0);
+                var l = Gtk.IconTheme.get_default ().lookup_icon ("media-playback-start-symbolic", 16, 0);
                 if (l == null)
                     this.play_pix = new Gtk.Image.from_stock (Gtk.Stock.MEDIA_PLAY, Gtk.IconSize.LARGE_TOOLBAR).pixbuf;
                 else
