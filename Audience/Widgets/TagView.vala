@@ -151,18 +151,21 @@ namespace Audience.Widgets{
             ((Gtk.Bin)this.get_widget ()).add (notebook);
             this.get_widget ().show_all ();
             this.width = 350;
+            this.opacity = 0;
             this.expanded = false;
         }
         
         public void expand (){
             var x2 = this.get_stage ().width - this.width;
             this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x2);
+            this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, opacity:255);
             this.expanded = true;
         }
         
         public void collapse (){
             var x2 = this.get_stage ().width;
             this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x2);
+            this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, opacity:0);
             this.expanded = false;
         }
         
