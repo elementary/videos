@@ -1,0 +1,41 @@
+
+namespace Audience.Widgets{
+    
+    public class Button : GtkClutter.Texture {
+        public signal void clicked ();
+        
+        public Button (string icon, string fallback){
+            set_icon (icon, fallback);
+            
+            this.reactive = true;
+            this.opacity = 255;
+            this.enter_event.connect ( () => {
+                this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 200, opacity:170);
+                return true;
+            });
+            this.leave_event.connect ( () => {
+                this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 200, opacity:255);
+                return true;
+            });
+            
+            this.button_release_event.connect ( () => {
+                this.clicked ();
+                return true;
+            });
+        }
+        
+        public void set_tooltip (string text){
+            //TODO
+        }
+        
+        public void set_icon (string icon, string fallback) {
+            try{
+                var l = Gtk.IconTheme.get_default ().lookup_icon (icon, 16, 0);
+                if (l == null)
+                    this.set_from_stock (new Gtk.Image (), fallback, Gtk.IconSize.SMALL_TOOLBAR);
+                else
+                    this.set_from_pixbuf (l.load_symbolic ({1.0,1.0,1.0,1.0}, null, null, null, null));
+            }catch (Error e){warning (e.message);}
+        }
+    }
+}

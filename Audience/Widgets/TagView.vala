@@ -22,7 +22,7 @@ namespace Audience.Widgets{
         
         public bool expanded;
         public Gtk.Grid taggrid;
-        public AudienceApp app;
+        public Audience.App app;
         
         private Gtk.ComboBoxText languages;
         private Gtk.ComboBoxText subtitles;
@@ -33,7 +33,7 @@ namespace Audience.Widgets{
         int shadow_y    = 0;
         double shadow_alpha = 0.5;
         
-        public TagView (AudienceApp app) {
+        public TagView (Audience.App app) {
             this.app      = app;
             this.reactive = true;
             this.buffer   = new Granite.Drawing.BufferSurface (100, 100);
