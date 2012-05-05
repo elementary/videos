@@ -49,25 +49,35 @@ namespace Audience.Widgets{
             preview_bg.auto_resize = true;
             preview_bg.opacity = 0;
             var ARROW_HEIGHT = 17;
-            var ARROW_WIDTH  = 30;
+            var ARROW_WIDTH  = 20;
             var popover_grad = new Cairo.Pattern.linear (0, 0, 0, preview_bg.height);
-            popover_grad.add_color_stop_rgba (0.0, 0.212, 0.212, 0.212, 1.000);
-            popover_grad.add_color_stop_rgba (1.0, 0.141, 0.141, 0.141, 1.000);
+            popover_grad.add_color_stop_rgba (0.0, 0.243, 0.243, 0.243, 0.7);
+            popover_grad.add_color_stop_rgba (1.0, 0.094, 0.094, 0.094, 0.7);
+            
+            var popover_inset_grad = new Cairo.Pattern.linear (0, 0, 0, preview_bg.height);
+            popover_inset_grad.add_color_stop_rgba (0.0, 1, 1, 1, 0.3);
+            popover_inset_grad.add_color_stop_rgba (1.0, 1, 1, 1, 0.1);
             preview_bg.draw.connect ( (ctx) => {
-                /*stolen from Granite.Widgets.PopOver.cairo_popover*/
-                Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 1, 1,
-                    preview_bg.width - 2, preview_bg.height - ARROW_HEIGHT + 1, 5);
-                ctx.move_to (preview_bg.width/2-ARROW_WIDTH/2, 2 + preview_bg.height - ARROW_HEIGHT);
-                ctx.rel_line_to (ARROW_WIDTH / 2.0, ARROW_HEIGHT);
-                ctx.rel_line_to (ARROW_WIDTH / 2.0, -ARROW_HEIGHT);
-                ctx.close_path ();
+                // Outline
+                Drawing.cairo_popover (ctx, 0, 0, preview_bg.width, 
+                    preview_bg.height - ARROW_HEIGHT, 3, ARROW_WIDTH, ARROW_HEIGHT);
+                ctx.set_source_rgba (0, 0, 0, 0.7);
+                ctx.fill ();
                 
-                ctx.set_source_rgba (0.0, 0.0, 0.0, 0.5);
-                ctx.set_line_width (1.0);
-                ctx.stroke_preserve ();
+                // Inset border
+                Drawing.cairo_popover (ctx, 1, 1, preview_bg.width - 2, 
+                    preview_bg.height - 2 - ARROW_HEIGHT, 3, ARROW_WIDTH - 2, ARROW_HEIGHT - 2);
+                ctx.set_source (popover_inset_grad);
+                ctx.fill ();
                 
+                ctx.set_operator(Cairo.Operator.SOURCE);
+                // Fill
+                Drawing.cairo_popover (ctx, 2, 2, preview_bg.width - 4, 
+                    preview_bg.height - 4 - ARROW_HEIGHT, 3, ARROW_WIDTH - 4, ARROW_HEIGHT - 4);
                 ctx.set_source (popover_grad);
                 ctx.fill ();
+                
+                ctx.set_operator(Cairo.Operator.OVER);
                 return true;
             });
             

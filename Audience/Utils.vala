@@ -162,6 +162,29 @@ namespace Audience {
     namespace Drawing {
     
         /**
+         * Draws a popover shape
+         */
+        public static void cairo_popover (Cairo.Context cr, double x, double y, double width, double height, 
+                                          double radius, double arrow_height, double arrow_width) 
+        {
+            double edge_width = (width - radius * 2);
+            double arrow_offset = (edge_width - arrow_width) / 2;
+            
+            
+            cr.arc (x + width - radius, y + radius, radius, Math.PI * 1.5, Math.PI * 2);
+            cr.arc (x + width - radius, y + height - radius, radius, 0, Math.PI * 0.5);
+
+            cr.arc (x + radius, y + height - radius, radius, Math.PI * 0.5, Math.PI);
+            cr.arc (x + radius, y + radius, radius, Math.PI, Math.PI * 1.5);
+            cr.move_to (x + radius + arrow_offset, y + height);
+
+            cr.rel_line_to (arrow_width / 2, arrow_height);
+            cr.rel_line_to (arrow_width / 2, -arrow_height);
+            
+            cr.close_path ();
+        }
+    
+        /**
          * Draws a 'pill' shape (rounded rectangle with boder radius such that both ends are semicircles)
          */
         public static void cairo_pill (Cairo.Context cr, double x, double y, double width, double height) {
@@ -176,17 +199,13 @@ namespace Audience {
             cr.move_to (x + radius, y);
             switch (side) {
                 case Gtk.PositionType.LEFT:
-                    cr.arc (x + width - radius, y + radius, radius, Math.PI * 1.5, Math.PI * 2);
-                    cr.arc (x + width - radius, y + height - radius, radius, 0, Math.PI * 0.5);
-                    
+                    cr.arc (x + width - radius, y + radius, radius, Math.PI * 1.5, Math.PI * 0.5);
                     cr.line_to ((int)x, y + height); // (int) required to not draw 'half' pixels (blurry)
                     cr.line_to ((int)x, y);
                     cr.line_to ((int)(x + width - radius), y);
                     break;
                 case Gtk.PositionType.RIGHT:
-                    cr.arc (x + radius, y + height - radius, radius, Math.PI * 0.5, Math.PI);
-                    cr.arc (x + radius, y + radius, radius, Math.PI, Math.PI * 1.5);
-
+                    cr.arc (x + radius, y + height - radius, radius, Math.PI * 0.5, Math.PI * 1.5);
                     cr.line_to ((int)(x + width), y);
                     cr.line_to ((int)(x + width), y + height);
                     cr.line_to ((int)(x + radius), y + height);
