@@ -1,10 +1,4 @@
 
-[DBus (name = "org.gnome.SettingsDaemon.MediaKeys")]
-public interface GnomeMediaKeys : GLib.Object {
-    public abstract void GrabMediaPlayerKeys (string application, uint32 time) throws GLib.IOError;
-    public abstract void ReleaseMediaPlayerKeys (string application) throws GLib.IOError;
-    public signal void MediaPlayerKeyPressed (string application, string key);
-}
 
 [CCode (cname="gst_navigation_query_parse_commands_length")]
 public extern bool gst_navigation_query_parse_commands_length (Gst.Query q, out uint n);
@@ -13,202 +7,7 @@ public extern bool gst_navigation_query_parse_commands_nth (Gst.Query q, uint n,
 
 namespace Audience {
     
-    public const int CONTROLS_HEIGHT = 32;
-    
-    public const int SUBTITLES_FLAG = (1 << 2);
-    public const int DOWNLOAD_FLAG  = (1 << 7);
-    
-    public static string get_title (string filename) {
-        var title = get_basename (filename);
-        title = title.replace ("%20", " ").
-            replace ("%3B", ";").
-            replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").
-            replace ("%7D", "}").replace ("_", " ").replace ("."," ").replace ("  "," ");
-        return title;
-    }
-    
-    public static string get_extension (string filename) {
-        int i=0;
-        for (i=filename.length;i!=0;i--) {
-            if (filename [i] == '.')
-                break;
-        }
-        return filename.substring (i+1);
-    }
-    public static string get_basename (string filename) {
-        int i=0;
-        for (i=filename.length;i!=0;i--) {
-            if (filename [i] == '.')
-                break;
-        }
-        int j=0;
-        for (j=filename.length;j!=0;j--) {
-            if (filename[j] == '/')
-                break;
-        }
-        return filename.substring (j + 1, i - j - 1);
-    }
-    
-    public static string seconds_to_time (int seconds) {
-        int hours = seconds / 3600;
-        int minutes = (seconds % 3600) / 60;
-        seconds = seconds % 60;
-        
-        string time = (hours > 0) ? hours.to_string() + ":" : "";
-        time += (((hours > 0) && (minutes < 10)) ? "0" : "") + minutes.to_string() + ":";
-        time += ((seconds < 10) ? "0" : "") + seconds.to_string();
-        return time;
-    }
-    
-    public static bool has_dvd () {
-        var volume_monitor = GLib.VolumeMonitor.get ();
-        var volumes = volume_monitor.get_connected_drives ();
-        
-        for (var i=0; i < volumes.length ();i++) {
-            if (volumes.nth_data (i).get_name ().index_of ("DVD") != -1 && 
-                volumes.nth_data (i).has_media ())
-                return true;
-        }
-        
-        return false;
-    }
-    
-    /* 
-     * get a thumbnail from a file
-     * @param file the file
-     * @param position the position in the video or -1 for 5%
-     * @param pixbuf gtkclutter texture to put the pixbuf in once it's ready
-     * TODO appears not to load thumbs for bigger files
-     **/
-    public static void get_thumb (File file, int64 position, GtkClutter.Texture tex) {
-        //pipeline
-        bool got_video = false;
-        var pipe = new Gst.Pipeline ("pipeline");
-        var src  = Gst.ElementFactory.make ("filesrc", "file");
-        dynamic Gst.Element dec  = Gst.ElementFactory.make ("decodebin2", "dec");
-        
-        pipe.add_many (src, dec);
-        src.link (dec);
-        src.set ("location", file.get_path ());
-        dynamic Gst.Element sink = null;
-        dec.pad_added.connect ( (new_pad) => {
-            if (got_video)
-                return;
-            
-            var csp    = Gst.ElementFactory.make ("ffmpegcolorspace", "f");
-            var scale  = Gst.ElementFactory.make ("videoscale", "s");
-            var filter = Gst.ElementFactory.make ("capsfilter", "c");
-                sink   = Gst.ElementFactory.make ("gdkpixbufsink", "sink");
-            
-            pipe.add_many (csp, scale, filter, sink);
-            
-            var sinkpad = csp.get_static_pad ("sink");
-            new_pad.link (sinkpad);
-            
-            csp.link (scale);
-            scale.link (filter);
-            filter.link (sink);
-            
-            sink.set_state (Gst.State.PAUSED);
-            filter.set_state (Gst.State.PAUSED);
-            scale.set_state (Gst.State.PAUSED);
-            csp.set_state (Gst.State.PAUSED);
-            
-            got_video = true;
-        });
-        
-        pipe.get_bus ().add_signal_watch ();
-        
-        pipe.set_state (Gst.State.PAUSED);
-        
-        bool ready = false;
-        pipe.get_bus ().message.connect ( (bus, msg) => {
-            switch (msg.type) {
-                case Gst.MessageType.ASYNC_DONE:
-                    if (msg.src != pipe)
-                        break;
-                    var fmt = Gst.Format.TIME;
-                    int64 pos;
-                    pipe.query_position (ref fmt, out pos);
-                    if (pos > 1)
-                        ready = true;
-                    else
-                        break;
-                    if (position == -1) {
-                        int64 dur;
-                        pipe.query_duration (ref fmt, out dur);
-                        pipe.seek_simple (Gst.Format.TIME, Gst.SeekFlags.ACCURATE | 
-                            Gst.SeekFlags.FLUSH, (int64)(dur*0.5));
-                    }else {
-                        pipe.seek_simple (Gst.Format.TIME, Gst.SeekFlags.ACCURATE | 
-                            Gst.SeekFlags.FLUSH, position);
-                    }
-                    break;
-                case Gst.MessageType.ELEMENT:
-                    if (!ready)
-                        break;
-                    if (msg.src != sink)
-                        break;
-                    if (!msg.get_structure ().has_name ("prerollpixbuf") &&
-                        !msg.get_structure ().has_name ("pixbuf"))
-                        break;
-                    var val = msg.get_structure ().get_value ("pixbuf");
-                    if (val == null)
-                        return;
-                    var pixbuf = (Gdk.Pixbuf)val.dup_object ();
-                    try {
-                        tex.set_from_pixbuf (pixbuf);
-                    } catch (Error e) {warning (e.message);}
-                    pipe.set_state (Gst.State.NULL);
-                    break;
-                default:
-                    break;
-            }
-        });
-        
-        pipe.set_state (Gst.State.PLAYING);
-    }
-    
-    class LLabel : Gtk.Label {
-        public LLabel (string label) {
-            this.set_halign (Gtk.Align.START);
-            this.label = label;
-        }
-        public LLabel.indent (string label) {
-            this (label);
-            this.margin_left = 10;
-        }
-        public LLabel.markup (string label) {
-            this (label);
-            this.use_markup = true;
-        }
-        public LLabel.right (string label) {
-            this.set_halign (Gtk.Align.END);
-            this.label = label;
-        }
-        public LLabel.right_with_markup (string label) {
-            this.set_halign (Gtk.Align.END);
-            this.use_markup = true;
-            this.label = label;
-        }
-    }
-    
-    public class AudienceSettings : Granite.Services.Settings {
-        
-        public bool move_window          {get; set;}
-        public bool keep_aspect          {get; set;}
-        public bool show_details         {get; set;}
-        public bool resume_videos        {get; set;}
-        public string last_played_videos {get; set;} /*video1,time,video2,time2,...*/
-        public string last_folder        {get; set;}
-        
-        public AudienceSettings () {
-            base ("org.pantheon.Audience");
-        }
-        
-    }
-    
-    public class AudienceApp : Granite.Application {
+    public class App : Granite.Application {
         
         construct {
             program_name = "Audience";
@@ -246,7 +45,7 @@ namespace Audience {
         public bool                       fullscreened;
         public uint                       hiding_timer;
         public GnomeMediaKeys             mediakeys;
-        public AudienceSettings           settings;
+        public Audience.Settings           settings;
         public Audience.Widgets.Playlist  playlist;
         public Audience.Widgets.TopPanel  panel;
         public GtkClutter.Embed           clutter;
@@ -265,7 +64,7 @@ namespace Audience {
         
         public GLib.VolumeMonitor monitor;
         
-        public AudienceApp () {
+        public App () {
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
             
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
@@ -273,17 +72,17 @@ namespace Audience {
             
             this.fullscreened = false;
             
-            this.playlist   = new Audience.Widgets.Playlist ();
-            this.settings   = new AudienceSettings ();
+            this.playlist   = new Widgets.Playlist ();
+            this.settings   = new Settings ();
             this.canvas     = new ClutterGst.VideoTexture ();
             this.mainwindow = new Gtk.Window ();
-            this.tagview    = new Audience.Widgets.TagView (this);
-            this.panel      = new Audience.Widgets.TopPanel ();
+            this.tagview    = new Widgets.TagView (this);
+            this.panel      = new Widgets.TopPanel ();
             
             var mainbox     = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
             this.clutter    = new GtkClutter.Embed ();
             this.stage      = (Clutter.Stage)clutter.get_stage ();
-            this.controls   = new Audience.Widgets.Controls ();
+            this.controls   = new Widgets.Controls ();
             
             //prepare last played videos
             this.last_played_videos = new List<string> ();
@@ -419,9 +218,9 @@ namespace Audience {
                         
                         grid.attach (new Gtk.Image.from_stock (Gtk.Stock.DIALOG_ERROR, 
                             Gtk.IconSize.DIALOG), 0, 0, 1, 2);
-                        grid.attach (new LLabel.markup ("<b>"+
+                        grid.attach (new Widgets.LLabel.markup ("<b>"+
                             _("Oops! Audience can't play this file!")+"</b>"), 1, 0, 1, 1);
-                        grid.attach (new LLabel (e.message), 1, 1, 1, 2);
+                        grid.attach (new Widgets.LLabel (e.message), 1, 1, 1, 2);
                         welcome.show_all ();
                         clutter.hide ();
                         
@@ -1022,7 +821,7 @@ public static void main (string [] args) {
     }
     ClutterGst.init (ref args);
     
-    var app = new Audience.AudienceApp ();
+    var app = new Audience.App ();
     
     app.run (args);
 }

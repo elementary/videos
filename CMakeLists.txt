@@ -34,9 +34,16 @@ ensure_vala_version("0.15.1" MINIMUM)
 include(ValaPrecompile)
 vala_precompile(VALA_C
     Audience/Audience.vala
+    Audience/Consts.vala
+    Audience/Settings.vala
+    Audience/Utils.vala
     ${CMAKE_BINARY_DIR}/Audience/Config.vala
     Audience/Widgets/TagView.vala
-    Audience/Widgets/Controls.vala
+    Audience/Widgets/Button.vala
+    Audience/Widgets/ControlsBar.vala
+    Audience/Widgets/LLabel.vala
+    Audience/Widgets/MediaSlider.vala
+    Audience/Widgets/TopPanel.vala
     Audience/Widgets/Playlist.vala
 PACKAGES
     gtk+-3.0
