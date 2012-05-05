@@ -95,14 +95,14 @@ namespace Audience.Widgets{
                 ctx.fill ();
                 //buffering
                 if (this._buffered != 0.0){
-                    Drawing.cairo_pill (ctx, 2, 2, 
-                        (this._buffered / this.preview.duration * this.bar.width) - 4, this.BAR_HEIGHT - 4);
+                    Drawing.cairo_half_pill (ctx, 2, 2, 
+                        (this._buffered / this.preview.duration * this.bar.width) - 4, this.BAR_HEIGHT - 4, Gtk.PositionType.RIGHT);
                     ctx.set_source_rgb (0.6, 0.6, 0.6);
                     ctx.fill ();
                 }
                 //progress
                 if (this._progress != 0.0){
-                    Drawing.cairo_pill (ctx, 2, 2, (this._progress * this.width) - 4, this.BAR_HEIGHT - 4);
+                    Drawing.cairo_half_pill (ctx, 2, 2, (this._progress * this.width) - 4, this.BAR_HEIGHT - 4, Gtk.PositionType.RIGHT);
                     ctx.set_source_rgb (1.0, 1.0, 1.0);
                     ctx.fill ();
                 }

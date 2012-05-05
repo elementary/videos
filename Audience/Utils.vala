@@ -167,6 +167,35 @@ namespace Audience {
         public static void cairo_pill (Cairo.Context cr, double x, double y, double width, double height) {
             Granite.Drawing.Utilities.cairo_rounded_rectangle (cr, x, y, width, height, height / 2);
         }
+        
+        /**
+         * Draws a ' halfpill' shape (rounded rectangle with boder radius such that one ends is a semicircle)
+         */
+        public static void cairo_half_pill (Cairo.Context cr, double x, double y, double width, double height, Gtk.PositionType side) {
+            double radius = height / 2;
+            cr.move_to (x + radius, y);
+            switch (side) {
+                case Gtk.PositionType.LEFT:
+                    cr.arc (x + width - radius, y + radius, radius, Math.PI * 1.5, Math.PI * 2);
+                    cr.arc (x + width - radius, y + height - radius, radius, 0, Math.PI * 0.5);
+                    
+                    cr.line_to ((int)x, y + height); // (int) required to not draw 'half' pixels (blurry)
+                    cr.line_to ((int)x, y);
+                    cr.line_to ((int)(x + width - radius), y);
+                    break;
+                case Gtk.PositionType.RIGHT:
+                    cr.arc (x + radius, y + height - radius, radius, Math.PI * 0.5, Math.PI);
+                    cr.arc (x + radius, y + radius, radius, Math.PI, Math.PI * 1.5);
+
+                    cr.line_to ((int)(x + width), y);
+                    cr.line_to ((int)(x + width), y + height);
+                    cr.line_to ((int)(x + radius), y + height);
+                    break;
+                default:
+                    assert_not_reached();
+            }
+            cr.close_path ();
+        }
     
     
     }
