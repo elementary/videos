@@ -158,4 +158,16 @@ namespace Audience {
         
         pipe.set_state (Gst.State.PLAYING);
     }
+    
+    namespace Drawing {
+    
+        /**
+         * Draws a 'pill' shape (rounded rectangle with boder radius such that both ends are semicircles)
+         */
+        public static void cairo_pill (Cairo.Context cr, double x, double y, double width, double height) {
+            Granite.Drawing.Utilities.cairo_rounded_rectangle (cr, x, y, width, height, height / 2);
+        }
+    
+    
+    }
 }

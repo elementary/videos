@@ -82,33 +82,27 @@ namespace Audience.Widgets{
             this.bar.draw.connect ( (ctx) => {
                 this.bar.clear();
                 //drop shadow
-                Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 0, 0, 
-                    this.bar.width, this.BAR_HEIGHT, this.BAR_HEIGHT / 2);
+                Drawing.cairo_pill (ctx, 0, 0, this.bar.width, this.BAR_HEIGHT);
                 ctx.set_source (bar_shadow_grad);
                 ctx.fill ();
                 //outline
-                Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 1, 1, 
-                    this.bar.width - 2, this.BAR_HEIGHT - 2, (this.BAR_HEIGHT - 2) / 2);
+                Drawing.cairo_pill (ctx, 1, 1, this.bar.width - 2, this.BAR_HEIGHT - 2);
                 ctx.set_source_rgba (0, 0, 0, 0.4);
                 ctx.fill ();
                 //bg
-                Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 2, 2, 
-                    this.bar.width - 4, this.BAR_HEIGHT - 4, (this.BAR_HEIGHT - 4) / 2);
+                Drawing.cairo_pill (ctx, 2, 2, this.bar.width - 4, this.BAR_HEIGHT - 4);
                 ctx.set_source (bar_grad);
                 ctx.fill ();
                 //buffering
                 if (this._buffered != 0.0){
-                    Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 2, 2, 
-                        (this._buffered / this.preview.duration * this.bar.width) - 4,
-                        this.BAR_HEIGHT - 4, (this.BAR_HEIGHT - 4) / 2);
+                    Drawing.cairo_pill (ctx, 2, 2, 
+                        (this._buffered / this.preview.duration * this.bar.width) - 4, this.BAR_HEIGHT - 4);
                     ctx.set_source_rgb (0.6, 0.6, 0.6);
                     ctx.fill ();
                 }
                 //progress
                 if (this._progress != 0.0){
-                    Granite.Drawing.Utilities.cairo_rounded_rectangle (ctx, 2, 2, 
-                        (this._progress * this.width) - 4, this.BAR_HEIGHT - 4, 
-                        (this.BAR_HEIGHT - 4) / 2);
+                    Drawing.cairo_pill (ctx, 2, 2, (this._progress * this.width) - 4, this.BAR_HEIGHT - 4);
                     ctx.set_source_rgb (1.0, 1.0, 1.0);
                     ctx.fill ();
                 }
