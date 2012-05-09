@@ -166,12 +166,13 @@ namespace Audience {
             
             //handle welcome
             welcome.activated.connect ( (index) => {
+				if (filename == "" && index == 1)
+					index = 2;
                 switch (index) {
                 case 0:
                     run_open (0);
                     break;
                 case 1:
-                    File file = File.new_for_uri (filename);
 					open_file (filename);
 					canvas.get_pipeline ().set_state (Gst.State.PAUSED);
 					this.canvas.progress = double.parse (last_played_videos.nth_data (1));
