@@ -99,9 +99,17 @@ namespace Audience {
             
             this.welcome = new Granite.Widgets.Welcome ("No videos are open.", _("Select a source start playing."));
             welcome.append ("document-open", _("Open file"), _("Open a saved file."));
+            
+            //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
+            string filename = "";
+            if (last_played_videos.length () > 0) {
+				string[] filepath = last_played_videos.nth_data (0).split ("/");
+				filename = filepath[filepath.length - 1];
+				welcome.append ("media-playback-start", _("Resume last video"), filename);
+				filename = last_played_videos.nth_data (0);
+			}
             if (has_dvd)
                 welcome.append ("media-cdrom", _("Watch a DVD"), _("Open a film"));
-            //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
             
             /*UI*/
             this.canvas.reactive = true;
@@ -158,11 +166,24 @@ namespace Audience {
             
             //handle welcome
             welcome.activated.connect ( (index) => {
-                if (index == 0) {
+                switch (index) {
+                case 0:
                     run_open (0);
-                } else if (index == 1) {
-                    run_open (2);
-                } else {
+                    break;
+                case 1:
+                    File file = File.new_for_uri (filename);
+					open_file (filename);
+					canvas.get_pipeline ().set_state (Gst.State.PAUSED);
+					this.canvas.progress = double.parse (last_played_videos.nth_data (1));
+					canvas.get_pipeline ().set_state (Gst.State.PLAYING);
+					canvas.playing = true;
+					welcome.hide ();
+					clutter.show_all ();
+					break;
+				case 2:
+					run_open (2);
+					break;
+                default:
                     var d = new Gtk.Dialog.with_buttons (_("Open location"), 
                         this.mainwindow, Gtk.DialogFlags.MODAL, 
                         Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
@@ -185,6 +206,7 @@ namespace Audience {
                         clutter.show_all ();
                     }
                     d.destroy ();
+                    break;
                 }
             });
             
@@ -263,7 +285,7 @@ namespace Audience {
                                     mainbox.remove (err);
                                 }
                             });
-                        }else { //may be navigation command
+                        } else { //may be navigation command
                             var nav_msg = Gst.Navigation.message_get_type (msg);
                             
                             if (nav_msg == Gst.NavigationMessageType.COMMANDS_CHANGED) {
