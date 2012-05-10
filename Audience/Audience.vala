@@ -177,7 +177,7 @@ namespace Audience {
 					canvas.get_pipeline ().set_state (Gst.State.PAUSED);
 					this.canvas.progress = double.parse (last_played_videos.nth_data (1));
 					canvas.get_pipeline ().set_state (Gst.State.PLAYING);
-					canvas.playing = true;
+					toggle_play (true);
 					welcome.hide ();
 					clutter.show_all ();
 					break;
