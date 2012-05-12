@@ -35,5 +35,10 @@
             <summary>Hide the mouse when the preview is show</summary>
             <description>Set whether the mouse is shown when it's hovering the seekbar and Audience shows its preview window.</description>
         </key>
+        <key name="playback-wait" type="b">
+            <default>false</default>
+            <summary>Don't instantly start video playback</summary>
+            <description>Audience doesn't play an opened file instantly, but waits until you explicitely play it, allowing you to seek to some place or do some settings before watching</description>
+        </key>
     </schema>
 </schemalist>

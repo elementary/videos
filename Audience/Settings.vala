@@ -9,6 +9,7 @@ namespace Audience {
         public string last_played_videos {get; set;} /*video1,time,video2,time2,...*/
         public string last_folder        {get; set;}
         public bool hide_mouse_on_popover{get; set;}
+        public bool playback_wait        {get; set;}
         
         public Settings () {
             base ("org.pantheon.Audience");

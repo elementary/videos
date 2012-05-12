@@ -733,7 +733,8 @@ namespace Audience {
             if (settings.show_details)
                 tagview.get_tags (uri, true);
             
-            this.toggle_play (true);
+            if (!settings.playback_wait)
+                this.toggle_play (true);
             this.place (true);
             
             if (settings.resume_videos) {
