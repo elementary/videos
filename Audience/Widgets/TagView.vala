@@ -156,7 +156,7 @@ namespace Audience.Widgets{
         }
         
         public void expand (){
-            var x2 = this.get_stage ().width - this.width;
+            var x2 = this.get_stage ().width - this.width + 10;
             this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x2);
             this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, opacity:255);
             this.expanded = true;
