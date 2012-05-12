@@ -103,11 +103,9 @@ namespace Audience {
             //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
             string filename = "";
             if (last_played_videos.length () > 0) {
-				string[] filepath = last_played_videos.nth_data (0).split ("/");
-				filename = filepath[filepath.length - 1];
-				welcome.append ("media-playback-start", _("Resume last video"), filename);
-				filename = last_played_videos.nth_data (0);
-			}
+                filename = last_played_videos.nth_data (0);
+                welcome.append ("media-playback-start", _("Resume last video"), get_title (File.new_for_uri (filename).get_basename ()));
+            }
             if (has_dvd)
                 welcome.append ("media-cdrom", _("Watch a DVD"), _("Open a film"));
             

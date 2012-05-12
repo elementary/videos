@@ -9,7 +9,7 @@ public interface GnomeMediaKeys : GLib.Object {
 namespace Audience {
     
     public static string get_title (string filename) {
-        var title = filename;
+        var title = get_basename (filename);
         title = title.replace ("%20", " ").
             replace ("%3B", ";").
             replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").
@@ -31,12 +31,7 @@ namespace Audience {
             if (filename [i] == '.')
                 break;
         }
-        int j=0;
-        for (j=filename.length;j!=0;j--) {
-            if (filename[j] == '/')
-                break;
-        }
-        return filename.substring (j + 1, i - j - 1);
+        return filename.substring (0, i);
     }
     
     public static string seconds_to_time (int seconds) {
