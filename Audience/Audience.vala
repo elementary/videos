@@ -584,7 +584,7 @@ namespace Audience {
             Gtk.drag_dest_set (this.mainwindow, 
                 Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
             this.mainwindow.drag_data_received.connect ( (ctx, x, y, sel, info, time) => {
-                for (var i=0;i<sel.get_uris ().length; i++)
+                for (var i=1;i<sel.get_uris ().length; i++)
                     this.playlist.add_item (File.new_for_uri (sel.get_uris ()[i]));
                 this.open_file (sel.get_uris ()[0]);
                 welcome.hide ();
@@ -646,7 +646,7 @@ namespace Audience {
                 if (file.run () == Gtk.ResponseType.ACCEPT) {
                     welcome.hide ();
                     clutter.show_all ();
-                    for (var i=0;i<file.get_files ().length ();i++) {
+                    for (var i=1;i<file.get_files ().length ();i++) {
                         this.playlist.add_item (file.get_files ().nth_data (i));
                     }
                     open_file (file.get_uri ());
@@ -718,7 +718,28 @@ namespace Audience {
         
         internal void open_file (string filename, bool dont_modify=false) {
             this.error = false; //reset error
-            this.current_file = File.new_for_commandline_arg (filename);
+            var to_be_opened = File.new_for_commandline_arg (filename);
+            this.current_file = to_be_opened;
+            
+            if (current_file.query_file_type (0) == FileType.DIRECTORY) {
+                try {
+                    var files = current_file.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+                    FileInfo info;
+                    bool first = true;
+                    while ((info = files.next_file ()) != null) {
+                        var file = GLib.File.new_for_uri (
+                            to_be_opened.get_uri ()  +"/"+info.get_name ());
+                        if (first) {
+                            this.current_file = file;
+                            first = false;
+                        }
+                        playlist.add_item (file);
+                    }
+                } catch (Error e) { warning (e.message); }
+            } else {
+                playlist.add_item (this.current_file);
+            }
+            
             this.reached_end = false;
             debug ("Opening %s", this.current_file.get_uri ());
             var uri = this.current_file.get_uri ();
@@ -837,7 +858,7 @@ namespace Audience {
         
         //the application was requested to open some files
         public override void open (File [] files, string hint) {
-            for (var i=0;i<files.length;i++)
+            for (var i=1;i<files.length;i++)
                 this.playlist.add_item (files[i]);
             this.open_file (files[0].get_path ());
             this.welcome.hide ();
