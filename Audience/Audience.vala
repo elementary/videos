@@ -239,9 +239,12 @@ namespace Audience {
                         var dlg  = new Gtk.Dialog.with_buttons (_("Error"), mainwindow, 
                             Gtk.DialogFlags.MODAL, Gtk.Stock.OK, Gtk.ResponseType.OK);
                         var grid = new Gtk.Grid ();
+                        var err  = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_ERROR, 
+                            Gtk.IconSize.DIALOG);
                         
-                        grid.attach (new Gtk.Image.from_stock (Gtk.Stock.DIALOG_ERROR, 
-                            Gtk.IconSize.DIALOG), 0, 0, 1, 2);
+                        err.margin_right = 12;
+                        grid.margin = 12;
+                        grid.attach (err, 0, 0, 1, 1);
                         grid.attach (new Widgets.LLabel.markup ("<b>"+
                             _("Oops! Audience can't play this file!")+"</b>"), 1, 0, 1, 1);
                         grid.attach (new Widgets.LLabel (e.message), 1, 1, 1, 2);
