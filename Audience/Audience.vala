@@ -415,6 +415,12 @@ namespace Audience {
                 return false;
             });
             
+            /*hide controls when mouse leaves window*/
+            this.mainwindow.leave_notify_event.connect ( (e) => {
+                this.controls.hidden = true;
+                return true;
+            });
+            
             /*open location popover*/
             this.controls.open.clicked.connect ( () => {
                 var has_been_stopped = this.canvas.playing;
