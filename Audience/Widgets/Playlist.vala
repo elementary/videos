@@ -84,7 +84,6 @@ namespace Audience.Widgets {
         
         public void add_item (File path) {
             Gtk.TreeIter iter;
-            var ext = Audience.get_extension (path.get_path ());
             Gdk.Pixbuf pix = null; //may becoming the thumb...
             
             Gdk.Pixbuf? playing = null;
@@ -100,7 +99,7 @@ namespace Audience.Widgets {
             
             playlist.append (out iter);
             playlist.set (iter, 0, playing, 1, pix, 
-                                2, Audience.get_title (path.get_path ()), 3, path.get_path ());
+                                2, Audience.get_title (path.get_basename ()), 3, path.get_path ());
         }
         
         public void remove_item (File path) {

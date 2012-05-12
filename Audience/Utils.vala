@@ -9,7 +9,7 @@ public interface GnomeMediaKeys : GLib.Object {
 namespace Audience {
     
     public static string get_title (string filename) {
-        var title = get_basename (filename);
+        var title = filename;
         title = title.replace ("%20", " ").
             replace ("%3B", ";").
             replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").

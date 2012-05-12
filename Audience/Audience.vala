@@ -729,7 +729,7 @@ namespace Audience {
             this.controls.slider.preview.uri = uri;
             this.controls.slider.preview.audio_volume = 0.0;
             
-            this.mainwindow.title = get_title (uri);
+            this.mainwindow.title = get_title (current_file.get_basename ());
             if (settings.show_details)
                 tagview.get_tags (uri, true);
             
