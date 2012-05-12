@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-13 00:30+0200\n"
+"POT-Creation-Date: 2012-05-13 01:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgid "Play"
 msgstr ""
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:134
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:629
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:642
 msgid "Open"
 msgstr ""
 
@@ -74,22 +74,41 @@ msgstr ""
 msgid "Oops! Audience can't play this file!"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:448
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:276
+msgid ""
+"Some media files need extra software to be played. Audience can install this "
+"software automatically."
+msgstr ""
+
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:282
+#, c-format
+msgid "Audience needs %s to play this file."
+msgstr ""
+
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:285
+msgid "Don't install"
+msgstr ""
+
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:286
+msgid "Install"
+msgstr ""
+
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:461
 msgid "Add from Harddrive"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:450
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:463
 msgid "Play a DVD"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:452
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:465
 msgid "Network File"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:635
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:648
 msgid "All files"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:639
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:652
 msgid "Video files"
 msgstr ""

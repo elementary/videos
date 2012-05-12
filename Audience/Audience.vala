@@ -262,33 +262,46 @@ namespace Audience {
                             this.canvas.get_pipeline ().set_state (Gst.State.NULL);
                             debug ("Missing plugin\n");
                             this.error = true;
-                            var detail = Gst.missing_plugin_message_get_description (msg);
-                            var err = new Gtk.InfoBar.with_buttons (
-                                "Do nothing", 0,
-                                "Install missing plugins", 1);
-                            ((Gtk.Container)err.get_content_area ()).add (new Gtk.Label (
-                                "There's something missing to play this file! What now? ("+detail+")"));
-                            err.message_type = Gtk.MessageType.ERROR;
-                            mainbox.pack_start (err, false);
-                            mainbox.reorder_child (err, 0);
-                            err.show_all ();
                             
-                            err.response.connect ( (id) => {
-                                if (id == 1){
-                                    var installer = Gst.missing_plugin_message_get_installer_detail
-                                       (msg);
+                            this.mainwindow.set_keep_above (false);
+                            clutter.hide ();
+                            welcome.show ();
+                            
+                            var detail = Gst.missing_plugin_message_get_description (msg);
+                            var dlg = new Gtk.Dialog.with_buttons ("Missing plugin", this.mainwindow,
+                                Gtk.DialogFlags.MODAL);
+                            var grid = new Gtk.Grid ();
+                            var err  = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_ERROR, 
+                                Gtk.IconSize.DIALOG);
+                            var phrase = new Widgets.LLabel (_("Some media files need extra software to be played. Audience can install this software automatically."));
+                            
+                            err.margin_right = 12;
+                            grid.margin = 12;
+                            grid.attach (err, 0, 0, 1, 1);
+                            grid.attach (new Widgets.LLabel.markup ("<b>"+
+                                _("Audience needs %s to play this file.").printf (detail)+"</b>"), 1, 0, 1, 1);
+                            grid.attach (phrase, 1, 1, 1, 2);
+                            
+                            dlg.add_button (_("Don't install"), 1);
+                            dlg.add_button (_("Install")+" "+detail, 0);
+                            
+                            (dlg.get_content_area () as Gtk.Container).add (grid);
+                            
+                            dlg.show_all ();
+                            if (dlg.run () == 0) {
+                                var installer = Gst.missing_plugin_message_get_installer_detail (msg);
                                 var context = new Gst.InstallPluginsContext ();
-                                    Gst.install_plugins_async ({installer}, context,
-                                    () => { //finished
-                                        debug ("Finished plugin install\n");
-                                        Gst.update_registry ();
-                                        mainbox.remove (err);
-                                        this.canvas.get_pipeline ().set_state (Gst.State.PLAYING);
-                                    });
-                                } else {
+                                Gst.install_plugins_async ({installer}, context,
+                                () => { //finished
+                                    debug ("Finished plugin install\n");
+                                    Gst.update_registry ();
                                     mainbox.remove (err);
-                                }
-                            });
+                                    clutter.show ();
+                                    welcome.hide ();
+                                    this.toggle_play (true);
+                                });
+                            }
+                            dlg.destroy ();
                         } else { //may be navigation command
                             var nav_msg = Gst.Navigation.message_get_type (msg);
                             

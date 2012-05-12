@@ -187,9 +187,9 @@ namespace Audience.Widgets{
                     tags.get_string (Gst.TAG_CODEC, out desc);
                 
                 if (target == "audio" && desc != null) {
-                    this.languages.append (i.to_string (), desc);
+                    this.languages.append (i.to_string (), Gst.tag_get_language_name (desc));
                 }else if (desc != null) {
-                    this.subtitles.append (i.to_string (), desc);
+                    this.subtitles.append (i.to_string (), Gst.tag_get_language_name (desc));
                 }
             }
             if (target == "audio") {
