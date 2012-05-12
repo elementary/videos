@@ -10,6 +10,7 @@ namespace Audience {
         public string last_folder        {get; set;}
         public bool hide_mouse_on_popover{get; set;}
         public bool playback_wait        {get; set;}
+        public bool stay_on_top          {get; set;}
         
         public Settings () {
             base ("org.pantheon.Audience");

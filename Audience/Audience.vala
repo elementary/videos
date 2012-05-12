@@ -672,6 +672,8 @@ namespace Audience {
                 this.controls.hidden = false;
                 if (this.fullscreened)
                     this.panel.hidden = false;
+                
+                this.mainwindow.set_keep_above (false);
             } else {
                 if (this.reached_end) {
                     canvas.progress = 0.0;
@@ -686,6 +688,9 @@ namespace Audience {
                 
                 this.set_screensaver (false);
                 this.playing = true;
+                
+                if (settings.stay_on_top)
+                    this.mainwindow.set_keep_above (true);
             }
         }
         /**/
