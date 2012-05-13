@@ -48,6 +48,17 @@ namespace Audience.Widgets {
                 if (playing != null) //if playing is not null it's the current item
                     this.current = int.parse (path.to_string ());
             });
+            
+            var css_fix = new Gtk.CssProvider ();
+            try {
+                css_fix.load_from_data ("
+                    * {
+                        background-image:none;
+                        background-color:@transparent;
+                        border-color:@transparent;
+                    }", -1);
+            } catch (Error e) { warning (e.message); }
+            this.get_style_context ().add_provider (css_fix, 20000);
         }
         
         private inline void change_current_symbol (Gtk.TreeIter new_item) {
