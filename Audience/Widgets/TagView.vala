@@ -61,9 +61,9 @@ namespace Audience.Widgets{
             setupgrid.margin = 12;
             setupgrid.column_spacing = 12;
             
-            this.subtitles.append ("-1", _("None"));
-            this.subtitles.active = 0;
             this.subtitles.changed.connect ( () => {
+                if (subtitles.active_id == null)
+                    return;
                 dynamic Gst.Element pipe = this.app.canvas.get_pipeline ();
                 
                 int flags;
@@ -78,6 +78,14 @@ namespace Audience.Widgets{
                     pipe.set ("flags", flags, 
                         "current-text", int.parse (this.subtitles.active_id));
                 }
+            });
+            
+            this.languages.changed.connect ( () => { //place it here to not get problems
+                if (this.languages.active_id == null)
+                    return;
+                debug ("Switching to audio %s\n", this.languages.active_id);
+                dynamic Gst.Element pipe = this.app.canvas.get_pipeline ();
+                pipe.current_audio = int.parse (this.languages.active_id);
             });
             
             var playlist_scrolled = new Gtk.ScrolledWindow (null, null);
@@ -169,8 +177,16 @@ namespace Audience.Widgets{
             this.expanded = false;
         }
         
+        public void setup_text_setup  (Gst.Element e, int s) { setup_setup ("text"); }
+        public void setup_audio_setup (Gst.Element e, int s) { setup_setup ("audio"); }
         /*target is either "text" or "audio"*/
         public void setup_setup (string target) {
+            
+            if (target == "audio" && this.languages.model.iter_n_children (null) > 0)
+                this.languages.remove_all ();
+            else if (target == "text" && this.subtitles.model.iter_n_children (null) > 0)
+                this.subtitles.remove_all ();
+            
             Value num = 0;
             this.app.canvas.get_pipeline ().get_property ("n-"+target, ref num);
             
@@ -196,25 +212,22 @@ namespace Audience.Widgets{
                 }
             }
             if (target == "audio") {
-                if (used <= 1) { //FIXME
+                if (used == 0) {
                     this.languages.append ("def", _("Default"));
                     this.languages.active = 0;
                     this.languages.sensitive = false;
                 } else {
                     this.languages.sensitive = true;
                     this.languages.active = 0;
-                    
-                    this.languages.changed.connect ( () => { //place it here to not get problems
-                        debug ("Switching to audio %s\n", this.languages.active_id);
-                        dynamic Gst.Element pipe = this.app.canvas.get_pipeline ();
-                        pipe.current_audio = int.parse (this.languages.active_id);
-                    });
                 }
             } else {
                 if (used == 0)
                     this.subtitles.sensitive = false;
                 else
                     this.subtitles.sensitive = true;
+                
+                this.subtitles.append ("-1", _("None"));
+                this.subtitles.active_id = "-1";
             }
         }
         

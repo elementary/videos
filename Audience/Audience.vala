@@ -147,6 +147,11 @@ namespace Audience {
             clutter.hide ();
             
             /*events*/
+            /*if langs or subs change, rescan*/
+            dynamic Gst.Pipeline el = this.canvas.get_pipeline ();
+            el.text_tags_changed.connect (tagview.setup_text_setup);
+            el.audio_tags_changed.connect (tagview.setup_audio_setup);
+            
             //look for dvd
             this.monitor = GLib.VolumeMonitor.get ();
             monitor.drive_connected.connect ( (drive) => {
@@ -801,8 +806,8 @@ namespace Audience {
             pipe.set ("flags", flags, "current-text", -1);
             
             /*subtitles/audio tracks*/
-            this.tagview.setup_setup ("text");
-            this.tagview.setup_setup ("audio");
+            /*this.tagview.setup_setup ("text");
+            this.tagview.setup_setup ("audio");*/
         }
         
         private void place (bool resize_window = false) {
