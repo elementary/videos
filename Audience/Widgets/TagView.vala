@@ -174,6 +174,7 @@ namespace Audience.Widgets{
             Value num = 0;
             this.app.canvas.get_pipeline ().get_property ("n-"+target, ref num);
             
+            int used = 0;
             for (var i=0;i<num.get_int ();i++) {
                 Gst.TagList tags = null;
                 Signal.emit_by_name (this.app.canvas.get_pipeline (), 
@@ -181,19 +182,25 @@ namespace Audience.Widgets{
                 if (tags == null)
                     continue;
                 
+                used ++;
                 string desc;
                 tags.get_string (Gst.TAG_LANGUAGE_CODE, out desc);
                 if (desc == null)
                     tags.get_string (Gst.TAG_CODEC, out desc);
                 
+                var readable = Gst.tag_get_language_name (desc);
                 if (target == "audio" && desc != null) {
-                    this.languages.append (i.to_string (), Gst.tag_get_language_name (desc));
+                    this.languages.append (i.to_string (), (readable == null)?desc:readable);
                 }else if (desc != null) {
                     this.subtitles.append (i.to_string (), Gst.tag_get_language_name (desc));
                 }
+                
+                message ("Getting %s", desc);
+                
+                debug (desc);
             }
             if (target == "audio") {
-                if (num.get_int () <= 1) {
+                if (used <= 1) { //FIXME
                     this.languages.append ("def", _("Default"));
                     this.languages.active = 0;
                     this.languages.sensitive = false;
@@ -208,7 +215,7 @@ namespace Audience.Widgets{
                     });
                 }
             } else {
-                if (num.get_int () <= 1)
+                if (used == 0)
                     this.subtitles.sensitive = false;
                 else
                     this.subtitles.sensitive = true;

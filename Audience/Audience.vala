@@ -431,7 +431,8 @@ namespace Audience {
             
             /*hide controls when mouse leaves window*/
             this.mainwindow.leave_notify_event.connect ( (e) => {
-                this.controls.hidden = true;
+                if (!this.tagview.expanded && this.playing)
+                    this.controls.hidden = true;
                 return true;
             });
             
