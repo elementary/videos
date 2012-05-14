@@ -194,10 +194,6 @@ namespace Audience.Widgets{
                 }else if (desc != null) {
                     this.subtitles.append (i.to_string (), Gst.tag_get_language_name (desc));
                 }
-                
-                message ("Getting %s", desc);
-                
-                debug (desc);
             }
             if (target == "audio") {
                 if (used <= 1) { //FIXME
