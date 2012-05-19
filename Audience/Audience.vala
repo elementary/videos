@@ -823,17 +823,13 @@ namespace Audience {
             canvas.get_base_size (out video_w, out video_h);
             //aspect ratio handling
             if (!this.error) {
-                if (stage.width < stage.height) {
-                    this.canvas.height = (stage.height < 10)?10:stage.height;
-                    this.canvas.width  = stage.height / video_h * video_w;
-                    this.canvas.x      = (stage.width - this.canvas.width) / 2.0f;
-                    this.canvas.y      = 0.0f;
-                } else {
-                    this.canvas.width  = (stage.width < 10)?10:stage.width;
-                    this.canvas.height = stage.width / video_w *  video_h;
-                    this.canvas.y      = (stage.height - this.canvas.height) / 2.0f;
-                    this.canvas.x      = 0.0f;
-                }
+                var aspect = (stage.width/video_w < stage.height/video_h)?   stage.width/video_w:
+                                                                            stage.height/video_h;
+                this.canvas.width  = video_w * aspect;
+                this.canvas.height = video_h * aspect;
+                this.canvas.x      = (stage.width  - this.canvas.width)  / 2;
+                this.canvas.y      = (stage.height - this.canvas.height) / 2;
+                
                 if (resize_window && video_w > 50 && video_h > 50)
                     fit_window ();
             }
