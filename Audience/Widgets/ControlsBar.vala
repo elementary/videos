@@ -25,19 +25,24 @@ namespace Audience.Widgets{
         bool _hidden;
         public bool hidden{
             get { return _hidden; }
-            set { 
+            set {
                 if (_hidden && !value){
-                    float y2 = this.get_stage ().height - CONTROLS_HEIGHT;
+                    float y2 = (app.fullscreened)?Gdk.Screen.get_default ().height ()-CONTROLS_HEIGHT:
+                                                  this.get_stage ().height - CONTROLS_HEIGHT;
                     this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y:y2);
                 }else if (!_hidden && value){
-                    float y2 = this.get_stage ().height;
+                    float y2 = (app.fullscreened)?Gdk.Screen.get_default ().height ():
+                                                  this.get_stage ().height;
                     this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 1000, y:y2);
                 }
                 this._hidden = value;
             }
         }
         
-        public Controls (){
+        private App app;
+        
+        public Controls (App app) {
+            this.app            = app;
             this.layout         = new Clutter.BoxLayout ();
             this.layout_manager = layout;
             this._hidden        = false;
@@ -50,7 +55,7 @@ namespace Audience.Widgets{
             this.slider = new MediaSlider ();
             
             this.play = new Button ("media-playback-start-symbolic", Gtk.Stock.MEDIA_PLAY);
-            this.view = new Button ("pane-show-symbolic", Gtk.Stock.GO_BACK);
+            this.view = new Button ("pane-show-symbolic", Gtk.Stock.GO_BACK, "go-previous-symbolic");
             this.open = new Button ("list-add-symbolic", Gtk.Stock.OPEN);
             
             var spacer_left = new Clutter.Rectangle.with_color ({0,0,0,0});

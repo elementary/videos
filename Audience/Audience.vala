@@ -83,7 +83,7 @@ namespace Audience {
             var mainbox     = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
             this.clutter    = new GtkClutter.Embed ();
             this.stage      = (Clutter.Stage)clutter.get_stage ();
-            this.controls   = new Widgets.Controls ();
+            this.controls   = new Widgets.Controls (this);
             
             //prepare last played videos
             this.last_played_videos = new List<string> ();
@@ -113,6 +113,8 @@ namespace Audience {
             this.canvas.reactive = true;
             this.canvas.width    = 624;
             this.canvas.height   = 352;
+            
+            this.controls.y = Gdk.Screen.get_default ().height (); //place it somewhere low
             
             stage.add_actor (canvas);
             stage.add_actor (tagview);
@@ -218,7 +220,6 @@ namespace Audience {
             this.canvas.size_change.connect ( () => {
                 this.place (true);
             });
-            
             //check for errors on pipe's bus
             this.canvas.error.connect ( () => {
                 warning ("An error occured");
@@ -537,11 +538,12 @@ namespace Audience {
             this.controls.view.clicked.connect ( () => {
                 if (!controls.showing_view) {
                     tagview.expand ();
-                    controls.view.set_icon ("pane-hide-symbolic", Gtk.Stock.GO_FORWARD);
+                    controls.view.set_icon ("pane-hide-symbolic", Gtk.Stock.GO_FORWARD, "go-next-symbolic");
                     controls.showing_view = true;
                 } else {
                     tagview.collapse ();
-                    controls.view.set_icon ("pane-show-symbolic", Gtk.Stock.GO_BACK);
+                    controls.view.set_icon ("pane-show-symbolic", Gtk.Stock.GO_BACK, 
+                        "go-previous-symbolic");
                     controls.showing_view = false;
                 }
             });
@@ -735,6 +737,9 @@ namespace Audience {
                 this.mainwindow.fullscreen ();
                 this.fullscreened = true;
                 this.panel.toggle (true);
+                
+                stage.height = Gdk.Screen.get_default ().height ();
+                this.place ();
             }
         }
         
@@ -815,9 +820,6 @@ namespace Audience {
                 stage.width - this.tagview.width:
                 stage.width;
             
-            this.controls.width    = stage.width;
-            this.controls.y        = stage.height - CONTROLS_HEIGHT;
-            
             canvas.get_base_size (out video_w, out video_h);
             //aspect ratio handling
             if (!this.error) {
@@ -835,6 +837,14 @@ namespace Audience {
                 if (resize_window && video_w > 50 && video_h > 50)
                     fit_window ();
             }
+            
+            this.controls.width = stage.width;
+            
+            if (this.fullscreened) {
+                this.controls.y = (this.controls.hidden)?Gdk.Screen.get_default ().height ():
+                                       Gdk.Screen.get_default ().height () - CONTROLS_HEIGHT;
+            } else if (stage.height - CONTROLS_HEIGHT > 50)
+                this.controls.y = stage.height - CONTROLS_HEIGHT;
         }
         
         private void fit_window () {
