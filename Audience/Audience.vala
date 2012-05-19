@@ -145,6 +145,8 @@ namespace Audience {
             this.mainwindow.set_default_size (624, 352);
             this.mainwindow.set_size_request (624, 352);
             this.mainwindow.show_all ();
+            if (!settings.show_window_decoration)
+                this.mainwindow.decorated = false;
             
             clutter.hide ();
             
