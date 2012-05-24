@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-13 01:02+0200\n"
-"PO-Revision-Date: 2012-05-04 12:43+0000\n"
-"Last-Translator: Filip Zeman <Unknown>\n"
+"PO-Revision-Date: 2012-05-22 12:48+0000\n"
+"Last-Translator: Petr Šimáček <petr.simacek@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-15 05:25+0000\n"
-"X-Generator: Launchpad (build 15238)\n"
+"X-Launchpad-Export-Date: 2012-05-24 21:33+0000\n"
+"X-Generator: Launchpad (build 15288)\n"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:100
 msgid "Select a source start playing."
@@ -23,11 +23,11 @@ msgstr ""
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open file"
-msgstr ""
+msgstr "Otevřít soubor"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open a saved file."
-msgstr ""
+msgstr "Otevřít uložený soubor."
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:108
 msgid "Resume last video"
@@ -68,11 +68,11 @@ msgstr "Vybrat umístění"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:239
 msgid "Error"
-msgstr ""
+msgstr "Chyba"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:249
 msgid "Oops! Audience can't play this file!"
-msgstr ""
+msgstr "Hups! Audience nemůže tento soubor přehrát!"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:276
 msgid ""
@@ -87,23 +87,23 @@ msgstr ""
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:285
 msgid "Don't install"
-msgstr ""
+msgstr "Neinstalovat"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:286
 msgid "Install"
-msgstr ""
+msgstr "Instalovat"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:461
 msgid "Add from Harddrive"
-msgstr ""
+msgstr "Přidat z pevného disku"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:463
 msgid "Play a DVD"
-msgstr ""
+msgstr "Přehrát DVD"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:465
 msgid "Network File"
-msgstr ""
+msgstr "Soubor ze sítě"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:648
 msgid "All files"
