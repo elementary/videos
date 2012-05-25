@@ -8,26 +8,26 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-13 01:02+0200\n"
-"PO-Revision-Date: 2012-05-04 17:59+0000\n"
+"PO-Revision-Date: 2012-05-24 21:50+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-15 05:25+0000\n"
-"X-Generator: Launchpad (build 15238)\n"
+"X-Launchpad-Export-Date: 2012-05-25 05:15+0000\n"
+"X-Generator: Launchpad (build 15288)\n"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:100
 msgid "Select a source start playing."
-msgstr ""
+msgstr "Valitse lähde aloittaaksesi toiston."
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open file"
-msgstr ""
+msgstr "Avaa tiedosto"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open a saved file."
-msgstr ""
+msgstr "Avaa tallennettu tiedosto."
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:108
 msgid "Resume last video"
@@ -68,11 +68,11 @@ msgstr "Valitse sijainti"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:239
 msgid "Error"
-msgstr ""
+msgstr "Virhe"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:249
 msgid "Oops! Audience can't play this file!"
-msgstr ""
+msgstr "Valitettavasti Audience ei voi toistaa tätä tiedostoa."
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:276
 msgid ""
@@ -87,11 +87,11 @@ msgstr ""
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:285
 msgid "Don't install"
-msgstr ""
+msgstr "Älä asenna"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:286
 msgid "Install"
-msgstr ""
+msgstr "Asenna"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:461
 msgid "Add from Harddrive"
@@ -99,7 +99,7 @@ msgstr ""
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:463
 msgid "Play a DVD"
-msgstr ""
+msgstr "Toista DVD"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:465
 msgid "Network File"
