@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-13 01:02+0200\n"
-"PO-Revision-Date: 2012-05-12 23:06+0000\n"
+"PO-Revision-Date: 2012-05-27 12:50+0000\n"
 "Last-Translator: Leonardo Lemos <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-15 05:25+0000\n"
-"X-Generator: Launchpad (build 15238)\n"
+"X-Launchpad-Export-Date: 2012-05-28 05:55+0000\n"
+"X-Generator: Launchpad (build 15288)\n"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:100
 msgid "Select a source start playing."
@@ -79,19 +79,21 @@ msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
+"Alguns arquivos de mídia precisam de software extra para serem reproduzidos. "
+"O Audience pode instalar este software automaticamente."
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:282
 #, c-format
 msgid "Audience needs %s to play this file."
-msgstr ""
+msgstr "O Audience precisa de %s para reproduzir este arquivo."
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:285
 msgid "Don't install"
-msgstr ""
+msgstr "Não instalar"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:286
 msgid "Install"
-msgstr ""
+msgstr "Instalar"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:461
 msgid "Add from Harddrive"
