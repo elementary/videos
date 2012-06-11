@@ -1,4 +1,4 @@
-# English (United Kingdom) translation for audience
+# Catalan translation for audience
 # Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
 # This file is distributed under the same license as the audience package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-13 01:02+0200\n"
-"PO-Revision-Date: 2012-06-10 20:18+0000\n"
+"PO-Revision-Date: 2012-06-10 20:17+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
-"Language-Team: English (United Kingdom) <en_GB@li.org>\n"
+"Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,98 +19,98 @@ msgstr ""
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:100
 msgid "Select a source start playing."
-msgstr "Select a source to start playing it."
+msgstr "Seleccioneu una font per iniciar la seva reproducció."
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open file"
-msgstr "Open file"
+msgstr "Obre un fitxer"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open a saved file."
-msgstr "Open a saved file."
+msgstr "Obre un fitxer desat."
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:108
 msgid "Resume last video"
-msgstr "Resume last video"
+msgstr "Reprèn el darrer vídeo"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:112
 msgid "Watch a DVD"
-msgstr "Watch a DVD"
+msgstr "Mira un DVD"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:112
 msgid "Open a film"
-msgstr "Open a film"
+msgstr "Obre una pel·lícula"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:133
 msgid "Play"
-msgstr "Play"
+msgstr "Reprodueix"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:134
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:642
 msgid "Open"
-msgstr "Open"
+msgstr "Obre"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:135
 msgid "Sidebar"
-msgstr "Sidebar"
+msgstr "Barra lateral"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:136
 msgid "Leave Fullscreen"
-msgstr "Leave Fullscreen"
+msgstr "Surt de la pantalla completa"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:188
 msgid "Open location"
-msgstr "Open location"
+msgstr "Obre una ubicació"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:197
 msgid "Choose location"
-msgstr "Choose location"
+msgstr "Tria una ubicació"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:239
 msgid "Error"
-msgstr "Error"
+msgstr "S'ha produït un error"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:249
 msgid "Oops! Audience can't play this file!"
-msgstr "Oops! Audience can't play this file!"
+msgstr "L'Audience no pot reproduir aquest fitxer."
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:276
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
-"Some media files need extra software to be played. Audience can install this "
-"software automatically."
+"Alguns fitxers multimèdia necessiten programari adicional per ser "
+"reproduïts. L'Audience pot instal·lar aquest programari automàticament."
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:282
 #, c-format
 msgid "Audience needs %s to play this file."
-msgstr "Audience needs %s to play this file."
+msgstr "L'Audience necessita %s per reproduir aquest fitxer."
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:285
 msgid "Don't install"
-msgstr "Don't install"
+msgstr "No l'instal·lis"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:286
 msgid "Install"
-msgstr "Install"
+msgstr "Instal·la'l"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:461
 msgid "Add from Harddrive"
-msgstr "Add from Harddrive"
+msgstr "Afegeix des del disc dur"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:463
 msgid "Play a DVD"
-msgstr "Play a DVD"
+msgstr "Reprodueix un DVD"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:465
 msgid "Network File"
-msgstr "Network File"
+msgstr "Fitxer de la xarxa"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:648
 msgid "All files"
-msgstr "All files"
+msgstr "Tots els fitxers"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:652
 msgid "Video files"
-msgstr "Video files"
+msgstr "Fitxers de vídeo"
