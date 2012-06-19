@@ -38,7 +38,7 @@ namespace Audience.Widgets{
             this.reactive = true;
             this.buffer   = new Granite.Drawing.BufferSurface (100, 100);
             
-            var notebook = new Granite.Widgets.StaticNotebook ();
+            var notebook = new Granite.Widgets.StaticNotebook (false);
             
             /*tags*/
             var tagview = new Gtk.ScrolledWindow (null, null);
