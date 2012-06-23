@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-13 01:02+0200\n"
+"POT-Creation-Date: 2012-06-07 08:35-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,98 +17,106 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:100
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:5
+msgid "Play your media"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:6
+msgid "Media Player"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:100
 msgid "Select a source start playing."
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
 msgid "Open file"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
 msgid "Open a saved file."
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:108
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:107
 msgid "Resume last video"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:112
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:110
 msgid "Watch a DVD"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:112
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:110
 msgid "Open a film"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:133
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:133
 msgid "Play"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:134
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:642
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:134
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:650
 msgid "Open"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:135
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:135
 msgid "Sidebar"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:136
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:136
 msgid "Leave Fullscreen"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:188
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:195
 msgid "Open location"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:197
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:204
 msgid "Choose location"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:239
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:245
 msgid "Error"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:249
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:255
 msgid "Oops! Audience can't play this file!"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:276
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:282
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:282
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:288
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:285
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:291
 msgid "Don't install"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:286
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:292
 msgid "Install"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:461
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:468
 msgid "Add from Harddrive"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:463
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:470
 msgid "Play a DVD"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:465
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:472
 msgid "Network File"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:648
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:656
 msgid "All files"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:652
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:660
 msgid "Video files"
 msgstr ""

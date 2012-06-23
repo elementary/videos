@@ -45,6 +45,7 @@ vala_precompile(VALA_C
     Audience/Widgets/MediaSlider.vala
     Audience/Widgets/TopPanel.vala
     Audience/Widgets/Playlist.vala
+    Audience/desktop-launcher.vala
 PACKAGES
     gtk+-3.0
     granite
