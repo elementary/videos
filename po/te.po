@@ -7,74 +7,82 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-05-13 01:02+0200\n"
+"POT-Creation-Date: 2012-06-07 08:35-0700\n"
 "PO-Revision-Date: 2012-06-08 14:52+0000\n"
 "Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
 "Language-Team: Telugu <te@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-09 06:18+0000\n"
-"X-Generator: Launchpad (build 15376)\n"
+"X-Launchpad-Export-Date: 2012-06-23 05:23+0000\n"
+"X-Generator: Launchpad (build 15461)\n"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:100
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:5
+msgid "Play your media"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:6
+msgid "Media Player"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:100
 msgid "Select a source start playing."
 msgstr "ఆడించుటకు ఒక మూలాన్ని ఎంచుకోండి"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
 msgid "Open file"
 msgstr "దస్త్రం తెరువండి"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
 msgid "Open a saved file."
 msgstr "భద్రపరచబడిన దస్త్రాన్ని తెరువు"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:108
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:107
 msgid "Resume last video"
 msgstr "చివరి దృశ్యకాన్ని తిరిగి కొనసాగించు"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:112
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:110
 msgid "Watch a DVD"
 msgstr "డీవీడీని వీక్షించండి"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:112
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:110
 msgid "Open a film"
 msgstr "ఒక చలనచిత్రాన్ని తెరవండి"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:133
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:133
 msgid "Play"
 msgstr "ఆడించు"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:134
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:642
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:134
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:650
 msgid "Open"
 msgstr "తెరువు"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:135
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:135
 msgid "Sidebar"
 msgstr "పక్కపట్టి"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:136
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:136
 msgid "Leave Fullscreen"
 msgstr "పూర్తితెరను విడిచిపెట్టు"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:188
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:195
 msgid "Open location"
 msgstr "స్థానమును తెరవండి"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:197
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:204
 msgid "Choose location"
 msgstr "స్థానమును ఎన్నుకొనండి"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:239
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:245
 msgid "Error"
 msgstr "దోషం"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:249
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:255
 msgid "Oops! Audience can't play this file!"
 msgstr "అయ్యో! ఆడియన్స్ ఈ దస్త్రాన్ని ప్రదర్శించలేదు!"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:276
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:282
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -82,35 +90,35 @@ msgstr ""
 "కొన్ని మాధ్యమ దస్త్రాలను ఆడించాలంటే అదనపు సాఫ్ట్‍వేర్ అవసరం. ఈ సాఫ్ట్‍వేరును "
 "ఆడియన్స్ స్వయంచాలకంగా స్థాపించుకోగలదు."
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:282
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:288
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr "ఈ దస్త్రాన్ని ప్రదర్శించుటకు ఆడియన్సుకు %s అవసరం."
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:285
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:291
 msgid "Don't install"
 msgstr "స్థాపించవద్దు"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:286
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:292
 msgid "Install"
 msgstr "స్థాపించు"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:461
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:468
 msgid "Add from Harddrive"
 msgstr "హార్డ్ డ్రైవు నుండి జతచేయి"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:463
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:470
 msgid "Play a DVD"
 msgstr "ఒక డీవీడీని ఆడించండి"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:465
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:472
 msgid "Network File"
 msgstr "నెట్‌వర్క్ ఫైల్"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:648
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:656
 msgid "All files"
 msgstr "అన్ని  దస్త్రాలు"
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:652
+#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:660
 msgid "Video files"
 msgstr "వీడియో దస్త్రాలు"
