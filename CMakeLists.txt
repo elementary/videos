@@ -14,12 +14,12 @@ set (VERSION "0.1")
 set (VERSION_INFO "The Red Comet")
 
 # Data
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/audience.svg DESTINATION ${DATADIR}/icons/hicolor/16/apps/)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/audience.svg DESTINATION ${DATADIR}/icons/hicolor/24/apps/)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/32/audience.svg DESTINATION ${DATADIR}/icons/hicolor/32/apps/)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/48/audience.svg DESTINATION ${DATADIR}/icons/hicolor/48/apps/)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/64/audience.svg DESTINATION ${DATADIR}/icons/hicolor/64/apps/)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/128/audience.svg DESTINATION ${DATADIR}/icons/hicolor/128/apps/)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/audience.svg DESTINATION ${DATADIR}/icons/hicolor/16x16/apps/)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/audience.svg DESTINATION ${DATADIR}/icons/hicolor/24x24/apps/)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/32/audience.svg DESTINATION ${DATADIR}/icons/hicolor/32x32/apps/)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/48/audience.svg DESTINATION ${DATADIR}/icons/hicolor/48x48/apps/)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/64/audience.svg DESTINATION ${DATADIR}/icons/hicolor/64x64/apps/)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/128/audience.svg DESTINATION ${DATADIR}/icons/hicolor/128x128/apps/)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/audience.desktop DESTINATION ${DATADIR}/applications/)
 
 # Configure file
