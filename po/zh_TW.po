@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 08:35-0700\n"
-"PO-Revision-Date: 2012-06-07 05:49+0000\n"
+"PO-Revision-Date: 2012-06-24 08:48+0000\n"
 "Last-Translator: taijuin lee <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-24 05:53+0000\n"
-"X-Generator: Launchpad (build 15461)\n"
+"X-Launchpad-Export-Date: 2012-06-25 05:33+0000\n"
+"X-Generator: Launchpad (build 15482)\n"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
-msgstr ""
+msgstr "播放您的多媒體檔案"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
-msgstr ""
+msgstr "媒體播放器"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:100
 msgid "Select a source start playing."
