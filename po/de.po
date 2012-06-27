@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 08:35-0700\n"
-"PO-Revision-Date: 2012-05-30 18:43+0000\n"
-"Last-Translator: Eduard Gotwig <eduardgotwig@gmail.com>\n"
+"PO-Revision-Date: 2012-06-26 18:28+0000\n"
+"Last-Translator: Thomas Pitlik <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-24 05:53+0000\n"
-"X-Generator: Launchpad (build 15461)\n"
+"X-Launchpad-Export-Date: 2012-06-27 06:12+0000\n"
+"X-Generator: Launchpad (build 15482)\n"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
-msgstr ""
+msgstr "Spielen Sie Ihre Medien ab"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
-msgstr ""
+msgstr "Medienwiedergabe"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:100
 msgid "Select a source start playing."
@@ -114,7 +114,7 @@ msgstr "Eine DVD wiedergeben"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:472
 msgid "Network File"
-msgstr "Netzwerk Datei"
+msgstr "Netzwerk-Datei"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:656
 msgid "All files"
