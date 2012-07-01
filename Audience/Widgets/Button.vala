@@ -33,8 +33,11 @@ namespace Audience.Widgets{
                 
                 var ti = new ThemedIcon.from_names ({icon, alt_fallback, fallback});
                 var l = Gtk.IconTheme.get_default ().lookup_by_gicon (ti, 16, 0);
-                this.set_from_pixbuf (l.load_symbolic ({1.0,1.0,1.0,1.0}, null, null, null, null));
-                
+                if (l != null) {
+                    this.set_from_pixbuf (l.load_symbolic ({1.0,1.0,1.0,1.0}, null, null, null, null));
+                } else {
+                    warning("NULL detected when trying to load icon: " + icon + " (or " + fallback + ")");
+                }                
             } catch (Error e){warning (e.message);}
         }
     }
