@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 08:35-0700\n"
-"PO-Revision-Date: 2012-06-05 12:50+0000\n"
-"Last-Translator: Federico Mameli <requiemvi@gmail.com>\n"
+"PO-Revision-Date: 2012-07-02 11:21+0000\n"
+"Last-Translator: Devid Antonio Filoni <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-24 05:53+0000\n"
-"X-Generator: Launchpad (build 15461)\n"
+"X-Launchpad-Export-Date: 2012-07-03 06:27+0000\n"
+"X-Generator: Launchpad (build 15531)\n"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
-msgstr ""
+msgstr "Riproduci contenuti multimediali"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
-msgstr ""
+msgstr "Riproduttore multimediale"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:100
 msgid "Select a source start playing."
@@ -31,7 +31,7 @@ msgstr "Seleziona una fonte da riprodurre."
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
 msgid "Open file"
-msgstr "Apri il file"
+msgstr "Apri file"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
 msgid "Open a saved file."
@@ -47,7 +47,7 @@ msgstr "Guarda un DVD"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:110
 msgid "Open a film"
-msgstr "Apri un film"
+msgstr "Apri film"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:133
 msgid "Play"
@@ -64,15 +64,15 @@ msgstr "Barra laterale"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:136
 msgid "Leave Fullscreen"
-msgstr "Esci dalla modalità schermo intero"
+msgstr "Esci da schermo intero"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:195
 msgid "Open location"
-msgstr "Apri posizione"
+msgstr "Apri percorso"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:204
 msgid "Choose location"
-msgstr "Scegli una posizione"
+msgstr "Scegli percorso"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:245
 msgid "Error"
@@ -87,13 +87,13 @@ msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
-"Alcuni media richiedono del software extra per essere riprodotti. Audience "
-"può installare automaticamente questo software"
+"Alcuni file richiedono un software extra per essere riprodotti. Audience può "
+"installare automaticamente questo software."
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:288
 #, c-format
 msgid "Audience needs %s to play this file."
-msgstr "Audience ha bisogno di %s per riprodurre questo file"
+msgstr "Audience richiede %s per riprodurre questo file."
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:291
 msgid "Don't install"
@@ -105,15 +105,15 @@ msgstr "Installa"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:468
 msgid "Add from Harddrive"
-msgstr "Aggiungi dall'HardDrive"
+msgstr "Aggiungi dal disco rigido"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:470
 msgid "Play a DVD"
-msgstr "Riproduci un DVD"
+msgstr "Riproduci DVD"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:472
 msgid "Network File"
-msgstr "File di rete"
+msgstr "File in rete"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:656
 msgid "All files"
