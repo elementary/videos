@@ -97,7 +97,7 @@ namespace Audience {
             if (settings.last_folder == "-1")
                 settings.last_folder = Environment.get_home_dir ();
             
-            this.welcome = new Granite.Widgets.Welcome ("No videos are open.", _("Select a source start playing."));
+            this.welcome = new Granite.Widgets.Welcome ("No videos are open.", _("Select a source to begin playing."));
             welcome.append ("document-open", _("Open file"), _("Open a saved file."));
             
             //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
