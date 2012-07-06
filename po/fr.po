@@ -8,38 +8,38 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 08:35-0700\n"
-"PO-Revision-Date: 2012-05-04 12:42+0000\n"
-"Last-Translator: François Laurent <Unknown>\n"
+"PO-Revision-Date: 2012-07-05 16:14+0000\n"
+"Last-Translator: Benoît LAMY <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-24 05:53+0000\n"
-"X-Generator: Launchpad (build 15461)\n"
+"X-Launchpad-Export-Date: 2012-07-06 05:32+0000\n"
+"X-Generator: Launchpad (build 15558)\n"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
-msgstr ""
+msgstr "Lisez votre média"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
-msgstr ""
+msgstr "Lecteur multimédia"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:100
 msgid "Select a source start playing."
-msgstr ""
+msgstr "Sélectionner un fichier à lire."
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
 msgid "Open file"
-msgstr ""
+msgstr "Ouvrir un fichier"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
 msgid "Open a saved file."
-msgstr ""
+msgstr "Ouvrir un fichier sauvegardé."
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:107
 msgid "Resume last video"
-msgstr ""
+msgstr "Reprendre la lecture de la dernière vidéo"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:110
 msgid "Watch a DVD"
@@ -76,38 +76,40 @@ msgstr "Choisir l'emplacement"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:245
 msgid "Error"
-msgstr ""
+msgstr "Erreur"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:255
 msgid "Oops! Audience can't play this file!"
-msgstr ""
+msgstr "Oups ! Audience semble ne pas pouvoir lire ce fichier !"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:282
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
+"Certains médias nécessitent des logiciels supplémentaires pour être lus. "
+"Audience peut installer ces logiciels automatiquement."
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:288
 #, c-format
 msgid "Audience needs %s to play this file."
-msgstr ""
+msgstr "Audience à besoin de %s pour lire ce fichier."
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:291
 msgid "Don't install"
-msgstr ""
+msgstr "Ne pas installer"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:292
 msgid "Install"
-msgstr ""
+msgstr "Installer"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:468
 msgid "Add from Harddrive"
-msgstr ""
+msgstr "Ajouter à partir du disque-dur"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:470
 msgid "Play a DVD"
-msgstr ""
+msgstr "Lire un DVD"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:472
 msgid "Network File"
