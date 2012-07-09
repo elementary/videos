@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 08:35-0700\n"
-"PO-Revision-Date: 2012-07-05 19:26+0000\n"
+"PO-Revision-Date: 2012-07-08 12:43+0000\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-06 05:32+0000\n"
+"X-Launchpad-Export-Date: 2012-07-09 05:07+0000\n"
 "X-Generator: Launchpad (build 15558)\n"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
-msgstr ""
+msgstr "Gledajte vaše video datoteke"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
@@ -27,7 +27,7 @@ msgstr "Multimedijski preglednik"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:100
 msgid "Select a source start playing."
-msgstr ""
+msgstr "Odaberite izvor za početak reprodukcije."
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
 msgid "Open file"
@@ -35,11 +35,11 @@ msgstr "Otvori datoteku"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
 msgid "Open a saved file."
-msgstr ""
+msgstr "Otvori spremljenu datoteku."
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:107
 msgid "Resume last video"
-msgstr ""
+msgstr "Nastavi posljednji video"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:110
 msgid "Watch a DVD"
@@ -80,18 +80,20 @@ msgstr "Greška"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:255
 msgid "Oops! Audience can't play this file!"
-msgstr ""
+msgstr "Ups! Audience ne može pokrenuti ovu datoteku!"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:282
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
+"Neke medijske datoteke trebaju dodatni softver za reprodukciju. Audience "
+"može instalirati taj softver automatski."
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:288
 #, c-format
 msgid "Audience needs %s to play this file."
-msgstr ""
+msgstr "Audience treba %s za reprodukciju ove datoteke."
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:291
 msgid "Don't install"
@@ -103,11 +105,11 @@ msgstr "Instaliraj"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:468
 msgid "Add from Harddrive"
-msgstr ""
+msgstr "Dodaj sa diska"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:470
 msgid "Play a DVD"
-msgstr ""
+msgstr "Reproduciraj DVD"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:472
 msgid "Network File"
