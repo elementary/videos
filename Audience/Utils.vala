@@ -7,7 +7,23 @@ public interface GnomeMediaKeys : GLib.Object {
 }
 
 namespace Audience {
-    
+    public delegate void FuncOverDir (File file_under_dir);
+    public static void recurse_over_dir (File file_to_process, FuncOverDir func) {
+        if (file_to_process.query_file_type (0) == FileType.DIRECTORY) {
+            try {
+                var files = file_to_process.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+                FileInfo info;
+                while ((info = files.next_file ()) != null) {
+                    var file = GLib.File.new_for_uri (
+                        file_to_process.get_uri ()  +"/"+info.get_name ());
+                    recurse_over_dir (file,func);
+                }
+            } catch (Error e) { warning (e.message); }
+        }
+        else {
+            func (file_to_process);            
+        }
+    } 
     public static string get_title (string filename) {
         var title = get_basename (filename);
         title = title.replace ("%20", " ").

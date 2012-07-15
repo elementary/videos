@@ -746,29 +746,20 @@ namespace Audience {
         }
         
         internal void open_file (string filename, bool dont_modify=false) {
-            this.error = false; //reset error
-            var to_be_opened = File.new_for_commandline_arg (filename);
-            this.current_file = to_be_opened;
-            
-            if (current_file.query_file_type (0) == FileType.DIRECTORY) {
-                try {
-                    var files = current_file.enumerate_children (FileAttribute.STANDARD_NAME, 0);
-                    FileInfo info;
-                    bool first = true;
-                    while ((info = files.next_file ()) != null) {
-                        var file = GLib.File.new_for_uri (
-                            to_be_opened.get_uri ()  +"/"+info.get_name ());
-                        if (first) {
-                            this.current_file = file;
-                            first = false;
-                        }
-                        playlist.add_item (file);
-                    }
-                } catch (Error e) { warning (e.message); }
-            } else {
-                playlist.add_item (this.current_file);
+            this.error = false; //reset error            
+            this.current_file = File.new_for_commandline_arg (filename);
+
+            if (this.current_file.query_file_type (0) == FileType.DIRECTORY) {
+                Audience.recurse_over_dir (this.current_file, (file_ret) => {
+                        this.playlist.add_item (file_ret);
+                        print (file_ret.get_uri ()+"\n");
+                });
+                this.current_file = this.playlist.get_first_item ();
             }
-            
+            else {
+                this.playlist.add_item (this.current_file);
+            }
+        
             this.reached_end = false;
             debug ("Opening %s", this.current_file.get_uri ());
             var uri = this.current_file.get_uri ();
