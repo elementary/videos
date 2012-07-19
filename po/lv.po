@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 08:35-0700\n"
-"PO-Revision-Date: 2012-01-09 20:30+0000\n"
-"Last-Translator: Kārlis Lukstiņš <Unknown>\n"
+"PO-Revision-Date: 2012-07-18 15:37+0000\n"
+"Last-Translator: Cody Garver <codygarver@gmail.com>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-18 05:50+0000\n"
+"X-Launchpad-Export-Date: 2012-07-19 05:00+0000\n"
 "X-Generator: Launchpad (build 15637)\n"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:5
@@ -23,7 +23,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
-msgstr ""
+msgstr "Mediju atskaņotājs"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:100
 msgid "Select a source start playing."
@@ -31,7 +31,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
 msgid "Open file"
-msgstr ""
+msgstr "Atvērt failu"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
 msgid "Open a saved file."
@@ -76,7 +76,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:245
 msgid "Error"
-msgstr ""
+msgstr "Kļūda"
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:255
 msgid "Oops! Audience can't play this file!"
@@ -119,4 +119,4 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:660
 msgid "Video files"
-msgstr ""
+msgstr "Video faili"
