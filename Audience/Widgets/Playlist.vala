@@ -116,6 +116,15 @@ namespace Audience.Widgets {
         public void remove_item (File path) {
             /*not needed up to now*/
         }
+        public File? get_first_item () {
+            Gtk.TreeIter it;
+            if (playlist.get_iter_from_string (out it, 0.to_string ())){
+                string filename;
+                playlist.get (it, 3, out filename);
+                return File.new_for_commandline_arg (filename);
+            }
+            return null;
+        }
         
     }
     

@@ -168,7 +168,8 @@ namespace Audience {
             });
             //playlist wants us to open a file
             playlist.play.connect ( (file) => {
-                this.open_file (file.get_path ());
+                this.current_file = file;
+                this.play_file ();
             });
             
             //handle welcome
@@ -745,34 +746,25 @@ namespace Audience {
         }
         
         internal void open_file (string filename, bool dont_modify=false) {
-            this.error = false; //reset error
-            var to_be_opened = File.new_for_commandline_arg (filename);
-            this.current_file = to_be_opened;
-            
-            if (current_file.query_file_type (0) == FileType.DIRECTORY) {
-                try {
-                    var files = current_file.enumerate_children (FileAttribute.STANDARD_NAME, 0);
-                    FileInfo info;
-                    bool first = true;
-                    while ((info = files.next_file ()) != null) {
-                        var file = GLib.File.new_for_uri (
-                            to_be_opened.get_uri ()  +"/"+info.get_name ());
-                        if (first) {
-                            this.current_file = file;
-                            first = false;
-                        }
-                        playlist.add_item (file);
-                    }
-                } catch (Error e) { warning (e.message); }
-            } else {
-                playlist.add_item (this.current_file);
+            this.error = false; //reset error            
+            this.current_file = File.new_for_commandline_arg (filename);
+
+            if (this.current_file.query_file_type (0) == FileType.DIRECTORY) {
+                Audience.recurse_over_dir (this.current_file, (file_ret) => {
+                	this.playlist.add_item (file_ret);
+                });
+                this.current_file = this.playlist.get_first_item ();
             }
-            
+            else {
+                this.playlist.add_item (this.current_file);
+            }
+            play_file ();
+        }
+
+        public void play_file () {
             this.reached_end = false;
             debug ("Opening %s", this.current_file.get_uri ());
-            var uri = this.current_file.get_uri ();
-            if (dont_modify) //fixes dvd support
-                uri = filename;
+            var uri = this.current_file.get_uri ();            
             canvas.uri = uri;
             canvas.audio_volume = 1.0;
             this.controls.slider.preview.uri = uri;
