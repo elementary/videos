@@ -700,8 +700,7 @@ namespace Audience {
                     canvas.progress = 0.0;
                     this.reached_end = false;
                 }
-                canvas.playing = true;
-                canvas.progress = canvas.progress + 0.008; //strange error when video doesnt continue
+                canvas.set_playing (true);
                 this.controls.show_play_button (false);
                 this.place ();
                 
