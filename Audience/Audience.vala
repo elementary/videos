@@ -107,7 +107,7 @@ namespace Audience {
                 welcome.append ("media-playback-start", _("Resume last video"), get_title (File.new_for_uri (filename).get_basename ()));
             }
             if (has_dvd)
-                welcome.append ("media-cdrom", _("Watch a DVD"), _("Open a film"));
+                welcome.append ("media-cdrom", _("Play from Dics"), _("Watch a DVD or open a file from dics"));
             
             /*UI*/
             this.canvas.reactive = true;
