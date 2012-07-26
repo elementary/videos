@@ -198,7 +198,6 @@ namespace Audience.Widgets{
                 if (tags == null)
                     continue;
                 
-                used ++;
                 string desc;
                 tags.get_string (Gst.TAG_LANGUAGE_CODE, out desc);
                 if (desc == null)
@@ -207,11 +206,14 @@ namespace Audience.Widgets{
                 var readable = Gst.tag_get_language_name (desc);
                 if (target == "audio" && desc != null) {
                     this.languages.append (i.to_string (), (readable == null)?desc:readable);
+                    used ++;
                 }else if (desc != null) {
                     this.subtitles.append (i.to_string (), Gst.tag_get_language_name (desc));
+                    used ++;
                 }
             }
             if (target == "audio") {
+                
                 if (used == 0) {
                     this.languages.append ("def", _("Default"));
                     this.languages.active = 0;

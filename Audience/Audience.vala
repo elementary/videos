@@ -813,8 +813,8 @@ namespace Audience {
             pipe.set ("flags", flags, "current-text", -1);
             
             /*subtitles/audio tracks*/
-            /*this.tagview.setup_setup ("text");
-            this.tagview.setup_setup ("audio");*/
+            this.tagview.setup_setup ("text");
+            this.tagview.setup_setup ("audio");
         }
         
         private void place (bool resize_window = false) {
