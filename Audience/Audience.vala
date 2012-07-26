@@ -837,6 +837,9 @@ namespace Audience {
             }
             
             this.controls.width = stage.width;
+            if (this.controls.get_animation () != null)
+            	this.controls.detach_animation ();
+            this.controls.y = (this.controls.hidden)?stage.height:stage.height - controls.height;
             
             if (this.fullscreened) {
                 this.controls.y = (this.controls.hidden)?Gdk.Screen.get_default ().height ():
