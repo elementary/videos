@@ -7,82 +7,82 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-06-07 08:35-0700\n"
+"POT-Creation-Date: 2012-07-27 01:16+0200\n"
 "PO-Revision-Date: 2012-07-04 18:28+0000\n"
 "Last-Translator: Adrian Widerski <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-18 05:50+0000\n"
-"X-Generator: Launchpad (build 15637)\n"
+"X-Launchpad-Export-Date: 2012-07-27 05:35+0000\n"
+"X-Generator: Launchpad (build 15694)\n"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:5
+#: /home/tom/Programming/audience/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
 msgstr "Odtwarzaj swoje media"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:6
+#: /home/tom/Programming/audience/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
 msgstr "Odtwarzacz muzyki"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:100
-msgid "Select a source start playing."
-msgstr "Wybierz źródło odtwarzania."
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:100
+msgid "Select a source to begin playing."
+msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open file"
 msgstr "Otwórz plik"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open a saved file."
 msgstr "Otwórz zapisany plik"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:107
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:107
 msgid "Resume last video"
 msgstr "Wznów ostatnio odtwarzane wideo"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:110
-msgid "Watch a DVD"
-msgstr "Oglądaj DVD"
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:110
+msgid "Play from Dics"
+msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:110
-msgid "Open a film"
-msgstr "Otwórz film"
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:110
+msgid "Watch a DVD or open a file from dics"
+msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:133
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:133
 msgid "Play"
 msgstr "Odtwórz"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:134
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:650
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:134
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:650
 msgid "Open"
 msgstr "Otwórz"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:135
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:135
 msgid "Sidebar"
 msgstr "Panel boczny"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:136
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:136
 msgid "Leave Fullscreen"
 msgstr "Opuść tryb pełnoekranowy"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:195
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:195
 msgid "Open location"
 msgstr "Otwórz położenie"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:204
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:204
 msgid "Choose location"
 msgstr "Wybierz położenie"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:245
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:245
 msgid "Error"
 msgstr "Błąd"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:255
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:255
 msgid "Oops! Audience can't play this file!"
 msgstr "Oops! Nie można odtworzyć tego pliku!"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:282
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:282
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -90,35 +90,44 @@ msgstr ""
 "Niektóre pliki multimedialne wymagają dodatkowego oprogramowania. Audience "
 "zainstaluje je automatyczne."
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:288
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:288
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr "Audience potrzebuje %s, aby odtworzyć ten plik."
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:291
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:291
 msgid "Don't install"
 msgstr "Nie instaluj"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:292
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:292
 msgid "Install"
 msgstr "Zaintaluj"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:468
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:468
 msgid "Add from Harddrive"
 msgstr "Dodaj z dysku twardego"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:470
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:470
 msgid "Play a DVD"
 msgstr "Odtwórz DVD"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:472
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:472
 msgid "Network File"
 msgstr "Plik sieciowy"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:656
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:656
 msgid "All files"
 msgstr "Wszystkie pliki"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:660
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:660
 msgid "Video files"
 msgstr "Pliki wideo"
+
+#~ msgid "Open a film"
+#~ msgstr "Otwórz film"
+
+#~ msgid "Watch a DVD"
+#~ msgstr "Oglądaj DVD"
+
+#~ msgid "Select a source start playing."
+#~ msgstr "Wybierz źródło odtwarzania."

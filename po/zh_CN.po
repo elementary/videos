@@ -7,116 +7,125 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-06-07 08:35-0700\n"
+"POT-Creation-Date: 2012-07-27 01:16+0200\n"
 "PO-Revision-Date: 2012-07-07 11:19+0000\n"
 "Last-Translator: Wang Dianjin <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-18 05:51+0000\n"
-"X-Generator: Launchpad (build 15637)\n"
+"X-Launchpad-Export-Date: 2012-07-27 05:35+0000\n"
+"X-Generator: Launchpad (build 15694)\n"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:5
+#: /home/tom/Programming/audience/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
 msgstr "播放媒体"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:6
+#: /home/tom/Programming/audience/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
 msgstr "媒体播放器"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:100
-msgid "Select a source start playing."
-msgstr "选择文件源开始播放。"
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:100
+msgid "Select a source to begin playing."
+msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open file"
 msgstr "打开文件"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open a saved file."
 msgstr "打开一个已保存的文件。"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:107
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:107
 msgid "Resume last video"
 msgstr "恢复上次视频"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:110
-msgid "Watch a DVD"
-msgstr "观看 DVD"
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:110
+msgid "Play from Dics"
+msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:110
-msgid "Open a film"
-msgstr "打开影片"
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:110
+msgid "Watch a DVD or open a file from dics"
+msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:133
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:133
 msgid "Play"
 msgstr "播放"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:134
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:650
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:134
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:650
 msgid "Open"
 msgstr "打开"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:135
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:135
 msgid "Sidebar"
 msgstr "侧边栏"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:136
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:136
 msgid "Leave Fullscreen"
 msgstr "退出全屏"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:195
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:195
 msgid "Open location"
 msgstr "打开位置"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:204
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:204
 msgid "Choose location"
 msgstr "选择位置"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:245
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:245
 msgid "Error"
 msgstr "错误"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:255
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:255
 msgid "Oops! Audience can't play this file!"
 msgstr "哟！Audience 无法播放该文件！"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:282
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:282
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr "部分媒体文件需要额外软件才能播放。Audience 可以自动安装该软件。"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:288
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:288
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr "Audience 需要 %s 才能播放该文件。"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:291
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:291
 msgid "Don't install"
 msgstr "不安装"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:292
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:292
 msgid "Install"
 msgstr "安装"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:468
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:468
 msgid "Add from Harddrive"
 msgstr "从硬盘添加"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:470
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:470
 msgid "Play a DVD"
 msgstr "播放 DVD"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:472
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:472
 msgid "Network File"
 msgstr "网络文件"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:656
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:656
 msgid "All files"
 msgstr "所有文件"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:660
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:660
 msgid "Video files"
 msgstr "视频文件"
+
+#~ msgid "Open a film"
+#~ msgstr "打开影片"
+
+#~ msgid "Watch a DVD"
+#~ msgstr "观看 DVD"
+
+#~ msgid "Select a source start playing."
+#~ msgstr "选择文件源开始播放。"

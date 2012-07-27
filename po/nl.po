@@ -7,82 +7,82 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-06-07 08:35-0700\n"
+"POT-Creation-Date: 2012-07-27 01:16+0200\n"
 "PO-Revision-Date: 2012-06-23 12:32+0000\n"
 "Last-Translator: Niels Verploegen <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-18 05:50+0000\n"
-"X-Generator: Launchpad (build 15637)\n"
+"X-Launchpad-Export-Date: 2012-07-27 05:35+0000\n"
+"X-Generator: Launchpad (build 15694)\n"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:5
+#: /home/tom/Programming/audience/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
 msgstr "Speel uw media"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/desktop-launcher.vala:6
+#: /home/tom/Programming/audience/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
 msgstr "Mediaspeler"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:100
-msgid "Select a source start playing."
-msgstr "Selecteer een bron om af te spelen."
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:100
+msgid "Select a source to begin playing."
+msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open file"
 msgstr "Bestand openen"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:101
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open a saved file."
 msgstr "Een opgeslagen bestand openen."
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:107
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:107
 msgid "Resume last video"
 msgstr "Laatst afgespeelde video hervatten"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:110
-msgid "Watch a DVD"
-msgstr "Kijk een DVD"
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:110
+msgid "Play from Dics"
+msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:110
-msgid "Open a film"
-msgstr "Open een film"
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:110
+msgid "Watch a DVD or open a file from dics"
+msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:133
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:133
 msgid "Play"
 msgstr "Speel af"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:134
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:650
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:134
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:650
 msgid "Open"
 msgstr "openen"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:135
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:135
 msgid "Sidebar"
 msgstr "Zijpaneel"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:136
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:136
 msgid "Leave Fullscreen"
 msgstr "Volledig scherm verlaten"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:195
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:195
 msgid "Open location"
 msgstr "Open een locatie"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:204
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:204
 msgid "Choose location"
 msgstr "Kies locatie"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:245
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:245
 msgid "Error"
 msgstr "Fout"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:255
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:255
 msgid "Oops! Audience can't play this file!"
 msgstr "Oeps! Audience kan dit bestand niet afspelen!"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:282
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:282
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -90,35 +90,44 @@ msgstr ""
 "Voor het afspelen van sommige media bestanden is extra software nodig. "
 "Audience kan deze software automatisch installeren."
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:288
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:288
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr "Audience heeft %s nodig om dit bestand af te spelen."
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:291
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:291
 msgid "Don't install"
 msgstr "Niet installeren"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:292
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:292
 msgid "Install"
 msgstr "Installeer"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:468
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:468
 msgid "Add from Harddrive"
 msgstr "Voeg toe van hardeschijf"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:470
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:470
 msgid "Play a DVD"
 msgstr "Speel een DVD af"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:472
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:472
 msgid "Network File"
 msgstr "Netwerk bestand"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:656
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:656
 msgid "All files"
 msgstr "Alle bestanden"
 
-#: /home/ttosttos/Projects/elementary/Bugs/audience-fix-1004294/po/../Audience/Audience.vala:660
+#: /home/tom/Programming/audience/po/../Audience/Audience.vala:660
 msgid "Video files"
 msgstr "Videobestanden"
+
+#~ msgid "Watch a DVD"
+#~ msgstr "Kijk een DVD"
+
+#~ msgid "Open a film"
+#~ msgstr "Open een film"
+
+#~ msgid "Select a source start playing."
+#~ msgstr "Selecteer een bron om af te spelen."
