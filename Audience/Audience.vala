@@ -65,6 +65,8 @@ namespace Audience {
         
         public GLib.VolumeMonitor monitor;
         
+        public bool moving_action;
+        
         public App () {
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
             
@@ -440,7 +442,7 @@ namespace Audience {
             
             /*hide controls when mouse leaves window*/
             this.mainwindow.leave_notify_event.connect ( (e) => {
-                if (!this.tagview.expanded && this.playing)
+                if (!this.tagview.expanded && this.playing && !this.moving_action)
                     this.controls.hidden = true;
                 return true;
             });
@@ -592,6 +594,9 @@ namespace Audience {
                     moving = false;
                     this.mainwindow.begin_move_drag (1, 
                         (int)e.x_root, (int)e.y_root, e.time);
+                    
+                    this.moving_action = true;
+                    
                     return true;
                 }
                 return false;
@@ -600,6 +605,7 @@ namespace Audience {
                 moving = false;
                 return false;
             });
+            this.mainwindow.focus_in_event.connect (() => moving_action = false );
             
             /*DnD*/
             Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
@@ -720,6 +726,9 @@ namespace Audience {
                 Source.remove (this.hiding_timer);
             if (enable) {
                 this.hiding_timer = GLib.Timeout.add (2000, () => {
+                    if (this.moving_action)
+                    	return false;
+                	
                     this.stage.cursor_visible = false;
                     this.controls.hidden = true;
                     this.panel.hidden = true;
