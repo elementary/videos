@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-27 01:16+0200\n"
-"PO-Revision-Date: 2012-06-25 21:47+0000\n"
+"PO-Revision-Date: 2012-07-28 23:03+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-27 05:35+0000\n"
+"X-Launchpad-Export-Date: 2012-07-29 04:50+0000\n"
 "X-Generator: Launchpad (build 15694)\n"
 
 #: /home/tom/Programming/audience/po/../Audience/desktop-launcher.vala:5
@@ -27,7 +27,7 @@ msgstr "Reproductor multimèdia"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:100
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "Seleccioneu una font per començar la reproducció."
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open file"
@@ -43,11 +43,11 @@ msgstr "Reprèn el darrer vídeo"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:110
 msgid "Play from Dics"
-msgstr ""
+msgstr "Reproduir des d'un disc"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:110
 msgid "Watch a DVD or open a file from dics"
-msgstr ""
+msgstr "Ves un DVD o obre un fitxer d'un disc"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:133
 msgid "Play"
@@ -122,12 +122,3 @@ msgstr "Tots els fitxers"
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:660
 msgid "Video files"
 msgstr "Fitxers de vídeo"
-
-#~ msgid "Watch a DVD"
-#~ msgstr "Mira un DVD"
-
-#~ msgid "Open a film"
-#~ msgstr "Obre una pel·lícula"
-
-#~ msgid "Select a source start playing."
-#~ msgstr "Seleccioneu una font per iniciar la seva reproducció."

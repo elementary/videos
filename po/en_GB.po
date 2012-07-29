@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-27 01:16+0200\n"
-"PO-Revision-Date: 2012-06-25 21:32+0000\n"
+"PO-Revision-Date: 2012-07-28 23:01+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-27 05:35+0000\n"
+"X-Launchpad-Export-Date: 2012-07-29 04:50+0000\n"
 "X-Generator: Launchpad (build 15694)\n"
 
 #: /home/tom/Programming/audience/po/../Audience/desktop-launcher.vala:5
@@ -27,7 +27,7 @@ msgstr "Media Player"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:100
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "Select a source to begin playing."
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open file"
@@ -43,11 +43,11 @@ msgstr "Resume last video"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:110
 msgid "Play from Dics"
-msgstr ""
+msgstr "Play from Disc"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:110
 msgid "Watch a DVD or open a file from dics"
-msgstr ""
+msgstr "Watch a DVD or open a file from a disc"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:133
 msgid "Play"
@@ -122,12 +122,3 @@ msgstr "All files"
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:660
 msgid "Video files"
 msgstr "Video files"
-
-#~ msgid "Watch a DVD"
-#~ msgstr "Watch a DVD"
-
-#~ msgid "Open a film"
-#~ msgstr "Open a film"
-
-#~ msgid "Select a source start playing."
-#~ msgstr "Select a source to start playing it."
