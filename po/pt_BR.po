@@ -8,26 +8,26 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-27 01:16+0200\n"
-"PO-Revision-Date: 2012-05-27 12:50+0000\n"
-"Last-Translator: Leonardo Lemos <Unknown>\n"
+"PO-Revision-Date: 2012-07-31 16:40+0000\n"
+"Last-Translator: Rafael da Silva Lima <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-27 05:35+0000\n"
-"X-Generator: Launchpad (build 15694)\n"
+"X-Launchpad-Export-Date: 2012-08-01 05:27+0000\n"
+"X-Generator: Launchpad (build 15719)\n"
 
 #: /home/tom/Programming/audience/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
-msgstr ""
+msgstr "Reproduza sua mídia"
 
 #: /home/tom/Programming/audience/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
-msgstr ""
+msgstr "Reprodutor de mídia"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:100
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "Selecione uma mídia para reproduzir"
 
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
 msgid "Open file"
@@ -122,12 +122,3 @@ msgstr "Todos os arquivos"
 #: /home/tom/Programming/audience/po/../Audience/Audience.vala:660
 msgid "Video files"
 msgstr "Arquivos de vídeo"
-
-#~ msgid "Watch a DVD"
-#~ msgstr "Assistir um DVD"
-
-#~ msgid "Open a film"
-#~ msgstr "Abrir um filme"
-
-#~ msgid "Select a source start playing."
-#~ msgstr "Selecionar uma fonte e reproduzir-la."
