@@ -99,7 +99,7 @@ namespace Audience {
             if (settings.last_folder == "-1")
                 settings.last_folder = Environment.get_home_dir ();
             
-            this.welcome = new Granite.Widgets.Welcome ("No videos are open.", _("Select a source to begin playing."));
+            this.welcome = new Granite.Widgets.Welcome (_("No videos are open."), _("Select a source to begin playing."));
             welcome.append ("document-open", _("Open file"), _("Open a saved file."));
             
             //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
@@ -109,7 +109,7 @@ namespace Audience {
                 welcome.append ("media-playback-start", _("Resume last video"), get_title (File.new_for_uri (filename).get_basename ()));
             }
             if (has_dvd)
-                welcome.append ("media-cdrom", _("Play from Dics"), _("Watch a DVD or open a file from dics"));
+                welcome.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
             
             /*UI*/
             this.canvas.reactive = true;

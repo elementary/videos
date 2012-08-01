@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-27 01:16+0200\n"
+"POT-Creation-Date: 2012-08-01 23:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,106 +17,138 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/tom/Programming/audience/po/../Audience/desktop-launcher.vala:5
-msgid "Play your media"
+#: /home/gotwig/audience/po/../Audience/Audience.vala:102
+msgid "No videos are open."
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/desktop-launcher.vala:6
-msgid "Media Player"
-msgstr ""
-
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:100
+#: /home/gotwig/audience/po/../Audience/Audience.vala:102
 msgid "Select a source to begin playing."
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
+#: /home/gotwig/audience/po/../Audience/Audience.vala:103
 msgid "Open file"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
+#: /home/gotwig/audience/po/../Audience/Audience.vala:103
 msgid "Open a saved file."
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:107
+#: /home/gotwig/audience/po/../Audience/Audience.vala:109
 msgid "Resume last video"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:110
-msgid "Play from Dics"
+#: /home/gotwig/audience/po/../Audience/Audience.vala:112
+msgid "Play from Disc"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:110
-msgid "Watch a DVD or open a file from dics"
+#: /home/gotwig/audience/po/../Audience/Audience.vala:112
+msgid "Watch a DVD or open a file from disc"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:133
+#: /home/gotwig/audience/po/../Audience/Audience.vala:135
 msgid "Play"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:134
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:650
+#: /home/gotwig/audience/po/../Audience/Audience.vala:136
+#: /home/gotwig/audience/po/../Audience/Audience.vala:657
 msgid "Open"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:135
+#: /home/gotwig/audience/po/../Audience/Audience.vala:137
 msgid "Sidebar"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:136
+#: /home/gotwig/audience/po/../Audience/Audience.vala:138
 msgid "Leave Fullscreen"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:195
+#: /home/gotwig/audience/po/../Audience/Audience.vala:198
 msgid "Open location"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:204
+#: /home/gotwig/audience/po/../Audience/Audience.vala:207
 msgid "Choose location"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:245
+#: /home/gotwig/audience/po/../Audience/Audience.vala:248
 msgid "Error"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:255
+#: /home/gotwig/audience/po/../Audience/Audience.vala:258
 msgid "Oops! Audience can't play this file!"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:282
+#: /home/gotwig/audience/po/../Audience/Audience.vala:285
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:288
+#: /home/gotwig/audience/po/../Audience/Audience.vala:291
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:291
+#: /home/gotwig/audience/po/../Audience/Audience.vala:294
 msgid "Don't install"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:292
+#: /home/gotwig/audience/po/../Audience/Audience.vala:295
 msgid "Install"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:468
+#: /home/gotwig/audience/po/../Audience/Audience.vala:471
 msgid "Add from Harddrive"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:470
+#: /home/gotwig/audience/po/../Audience/Audience.vala:473
 msgid "Play a DVD"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:472
+#: /home/gotwig/audience/po/../Audience/Audience.vala:475
 msgid "Network File"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:656
+#: /home/gotwig/audience/po/../Audience/Audience.vala:663
 msgid "All files"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:660
+#: /home/gotwig/audience/po/../Audience/Audience.vala:667
 msgid "Video files"
+msgstr ""
+
+#: /home/gotwig/audience/po/../Audience/desktop-launcher.vala:5
+msgid "Play your media"
+msgstr ""
+
+#: /home/gotwig/audience/po/../Audience/desktop-launcher.vala:6
+msgid "Media Player"
+msgstr ""
+
+#: /home/gotwig/audience/po/../Audience/Widgets/TagView.vala:54
+msgid "Language"
+msgstr ""
+
+#: /home/gotwig/audience/po/../Audience/Widgets/TagView.vala:55
+msgid "Subtitles"
+msgstr ""
+
+#: /home/gotwig/audience/po/../Audience/Widgets/TagView.vala:94
+msgid "Playlist"
+msgstr ""
+
+#: /home/gotwig/audience/po/../Audience/Widgets/TagView.vala:95
+msgid "Options"
+msgstr ""
+
+#: /home/gotwig/audience/po/../Audience/Widgets/TagView.vala:97
+msgid "Details"
+msgstr ""
+
+#: /home/gotwig/audience/po/../Audience/Widgets/TagView.vala:218
+msgid "Default"
+msgstr ""
+
+#: /home/gotwig/audience/po/../Audience/Widgets/TagView.vala:231
+msgid "None"
 msgstr ""
