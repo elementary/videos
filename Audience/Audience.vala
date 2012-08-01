@@ -141,6 +141,7 @@ namespace Audience {
             mainbox.pack_start (clutter);
             
             this.mainwindow.title = program_name;
+            this.mainwindow.icon_name = app_icon;
             this.mainwindow.window_position = Gtk.WindowPosition.CENTER;
             this.mainwindow.set_application (this);
             this.mainwindow.add (mainbox);
