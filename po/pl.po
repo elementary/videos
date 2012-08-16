@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-01 17:05-0500\n"
+"POT-Creation-Date: 2012-08-15 23:19-0500\n"
 "PO-Revision-Date: 2012-08-09 17:47+0000\n"
 "Last-Translator: Adrian Widerski <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-10 05:18+0000\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Launchpad-Export-Date: 2012-08-16 05:10+0000\n"
+"X-Generator: Launchpad (build 15810)\n"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:102
 msgid "No videos are open"
@@ -50,7 +50,7 @@ msgid "Play"
 msgstr "Odtwórz"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:136
-#: /home/codygarver/audience/po/../Audience/Audience.vala:657
+#: /home/codygarver/audience/po/../Audience/Audience.vala:658
 msgid "Open"
 msgstr "Otwórz"
 
@@ -62,23 +62,23 @@ msgstr "Panel boczny"
 msgid "Leave Fullscreen"
 msgstr "Opuść tryb pełnoekranowy"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:198
+#: /home/codygarver/audience/po/../Audience/Audience.vala:199
 msgid "Open location"
 msgstr "Otwórz położenie"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:207
+#: /home/codygarver/audience/po/../Audience/Audience.vala:208
 msgid "Choose location"
 msgstr "Wybierz położenie"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:248
+#: /home/codygarver/audience/po/../Audience/Audience.vala:249
 msgid "Error"
 msgstr "Błąd"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:258
+#: /home/codygarver/audience/po/../Audience/Audience.vala:259
 msgid "Oops! Audience can't play this file!"
 msgstr "Oops! Nie można odtworzyć tego pliku!"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:285
+#: /home/codygarver/audience/po/../Audience/Audience.vala:286
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -86,36 +86,36 @@ msgstr ""
 "Niektóre pliki multimedialne wymagają dodatkowego oprogramowania. Audience "
 "zainstaluje je automatyczne."
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:291
+#: /home/codygarver/audience/po/../Audience/Audience.vala:292
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr "Audience potrzebuje %s, aby odtworzyć ten plik."
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:294
+#: /home/codygarver/audience/po/../Audience/Audience.vala:295
 msgid "Don't install"
 msgstr "Nie instaluj"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:295
+#: /home/codygarver/audience/po/../Audience/Audience.vala:296
 msgid "Install"
 msgstr "Zaintaluj"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:471
+#: /home/codygarver/audience/po/../Audience/Audience.vala:472
 msgid "Add from Harddrive"
 msgstr "Dodaj z dysku twardego"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:473
+#: /home/codygarver/audience/po/../Audience/Audience.vala:474
 msgid "Play a DVD"
 msgstr "Odtwórz DVD"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:475
+#: /home/codygarver/audience/po/../Audience/Audience.vala:476
 msgid "Network File"
 msgstr "Plik sieciowy"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:663
+#: /home/codygarver/audience/po/../Audience/Audience.vala:664
 msgid "All files"
 msgstr "Wszystkie pliki"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:667
+#: /home/codygarver/audience/po/../Audience/Audience.vala:668
 msgid "Video files"
 msgstr "Pliki wideo"
 

@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-01 17:05-0500\n"
+"POT-Creation-Date: 2012-08-15 23:19-0500\n"
 "PO-Revision-Date: 2012-07-08 12:43+0000\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-02 05:22+0000\n"
-"X-Generator: Launchpad (build 15719)\n"
+"X-Launchpad-Export-Date: 2012-08-16 05:10+0000\n"
+"X-Generator: Launchpad (build 15810)\n"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:102
 msgid "No videos are open"
@@ -50,7 +50,7 @@ msgid "Play"
 msgstr "Reproduciraj"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:136
-#: /home/codygarver/audience/po/../Audience/Audience.vala:657
+#: /home/codygarver/audience/po/../Audience/Audience.vala:658
 msgid "Open"
 msgstr "Otvori"
 
@@ -62,23 +62,23 @@ msgstr "Bočna traka"
 msgid "Leave Fullscreen"
 msgstr "Prikaz u prozoru"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:198
+#: /home/codygarver/audience/po/../Audience/Audience.vala:199
 msgid "Open location"
 msgstr "Otvori lokaciju"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:207
+#: /home/codygarver/audience/po/../Audience/Audience.vala:208
 msgid "Choose location"
 msgstr "Odaberi lokaciju"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:248
+#: /home/codygarver/audience/po/../Audience/Audience.vala:249
 msgid "Error"
 msgstr "Greška"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:258
+#: /home/codygarver/audience/po/../Audience/Audience.vala:259
 msgid "Oops! Audience can't play this file!"
 msgstr "Ups! Audience ne može pokrenuti ovu datoteku!"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:285
+#: /home/codygarver/audience/po/../Audience/Audience.vala:286
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -86,36 +86,36 @@ msgstr ""
 "Neke medijske datoteke trebaju dodatni softver za reprodukciju. Audience "
 "može instalirati taj softver automatski."
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:291
+#: /home/codygarver/audience/po/../Audience/Audience.vala:292
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr "Audience treba %s za reprodukciju ove datoteke."
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:294
+#: /home/codygarver/audience/po/../Audience/Audience.vala:295
 msgid "Don't install"
 msgstr "Nemoj instalirati"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:295
+#: /home/codygarver/audience/po/../Audience/Audience.vala:296
 msgid "Install"
 msgstr "Instaliraj"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:471
+#: /home/codygarver/audience/po/../Audience/Audience.vala:472
 msgid "Add from Harddrive"
 msgstr "Dodaj sa diska"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:473
+#: /home/codygarver/audience/po/../Audience/Audience.vala:474
 msgid "Play a DVD"
 msgstr "Reproduciraj DVD"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:475
+#: /home/codygarver/audience/po/../Audience/Audience.vala:476
 msgid "Network File"
 msgstr "Mrežna datoteka"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:663
+#: /home/codygarver/audience/po/../Audience/Audience.vala:664
 msgid "All files"
 msgstr "Sve datoteke"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:667
+#: /home/codygarver/audience/po/../Audience/Audience.vala:668
 msgid "Video files"
 msgstr "Video datoteke"
 
