@@ -6,31 +6,31 @@ public extern bool gst_navigation_query_parse_commands_length (Gst.Query q, out 
 public extern bool gst_navigation_query_parse_commands_nth (Gst.Query q, uint n, out Gst.NavigationCommand cmd);
 
 namespace Audience {
-    
+
     public Audience.Settings settings; //global space for easier access...
-    
+
     public class App : Granite.Application {
-        
+
         construct {
             program_name = "Audience";
             exec_name = "audience";
-            
+
             build_data_dir = Constants.DATADIR;
             build_pkg_data_dir = Constants.PKGDATADIR;
             build_release_name = Constants.RELEASE_NAME;
             build_version = Constants.VERSION;
             build_version_info = Constants.VERSION_INFO;
-            
+
             app_years = "2011-2012";
             app_icon = "audience";
             app_launcher = "audience.desktop";
             application_id = "net.launchpad.audience";
-            
+
             main_url = "https://code.launchpad.net/audience";
             bug_url = "https://bugs.launchpad.net/audience";
             help_url = "https://code.launchpad.net/audience";
             translate_url = "https://translations.launchpad.net/audience";
-            
+
             /*about_authors = {""};
             about_documenters = {""};
             about_artists = {""};
@@ -38,7 +38,7 @@ namespace Audience {
             about_comments = "To be determined"; */
             about_license_type = Gtk.License.GPL_3_0;
         }
-        
+
         public ClutterGst.VideoTexture    canvas;
         public Gtk.Window                 mainwindow;
         public Audience.Widgets.TagView   tagview;
@@ -51,57 +51,57 @@ namespace Audience {
         public Audience.Widgets.TopPanel  panel;
         public GtkClutter.Embed           clutter;
         public Granite.Widgets.Welcome    welcome;
-        
+
         private float video_w;
         private float video_h;
         private bool  reached_end;
         private bool  error;
-        
+
         public bool has_dvd;
-        
+
         public bool         playing;
         public File         current_file;
         public List<string> last_played_videos; //taken from settings, but splitted
-        
+
         public GLib.VolumeMonitor monitor;
-        
+
         public bool moving_action;
-        
+
         public App () {
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
-            
+
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
-            
+
             this.fullscreened = false;
-            
+
             this.playlist   = new Widgets.Playlist ();
             settings   = new Settings ();
             this.canvas     = new ClutterGst.VideoTexture ();
             this.mainwindow = new Gtk.Window ();
             this.tagview    = new Widgets.TagView (this);
             this.panel      = new Widgets.TopPanel ();
-            
+
             var mainbox     = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
             this.clutter    = new GtkClutter.Embed ();
             this.stage      = (Clutter.Stage)clutter.get_stage ();
             this.controls   = new Widgets.Controls (this);
-            
+
             //prepare last played videos
             this.last_played_videos = new List<string> ();
             var split = settings.last_played_videos.split (",");;
             for (var i=0;i<split.length;i++){
                 this.last_played_videos.append (split[i]);
             }
-            
+
             this.has_dvd = Audience.has_dvd ();
-            
+
             if (settings.last_folder == "-1")
                 settings.last_folder = Environment.get_home_dir ();
-            
+
             this.welcome = new Granite.Widgets.Welcome (_("No videos are open"), _("Select a source to begin playing"));
             welcome.append ("document-open", _("Open file"), _("Open a saved file."));
-            
+
             //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
             string filename = "";
             if (last_played_videos.length () > 0) {
@@ -110,36 +110,36 @@ namespace Audience {
             }
             if (has_dvd)
                 welcome.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
-            
+
             /*UI*/
             this.canvas.reactive = true;
             this.canvas.width    = 624;
             this.canvas.height   = 352;
-            
+
             this.controls.y = Gdk.Screen.get_default ().height (); //place it somewhere low
-            
+
             stage.add_actor (canvas);
             stage.add_actor (tagview);
             stage.add_actor (controls.background);
             stage.add_actor (controls);
             stage.add_actor (panel);
             stage.color = Clutter.Color.from_string ("#000");
-            
+
             this.panel.hide ();
-            
+
             this.tagview.y      = -5;
             this.tagview.x      = stage.width;
-            this.tagview.add_constraint (new Clutter.BindConstraint (stage, 
+            this.tagview.add_constraint (new Clutter.BindConstraint (stage,
                 Clutter.BindCoordinate.HEIGHT, -10));
-            
+
             this.controls.play.set_tooltip (_("Play"));
             this.controls.open.set_tooltip (_("Open"));
             this.controls.view.set_tooltip (_("Sidebar"));
             this.panel.exit.set_tooltip (_("Leave Fullscreen"));
-            
+
             mainbox.pack_start (welcome);
             mainbox.pack_start (clutter);
-            
+
             this.mainwindow.title = program_name;
             this.mainwindow.icon_name = app_icon;
             this.mainwindow.window_position = Gtk.WindowPosition.CENTER;
@@ -150,15 +150,15 @@ namespace Audience {
             this.mainwindow.show_all ();
             if (!settings.show_window_decoration)
                 this.mainwindow.decorated = false;
-            
+
             clutter.hide ();
-            
+
             /*events*/
             /*if langs or subs change, rescan*/
             dynamic Gst.Pipeline el = this.canvas.get_pipeline ();
             el.text_tags_changed.connect (tagview.setup_text_setup);
             el.audio_tags_changed.connect (tagview.setup_audio_setup);
-            
+
             //look for dvd
             this.monitor = GLib.VolumeMonitor.get ();
             monitor.drive_connected.connect ( (drive) => {
@@ -174,7 +174,7 @@ namespace Audience {
                 this.current_file = file;
                 this.play_file ();
             });
-            
+
             //handle welcome
             welcome.activated.connect ( (index) => {
 				if (filename == "" && index == 1)
@@ -196,21 +196,21 @@ namespace Audience {
 					run_open (2);
 					break;
                 default:
-                    var d = new Gtk.Dialog.with_buttons (_("Open location"), 
-                        this.mainwindow, Gtk.DialogFlags.MODAL, 
+                    var d = new Gtk.Dialog.with_buttons (_("Open location"),
+                        this.mainwindow, Gtk.DialogFlags.MODAL,
                         Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
                         Gtk.Stock.OK,     Gtk.ResponseType.OK);
                     var grid  = new Gtk.Grid ();
                     var entry = new Gtk.Entry ();
-                    
+
                     grid.attach (new Gtk.Image.from_icon_name ("internet-web-browser",
                         Gtk.IconSize.DIALOG), 0, 0, 1, 2);
                     grid.attach (new Gtk.Label (_("Choose location")), 1, 0, 1, 1);
                     grid.attach (entry, 1, 1, 1, 1);
-                    
+
                     ((Gtk.Container)d.get_content_area ()).add (grid);
                     grid.show_all ();
-                    
+
                     if (d.run () == Gtk.ResponseType.OK) {
                         open_file (entry.text, true);
                         canvas.playing = true;
@@ -221,7 +221,7 @@ namespace Audience {
                     break;
                 }
             });
-            
+
             //video size changed
             this.canvas.size_change.connect ( () => {
                 this.place (true);
@@ -245,13 +245,13 @@ namespace Audience {
                         debug (detail);
                         this.canvas.get_pipeline ().set_state (Gst.State.NULL);
                         this.error = true;
-                        
-                        var dlg  = new Gtk.Dialog.with_buttons (_("Error"), mainwindow, 
+
+                        var dlg  = new Gtk.Dialog.with_buttons (_("Error"), mainwindow,
                             Gtk.DialogFlags.MODAL, Gtk.Stock.OK, Gtk.ResponseType.OK);
                         var grid = new Gtk.Grid ();
-                        var err  = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_ERROR, 
+                        var err  = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_ERROR,
                             Gtk.IconSize.DIALOG);
-                        
+
                         err.margin_right = 12;
                         grid.margin = 12;
                         grid.attach (err, 0, 0, 1, 1);
@@ -260,43 +260,43 @@ namespace Audience {
                         grid.attach (new Widgets.LLabel (e.message), 1, 1, 1, 2);
                         welcome.show_all ();
                         clutter.hide ();
-                        
+
                         ((Gtk.Box)dlg.get_content_area ()).add (grid);
                         dlg.show_all ();
                         dlg.run ();
                         dlg.destroy ();
                         break;
                     case Gst.MessageType.ELEMENT:
-                        if (msg.get_structure () != null && 
+                        if (msg.get_structure () != null &&
                             Gst.is_missing_plugin_message (msg)) {
                             this.canvas.get_pipeline ().set_state (Gst.State.NULL);
                             debug ("Missing plugin\n");
                             this.error = true;
-                            
+
                             this.mainwindow.set_keep_above (false);
                             clutter.hide ();
                             welcome.show ();
-                            
+
                             var detail = Gst.missing_plugin_message_get_description (msg);
                             var dlg = new Gtk.Dialog.with_buttons ("Missing plugin", this.mainwindow,
                                 Gtk.DialogFlags.MODAL);
                             var grid = new Gtk.Grid ();
-                            var err  = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_ERROR, 
+                            var err  = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_ERROR,
                                 Gtk.IconSize.DIALOG);
                             var phrase = new Widgets.LLabel (_("Some media files need extra software to be played. Audience can install this software automatically."));
-                            
+
                             err.margin_right = 12;
                             grid.margin = 12;
                             grid.attach (err, 0, 0, 1, 1);
                             grid.attach (new Widgets.LLabel.markup ("<b>"+
                                 _("Audience needs %s to play this file.").printf (detail)+"</b>"), 1, 0, 1, 1);
                             grid.attach (phrase, 1, 1, 1, 2);
-                            
+
                             dlg.add_button (_("Don't install"), 1);
                             dlg.add_button (_("Install")+" "+detail, 0);
-                            
+
                             (dlg.get_content_area () as Gtk.Container).add (grid);
-                            
+
                             dlg.show_all ();
                             if (dlg.run () == 0) {
                                 var installer = Gst.missing_plugin_message_get_installer_detail (msg);
@@ -314,12 +314,12 @@ namespace Audience {
                             dlg.destroy ();
                         } else { //may be navigation command
                             var nav_msg = Gst.Navigation.message_get_type (msg);
-                            
+
                             if (nav_msg == Gst.NavigationMessageType.COMMANDS_CHANGED) {
                                 var q = Gst.Navigation.query_new_commands ();
                                 print ("Hello world\n");
                                 this.canvas.get_pipeline ().query (q);
-                                
+
                                 uint n;
                                 gst_navigation_query_parse_commands_length (q, out n);
                                 print ("Length of navigation: %u\n", n);
@@ -335,10 +335,10 @@ namespace Audience {
                         break;
                 }
             });
-            
+
             //media keys
             try {
-                this.mediakeys = Bus.get_proxy_sync (BusType.SESSION, 
+                this.mediakeys = Bus.get_proxy_sync (BusType.SESSION,
                     "org.gnome.SettingsDaemon", "/org/gnome/SettingsDaemon/MediaKeys");
                 this.mediakeys.MediaPlayerKeyPressed.connect ( (bus, app, key) => {
                     if (app != "audience")
@@ -361,7 +361,7 @@ namespace Audience {
             } catch (Error e) {
                 warning (e.message);
             }
-            
+
             //shortcuts
             this.mainwindow.key_press_event.connect ( (e) => {
                 switch (e.keyval) {
@@ -399,14 +399,14 @@ namespace Audience {
                 }
                 return true;
             });
-            
+
             //end
             this.canvas.eos.connect ( () => {
                 this.reached_end = true;
                 this.toggle_play (false);
                 this.playlist.next ();
             });
-            
+
             //slider
             this.controls.slider.seeked.connect ( (v) => {
                 debug ("Seeked to %f", v);
@@ -414,16 +414,16 @@ namespace Audience {
             });
             canvas.notify["progress"].connect ( () => {
                 this.controls.slider.progress = this.canvas.progress;
-                
+
                 this.controls.current.text = seconds_to_time (
                     (int)(this.controls.slider.progress * this.canvas.duration));
-                this.controls.remaining.text = "-" + seconds_to_time ((int)(canvas.duration - 
+                this.controls.remaining.text = "-" + seconds_to_time ((int)(canvas.duration -
                     this.controls.slider.progress * this.canvas.duration));
             });
             canvas.notify["buffer_fill"].connect ( () => {
                 this.controls.slider.buffered = this.canvas.buffer_fill;
             });
-            
+
             /*slide controls back in*/
             this.mainwindow.motion_notify_event.connect ( () => {
                 this.controls.hidden = false;
@@ -440,21 +440,21 @@ namespace Audience {
                 }
                 return false;
             });
-            
+
             /*hide controls when mouse leaves window*/
             this.mainwindow.leave_notify_event.connect ( (e) => {
                 if (!this.tagview.expanded && this.playing && !this.moving_action)
                     this.controls.hidden = true;
                 return true;
             });
-            
+
             /*open location popover*/
             this.controls.open.clicked.connect ( () => {
                 var has_been_stopped = this.canvas.playing;
-                
+
                 this.toggle_play (false);
                 this.toggle_timeout (false);
-                
+
                 if (!this.has_dvd) { //just one source, so open that one
                     Timeout.add (300, () => {
                         //this.toggle_play (false);
@@ -464,18 +464,18 @@ namespace Audience {
                     });
                     return;
                 }
-                
+
                 var pop = new Granite.Widgets.PopOver ();
                 var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
                 ((Gtk.Box)pop.get_content_area ()).add (box);
-                
+
                 var fil   = new Gtk.Button.with_label (_("Add from Harddrive"));
                 fil.image = new Gtk.Image.from_icon_name ("document-open", Gtk.IconSize.DIALOG);
                 var dvd   = new Gtk.Button.with_label (_("Play a DVD"));
                 dvd.image = new Gtk.Image.from_icon_name ("media-cdrom", Gtk.IconSize.DIALOG);
                 var net   = new Gtk.Button.with_label (_("Network File"));
                 net.image = new Gtk.Image.from_icon_name ("internet-web-browser", Gtk.IconSize.DIALOG);
-                
+
                 fil.clicked.connect ( () => {
                     pop.destroy ();
                     run_open (0);
@@ -496,27 +496,27 @@ namespace Audience {
                     box.reorder_child (entry, 2);
                     entry.show ();
                 });
-                
+
                 box.pack_start (fil);
                 if (this.has_dvd)
                     box.pack_start (dvd);
                 //box.pack_start (net); uri temporary dropped
-                
+
                 /*temporary until popover closing gets fixed*/
                 var canc = new Gtk.Button.from_stock (Gtk.Stock.CANCEL);
                 box.pack_start (canc);
                 canc.clicked.connect ( () => {
                     pop.destroy ();
                 });
-                
+
                 int x_r, y_r;
                 this.mainwindow.get_window ().get_origin (out x_r, out y_r);
-                
-                pop.move_to_coords ((int)(x_r + this.stage.width - 50), 
+
+                pop.move_to_coords ((int)(x_r + this.stage.width - 50),
                     (int)(y_r + this.stage.height - CONTROLS_HEIGHT));
-                
+
                 pop.show_all ();
-                
+
                 Timeout.add (300, () => { //for some reason this doesn't cause a crash :)
                     pop.present ();
                     pop.run ();
@@ -527,20 +527,20 @@ namespace Audience {
                     return false;
                 });
             });
-            
+
             /*play pause*/
             this.controls.play.clicked.connect  ( () => {toggle_play (!this.playing);});
-            
+
             /*unfullscreen*/
             this.panel.exit.clicked.connect (toggle_fullscreen);
-            
+
             /*volume*/
             this.panel.vol.value_changed.connect ( (value) => {
                 this.canvas.audio_volume = value;
             });
             this.panel.vol.value = 1.0;
             this.canvas.audio_volume = 1.0;
-            
+
             this.controls.view.clicked.connect ( () => {
                 if (!controls.showing_view) {
                     tagview.expand ();
@@ -548,12 +548,12 @@ namespace Audience {
                     controls.showing_view = true;
                 } else {
                     tagview.collapse ();
-                    controls.view.set_icon ("pane-show-symbolic", Gtk.Stock.GO_BACK, 
+                    controls.view.set_icon ("pane-show-symbolic", Gtk.Stock.GO_BACK,
                         "go-previous-symbolic");
                     controls.showing_view = false;
                 }
             });
-            
+
             //fullscreen on maximize
             this.mainwindow.window_state_event.connect ( (e) => {
                 if (!((e.window.get_state () & Gdk.WindowState.MAXIMIZED) == 0) && !this.fullscreened){
@@ -564,12 +564,12 @@ namespace Audience {
                 }
                 return false;
             });
-            
+
             //positioning
             int old_h=0;
             int old_w=0;
             this.mainwindow.size_allocate.connect ( () => {
-                if (this.mainwindow.get_allocated_width () != old_w || 
+                if (this.mainwindow.get_allocated_width () != old_w ||
                     this.mainwindow.get_allocated_height () != old_h) {
                     if (this.current_file != null)
                         this.place ();
@@ -578,7 +578,7 @@ namespace Audience {
                 }
                 return;
             });
-            
+
             /*moving the window by drag, fullscreen for dbl-click*/
             bool moving = false;
             this.canvas.button_press_event.connect ( (e) => {
@@ -593,11 +593,11 @@ namespace Audience {
             clutter.motion_notify_event.connect ( (e) => {
                 if (moving && settings.move_window) {
                     moving = false;
-                    this.mainwindow.begin_move_drag (1, 
+                    this.mainwindow.begin_move_drag (1,
                         (int)e.x_root, (int)e.y_root, e.time);
-                    
+
                     this.moving_action = true;
-                    
+
                     return true;
                 }
                 return false;
@@ -607,10 +607,10 @@ namespace Audience {
                 return false;
             });
             this.mainwindow.focus_in_event.connect (() => moving_action = false );
-            
+
             /*DnD*/
             Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
-            Gtk.drag_dest_set (this.mainwindow, 
+            Gtk.drag_dest_set (this.mainwindow,
                 Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
             this.mainwindow.drag_data_received.connect ( (ctx, x, y, sel, info, time) => {
                 for (var i=1;i<sel.get_uris ().length; i++)
@@ -619,7 +619,7 @@ namespace Audience {
                 welcome.hide ();
                 clutter.show_all ();
             });
-            
+
             //save position in video when not finished playing
             this.mainwindow.destroy.connect ( () => {
                 if (this.current_file == null || this.canvas.uri.has_prefix ("dvd://"))
@@ -643,7 +643,7 @@ namespace Audience {
                 }
             });
         }
-        
+
         private inline void save_last_played_videos () {
             string res = "";
             for (var i=0;i<this.last_played_videos.length () - 1;i++) {
@@ -652,25 +652,25 @@ namespace Audience {
             res += this.last_played_videos.nth_data (this.last_played_videos.length () - 1);
             settings.last_played_videos = res;
         }
-        
+
         public void run_open (int type) { //0=file, 2=dvd
             if (type == 0) {
                 var file = new Gtk.FileChooserDialog (_("Open"), this.mainwindow, Gtk.FileChooserAction.OPEN,
                     Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
                     Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
                 file.select_multiple = true;
-                
+
                 var all_files_filter = new Gtk.FileFilter ();
                 all_files_filter.set_filter_name (_("All files"));
                 all_files_filter.add_pattern ("*");
-                
+
                 var video_filter = new Gtk.FileFilter ();
                 video_filter.set_filter_name (_("Video files"));
                 video_filter.add_mime_type ("video/*");
-                
+
                 file.add_filter (video_filter);
                 file.add_filter (all_files_filter);
-                
+
                 file.set_current_folder (settings.last_folder);
                 if (file.run () == Gtk.ResponseType.ACCEPT) {
                     welcome.hide ();
@@ -689,7 +689,7 @@ namespace Audience {
                 clutter.show_all ();
             }
         }
-        
+
         private void toggle_play (bool start) {
             if (!start) {
                 this.controls.show_play_button (true);
@@ -697,11 +697,11 @@ namespace Audience {
                 Source.remove (this.hiding_timer);
                 this.set_screensaver (true);
                 this.playing = false;
-                
+
                 this.controls.hidden = false;
                 if (this.fullscreened)
                     this.panel.hidden = false;
-                
+
                 this.mainwindow.set_keep_above (false);
             } else {
                 if (this.reached_end) {
@@ -711,12 +711,12 @@ namespace Audience {
                 canvas.set_playing (true);
                 this.controls.show_play_button (false);
                 this.place ();
-                
+
                 toggle_timeout (true);
-                
+
                 this.set_screensaver (false);
                 this.playing = true;
-                
+
                 if (settings.stay_on_top)
                     this.mainwindow.set_keep_above (true);
             }
@@ -729,7 +729,7 @@ namespace Audience {
                 this.hiding_timer = GLib.Timeout.add (2000, () => {
                     if (this.moving_action)
                     	return false;
-                	
+
                     this.stage.cursor_visible = false;
                     this.controls.hidden = true;
                     this.panel.hidden = true;
@@ -737,7 +737,7 @@ namespace Audience {
                 });
             }
         }
-        
+
         private void toggle_fullscreen () {
             if (fullscreened) {
                 this.mainwindow.unmaximize ();
@@ -749,14 +749,14 @@ namespace Audience {
                 this.mainwindow.fullscreen ();
                 this.fullscreened = true;
                 this.panel.toggle (true);
-                
+
                 stage.height = Gdk.Screen.get_default ().height ();
                 this.place ();
             }
         }
-        
+
         internal void open_file (string filename, bool dont_modify=false) {
-            this.error = false; //reset error            
+            this.error = false; //reset error
             this.current_file = File.new_for_commandline_arg (filename);
 
             if (this.current_file.query_file_type (0) == FileType.DIRECTORY) {
@@ -774,20 +774,20 @@ namespace Audience {
         public void play_file () {
             this.reached_end = false;
             debug ("Opening %s", this.current_file.get_uri ());
-            var uri = this.current_file.get_uri ();            
+            var uri = this.current_file.get_uri ();
             canvas.uri = uri;
             canvas.audio_volume = 1.0;
             this.controls.slider.preview.uri = uri;
             this.controls.slider.preview.audio_volume = 0.0;
-            
+
             this.mainwindow.title = get_title (current_file.get_basename ());
             if (settings.show_details)
                 tagview.get_tags (uri, true);
-            
+
             if (!settings.playback_wait)
                 this.toggle_play (true);
             this.place (true);
-            
+
             if (settings.resume_videos) {
                 int i;
                 for (i=0;i<this.last_played_videos.length () && i!=-1;i+=2) {
@@ -801,10 +801,10 @@ namespace Audience {
                     debug ("Resuming video from "+this.last_played_videos.nth_data (i + 1));
                 }
             }
-            
+
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
-            
+
             /*disable subtitles by default*/
             dynamic Gst.Element pipe = this.canvas.get_pipeline ();
             int flags;
@@ -812,17 +812,17 @@ namespace Audience {
             flags &= ~SUBTITLES_FLAG;
             flags |= DOWNLOAD_FLAG;
             pipe.set ("flags", flags, "current-text", -1);
-            
+
             /*subtitles/audio tracks*/
             this.tagview.setup_setup ("text");
             this.tagview.setup_setup ("audio");
         }
-        
+
         private void place (bool resize_window = false) {
             this.tagview.x        = (this.tagview.expanded)?
                 stage.width - this.tagview.width:
                 stage.width;
-            
+
             canvas.get_base_size (out video_w, out video_h);
             //aspect ratio handling
             if (!this.error) {
@@ -832,29 +832,29 @@ namespace Audience {
                 this.canvas.height = video_h * aspect;
                 this.canvas.x      = (stage.width  - this.canvas.width)  / 2;
                 this.canvas.y      = (stage.height - this.canvas.height) / 2;
-                
+
                 if (resize_window && video_w > 50 && video_h > 50)
                     fit_window ();
             }
-            
+
             this.controls.width = stage.width;
             if (this.controls.get_animation () != null)
             	this.controls.detach_animation ();
             this.controls.y = (this.controls.hidden)?stage.height:stage.height - controls.height;
-            
+
             if (this.fullscreened) {
                 this.controls.y = (this.controls.hidden)?Gdk.Screen.get_default ().height ():
                                        Gdk.Screen.get_default ().height () - CONTROLS_HEIGHT;
             } else if (stage.height - CONTROLS_HEIGHT > 50)
                 this.controls.y = stage.height - CONTROLS_HEIGHT;
         }
-        
+
         private void fit_window () {
             var ung = Gdk.Geometry (); /*unlock*/
             ung.min_aspect = 0.0;
             ung.max_aspect = 99999999.0;
             this.mainwindow.set_geometry_hints (this.mainwindow, ung, Gdk.WindowHints.ASPECT);
-            
+
             if (Gdk.Screen.get_default ().width ()  > this.video_w &&
                 Gdk.Screen.get_default ().height () > this.video_h) {
                 this.mainwindow.resize (
@@ -864,14 +864,14 @@ namespace Audience {
                     (int)(Gdk.Screen.get_default ().width () * 0.9),
                     (int)(Gdk.Screen.get_default ().height () * 0.9));
             }
-            
+
             if (settings.keep_aspect) {
                 var g = Gdk.Geometry (); /*lock*/
                 g.min_aspect = g.max_aspect = this.video_w / this.video_h;
                 this.mainwindow.set_geometry_hints (this.mainwindow, g, Gdk.WindowHints.ASPECT);
             }
         }
-        
+
         public void set_screensaver (bool enable) {
             var xid = (ulong)Gdk.X11Window.get_xid (mainwindow.get_window ());
             try {
@@ -884,12 +884,12 @@ namespace Audience {
                 }
             } catch (Error e) {warning (e.message);}
         }
-        
+
         //the application started
         public override void activate () {
-            
+
         }
-        
+
         //the application was requested to open some files
         public override void open (File [] files, string hint) {
             for (var i=1;i<files.length;i++)
@@ -903,15 +903,14 @@ namespace Audience {
 
 public static void main (string [] args) {
     X.init_threads ();
-    
+
     var err = GtkClutter.init (ref args);
     if (err != Clutter.InitError.SUCCESS) {
         error ("Could not initalize clutter! "+err.to_string ());
     }
     ClutterGst.init (ref args);
-    
+
     var app = new Audience.App ();
-    
+
     app.run (args);
 }
-
