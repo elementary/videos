@@ -1,6 +1,6 @@
 
 namespace Audience {
-    
+
     public class Settings : Granite.Services.Settings {
         public bool move_window          {get; set;}
         public bool keep_aspect          {get; set;}
@@ -12,11 +12,10 @@ namespace Audience {
         public bool playback_wait        {get; set;}
         public bool stay_on_top          {get; set;}
         public bool show_window_decoration {get; set;}
-        
+
         public Settings () {
             base ("org.pantheon.Audience");
         }
-        
+
     }
 }
-

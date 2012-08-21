@@ -21,9 +21,9 @@ namespace Audience {
             } catch (Error e) { warning (e.message); }
         }
         else {
-            func (file_to_process);            
+            func (file_to_process);
         }
-    } 
+    }
     public static string get_title (string filename) {
         var title = get_basename (filename);
         title = title.replace ("%20", " ").
@@ -32,7 +32,7 @@ namespace Audience {
             replace ("%7D", "}").replace ("_", " ").replace ("."," ").replace ("  "," ");
         return title;
     }
-    
+
     public static string get_extension (string filename) {
         int i=0;
         for (i=filename.length;i!=0;i--) {
@@ -49,32 +49,32 @@ namespace Audience {
         }
         return filename.substring (0, i);
     }
-    
+
     public static string seconds_to_time (int seconds) {
         int hours = seconds / 3600;
         int minutes = (seconds % 3600) / 60;
         seconds = seconds % 60;
-        
+
         string time = (hours > 0) ? hours.to_string() + ":" : "";
         time += (((hours > 0) && (minutes < 10)) ? "0" : "") + minutes.to_string() + ":";
         time += ((seconds < 10) ? "0" : "") + seconds.to_string();
         return time;
     }
-    
+
     public static bool has_dvd () {
         var volume_monitor = GLib.VolumeMonitor.get ();
         var volumes = volume_monitor.get_connected_drives ();
-        
+
         for (var i=0; i < volumes.length ();i++) {
-            if (volumes.nth_data (i).get_name ().index_of ("DVD") != -1 && 
+            if (volumes.nth_data (i).get_name ().index_of ("DVD") != -1 &&
                 volumes.nth_data (i).has_media ())
                 return true;
         }
-        
+
         return false;
     }
-    
-    /* 
+
+    /*
      * get a thumbnail from a file
      * @param file the file
      * @param position the position in the video or -1 for 5%
@@ -87,7 +87,7 @@ namespace Audience {
         var pipe = new Gst.Pipeline ("pipeline");
         var src  = Gst.ElementFactory.make ("filesrc", "file");
         dynamic Gst.Element dec  = Gst.ElementFactory.make ("decodebin2", "dec");
-        
+
         pipe.add_many (src, dec);
         src.link (dec);
         src.set ("location", file.get_path ());
@@ -95,33 +95,33 @@ namespace Audience {
         dec.pad_added.connect ( (new_pad) => {
             if (got_video)
                 return;
-            
+
             var csp    = Gst.ElementFactory.make ("ffmpegcolorspace", "f");
             var scale  = Gst.ElementFactory.make ("videoscale", "s");
             var filter = Gst.ElementFactory.make ("capsfilter", "c");
                 sink   = Gst.ElementFactory.make ("gdkpixbufsink", "sink");
-            
+
             pipe.add_many (csp, scale, filter, sink);
-            
+
             var sinkpad = csp.get_static_pad ("sink");
             new_pad.link (sinkpad);
-            
+
             csp.link (scale);
             scale.link (filter);
             filter.link (sink);
-            
+
             sink.set_state (Gst.State.PAUSED);
             filter.set_state (Gst.State.PAUSED);
             scale.set_state (Gst.State.PAUSED);
             csp.set_state (Gst.State.PAUSED);
-            
+
             got_video = true;
         });
-        
+
         pipe.get_bus ().add_signal_watch ();
-        
+
         pipe.set_state (Gst.State.PAUSED);
-        
+
         bool ready = false;
         pipe.get_bus ().message.connect ( (bus, msg) => {
             switch (msg.type) {
@@ -138,10 +138,10 @@ namespace Audience {
                     if (position == -1) {
                         int64 dur;
                         pipe.query_duration (ref fmt, out dur);
-                        pipe.seek_simple (Gst.Format.TIME, Gst.SeekFlags.ACCURATE | 
+                        pipe.seek_simple (Gst.Format.TIME, Gst.SeekFlags.ACCURATE |
                             Gst.SeekFlags.FLUSH, (int64)(dur*0.5));
                     }else {
-                        pipe.seek_simple (Gst.Format.TIME, Gst.SeekFlags.ACCURATE | 
+                        pipe.seek_simple (Gst.Format.TIME, Gst.SeekFlags.ACCURATE |
                             Gst.SeekFlags.FLUSH, position);
                     }
                     break;
@@ -166,22 +166,22 @@ namespace Audience {
                     break;
             }
         });
-        
+
         pipe.set_state (Gst.State.PLAYING);
     }
-    
+
     namespace Drawing {
-    
+
         /**
          * Draws a popover shape
          */
-        public static void cairo_popover (Cairo.Context cr, double x, double y, double width, double height, 
-                                          double radius, double arrow_height, double arrow_width) 
+        public static void cairo_popover (Cairo.Context cr, double x, double y, double width, double height,
+                                          double radius, double arrow_height, double arrow_width)
         {
             double edge_width = (width - radius * 2);
             double arrow_offset = (edge_width - arrow_width) / 2;
-            
-            
+
+
             cr.arc (x + width - radius, y + radius, radius, Math.PI * 1.5, Math.PI * 2);
             cr.arc (x + width - radius, y + height - radius, radius, 0, Math.PI * 0.5);
 
@@ -191,17 +191,17 @@ namespace Audience {
 
             cr.rel_line_to (arrow_width / 2, arrow_height);
             cr.rel_line_to (arrow_width / 2, -arrow_height);
-            
+
             cr.close_path ();
         }
-    
+
         /**
          * Draws a 'pill' shape (rounded rectangle with boder radius such that both ends are semicircles)
          */
         public static void cairo_pill (Cairo.Context cr, double x, double y, double width, double height) {
             Granite.Drawing.Utilities.cairo_rounded_rectangle (cr, x, y, width, height, height / 2);
         }
-        
+
         /**
          * Draws a ' halfpill' shape (rounded rectangle with boder radius such that one ends is a semicircle)
          */
@@ -226,7 +226,7 @@ namespace Audience {
             }
             cr.close_path ();
         }
-    
-    
+
+
     }
 }
