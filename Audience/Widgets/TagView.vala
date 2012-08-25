@@ -16,10 +16,10 @@ public const string LIGHT_WINDOW_STYLE = """
     }
 """;
 
-namespace Audience.Widgets{
-    
-    public class TagView : GtkClutter.Actor {
-        
+namespace Audience.Widgets
+{
+    public class TagView : GtkClutter.Actor
+    {
         public bool expanded;
         public Gtk.Grid taggrid;
         public Audience.App app;
@@ -64,28 +64,26 @@ namespace Audience.Widgets{
             this.subtitles.changed.connect ( () => {
                 if (subtitles.active_id == null)
                     return;
-                dynamic Gst.Element pipe = this.app.canvas.get_pipeline ();
+                var pipe = app.video_player.playbin;
                 
                 int flags;
                 pipe.get ("flags", out flags);
-                if (this.subtitles.active_id == "-1") {
+                if (subtitles.active_id == "-1") {
                     flags &= ~SUBTITLES_FLAG;
                     pipe.set ("flags", flags, "current-text", -1);
                     debug ("Disabling subtitles");
                 }else {
                     debug ("Switching to subtitle %s", this.subtitles.active_id);
                     flags |= SUBTITLES_FLAG;
-                    pipe.set ("flags", flags, 
-                        "current-text", int.parse (this.subtitles.active_id));
+                    pipe.set ("flags", flags, "current-text", int.parse (this.subtitles.active_id));
                 }
             });
             
-            this.languages.changed.connect ( () => { //place it here to not get problems
-                if (this.languages.active_id == null)
+            languages.changed.connect ( () => { //place it here to not get problems
+                if (languages.active_id == null)
                     return;
                 debug ("Switching to audio %s\n", this.languages.active_id);
-                dynamic Gst.Element pipe = this.app.canvas.get_pipeline ();
-                pipe.current_audio = int.parse (this.languages.active_id);
+                app.video_player.playbin.current_audio = int.parse (this.languages.active_id);
             });
             
             var playlist_scrolled = new Gtk.ScrolledWindow (null, null);
@@ -177,24 +175,23 @@ namespace Audience.Widgets{
             this.expanded = false;
         }
         
-        public void setup_text_setup  (Gst.Element e, int s) { setup_setup ("text"); }
-        public void setup_audio_setup (Gst.Element e, int s) { setup_setup ("audio"); }
+        public void setup_text_setup  () { setup_setup ("text"); }
+        public void setup_audio_setup () { setup_setup ("audio"); }
         /*target is either "text" or "audio"*/
         public void setup_setup (string target) {
             
-            if (target == "audio" && this.languages.model.iter_n_children (null) > 0)
-                this.languages.remove_all ();
-            else if (target == "text" && this.subtitles.model.iter_n_children (null) > 0)
-                this.subtitles.remove_all ();
+            if (target == "audio" && languages.model.iter_n_children (null) > 0)
+                languages.remove_all ();
+            else if (target == "text" && subtitles.model.iter_n_children (null) > 0)
+                subtitles.remove_all ();
             
             Value num = 0;
-            this.app.canvas.get_pipeline ().get_property ("n-"+target, ref num);
+            app.video_player.playbin.get_property ("n-"+target, ref num);
             
             int used = 0;
             for (var i=0;i<num.get_int ();i++) {
                 Gst.TagList tags = null;
-                Signal.emit_by_name (this.app.canvas.get_pipeline (), 
-                    "get-"+target+"-tags", i, out tags);
+                Signal.emit_by_name (app.video_player.playbin, "get-"+target+"-tags", i, out tags);
                 if (tags == null)
                     continue;
                 

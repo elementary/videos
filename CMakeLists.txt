@@ -27,14 +27,14 @@ configure_file (${CMAKE_SOURCE_DIR}/Audience/Config.vala.cmake ${CMAKE_BINARY_DI
 add_definitions(-DGETTEXT_PACKAGE="audience")
 
 find_package(PkgConfig)
-pkg_check_modules(DEPS REQUIRED granite gtk+-3.0 clutter-gtk-1.0 clutter-gst-1.0 gstreamer-pbutils-0.10 gstreamer-interfaces-0.10 gstreamer-tag-0.10)
+pkg_check_modules(DEPS REQUIRED granite gtk+-3.0 clutter-gtk-1.0 clutter-gst-1.0 gstreamer-interfaces-0.10 gstreamer-pbutils-0.10 gstreamer-tag-0.10)
 add_definitions(${DEPS_CFLAGS})
 link_libraries(${DEPS_LIBRARIES})
 link_directories(${DEPS_LIBRARY_DIRS})
 find_package(Vala REQUIRED)
 include(ValaVersion)
 
-ensure_vala_version("0.15.1" MINIMUM)
+ensure_vala_version("0.16" MINIMUM)
 
 include(ValaPrecompile)
 vala_precompile(VALA_C
@@ -50,6 +50,7 @@ vala_precompile(VALA_C
     Audience/Widgets/MediaSlider.vala
     Audience/Widgets/TopPanel.vala
     Audience/Widgets/Playlist.vala
+    Audience/Widgets/VideoPlayer.vala
     Audience/desktop-launcher.vala
 PACKAGES
     gtk+-3.0
