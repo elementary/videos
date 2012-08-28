@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-08-15 23:19-0500\n"
-"PO-Revision-Date: 2012-07-28 23:03+0000\n"
+"PO-Revision-Date: 2012-08-20 09:28+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-17 05:11+0000\n"
-"X-Generator: Launchpad (build 15810)\n"
+"X-Launchpad-Export-Date: 2012-08-28 09:07+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:102
 msgid "No videos are open"
-msgstr ""
+msgstr "No hi ha cap vídeo obert"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:102
 msgid "Select a source to begin playing"
-msgstr ""
+msgstr "Seleccioneu una font per començar a reproduir"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:103
 msgid "Open file"
@@ -39,11 +39,11 @@ msgstr "Reprèn el darrer vídeo"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:112
 msgid "Play from Disc"
-msgstr ""
+msgstr "Reprodueix des d'un disc"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:112
 msgid "Watch a DVD or open a file from disc"
-msgstr ""
+msgstr "Ves un DVD o obre un fitxer des d'un disc"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:135
 msgid "Play"
@@ -129,28 +129,28 @@ msgstr "Reproductor multimèdia"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:54
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:55
 msgid "Subtitles"
-msgstr ""
+msgstr "Subtítols"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:94
 msgid "Playlist"
-msgstr ""
+msgstr "Llista de reproducció"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:95
 msgid "Options"
-msgstr ""
+msgstr "Opcions"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:97
 msgid "Details"
-msgstr ""
+msgstr "Detalls"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:218
 msgid "Default"
-msgstr ""
+msgstr "Predeterminat"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:231
 msgid "None"
-msgstr ""
+msgstr "Cap"
