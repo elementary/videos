@@ -1,6 +1,6 @@
 
 namespace Audience.Widgets{
-    
+
     class LLabel : Gtk.Label {
         public LLabel (string label) {
             this.set_halign (Gtk.Align.START);

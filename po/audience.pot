@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-27 01:16+0200\n"
+"POT-Creation-Date: 2012-08-15 23:19-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,106 +17,138 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/tom/Programming/audience/po/../Audience/desktop-launcher.vala:5
-msgid "Play your media"
+#: /home/codygarver/audience/po/../Audience/Audience.vala:102
+msgid "No videos are open"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/desktop-launcher.vala:6
-msgid "Media Player"
+#: /home/codygarver/audience/po/../Audience/Audience.vala:102
+msgid "Select a source to begin playing"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:100
-msgid "Select a source to begin playing."
-msgstr ""
-
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
+#: /home/codygarver/audience/po/../Audience/Audience.vala:103
 msgid "Open file"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:101
+#: /home/codygarver/audience/po/../Audience/Audience.vala:103
 msgid "Open a saved file."
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:107
+#: /home/codygarver/audience/po/../Audience/Audience.vala:109
 msgid "Resume last video"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:110
-msgid "Play from Dics"
+#: /home/codygarver/audience/po/../Audience/Audience.vala:112
+msgid "Play from Disc"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:110
-msgid "Watch a DVD or open a file from dics"
+#: /home/codygarver/audience/po/../Audience/Audience.vala:112
+msgid "Watch a DVD or open a file from disc"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:133
+#: /home/codygarver/audience/po/../Audience/Audience.vala:135
 msgid "Play"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:134
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:650
+#: /home/codygarver/audience/po/../Audience/Audience.vala:136
+#: /home/codygarver/audience/po/../Audience/Audience.vala:658
 msgid "Open"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:135
+#: /home/codygarver/audience/po/../Audience/Audience.vala:137
 msgid "Sidebar"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:136
+#: /home/codygarver/audience/po/../Audience/Audience.vala:138
 msgid "Leave Fullscreen"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:195
+#: /home/codygarver/audience/po/../Audience/Audience.vala:199
 msgid "Open location"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:204
+#: /home/codygarver/audience/po/../Audience/Audience.vala:208
 msgid "Choose location"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:245
+#: /home/codygarver/audience/po/../Audience/Audience.vala:249
 msgid "Error"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:255
+#: /home/codygarver/audience/po/../Audience/Audience.vala:259
 msgid "Oops! Audience can't play this file!"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:282
+#: /home/codygarver/audience/po/../Audience/Audience.vala:286
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:288
+#: /home/codygarver/audience/po/../Audience/Audience.vala:292
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:291
+#: /home/codygarver/audience/po/../Audience/Audience.vala:295
 msgid "Don't install"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:292
+#: /home/codygarver/audience/po/../Audience/Audience.vala:296
 msgid "Install"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:468
+#: /home/codygarver/audience/po/../Audience/Audience.vala:472
 msgid "Add from Harddrive"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:470
+#: /home/codygarver/audience/po/../Audience/Audience.vala:474
 msgid "Play a DVD"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:472
+#: /home/codygarver/audience/po/../Audience/Audience.vala:476
 msgid "Network File"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:656
+#: /home/codygarver/audience/po/../Audience/Audience.vala:664
 msgid "All files"
 msgstr ""
 
-#: /home/tom/Programming/audience/po/../Audience/Audience.vala:660
+#: /home/codygarver/audience/po/../Audience/Audience.vala:668
 msgid "Video files"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/desktop-launcher.vala:5
+msgid "Play your media"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/desktop-launcher.vala:6
+msgid "Media Player"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:54
+msgid "Language"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:55
+msgid "Subtitles"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:94
+msgid "Playlist"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:95
+msgid "Options"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:97
+msgid "Details"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:218
+msgid "Default"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:231
+msgid "None"
 msgstr ""
