@@ -58,7 +58,10 @@ namespace Audience {
             
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
-            
+        }
+        
+        void build ()
+        {
             playlist = new Widgets.Playlist ();
             settings = new Settings ();
             mainwindow = new Gtk.Window ();
@@ -575,7 +578,7 @@ namespace Audience {
         
         //the application started
         public override void activate () {
-            
+            build ();
         }
         
         //the application was requested to open some files
