@@ -190,6 +190,7 @@ namespace Audience.Widgets
 					
 					hide_lock ++;
 				} else {
+					toggle_side_pane (false);
 					controls.view.set_icon ("pane-show-symbolic", Gtk.Stock.GO_BACK, "go-previous-symbolic");
 					controls.showing_view = false;
 					
