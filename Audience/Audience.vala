@@ -583,6 +583,9 @@ namespace Audience {
         
         //the application was requested to open some files
         public override void open (File [] files, string hint) {
+            if (mainwindow == null)
+            	activate ();
+            
             for (var i = 1; i < files.length; i ++)
                 playlist.add_item (files[i]);
             
