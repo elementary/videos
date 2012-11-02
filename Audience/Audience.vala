@@ -543,11 +543,10 @@ namespace Audience {
         }
 
         public void play_file (string uri) {
-            debug ("Opening %s", video_player.uri);
+            debug ("Opening %s", uri);
             video_player.uri = uri;
             
-            //TODO
-            mainwindow.title = get_title (video_player.uri);
+            mainwindow.title = get_title (uri);
             if (settings.show_details)
                 tagview.get_tags (uri, true);
             

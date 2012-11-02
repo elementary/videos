@@ -203,8 +203,20 @@ namespace Audience.Widgets
 			});
 			panel.vol.value = 1.0;
 			
-			playbin.text_tags_changed.connect (() => text_tags_changed ());
-			playbin.audio_tags_changed.connect (() => audio_tags_changed ());
+			playbin.text_tags_changed.connect (() => {
+				if (this == null)
+					return;
+				
+				text_tags_changed ();
+			});
+			playbin.audio_tags_changed.connect (() => {
+				//FIXME yes, this happens. On every launch. Probably related 
+				// to wrong use of threads, but this works as fix
+				if (this == null)
+					return;
+				
+				audio_tags_changed ();
+			});
 			
 			playbin.get_bus ().add_signal_watch ();
 			playbin.get_bus ().message.connect ( () => {
