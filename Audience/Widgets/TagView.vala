@@ -161,6 +161,14 @@ namespace Audience.Widgets
             this.expanded = false;
         }
         
+        public override void allocate (Clutter.ActorBox box, Clutter.AllocationFlags flags) {
+        	//have a minimum height in order to not get the negative allocation warnings
+        	if (box.y2 - box.y1 < 100) {
+        		box.y2 = box.y1 + 100;
+    		}
+    		base.allocate (box, flags);
+        }
+        
         public void expand (){
             //make sure it comes from right bounds
             x = get_stage ().width + 100;
