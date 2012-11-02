@@ -42,12 +42,16 @@ namespace Audience {
         return filename.substring (i+1);
     }
     public static string get_basename (string filename) {
-        int i=0;
-        for (i=filename.length;i!=0;i--) {
-            if (filename [i] == '.')
-                break;
+        int start = 0, end = 0;
+        for (start=filename.length; start != 0; start--) {
+            if (filename[start] == '/') {
+            	start ++;
+            	break;
+        	}
+            if (filename[start] == '.')
+                end = start;
         }
-        return filename.substring (0, i);
+        return filename.substring (start, end - start);
     }
 
     public static string seconds_to_time (int seconds) {
