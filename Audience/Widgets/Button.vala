@@ -18,10 +18,13 @@ namespace Audience.Widgets{
                 return true;
             });
 
-            this.button_release_event.connect ( () => {
-                this.clicked ();
-                return true;
-            });
+			var click = new Clutter.ClickAction ();
+			click.clicked.connect (() => {
+				if (click.get_button () == 1)
+					clicked ();
+			});
+
+			add_action (click);
         }
 
         public void set_tooltip (string text){

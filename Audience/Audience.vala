@@ -399,6 +399,8 @@ namespace Audience {
                     old_w = mainwindow.get_allocated_width  ();
                     old_h = mainwindow.get_allocated_height ();
                 }
+
+				tagview.x = tagview.expanded ? stage.width - tagview.width + 10 : stage.width;
                 return;
             });
             
