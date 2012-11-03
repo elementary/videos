@@ -342,6 +342,10 @@ namespace Audience {
                     return false;
                 });
             });
+			
+			video_player.notify["playing"].connect (() => {
+				mainwindow.set_keep_above (video_player.playing && settings.stay_on_top);
+			});
             
             video_player.exit_fullscreen.connect (toggle_fullscreen);
             
