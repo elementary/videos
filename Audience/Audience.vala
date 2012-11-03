@@ -568,7 +568,7 @@ namespace Audience {
                         i = -1;
                 }
                 if (i != -1 && last_played_videos.nth_data (i + 1) != null) {
-                    video_player.progress = double.parse (last_played_videos.nth_data (i + 1));
+                    Idle.add (() => { video_player.progress = double.parse (last_played_videos.nth_data (i + 1)); return false;});
                     debug ("Resuming video from " + last_played_videos.nth_data (i + 1));
                 }
             }
