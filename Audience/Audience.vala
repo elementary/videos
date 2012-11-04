@@ -87,13 +87,12 @@ namespace Audience {
             welcome.append ("document-open", _("Open file"), _("Open a saved file."));
             
             //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
-            string filename = "";
-            if (last_played_videos.length () > 0) {
-                filename = last_played_videos.nth_data (0);
-                welcome.append ("media-playback-start", _("Resume last video"), get_title (File.new_for_uri (filename).get_basename ()));
-            }
-            if (has_dvd)
-                welcome.append ("media-cdrom", _("Play from Dics"), _("Watch a DVD or open a file from dics"));
+            var filename = last_played_videos.length () > 0 ? last_played_videos.nth_data (0) : "";
+            welcome.append ("media-playback-start", _("Resume last video"), get_title (File.new_for_uri (filename).get_basename ()));
+            welcome.set_item_visible (1, last_played_videos.length () > 0);
+            
+            welcome.append ("media-cdrom", _("Play from Dics"), _("Watch a DVD or open a file from dics"));
+            welcome.set_item_visible (2, has_dvd);
             
             var stage = clutter.get_stage ();
             
@@ -131,11 +130,11 @@ namespace Audience {
             this.monitor = GLib.VolumeMonitor.get ();
             monitor.drive_connected.connect ( (drive) => {
                 this.has_dvd = Audience.has_dvd ();
-                welcome.set_item_visible (1, this.has_dvd);
+                welcome.set_item_visible (2, this.has_dvd);
             });
             monitor.drive_disconnected.connect ( () => {
                 this.has_dvd = Audience.has_dvd ();
-                welcome.set_item_visible (1, this.has_dvd);
+                welcome.set_item_visible (2, this.has_dvd);
             });
             //playlist wants us to open a file
             playlist.play.connect ( (file) => {
