@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-08-15 23:19-0500\n"
-"PO-Revision-Date: 2012-08-02 09:21+0000\n"
-"Last-Translator: Ivan <Unknown>\n"
+"PO-Revision-Date: 2012-11-03 23:50+0000\n"
+"Last-Translator: Devid Antonio Filoni <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-17 05:11+0000\n"
-"X-Generator: Launchpad (build 15810)\n"
+"X-Launchpad-Export-Date: 2012-11-04 05:16+0000\n"
+"X-Generator: Launchpad (build 16218)\n"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:102
 msgid "No videos are open"
@@ -109,7 +109,7 @@ msgstr "Riproduci DVD"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:476
 msgid "Network File"
-msgstr ""
+msgstr "File in rete"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:664
 msgid "All files"
@@ -153,4 +153,4 @@ msgstr "Predefinita"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:231
 msgid "None"
-msgstr "Nessun"
+msgstr "Nessuno"
