@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-08-15 23:19-0500\n"
-"PO-Revision-Date: 2012-06-25 07:37+0000\n"
+"PO-Revision-Date: 2012-11-12 06:44+0000\n"
 "Last-Translator: Eugene Marshal <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-17 05:11+0000\n"
-"X-Generator: Launchpad (build 15810)\n"
+"X-Launchpad-Export-Date: 2012-11-13 05:51+0000\n"
+"X-Generator: Launchpad (build 16251)\n"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:102
 msgid "No videos are open"
-msgstr ""
+msgstr "Отсутствуют открытые видеозаписи"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:102
 msgid "Select a source to begin playing"
-msgstr ""
+msgstr "Выберите источник для воспроизведения"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:103
 msgid "Open file"
@@ -39,11 +39,11 @@ msgstr "Возобновить с последней видеозаписи"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:112
 msgid "Play from Disc"
-msgstr ""
+msgstr "Воспроизвести с диска"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:112
 msgid "Watch a DVD or open a file from disc"
-msgstr ""
+msgstr "Воспроизвести DVD или открыть файл с диска"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:135
 msgid "Play"
@@ -130,27 +130,27 @@ msgstr "Мультимедийный проигрыватель"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:54
 msgid "Language"
-msgstr ""
+msgstr "Язык"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:55
 msgid "Subtitles"
-msgstr ""
+msgstr "Субтитры"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:94
 msgid "Playlist"
-msgstr ""
+msgstr "Список воспроизведения"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:95
 msgid "Options"
-msgstr ""
+msgstr "Параметры"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:97
 msgid "Details"
-msgstr ""
+msgstr "Сведения"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:218
 msgid "Default"
-msgstr ""
+msgstr "По умолчанию"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:231
 msgid "None"
