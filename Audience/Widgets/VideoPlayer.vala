@@ -94,6 +94,38 @@ namespace Audience.Widgets
 				_controls_hidden = value;
 			}
 		}
+
+		public int current_audio {
+			get {
+				return playbin.current_audio;
+			}
+			set {
+				playbin.current_audio = value;
+			}
+		}
+
+		// currently used text stream. Set to -1 to disable subtitles
+		public int current_text {
+			get {
+				return playbin.current_text;
+			}
+			set {
+				if (value == current_text)
+					return;
+
+                int flags;
+                playbin.get ("flags", out flags);
+
+                if (value == -1) {
+                    flags &= ~SUBTITLES_FLAG;
+                    playbin.set ("flags", flags, "current-text", value);
+                } else {
+                    flags |= SUBTITLES_FLAG;
+                    playbin.set ("flags", flags, "current-text", value);
+                }
+
+			}
+		}
 		
 		public dynamic Gst.Element playbin;
 		Clutter.Texture video;
@@ -203,65 +235,71 @@ namespace Audience.Widgets
 			});
 			panel.vol.value = 1.0;
 			
-			playbin.text_tags_changed.connect (() => {
-				if (this == null)
-					return;
-				
-				text_tags_changed ();
+			playbin.text_tags_changed.connect ((el) => {
+				var structure = new Gst.Structure.empty ("tags-changed");
+				structure.set_value ("type", "text");
+				el.post_message (new Gst.Message.application (el, structure));
 			});
-			playbin.audio_tags_changed.connect (() => {
-				//FIXME yes, this happens. On every launch. Probably related 
-				// to wrong use of threads, but this works as fix
-				if (this == null)
-					return;
-				
-				audio_tags_changed ();
+			playbin.audio_tags_changed.connect ((el) => {
+				var structure = new Gst.Structure.empty ("tags-changed");
+				structure.set_value ("type", "audio");
+				el.post_message (new Gst.Message.application (el, structure));
 			});
 			
 			playbin.get_bus ().add_signal_watch ();
-			playbin.get_bus ().message.connect ( () => {
-				var msg = playbin.get_bus ().peek ();
-				if (msg == null)
-					return;
-				switch (msg.type) {
-					case Gst.MessageType.ERROR:
-						GLib.Error e; string detail;
-						msg.parse_error (out e, out detail);
+			playbin.get_bus ().message.connect (watch);
+		}
+
+		void watch () {
+			var msg = playbin.get_bus ().peek ();
+			if (msg == null)
+				return;
+			switch (msg.type) {
+				case Gst.MessageType.APPLICATION:
+					if (msg.get_structure ().get_name () == "tags-changed") {
+						if (msg.get_structure ().get_string ("type") == "text")
+							text_tags_changed ();
+						else
+							audio_tags_changed ();
+					}
+					break;
+				case Gst.MessageType.ERROR:
+					GLib.Error e; string detail;
+					msg.parse_error (out e, out detail);
+					playbin.set_state (Gst.State.NULL);
+					
+					warning (detail);
+					
+					show_error (e.message);
+					break;
+				case Gst.MessageType.ELEMENT:
+					if (msg.get_structure () == null)
+						break;
+					
+					if (Gst.is_missing_plugin_message (msg)) {
 						playbin.set_state (Gst.State.NULL);
 						
-						warning (detail);
+						handle_missing_plugin (msg);
+					/*TODO } else { //may be navigation command
+						var nav_msg = Gst.Navigation.message_get_type (msg);
 						
-						show_error (e.message);
-						break;
-					case Gst.MessageType.ELEMENT:
-						if (msg.get_structure () == null)
-							break;
-						
-						if (Gst.is_missing_plugin_message (msg)) {
-							playbin.set_state (Gst.State.NULL);
+						if (nav_msg == Gst.NavigationMessageType.COMMANDS_CHANGED) {
+							var q = Gst.Navigation.query_new_commands ();
+							pipeline.query (q);
 							
-							handle_missing_plugin (msg);
-						/*TODO } else { //may be navigation command
-							var nav_msg = Gst.Navigation.message_get_type (msg);
-							
-							if (nav_msg == Gst.NavigationMessageType.COMMANDS_CHANGED) {
-								var q = Gst.Navigation.query_new_commands ();
-								pipeline.query (q);
-								
-								uint n;
-								gst_navigation_query_parse_commands_length (q, out n);
-								for (var i=0;i<n;i++) {
-									Gst.NavigationCommand cmd;
-									gst_navigation_query_parse_commands_nth (q, 0, out cmd);
-									debug ("Got command: %i", (int)cmd);
-								}
-							}*/
-						}
-						break;
-					default:
-						break;
-				}
-			});
+							uint n;
+							gst_navigation_query_parse_commands_length (q, out n);
+							for (var i=0;i<n;i++) {
+								Gst.NavigationCommand cmd;
+								gst_navigation_query_parse_commands_nth (q, 0, out cmd);
+								debug ("Got command: %i", (int)cmd);
+							}
+						}*/
+					}
+					break;
+				default:
+					break;
+			}
 		}
 	
 		public override bool motion_event (Clutter.MotionEvent event)

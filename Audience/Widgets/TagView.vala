@@ -64,26 +64,16 @@ namespace Audience.Widgets
             this.subtitles.changed.connect ( () => {
                 if (subtitles.active_id == null)
                     return;
-                var pipe = app.video_player.playbin;
-                
-                int flags;
-                pipe.get ("flags", out flags);
-                if (subtitles.active_id == "-1") {
-                    flags &= ~SUBTITLES_FLAG;
-                    pipe.set ("flags", flags, "current-text", -1);
-                    debug ("Disabling subtitles");
-                }else {
-                    debug ("Switching to subtitle %s", this.subtitles.active_id);
-                    flags |= SUBTITLES_FLAG;
-                    pipe.set ("flags", flags, "current-text", int.parse (this.subtitles.active_id));
-                }
+				var id = int.parse (this.subtitles.active_id);
+				app.video_player.current_text = id;
+				debug ("Switching to subtitle %i", id);
             });
             
             languages.changed.connect ( () => { //place it here to not get problems
                 if (languages.active_id == null)
                     return;
                 debug ("Switching to audio %s\n", this.languages.active_id);
-                app.video_player.playbin.current_audio = int.parse (this.languages.active_id);
+                app.video_player.current_audio = int.parse (this.languages.active_id);
             });
             
             var playlist_scrolled = new Gtk.ScrolledWindow (null, null);
