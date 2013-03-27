@@ -26,6 +26,14 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/audience.desktop DESTINATION ${DA
 configure_file (${CMAKE_SOURCE_DIR}/Audience/Config.vala.cmake ${CMAKE_BINARY_DIR}/Audience/Config.vala)
 add_definitions(-DGETTEXT_PACKAGE="audience")
 
+set (CPACK_PACKAGE_VERSION ${VERSION})
+set (CPACK_SOURCE_GENERATOR "TGZ")
+set (CPACK_SOURCE_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${CPACK_PACKAGE_VERSION}")
+set (CPACK_SOURCE_IGNORE_FILES "/build/;/.bzr/;/.bzrignore;~$;${CPACK_SOURCE_IGNORE_FILES}")
+
+include (CPack)
+add_custom_target (dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
+
 find_package(PkgConfig)
 pkg_check_modules(DEPS REQUIRED granite gtk+-3.0 clutter-gtk-1.0 clutter-gst-1.0 gstreamer-pbutils-0.10 gstreamer-interfaces-0.10 gstreamer-tag-0.10)
 add_definitions(${DEPS_CFLAGS})
