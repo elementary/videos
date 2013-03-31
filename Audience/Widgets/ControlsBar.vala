@@ -16,13 +16,15 @@ namespace Audience.Widgets
         private Gdk.Pixbuf pause_pix;
         
         public bool showing_view = false;
-        public bool hovered;
+        public bool hovered { get; set; }
         
         public Controls ()
         {
             layout_manager = new BoxLayout ();
             content = new Canvas ();
             
+			(layout_manager as BoxLayout).spacing = 10;
+
             this.current   = new Text.full ("", "0", {255,255,255,255});
             this.remaining = new Text.full ("", "0", {255,255,255,255});
             
@@ -37,23 +39,19 @@ namespace Audience.Widgets
             var spacer_right = new Rectangle.with_color ({0,0,0,0});
             spacer_right.width = 0;
             
-            this.add_actor (spacer_left);
-            this.add_actor (this.play);
-            this.add_actor (this.current);
-            this.add_actor (this.slider);
-            this.add_actor (this.remaining);
-            this.add_actor (this.open);
-            this.add_actor (this.view);
-            this.add_actor (spacer_right);
-            
-            (layout_manager as BoxLayout).set_spacing (10);
-            (layout_manager as BoxLayout).set_expand (this.slider, true);
-            (layout_manager as BoxLayout).set_fill (this.slider, true, true);
+            this.add_child (spacer_left);
+            this.add_child (this.play);
+            this.add_child (this.current);
+            this.add_child (this.slider);
+            this.add_child (this.remaining);
+            this.add_child (this.open);
+            this.add_child (this.view);
+            this.add_child (spacer_right);
             
             /*setup a css style for the control background*/
             var style_holder = new Gtk.EventBox ();
             var css = new Gtk.CssProvider ();
-            try{css.load_from_data ("
+            try{css.load_from_data ("""
             * {
                 engine: unico;
                 background-image: -gtk-gradient (linear, 
@@ -74,7 +72,7 @@ namespace Audience.Widgets
                 -unico-inner-stroke-width: 1;
                 -unico-outer-stroke-width: 1;
             }
-            ", -1);}catch (Error e){warning (e.message);}
+            """, -1);}catch (Error e){warning (e.message);}
             style_holder.get_style_context ().add_provider (css, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             
             (content as Canvas).draw.connect ( (ctx) => {
@@ -112,11 +110,17 @@ namespace Audience.Widgets
                 this.hovered = true;
                 return false;
             });
-            this.leave_event.connect ( () => {
-                this.hovered = false;
+            this.leave_event.connect ( (e) => {
+				if (!contains (e.related))
+					this.hovered = false;
                 return false;
             });
         }
+
+		// catch all button presses
+		public override bool button_press_event (Clutter.ButtonEvent event) {
+			return true;
+		}
         
         public void show_play_button (bool show){ /*or show pause button*/
             try{

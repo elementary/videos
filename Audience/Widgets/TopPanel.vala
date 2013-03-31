@@ -69,12 +69,12 @@ namespace Audience.Widgets{
 
             buf.width = 10;
 
-            //this.add_actor (this.volume); removed until we get it to control global volume
-            this.add_actor (buf);
-            this.add_actor (this.exit);
+            //this.add_child (this.volume); removed until we get it to control global volume
+            this.add_child (buf);
+            this.add_child (this.exit);
 
             this.y = this.height;
-            this.x = Gdk.Screen.get_default ().width () - this.width - 30;
+            this.x = Gdk.Screen.get_default ().get_width () - this.width - 30;
         }
 
         public void toggle (bool show) {

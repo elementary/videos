@@ -78,6 +78,17 @@ namespace Audience {
         return false;
     }
 
+	public static dynamic Gst.Element get_clutter_sink ()
+	{
+		var sink = Gst.ElementFactory.make ("autocluttersink", "videosink");
+		if (sink == null) {
+			warning ("autocluttersink not available");
+			sink = Gst.ElementFactory.make ("cluttersink", "videosink");
+		}
+
+		return sink;
+	}
+
     /*
      * get a thumbnail from a file
      * @param file the file
@@ -85,7 +96,8 @@ namespace Audience {
      * @param pixbuf gtkclutter texture to put the pixbuf in once it's ready
      * TODO appears not to load thumbs for bigger files
      **/
-    public static void get_thumb (File file, int64 position, GtkClutter.Texture tex) {
+    /* NOT NEEDED CURRENTLY
+	public static void get_thumb (File file, int64 position, GtkClutter.Texture tex) {
         //pipeline
         bool got_video = false;
         var pipe = new Gst.Pipeline ("pipeline");
@@ -134,14 +146,14 @@ namespace Audience {
                         break;
                     var fmt = Gst.Format.TIME;
                     int64 pos;
-                    pipe.query_position (ref fmt, out pos);
+                    pipe.query_position (fmt, out pos);
                     if (pos > 1)
                         ready = true;
                     else
                         break;
                     if (position == -1) {
                         int64 dur;
-                        pipe.query_duration (ref fmt, out dur);
+                        pipe.query_duration (fmt, out dur);
                         pipe.seek_simple (Gst.Format.TIME, Gst.SeekFlags.ACCURATE |
                             Gst.SeekFlags.FLUSH, (int64)(dur*0.5));
                     }else {
@@ -158,9 +170,9 @@ namespace Audience {
                         !msg.get_structure ().has_name ("pixbuf"))
                         break;
                     var val = msg.get_structure ().get_value ("pixbuf");
-                    if (val == null)
-                        return;
                     var pixbuf = (Gdk.Pixbuf)val.dup_object ();
+                    if (pixbuf == null)
+                        return;
                     try {
                         tex.set_from_pixbuf (pixbuf);
                     } catch (Error e) {warning (e.message);}
@@ -172,7 +184,7 @@ namespace Audience {
         });
 
         pipe.set_state (Gst.State.PLAYING);
-    }
+    }*/
 
     namespace Drawing {
 

@@ -81,8 +81,6 @@ namespace Audience.Widgets
             
             notebook.append_page (playlist_scrolled, new Gtk.Label (_("Playlist")));
             notebook.append_page (setupgrid, new Gtk.Label (_("Options")));
-            if (settings.show_details)
-                notebook.append_page (tagview, new Gtk.Label (_("Details")));
             
             /*draw the window stylish!*/
             var css = new Gtk.CssProvider ();
@@ -197,16 +195,16 @@ namespace Audience.Widgets
                     continue;
                 
                 string desc;
-                tags.get_string (Gst.TAG_LANGUAGE_CODE, out desc);
+                tags.get_string (Gst.Tags.LANGUAGE_CODE, out desc);
                 if (desc == null)
-                    tags.get_string (Gst.TAG_CODEC, out desc);
+                    tags.get_string (Gst.Tags.CODEC, out desc);
                 
-                var readable = Gst.tag_get_language_name (desc);
+                var readable = Gst.Tag.get_language_name (desc);
                 if (target == "audio" && desc != null) {
                     this.languages.append (i.to_string (), (readable == null)?desc:readable);
                     used ++;
                 }else if (desc != null) {
-                    this.subtitles.append (i.to_string (), Gst.tag_get_language_name (desc));
+                    this.subtitles.append (i.to_string (), Gst.Tag.get_language_name (desc));
                     used ++;
                 }
             }
@@ -230,39 +228,5 @@ namespace Audience.Widgets
                 this.subtitles.active_id = "-1";
             }
         }
-        
-        public void get_tags (string filename, bool set_title){
-            var pipe = new Gst.Pipeline ("tagpipe");
-            var src  = Gst.ElementFactory.make ("uridecodebin", "src");
-            var sink = Gst.ElementFactory.make ("fakesink", "sink");
-            src.set ("uri", File.new_for_commandline_arg (filename).get_uri ());
-            pipe.add_many (src, sink);
-            
-            pipe.set_state (Gst.State.PAUSED);
-            
-            taggrid.foreach ( (w) => {taggrid.remove (w);});
-            var index = 1;
-            pipe.get_bus ().add_watch ( (bus, msg) => {
-                if (msg.type == Gst.MessageType.TAG){
-                    Gst.TagList tag_list;
-                    msg.parse_tag (out tag_list);
-                    tag_list.foreach ( (list, tag) => {
-                        for (var i=0;i<list.get_tag_size (tag);i++){
-                            var val = list.get_value_index (tag, i);
-                            if (set_title && tag == "title")
-                                this.app.mainwindow.title = val.strdup_contents ();
-                            taggrid.attach (new LLabel.markup ("<b>"+tag+"</b>"), 0, index, 1, 1);
-                            taggrid.attach (new LLabel (val.strdup_contents ()),  1, index, 1, 1);
-                            taggrid.show_all ();
-                            index ++;
-                        }
-                    });
-                }else if (msg.type == Gst.MessageType.EOS)
-                    pipe.set_state (Gst.State.NULL);
-                return true;
-            });
-            pipe.set_state (Gst.State.PLAYING);
-        }
     }
-    
 }

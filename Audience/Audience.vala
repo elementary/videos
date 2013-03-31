@@ -88,8 +88,11 @@ namespace Audience {
             
             //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
             var filename = last_played_videos.length () > 0 ? last_played_videos.nth_data (0) : "";
-            welcome.append ("media-playback-start", _("Resume last video"), get_title (File.new_for_uri (filename).get_basename ()));
-            welcome.set_item_visible (1, last_played_videos.length () > 0);
+			var last_file = File.new_for_uri (filename);
+			if (last_file.query_exists ()) {
+				welcome.append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
+				welcome.set_item_visible (1, last_played_videos.length () > 0);
+			}
             
             welcome.append ("media-cdrom", _("Play from Dics"), _("Watch a DVD or open a file from dics"));
             welcome.set_item_visible (2, has_dvd);
@@ -115,7 +118,6 @@ namespace Audience {
             this.mainwindow.set_application (this);
             this.mainwindow.add (mainbox);
             this.mainwindow.set_default_size (624, 352);
-            this.mainwindow.set_size_request (624, 352);
             this.mainwindow.show_all ();
             if (!settings.show_window_decoration)
                 this.mainwindow.decorated = false;
@@ -150,14 +152,14 @@ namespace Audience {
                     run_open (0);
                     break;
                 case 1:
+					welcome.hide ();
+					clutter.show_all ();
+
 					open_file (filename);
 					
 					video_player.playing = false;
 					video_player.progress = double.parse (last_played_videos.nth_data (1));
 					video_player.playing = true;
-					
-					welcome.hide ();
-					clutter.show_all ();
 					break;
 				case 2:
 					run_open (2);
@@ -258,13 +260,6 @@ namespace Audience {
                 playlist.next ();
             });
             
-            /*hide controls when mouse leaves window*/
-            mainwindow.leave_notify_event.connect ( (e) => {
-                if (!tagview.expanded && video_player.playing && !video_player.moving_action)
-                    video_player.controls_hidden = true;
-                return true;
-            });
-            
             /*open location popover*/
             video_player.show_open_context.connect ( () => {
                 var has_been_stopped = video_player.playing;
@@ -341,6 +336,16 @@ namespace Audience {
                     return false;
                 });
             });
+
+			video_player.error.connect (() => {
+				welcome.show_all ();
+				clutter.hide ();
+			});
+
+			video_player.plugin_install_done.connect (() => {
+				clutter.show ();
+				welcome.hide ();
+			});
 			
 			video_player.notify["playing"].connect (() => {
 				mainwindow.set_keep_above (video_player.playing && settings.stay_on_top);
@@ -357,27 +362,34 @@ namespace Audience {
             });
             
             video_player.configure_window.connect ((video_w, video_h) => {
-            	print ("W: %i, H: %i\n", video_w, video_h);
-            	
+
+				Gdk.Rectangle monitor;
+				var screen = Gdk.Screen.get_default ();
+				screen.get_monitor_geometry (
+					screen.get_monitor_at_window (mainwindow.get_window ()),
+					out monitor);
+
+				int width = 0, height = 0;
+		        if (monitor.width > video_w && monitor.height > video_h) {
+					width = (int)video_w;
+					height = (int)video_h;
+		            mainwindow.resize (width, height);
+		        } else {
+					width = (int)(monitor.width * 0.9);
+					height = (int)((double)video_h / video_w * width);
+		            mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
+						monitor.height / 2 - height / 2 + monitor.y,
+						width, height);
+		        }
+
+				var geom = Gdk.Geometry ();
 		        if (settings.keep_aspect) {
-		            var g = Gdk.Geometry (); //lock
-		            g.min_aspect = g.max_aspect = video_w / (double)video_h;
-		            mainwindow.set_geometry_hints (mainwindow, g, Gdk.WindowHints.ASPECT);
+		            geom.min_aspect = geom.max_aspect = video_w / (double)video_h;
 		        } else {
-		        	var ung = Gdk.Geometry (); //unlock
-				    ung.min_aspect = 0.0;
-				    ung.max_aspect = 99999999.0;
-				    mainwindow.set_geometry_hints (mainwindow, ung, Gdk.WindowHints.ASPECT);
+				    geom.min_aspect = 0.0;
+				    geom.max_aspect = 99999999.0;
 		        }
-		        
-		        if (Gdk.Screen.get_default ().width ()  > video_w &&
-		            Gdk.Screen.get_default ().height () > video_h) {
-		            mainwindow.resize ((int)video_w, (int)video_h);
-		        } else {
-		            mainwindow.resize (
-		                (int)(Gdk.Screen.get_default ().width () * 0.9),
-		                (int)(Gdk.Screen.get_default ().height () * 0.9));
-		        }
+				mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
             });
             
             //fullscreen on maximize
@@ -392,49 +404,57 @@ namespace Audience {
             });
             
             //positioning
-            int old_h=0;
-            int old_w=0;
-            mainwindow.size_allocate.connect ( () => {
-                if (mainwindow.get_allocated_width () != old_w || 
-                    mainwindow.get_allocated_height () != old_h) {
-                    if (video_player.uri != null || video_player.uri == "")
-                        video_player.relayout ();
-                    old_w = mainwindow.get_allocated_width  ();
-                    old_h = mainwindow.get_allocated_height ();
+            int old_h = - 1;
+            int old_w = - 1;
+            mainwindow.size_allocate.connect ( (alloc) => {
+                if (alloc.width != old_w || 
+                    alloc.height != old_h) {
+					if (video_player.relayout ()) {
+						old_w = alloc.width;
+						old_h = alloc.height;
+					}
                 }
 
 				tagview.x = tagview.expanded ? stage.width - tagview.width + 10 : stage.width;
-                return;
             });
             
             /*moving the window by drag, fullscreen for dbl-click*/
+			bool down = false;
             bool moving = false;
             video_player.button_press_event.connect ( (e) => {
                 if (e.click_count > 1) {
                     toggle_fullscreen ();
+					down = false;
                     return true;
                 } else {
-                    moving = true;
+                    down = true;
                     return true;
                 }
             });
             clutter.motion_notify_event.connect ( (e) => {
-                if (moving && settings.move_window) {
-                    moving = false;
+                if (down && settings.move_window) {
+					down = false;
+                    moving = true;
                     mainwindow.begin_move_drag (1, 
                         (int)e.x_root, (int)e.y_root, e.time);
                     
-                    video_player.moving_action = true;
-                    
+					video_player.lock_hide ();
+
                     return true;
-                }
+				}
                 return false;
             });
             clutter.button_release_event.connect ( (e) => {
-                moving = false;
+				down = false;
                 return false;
             });
-            mainwindow.focus_in_event.connect (() => video_player.moving_action = false );
+            mainwindow.focus_in_event.connect (() => {
+                if (moving) {
+					video_player.unlock_hide ();
+					moving = false;
+				}
+				return false;
+			});
             
             /*DnD*/
             Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
@@ -552,9 +572,6 @@ namespace Audience {
             video_player.uri = uri;
             
             mainwindow.title = get_title (uri);
-            if (settings.show_details)
-                tagview.get_tags (uri, true);
-            
             if (!settings.playback_wait)
                 video_player.playing = true;
             
@@ -607,7 +624,8 @@ public static void main (string [] args) {
     if (err != Clutter.InitError.SUCCESS) {
         error ("Could not initalize clutter! "+err.to_string ());
     }
-    ClutterGst.init (ref args);
+
+	Gst.init (ref args);
     
     var app = new Audience.App ();
     

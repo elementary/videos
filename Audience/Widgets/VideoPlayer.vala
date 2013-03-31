@@ -1,5 +1,19 @@
 using Clutter;
 
+enum PlayFlags {
+	VIDEO         = (1 << 0),
+	AUDIO         = (1 << 1),
+	TEXT          = (1 << 2),
+	VIS           = (1 << 3),
+	SOFT_VOLUME   = (1 << 4),
+	NATIVE_AUDIO  = (1 << 5),
+	NATIVE_VIDEO  = (1 << 6),
+	DOWNLOAD      = (1 << 7),
+	BUFFERING     = (1 << 8),
+	DEINTERLACE   = (1 << 9),
+	SOFT_COLORBALANCE = (1 << 10)
+}
+
 namespace Audience.Widgets
 {
 	public class VideoPlayer : Actor
@@ -7,6 +21,7 @@ namespace Audience.Widgets
 		
 		public bool at_end;
 		
+		bool paused;
 		bool _playing;
 		public bool playing {
 			get {
@@ -20,8 +35,16 @@ namespace Audience.Widgets
 				
 				playbin.set_state (value ? Gst.State.PLAYING : Gst.State.PAUSED);
 				set_screensaver (!value);
-				controls_hidden = value;
-				
+
+				if (!value) {
+					paused = true;
+					lock_hide ();
+				}
+				if (value && paused) {
+					paused = false;
+					unlock_hide ();
+				}
+
 				_playing = value;
 			}
 		}
@@ -31,8 +54,8 @@ namespace Audience.Widgets
 				int64 length, prog;
 				var time = Gst.Format.TIME;
 				
-				playbin.query_duration (ref time, out length);
-				playbin.query_position (ref time, out prog);
+				playbin.query_duration (time, out length);
+				playbin.query_position (time, out prog);
 				
 				if (length == 0)
 					return 0;
@@ -42,8 +65,9 @@ namespace Audience.Widgets
 			set {
 				int64 length;
 				var time = Gst.Format.TIME;
-				playbin.query_duration (ref time, out length);
-				playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, (int64)(value * length));
+				playbin.query_duration (time, out length);
+				playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.KEY_UNIT | Gst.SeekFlags.ACCURATE,
+					(int64)(double.max (value, 0.0) * length));
 			}
 		}
 		
@@ -58,24 +82,34 @@ namespace Audience.Widgets
 		
 		public string uri {
 			owned get {
-				return playbin.uri;
+				return playbin.current_uri;
 			}
 			set {
 				if (value == (string)playbin.uri)
 					return;
+
+				try {
+					var info = new Gst.PbUtils.Discoverer (10 * Gst.SECOND).discover_uri (value);
+					var video = info.get_video_streams ();
+					if (video.data != null) {
+						var video_info = (Gst.PbUtils.DiscovererVideoInfo)video.data;
+						video_width = video_info.get_width ();
+						video_height = video_info.get_height ();
+					}
+				} catch (Error e) { warning (e.message); }
 				
 				intial_relayout = true;
 				
 				playbin.uri = value;
-				controls.slider.preview.uri = value;
-				controls.slider.preview.audio_volume = 0.0;
+				controls.slider.set_preview_uri (value);
 				at_end = false;
 				
 				int flags;
 				playbin.get ("flags", out flags);
-				flags &= ~SUBTITLES_FLAG;
-				flags |= DOWNLOAD_FLAG;
+				flags &= ~PlayFlags.TEXT;
 				playbin.set ("flags", flags, "current-text", -1);
+
+				relayout ();
 			}
 		}
 		
@@ -86,10 +120,10 @@ namespace Audience.Widgets
 			set {
 				if (_controls_hidden && !value) {
 					float y2 = get_stage ().height - controls.height;
-					controls.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y:y2);
+					controls.animate (Clutter.AnimationMode.EASE_OUT_CUBIC, 300, y:y2);
 				} else if (!_controls_hidden && value){
 					float y2 = get_stage ().height;
-					controls.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 1000, y:y2);
+					controls.animate (Clutter.AnimationMode.EASE_IN_QUAD, 600, y:y2);
 				}
 				_controls_hidden = value;
 			}
@@ -113,17 +147,17 @@ namespace Audience.Widgets
 				if (value == current_text)
 					return;
 
-                int flags;
-                playbin.get ("flags", out flags);
+				playbin.current_text = value;
 
-                if (value == -1) {
-                    flags &= ~SUBTITLES_FLAG;
-                    playbin.set ("flags", flags, "current-text", value);
-                } else {
-                    flags |= SUBTITLES_FLAG;
-                    playbin.set ("flags", flags, "current-text", value);
+				int flags;
+				playbin.get ("flags", out flags);
+
+				if (value == -1) {
+					flags &= ~PlayFlags.TEXT;
+				} else {
+					flags |= PlayFlags.TEXT;
                 }
-
+				playbin.set ("flags", flags);
 			}
 		}
 		
@@ -131,14 +165,16 @@ namespace Audience.Widgets
 		Clutter.Texture video;
 		Controls controls;
 		TopPanel panel;
+
+		uint video_width;
+		uint video_height;
 		
-		//we will only hide if hide lock is 0
-		public int hide_lock;
+		// we will only hide if hide lock is 0
+		public int hide_lock = 0;
 		
 		uint hiding_timer;
 		
 		public bool fullscreened;
-		public bool moving_action;
 		
 		public signal void ended ();
 		public signal void toggle_side_pane (bool show);
@@ -146,7 +182,9 @@ namespace Audience.Widgets
 		public signal void audio_tags_changed ();
 		public signal void show_open_context ();
 		public signal void exit_fullscreen ();
-		public signal void configure_window (int video_w, int video_h);
+		public signal void error ();
+		public signal void plugin_install_done ();
+		public signal void configure_window (uint video_w, uint video_h);
 		
 		public VideoPlayer ()
 		{
@@ -154,14 +192,15 @@ namespace Audience.Widgets
 			
 			controls = new Controls ();
 			controls.add_constraint (new BindConstraint (this, BindCoordinate.WIDTH, 0));
+			controls.slider.preview.add_constraint (new BindConstraint (controls, Clutter.BindCoordinate.Y, -105.0f));
 			
 			panel = new TopPanel ();
 			
 			video = new Clutter.Texture ();
 			video.reactive = true;
 			
-			playbin = Gst.ElementFactory.make ("playbin2", "playbin");
-			dynamic Gst.Element video_sink = Gst.ElementFactory.make ("cluttersink", "videosink");
+			playbin = Gst.ElementFactory.make ("playbin", "playbin");
+			var video_sink = Audience.get_clutter_sink ();
 			video_sink.texture = video;
 			
 			playbin.video_sink = video_sink;
@@ -169,8 +208,8 @@ namespace Audience.Widgets
 			add_child (video);
 			add_child (controls);
 			add_child (panel);
+			add_child (controls.slider.preview);
 			
-			video.size_change.connect (relayout);
 			controls.slider.seeked.connect ( (v) => {
 				debug ("Seeked to %f", v);
 				progress = v;
@@ -178,8 +217,8 @@ namespace Audience.Widgets
 			Timeout.add (100, () => {
 				int64 length, prog;
 				var format = Gst.Format.TIME;
-				playbin.query_position (ref format, out prog);
-				playbin.query_duration (ref format, out length);
+				playbin.query_position (format, out prog);
+				playbin.query_duration (format, out length);
 				
 				if (length == 0)
 					return true;
@@ -198,20 +237,21 @@ namespace Audience.Widgets
 			
 			notify["fullscreened"].connect (() => panel.toggle (fullscreened) );
 			
-			//FIXME
 			bool last_state = false;
 			controls.notify["hovered"].connect (() => {
 				if (controls.hovered == last_state)
 					return;
 				
 				last_state = controls.hovered;
-				hide_lock += controls.hovered ? 1 : -1;
+
+				if (controls.hovered)
+					lock_hide ();
+				else
+					unlock_hide ();
 			});
 			
 			controls.open.clicked.connect (() => {
 				show_open_context ();
-				
-				toggle_timeout (false);
 			});
 			controls.play.clicked.connect (() => playing = !playing );
 			controls.view.clicked.connect (() => {
@@ -220,13 +260,13 @@ namespace Audience.Widgets
 					controls.view.set_icon ("pane-hide-symbolic", Gtk.Stock.GO_FORWARD, "go-next-symbolic");
 					controls.showing_view = true;
 					
-					hide_lock ++;
+					lock_hide ();
 				} else {
 					toggle_side_pane (false);
 					controls.view.set_icon ("pane-show-symbolic", Gtk.Stock.GO_BACK, "go-previous-symbolic");
 					controls.showing_view = false;
 					
-					hide_lock --;
+					unlock_hide ();
 				}
 			});
 			
@@ -248,6 +288,18 @@ namespace Audience.Widgets
 			
 			playbin.get_bus ().add_signal_watch ();
 			playbin.get_bus ().message.connect (watch);
+		}
+
+		public void lock_hide () {
+			if (hide_lock == 0)
+				toggle_controls (true);
+			hide_lock++;
+		}
+		public void unlock_hide () {
+			hide_lock--;
+
+			if (hide_lock < 1)
+				toggle_controls (false);
 		}
 
 		void watch () {
@@ -276,7 +328,7 @@ namespace Audience.Widgets
 					if (msg.get_structure () == null)
 						break;
 					
-					if (Gst.is_missing_plugin_message (msg)) {
+					if (Gst.PbUtils.is_missing_plugin_message (msg)) {
 						playbin.set_state (Gst.State.NULL);
 						
 						handle_missing_plugin (msg);
@@ -301,37 +353,39 @@ namespace Audience.Widgets
 					break;
 			}
 		}
-	
+
 		public override bool motion_event (Clutter.MotionEvent event)
 		{
-			controls_hidden = false;
-			if (fullscreened)
-				panel.hidden = false;
 			if (!controls.slider.mouse_grabbed)
 				get_stage ().cursor_visible = true;
 			
 			Gst.State state;
 			playbin.get_state (out state, null, 0);
-			if (state == Gst.State.PLAYING && hide_lock < 1) {
-				toggle_timeout (true);
-				hide_lock = 0;
-			} else {
-				toggle_timeout (false);
+			if (state == Gst.State.PLAYING) {
+				if (hiding_timer < 1)
+					lock_hide ();
+				set_timeout ();
 			}
 			return true;
 		}
 		
 		bool intial_relayout = false;
-		public void relayout ()
+		public bool relayout ()
 		{
-			int video_w, video_h;
-			video.get_base_size (out video_w, out video_h);
-			
+			if (video_width < 1 || video_height < 1 || uri == null)
+				return false;
+
+			if (intial_relayout) {
+				configure_window (video_width, video_height);
+				intial_relayout = false;
+			}
+
 			var stage = get_stage ();
 			
-			var aspect = stage.width / video_w < stage.height / video_h ? stage.width / video_w : stage.height / video_h;
-			video.width  = video_w * aspect;
-			video.height = video_h * aspect;
+			var aspect = stage.width / video_width < stage.height / video_height ?
+				stage.width / video_width : stage.height / video_height;
+			video.width  = video_width * aspect;
+			video.height = video_height * aspect;
 			video.x = (stage.width  - video.width)  / 2;
 			video.y = (stage.height - video.height) / 2;
 			
@@ -341,11 +395,8 @@ namespace Audience.Widgets
 			
 			(controls.content as Clutter.Canvas).set_size ((int)controls.width, (int)controls.height);
 			controls.content.invalidate ();
-			
-			if (intial_relayout) {
-				configure_window (video_w, video_h);
-				intial_relayout = false;
-			}
+
+			return true;
 		}
 		
 		void show_error (string? message=null)
@@ -361,8 +412,8 @@ namespace Audience.Widgets
 				_("Oops! Audience can't play this file!")+"</b>"), 1, 0, 1, 1);
 			if (message != null)
 				grid.attach (new Widgets.LLabel (message), 1, 1, 1, 2);
-			/*TODO welcome.show_all ();
-			clutter.hide ();*/
+
+			error ();
 			
 			((Gtk.Box)dlg.get_content_area ()).add (grid);
 			dlg.show_all ();
@@ -372,7 +423,7 @@ namespace Audience.Widgets
 	
 		void handle_missing_plugin (Gst.Message msg)
 		{
-			var detail = Gst.missing_plugin_message_get_description (msg);
+			var detail = Gst.PbUtils.missing_plugin_message_get_description (msg);
 			var dlg = new Gtk.Dialog.with_buttons ("Missing plugin", null,
 				Gtk.DialogFlags.MODAL);
 			var grid = new Gtk.Grid ();
@@ -386,7 +437,7 @@ namespace Audience.Widgets
 			grid.attach (new Widgets.LLabel.markup ("<b>"+
 				_("Audience needs %s to play this file.").printf (detail)+"</b>"), 1, 0, 1, 1);
 			grid.attach (phrase, 1, 1, 1, 2);
-		
+
 			dlg.add_button (_("Don't install"), 1);
 			dlg.add_button (_("Install")+" "+detail, 0);
 		
@@ -394,38 +445,44 @@ namespace Audience.Widgets
 		
 			dlg.show_all ();
 			if (dlg.run () == 0) {
-				var installer = Gst.missing_plugin_message_get_installer_detail (msg);
-				var context = new Gst.InstallPluginsContext ();
-				Gst.install_plugins_async ({installer}, context,
+				var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail (msg);
+				var context = new Gst.PbUtils.InstallPluginsContext ();
+				Gst.PbUtils.install_plugins_async ({installer}, context,
 				() => { //finished
 					debug ("Finished plugin install\n");
 					Gst.update_registry ();
-					/*TODO clutter.show ();
-					welcome.hide ();*/
+					plugin_install_done ();
 					playing = true;
 				});
 			}
 			dlg.destroy ();
 		}
 		
-		void toggle_timeout (bool enable)
+		void set_timeout ()
 		{
 			if (hiding_timer != 0)
 				Source.remove (hiding_timer);
 			
-			if (enable) {
-				hiding_timer = GLib.Timeout.add (2000, () => {
-					if (this.moving_action)
-						return false;
-					
-					get_stage ().cursor_visible = false;
-					controls_hidden = true;
-					panel.hidden = true;
-					
-					return false;
-				});
-			}
+			hiding_timer = GLib.Timeout.add (2000, () => {
+				unlock_hide ();
+				hiding_timer = 0;
+				return false;
+			});
 		}
+		
+		void toggle_controls (bool show)
+		{
+			if (show) {
+				controls_hidden = false;
+				get_stage ().cursor_visible = true;
+				if (fullscreened)
+					panel.hidden = false;
+			} else {
+				get_stage ().cursor_visible = false;
+				controls_hidden = true;
+				panel.hidden = true;
+			}
+		}		
 		
 		//store the default values for setting back
 		X.Display dpy; int timeout = -1; int interval; int prefer_blanking; int allow_exposures;
