@@ -213,9 +213,9 @@ namespace Audience.Widgets
                     used ++;
                 } else if (desc != null) {
 #if HAS_CLUTTER_GST_1
-					var language = Gst.Tag.get_language_name (desc);
+                    var language = Gst.Tag.get_language_name (desc);
 #else
-                    var language = Gst.tag_get_language_name (desc));
+                    var language = Gst.tag_get_language_name (desc);
 #endif
                     this.subtitles.append (i.to_string (), language == null ? desc : language);
                     used ++;
