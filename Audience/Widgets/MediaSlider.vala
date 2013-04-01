@@ -38,8 +38,6 @@ namespace Audience.Widgets{
             this._progress = 0.0;
             this.bar       = new Clutter.CairoTexture (1, BAR_HEIGHT);
 
-			x_expand = true;
-
             preview.filter_quality = Clutter.TextureQuality.HIGH;
             preview.scale_x = 0.0;
             preview.scale_y = 0.0;
