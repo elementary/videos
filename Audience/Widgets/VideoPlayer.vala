@@ -76,7 +76,7 @@ namespace Audience.Widgets
 				var time = Gst.Format.TIME;
 				playbin.query_duration (ref time, out length);
 #endif
-				playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.KEY_UNIT | Gst.SeekFlags.ACCURATE,
+				playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE,
 					(int64)(double.max (value, 0.0) * length));
 			}
 		}
