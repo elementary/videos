@@ -13,7 +13,6 @@ namespace Audience.Widgets{
             get { return _hidden; }
             set {
                 if (_hidden && !value){
-					x = get_stage ().width - width - 10;
                     this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y : 0.0f);
                 }else if (!_hidden && value){
                     this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 1000, y : -this.height);

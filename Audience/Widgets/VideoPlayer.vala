@@ -267,6 +267,10 @@ namespace Audience.Widgets
 				ended ();
 			});
 
+			notify["fullscreened"].connect (() => {
+				if (hide_lock > 0)
+					panel.hidden = !fullscreened;
+			});
 			panel.unfullscreen.connect (() => {
 				exit_fullscreen ();
 			});
@@ -437,6 +441,8 @@ namespace Audience.Widgets
 			
 			(controls.content as Clutter.Canvas).set_size ((int)controls.width, (int)controls.height);
 			controls.content.invalidate ();
+
+			panel.x = get_stage ().width - panel.width - 10;
 
 			return true;
 		}
