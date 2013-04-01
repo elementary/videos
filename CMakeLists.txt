@@ -68,6 +68,7 @@ PACKAGES
     gdk-x11-3.0
 	${GST_PACKAGES}
 OPTIONS
+	${CLUTTER_GST_FLAGS}
     --thread
     -g
 )
