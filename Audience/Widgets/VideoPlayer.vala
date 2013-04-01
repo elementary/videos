@@ -34,6 +34,7 @@ namespace Audience.Widgets
 				controls.show_play_button (!value);
 				
 				playbin.set_state (value ? Gst.State.PLAYING : Gst.State.PAUSED);
+
 				set_screensaver (!value);
 
 				if (!value) {
@@ -122,6 +123,7 @@ namespace Audience.Widgets
 				intial_relayout = true;
 				
 				playbin.uri = value;
+				playbin.set_state (Gst.State.PAUSED);
 				controls.slider.set_preview_uri (value);
 				at_end = false;
 				
@@ -353,6 +355,9 @@ namespace Audience.Widgets
 					warning (detail);
 					
 					show_error (e.message);
+					break;
+				case Gst.MessageType.EOS:
+					playbin.set_state (Gst.State.READY);
 					break;
 				case Gst.MessageType.ELEMENT:
 					if (msg.get_structure () == null)
