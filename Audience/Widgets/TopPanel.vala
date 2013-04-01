@@ -13,18 +13,18 @@ namespace Audience.Widgets{
             get { return _hidden; }
             set {
                 if (_hidden && !value){
-                    float y2 = 0.0f;
-                    this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y:y2);
+                    this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y : 0.0f);
                 }else if (!_hidden && value){
-                    float y2 = -this.height;
-                    this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 1000, y:y2);
+                    this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 1000, y : -this.height);
                 }
                 this._hidden = value;
             }
         }
 
+		public signal void unfullscreen ();
+
         public TopPanel () {
-            this.layout_manager = new Clutter.BoxLayout ();
+            layout_manager = new Clutter.BoxLayout ();
 
             this.exit   = new Button ("view-restore-symbolic", Gtk.Stock.LEAVE_FULLSCREEN);
             this.volume = new GtkClutter.Actor ();
@@ -32,6 +32,13 @@ namespace Audience.Widgets{
             this.vol    = new Gtk.VolumeButton ();
             this.vol.use_symbolic = true;
             this._hidden = true;
+
+			exit.reactive = true;
+			exit.y = 2;
+			exit.button_release_event.connect ((e) => {
+				unfullscreen ();
+				return true;
+			});
 
             var css = new Gtk.CssProvider ();
             try {
@@ -69,24 +76,12 @@ namespace Audience.Widgets{
 
             buf.width = 10;
 
-            //this.add_actor (this.volume); removed until we get it to control global volume
-            this.add_actor (buf);
-            this.add_actor (this.exit);
+            //this.add_child (this.volume); removed until we get it to control global volume
+            this.add_child (buf);
+            this.add_child (this.exit);
 
-            this.y = this.height;
-            this.x = Gdk.Screen.get_default ().width () - this.width - 30;
-        }
-
-        public void toggle (bool show) {
-            if (show) {
-                this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y:0.0f);
-                this.show ();
-            }else if (this.y != this.height) {
-                var a = this.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 400, y:this.height);
-                a.completed.connect ( () => {
-                    this.hide ();
-                });
-            }
+            y = -height;
         }
     }
 }
+

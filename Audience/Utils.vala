@@ -42,12 +42,16 @@ namespace Audience {
         return filename.substring (i+1);
     }
     public static string get_basename (string filename) {
-        int i=0;
-        for (i=filename.length;i!=0;i--) {
-            if (filename [i] == '.')
-                break;
+        int start = 0, end = 0;
+        for (start=filename.length; start != 0; start--) {
+            if (filename[start] == '/') {
+            	start ++;
+            	break;
+        	}
+            if (filename[start] == '.')
+                end = start;
         }
-        return filename.substring (0, i);
+        return filename.substring (start, end - start);
     }
 
     public static string seconds_to_time (int seconds) {
@@ -74,6 +78,21 @@ namespace Audience {
         return false;
     }
 
+	public static dynamic Gst.Element get_clutter_sink ()
+	{
+#if HAS_CLUTTER_GST_1
+		var sink = Gst.ElementFactory.make ("autocluttersink", "videosink");
+		if (sink == null) {
+			warning ("autocluttersink not available");
+			sink = Gst.ElementFactory.make ("cluttersink", "videosink");
+		}
+#else
+		var sink = Gst.ElementFactory.make ("cluttersink", "videosink");
+#endif
+
+		return sink;
+	}
+
     /*
      * get a thumbnail from a file
      * @param file the file
@@ -81,7 +100,8 @@ namespace Audience {
      * @param pixbuf gtkclutter texture to put the pixbuf in once it's ready
      * TODO appears not to load thumbs for bigger files
      **/
-    public static void get_thumb (File file, int64 position, GtkClutter.Texture tex) {
+    /* NOT NEEDED CURRENTLY
+	public static void get_thumb (File file, int64 position, GtkClutter.Texture tex) {
         //pipeline
         bool got_video = false;
         var pipe = new Gst.Pipeline ("pipeline");
@@ -130,14 +150,14 @@ namespace Audience {
                         break;
                     var fmt = Gst.Format.TIME;
                     int64 pos;
-                    pipe.query_position (ref fmt, out pos);
+                    pipe.query_position (fmt, out pos);
                     if (pos > 1)
                         ready = true;
                     else
                         break;
                     if (position == -1) {
                         int64 dur;
-                        pipe.query_duration (ref fmt, out dur);
+                        pipe.query_duration (fmt, out dur);
                         pipe.seek_simple (Gst.Format.TIME, Gst.SeekFlags.ACCURATE |
                             Gst.SeekFlags.FLUSH, (int64)(dur*0.5));
                     }else {
@@ -154,9 +174,9 @@ namespace Audience {
                         !msg.get_structure ().has_name ("pixbuf"))
                         break;
                     var val = msg.get_structure ().get_value ("pixbuf");
-                    if (val == null)
-                        return;
                     var pixbuf = (Gdk.Pixbuf)val.dup_object ();
+                    if (pixbuf == null)
+                        return;
                     try {
                         tex.set_from_pixbuf (pixbuf);
                     } catch (Error e) {warning (e.message);}
@@ -168,7 +188,7 @@ namespace Audience {
         });
 
         pipe.set_state (Gst.State.PLAYING);
-    }
+    }*/
 
     namespace Drawing {
 
