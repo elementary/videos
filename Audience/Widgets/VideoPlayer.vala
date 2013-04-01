@@ -197,7 +197,7 @@ namespace Audience.Widgets
 		
 		uint hiding_timer;
 		
-		public bool fullscreened;
+		public bool fullscreened { get; set; }
 		
 		public signal void ended ();
 		public signal void toggle_side_pane (bool show);
@@ -266,8 +266,10 @@ namespace Audience.Widgets
 				at_end = true;
 				ended ();
 			});
-			
-			notify["fullscreened"].connect (() => panel.toggle (fullscreened) );
+
+			panel.unfullscreen.connect (() => {
+				exit_fullscreen ();
+			});
 			
 			bool last_state = false;
 			controls.notify["hovered"].connect (() => {
@@ -486,7 +488,7 @@ namespace Audience.Widgets
 			dlg.add_button (_("Install")+" "+detail, 0);
 		
 			(dlg.get_content_area () as Gtk.Container).add (grid);
-		
+
 			dlg.show_all ();
 			if (dlg.run () == 0) {
 #if HAS_CLUTTER_GST_1
