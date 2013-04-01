@@ -363,6 +363,7 @@ namespace Audience.Widgets
 #else
 					if (Gst.is_missing_plugin_message (msg)) {
 #endif
+						error ();
 						playbin.set_state (Gst.State.NULL);
 						
 						handle_missing_plugin (msg);
