@@ -209,14 +209,15 @@ namespace Audience.Widgets
                 var readable = Gst.tag_get_language_name (desc);
 #endif
                 if (target == "audio" && desc != null) {
-                    this.languages.append (i.to_string (), (readable == null)?desc:readable);
+                    this.languages.append (i.to_string (), readable == null ? desc : readable);
                     used ++;
-                }else if (desc != null) {
+                } else if (desc != null) {
 #if HAS_CLUTTER_GST_1
-                    this.subtitles.append (i.to_string (), Gst.Tag.get_language_name (desc));
+					var language = Gst.Tag.get_language_name (desc);
 #else
-                    this.subtitles.append (i.to_string (), Gst.tag_get_language_name (desc));
+                    var language = Gst.tag_get_language_name (desc));
 #endif
+                    this.subtitles.append (i.to_string (), language == null ? desc : language);
                     used ++;
                 }
             }
