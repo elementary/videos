@@ -49,6 +49,7 @@ namespace Audience.Widgets
             this.add_child (spacer_right);
 
 			(layout_manager as BoxLayout).set_expand (slider, true);
+			(layout_manager as BoxLayout).set_fill (slider, true, true);
             
             /*setup a css style for the control background*/
             var style_holder = new Gtk.EventBox ();
