@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 2.8)
-cmake_policy (VERSION 2.6)
-list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/vala)
+cmake_policy (VERSION 2.8)
+
 enable_testing ()
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
@@ -26,6 +26,14 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/audience.desktop DESTINATION ${DA
 configure_file (${CMAKE_SOURCE_DIR}/Audience/Config.vala.cmake ${CMAKE_BINARY_DIR}/Audience/Config.vala)
 add_definitions(-DGETTEXT_PACKAGE="audience")
 
+set (CPACK_PACKAGE_VERSION ${VERSION})
+set (CPACK_SOURCE_GENERATOR "TGZ")
+set (CPACK_SOURCE_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${CPACK_PACKAGE_VERSION}")
+set (CPACK_SOURCE_IGNORE_FILES "/build/;/.bzr/;/.bzrignore;~$;${CPACK_SOURCE_IGNORE_FILES}")
+
+include (CPack)
+add_custom_target (dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
+
 find_package(PkgConfig)
 pkg_check_modules(CLUTTER_GST_1 QUIET clutter-gst-2.0)
 if (CLUTTER_GST_1_FOUND)
@@ -44,7 +52,7 @@ link_directories(${DEPS_LIBRARY_DIRS})
 find_package(Vala REQUIRED)
 include(ValaVersion)
 
-ensure_vala_version("0.16" MINIMUM)
+ensure_vala_version("0.16.1" MINIMUM)
 
 include(ValaPrecompile)
 vala_precompile(VALA_C
