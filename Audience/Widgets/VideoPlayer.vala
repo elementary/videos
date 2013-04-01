@@ -52,10 +52,15 @@ namespace Audience.Widgets
 		public double progress {
 			get {
 				int64 length, prog;
-				var time = Gst.Format.TIME;
 				
-				playbin.query_duration (time, out length);
-				playbin.query_position (time, out prog);
+#if HAS_CLUTTER_GST_1
+				playbin.query_duration (Gst.Format.TIME, out length);
+				playbin.query_position (Gst.Format.TIME, out prog);
+#else
+				var time = Gst.Format.TIME;
+				playbin.query_duration (ref time, out length);
+				playbin.query_position (ref time, out prog);
+#endif
 				
 				if (length == 0)
 					return 0;
@@ -64,8 +69,12 @@ namespace Audience.Widgets
 			}
 			set {
 				int64 length;
+#if HAS_CLUTTER_GST_1
+				playbin.query_duration (Gst.Format.TIME, out length);
+#else
 				var time = Gst.Format.TIME;
-				playbin.query_duration (time, out length);
+				playbin.query_duration (ref time, out length);
+#endif
 				playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.KEY_UNIT | Gst.SeekFlags.ACCURATE,
 					(int64)(double.max (value, 0.0) * length));
 			}
@@ -82,17 +91,29 @@ namespace Audience.Widgets
 		
 		public string uri {
 			owned get {
+#if HAS_CLUTTER_GST_1
 				return playbin.current_uri;
+#else
+				return playbin.uri;
+#endif
 			}
 			set {
 				if (value == (string)playbin.uri)
 					return;
 
 				try {
+#if HAS_CLUTTER_GST_1
 					var info = new Gst.PbUtils.Discoverer (10 * Gst.SECOND).discover_uri (value);
+#else
+					var info = new Gst.Discoverer (10 * Gst.SECOND).discover_uri (value);
+#endif
 					var video = info.get_video_streams ();
 					if (video.data != null) {
+#if HAS_CLUTTER_GST_1
 						var video_info = (Gst.PbUtils.DiscovererVideoInfo)video.data;
+#else
+						var video_info = (Gst.DiscovererVideoInfo)video.data;
+#endif
 						video_width = video_info.get_width ();
 						video_height = video_info.get_height ();
 					}
@@ -199,7 +220,11 @@ namespace Audience.Widgets
 			video = new Clutter.Texture ();
 			video.reactive = true;
 			
+#if HAS_CLUTTER_GST_1
 			playbin = Gst.ElementFactory.make ("playbin", "playbin");
+#else
+			playbin = Gst.ElementFactory.make ("playbin2", "playbin");
+#endif
 			var video_sink = Audience.get_clutter_sink ();
 			video_sink.texture = video;
 			
@@ -216,9 +241,14 @@ namespace Audience.Widgets
 			});
 			Timeout.add (100, () => {
 				int64 length, prog;
+#if HAS_CLUTTER_GST_1
+				playbin.query_position (Gst.Format.TIME, out prog);
+				playbin.query_duration (Gst.Format.TIME, out length);
+#else
 				var format = Gst.Format.TIME;
-				playbin.query_position (format, out prog);
-				playbin.query_duration (format, out length);
+				playbin.query_position (ref format, out prog);
+				playbin.query_duration (ref format, out length);
+#endif
 				
 				if (length == 0)
 					return true;
@@ -328,7 +358,11 @@ namespace Audience.Widgets
 					if (msg.get_structure () == null)
 						break;
 					
+#if HAS_CLUTTER_GST_1
 					if (Gst.PbUtils.is_missing_plugin_message (msg)) {
+#else
+					if (Gst.is_missing_plugin_message (msg)) {
+#endif
 						playbin.set_state (Gst.State.NULL);
 						
 						handle_missing_plugin (msg);
@@ -423,7 +457,11 @@ namespace Audience.Widgets
 	
 		void handle_missing_plugin (Gst.Message msg)
 		{
+#if HAS_CLUTTER_GST_1
 			var detail = Gst.PbUtils.missing_plugin_message_get_description (msg);
+#else
+			var detail = Gst.missing_plugin_message_get_description (msg);
+#endif
 			var dlg = new Gtk.Dialog.with_buttons ("Missing plugin", null,
 				Gtk.DialogFlags.MODAL);
 			var grid = new Gtk.Grid ();
@@ -445,9 +483,15 @@ namespace Audience.Widgets
 		
 			dlg.show_all ();
 			if (dlg.run () == 0) {
+#if HAS_CLUTTER_GST_1
 				var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail (msg);
 				var context = new Gst.PbUtils.InstallPluginsContext ();
 				Gst.PbUtils.install_plugins_async ({installer}, context,
+#else
+				var installer = Gst.missing_plugin_message_get_installer_detail (msg);
+				var context = new Gst.InstallPluginsContext ();
+				Gst.install_plugins_async ({installer}, context,
+#endif
 				() => { //finished
 					debug ("Finished plugin install\n");
 					Gst.update_registry ();

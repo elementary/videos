@@ -48,7 +48,11 @@ namespace Audience.Widgets{
             preview.width =  120.0f;
 
 			// connect gstreamer stuff
+#if HAS_CLUTTER_GST_1
 			preview_playbin = Gst.ElementFactory.make ("playbin", "play");
+#else
+			preview_playbin = Gst.ElementFactory.make ("playbin2", "play");
+#endif
 			preview_playbin.get_bus ().add_signal_watch ();
 			preview_playbin.get_bus ().message.connect ((msg) => {
 				switch (msg.type) {
@@ -140,7 +144,12 @@ namespace Audience.Widgets{
                 //buffering
                 if (this._buffered != 0.0){
 					int64 duration;
+#if HAS_CLUTTER_GST_1
 					preview_playbin.query_duration (Gst.Format.TIME, out duration);
+#else
+					var time = Gst.Format.TIME;
+					preview_playbin.query_duration (ref time, out duration);
+#endif
                     Drawing.cairo_half_pill (ctx, 2, 2,
                         (this._buffered / duration * this.bar.width) - 4, BAR_HEIGHT - 4, Gtk.PositionType.RIGHT);
                     ctx.set_source_rgb (0.6, 0.6, 0.6);
@@ -226,7 +235,12 @@ namespace Audience.Widgets{
 			}
 
 			int64 duration;
+#if HAS_CLUTTER_GST_1
 			preview_playbin.query_duration (Gst.Format.TIME, out duration);
+#else
+			var time = Gst.Format.TIME;
+			preview_playbin.query_duration (ref time, out duration);
+#endif
 			preview_playbin.seek (1.0, Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.KEY_UNIT,
 				Gst.SeekType.SET, (int64)(progress * duration),
 				Gst.SeekType.NONE, (int64)Gst.CLOCK_TIME_NONE);

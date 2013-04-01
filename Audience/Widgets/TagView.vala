@@ -195,16 +195,28 @@ namespace Audience.Widgets
                     continue;
                 
                 string desc;
+#if HAS_CLUTTER_GST_1
                 tags.get_string (Gst.Tags.LANGUAGE_CODE, out desc);
                 if (desc == null)
                     tags.get_string (Gst.Tags.CODEC, out desc);
                 
                 var readable = Gst.Tag.get_language_name (desc);
+#else
+                tags.get_string (Gst.TAG_LANGUAGE_CODE, out desc);
+                if (desc == null)
+                    tags.get_string (Gst.TAG_CODEC, out desc);
+                
+                var readable = Gst.tag_get_language_name (desc);
+#endif
                 if (target == "audio" && desc != null) {
                     this.languages.append (i.to_string (), (readable == null)?desc:readable);
                     used ++;
                 }else if (desc != null) {
+#if HAS_CLUTTER_GST_1
                     this.subtitles.append (i.to_string (), Gst.Tag.get_language_name (desc));
+#else
+                    this.subtitles.append (i.to_string (), Gst.tag_get_language_name (desc));
+#endif
                     used ++;
                 }
             }

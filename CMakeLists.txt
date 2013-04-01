@@ -27,7 +27,17 @@ configure_file (${CMAKE_SOURCE_DIR}/Audience/Config.vala.cmake ${CMAKE_BINARY_DI
 add_definitions(-DGETTEXT_PACKAGE="audience")
 
 find_package(PkgConfig)
-pkg_check_modules(DEPS REQUIRED granite gtk+-3.0 clutter-gtk-1.0 gstreamer-1.0 gstreamer-pbutils-1.0 gstreamer-tag-1.0)
+pkg_check_modules(CLUTTER_GST_1 QUIET clutter-gst-2.0)
+if (CLUTTER_GST_1_FOUND)
+	set(CLUTTER_GST_FLAGS "--define=HAS_CLUTTER_GST_1")
+	set(GST_PACKAGES gstreamer-1.0 gstreamer-pbutils-1.0 gstreamer-tag-1.0)
+else (CLUTTER_GST_1_FOUND)
+	set(CLUTTER_GST_FLAGS "")
+	set(GST_PACKAGES gstreamer-0.10 gstreamer-pbutils-0.10 gstreamer-tag-0.10 gstreamer-interfaces-0.10)
+endif (CLUTTER_GST_1_FOUND)
+
+pkg_check_modules(DEPS REQUIRED granite clutter-gtk-1.0 ${GST_PACKAGES})
+
 add_definitions(${DEPS_CFLAGS})
 link_libraries(${DEPS_LIBRARIES})
 link_directories(${DEPS_LIBRARY_DIRS})
@@ -53,14 +63,10 @@ vala_precompile(VALA_C
     Audience/Widgets/VideoPlayer.vala
     Audience/desktop-launcher.vala
 PACKAGES
-    gtk+-3.0
     granite
-	#clutter-gst-1.0
     clutter-gtk-1.0
     gdk-x11-3.0
-	gstreamer-1.0
-	gstreamer-pbutils-1.0
-	gstreamer-tag-1.0
+	${GST_PACKAGES}
 OPTIONS
     --thread
     -g
