@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 2.8)
-cmake_policy (VERSION 2.6)
-list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/vala)
+cmake_policy (VERSION 2.8)
+
 enable_testing ()
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
@@ -42,7 +42,7 @@ link_directories(${DEPS_LIBRARY_DIRS})
 find_package(Vala REQUIRED)
 include(ValaVersion)
 
-ensure_vala_version("0.15.1" MINIMUM)
+ensure_vala_version("0.16.1" MINIMUM)
 
 include(ValaPrecompile)
 vala_precompile(VALA_C
