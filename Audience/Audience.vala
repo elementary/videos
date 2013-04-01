@@ -389,7 +389,13 @@ namespace Audience {
 				    geom.min_aspect = 0.0;
 				    geom.max_aspect = 99999999.0;
 		        }
+				//FIXME this is not actually related to clutter-gst-1, but the ubuntu versions match
+				// where this is needed
+#if HAS_CLUTTER_GST_1
 				mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
+#else
+				mainwindow.set_geometry_hints (mainwindow, geom, Gdk.WindowHints.ASPECT);
+#endif
             });
             
             //fullscreen on maximize
