@@ -106,9 +106,9 @@ namespace Audience {
             stage.add_child (tagview);
             stage.background_color = {0, 0, 0};
             
-            this.tagview.y      = -5;
+            this.tagview.y      = -10;
             this.tagview.x      = stage.width;
-            this.tagview.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, -10));
+            this.tagview.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, -20));
             
             mainbox.pack_start (welcome);
             mainbox.pack_start (clutter);
