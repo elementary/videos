@@ -373,7 +373,9 @@ namespace Audience {
 		        if (monitor.width > video_w && monitor.height > video_h) {
 					width = (int)video_w;
 					height = (int)video_h;
-		            mainwindow.resize (width, height);
+		            mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
+						monitor.height / 2 - height / 2 + monitor.y,
+						width, height);
 		        } else {
 					width = (int)(monitor.width * 0.9);
 					height = (int)((double)video_h / video_w * width);

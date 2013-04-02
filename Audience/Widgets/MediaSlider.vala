@@ -216,8 +216,9 @@ namespace Audience.Widgets{
 
 		public void set_preview_uri (string uri)
 		{
-			this.preview_playbin.uri = uri;
-			this.preview_playbin.volume = 0.0;
+			preview_playbin.set_state (Gst.State.READY);
+			preview_playbin.uri = uri;
+			preview_playbin.volume = 0.0;
 		}
 
 		void preview_toggle_playing (bool play)

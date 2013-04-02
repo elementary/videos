@@ -122,8 +122,9 @@ namespace Audience.Widgets
 				
 				intial_relayout = true;
 				
+				playbin.set_state (Gst.State.READY);
 				playbin.uri = value;
-				playbin.set_state (Gst.State.PAUSED);
+				volume = 1.0;
 				controls.slider.set_preview_uri (value);
 				at_end = false;
 				
