@@ -29,7 +29,8 @@ namespace Audience {
         title = title.replace ("%20", " ").
             replace ("%3B", ";").
             replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").
-            replace ("%7D", "}").replace ("_", " ").replace ("."," ").replace ("  "," ");
+            replace ("%7D", "}").replace ("_", " ").replace ("."," ").
+            replace ("  "," ").replace ("%60", "\'");
         return title;
     }
 
@@ -48,7 +49,7 @@ namespace Audience {
             	start ++;
             	break;
         	}
-            if (filename[start] == '.')
+            if (filename[start] == '.' && end == 0)
                 end = start;
         }
         return filename.substring (start, end - start);
