@@ -128,10 +128,11 @@ namespace Audience.Widgets
 				controls.slider.set_preview_uri (value);
 				at_end = false;
 				
+				/*TODO reenable
 				int flags;
 				playbin.get ("flags", out flags);
 				flags &= ~PlayFlags.TEXT;
-				playbin.set ("flags", flags, "current-text", -1);
+				playbin.set ("flags", flags, "current-text", -1);*/
 
 				relayout ();
 			}
@@ -173,6 +174,7 @@ namespace Audience.Widgets
 
 				playbin.current_text = value;
 
+				/*TODO reenable
 				int flags;
 				playbin.get ("flags", out flags);
 
@@ -181,7 +183,7 @@ namespace Audience.Widgets
 				} else {
 					flags |= PlayFlags.TEXT;
                 }
-				playbin.set ("flags", flags);
+				playbin.set ("flags", flags);*/
 			}
 		}
 		
@@ -414,6 +416,11 @@ namespace Audience.Widgets
 				set_timeout ();
 			}
 			return true;
+		}
+
+		public void set_subtitle_uri (string uri)
+		{
+			playbin.suburi = uri;
 		}
 		
 		bool intial_relayout = false;

@@ -67,6 +67,8 @@ namespace Audience {
             mainwindow = new Gtk.Window ();
             video_player = new Widgets.VideoPlayer ();
             tagview = new Widgets.TagView (this);
+
+			tagview.select_external_subtitle.connect (video_player.set_subtitle_uri);
             
             var mainbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
             clutter = new GtkClutter.Embed ();

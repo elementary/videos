@@ -26,12 +26,15 @@ namespace Audience.Widgets
         
         private Gtk.ComboBoxText languages;
         private Gtk.ComboBoxText subtitles;
+		private Gtk.FileChooserButton external_subtitle_file;
         
         private Granite.Drawing.BufferSurface buffer;
         int shadow_blur = 30;
         int shadow_x    = 0;
         int shadow_y    = 0;
         double shadow_alpha = 0.5;
+
+		public signal void select_external_subtitle (string uri);
         
         public TagView (Audience.App app) {
             this.app      = app;
@@ -51,16 +54,23 @@ namespace Audience.Widgets
             var setupgrid  = new Gtk.Grid ();
             this.languages = new Gtk.ComboBoxText ();
             this.subtitles = new Gtk.ComboBoxText ();
+			this.external_subtitle_file = new Gtk.FileChooserButton ("External Subtitle", Gtk.FileChooserAction.OPEN);
             var lang_lbl   = new LLabel.right (_("Language")+":");
             var sub_lbl    = new LLabel.right (_("Subtitles")+":");
+			var sub_ext_lbl = new LLabel.right (_("External Subtitles") + ":");
             setupgrid.attach (lang_lbl,  0, 1, 1, 1);
             setupgrid.attach (languages,                   1, 1, 1, 1);
             setupgrid.attach (sub_lbl, 0, 2, 1, 1);
             setupgrid.attach (subtitles,                   1, 2, 1, 1);
+			setupgrid.attach (sub_ext_lbl, 0, 3, 1, 1);
+			setupgrid.attach (this.external_subtitle_file, 1, 3, 1, 1);
             setupgrid.column_homogeneous = true;
             setupgrid.margin = 12;
             setupgrid.column_spacing = 12;
             
+			external_subtitle_file.file_set.connect (() => {
+				select_external_subtitle (external_subtitle_file.get_uri ());
+			});
             this.subtitles.changed.connect ( () => {
                 if (subtitles.active_id == null)
                     return;
