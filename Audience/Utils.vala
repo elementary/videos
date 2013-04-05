@@ -29,8 +29,8 @@ namespace Audience {
         title = title.replace ("%20", " ").
             replace ("%3B", ";").
             replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").
-            replace ("%7D", "}").replace ("_", " ").replace ("."," ").
-            replace ("  "," ").replace ("%60", "\'");
+            replace ("%7D", "}").replace ("_", " ").replace (".", " ").
+            replace ("  ", " ").replace ("%60", "\'");
         return title;
     }
 

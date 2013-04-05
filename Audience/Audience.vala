@@ -248,6 +248,12 @@ namespace Audience {
                     case Gdk.Key.Right:
                         video_player.progress += 0.05;
                         break;
+                    case Gdk.Key.a:
+                        video_player.next_audio ();
+                        break;
+                    case Gdk.Key.s:
+                        video_player.next_text ();
+                        break;
                     default:
                         break;
                 }
