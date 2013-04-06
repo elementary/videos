@@ -43,7 +43,7 @@ namespace Audience.Widgets{
             preview.scale_y = 0.0;
             preview.scale_gravity = Clutter.Gravity.CENTER;
             preview.height =  90.0f;
-            // priview.width is set in VideoPlayer.vala
+            // preview.width is set in VideoPlayer.vala
 
 			// connect gstreamer stuff
 #if HAS_CLUTTER_GST_1

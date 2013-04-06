@@ -24,8 +24,8 @@ namespace Audience.Widgets
         public Gtk.Grid taggrid;
         public Audience.App app;
         
-        private Gtk.ComboBoxText languages;
-        private Gtk.ComboBoxText subtitles;
+        public Gtk.ComboBoxText languages;
+        public Gtk.ComboBoxText subtitles;
         
         private Granite.Drawing.BufferSurface buffer;
         int shadow_blur = 30;

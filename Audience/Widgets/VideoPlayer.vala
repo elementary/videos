@@ -162,20 +162,6 @@ namespace Audience.Widgets
 			}
 		}
 
-		public void next_audio () {
-			int n_audio;
-			playbin.get ("n-audio", out n_audio);
-
-			if (n_audio > 1) {
-				if (current_audio < n_audio - 1) {
-					playbin.current_audio = current_audio + 1;
-				} else {
-					playbin.current_audio = 0;
-				}
-			}
-			debug ("Current audio track: %i of %i", current_audio + 1, n_audio);	
-		}
-
 		// currently used text stream. Set to -1 to disable subtitles
 		public int current_text {
 			get {
@@ -197,20 +183,6 @@ namespace Audience.Widgets
                 }
 				playbin.set ("flags", flags);
 			}
-		}
-
-		public void next_text () {
-			int n_text;
-			playbin.get ("n-text", out n_text);
-				
-			if (n_text > 1) {
-				if (current_text < n_text - 1) {
-					playbin.current_text = current_text + 1;
-				} else {
-					playbin.current_text = 0;
-				}
-			}			
-			debug ("Current subtitle: %i of %i", current_text + 1, n_text);		
 		}
 		
 		public dynamic Gst.Element playbin;

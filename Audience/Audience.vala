@@ -249,10 +249,10 @@ namespace Audience {
                         video_player.progress += 0.05;
                         break;
                     case Gdk.Key.a:
-                        video_player.next_audio ();
+                        next_audio ();
                         break;
                     case Gdk.Key.s:
-                        video_player.next_text ();
+                        next_text ();
                         break;
                     default:
                         break;
@@ -505,6 +505,36 @@ namespace Audience {
                     save_last_played_videos ();
                 }
             });
+        }
+
+        public void next_audio () {
+            int n_audio;
+            video_player.playbin.get ("n-audio", out n_audio);
+            int current = video_player.current_audio;
+
+            if (n_audio > 1) {
+                if (current < n_audio - 1) {
+                    current += 1;
+                } else {
+                    current = 0;
+                }
+            }
+            tagview.languages.active_id = current.to_string ();               
+        }
+
+        public void next_text () {
+            int n_text;
+            video_player.playbin.get ("n-text", out n_text);
+            int current = int.parse (tagview.subtitles.active_id);
+
+            if (n_text > 1) {
+                if (current < n_text - 1) {
+                    current  += 1;
+                } else {
+                    current = -1;
+                }
+            }           
+            tagview.subtitles.active_id = current.to_string ();
         }
         
         private inline void save_last_played_videos () {

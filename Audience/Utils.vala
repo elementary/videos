@@ -38,17 +38,18 @@ namespace Audience {
         int i=0;
         for (i=filename.length;i!=0;i--) {
             if (filename [i] == '.')
-                break;
+                break;       
         }
         return filename.substring (i+1);
     }
+
     public static string get_basename (string filename) {
         int start = 0, end = 0;
         for (start=filename.length; start != 0; start--) {
             if (filename[start] == '/') {
-            	start ++;
-            	break;
-        	}
+                start ++;
+                break;
+        }
             if (filename[start] == '.' && end == 0)
                 end = start;
         }
