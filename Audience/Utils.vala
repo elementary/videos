@@ -49,7 +49,7 @@ namespace Audience {
             if (filename[start] == '/') {
                 start ++;
                 break;
-        }
+            }
             if (filename[start] == '.' && end == 0)
                 end = start;
         }
