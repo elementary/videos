@@ -34,6 +34,8 @@ namespace Audience.Widgets
         int shadow_y    = 0;
         double shadow_alpha = 0.5;
 
+		bool currently_parsing = false;
+
 		public signal void select_external_subtitle (string uri);
         
         public TagView (Audience.App app) {
@@ -72,17 +74,15 @@ namespace Audience.Widgets
 				select_external_subtitle (external_subtitle_file.get_uri ());
 			});
             this.subtitles.changed.connect ( () => {
-                if (subtitles.active_id == null)
+                if (subtitles.active_id == null || currently_parsing)
                     return;
 				var id = int.parse (this.subtitles.active_id);
 				app.video_player.current_text = id;
-				debug ("Switching to subtitle %i", id);
             });
             
             languages.changed.connect ( () => { //place it here to not get problems
-                if (languages.active_id == null)
+                if (languages.active_id == null || currently_parsing)
                     return;
-                debug ("Switching to audio %s\n", this.languages.active_id);
                 app.video_player.current_audio = int.parse (this.languages.active_id);
             });
             
@@ -188,6 +188,7 @@ namespace Audience.Widgets
         public void setup_audio_setup () { setup_setup ("audio"); }
         /*target is either "text" or "audio"*/
         public void setup_setup (string target) {
+			currently_parsing = true;
             
             if (target == "audio" && languages.model.iter_n_children (null) > 0)
                 languages.remove_all ();
@@ -205,18 +206,21 @@ namespace Audience.Widgets
                     continue;
                 
                 string desc;
+				string readable = null;
 #if HAS_CLUTTER_GST_1
                 tags.get_string (Gst.Tags.LANGUAGE_CODE, out desc);
                 if (desc == null)
                     tags.get_string (Gst.Tags.CODEC, out desc);
                 
-                var readable = Gst.Tag.get_language_name (desc);
+				if (desc != null)
+					readable = Gst.Tag.get_language_name (desc);
 #else
                 tags.get_string (Gst.TAG_LANGUAGE_CODE, out desc);
                 if (desc == null)
                     tags.get_string (Gst.TAG_CODEC, out desc);
                 
-                var readable = Gst.tag_get_language_name (desc);
+				if (desc != null)
+					readable = Gst.tag_get_language_name (desc);
 #endif
                 if (target == "audio" && desc != null) {
                     this.languages.append (i.to_string (), readable == null ? desc : readable);
@@ -231,6 +235,7 @@ namespace Audience.Widgets
                     used ++;
                 }
             }
+
             if (target == "audio") {
                 
                 if (used == 0) {
@@ -250,6 +255,8 @@ namespace Audience.Widgets
                 this.subtitles.append ("-1", _("None"));
                 this.subtitles.active_id = "-1";
             }
+
+			currently_parsing = false;
         }
     }
 }

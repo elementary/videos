@@ -128,11 +128,10 @@ namespace Audience.Widgets
 				controls.slider.set_preview_uri (value);
 				at_end = false;
 				
-				/*TODO reenable
 				int flags;
 				playbin.get ("flags", out flags);
 				flags &= ~PlayFlags.TEXT;
-				playbin.set ("flags", flags, "current-text", -1);*/
+				playbin.set ("flags", flags, "current-text", -1);
 
 				relayout ();
 			}
@@ -163,6 +162,8 @@ namespace Audience.Widgets
 			}
 		}
 
+		string? subtitle_uri = null;
+
 		// currently used text stream. Set to -1 to disable subtitles
 		public int current_text {
 			get {
@@ -174,7 +175,6 @@ namespace Audience.Widgets
 
 				playbin.current_text = value;
 
-				/*TODO reenable
 				int flags;
 				playbin.get ("flags", out flags);
 
@@ -183,7 +183,9 @@ namespace Audience.Widgets
 				} else {
 					flags |= PlayFlags.TEXT;
                 }
-				playbin.set ("flags", flags);*/
+				playbin.set ("flags", flags);
+
+				apply_subtitles ();
 			}
 		}
 		
@@ -418,9 +420,50 @@ namespace Audience.Widgets
 			return true;
 		}
 
-		public void set_subtitle_uri (string uri)
+		public void set_subtitle_uri (string? uri)
 		{
-			playbin.suburi = uri;
+			subtitle_uri = uri;
+			current_text = subtitle_uri == null ? -1 : 0;
+		}
+
+		// ported from totem bvw widget set_subtitle_uri
+		void apply_subtitles ()
+		{
+			int64 time;
+#if HAS_CLUTTER_GST_1
+				playbin.query_position (Gst.Format.TIME, out time);
+#else
+				var format = Gst.Format.TIME;
+				playbin.query_position (ref format, out time);
+#endif
+			playbin.query_position (Gst.Format.TIME, out time);
+
+			playbin.get_state (null, null, Gst.CLOCK_TIME_NONE);
+
+			Gst.State current;
+			playbin.get_state (out current, null, Gst.CLOCK_TIME_NONE);
+			if (current > Gst.State.READY) {
+				playbin.set_state (Gst.State.READY);
+				playbin.get_state (null, null, Gst.CLOCK_TIME_NONE);
+			}
+
+			playbin.suburi = subtitle_uri;
+
+			if (current > Gst.State.READY) {
+				playbin.set_state (current);
+				playbin.get_state (null, null, Gst.CLOCK_TIME_NONE);
+			}
+
+			playbin.set_state (Gst.State.PAUSED);
+			playbin.seek (1.0, Gst.Format.TIME,
+					Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE,
+					Gst.SeekType.SET, time,
+					Gst.SeekType.NONE, (int64)Gst.CLOCK_TIME_NONE);
+
+			if (current > Gst.State.READY) {
+				playbin.set_state (current);
+				playbin.get_state (null, null, Gst.CLOCK_TIME_NONE);
+			}
 		}
 		
 		bool intial_relayout = false;
