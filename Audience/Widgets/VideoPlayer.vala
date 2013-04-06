@@ -431,12 +431,11 @@ namespace Audience.Widgets
 		{
 			int64 time;
 #if HAS_CLUTTER_GST_1
-				playbin.query_position (Gst.Format.TIME, out time);
-#else
-				var format = Gst.Format.TIME;
-				playbin.query_position (ref format, out time);
-#endif
 			playbin.query_position (Gst.Format.TIME, out time);
+#else
+			var format = Gst.Format.TIME;
+			playbin.query_position (ref format, out time);
+#endif
 
 			playbin.get_state (null, null, Gst.CLOCK_TIME_NONE);
 
