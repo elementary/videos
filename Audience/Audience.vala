@@ -388,14 +388,9 @@ namespace Audience {
 				    geom.max_aspect = 99999999.0;
 		        }
 
-				//FIXME there appears to be no correct way to wait for Gtk to update the layout
-				// so we fake it with a timeout :(
-				Timeout.add (100, () => {
-					mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
-						monitor.height / 2 - height / 2 + monitor.y,
-						width, height);
-					return false;
-				});
+				mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
+					monitor.height / 2 - height / 2 + monitor.y,
+					width, height);
 
 				if (settings.keep_aspect) {
 					mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
