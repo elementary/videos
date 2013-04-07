@@ -118,21 +118,22 @@ namespace Audience.Widgets
 						video_width = video_info.get_width ();
 						video_height = video_info.get_height ();
 					}
-				} catch (Error e) { warning (e.message); }
+				} catch (Error e) {
+					error ();
+					warning (e.message);
+					return;
+				}
 				
 				intial_relayout = true;
 				
 				playbin.set_state (Gst.State.READY);
+				playbin.suburi = null;
+				subtitle_uri = null;
 				playbin.uri = value;
 				volume = 1.0;
 				controls.slider.set_preview_uri (value);
 				at_end = false;
 				
-				int flags;
-				playbin.get ("flags", out flags);
-				flags &= ~PlayFlags.TEXT;
-				playbin.set ("flags", flags, "current-text", -1);
-
 				relayout ();
 			}
 		}
@@ -173,19 +174,17 @@ namespace Audience.Widgets
 				if (value == current_text)
 					return;
 
-				playbin.current_text = value;
-
 				int flags;
 				playbin.get ("flags", out flags);
 
-				if (value == -1) {
-					flags &= ~PlayFlags.TEXT;
-				} else {
-					flags |= PlayFlags.TEXT;
-                }
-				playbin.set ("flags", flags);
+				var disable = value < 0;
+				if (disable)
+					playbin.current_text = -1;
 
-				apply_subtitles ();
+				check_text_layer (!disable);
+				if (!disable) {
+					playbin.current_text = value;
+				}
 			}
 		}
 		
@@ -423,7 +422,28 @@ namespace Audience.Widgets
 		public void set_subtitle_uri (string? uri)
 		{
 			subtitle_uri = uri;
-			current_text = subtitle_uri == null ? -1 : 0;
+			if (!check_text_layer (subtitle_uri != null))
+				apply_subtitles ();
+		}
+
+		// checks whether text layer has to be enabled
+		// returns if apply_subtitles has been called
+		bool check_text_layer (bool enable)
+		{
+			int flags;
+			playbin.get ("flags", out flags);
+
+			if (!enable && (flags & PlayFlags.TEXT) > 0) {
+				flags &= ~PlayFlags.TEXT;
+				playbin.set ("flags", flags);
+			} else if (enable && (flags & PlayFlags.TEXT) < 1) {
+				flags |= PlayFlags.TEXT;
+				playbin.set ("flags", flags);
+				apply_subtitles ();
+				return true;
+			}
+
+			return false;
 		}
 
 		// ported from totem bvw widget set_subtitle_uri

@@ -239,21 +239,22 @@ namespace Audience.Widgets
             if (target == "audio") {
                 
                 if (used == 0) {
-                    this.languages.append ("def", _("Default"));
-                    this.languages.active = 0;
-                    this.languages.sensitive = false;
+                    languages.append ("def", _("Default"));
+                    languages.active = 0;
+                    languages.sensitive = false;
                 } else {
-                    this.languages.sensitive = true;
-                    this.languages.active = 0;
+                    languages.sensitive = true;
+					if (languages.active_id == null)
+						languages.active = 0;
                 }
             } else {
                 if (used == 0)
-                    this.subtitles.sensitive = false;
+                    subtitles.sensitive = false;
                 else
-                    this.subtitles.sensitive = true;
+                    subtitles.sensitive = true;
                 
-                this.subtitles.append ("-1", _("None"));
-                this.subtitles.active_id = "-1";
+                subtitles.append ("-1", _("None"));
+				subtitles.active_id = app.video_player.current_text.to_string ();
             }
 
 			currently_parsing = false;
