@@ -375,15 +375,9 @@ namespace Audience {
 		        if (monitor.width > video_w && monitor.height > video_h) {
 					width = (int)video_w;
 					height = (int)video_h;
-		            mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
-						monitor.height / 2 - height / 2 + monitor.y,
-						width, height);
 		        } else {
 					width = (int)(monitor.width * 0.9);
 					height = (int)((double)video_h / video_w * width);
-		            mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
-						monitor.height / 2 - height / 2 + monitor.y,
-						width, height);
 		        }
 
 				var geom = Gdk.Geometry ();
@@ -398,13 +392,17 @@ namespace Audience {
 
 				debug ("Resizing to Width: %u, Height: %u, Video Width: %u, Height: %u", width, height, video_w, video_h);
 				if (settings.keep_aspect) {
-#if HAS_CLUTTER_GST_1
+//#if HAS_CLUTTER_GST_1
 					mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
-#else
+/*#else
 					mainwindow.set_geometry_hints (mainwindow, geom, Gdk.WindowHints.ASPECT);
-#endif
+#endif*/
 				}
-				mainwindow.get_window ().resize (width, height);
+
+				mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
+					monitor.height / 2 - height / 2 + monitor.y,
+					width, height);
+
             });
             
             //fullscreen on maximize
