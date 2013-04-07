@@ -390,6 +390,10 @@ namespace Audience {
 				//FIXME this is not actually related to clutter-gst-1, but the ubuntu versions match
 				// where this is needed
 
+				mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
+					monitor.height / 2 - height / 2 + monitor.y,
+					width, height);
+
 				debug ("Resizing to Width: %u, Height: %u, Video Width: %u, Height: %u", width, height, video_w, video_h);
 				if (settings.keep_aspect) {
 //#if HAS_CLUTTER_GST_1
@@ -398,10 +402,6 @@ namespace Audience {
 					mainwindow.set_geometry_hints (mainwindow, geom, Gdk.WindowHints.ASPECT);
 #endif*/
 				}
-
-				mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
-					monitor.height / 2 - height / 2 + monitor.y,
-					width, height);
 
             });
             
