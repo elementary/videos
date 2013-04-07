@@ -404,6 +404,7 @@ namespace Audience {
 					mainwindow.set_geometry_hints (mainwindow, geom, Gdk.WindowHints.ASPECT);
 #endif
 				}
+				mainwindow.get_window ().resize (width, height);
             });
             
             //fullscreen on maximize
