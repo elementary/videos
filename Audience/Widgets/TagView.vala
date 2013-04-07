@@ -24,8 +24,8 @@ namespace Audience.Widgets
         public Gtk.Grid taggrid;
         public Audience.App app;
         
-        private Gtk.ComboBoxText languages;
-        private Gtk.ComboBoxText subtitles;
+        public Gtk.ComboBoxText languages;
+        public Gtk.ComboBoxText subtitles;
 		private Gtk.FileChooserButton external_subtitle_file;
         
         private Granite.Drawing.BufferSurface buffer;
@@ -244,8 +244,7 @@ namespace Audience.Widgets
                     languages.sensitive = false;
                 } else {
                     languages.sensitive = true;
-					if (languages.active_id == null)
-						languages.active = 0;
+					languages.active_id = app.video_player.current_audio.to_string ();
                 }
             } else {
                 if (used == 0)

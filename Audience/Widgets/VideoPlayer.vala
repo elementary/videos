@@ -513,6 +513,7 @@ namespace Audience.Widgets
 			controls.content.invalidate ();
 
 			panel.x = get_stage ().width - panel.width - 10;
+			controls.slider.preview.width = (float) video_width / video_height * controls.slider.preview.height;
 
 			return true;
 		}
