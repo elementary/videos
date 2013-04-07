@@ -397,11 +397,13 @@ namespace Audience {
 				// where this is needed
 
 				debug ("Resizing to Width: %u, Height: %u, Video Width: %u, Height: %u", width, height, video_w, video_h);
+				if (settings.keep_aspect) {
 #if HAS_CLUTTER_GST_1
-				mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
+					mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
 #else
-				mainwindow.set_geometry_hints (mainwindow, geom, Gdk.WindowHints.ASPECT);
+					mainwindow.set_geometry_hints (mainwindow, geom, Gdk.WindowHints.ASPECT);
 #endif
+				}
             });
             
             //fullscreen on maximize
