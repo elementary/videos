@@ -395,6 +395,8 @@ namespace Audience {
 		        }
 				//FIXME this is not actually related to clutter-gst-1, but the ubuntu versions match
 				// where this is needed
+
+				debug ("Resizing to Width: %u, Height: %u, Video Width: %u, Height: %u", width, height, video_w, video_h);
 #if HAS_CLUTTER_GST_1
 				mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
 #else
