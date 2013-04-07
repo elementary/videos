@@ -387,20 +387,18 @@ namespace Audience {
 				    geom.min_aspect = 0.0;
 				    geom.max_aspect = 99999999.0;
 		        }
-				//FIXME this is not actually related to clutter-gst-1, but the ubuntu versions match
-				// where this is needed
 
-				mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
-					monitor.height / 2 - height / 2 + monitor.y,
-					width, height);
+				//FIXME there appears to be no correct way to wait for Gtk to update the layout
+				// so we fake it with a timeout :(
+				Timeout.add (100, () => {
+					mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
+						monitor.height / 2 - height / 2 + monitor.y,
+						width, height);
+					return false;
+				});
 
-				debug ("Resizing to Width: %u, Height: %u, Video Width: %u, Height: %u", width, height, video_w, video_h);
 				if (settings.keep_aspect) {
-//#if HAS_CLUTTER_GST_1
 					mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
-/*#else
-					mainwindow.set_geometry_hints (mainwindow, geom, Gdk.WindowHints.ASPECT);
-#endif*/
 				}
 
             });
