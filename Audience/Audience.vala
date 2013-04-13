@@ -21,7 +21,7 @@ namespace Audience {
             build_version = Constants.VERSION;
             build_version_info = Constants.VERSION_INFO;
             
-            app_years = "2011-2012";
+            app_years = "2011-2013";
             app_icon = "audience";
             app_launcher = "audience.desktop";
             application_id = "net.launchpad.audience";
@@ -96,7 +96,7 @@ namespace Audience {
 				welcome.set_item_visible (1, last_played_videos.length () > 0);
 			}
             
-            welcome.append ("media-cdrom", _("Play from Dics"), _("Watch a DVD or open a file from dics"));
+            welcome.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
             welcome.set_item_visible (2, has_dvd);
             
             var stage = clutter.get_stage ();
