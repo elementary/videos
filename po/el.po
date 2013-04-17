@@ -7,115 +7,69 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-15 23:19-0500\n"
+"POT-Creation-Date: 2013-04-15 16:18-0500\n"
 "PO-Revision-Date: 2012-09-03 23:20+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-09-05 05:06+0000\n"
-"X-Generator: Launchpad (build 15901)\n"
+"X-Launchpad-Export-Date: 2013-04-17 05:35+0000\n"
+"X-Generator: Launchpad (build 16567)\n"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:102
-msgid "No videos are open"
-msgstr "Δεν υπάρχουν ανοικτά βίντεο"
+#: /home/codygarver/audience/po/../Audience/Audience.vala:88
+msgid "Select a source to begin playing."
+msgstr ""
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:102
-msgid "Select a source to begin playing"
-msgstr "Επιλέξτε πηγή για έναρξη αναπαραγωγής"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:103
+#: /home/codygarver/audience/po/../Audience/Audience.vala:89
 msgid "Open file"
 msgstr "Άνοιγμα αρχείου"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:103
+#: /home/codygarver/audience/po/../Audience/Audience.vala:89
 msgid "Open a saved file."
 msgstr "Άνοιγμα αποθηκευμένου αρχείου"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:109
+#: /home/codygarver/audience/po/../Audience/Audience.vala:95
 msgid "Resume last video"
 msgstr "Συνέχιση τελευταίου βίντεο"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:112
+#: /home/codygarver/audience/po/../Audience/Audience.vala:99
 msgid "Play from Disc"
 msgstr "Αναπαραγωγή από δίσκο"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:112
+#: /home/codygarver/audience/po/../Audience/Audience.vala:99
 msgid "Watch a DVD or open a file from disc"
 msgstr "Αναπαραγωγή DVD ή άνοιγμα αρχείου από δίσκο"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:135
-msgid "Play"
-msgstr "Αναπαραγωγή"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:136
-#: /home/codygarver/audience/po/../Audience/Audience.vala:658
-msgid "Open"
-msgstr "Άνοιγμα"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:137
-msgid "Sidebar"
-msgstr "Πλευρική στήλη"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:138
-msgid "Leave Fullscreen"
-msgstr "Έξοδος από πλήρη οθόνη"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:199
+#: /home/codygarver/audience/po/../Audience/Audience.vala:170
 msgid "Open location"
 msgstr "Άνοιγμα τοποθεσίας"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:208
+#: /home/codygarver/audience/po/../Audience/Audience.vala:179
 msgid "Choose location"
 msgstr "Επιλογή τοποθεσίας"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:249
-msgid "Error"
-msgstr "Σφάλμα"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:259
-msgid "Oops! Audience can't play this file!"
-msgstr "Ο Audience δεν μπορεί να αναπαραγάγει αυτό το αρχείο!"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:286
-msgid ""
-"Some media files need extra software to be played. Audience can install this "
-"software automatically."
-msgstr ""
-"Μερικά αρχεία πολυμέσων χρειάζονται επιπλέον λογισμικό για να αναπαραχθούν. "
-"Το Audience μπορεί να εγκαταστήσει αυτό το λογισμικό αυτόματα."
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:292
-#, c-format
-msgid "Audience needs %s to play this file."
-msgstr "Ο Audience χρειάζεται %s για να αναπαράγαγει αυτό το αρχείο"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:295
-msgid "Don't install"
-msgstr "Να μην εγκατασταθεί"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:296
-msgid "Install"
-msgstr "Εγκατάσταση"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:472
+#: /home/codygarver/audience/po/../Audience/Audience.vala:289
 msgid "Add from Harddrive"
 msgstr "Προσθήκη από το σκληρό δίσκο"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:474
+#: /home/codygarver/audience/po/../Audience/Audience.vala:291
 msgid "Play a DVD"
 msgstr "Αναπαραγωγή ενός DVD"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:476
+#: /home/codygarver/audience/po/../Audience/Audience.vala:293
 msgid "Network File"
 msgstr "Αρχείο δικτύου"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:664
+#: /home/codygarver/audience/po/../Audience/Audience.vala:549
+msgid "Open"
+msgstr "Άνοιγμα"
+
+#: /home/codygarver/audience/po/../Audience/Audience.vala:554
 msgid "All files"
 msgstr "Όλα τα αρχεία"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:668
+#: /home/codygarver/audience/po/../Audience/Audience.vala:558
 msgid "Video files"
 msgstr "Αρχεία βίντεο"
 
@@ -127,30 +81,63 @@ msgstr "Αναπαραγωγή των πολυμέσων σας"
 msgid "Media Player"
 msgstr "Αναπαραγωγέας πολυμέσων"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:54
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:59
+msgid "External Subtitle"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:60
 msgid "Language"
 msgstr "Γλώσσα"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:55
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:61
 msgid "Subtitles"
 msgstr "Υπότιτλοι"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:94
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:62
+msgid "External Subtitles"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:92
 msgid "Playlist"
 msgstr "Λίστα αναπαραγωγής"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:95
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:93
 msgid "Options"
 msgstr "Επιλογές"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:97
-msgid "Details"
-msgstr "Λεπτομέρειες"
-
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:218
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:242
 msgid "Default"
 msgstr "Προεπιλογή"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:231
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:255
 msgid "None"
 msgstr "Κανένα"
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:523
+msgid "Error"
+msgstr "Σφάλμα"
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:531
+msgid "Oops! Audience can't play this file!"
+msgstr "Ο Audience δεν μπορεί να αναπαραγάγει αυτό το αρχείο!"
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:555
+msgid ""
+"Some media files need extra software to be played. Audience can install this "
+"software automatically."
+msgstr ""
+"Μερικά αρχεία πολυμέσων χρειάζονται επιπλέον λογισμικό για να αναπαραχθούν. "
+"Το Audience μπορεί να εγκαταστήσει αυτό το λογισμικό αυτόματα."
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:561
+#, c-format
+msgid "Audience needs %s to play this file."
+msgstr "Ο Audience χρειάζεται %s για να αναπαράγαγει αυτό το αρχείο"
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:564
+msgid "Don't install"
+msgstr "Να μην εγκατασταθεί"
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:565
+msgid "Install"
+msgstr "Εγκατάσταση"

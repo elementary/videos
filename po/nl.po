@@ -7,115 +7,69 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-15 23:19-0500\n"
+"POT-Creation-Date: 2013-04-15 16:18-0500\n"
 "PO-Revision-Date: 2012-08-13 00:09+0000\n"
 "Last-Translator: Emiel Beinema <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-17 05:11+0000\n"
-"X-Generator: Launchpad (build 15810)\n"
+"X-Launchpad-Export-Date: 2013-04-17 05:35+0000\n"
+"X-Generator: Launchpad (build 16567)\n"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:102
-msgid "No videos are open"
-msgstr "Er zijn geen video's geopend"
+#: /home/codygarver/audience/po/../Audience/Audience.vala:88
+msgid "Select a source to begin playing."
+msgstr ""
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:102
-msgid "Select a source to begin playing"
-msgstr "Kies een bron om af te spelen"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:103
+#: /home/codygarver/audience/po/../Audience/Audience.vala:89
 msgid "Open file"
 msgstr "Bestand openen"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:103
+#: /home/codygarver/audience/po/../Audience/Audience.vala:89
 msgid "Open a saved file."
 msgstr "Een opgeslagen bestand openen."
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:109
+#: /home/codygarver/audience/po/../Audience/Audience.vala:95
 msgid "Resume last video"
 msgstr "Laatst afgespeelde video hervatten"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:112
+#: /home/codygarver/audience/po/../Audience/Audience.vala:99
 msgid "Play from Disc"
 msgstr ""
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:112
+#: /home/codygarver/audience/po/../Audience/Audience.vala:99
 msgid "Watch a DVD or open a file from disc"
 msgstr ""
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:135
-msgid "Play"
-msgstr "Speel af"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:136
-#: /home/codygarver/audience/po/../Audience/Audience.vala:658
-msgid "Open"
-msgstr "openen"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:137
-msgid "Sidebar"
-msgstr "Zijpaneel"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:138
-msgid "Leave Fullscreen"
-msgstr "Volledig scherm verlaten"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:199
+#: /home/codygarver/audience/po/../Audience/Audience.vala:170
 msgid "Open location"
 msgstr "Open een locatie"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:208
+#: /home/codygarver/audience/po/../Audience/Audience.vala:179
 msgid "Choose location"
 msgstr "Kies locatie"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:249
-msgid "Error"
-msgstr "Fout"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:259
-msgid "Oops! Audience can't play this file!"
-msgstr "Oeps! Audience kan dit bestand niet afspelen!"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:286
-msgid ""
-"Some media files need extra software to be played. Audience can install this "
-"software automatically."
-msgstr ""
-"Voor het afspelen van sommige media bestanden is extra software nodig. "
-"Audience kan deze software automatisch installeren."
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:292
-#, c-format
-msgid "Audience needs %s to play this file."
-msgstr "Audience heeft %s nodig om dit bestand af te spelen."
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:295
-msgid "Don't install"
-msgstr "Niet installeren"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:296
-msgid "Install"
-msgstr "Installeer"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:472
+#: /home/codygarver/audience/po/../Audience/Audience.vala:289
 msgid "Add from Harddrive"
 msgstr "Voeg toe van hardeschijf"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:474
+#: /home/codygarver/audience/po/../Audience/Audience.vala:291
 msgid "Play a DVD"
 msgstr "Speel een DVD af"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:476
+#: /home/codygarver/audience/po/../Audience/Audience.vala:293
 msgid "Network File"
 msgstr "Netwerk bestand"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:664
+#: /home/codygarver/audience/po/../Audience/Audience.vala:549
+msgid "Open"
+msgstr "openen"
+
+#: /home/codygarver/audience/po/../Audience/Audience.vala:554
 msgid "All files"
 msgstr "Alle bestanden"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:668
+#: /home/codygarver/audience/po/../Audience/Audience.vala:558
 msgid "Video files"
 msgstr "Videobestanden"
 
@@ -127,30 +81,63 @@ msgstr "Speel uw media"
 msgid "Media Player"
 msgstr "Mediaspeler"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:54
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:59
+msgid "External Subtitle"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:60
 msgid "Language"
 msgstr "Taal"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:55
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:61
 msgid "Subtitles"
 msgstr ""
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:94
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:62
+msgid "External Subtitles"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:92
 msgid "Playlist"
 msgstr "Afspeellijst"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:95
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:93
 msgid "Options"
 msgstr ""
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:97
-msgid "Details"
-msgstr ""
-
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:218
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:242
 msgid "Default"
 msgstr "Standaard"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:231
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:255
 msgid "None"
 msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:523
+msgid "Error"
+msgstr "Fout"
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:531
+msgid "Oops! Audience can't play this file!"
+msgstr "Oeps! Audience kan dit bestand niet afspelen!"
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:555
+msgid ""
+"Some media files need extra software to be played. Audience can install this "
+"software automatically."
+msgstr ""
+"Voor het afspelen van sommige media bestanden is extra software nodig. "
+"Audience kan deze software automatisch installeren."
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:561
+#, c-format
+msgid "Audience needs %s to play this file."
+msgstr "Audience heeft %s nodig om dit bestand af te spelen."
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:564
+msgid "Don't install"
+msgstr "Niet installeren"
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:565
+msgid "Install"
+msgstr "Installeer"

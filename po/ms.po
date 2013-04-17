@@ -7,115 +7,69 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-15 23:19-0500\n"
+"POT-Creation-Date: 2013-04-15 16:18-0500\n"
 "PO-Revision-Date: 2012-08-14 14:11+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-17 05:11+0000\n"
-"X-Generator: Launchpad (build 15810)\n"
+"X-Launchpad-Export-Date: 2013-04-17 05:35+0000\n"
+"X-Generator: Launchpad (build 16567)\n"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:102
-msgid "No videos are open"
-msgstr "Tiada video dibuka"
+#: /home/codygarver/audience/po/../Audience/Audience.vala:88
+msgid "Select a source to begin playing."
+msgstr ""
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:102
-msgid "Select a source to begin playing"
-msgstr "Pilih sumber untuk mula bermain"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:103
+#: /home/codygarver/audience/po/../Audience/Audience.vala:89
 msgid "Open file"
 msgstr "Buka fail"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:103
+#: /home/codygarver/audience/po/../Audience/Audience.vala:89
 msgid "Open a saved file."
 msgstr "Buka fail tersimpan."
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:109
+#: /home/codygarver/audience/po/../Audience/Audience.vala:95
 msgid "Resume last video"
 msgstr "Sambung semula video terakhir"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:112
+#: /home/codygarver/audience/po/../Audience/Audience.vala:99
 msgid "Play from Disc"
 msgstr "Main dari Cakera"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:112
+#: /home/codygarver/audience/po/../Audience/Audience.vala:99
 msgid "Watch a DVD or open a file from disc"
 msgstr "Tonton DVD atau buka fail dari cakera"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:135
-msgid "Play"
-msgstr "Main"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:136
-#: /home/codygarver/audience/po/../Audience/Audience.vala:658
-msgid "Open"
-msgstr "Buka"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:137
-msgid "Sidebar"
-msgstr "Palang Sisi"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:138
-msgid "Leave Fullscreen"
-msgstr "Tinggalkan Skrin Penuh"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:199
+#: /home/codygarver/audience/po/../Audience/Audience.vala:170
 msgid "Open location"
 msgstr "Buka lokasi"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:208
+#: /home/codygarver/audience/po/../Audience/Audience.vala:179
 msgid "Choose location"
 msgstr "Pilih lokasi"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:249
-msgid "Error"
-msgstr "Ralat"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:259
-msgid "Oops! Audience can't play this file!"
-msgstr "Alamak! Audience tidak dapat mainkan fail ini!"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:286
-msgid ""
-"Some media files need extra software to be played. Audience can install this "
-"software automatically."
-msgstr ""
-"Beberapa fail media perlukan perisian tambahan untuk dimainkan. Audience "
-"boleh pasang perisian ini secara automatik."
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:292
-#, c-format
-msgid "Audience needs %s to play this file."
-msgstr "Audience perlukan %s untuk mainkan fail ini."
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:295
-msgid "Don't install"
-msgstr "Jangan pasang"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:296
-msgid "Install"
-msgstr "Pasang"
-
-#: /home/codygarver/audience/po/../Audience/Audience.vala:472
+#: /home/codygarver/audience/po/../Audience/Audience.vala:289
 msgid "Add from Harddrive"
 msgstr "Tambah dari Pemacu Keras"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:474
+#: /home/codygarver/audience/po/../Audience/Audience.vala:291
 msgid "Play a DVD"
 msgstr "Main DVD"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:476
+#: /home/codygarver/audience/po/../Audience/Audience.vala:293
 msgid "Network File"
 msgstr "Fail Rangkaian"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:664
+#: /home/codygarver/audience/po/../Audience/Audience.vala:549
+msgid "Open"
+msgstr "Buka"
+
+#: /home/codygarver/audience/po/../Audience/Audience.vala:554
 msgid "All files"
 msgstr "Semua fail"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:668
+#: /home/codygarver/audience/po/../Audience/Audience.vala:558
 msgid "Video files"
 msgstr "Fail video"
 
@@ -127,30 +81,63 @@ msgstr "Main media anda"
 msgid "Media Player"
 msgstr "Pemain Media"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:54
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:59
+msgid "External Subtitle"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:60
 msgid "Language"
 msgstr "Bahasa"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:55
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:61
 msgid "Subtitles"
 msgstr "Sarikata"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:94
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:62
+msgid "External Subtitles"
+msgstr ""
+
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:92
 msgid "Playlist"
 msgstr "Senarai Main"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:95
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:93
 msgid "Options"
 msgstr "Pilihan"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:97
-msgid "Details"
-msgstr "Perincian"
-
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:218
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:242
 msgid "Default"
 msgstr "Lalai"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:231
+#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:255
 msgid "None"
 msgstr "Tiada"
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:523
+msgid "Error"
+msgstr "Ralat"
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:531
+msgid "Oops! Audience can't play this file!"
+msgstr "Alamak! Audience tidak dapat mainkan fail ini!"
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:555
+msgid ""
+"Some media files need extra software to be played. Audience can install this "
+"software automatically."
+msgstr ""
+"Beberapa fail media perlukan perisian tambahan untuk dimainkan. Audience "
+"boleh pasang perisian ini secara automatik."
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:561
+#, c-format
+msgid "Audience needs %s to play this file."
+msgstr "Audience perlukan %s untuk mainkan fail ini."
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:564
+msgid "Don't install"
+msgstr "Jangan pasang"
+
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:565
+msgid "Install"
+msgstr "Pasang"
