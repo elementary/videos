@@ -7,15 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-04-15 16:18-0500\n"
+"POT-Creation-Date: 2013-04-20 22:54-0500\n"
 "PO-Revision-Date: 2012-07-28 03:08+0000\n"
 "Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
 "Language-Team: Telugu <te@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-04-17 05:36+0000\n"
+"X-Launchpad-Export-Date: 2013-04-21 04:56+0000\n"
 "X-Generator: Launchpad (build 16567)\n"
+
+#: /home/codygarver/audience/po/../Audience/Audience.vala:88
+msgid "No videos are open."
+msgstr ""
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:88
 msgid "Select a source to begin playing."
