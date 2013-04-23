@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-20 22:54-0500\n"
-"PO-Revision-Date: 2012-08-20 09:27+0000\n"
-"Last-Translator: Ezequiel Sapo <Unknown>\n"
+"PO-Revision-Date: 2013-04-22 18:35+0000\n"
+"Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-04-22 05:54+0000\n"
-"X-Generator: Launchpad (build 16567)\n"
+"X-Launchpad-Export-Date: 2013-04-23 05:39+0000\n"
+"X-Generator: Launchpad (build 16580)\n"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:88
 msgid "No videos are open."
-msgstr ""
+msgstr "No hay ningún vídeo abierto."
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:88
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "Seleccione una fuente para comenzar la reproducción."
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:89
 msgid "Open file"
@@ -87,7 +87,7 @@ msgstr "Reproductor multimedia"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:59
 msgid "External Subtitle"
-msgstr ""
+msgstr "Subtítulo externo"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:60
 msgid "Language"
@@ -99,7 +99,7 @@ msgstr "Subtítulos"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:62
 msgid "External Subtitles"
-msgstr ""
+msgstr "Subtítulos externos"
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:92
 msgid "Playlist"
