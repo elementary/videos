@@ -36,6 +36,7 @@ namespace Audience.Widgets
 				playbin.set_state (value ? Gst.State.PLAYING : Gst.State.PAUSED);
 
 				set_screensaver (!value);
+				set_screenlock (!value);
 
 				if (!value) {
 					paused = true;
@@ -200,6 +201,9 @@ namespace Audience.Widgets
 		public int hide_lock = 0;
 		
 		uint hiding_timer;
+		
+		public GnomeSessionManager session_manager;
+		uint32 inhibit_cookie;
 		
 		public bool fullscreened { get; set; }
 		
@@ -623,6 +627,20 @@ namespace Audience.Widgets
 			if (timeout == -1)
 				dpy.get_screensaver (out timeout, out interval, out prefer_blanking, out allow_exposures);
 			dpy.set_screensaver (enable ? timeout : 0, interval, prefer_blanking, allow_exposures);
+		}
+		
+		//prevent screenlocking in Gnome 3 using org.gnome.SessionManager
+		void set_screenlock (bool enable)
+		{
+			try{
+				session_manager = Bus.get_proxy_sync (BusType.SESSION, 
+						"org.gnome.SessionManager", "/org/gnome/SessionManager");
+				if (enable) {
+					session_manager.Uninhibit (inhibit_cookie);
+				}else{
+					inhibit_cookie = session_manager.Inhibit ("audience", 0, "Playing Video using Audience", 12);
+				}
+			} catch (Error e) { warning (e.message); }
 		}
 	}
 }

@@ -6,6 +6,13 @@ public interface GnomeMediaKeys : GLib.Object {
     public signal void MediaPlayerKeyPressed (string application, string key);
 }
 
+[DBus (name = "org.gnome.SessionManager")]
+public interface GnomeSessionManager : GLib.Object {
+	public abstract bool isSessionRunning() throws GLib.IOError;
+    public abstract uint32 Inhibit (string app_id, uint32 toplevel_xid, string reason, uint32 flags) throws GLib.IOError;
+    public abstract void Uninhibit (uint32 inhibit_cookie) throws GLib.IOError;
+}
+
 namespace Audience {
     public delegate void FuncOverDir (File file_under_dir);
     public static void recurse_over_dir (File file_to_process, FuncOverDir func) {
