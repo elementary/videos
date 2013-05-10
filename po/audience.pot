@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-20 22:54-0500\n"
+"POT-Creation-Date: 2013-05-10 00:23-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,7 +90,7 @@ msgid "External Subtitle"
 msgstr ""
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:60
-msgid "Language"
+msgid "Audio"
 msgstr ""
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:61
@@ -117,29 +117,29 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:523
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:527
 msgid "Error"
 msgstr ""
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:531
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:535
 msgid "Oops! Audience can't play this file!"
 msgstr ""
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:555
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:559
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:561
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:565
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr ""
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:564
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:568
 msgid "Don't install"
 msgstr ""
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:565
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:569
 msgid "Install"
 msgstr ""

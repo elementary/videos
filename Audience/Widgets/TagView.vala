@@ -57,7 +57,7 @@ namespace Audience.Widgets
             this.languages = new Gtk.ComboBoxText ();
             this.subtitles = new Gtk.ComboBoxText ();
 			this.external_subtitle_file = new Gtk.FileChooserButton (_("External Subtitle"), Gtk.FileChooserAction.OPEN);
-            var lang_lbl   = new LLabel.right (_("Language")+":");
+            var lang_lbl   = new LLabel.right (_("Audio")+":");
             var sub_lbl    = new LLabel.right (_("Subtitles")+":");
 			var sub_ext_lbl = new LLabel.right (_("External Subtitles") + ":");
             setupgrid.attach (lang_lbl,  0, 1, 1, 1);
