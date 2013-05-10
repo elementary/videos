@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-04-20 22:54-0500\n"
+"POT-Creation-Date: 2013-05-10 00:23-0500\n"
 "PO-Revision-Date: 2012-08-13 00:09+0000\n"
 "Last-Translator: Emiel Beinema <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-04-22 05:54+0000\n"
-"X-Generator: Launchpad (build 16567)\n"
+"X-Launchpad-Export-Date: 2013-05-10 06:21+0000\n"
+"X-Generator: Launchpad (build 16598)\n"
 
 #: /home/codygarver/audience/po/../Audience/Audience.vala:88
 msgid "No videos are open."
@@ -90,8 +90,8 @@ msgid "External Subtitle"
 msgstr ""
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:60
-msgid "Language"
-msgstr "Taal"
+msgid "Audio"
+msgstr ""
 
 #: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:61
 msgid "Subtitles"
@@ -117,15 +117,15 @@ msgstr "Standaard"
 msgid "None"
 msgstr ""
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:523
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:527
 msgid "Error"
 msgstr "Fout"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:531
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:535
 msgid "Oops! Audience can't play this file!"
 msgstr "Oeps! Audience kan dit bestand niet afspelen!"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:555
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:559
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -133,15 +133,18 @@ msgstr ""
 "Voor het afspelen van sommige media bestanden is extra software nodig. "
 "Audience kan deze software automatisch installeren."
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:561
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:565
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr "Audience heeft %s nodig om dit bestand af te spelen."
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:564
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:568
 msgid "Don't install"
 msgstr "Niet installeren"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:565
+#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:569
 msgid "Install"
 msgstr "Installeer"
+
+#~ msgid "Language"
+#~ msgstr "Taal"
