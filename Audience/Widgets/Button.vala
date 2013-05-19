@@ -4,39 +4,39 @@ namespace Audience.Widgets{
     public class Button : GtkClutter.Texture {
         public signal void clicked ();
 
-		bool pressed = false;
+        bool pressed = false;
 
         public Button (string icon, string fallback, string alt_fallback=""){
             set_icon (icon, fallback, alt_fallback);
 
             reactive = true;
-			width = 16;
-			height = 16;
+            width = 16;
+            height = 16;
             opacity = 255;
         }
 
-		public override bool leave_event (Clutter.CrossingEvent event) {
-			animate (Clutter.AnimationMode.EASE_OUT_QUAD, 200, opacity:255);
-			return true;
-		}
+        public override bool leave_event (Clutter.CrossingEvent event) {
+            animate (Clutter.AnimationMode.EASE_OUT_QUAD, 200, opacity:255);
+            return true;
+        }
 
-		public override bool enter_event (Clutter.CrossingEvent event) {
-			animate (Clutter.AnimationMode.EASE_OUT_QUAD, 200, opacity:170);
-			return true;
-		}
+        public override bool enter_event (Clutter.CrossingEvent event) {
+            animate (Clutter.AnimationMode.EASE_OUT_QUAD, 200, opacity:170);
+            return true;
+        }
 
-		public override bool button_press_event (Clutter.ButtonEvent event) {
-			pressed = true;
-			return true;
-		}
+        public override bool button_press_event (Clutter.ButtonEvent event) {
+            pressed = true;
+            return true;
+        }
 
-		public override bool button_release_event (Clutter.ButtonEvent event) {
-			if (pressed) {
-				clicked ();
-				pressed = false;
-			}
-			return true;
-		}
+        public override bool button_release_event (Clutter.ButtonEvent event) {
+            if (pressed) {
+                clicked ();
+                pressed = false;
+            }
+            return true;
+        }
 
         public void set_icon (string icon, string fallback, string alt_fallback="") {
             try {

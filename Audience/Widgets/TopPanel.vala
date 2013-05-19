@@ -21,7 +21,7 @@ namespace Audience.Widgets{
             }
         }
 
-		public signal void unfullscreen ();
+        public signal void unfullscreen ();
 
         public TopPanel () {
             layout_manager = new Clutter.BoxLayout ();
@@ -33,12 +33,12 @@ namespace Audience.Widgets{
             this.vol.use_symbolic = true;
             this._hidden = true;
 
-			exit.reactive = true;
-			exit.y = 2;
-			exit.button_release_event.connect ((e) => {
-				unfullscreen ();
-				return true;
-			});
+            exit.reactive = true;
+            exit.y = 2;
+            exit.button_release_event.connect ((e) => {
+                unfullscreen ();
+                return true;
+            });
 
             var css = new Gtk.CssProvider ();
             try {
