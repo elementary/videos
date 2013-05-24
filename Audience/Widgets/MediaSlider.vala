@@ -6,12 +6,12 @@ namespace Audience.Widgets{
         public signal void seeked (double new_progress);
 
         public Clutter.Texture preview;
-		public Clutter.Actor preview_bg;
-		dynamic Gst.Element preview_playbin;
-		dynamic Gst.Element sink;
+        public Clutter.Actor preview_bg;
+        dynamic Gst.Element preview_playbin;
+        dynamic Gst.Element sink;
 
-		double progress_stacked = 0.0;
-		bool seeking = false;
+        double progress_stacked = 0.0;
+        bool seeking = false;
 
         private double _buffered;
         public double buffered{
@@ -45,41 +45,41 @@ namespace Audience.Widgets{
             preview.height =  90.0f;
             // preview.width is set in VideoPlayer.vala
 
-			// connect gstreamer stuff
+            // connect gstreamer stuff
 #if HAS_CLUTTER_GST_1
-			preview_playbin = Gst.ElementFactory.make ("playbin", "play");
+            preview_playbin = Gst.ElementFactory.make ("playbin", "play");
 #else
-			preview_playbin = Gst.ElementFactory.make ("playbin2", "play");
+            preview_playbin = Gst.ElementFactory.make ("playbin2", "play");
 #endif
-			preview_playbin.get_bus ().add_signal_watch ();
-			preview_playbin.get_bus ().message.connect ((msg) => {
-				switch (msg.type) {
-					case Gst.MessageType.STATE_CHANGED:
-						if (progress_stacked != 0)
-							seek (progress_stacked);
-						break;
-					case Gst.MessageType.ASYNC_DONE:
-						if (seeking) {
-							seeking = false;
-							if (progress_stacked != 0)
-								seek (progress_stacked);
-						}
-						break;
-				}
-			});
-			sink = Audience.get_clutter_sink ();
-			sink.texture = preview;
-			preview_playbin.video_sink = sink;
+            preview_playbin.get_bus ().add_signal_watch ();
+            preview_playbin.get_bus ().message.connect ((msg) => {
+                switch (msg.type) {
+                    case Gst.MessageType.STATE_CHANGED:
+                        if (progress_stacked != 0)
+                            seek (progress_stacked);
+                        break;
+                    case Gst.MessageType.ASYNC_DONE:
+                        if (seeking) {
+                            seeking = false;
+                            if (progress_stacked != 0)
+                                seek (progress_stacked);
+                        }
+                        break;
+                }
+            });
+            sink = Audience.get_clutter_sink ();
+            sink.texture = preview;
+            preview_playbin.video_sink = sink;
 
             preview_bg = new Clutter.Actor ();
-			preview_bg.y = -120.0f;
+            preview_bg.y = -120.0f;
             preview_bg.add_constraint (new Clutter.BindConstraint (preview, Clutter.BindCoordinate.WIDTH, 30.0f));
             preview_bg.add_constraint (new Clutter.BindConstraint (preview, Clutter.BindCoordinate.HEIGHT, 45.0f));
             preview_bg.opacity = 0;
-			preview_bg.content = new Clutter.Canvas ();
-			preview_bg.allocation_changed.connect (() => {
-				(preview_bg.content as Clutter.Canvas).set_size ((int)preview_bg.width, (int)preview_bg.height);
-			});
+            preview_bg.content = new Clutter.Canvas ();
+            preview_bg.allocation_changed.connect (() => {
+                (preview_bg.content as Clutter.Canvas).set_size ((int)preview_bg.width, (int)preview_bg.height);
+            });
             var ARROW_HEIGHT = 17;
             var ARROW_WIDTH  = 20;
             var popover_grad = new Cairo.Pattern.linear (0, 0, 0, preview_bg.height);
@@ -90,9 +90,9 @@ namespace Audience.Widgets{
             popover_inset_grad.add_color_stop_rgba (0.0, 1, 1, 1, 0.3);
             popover_inset_grad.add_color_stop_rgba (1.0, 1, 1, 1, 0.1);
             (preview_bg.content as Clutter.Canvas).draw.connect ( (ctx) => {
-				ctx.set_operator (Cairo.Operator.CLEAR);
-				ctx.paint ();
-				ctx.set_operator (Cairo.Operator.OVER);
+                ctx.set_operator (Cairo.Operator.CLEAR);
+                ctx.paint ();
+                ctx.set_operator (Cairo.Operator.OVER);
 
                 // Outline
                 Drawing.cairo_popover (ctx, 0, 0, preview_bg.width,
@@ -141,12 +141,12 @@ namespace Audience.Widgets{
                 ctx.fill ();
                 //buffering
                 if (this._buffered != 0.0){
-					int64 duration;
+                    int64 duration;
 #if HAS_CLUTTER_GST_1
-					preview_playbin.query_duration (Gst.Format.TIME, out duration);
+                    preview_playbin.query_duration (Gst.Format.TIME, out duration);
 #else
-					var time = Gst.Format.TIME;
-					preview_playbin.query_duration (ref time, out duration);
+                    var time = Gst.Format.TIME;
+                    preview_playbin.query_duration (ref time, out duration);
 #endif
                     Drawing.cairo_half_pill (ctx, 2, 2,
                         (this._buffered / duration * this.bar.width) - 4, BAR_HEIGHT - 4, Gtk.PositionType.RIGHT);
@@ -173,81 +173,81 @@ namespace Audience.Widgets{
             add_child (preview_bg);
         }
 
-		public override bool motion_event (Clutter.MotionEvent event)
-		{
-			float local_x, local_y;
-			this.transform_stage_point (event.x, event.y, out local_x, out local_y);
+        public override bool motion_event (Clutter.MotionEvent event)
+        {
+            float local_x, local_y;
+            this.transform_stage_point (event.x, event.y, out local_x, out local_y);
 
-			preview.x = event.x - preview.width / 2;
-			preview_bg.x = local_x - preview.width / 2 - 15.0f;
+            preview.x = event.x - preview.width / 2;
+            preview_bg.x = local_x - preview.width / 2 - 15.0f;
 
-			seek (float.max (local_x, 0.0000001f) / this.width);
+            seek (float.max (local_x, 0.0000001f) / this.width);
 
-			return true;
-		}
+            return true;
+        }
 
-		public override bool enter_event (Clutter.CrossingEvent event)
-		{
-			this.preview.animate (Clutter.AnimationMode.EASE_OUT_ELASTIC, 800,
-				scale_x:1.0, scale_y:1.0);
-			preview_bg.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 500, opacity:240);
-			preview_toggle_playing (true);
-			this.mouse_grabbed = true;
-			return false;
-		}
+        public override bool enter_event (Clutter.CrossingEvent event)
+        {
+            this.preview.animate (Clutter.AnimationMode.EASE_OUT_ELASTIC, 800,
+                scale_x:1.0, scale_y:1.0);
+            preview_bg.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 500, opacity:240);
+            preview_toggle_playing (true);
+            this.mouse_grabbed = true;
+            return false;
+        }
 
-		public override bool leave_event (Clutter.CrossingEvent event)
-		{
-			preview.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 150,
-				scale_x:0.0, scale_y:0.0);
-			preview_bg.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 150, opacity:0);
-			preview_toggle_playing (false);
-			mouse_grabbed = false;
-			return false;
-		}
+        public override bool leave_event (Clutter.CrossingEvent event)
+        {
+            preview.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 150,
+                scale_x:0.0, scale_y:0.0);
+            preview_bg.animate (Clutter.AnimationMode.EASE_OUT_QUAD, 150, opacity:0);
+            preview_toggle_playing (false);
+            mouse_grabbed = false;
+            return false;
+        }
 
-		public override bool button_release_event (Clutter.ButtonEvent event)
-		{
-			float x, y;
-			this.transform_stage_point (event.x, event.y, out x, out y);
-			this.seeked (x / this.width);
-			return true;
-		}
+        public override bool button_release_event (Clutter.ButtonEvent event)
+        {
+            float x, y;
+            this.transform_stage_point (event.x, event.y, out x, out y);
+            this.seeked (x / this.width);
+            return true;
+        }
 
-		public void set_preview_uri (string uri)
-		{
-			preview_playbin.set_state (Gst.State.READY);
-			preview_playbin.uri = uri;
-			preview_playbin.volume = 0.0;
-		}
+        public void set_preview_uri (string uri)
+        {
+            preview_playbin.set_state (Gst.State.READY);
+            preview_playbin.uri = uri;
+            preview_playbin.volume = 0.0;
+        }
 
-		void preview_toggle_playing (bool play)
-		{
-			this.preview_playbin.set_state (play ? Gst.State.PLAYING : Gst.State.PAUSED);
-		}
+        void preview_toggle_playing (bool play)
+        {
+            this.preview_playbin.set_state (play ? Gst.State.PLAYING : Gst.State.PAUSED);
+        }
 
-		void seek (double progress)
-		{
-			if (seeking) {
-				progress_stacked = progress;
-				return;
-			}
+        void seek (double progress)
+        {
+            if (seeking) {
+                progress_stacked = progress;
+                return;
+            }
 
-			int64 duration;
+            int64 duration;
 #if HAS_CLUTTER_GST_1
-			preview_playbin.query_duration (Gst.Format.TIME, out duration);
+            preview_playbin.query_duration (Gst.Format.TIME, out duration);
 #else
-			var time = Gst.Format.TIME;
-			preview_playbin.query_duration (ref time, out duration);
+            var time = Gst.Format.TIME;
+            preview_playbin.query_duration (ref time, out duration);
 #endif
-			preview_playbin.seek (1.0, Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.KEY_UNIT,
-				Gst.SeekType.SET, (int64)(progress * duration),
-				Gst.SeekType.NONE, (int64)Gst.CLOCK_TIME_NONE);
+            preview_playbin.seek (1.0, Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.KEY_UNIT,
+                Gst.SeekType.SET, (int64)(progress * duration),
+                Gst.SeekType.NONE, (int64)Gst.CLOCK_TIME_NONE);
 
-			this.progress_stacked = 0;
+            this.progress_stacked = 0;
 
-			seeking = true;
-		}
+            seeking = true;
+        }
     }
 }
 

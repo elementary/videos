@@ -26,7 +26,7 @@ namespace Audience.Widgets
         
         public Gtk.ComboBoxText languages;
         public Gtk.ComboBoxText subtitles;
-		private Gtk.FileChooserButton external_subtitle_file;
+        private Gtk.FileChooserButton external_subtitle_file;
         
         private Granite.Drawing.BufferSurface buffer;
         int shadow_blur = 30;
@@ -34,9 +34,9 @@ namespace Audience.Widgets
         int shadow_y    = 0;
         double shadow_alpha = 0.5;
 
-		bool currently_parsing = false;
+        bool currently_parsing = false;
 
-		public signal void select_external_subtitle (string uri);
+        public signal void select_external_subtitle (string uri);
         
         public TagView (Audience.App app) {
             this.app      = app;
@@ -56,28 +56,28 @@ namespace Audience.Widgets
             var setupgrid  = new Gtk.Grid ();
             this.languages = new Gtk.ComboBoxText ();
             this.subtitles = new Gtk.ComboBoxText ();
-			this.external_subtitle_file = new Gtk.FileChooserButton (_("External Subtitle"), Gtk.FileChooserAction.OPEN);
+            this.external_subtitle_file = new Gtk.FileChooserButton (_("External Subtitle"), Gtk.FileChooserAction.OPEN);
             var lang_lbl   = new LLabel.right (_("Audio")+":");
             var sub_lbl    = new LLabel.right (_("Subtitles")+":");
-			var sub_ext_lbl = new LLabel.right (_("External Subtitles") + ":");
+            var sub_ext_lbl = new LLabel.right (_("External Subtitles") + ":");
             setupgrid.attach (lang_lbl,  0, 1, 1, 1);
             setupgrid.attach (languages,                   1, 1, 1, 1);
             setupgrid.attach (sub_lbl, 0, 2, 1, 1);
             setupgrid.attach (subtitles,                   1, 2, 1, 1);
-			setupgrid.attach (sub_ext_lbl, 0, 3, 1, 1);
-			setupgrid.attach (this.external_subtitle_file, 1, 3, 1, 1);
+            setupgrid.attach (sub_ext_lbl, 0, 3, 1, 1);
+            setupgrid.attach (this.external_subtitle_file, 1, 3, 1, 1);
             setupgrid.column_homogeneous = true;
             setupgrid.margin = 12;
             setupgrid.column_spacing = 12;
             
-			external_subtitle_file.file_set.connect (() => {
-				select_external_subtitle (external_subtitle_file.get_uri ());
-			});
+            external_subtitle_file.file_set.connect (() => {
+                select_external_subtitle (external_subtitle_file.get_uri ());
+            });
             this.subtitles.changed.connect ( () => {
                 if (subtitles.active_id == null || currently_parsing)
                     return;
-				var id = int.parse (this.subtitles.active_id);
-				app.video_player.current_text = id;
+                var id = int.parse (this.subtitles.active_id);
+                app.video_player.current_text = id;
             });
             
             languages.changed.connect ( () => { //place it here to not get problems
@@ -160,11 +160,11 @@ namespace Audience.Widgets
         }
         
         public override void allocate (Clutter.ActorBox box, Clutter.AllocationFlags flags) {
-        	//have a minimum height in order to not get the negative allocation warnings
-        	if (box.y2 - box.y1 < 100) {
-        		box.y2 = box.y1 + 100;
-    		}
-    		base.allocate (box, flags);
+            //have a minimum height in order to not get the negative allocation warnings
+            if (box.y2 - box.y1 < 100) {
+                box.y2 = box.y1 + 100;
+            }
+            base.allocate (box, flags);
         }
         
         public void expand (){
@@ -188,7 +188,7 @@ namespace Audience.Widgets
         public void setup_audio_setup () { setup_setup ("audio"); }
         /*target is either "text" or "audio"*/
         public void setup_setup (string target) {
-			currently_parsing = true;
+            currently_parsing = true;
             
             if (target == "audio" && languages.model.iter_n_children (null) > 0)
                 languages.remove_all ();
@@ -206,21 +206,21 @@ namespace Audience.Widgets
                     continue;
                 
                 string desc;
-				string readable = null;
+                string readable = null;
 #if HAS_CLUTTER_GST_1
                 tags.get_string (Gst.Tags.LANGUAGE_CODE, out desc);
                 if (desc == null)
                     tags.get_string (Gst.Tags.CODEC, out desc);
                 
-				if (desc != null)
-					readable = Gst.Tag.get_language_name (desc);
+                if (desc != null)
+                    readable = Gst.Tag.get_language_name (desc);
 #else
                 tags.get_string (Gst.TAG_LANGUAGE_CODE, out desc);
                 if (desc == null)
                     tags.get_string (Gst.TAG_CODEC, out desc);
                 
-				if (desc != null)
-					readable = Gst.tag_get_language_name (desc);
+                if (desc != null)
+                    readable = Gst.tag_get_language_name (desc);
 #endif
                 if (target == "audio" && desc != null) {
                     this.languages.append (i.to_string (), readable == null ? desc : readable);
@@ -244,7 +244,7 @@ namespace Audience.Widgets
                     languages.sensitive = false;
                 } else {
                     languages.sensitive = true;
-					languages.active_id = app.video_player.current_audio.to_string ();
+                    languages.active_id = app.video_player.current_audio.to_string ();
                 }
             } else {
                 if (used == 0)
@@ -253,10 +253,10 @@ namespace Audience.Widgets
                     subtitles.sensitive = true;
                 
                 subtitles.append ("-1", _("None"));
-				subtitles.active_id = app.video_player.current_text.to_string ();
+                subtitles.active_id = app.video_player.current_text.to_string ();
             }
 
-			currently_parsing = false;
+            currently_parsing = false;
         }
     }
 }
