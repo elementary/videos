@@ -7,125 +7,125 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-05-10 00:23-0500\n"
+"POT-Creation-Date: 2013-05-19 13:21+0300\n"
 "PO-Revision-Date: 2013-05-13 12:16+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-14 05:47+0000\n"
-"X-Generator: Launchpad (build 16617)\n"
+"X-Launchpad-Export-Date: 2013-05-25 05:42+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:88
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:88
 msgid "No videos are open."
 msgstr "No hi ha cap vídeo obert"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:88
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:88
 msgid "Select a source to begin playing."
 msgstr "Seleccioneu una font per començar la reproducció."
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:89
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:89
 msgid "Open file"
 msgstr "Obre un fitxer"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:89
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:89
 msgid "Open a saved file."
 msgstr "Obre un fitxer desat."
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:95
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:95
 msgid "Resume last video"
 msgstr "Reprèn el darrer vídeo"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:99
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:99
 msgid "Play from Disc"
 msgstr "Reprodueix des d'un disc"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:99
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:99
 msgid "Watch a DVD or open a file from disc"
 msgstr "Ves un DVD o obre un fitxer des d'un disc"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:170
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:170
 msgid "Open location"
 msgstr "Obre una ubicació"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:179
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:179
 msgid "Choose location"
 msgstr "Tria una ubicació"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:289
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:289
 msgid "Add from Harddrive"
 msgstr "Afegeix des del disc dur"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:291
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:291
 msgid "Play a DVD"
 msgstr "Reprodueix un DVD"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:293
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:293
 msgid "Network File"
 msgstr "Fitxer de la xarxa"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:549
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:549
 msgid "Open"
 msgstr "Obre"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:554
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:554
 msgid "All files"
 msgstr "Tots els fitxers"
 
-#: /home/codygarver/audience/po/../Audience/Audience.vala:558
+#: /home/tictac7x/audience/po/../Audience/Audience.vala:558
 msgid "Video files"
 msgstr "Fitxers de vídeo"
 
-#: /home/codygarver/audience/po/../Audience/desktop-launcher.vala:5
+#: /home/tictac7x/audience/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
 msgstr "Reproduïu els vostres elements multimèdia"
 
-#: /home/codygarver/audience/po/../Audience/desktop-launcher.vala:6
+#: /home/tictac7x/audience/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
 msgstr "Reproductor multimèdia"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:59
+#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:59
 msgid "External Subtitle"
 msgstr "Subtítol extern"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:60
+#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:60
 msgid "Audio"
 msgstr "Àudio"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:61
+#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:61
 msgid "Subtitles"
 msgstr "Subtítols"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:62
+#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:62
 msgid "External Subtitles"
 msgstr "Subtítols externs"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:92
+#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:92
 msgid "Playlist"
 msgstr "Llista de reproducció"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:93
+#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:93
 msgid "Options"
 msgstr "Opcions"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:242
+#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:242
 msgid "Default"
 msgstr "Predeterminat"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/TagView.vala:255
+#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:255
 msgid "None"
 msgstr "Cap"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:527
+#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:527
 msgid "Error"
 msgstr "S'ha produït un error"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:535
+#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:535
 msgid "Oops! Audience can't play this file!"
 msgstr "L'Audience no pot reproduir aquest fitxer."
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:559
+#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:559
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -133,15 +133,15 @@ msgstr ""
 "Alguns fitxers multimèdia necessiten programari adicional per ser "
 "reproduïts. L'Audience pot instal·lar aquest programari automàticament."
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:565
+#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:565
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr "L'Audience necessita %s per reproduir aquest fitxer."
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:568
+#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:568
 msgid "Don't install"
 msgstr "No l'instal·lis"
 
-#: /home/codygarver/audience/po/../Audience/Widgets/VideoPlayer.vala:569
+#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:569
 msgid "Install"
 msgstr "Instal·la'l"
