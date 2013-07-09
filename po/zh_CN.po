@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-05-19 13:21+0300\n"
-"PO-Revision-Date: 2012-08-30 12:28+0000\n"
+"PO-Revision-Date: 2013-07-08 05:59+0000\n"
 "Last-Translator: Wang Dianjin <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-25 05:42+0000\n"
-"X-Generator: Launchpad (build 16640)\n"
+"X-Launchpad-Export-Date: 2013-07-09 05:41+0000\n"
+"X-Generator: Launchpad (build 16696)\n"
 
 #: /home/tictac7x/audience/po/../Audience/Audience.vala:88
 msgid "No videos are open."
-msgstr ""
+msgstr "未打开视频。"
 
 #: /home/tictac7x/audience/po/../Audience/Audience.vala:88
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "选择一个视频源以开始播放。"
 
 #: /home/tictac7x/audience/po/../Audience/Audience.vala:89
 msgid "Open file"
@@ -87,11 +87,11 @@ msgstr "媒体播放器"
 
 #: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:59
 msgid "External Subtitle"
-msgstr ""
+msgstr "外部字幕"
 
 #: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:60
 msgid "Audio"
-msgstr ""
+msgstr "音频"
 
 #: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:61
 msgid "Subtitles"
@@ -99,7 +99,7 @@ msgstr "字幕"
 
 #: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:62
 msgid "External Subtitles"
-msgstr ""
+msgstr "外部字幕"
 
 #: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:92
 msgid "Playlist"
