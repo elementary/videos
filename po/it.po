@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-05-19 13:21+0300\n"
-"PO-Revision-Date: 2012-11-03 23:50+0000\n"
-"Last-Translator: Devid Antonio Filoni <Unknown>\n"
+"PO-Revision-Date: 2013-09-02 20:30+0000\n"
+"Last-Translator: Bennici Piercarlo <piercarlo.bennici@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-25 05:42+0000\n"
-"X-Generator: Launchpad (build 16640)\n"
+"X-Launchpad-Export-Date: 2013-09-03 06:04+0000\n"
+"X-Generator: Launchpad (build 16753)\n"
 
 #: /home/tictac7x/audience/po/../Audience/Audience.vala:88
 msgid "No videos are open."
-msgstr ""
+msgstr "Nessun video è aperto"
 
 #: /home/tictac7x/audience/po/../Audience/Audience.vala:88
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "Seleziona un'origine per avviare la riproduzione."
 
 #: /home/tictac7x/audience/po/../Audience/Audience.vala:89
 msgid "Open file"
@@ -87,11 +87,11 @@ msgstr "Riproduttore multimediale"
 
 #: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:59
 msgid "External Subtitle"
-msgstr ""
+msgstr "Sottotitolo Esterni"
 
 #: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:60
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:61
 msgid "Subtitles"
@@ -99,7 +99,7 @@ msgstr "Sottotitoli"
 
 #: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:62
 msgid "External Subtitles"
-msgstr ""
+msgstr "Sottotitoli Esterni"
 
 #: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:92
 msgid "Playlist"
