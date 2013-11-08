@@ -7,125 +7,93 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-05-19 13:21+0300\n"
+"POT-Creation-Date: 2013-11-06 19:57+0530\n"
 "PO-Revision-Date: 2013-06-09 21:32+0000\n"
 "Last-Translator: Alexander Wilms <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-11 06:11+0000\n"
-"X-Generator: Launchpad (build 16667)\n"
+"X-Launchpad-Export-Date: 2013-11-08 06:20+0000\n"
+"X-Generator: Launchpad (build 16820)\n"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:88
-msgid "No videos are open."
-msgstr "Es sind keine Videos geöffnet"
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
+msgid "No Videos Open"
+msgstr ""
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:88
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "Select a source to begin playing."
 msgstr "Wählen Sie eine Quelle zum Wiedergeben aus."
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:89
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
 msgid "Open file"
 msgstr "Datei öffnen"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:89
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
 msgid "Open a saved file."
 msgstr "Öffnen Sie eine gespeicherte Datei"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:95
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:95
 msgid "Resume last video"
 msgstr "Letztes Video fortsetzen"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:99
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
 msgid "Play from Disc"
 msgstr "Von CD wiedergeben"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:99
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
 msgid "Watch a DVD or open a file from disc"
 msgstr "Eine DVD ansehen, oder eine Datei von einer CD öffnen"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:170
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:170
 msgid "Open location"
 msgstr "Ort öffnen"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:179
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:180
 msgid "Choose location"
 msgstr "Ort wählen"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:289
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:290
 msgid "Add from Harddrive"
 msgstr "Von Festplatte hinzufügen"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:291
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:292
 msgid "Play a DVD"
 msgstr "Eine DVD wiedergeben"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:293
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:294
 msgid "Network File"
 msgstr "Netzwerk-Datei"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:549
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:550
 msgid "Open"
 msgstr "Öffnen"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:554
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:555
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:558
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:559
 msgid "Video files"
 msgstr "Videodateien"
 
-#: /home/tictac7x/audience/po/../Audience/desktop-launcher.vala:5
+#: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
 msgstr "Wiedergeben Ihrer Medien"
 
-#: /home/tictac7x/audience/po/../Audience/desktop-launcher.vala:6
+#: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
 msgstr "Medienwiedergabe"
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:59
-msgid "External Subtitle"
-msgstr "Externer Untertitel"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:60
-msgid "Audio"
-msgstr "Audio"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:61
-msgid "Subtitles"
-msgstr "Untertitel"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:62
-msgid "External Subtitles"
-msgstr "Externe Untertitel"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:92
-msgid "Playlist"
-msgstr "Wiedergabeliste"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:93
-msgid "Options"
-msgstr "Optionen"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:242
-msgid "Default"
-msgstr "Standard"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:255
-msgid "None"
-msgstr "Keine"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:527
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:527
 msgid "Error"
 msgstr "Fehler"
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:535
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:535
 msgid "Oops! Audience can't play this file!"
 msgstr "Oops! Audience kann diese Datei nicht wiedergeben!"
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:559
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:559
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -133,15 +101,47 @@ msgstr ""
 "Einige Dateien benötigen zusätzliche Software, um wiedergegeben werden zu "
 "können. Audience kann diese Software automatisch installieren."
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:565
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:565
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr "Audience benötigt %s um diese Datei wiederzugeben."
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:568
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:568
 msgid "Don't install"
 msgstr "Nicht installieren"
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:569
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:569
 msgid "Install"
 msgstr "Installieren"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:59
+msgid "External Subtitle"
+msgstr "Externer Untertitel"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:60
+msgid "Audio"
+msgstr "Audio"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:61
+msgid "Subtitles"
+msgstr "Untertitel"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:62
+msgid "External Subtitles"
+msgstr "Externe Untertitel"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:92
+msgid "Playlist"
+msgstr "Wiedergabeliste"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:93
+msgid "Options"
+msgstr "Optionen"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:242
+msgid "Default"
+msgstr "Standard"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:255
+msgid "None"
+msgstr "Keine"

@@ -7,125 +7,93 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-05-19 13:21+0300\n"
+"POT-Creation-Date: 2013-11-06 19:57+0530\n"
 "PO-Revision-Date: 2013-04-22 12:55+0000\n"
 "Last-Translator: Bence Lukács <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-25 05:42+0000\n"
-"X-Generator: Launchpad (build 16640)\n"
+"X-Launchpad-Export-Date: 2013-11-08 06:20+0000\n"
+"X-Generator: Launchpad (build 16820)\n"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:88
-msgid "No videos are open."
-msgstr "Nincs videó megnyitva"
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
+msgid "No Videos Open"
+msgstr ""
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:88
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "Select a source to begin playing."
 msgstr "Válasszon egy forrást a lejátszás elindításához"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:89
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
 msgid "Open file"
 msgstr "Fájl megnyitása"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:89
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
 msgid "Open a saved file."
 msgstr "Mentett fájl megnyitása."
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:95
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:95
 msgid "Resume last video"
 msgstr "Utoljára lejátszott videó folytatása"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:99
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
 msgid "Play from Disc"
 msgstr "Lemez lejátszása"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:99
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
 msgid "Watch a DVD or open a file from disc"
 msgstr "DVD vagy egy fájl lejátszása lemezről"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:170
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:170
 msgid "Open location"
 msgstr "Hely megnyitása"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:179
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:180
 msgid "Choose location"
 msgstr "Hely kiválasztása"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:289
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:290
 msgid "Add from Harddrive"
 msgstr "Hozzáadás a merevlemezről"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:291
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:292
 msgid "Play a DVD"
 msgstr "DVD lejátszása"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:293
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:294
 msgid "Network File"
 msgstr "Hálózati fájl"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:549
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:550
 msgid "Open"
 msgstr "Megnyitás"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:554
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:555
 msgid "All files"
 msgstr "Minden fájl"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:558
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:559
 msgid "Video files"
 msgstr "Videófájlok"
 
-#: /home/tictac7x/audience/po/../Audience/desktop-launcher.vala:5
+#: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
 msgstr "Médiatartalmak lejátszása"
 
-#: /home/tictac7x/audience/po/../Audience/desktop-launcher.vala:6
+#: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
 msgstr "Médialejátszó"
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:59
-msgid "External Subtitle"
-msgstr "Külső felirat"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:60
-msgid "Audio"
-msgstr ""
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:61
-msgid "Subtitles"
-msgstr "Feliratok"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:62
-msgid "External Subtitles"
-msgstr "Külső feliratok"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:92
-msgid "Playlist"
-msgstr "Lejátszólista"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:93
-msgid "Options"
-msgstr "Beállítások"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:242
-msgid "Default"
-msgstr "Alapértelmezett"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:255
-msgid "None"
-msgstr "Nincs"
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:527
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:527
 msgid "Error"
 msgstr "Hiba"
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:535
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:535
 msgid "Oops! Audience can't play this file!"
 msgstr "Hoppá! Az Audience nem tudja lejátszani ezt a fájlt!"
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:559
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:559
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -133,15 +101,47 @@ msgstr ""
 "Néhány médiafájl lejátszásához további szoftverek szükségesek. Az Audience "
 "automatikusan telepítheti ezeket."
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:565
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:565
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr "Ezen fájl lejátszásához %s szükséges."
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:568
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:568
 msgid "Don't install"
 msgstr "Ne telepítse"
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:569
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:569
 msgid "Install"
 msgstr "Telepítés"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:59
+msgid "External Subtitle"
+msgstr "Külső felirat"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:60
+msgid "Audio"
+msgstr ""
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:61
+msgid "Subtitles"
+msgstr "Feliratok"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:62
+msgid "External Subtitles"
+msgstr "Külső feliratok"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:92
+msgid "Playlist"
+msgstr "Lejátszólista"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:93
+msgid "Options"
+msgstr "Beállítások"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:242
+msgid "Default"
+msgstr "Alapértelmezett"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:255
+msgid "None"
+msgstr "Nincs"

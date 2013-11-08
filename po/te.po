@@ -7,125 +7,93 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-05-19 13:21+0300\n"
+"POT-Creation-Date: 2013-11-06 19:57+0530\n"
 "PO-Revision-Date: 2012-07-28 03:08+0000\n"
 "Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
 "Language-Team: Telugu <te@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-25 05:42+0000\n"
-"X-Generator: Launchpad (build 16640)\n"
+"X-Launchpad-Export-Date: 2013-11-08 06:20+0000\n"
+"X-Generator: Launchpad (build 16820)\n"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:88
-msgid "No videos are open."
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
+msgid "No Videos Open"
 msgstr ""
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:88
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "Select a source to begin playing."
 msgstr ""
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:89
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
 msgid "Open file"
 msgstr "దస్త్రం తెరువండి"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:89
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
 msgid "Open a saved file."
 msgstr "భద్రపరచబడిన దస్త్రాన్ని తెరువు"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:95
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:95
 msgid "Resume last video"
 msgstr "చివరి దృశ్యకాన్ని తిరిగి కొనసాగించు"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:99
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
 msgid "Play from Disc"
 msgstr ""
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:99
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
 msgid "Watch a DVD or open a file from disc"
 msgstr ""
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:170
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:170
 msgid "Open location"
 msgstr "స్థానమును తెరవండి"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:179
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:180
 msgid "Choose location"
 msgstr "స్థానమును ఎన్నుకొనండి"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:289
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:290
 msgid "Add from Harddrive"
 msgstr "హార్డ్ డ్రైవు నుండి జతచేయి"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:291
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:292
 msgid "Play a DVD"
 msgstr "ఒక డీవీడీని ఆడించండి"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:293
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:294
 msgid "Network File"
 msgstr "నెట్‌వర్క్ ఫైల్"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:549
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:550
 msgid "Open"
 msgstr "తెరువు"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:554
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:555
 msgid "All files"
 msgstr "అన్ని  దస్త్రాలు"
 
-#: /home/tictac7x/audience/po/../Audience/Audience.vala:558
+#: /home/voldyman/x/audience/po/../Audience/Audience.vala:559
 msgid "Video files"
 msgstr "వీడియో దస్త్రాలు"
 
-#: /home/tictac7x/audience/po/../Audience/desktop-launcher.vala:5
+#: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
 msgstr "మీ మాధ్యమాన్ని ఆడించండి"
 
-#: /home/tictac7x/audience/po/../Audience/desktop-launcher.vala:6
+#: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
 msgstr "మాధ్యమ ప్రదర్శకం"
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:59
-msgid "External Subtitle"
-msgstr ""
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:60
-msgid "Audio"
-msgstr ""
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:61
-msgid "Subtitles"
-msgstr ""
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:62
-msgid "External Subtitles"
-msgstr ""
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:92
-msgid "Playlist"
-msgstr ""
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:93
-msgid "Options"
-msgstr ""
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:242
-msgid "Default"
-msgstr ""
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/TagView.vala:255
-msgid "None"
-msgstr ""
-
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:527
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:527
 msgid "Error"
 msgstr "దోషం"
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:535
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:535
 msgid "Oops! Audience can't play this file!"
 msgstr "అయ్యో! ఆడియన్స్ ఈ దస్త్రాన్ని ప్రదర్శించలేదు!"
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:559
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:559
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -133,15 +101,47 @@ msgstr ""
 "కొన్ని మాధ్యమ దస్త్రాలను ఆడించాలంటే అదనపు సాఫ్ట్‍వేర్ అవసరం. ఈ సాఫ్ట్‍వేరును "
 "ఆడియన్స్ స్వయంచాలకంగా స్థాపించుకోగలదు."
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:565
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:565
 #, c-format
 msgid "Audience needs %s to play this file."
 msgstr "ఈ దస్త్రాన్ని ప్రదర్శించుటకు ఆడియన్సుకు %s అవసరం."
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:568
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:568
 msgid "Don't install"
 msgstr "స్థాపించవద్దు"
 
-#: /home/tictac7x/audience/po/../Audience/Widgets/VideoPlayer.vala:569
+#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:569
 msgid "Install"
 msgstr "స్థాపించు"
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:59
+msgid "External Subtitle"
+msgstr ""
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:60
+msgid "Audio"
+msgstr ""
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:61
+msgid "Subtitles"
+msgstr ""
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:62
+msgid "External Subtitles"
+msgstr ""
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:92
+msgid "Playlist"
+msgstr ""
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:93
+msgid "Options"
+msgstr ""
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:242
+msgid "Default"
+msgstr ""
+
+#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:255
+msgid "None"
+msgstr ""
