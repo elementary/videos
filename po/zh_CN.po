@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-11-06 19:57+0530\n"
-"PO-Revision-Date: 2013-07-08 05:59+0000\n"
+"PO-Revision-Date: 2013-11-12 10:03+0000\n"
 "Last-Translator: Wang Dianjin <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-11-08 06:20+0000\n"
+"X-Launchpad-Export-Date: 2013-11-13 06:03+0000\n"
 "X-Generator: Launchpad (build 16820)\n"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "No Videos Open"
-msgstr ""
+msgstr "未打开视频"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "Select a source to begin playing."
