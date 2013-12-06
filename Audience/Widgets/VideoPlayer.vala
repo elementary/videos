@@ -324,12 +324,12 @@ namespace Audience.Widgets
             playbin.text_tags_changed.connect ((el) => {
                 var structure = new Gst.Structure.empty ("tags-changed");
                 structure.set_value ("type", "text");
-                el.post_message (new Gst.Message.application (el, structure));
+                el.post_message (new Gst.Message.application (el, (owned) structure));
             });
             playbin.audio_tags_changed.connect ((el) => {
                 var structure = new Gst.Structure.empty ("tags-changed");
                 structure.set_value ("type", "audio");
-                el.post_message (new Gst.Message.application (el, structure));
+                el.post_message (new Gst.Message.application (el, (owned) structure));
             });
             
             playbin.get_bus ().add_signal_watch ();
