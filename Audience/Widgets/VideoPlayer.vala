@@ -127,6 +127,7 @@ namespace Audience.Widgets
                 
                 intial_relayout = true;
                 
+                playing = false;
                 playbin.set_state (Gst.State.READY);
                 playbin.suburi = null;
                 subtitle_uri = null;
@@ -136,6 +137,7 @@ namespace Audience.Widgets
                 at_end = false;
                 
                 relayout ();
+                playing = true;
             }
         }
         
