@@ -57,10 +57,10 @@ namespace Audience.Widgets
             var setupgrid  = new Gtk.Grid ();
             this.languages = new Gtk.ComboBoxText ();
             this.subtitles = new Gtk.ComboBoxText ();
-            this.external_subtitle_file = new Gtk.FileChooserButton (external_subtitles_text, Gtk.FileChooserAction.OPEN);
+            this.external_subtitle_file = new Gtk.FileChooserButton (_(external_subtitles_text), Gtk.FileChooserAction.OPEN);
             var lang_lbl   = new LLabel.right (_("Audio")+":");
             var sub_lbl    = new LLabel.right (_("Subtitles")+":");
-            var sub_ext_lbl = new LLabel.right (external_subtitles_text + ":");
+            var sub_ext_lbl = new LLabel.right (_(external_subtitles_text) + ":");
             setupgrid.attach (lang_lbl,  0, 1, 1, 1);
             setupgrid.attach (languages,                   1, 1, 1, 1);
             setupgrid.attach (sub_lbl, 0, 2, 1, 1);
