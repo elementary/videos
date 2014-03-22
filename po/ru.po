@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-11-06 19:57+0530\n"
-"PO-Revision-Date: 2014-03-11 04:49+0000\n"
+"PO-Revision-Date: 2014-03-21 16:35+0000\n"
 "Last-Translator: Pasha. P. Komar <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-03-12 05:20+0000\n"
-"X-Generator: Launchpad (build 16963)\n"
+"X-Launchpad-Export-Date: 2014-03-22 06:58+0000\n"
+"X-Generator: Launchpad (build 16967)\n"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "No Videos Open"
@@ -23,7 +23,7 @@ msgstr "Нет открытых видеофайлов"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "Select a source to begin playing."
-msgstr "Выберите файл для начала воспроизведения"
+msgstr "Выберите файл для воспроизведения"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
 msgid "Open file"
@@ -35,7 +35,7 @@ msgstr "Открыть сохранённый файл."
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:95
 msgid "Resume last video"
-msgstr "Возобновить с последней видеозаписи"
+msgstr "Возобновить последнюю видеозапись"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
 msgid "Play from Disc"
@@ -121,7 +121,7 @@ msgstr "Внешние субтитры"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:60
 msgid "Audio"
-msgstr "Аудиозаписи"
+msgstr "Аудио"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:61
 msgid "Subtitles"
