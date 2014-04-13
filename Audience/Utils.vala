@@ -33,11 +33,9 @@ namespace Audience {
     }
     public static string get_title (string filename) {
         var title = get_basename (filename);
-        title = title.replace ("%20", " ").
-            replace ("%3B", ";").
-            replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").
-            replace ("%7D", "}").replace ("_", " ").replace (".", " ").
-            replace ("  ", " ").replace ("%60", "\'");
+        title = Uri.unescape_string (title);
+        title = title.replace ("_", " ").replace (".", " ").replace ("  ", " ");
+
         return title;
     }
 
