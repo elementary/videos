@@ -87,15 +87,11 @@ namespace Audience {
 
 	public static dynamic Gst.Element get_clutter_sink ()
 	{
-#if HAS_CLUTTER_GST_1
 		var sink = Gst.ElementFactory.make ("autocluttersink", "videosink");
 		if (sink == null) {
 			warning ("autocluttersink not available");
 			sink = Gst.ElementFactory.make ("cluttersink", "videosink");
 		}
-#else
-		var sink = Gst.ElementFactory.make ("cluttersink", "videosink");
-#endif
 
 		return sink;
 	}
