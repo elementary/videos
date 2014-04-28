@@ -46,6 +46,9 @@ namespace Audience {
         public GtkClutter.Embed           clutter;
         public Granite.Widgets.Welcome    welcome;
         public Audience.Widgets.VideoPlayer video_player;
+        private Audience.Widgets.BottomBar bottom_bar;
+        private Clutter.Stage stage;
+        private Gtk.Overlay overlay;
 
         public bool has_dvd;
 
@@ -66,11 +69,11 @@ namespace Audience {
             settings = new Settings ();
             mainwindow = new Gtk.Window ();
             video_player = new Widgets.VideoPlayer ();
-            tagview = new Widgets.TagView (this);
+            video_player.notify["playing"].connect (() => {bottom_bar.toggle_play_pause ();});
 
+            tagview = new Widgets.TagView (this);
             tagview.select_external_subtitle.connect (video_player.set_subtitle_uri);
 
-            var mainbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
             clutter = new GtkClutter.Embed ();
 
             //prepare last played videos
@@ -99,21 +102,32 @@ namespace Audience {
             welcome.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
             welcome.set_item_visible (2, has_dvd);
 
-            var stage = clutter.get_stage ();
+            stage = (Clutter.Stage)clutter.get_stage ();
 
             video_player.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
             video_player.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
 
             stage.add_child (video_player);
             stage.add_child (tagview);
-            stage.background_color = {0, 0, 0};
+            stage.background_color = {0, 0, 0, 0};
+            stage.use_alpha = true;
 
             this.tagview.y      = -10;
             this.tagview.x      = stage.width;
             this.tagview.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, -20));
 
+            bottom_bar = new Widgets.BottomBar ();
+            bottom_bar.set_valign (Gtk.Align.END);
+            bottom_bar.run_open.connect ((type) => {run_open (type);});
+            bottom_bar.play_toggled.connect (() => {video_player.playing = !video_player.playing;});
+
+            overlay = new Gtk.Overlay ();
+            overlay.add (clutter);
+            overlay.add_overlay (bottom_bar);
+
+            var mainbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+            mainbox.pack_start (overlay);
             mainbox.pack_start (welcome);
-            mainbox.pack_start (clutter);
 
             this.mainwindow.title = program_name;
             this.mainwindow.window_position = Gtk.WindowPosition.CENTER;
@@ -124,11 +138,14 @@ namespace Audience {
             if (!settings.show_window_decoration)
                 this.mainwindow.decorated = false;
 
-            clutter.hide ();
+            overlay.hide ();
 
             /*events*/
             video_player.text_tags_changed.connect (tagview.setup_text_setup);
             video_player.audio_tags_changed.connect (tagview.setup_audio_setup);
+            video_player.progression_changed.connect ((current_time, total_time) => {
+                bottom_bar.set_progression_time (current_time, total_time);
+            });
 
             //look for dvd
             this.monitor = GLib.VolumeMonitor.get ();
@@ -155,7 +172,7 @@ namespace Audience {
                     break;
                 case 1:
                     welcome.hide ();
-                    clutter.show_all ();
+                    overlay.show_all ();
 
                     open_file (filename);
 
@@ -187,7 +204,7 @@ namespace Audience {
                         open_file (entry.text, true);
                         video_player.playing = true;
                         welcome.hide ();
-                        clutter.show_all ();
+                        overlay.show_all ();
                     }
                     d.destroy ();
                     break;
@@ -351,11 +368,11 @@ namespace Audience {
 
             video_player.error.connect (() => {
                 welcome.show_all ();
-                clutter.hide ();
+                overlay.hide ();
             });
 
             video_player.plugin_install_done.connect (() => {
-                clutter.show ();
+                overlay.show ();
                 welcome.hide ();
             });
 
@@ -373,66 +390,11 @@ namespace Audience {
                 }
             });
 
-            video_player.configure_window.connect ((video_w, video_h) => {
-
-                Gdk.Rectangle monitor;
-                var screen = Gdk.Screen.get_default ();
-                screen.get_monitor_geometry (
-                    screen.get_monitor_at_window (mainwindow.get_window ()),
-                    out monitor);
-
-                int width = 0, height = 0;
-                if (monitor.width > video_w && monitor.height > video_h) {
-                    width = (int)video_w;
-                    height = (int)video_h;
-                } else {
-                    width = (int)(monitor.width * 0.9);
-                    height = (int)((double)video_h / video_w * width);
-                }
-
-                var geom = Gdk.Geometry ();
-                if (settings.keep_aspect) {
-                    geom.min_aspect = geom.max_aspect = video_w / (double)video_h;
-                } else {
-                    geom.min_aspect = 0.0;
-                    geom.max_aspect = 99999999.0;
-                }
-
-                mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
-                    monitor.height / 2 - height / 2 + monitor.y,
-                    width, height);
-
-                if (settings.keep_aspect) {
-                    mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
-                }
-
-            });
+            setup_drag_n_drop ();
+            video_player.configure_window.connect ((video_w, video_h) => {on_configure_window (video_w, video_h);});
 
             //fullscreen on maximize
-            mainwindow.window_state_event.connect ( (e) => {
-                if (!((e.window.get_state () & Gdk.WindowState.MAXIMIZED) == 0) && !video_player.fullscreened){
-                    mainwindow.fullscreen ();
-                    video_player.fullscreened = true;
-
-                    return true;
-                }
-                return false;
-            });
-
-            //positioning
-            int old_h = - 1;
-            int old_w = - 1;
-            mainwindow.size_allocate.connect ( (alloc) => {
-                if (alloc.width != old_w ||
-                    alloc.height != old_h) {
-                    if (video_player.relayout ()) {
-                        old_w = alloc.width;
-                        old_h = alloc.height;
-                    }
-                }
-
-                tagview.x = tagview.expanded ? stage.width - tagview.width + 10 : stage.width;
-            });
+            mainwindow.window_state_event.connect ((e) => {on_window_state_changed (e.window.get_state ()); return false;});
 
             /*moving the window by drag, fullscreen for dbl-click*/
             bool down = false;
@@ -472,6 +434,62 @@ namespace Audience {
                 return false;
             });
 
+            mainwindow.events |= Gdk.EventMask.POINTER_MOTION_MASK;
+            mainwindow.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
+            mainwindow.size_allocate.connect ((alloc) => {on_size_allocate (alloc);});
+            mainwindow.motion_notify_event.connect ((event) => {return update_pointer_position (event.y, event.window.get_height ());});
+            mainwindow.leave_notify_event.connect ((event) => {
+                if (event.x == event.window.get_width ())
+                    return update_pointer_position (event.window.get_height (), event.window.get_height ());
+                if (event.x == 0)
+                    return update_pointer_position (event.window.get_height (), event.window.get_height ());
+                return update_pointer_position (event.y, event.window.get_height ());
+            });
+            //save position in video when not finished playing
+            mainwindow.destroy.connect (() => {on_destroy ();});
+        }
+
+        private void on_configure_window (uint video_w, uint video_h) {
+            Gdk.Rectangle monitor;
+            var screen = Gdk.Screen.get_default ();
+            screen.get_monitor_geometry (
+                screen.get_monitor_at_window (mainwindow.get_window ()),
+                out monitor);
+
+            int width = 0, height = 0;
+            if (monitor.width > video_w && monitor.height > video_h) {
+                width = (int)video_w;
+                height = (int)video_h;
+            } else {
+                width = (int)(monitor.width * 0.9);
+                height = (int)((double)video_h / video_w * width);
+            }
+
+            var geom = Gdk.Geometry ();
+            if (settings.keep_aspect) {
+                geom.min_aspect = geom.max_aspect = video_w / (double)video_h;
+            } else {
+                geom.min_aspect = 0.0;
+                geom.max_aspect = 99999999.0;
+            }
+
+            mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
+                monitor.height / 2 - height / 2 + monitor.y,
+                width, height);
+
+            if (settings.keep_aspect) {
+                mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
+            }
+        }
+
+        private void on_window_state_changed (Gdk.WindowState window_state) {
+            if (!((window_state & Gdk.WindowState.MAXIMIZED) == 0) && !video_player.fullscreened){
+                mainwindow.fullscreen ();
+                video_player.fullscreened = true;
+            }
+        }
+
+        private void setup_drag_n_drop () {
             /*DnD*/
             Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
             Gtk.drag_dest_set (mainwindow, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
@@ -481,32 +499,60 @@ namespace Audience {
                 open_file (sel.get_uris ()[0]);
 
                 welcome.hide ();
-                clutter.show_all ();
+                overlay.show_all ();
             });
+        }
 
-            //save position in video when not finished playing
-            mainwindow.destroy.connect ( () => {
-                if (video_player.uri == null || video_player.uri == "" || video_player.uri.has_prefix ("dvd://"))
-                    return;
-                if (!video_player.at_end) {
-                    for (var i = 0; i < last_played_videos.length (); i += 2){
-                        if (video_player.uri == last_played_videos.nth_data (i)){
-                            last_played_videos.nth (i+1).data = video_player.progress.to_string ();
-                            save_last_played_videos ();
+        private void on_destroy () {
+            if (video_player.uri == null || video_player.uri == "" || video_player.uri.has_prefix ("dvd://"))
+                return;
+            if (!video_player.at_end) {
+                for (var i = 0; i < last_played_videos.length (); i += 2){
+                    if (video_player.uri == last_played_videos.nth_data (i)){
+                        last_played_videos.nth (i+1).data = video_player.progress.to_string ();
+                        save_last_played_videos ();
 
-                            return;
-                        }
+                        return;
                     }
-                    //not in list yet, insert at start
-                    last_played_videos.insert (video_player.uri, 0);
-                    last_played_videos.insert (video_player.progress.to_string (), 1);
-                    if (last_played_videos.length () > 10) {
-                        last_played_videos.delete_link (last_played_videos.nth (10));
-                        last_played_videos.delete_link (last_played_videos.nth (11));
-                    }
-                    save_last_played_videos ();
                 }
-            });
+                //not in list yet, insert at start
+                last_played_videos.insert (video_player.uri, 0);
+                last_played_videos.insert (video_player.progress.to_string (), 1);
+                if (last_played_videos.length () > 10) {
+                    last_played_videos.delete_link (last_played_videos.nth (10));
+                    last_played_videos.delete_link (last_played_videos.nth (11));
+                }
+                save_last_played_videos ();
+            }
+        }
+
+        private int old_h = - 1;
+        private int old_w = - 1;
+        private void on_size_allocate (Gtk.Allocation alloc) {
+            if (alloc.width != old_w ||
+                alloc.height != old_h) {
+                if (video_player.relayout ()) {
+                    old_w = alloc.width;
+                    old_h = alloc.height;
+                }
+            }
+
+            tagview.x = tagview.expanded ? stage.width - tagview.width + 10 : stage.width;
+        }
+
+        private bool update_pointer_position (double y, int window_height) {
+            int bottom_bar_size = 0;
+            int minimum = 0;
+            bottom_bar.get_preferred_height (out minimum, out bottom_bar_size);
+
+            if (bottom_bar.child_revealed == false)
+                bottom_bar.set_reveal_child (true);
+            if (y >= window_height - bottom_bar_size && y < window_height) {
+                bottom_bar.hovered = true;
+            } else {
+                bottom_bar.hovered = false;
+            }
+            return false;
         }
 
         public void next_audio () {
@@ -568,7 +614,7 @@ namespace Audience {
                 file.set_current_folder (settings.last_folder);
                 if (file.run () == Gtk.ResponseType.ACCEPT) {
                     welcome.hide ();
-                    clutter.show_all ();
+                    overlay.show_all ();
                     for (var i=1;i<file.get_files ().length ();i++) {
                         playlist.add_item (file.get_files ().nth_data (i));
                     }
@@ -581,7 +627,7 @@ namespace Audience {
                 video_player.playing = true;
 
                 welcome.hide ();
-                clutter.show_all ();
+                overlay.show_all ();
             }
         }
 
@@ -658,7 +704,7 @@ namespace Audience {
 
             open_file (files[0].get_path ());
             welcome.hide ();
-            clutter.show_all ();
+            overlay.show_all ();
         }
     }
 }
@@ -677,4 +723,3 @@ public static void main (string [] args) {
 
     app.run (args);
 }
-

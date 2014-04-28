@@ -95,7 +95,7 @@ namespace Audience.Widgets
             try {
                 var l = Gtk.IconTheme.get_default ().lookup_icon ("media-playback-pause-symbolic", 16, 0);
                 if (l == null)
-                    this.pause_pix = new Gtk.Image.from_stock (Gtk.Stock.MEDIA_PAUSE, Gtk.IconSize.LARGE_TOOLBAR).pixbuf;
+                    this.pause_pix = new Gtk.Image.from_icon_name (Gtk.Stock.MEDIA_PAUSE, Gtk.IconSize.LARGE_TOOLBAR).pixbuf;
                 else
                     this.pause_pix = l.load_symbolic ({1.0,1.0,1.0,1.0}, null, null, null, null);
             } catch (Error e) { warning (e.message); }

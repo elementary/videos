@@ -195,6 +195,7 @@ namespace Audience.Widgets
         public signal void error ();
         public signal void plugin_install_done ();
         public signal void configure_window (uint video_w, uint video_h);
+        public signal void progression_changed (double current_time, double total_time);
         
         public VideoPlayer ()
         {
@@ -216,7 +217,7 @@ namespace Audience.Widgets
             playbin.video_sink = video_sink;
             
             add_child (video);
-            add_child (controls);
+            //add_child (controls);
             add_child (panel);
             add_child (controls.slider.preview);
             
@@ -236,6 +237,7 @@ namespace Audience.Widgets
                 
                 controls.current.text = seconds_to_time ((int)(prog / 1000000000));
                 controls.remaining.text = "-" + seconds_to_time ((int)(length / 1000000000) - (int)(prog / 1000000000));
+                progression_changed ((double)prog, (double)length);
                 
                 return true;
             });
