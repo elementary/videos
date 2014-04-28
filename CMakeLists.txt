@@ -88,3 +88,12 @@ add_schema ("data/org.pantheon.audience.gschema.xml")
 add_subdirectory (po)
 add_executable(audience ${VALA_C})
 install (TARGETS audience RUNTIME DESTINATION bin)
+
+# uninstall target
+configure_file(
+    "${CMAKE_SOURCE_DIR}/cmake/Uninstall.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/Uninstall.cmake"
+    IMMEDIATE @ONLY)
+
+add_custom_target(uninstall
+    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/Uninstall.cmake)
