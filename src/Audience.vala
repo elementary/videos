@@ -53,8 +53,6 @@ namespace Audience {
 
         public bool has_dvd;
 
-        public List<string> last_played_videos; //taken from settings, but splitted
-
         public GLib.VolumeMonitor monitor;
 
         public App () {
@@ -77,11 +75,11 @@ namespace Audience {
             clutter = new GtkClutter.Embed ();
 
             //prepare last played videos
-            last_played_videos = new List<string> ();
-            var split = settings.last_played_videos.split (",");;
+            /*last_played_videos = new List<string> ();
+            var split = settings.last_played_videos.split ("<SEP>");
             for (var i=0;i<split.length;i++){
                 last_played_videos.append (split[i]);
-            }
+            }*/
 
             has_dvd = Audience.has_dvd ();
 
@@ -134,23 +132,11 @@ namespace Audience {
 
             clutter.hide ();
 
-            /*events*/
-            video_player.text_tags_changed.connect (tagview.setup_text_setup);
-            video_player.audio_tags_changed.connect (tagview.setup_audio_setup);
-            video_player.progression_changed.connect ((current_time, total_time) => {
-                bottom_bar.set_progression_time (current_time, total_time);
-            });
-
-            //playlist wants us to open a file
-            playlist.play.connect ( (file) => {
-                this.play_file (file.get_uri ());
-            });
-
             //media keys
             try {
                 mediakeys = Bus.get_proxy_sync (BusType.SESSION,
                     "org.gnome.SettingsDaemon", "/org/gnome/SettingsDaemon/MediaKeys");
-                mediakeys.MediaPlayerKeyPressed.connect ( (bus, app, key) => {
+                mediakeys.MediaPlayerKeyPressed.connect ((bus, app, key) => {
                     if (app != "audience")
                        return;
                     switch (key) {
@@ -169,56 +155,20 @@ namespace Audience {
                 });
 
                 mediakeys.GrabMediaPlayerKeys("audience", 0);
-            } catch (Error e) { warning (e.message); }
+            } catch (Error e) {
+                warning (e.message);
+            }
 
-            //shortcuts
-            this.mainwindow.key_press_event.connect ( (e) => {
-                switch (e.keyval) {
-                    case Gdk.Key.p:
-                    case Gdk.Key.space:
-                        video_player.playing = !video_player.playing;
-                        break;
-                    case Gdk.Key.Escape:
-                        if (video_player.fullscreened)
-                            toggle_fullscreen ();
-                        else
-                            mainwindow.destroy ();
-                        break;
-                    case Gdk.Key.o:
-                        run_open (0);
-                        break;
-                    case Gdk.Key.f:
-                    case Gdk.Key.F11:
-                        toggle_fullscreen ();
-                        break;
-                    case Gdk.Key.q:
-                        mainwindow.destroy ();
-                        break;
-                    case Gdk.Key.Left:
-                        if ((video_player.progress - 0.05) < 0)
-                            video_player.progress = 0.0;
-                        else
-                            video_player.progress -= 0.05;
-                        break;
-                    case Gdk.Key.Right:
-                        video_player.progress += 0.05;
-                        break;
-                    case Gdk.Key.a:
-                        next_audio ();
-                        break;
-                    case Gdk.Key.s:
-                        next_text ();
-                        break;
-                    default:
-                        break;
-                }
-
-                return true;
+            /*events*/
+            video_player.text_tags_changed.connect (tagview.setup_text_setup);
+            video_player.audio_tags_changed.connect (tagview.setup_audio_setup);
+            video_player.progression_changed.connect ((current_time, total_time) => {
+                bottom_bar.set_progression_time (current_time, total_time);
             });
 
             //end
-            video_player.ended.connect ( () => {
-                Idle.add (()=>{
+            video_player.ended.connect (() => {
+                Idle.add (() => {
                     playlist.next ();
                     return false;
                 });
@@ -252,12 +202,23 @@ namespace Audience {
             video_player.configure_window.connect ((video_w, video_h) => {on_configure_window (video_w, video_h);});
 
             //fullscreen on maximize
-            mainwindow.window_state_event.connect ((e) => {on_window_state_changed (e.window.get_state ()); return false;});
+            mainwindow.window_state_event.connect ((e) => {
+                on_window_state_changed (e.window.get_state ());
+                return false;
+            });
 
             mainwindow.events |= Gdk.EventMask.POINTER_MOTION_MASK;
             mainwindow.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
+            mainwindow.events |= Gdk.EventMask.BUTTON_PRESS_MASK;
             mainwindow.size_allocate.connect ((alloc) => {on_size_allocate (alloc);});
             mainwindow.motion_notify_event.connect ((event) => {return update_pointer_position (event.y, event.window.get_height ());});
+            mainwindow.button_press_event.connect ((event) => {
+                if (event.type == Gdk.EventType.2BUTTON_PRESS) {
+                    toggle_fullscreen ();
+                }
+                return false;
+            });
+
             mainwindow.leave_notify_event.connect ((event) => {
                 if (event.x == event.window.get_width ())
                     return update_pointer_position (event.window.get_height (), event.window.get_height ());
@@ -265,8 +226,18 @@ namespace Audience {
                     return update_pointer_position (event.window.get_height (), event.window.get_height ());
                 return update_pointer_position (event.y, event.window.get_height ());
             });
+            //shortcuts
+            this.mainwindow.key_press_event.connect ( (e) => {
+                return on_key_press_event (e);
+            });
+
             //save position in video when not finished playing
             mainwindow.destroy.connect (() => {on_destroy ();});
+
+            //playlist wants us to open a file
+            playlist.play.connect ( (file) => {
+                this.play_file (file.get_uri ());
+            });
         }
 
         private void setup_welcome_screen () {
@@ -274,11 +245,11 @@ namespace Audience {
             welcome.append ("document-open", _("Open file"), _("Open a saved file."));
 
             //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
-            var filename = last_played_videos.length () > 0 ? last_played_videos.nth_data (0) : "";
+            var filename = settings.last_played_videos.length > 0 ? settings.last_played_videos[0] : "";
             var last_file = File.new_for_uri (filename);
             if (last_file.query_exists ()) {
                 welcome.append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
-                welcome.set_item_visible (1, last_played_videos.length () > 0);
+                welcome.set_item_visible (1, settings.last_played_videos.length > 0);
             }
 
             welcome.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
@@ -297,61 +268,103 @@ namespace Audience {
             });
 
             //handle welcome
-            welcome.activated.connect ( (index) => {
+            welcome.activated.connect ((index) => {
                 if (filename == "" && index == 1)
                     index = 2;
+
                 switch (index) {
-                case 0:
-                    run_open (0);
-                    break;
-                case 1:
-                    welcome.hide ();
-                    clutter.show_all ();
-
-                    open_file (filename);
-
-                    video_player.playing = false;
-                    video_player.progress = double.parse (last_played_videos.nth_data (1));
-                    video_player.playing = true;
-                    break;
-                case 2:
-                    run_open (2);
-                    break;
-                default:
-                    var d = new Gtk.Dialog.with_buttons (_("Open location"),
-                        this.mainwindow, Gtk.DialogFlags.MODAL,
-                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                        Gtk.Stock.OK,     Gtk.ResponseType.OK);
-
-                    var grid  = new Gtk.Grid ();
-                    var entry = new Gtk.Entry ();
-
-                    grid.attach (new Gtk.Image.from_icon_name ("internet-web-browser",
-                        Gtk.IconSize.DIALOG), 0, 0, 1, 2);
-                    grid.attach (new Gtk.Label (_("Choose location")), 1, 0, 1, 1);
-                    grid.attach (entry, 1, 1, 1, 1);
-
-                    ((Gtk.Container)d.get_content_area ()).add (grid);
-                    grid.show_all ();
-
-                    if (d.run () == Gtk.ResponseType.OK) {
-                        open_file (entry.text, true);
-                        video_player.playing = true;
+                    case 0:
+                        run_open (0);
+                        break;
+                    case 1:
                         welcome.hide ();
                         clutter.show_all ();
-                    }
-                    d.destroy ();
-                    break;
+                        open_file (filename);
+                        video_player.playing = false;
+                        video_player.progress = double.parse (settings.last_played_videos[1]);
+                        video_player.playing = true;
+                        break;
+                    case 2:
+                        run_open (2);
+                        break;
+                    default:
+                        var d = new Gtk.Dialog.with_buttons (_("Open location"),
+                            this.mainwindow, Gtk.DialogFlags.MODAL,
+                            Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+                            Gtk.Stock.OK,     Gtk.ResponseType.OK);
+
+                        var grid  = new Gtk.Grid ();
+                        var entry = new Gtk.Entry ();
+
+                        grid.attach (new Gtk.Image.from_icon_name ("internet-web-browser",
+                            Gtk.IconSize.DIALOG), 0, 0, 1, 2);
+                        grid.attach (new Gtk.Label (_("Choose location")), 1, 0, 1, 1);
+                        grid.attach (entry, 1, 1, 1, 1);
+
+                        ((Gtk.Container)d.get_content_area ()).add (grid);
+                        grid.show_all ();
+
+                        if (d.run () == Gtk.ResponseType.OK) {
+                            open_file (entry.text, true);
+                            video_player.playing = true;
+                            welcome.hide ();
+                            clutter.show_all ();
+                        }
+
+                        d.destroy ();
+                        break;
                 }
             });
+        }
+
+        private bool on_key_press_event (Gdk.EventKey e) {
+            switch (e.keyval) {
+                case Gdk.Key.p:
+                case Gdk.Key.space:
+                    video_player.playing = !video_player.playing;
+                    break;
+                case Gdk.Key.Escape:
+                    if (video_player.fullscreened)
+                        toggle_fullscreen ();
+                    else
+                        mainwindow.destroy ();
+                    break;
+                case Gdk.Key.o:
+                    run_open (0);
+                    break;
+                case Gdk.Key.f:
+                case Gdk.Key.F11:
+                    toggle_fullscreen ();
+                    break;
+                case Gdk.Key.q:
+                    mainwindow.destroy ();
+                    break;
+                case Gdk.Key.Left:
+                    if ((video_player.progress - 0.05) < 0)
+                        video_player.progress = 0.0;
+                    else
+                        video_player.progress -= 0.05;
+                    break;
+                case Gdk.Key.Right:
+                    video_player.progress += 0.05;
+                    break;
+                case Gdk.Key.a:
+                    next_audio ();
+                    break;
+                case Gdk.Key.s:
+                    next_text ();
+                    break;
+                default:
+                    break;
+            }
+
+            return true;
         }
 
         private void on_configure_window (uint video_w, uint video_h) {
             Gdk.Rectangle monitor;
             var screen = Gdk.Screen.get_default ();
-            screen.get_monitor_geometry (
-                screen.get_monitor_at_window (mainwindow.get_window ()),
-                out monitor);
+            screen.get_monitor_geometry (screen.get_monitor_at_window (mainwindow.get_window ()), out monitor);
 
             int width = 0, height = 0;
             if (monitor.width > video_w && monitor.height > video_h) {
@@ -386,15 +399,15 @@ namespace Audience {
             }
         }
 
+        /*DnD*/
         private void setup_drag_n_drop () {
-            /*DnD*/
             Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
             Gtk.drag_dest_set (mainwindow, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
             mainwindow.drag_data_received.connect ( (ctx, x, y, sel, info, time) => {
-                for (var i=1;i<sel.get_uris ().length; i++)
-                    playlist.add_item (File.new_for_uri (sel.get_uris ()[i]));
+                foreach (var uri in sel.get_uris ()) {
+                    playlist.add_item (File.new_for_uri (uri));
+                }
                 open_file (sel.get_uris ()[0]);
-
                 welcome.hide ();
                 clutter.show_all ();
             });
@@ -404,7 +417,7 @@ namespace Audience {
             if (video_player.uri == null || video_player.uri == "" || video_player.uri.has_prefix ("dvd://"))
                 return;
             if (!video_player.at_end) {
-                for (var i = 0; i < last_played_videos.length (); i += 2){
+                /*for (var i = 0; i < last_played_videos.length (); i += 2){
                     if (video_player.uri == last_played_videos.nth_data (i)){
                         last_played_videos.nth (i+1).data = video_player.progress.to_string ();
                         save_last_played_videos ();
@@ -419,7 +432,7 @@ namespace Audience {
                     last_played_videos.delete_link (last_played_videos.nth (10));
                     last_played_videos.delete_link (last_played_videos.nth (11));
                 }
-                save_last_played_videos ();
+                save_last_played_videos ();*/
             }
         }
 
@@ -445,11 +458,13 @@ namespace Audience {
 
             if (bottom_bar.child_revealed == false)
                 bottom_bar.set_reveal_child (true);
+
             if (y >= window_height - bottom_bar_size && y < window_height) {
                 bottom_bar.hovered = true;
             } else {
                 bottom_bar.hovered = false;
             }
+
             return false;
         }
 
@@ -484,12 +499,16 @@ namespace Audience {
         }
 
         private inline void save_last_played_videos () {
-            string res = "";
-            for (var i = 0; i < last_played_videos.length () - 1; i ++)
-                res += last_played_videos.nth_data (i) + ",";
+            /*string res = "";
+            foreach (var video in last_played_videos) {
+                if (res == "") {
+                    res = video;
+                } else {
+                    res += ",%s".printf (video);
+                }
+            }
 
-            res += last_played_videos.nth_data (last_played_videos.length () - 1);
-            settings.last_played_videos = res;
+            settings.last_played_videos = res;*/
         }
 
         public void run_open (int type) { //0=file, 2=dvd
@@ -529,8 +548,7 @@ namespace Audience {
             }
         }
 
-        private void toggle_fullscreen ()
-        {
+        private void toggle_fullscreen () {
             if (video_player.fullscreened) {
                 mainwindow.unmaximize ();
                 mainwindow.unfullscreen ();
@@ -541,8 +559,7 @@ namespace Audience {
             }
         }
 
-        internal void open_file (string filename, bool dont_modify=false)
-        {
+        internal void open_file (string filename, bool dont_modify = false) {
             var file = File.new_for_commandline_arg (filename);
 
             if (file.query_file_type (0) == FileType.DIRECTORY) {
@@ -550,9 +567,9 @@ namespace Audience {
                     playlist.add_item (file_ret);
                 });
                 file = playlist.get_first_item ();
-            }
-            else
+            } else {
                 playlist.add_item (file);
+            }
 
             play_file (file.get_uri ());
         }
@@ -566,17 +583,17 @@ namespace Audience {
                 video_player.playing = true;
 
             if (settings.resume_videos) {
-                int i;
-                for (i = 0; i < last_played_videos.length () && i != -1; i += 2) {
-                    if (video_player.uri == last_played_videos.nth_data (i))
+                /*foreach (var last_played_video in last_played_videos) {
+                    if (video_player.uri == last_played_video) {
+                        Idle.add (() => {
+                            video_player.progress = double.parse (last_played_video);
+                            debug ("Resuming video from " + last_played_videos.nth_data (i + 1));
+                            return false;
+                        });
+
                         break;
-                    if (i == last_played_videos.length () - 1)
-                        i = -1;
-                }
-                if (i != -1 && last_played_videos.nth_data (i + 1) != null) {
-                    Idle.add (() => { video_player.progress = double.parse (last_played_videos.nth_data (i + 1)); return false;});
-                    debug ("Resuming video from " + last_played_videos.nth_data (i + 1));
-                }
+                    }
+                }*/
             }
 
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();

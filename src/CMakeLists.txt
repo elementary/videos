@@ -35,6 +35,7 @@ vala_precompile (VALA_C ${EXEC_NAME}
     Settings.vala
     Utils.vala
     Widgets/BottomBar.vala
+    Widgets/SettingsPopover.vala
     Widgets/TimeWidget.vala
     Widgets/TagView.vala
     Widgets/Button.vala

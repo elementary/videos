@@ -87,7 +87,7 @@ namespace Audience.Widgets
             });
             
             var playlist_scrolled = new Gtk.ScrolledWindow (null, null);
-            playlist_scrolled.add (this.app.playlist);
+            //playlist_scrolled.add (this.app.playlist);
             
             notebook.append_page (playlist_scrolled, new Gtk.Label (_("Playlist")));
             notebook.append_page (setupgrid, new Gtk.Label (_("Options")));
