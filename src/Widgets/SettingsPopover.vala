@@ -1,11 +1,10 @@
 
-public class Audience.Widgets.BottomBar : Gtk.Revealer {
+public class Audience.Widgets.BottomBar : Gtk.Popover {
     public bool hovered { get; set; default=false; }
     private uint hiding_timer = 0;
     private Gtk.Button play_button;
-    private Gtk.Button preferences_button;
-    private Gtk.Popover playlist_popover;
-    private Gtk.Popover preferences_popover;
+    private Gtk.Button panel_button;
+    private Gtk.Popover add_popover;
     private TimeWidget time_widget;
     public signal void run_open (int type);
     public signal void play_toggled ();
@@ -13,36 +12,33 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     private bool is_playing = false;
 
     public BottomBar () {
+        opacity = global_opacity;
         transition_type = Gtk.RevealerTransitionType.CROSSFADE;
         var main_actionbar = new Gtk.ActionBar ();
-        main_actionbar.opacity = global_opacity;
 
         play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON);
         play_button.tooltip_text = _("Play");
         play_button.clicked.connect (() => {play_toggled ();});
 
-        var playlist_button = new Gtk.Button.from_icon_name ("view-list-symbolic", Gtk.IconSize.BUTTON);
-        playlist_button.tooltip_text = _("Playlist");
-        playlist_button.clicked.connect (() => {playlist_popover.show_all ();});
+        var add_button = new Gtk.Button.from_icon_name ("list-add-symbolic", Gtk.IconSize.BUTTON);
+        add_button.tooltip_text = _("Open");
+        add_button.clicked.connect (() => {add_popover.show_all ();});
+        add_popover = new Gtk.Popover (add_button);
 
-        preferences_button = new Gtk.Button.from_icon_name ("document-properties-symbolic", Gtk.IconSize.BUTTON);
-        preferences_button.tooltip_text = _("Settings");
-        preferences_button.clicked.connect (() => {preferences_popover.show_all ();});
+        panel_button = new Gtk.Button.from_icon_name ("pane-show-symbolic", Gtk.IconSize.BUTTON);
+        panel_button.tooltip_text = _("Show Panel");
+        //panel_button.clicked.connect (() => {play_toggled ();});
 
         time_widget = new TimeWidget ();
         time_widget.seeked.connect ((val) => {seeked (val);});
 
-        playlist_popover = new Gtk.Popover (playlist_button);
-        preferences_popover = new Gtk.Popover (preferences_button);
-
         main_actionbar.pack_start (play_button);
         main_actionbar.set_center_widget (time_widget);
-        main_actionbar.pack_end (preferences_button);
-        main_actionbar.pack_end (playlist_button);
+        main_actionbar.pack_end (panel_button);
+        main_actionbar.pack_end (add_button);
         add (main_actionbar);
 
-        pupulate_playlist_popover ();
-        pupulate_preferences_popover ();
+        pupulate_popover ();
 
         notify["hovered"].connect (() => {
             if (hovered == false) {
@@ -57,8 +53,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         show_all ();
     }
 
-    private void pupulate_playlist_popover () {
-        playlist_popover.opacity = global_opacity;
+    private void pupulate_popover () {
         var grid = new Gtk.Grid ();
         grid.orientation = Gtk.Orientation.VERTICAL;
         grid.row_spacing = 6;
@@ -72,11 +67,11 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         net.image = new Gtk.Image.from_icon_name ("internet-web-browser", Gtk.IconSize.DIALOG);
 
         fil.clicked.connect ( () => {
-            playlist_popover.hide ();
+            add_popover.hide ();
             run_open (0);
         });
         dvd.clicked.connect ( () => {
-            playlist_popover.hide ();
+            add_popover.hide ();
             run_open (2);
         });
         net.clicked.connect ( () => {
@@ -95,17 +90,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         grid.add (fil);
         grid.add (dvd);
         //grid.add (net);
-        playlist_popover.add (grid);
-    }
-
-    private void pupulate_preferences_popover () {
-        preferences_popover.opacity = global_opacity;
-        var grid = new Gtk.Grid ();
-        grid.orientation = Gtk.Orientation.VERTICAL;
-        grid.row_spacing = 6;
-        grid.margin = 6;
-
-        preferences_popover.add (grid);
+        add_popover.add (grid);
     }
 
     public void toggle_play_pause () {
@@ -137,7 +122,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
             Source.remove (hiding_timer);
 
         hiding_timer = GLib.Timeout.add (2000, () => {
-            if (hovered == true || preferences_popover.visible == true || playlist_popover.visible == true || is_playing == false) {
+            if (hovered == true || add_popover.visible == true || is_playing == false) {
                 hiding_timer = 0;
                 return false;
             }
