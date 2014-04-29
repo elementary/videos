@@ -4,14 +4,16 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     //public signal void state_changed (bool play);
     private uint hiding_timer = 0;
     private Gtk.Button play_button;
+    private Gtk.Button panel_button;
     private Gtk.Popover add_popover;
     private TimeWidget time_widget;
     public signal void run_open (int type);
     public signal void play_toggled ();
+    public signal void seeked (double val);
     private bool is_playing = false;
 
     public BottomBar () {
-        transition_type = Gtk.RevealerTransitionType.SLIDE_UP;
+        transition_type = Gtk.RevealerTransitionType.CROSSFADE;
         var main_actionbar = new Gtk.ActionBar ();
 
         play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON);
@@ -23,7 +25,12 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         add_button.clicked.connect (() => {add_popover.show_all ();});
         add_popover = new Gtk.Popover (add_button);
 
+        panel_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON);
+        panel_button.tooltip_text = _("Play");
+        //panel_button.clicked.connect (() => {play_toggled ();});
+
         time_widget = new TimeWidget ();
+        time_widget.seeked.connect ((val) => {seeked (val);});
 
         main_actionbar.pack_start (play_button);
         main_actionbar.set_center_widget (time_widget);
@@ -42,6 +49,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
                 }
             }
         });
+        show_all ();
     }
 
     private void pupulate_popover () {

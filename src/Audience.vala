@@ -49,6 +49,7 @@ namespace Audience {
         private Audience.Widgets.BottomBar bottom_bar;
         private Clutter.Stage stage;
         private Gtk.Overlay overlay;
+        int bottom_bar_size = 0;
 
         public bool has_dvd;
 
@@ -63,8 +64,7 @@ namespace Audience {
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
         }
 
-        void build ()
-        {
+        void build () {
             playlist = new Widgets.Playlist ();
             settings = new Settings ();
             mainwindow = new Gtk.Window ();
@@ -103,14 +103,14 @@ namespace Audience {
             welcome.set_item_visible (2, has_dvd);
 
             stage = (Clutter.Stage)clutter.get_stage ();
+            stage.background_color = {0, 0, 0, 0};
+            stage.use_alpha = true;
 
             video_player.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
             video_player.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
 
             stage.add_child (video_player);
             stage.add_child (tagview);
-            stage.background_color = {0, 0, 0, 0};
-            stage.use_alpha = true;
 
             this.tagview.y      = -10;
             this.tagview.x      = stage.width;
@@ -120,10 +120,22 @@ namespace Audience {
             bottom_bar.set_valign (Gtk.Align.END);
             bottom_bar.run_open.connect ((type) => {run_open (type);});
             bottom_bar.play_toggled.connect (() => {video_player.playing = !video_player.playing;});
+            bottom_bar.seeked.connect ((val) => {video_player.progress = val;});
+
+            var bottom_actor = new GtkClutter.Actor.with_contents (bottom_bar);
+            bottom_actor.x_expand = true;
+            bottom_actor.x_align = Clutter.ActorAlign.END;
+            bottom_actor.opacity = 204;
+            stage.add_child (bottom_actor);
+            stage.notify["allocation"].connect (() => {
+                bottom_actor.width = stage.get_width ();
+                bottom_bar.queue_resize ();
+                bottom_actor.y = stage.get_height () - bottom_bar_size;
+            });
 
             overlay = new Gtk.Overlay ();
             overlay.add (clutter);
-            overlay.add_overlay (bottom_bar);
+            //overlay.add_overlay (bottom_bar);
 
             var mainbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
             mainbox.pack_start (overlay);
@@ -541,9 +553,10 @@ namespace Audience {
         }
 
         private bool update_pointer_position (double y, int window_height) {
-            int bottom_bar_size = 0;
-            int minimum = 0;
-            bottom_bar.get_preferred_height (out minimum, out bottom_bar_size);
+            if (bottom_bar_size == 0) {
+                int minimum = 0;
+                bottom_bar.get_preferred_height (out minimum, out bottom_bar_size);
+            }
 
             if (bottom_bar.child_revealed == false)
                 bottom_bar.set_reveal_child (true);
