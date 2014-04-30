@@ -4,9 +4,11 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
     public Gtk.Label time_label;
     public Gtk.Scale scale;
     public signal void seeked (double val);
+    private Audience.Widgets.PreviewPopover preview_popover;
     private bool is_seeking = false;
     private bool released = true;
     private uint timeout_id = 0;
+    private int original = 0;
 
     public TimeWidget () {
         orientation = Gtk.Orientation.HORIZONTAL;
@@ -14,10 +16,14 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
         halign = Gtk.Align.CENTER;
         progression_label = new Gtk.Label ("");
         time_label = new Gtk.Label ("");
+
         scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 0.1);
         scale.expand = true;
         scale.draw_value = false;
         scale.can_focus = false;
+        scale.events |= Gdk.EventMask.POINTER_MOTION_MASK;
+        scale.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
+        scale.events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
         scale.button_press_event.connect ((event) => {
             is_seeking = true;
             released = false;
@@ -32,17 +38,51 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
                 is_seeking = false;
                 return false;
             });
+
             return false;
         });
+
+        scale.enter_notify_event.connect ((event) => {
+            preview_popover.show_all ();
+            return false;
+        });
+
+        scale.leave_notify_event.connect ((event) => {
+            preview_popover.hide ();
+            return false;
+        });
+
+        // XXX: Store the original size because the popover doesn't update his x=0 position when resizing.
+        scale.motion_notify_event.connect ((event) => {
+            if (original == 0)
+                original = event.window.get_width ();
+
+            var pointing = preview_popover.pointing_to;
+            var distance = original - event.window.get_width ();
+            pointing.x = (int)(event.x) - event.window.get_width ()/2 - distance/2;
+            preview_popover.set_pointing_to ((Gdk.Rectangle)pointing);
+            preview_popover.set_preview_progress (((double)event.x)/((double)event.window.get_width ()));
+            return false;
+        });
+
         scale.button_release_event.connect ((event) => {released = true; return false;});
+        preview_popover = new Audience.Widgets.PreviewPopover ();
+        preview_popover.relative_to = this;
+
         add (progression_label);
         add (scale);
         add (time_label);
     }
 
+    public void set_preview_uri (string uri) {
+        preview_popover.set_preview_uri (uri);
+    }
+
     public override void get_preferred_width (out int minimum_width, out int natural_width) {
         base.get_preferred_width (out minimum_width, out natural_width);
 
+        if (parent.get_window () == null)
+            return;
         var width = parent.get_window ().get_width ();
         if (width > 0 && width >= minimum_width) {
             natural_width = width;

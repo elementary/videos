@@ -1,16 +1,21 @@
 
 public class Audience.Widgets.BottomBar : Gtk.Revealer {
-    public bool hovered { get; set; default=false; }
-    private uint hiding_timer = 0;
-    private Gtk.Button play_button;
-    private Gtk.Button preferences_button;
-    private Gtk.Popover playlist_popover;
-    private SettingsPopover preferences_popover;
-    private TimeWidget time_widget;
     public signal void run_open (int type);
     public signal void play_toggled ();
+    public signal void unfullscreen ();
     public signal void seeked (double val);
+
+    public bool hovered { get; set; default=false; }
+    public bool fullscreen { get; set; default=false; }
+    public SettingsPopover preferences_popover;
+
+    private Gtk.Button play_button;
+    private Gtk.Button preferences_button;
+    private Gtk.Revealer unfullscreen_revealer;
+    private Gtk.Popover playlist_popover;
+    private TimeWidget time_widget;
     private bool is_playing = false;
+    private uint hiding_timer = 0;
 
     public BottomBar () {
         transition_type = Gtk.RevealerTransitionType.CROSSFADE;
@@ -42,7 +47,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         add (main_actionbar);
 
         pupulate_playlist_popover ();
-        pupulate_preferences_popover ();
 
         notify["hovered"].connect (() => {
             if (hovered == false) {
@@ -54,7 +58,70 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
                 }
             }
         });
+
+        notify["fullscreen"].connect (() => {
+            if (fullscreen == true && child_revealed == true) {
+                unfullscreen_revealer.set_reveal_child (true);
+            } else if (fullscreen == false && child_revealed == true) {
+                unfullscreen_revealer.set_reveal_child (false);
+            }
+        });
+
         show_all ();
+    }
+
+    public void set_preview_uri (string uri) {
+        time_widget.set_preview_uri (uri);
+    }
+
+    public Gtk.Revealer get_unfullscreen_button () {
+        unfullscreen_revealer = new Gtk.Revealer ();
+        unfullscreen_revealer.opacity = global_opacity;
+        unfullscreen_revealer.get_style_context ().add_class ("header-bar");
+        unfullscreen_revealer.transition_type = Gtk.RevealerTransitionType.CROSSFADE;
+        var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic", Gtk.IconSize.BUTTON);
+        unfullscreen_button.tooltip_text = _("Unfullscreen");
+        unfullscreen_button.clicked.connect (() => {unfullscreen ();});
+        unfullscreen_revealer.add (unfullscreen_button);
+        unfullscreen_revealer.show_all ();
+        return unfullscreen_revealer;
+    }
+
+    public void toggle_play_pause () {
+        is_playing = !is_playing;
+        if (is_playing == true) {
+            play_button.image = new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.BUTTON);
+            play_button.tooltip_text = _("Pause");
+            set_timeout ();
+        } else {
+            play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON);
+            play_button.tooltip_text = _("Play");
+            set_reveal_child (true);
+        }
+    }
+
+    public new void set_reveal_child (bool reveal) {
+        base.set_reveal_child (reveal);
+        if (reveal == true && fullscreen == true) {
+            unfullscreen_revealer.set_reveal_child (reveal);
+        } else if (reveal == false) {
+            unfullscreen_revealer.set_reveal_child (reveal);
+        }
+    }
+
+    public override void get_preferred_width (out int minimum_width, out int natural_width) {
+        base.get_preferred_width (out minimum_width, out natural_width);
+
+        if (parent.get_window () == null)
+            return;
+        var width = parent.get_window ().get_width ();
+        if (width > 0 && width >= minimum_width) {
+            natural_width = width;
+        }
+    }
+
+    public void set_progression_time (double current_time, double total_time) {
+        time_widget.set_progression_time (current_time, total_time);
     }
 
     private void pupulate_playlist_popover () {
@@ -105,40 +172,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         playlist_popover.add (grid);
     }
 
-    private void pupulate_preferences_popover () {
-        preferences_popover.opacity = global_opacity;
-        var grid = new Gtk.Grid ();
-        grid.orientation = Gtk.Orientation.VERTICAL;
-        grid.row_spacing = 6;
-        grid.margin = 6;
-
-        preferences_popover.add (grid);
-    }
-
-    public void toggle_play_pause () {
-        is_playing = !is_playing;
-        if (is_playing == true) {
-            play_button.image = new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.BUTTON);
-            play_button.tooltip_text = _("Pause");
-        } else {
-            play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON);
-            play_button.tooltip_text = _("Play");
-        }
-    }
-
-    public override void get_preferred_width (out int minimum_width, out int natural_width) {
-        base.get_preferred_width (out minimum_width, out natural_width);
-
-        var width = parent.get_window ().get_width ();
-        if (width > 0 && width >= minimum_width) {
-            natural_width = width;
-        }
-    }
-
-    public void set_progression_time (double current_time, double total_time) {
-        time_widget.set_progression_time (current_time, total_time);
-    }
-
     private void set_timeout () {
         if (hiding_timer != 0)
             Source.remove (hiding_timer);
@@ -149,6 +182,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
                 return false;
             }
             set_reveal_child (false);
+            unfullscreen_revealer.set_reveal_child (false);
             hiding_timer = 0;
             return false;
         });

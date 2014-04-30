@@ -2,10 +2,10 @@
 public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     public signal void select_external_subtitle (string uri);
 
-    private Gtk.Grid taggrid;
-    private Gtk.ComboBoxText languages;
-    private Gtk.ComboBoxText subtitles;
-    private Gtk.FileChooserButton external_subtitle_file;
+    public Gtk.Grid taggrid;
+    public Gtk.ComboBoxText languages;
+    public Gtk.ComboBoxText subtitles;
+    public Gtk.FileChooserButton external_subtitle_file;
 
     public SettingsPopover (Gtk.Widget widget) {
         opacity = global_opacity;
@@ -65,5 +65,67 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         stack.add_titled (setupgrid, "options", _("Options"));
         
         add (stack_grid);
+    }
+    public void setup_text_setup  () { setup_setup ("text"); }
+    public void setup_audio_setup () { setup_setup ("audio"); }
+    /*target is either "text" or "audio"*/
+    public void setup_setup (string target) {
+        /*var currently_parsing = true;
+        
+        if (target == "audio" && languages.model.iter_n_children (null) > 0)
+            languages.remove_all ();
+        else if (target == "text" && subtitles.model.iter_n_children (null) > 0)
+            subtitles.remove_all ();
+        
+        Value num = 0;
+        app.video_player.playbin.get_property ("n-"+target, ref num);
+        
+        int used = 0;
+        for (var i=0;i<num.get_int ();i++) {
+            Gst.TagList tags = null;
+            Signal.emit_by_name (app.video_player.playbin, "get-"+target+"-tags", i, out tags);
+            if (tags == null)
+                continue;
+            
+            string desc;
+            string readable = null;
+            tags.get_string (Gst.Tags.LANGUAGE_CODE, out desc);
+            if (desc == null)
+                tags.get_string (Gst.Tags.CODEC, out desc);
+
+            if (desc != null)
+                readable = Gst.Tag.get_language_name (desc);
+
+            if (target == "audio" && desc != null) {
+                this.languages.append (i.to_string (), readable == null ? desc : readable);
+                used ++;
+            } else if (desc != null) {
+                var language = Gst.Tag.get_language_name (desc);
+                this.subtitles.append (i.to_string (), language == null ? desc : language);
+                used ++;
+            }
+        }
+
+        if (target == "audio") {
+            
+            if (used == 0) {
+                languages.append ("def", _("Default"));
+                languages.active = 0;
+                languages.sensitive = false;
+            } else {
+                languages.sensitive = true;
+                languages.active_id = app.video_player.current_audio.to_string ();
+            }
+        } else {
+            if (used == 0)
+                subtitles.sensitive = false;
+            else
+                subtitles.sensitive = true;
+            
+            subtitles.append ("-1", _("None"));
+            subtitles.active_id = app.video_player.current_text.to_string ();
+        }
+
+        currently_parsing = false;*/
     }
 }

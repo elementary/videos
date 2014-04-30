@@ -132,40 +132,32 @@ namespace Audience.Widgets {
 
         public dynamic Gst.Element playbin;
         Clutter.Texture video;
-        TopPanel panel;
 
         uint video_width;
         uint video_height;
 
         public GnomeSessionManager session_manager;
         uint32 inhibit_cookie;
-        
-        public bool fullscreened { get; set; }
-        
+
         public signal void ended ();
         public signal void toggle_side_pane (bool show);
         public signal void text_tags_changed ();
         public signal void audio_tags_changed ();
-        public signal void show_open_context ();
-        public signal void exit_fullscreen ();
         public signal void error ();
         public signal void plugin_install_done ();
         public signal void configure_window (uint video_w, uint video_h);
         public signal void progression_changed (double current_time, double total_time);
         
         public VideoPlayer () {
-            panel = new TopPanel ();
-
             video = new Clutter.Texture ();
 
-            var video_sink = Audience.get_clutter_sink ();
+            dynamic Gst.Element video_sink = Gst.ElementFactory.make ("cluttersink", "source");
             video_sink.texture = video;
 
             playbin = Gst.ElementFactory.make ("playbin", "playbin");
             playbin.video_sink = video_sink;
 
             add_child (video);
-            add_child (panel);
             Timeout.add (100, () => {
                 int64 length, prog;
                 playbin.query_position (Gst.Format.TIME, out prog);
@@ -176,20 +168,6 @@ namespace Audience.Widgets {
                 progression_changed ((double)prog, (double)length);
                 return true;
             });
-
-            notify["fullscreened"].connect (() => {
-                panel.hidden = !fullscreened;
-            });
-
-            panel.unfullscreen.connect (() => {
-                exit_fullscreen ();
-            });
-
-            panel.vol.value_changed.connect ( (value) => {
-                volume = value;
-            });
-
-            panel.vol.value = 1.0;
 
             playbin.about_to_finish.connect (() => {
                 at_end = true;

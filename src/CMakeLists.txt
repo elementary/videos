@@ -36,13 +36,9 @@ vala_precompile (VALA_C ${EXEC_NAME}
     Utils.vala
     Widgets/BottomBar.vala
     Widgets/SettingsPopover.vala
+    Widgets/PreviewPopover.vala
     Widgets/TimeWidget.vala
-    Widgets/TagView.vala
-    Widgets/Button.vala
-    Widgets/ControlsBar.vala
     Widgets/LLabel.vala
-    Widgets/MediaSlider.vala
-    Widgets/TopPanel.vala
     Widgets/Playlist.vala
     Widgets/VideoPlayer.vala
     desktop-launcher.vala
