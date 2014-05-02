@@ -329,13 +329,16 @@ namespace Audience.Widgets {
             var dlg  = new Gtk.Dialog.with_buttons (_("Error"), null, Gtk.DialogFlags.MODAL, Gtk.Stock.OK, Gtk.ResponseType.OK);
             var grid = new Gtk.Grid ();
             var err  = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
-
             err.margin_right = 12;
+            
+            var err_label = new Gtk.Label ("");
+            err_label.set_markup ("<b>%s</b>".printf (_("Oops! Audience can't play this file!")));
+            
             grid.margin = 12;
             grid.attach (err, 0, 0, 1, 1);
-            grid.attach (new Widgets.LLabel.markup ("<b>%s</b>".printf (_("Oops! Audience can't play this file!"))), 1, 0, 1, 1);
+            grid.attach (err_label, 1, 0, 1, 1);
             if (message != null)
-                grid.attach (new Widgets.LLabel (message), 1, 1, 1, 2);
+                grid.attach (new Gtk.Label (message), 1, 1, 1, 2);
 
             error ();
             ((Gtk.Box)dlg.get_content_area ()).add (grid);
@@ -349,12 +352,16 @@ namespace Audience.Widgets {
             var dlg = new Gtk.Dialog.with_buttons ("Missing plugin", null, Gtk.DialogFlags.MODAL);
             var grid = new Gtk.Grid ();
             var err  = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
-            var phrase = new Widgets.LLabel (_("Some media files need extra software to be played. Audience can install this software automatically."));
+            var phrase = new Gtk.Label (_("Some media files need extra software to be played. Audience can install this software automatically."));
 
             err.margin_right = 12;
+
+            var err_label = new Gtk.Label ("");
+            err_label.set_markup ("<b>%s</b>".printf (_("Audience needs %s to play this file.").printf (detail)));
+
             grid.margin = 12;
             grid.attach (err, 0, 0, 1, 1);
-            grid.attach (new Widgets.LLabel.markup ("<b>%s</b>".printf (_("Audience needs %s to play this file.").printf (detail))), 1, 0, 1, 1);
+            grid.attach (err_label, 1, 0, 1, 1);
             grid.attach (phrase, 1, 1, 1, 2);
 
             dlg.add_button (_("Don't install"), 1);

@@ -34,11 +34,11 @@ vala_precompile (VALA_C ${EXEC_NAME}
     Consts.vala
     Settings.vala
     Utils.vala
+    DiskManager.vala
     Widgets/BottomBar.vala
     Widgets/SettingsPopover.vala
     Widgets/PreviewPopover.vala
     Widgets/TimeWidget.vala
-    Widgets/LLabel.vala
     Widgets/Playlist.vala
     Widgets/VideoPlayer.vala
     desktop-launcher.vala

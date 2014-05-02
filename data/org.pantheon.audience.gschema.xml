@@ -16,12 +16,12 @@
             <description>Resume video at the point they were stopped when audience was closed</description>
         </key>
         <key name="last-played-videos" type="as">
-            <default>['']</default>
+            <default>[]</default>
             <summary>List of last played videos</summary>
             <description>A list of the last played</description>
         </key>
         <key name="last-played-videos-stopped" type="as">
-            <default>['']</default>
+            <default>[]</default>
             <summary>List of last stopped time of played videos</summary>
             <description>A list of last stopped time of played videos</description>
         </key>
