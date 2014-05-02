@@ -96,14 +96,45 @@ namespace Audience.Widgets {
         public void remove_item (File path) {
             /*not needed up to now*/
         }
+
         public File? get_first_item () {
-            Gtk.TreeIter it;
-            if (playlist.get_iter_from_string (out it, 0.to_string ())){
+            Gtk.TreeIter iter;
+            if (playlist.get_iter_first (out iter)){
                 string filename;
-                playlist.get (it, 2, out filename);
+                playlist.get (iter, 2, out filename);
                 return File.new_for_commandline_arg (filename);
             }
             return null;
+        }
+
+        public List<string> get_all_items () {
+            var list = new List<string> ();
+            playlist.foreach ((model, path, iter) => {
+                Value filename;
+                playlist.get_value (iter, 2, out filename);
+                string name = filename.get_string ();
+                list.append (name);
+                return false;
+            });
+            return list.copy ();
+        }
+
+        public void save_playlist_config () {
+            var list = new List<string> ();
+            playlist.foreach ((model, path, iter) => {
+                Value filename;
+                playlist.get_value (iter, 2, out filename);
+                string name = filename.get_string ();
+                list.append (name);
+                return false;
+            });
+
+            uint i = 0;
+            //settings.last_played_videos = new string[list.length ()];
+            foreach (var filename in list) {
+                settings.last_played_videos[i] = filename;
+                i++;
+            }
         }
 
     }

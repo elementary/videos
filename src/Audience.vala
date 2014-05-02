@@ -72,13 +72,6 @@ namespace Audience {
 
             clutter = new GtkClutter.Embed ();
 
-            //prepare last played videos
-            /*last_played_videos = new List<string> ();
-            var split = settings.last_played_videos.split ("<SEP>");
-            for (var i=0;i<split.length;i++){
-                last_played_videos.append (split[i]);
-            }*/
-
             if (settings.last_folder == "-1")
                 settings.last_folder = Environment.get_home_dir ();
 
@@ -249,6 +242,13 @@ namespace Audience {
                 unfullscreen_actor.y = 6;
                 unfullscreen_actor.x = stage.get_width () - bottom_bar_size - 6;
             });
+
+            if (settings.resume_videos) {
+                foreach (var filename in settings.last_played_videos) {
+                    var file = File.new_for_commandline_arg (filename);
+                    playlist.add_item (file);
+                }
+            }
         }
 
         private void setup_welcome_screen () {
@@ -298,7 +298,7 @@ namespace Audience {
                         clutter.show_all ();
                         open_file (filename);
                         video_player.playing = false;
-                        video_player.progress = double.parse (settings.last_played_videos[1]);
+                        video_player.progress = settings.last_stopped;
                         video_player.playing = true;
                         break;
                     case 2:
@@ -448,8 +448,8 @@ namespace Audience {
                 if (last_played_videos.length () > 10) {
                     last_played_videos.delete_link (last_played_videos.nth (10));
                     last_played_videos.delete_link (last_played_videos.nth (11));
-                }
-                save_last_played_videos ();*/
+                }*/
+                save_last_played_videos ();
             }
         }
 
@@ -515,16 +515,12 @@ namespace Audience {
         }
 
         private inline void save_last_played_videos () {
-            /*string res = "";
-            foreach (var video in last_played_videos) {
-                if (res == "") {
-                    res = video;
-                } else {
-                    res += ",%s".printf (video);
-                }
-            }
+            playlist.save_playlist_config ();
 
-            settings.last_played_videos = res;*/
+            if (settings.last_played_videos.length > 0)
+                settings.last_stopped = video_player.progress;
+            else
+                settings.last_stopped = 0;
         }
 
         public void run_open (int type) { //0=file, 2=dvd
@@ -564,8 +560,13 @@ namespace Audience {
         private async void read_first_disk () {
             var disk_manager = DiskManager.get_default ();
             var volume = disk_manager.get_volumes ().nth_data (0);
-            if (volume.can_mount () == true && volume.get_mount ().can_unmount () == false)
-                yield volume.mount (MountMountFlags.NONE, null);
+            if (volume.can_mount () == true && volume.get_mount ().can_unmount () == false) {
+                try {
+                    yield volume.mount (MountMountFlags.NONE, null);
+                } catch (Error e) {
+                    critical (e.message);
+                }
+            }
             var root = volume.get_mount ().get_default_location ();
             open_file (root.get_uri (), true);
             video_player.playing = true;
@@ -607,20 +608,6 @@ namespace Audience {
             mainwindow.title = get_title (uri);
             if (!settings.playback_wait)
                 video_player.playing = true;
-
-            if (settings.resume_videos) {
-                /*foreach (var last_played_video in last_played_videos) {
-                    if (video_player.uri == last_played_video) {
-                        Idle.add (() => {
-                            video_player.progress = double.parse (last_played_video);
-                            debug ("Resuming video from " + last_played_videos.nth_data (i + 1));
-                            return false;
-                        });
-
-                        break;
-                    }
-                }*/
-            }
 
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);

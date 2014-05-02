@@ -20,10 +20,10 @@
             <summary>List of last played videos</summary>
             <description>A list of the last played</description>
         </key>
-        <key name="last-played-videos-stopped" type="as">
-            <default>[]</default>
-            <summary>List of last stopped time of played videos</summary>
-            <description>A list of last stopped time of played videos</description>
+        <key name="last-stopped" type="d">
+            <default>0</default>
+            <summary>Last stopped time of last played video</summary>
+            <description>Last stopped time of last played video</description>
         </key>
         <key name="last-folder" type="s">
             <default>"-1"</default>
