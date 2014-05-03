@@ -572,6 +572,7 @@ namespace Audience {
         }
 
         private void run_open_dvd () {
+            open_file ("dvd://", true);
             video_player.playing = true;
 
             welcome.hide ();
