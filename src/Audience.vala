@@ -86,18 +86,19 @@ namespace Audience {
                 settings.last_folder = Environment.get_home_dir ();
 
             welcome = new Granite.Widgets.Welcome (_("No Videos Open"), _("Select a source to begin playing."));
-            welcome.append ("document-open", _("Open file"), _("Open a saved file."));
+            var open_file_welcome_index = welcome.append ("document-open", _("Open file"), _("Open a saved file."));
 
-            //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
             var filename = last_played_videos.length () > 0 ? last_played_videos.nth_data (0) : "";
             var last_file = File.new_for_uri (filename);
+
+            var last_video_welcome_index = -1;
             if (last_file.query_exists ()) {
-                welcome.append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
-                welcome.set_item_visible (1, last_played_videos.length () > 0);
+                last_video_welcome_index = welcome.append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
+                welcome.set_item_visible (last_video_welcome_index, last_played_videos.length () > 0);
             }
 
-            welcome.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
-            welcome.set_item_visible (2, has_dvd);
+            var dvd_welcome_index = welcome.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
+            welcome.set_item_visible (dvd_welcome_index, has_dvd);
 
             var stage = clutter.get_stage ();
 
@@ -134,11 +135,11 @@ namespace Audience {
             this.monitor = GLib.VolumeMonitor.get ();
             monitor.drive_connected.connect ( (drive) => {
                 this.has_dvd = Audience.has_dvd ();
-                welcome.set_item_visible (2, this.has_dvd);
+                welcome.set_item_visible (dvd_welcome_index, this.has_dvd);
             });
             monitor.drive_disconnected.connect ( () => {
                 this.has_dvd = Audience.has_dvd ();
-                welcome.set_item_visible (2, this.has_dvd);
+                welcome.set_item_visible (dvd_welcome_index, this.has_dvd);
             });
             //playlist wants us to open a file
             playlist.play.connect ( (file) => {
@@ -147,13 +148,9 @@ namespace Audience {
 
             //handle welcome
             welcome.activated.connect ( (index) => {
-                if (filename == "" && index == 1)
-                    index = 2;
-                switch (index) {
-                case 0:
-                    run_open (0);
-                    break;
-                case 1:
+                if (index == open_file_welcome_index) {
+                    run_open_file ();
+                } else if (index == last_video_welcome_index) {
                     welcome.hide ();
                     clutter.show_all ();
 
@@ -162,11 +159,9 @@ namespace Audience {
                     video_player.playing = false;
                     video_player.progress = double.parse (last_played_videos.nth_data (1));
                     video_player.playing = true;
-                    break;
-                case 2:
-                    run_open (2);
-                    break;
-                default:
+                } else if (index == dvd_welcome_index) {
+                    run_open_dvd ();
+                } else {
                     var d = new Gtk.Dialog.with_buttons (_("Open location"),
                         this.mainwindow, Gtk.DialogFlags.MODAL,
                         Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
@@ -190,7 +185,6 @@ namespace Audience {
                         clutter.show_all ();
                     }
                     d.destroy ();
-                    break;
                 }
             });
 
@@ -233,7 +227,7 @@ namespace Audience {
                             mainwindow.destroy ();
                         break;
                     case Gdk.Key.o:
-                        run_open (0);
+                        run_open_file ();
                         break;
                     case Gdk.Key.f:
                     case Gdk.Key.F11:
@@ -280,7 +274,7 @@ namespace Audience {
 
                 if (!has_dvd) { //just one source, so open that one
                     Timeout.add (300, () => {
-                        run_open (0);
+                        run_open_file ();
                         return false;
                     });
                     return;
@@ -299,10 +293,10 @@ namespace Audience {
 
                 fil.clicked.connect ( () => {
                     pop.destroy ();
-                    run_open (0);
+                    run_open_file ();
                 });
                 dvd.clicked.connect ( () => {
-                    run_open (2);
+                    run_open_dvd ();
                     pop.destroy ();
                 });
                 net.clicked.connect ( () => {
@@ -548,41 +542,40 @@ namespace Audience {
             settings.last_played_videos = res;
         }
 
-        public void run_open (int type) { //0=file, 2=dvd
-            if (type == 0) {
-                var file = new Gtk.FileChooserDialog (_("Open"), mainwindow, Gtk.FileChooserAction.OPEN,
-                    Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL, Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
-                file.select_multiple = true;
+        private void run_open_file () {
+            var file = new Gtk.FileChooserDialog (_("Open"), mainwindow, Gtk.FileChooserAction.OPEN,
+                Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL, Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
+            file.select_multiple = true;
 
-                var all_files_filter = new Gtk.FileFilter ();
-                all_files_filter.set_filter_name (_("All files"));
-                all_files_filter.add_pattern ("*");
+            var all_files_filter = new Gtk.FileFilter ();
+            all_files_filter.set_filter_name (_("All files"));
+            all_files_filter.add_pattern ("*");
 
-                var video_filter = new Gtk.FileFilter ();
-                video_filter.set_filter_name (_("Video files"));
-                video_filter.add_mime_type ("video/*");
+            var video_filter = new Gtk.FileFilter ();
+            video_filter.set_filter_name (_("Video files"));
+            video_filter.add_mime_type ("video/*");
 
-                file.add_filter (video_filter);
-                file.add_filter (all_files_filter);
+            file.add_filter (video_filter);
+            file.add_filter (all_files_filter);
 
-                file.set_current_folder (settings.last_folder);
-                if (file.run () == Gtk.ResponseType.ACCEPT) {
-                    welcome.hide ();
-                    clutter.show_all ();
-                    for (var i=1;i<file.get_files ().length ();i++) {
-                        playlist.add_item (file.get_files ().nth_data (i));
-                    }
-                    open_file (file.get_uri ());
-                    settings.last_folder = file.get_current_folder ();
-                }
-                file.destroy ();
-            }else if (type == 2) {
-                open_file ("dvd://", true);
-                video_player.playing = true;
-
+            file.set_current_folder (settings.last_folder);
+            if (file.run () == Gtk.ResponseType.ACCEPT) {
                 welcome.hide ();
                 clutter.show_all ();
+                for (var i=1;i<file.get_files ().length ();i++) {
+                    playlist.add_item (file.get_files ().nth_data (i));
+                }
+                open_file (file.get_uri ());
+                settings.last_folder = file.get_current_folder ();
             }
+            file.destroy ();
+        }
+
+        private void run_open_dvd () {
+            video_player.playing = true;
+
+            welcome.hide ();
+            clutter.show_all ();
         }
 
         private void toggle_fullscreen ()
