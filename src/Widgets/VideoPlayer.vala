@@ -93,8 +93,8 @@ namespace Audience.Widgets
                     var video = info.get_video_streams ();
                     if (video.data != null) {
                         var video_info = (Gst.PbUtils.DiscovererVideoInfo)video.data;
-                        video_width = video_info.get_width ();
                         video_height = video_info.get_height ();
+                        video_width = get_video_width (video_info);
                     }
                 } catch (Error e) {
                     error ();
@@ -591,6 +591,24 @@ namespace Audience.Widgets
                     inhibit_cookie = session_manager.Inhibit ("audience", 0, "Playing Video using Audience", 12);
                 }
             } catch (Error e) { warning (e.message); }
+        }
+
+        uint get_video_width (Gst.PbUtils.DiscovererVideoInfo video_info) {
+            var par = get_video_par (video_info);
+            if (par == -1) {
+                return video_info.get_width ();
+            }
+            return (uint)(video_height * par);
+        }
+
+        //pixel aspect ratio
+        double get_video_par (Gst.PbUtils.DiscovererVideoInfo video_info) {
+            var num = video_info.get_par_num ();
+            var denom = video_info.get_par_denom ();
+            if (num == 1 && denom == 1) {
+                return -1; //Error.
+            }
+            return num / (double)denom;
         }
     }
 }
