@@ -195,6 +195,7 @@ namespace Audience.Widgets
         public signal void error ();
         public signal void plugin_install_done ();
         public signal void configure_window (uint video_w, uint video_h);
+        public signal void external_subtitle_changed (string? uri);
         
         public VideoPlayer ()
         {
@@ -391,8 +392,10 @@ namespace Audience.Widgets
         public void set_subtitle_uri (string? uri)
         {
             subtitle_uri = uri;
-            if (!check_text_layer (subtitle_uri != null))
+            if (!check_text_layer (subtitle_uri != null)){
                 apply_subtitles ();
+                external_subtitle_changed (uri);
+            };
         }
 
         // checks whether text layer has to be enabled
