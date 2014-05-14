@@ -33,11 +33,9 @@ namespace Audience {
     }
     public static string get_title (string filename) {
         var title = get_basename (filename);
-        title = title.replace ("%20", " ").
-            replace ("%3B", ";").
-            replace ("%5B", "[").replace ("%5D", "]").replace ("%7B", "{").
-            replace ("%7D", "}").replace ("_", " ").replace (".", " ").
-            replace ("  ", " ").replace ("%60", "\'");
+        title = Uri.unescape_string (title);
+        title = title.replace ("_", " ").replace (".", " ").replace ("  ", " ");
+
         return title;
     }
 
@@ -89,15 +87,11 @@ namespace Audience {
 
 	public static dynamic Gst.Element get_clutter_sink ()
 	{
-#if HAS_CLUTTER_GST_1
 		var sink = Gst.ElementFactory.make ("autocluttersink", "videosink");
 		if (sink == null) {
 			warning ("autocluttersink not available");
 			sink = Gst.ElementFactory.make ("cluttersink", "videosink");
 		}
-#else
-		var sink = Gst.ElementFactory.make ("cluttersink", "videosink");
-#endif
 
 		return sink;
 	}

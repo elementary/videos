@@ -56,7 +56,7 @@ namespace Audience.Widgets
             var setupgrid  = new Gtk.Grid ();
             this.languages = new Gtk.ComboBoxText ();
             this.subtitles = new Gtk.ComboBoxText ();
-            this.external_subtitle_file = new Gtk.FileChooserButton (_("External Subtitle"), Gtk.FileChooserAction.OPEN);
+            this.external_subtitle_file = new Gtk.FileChooserButton (_("External Subtitles"), Gtk.FileChooserAction.OPEN);
             var lang_lbl   = new LLabel.right (_("Audio")+":");
             var sub_lbl    = new LLabel.right (_("Subtitles")+":");
             var sub_ext_lbl = new LLabel.right (_("External Subtitles") + ":");
@@ -207,30 +207,18 @@ namespace Audience.Widgets
                 
                 string desc;
                 string readable = null;
-#if HAS_CLUTTER_GST_1
                 tags.get_string (Gst.Tags.LANGUAGE_CODE, out desc);
                 if (desc == null)
                     tags.get_string (Gst.Tags.CODEC, out desc);
-                
+
                 if (desc != null)
                     readable = Gst.Tag.get_language_name (desc);
-#else
-                tags.get_string (Gst.TAG_LANGUAGE_CODE, out desc);
-                if (desc == null)
-                    tags.get_string (Gst.TAG_CODEC, out desc);
-                
-                if (desc != null)
-                    readable = Gst.tag_get_language_name (desc);
-#endif
+
                 if (target == "audio" && desc != null) {
                     this.languages.append (i.to_string (), readable == null ? desc : readable);
                     used ++;
                 } else if (desc != null) {
-#if HAS_CLUTTER_GST_1
                     var language = Gst.Tag.get_language_name (desc);
-#else
-                    var language = Gst.tag_get_language_name (desc);
-#endif
                     this.subtitles.append (i.to_string (), language == null ? desc : language);
                     used ++;
                 }

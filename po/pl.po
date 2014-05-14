@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-11-06 19:57+0530\n"
-"PO-Revision-Date: 2013-06-19 17:12+0000\n"
-"Last-Translator: Adrian Widerski <Unknown>\n"
+"PO-Revision-Date: 2014-03-06 14:03+0000\n"
+"Last-Translator: Mateusz Czylok <mczylok@maydex.info>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-11-08 06:20+0000\n"
-"X-Generator: Launchpad (build 16820)\n"
+"X-Launchpad-Export-Date: 2014-03-07 07:12+0000\n"
+"X-Generator: Launchpad (build 16948)\n"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "No Videos Open"
-msgstr ""
+msgstr "Brak aktualnie otwartych plików wideo"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "Select a source to begin playing."

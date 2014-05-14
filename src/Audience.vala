@@ -268,7 +268,10 @@ namespace Audience {
 
             //end
             video_player.ended.connect ( () => {
-                playlist.next ();
+                Idle.add (()=>{
+                    playlist.next ();
+                    return false;
+                });
             });
 
             /*open location popover*/
