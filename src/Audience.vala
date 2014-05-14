@@ -53,7 +53,14 @@ namespace Audience {
 
         public GLib.VolumeMonitor monitor;
         
-        private string[] subtitle_extensions = {".srt", ".ssa"};
+        private  const string[] subtitle_extensions = {
+                                                "sub",
+                                                "srt",
+                                                "smi",
+                                                "ssa",
+                                                "ass",
+                                                "asc"
+	                                            };
 
         public App () {
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
@@ -598,7 +605,7 @@ namespace Audience {
                 video_player.fullscreened = true;
             }
         }
-
+        
         internal void open_file (string filename, bool dont_modify=false)
         {
             var file = File.new_for_commandline_arg (filename);
@@ -619,9 +626,15 @@ namespace Audience {
         }
         
         private bool is_subtitle (string uri){
-            string ext = uri.substring (uri.last_index_of_char ('.')).down ();
-            if (ext in subtitle_extensions)
-                return true;
+            //string ext = uri.substring (uri.last_index_of_char ('.')).down ();
+            /*if (ext in subtitle_extensions)
+                return true;*/
+            if (uri.length < 4 || uri.get_char (uri.length-4) != '.')
+                return false;
+            foreach (string ext in subtitle_extensions){
+                if (uri.has_suffix (ext))
+                    return true;
+            }
             return false;
         }
 
