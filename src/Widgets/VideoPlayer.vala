@@ -392,7 +392,7 @@ namespace Audience.Widgets
         public void set_subtitle_uri (string? uri)
         {
             subtitle_uri = uri;
-            if (!check_text_layer (subtitle_uri != null)){
+            if (!check_text_layer (subtitle_uri != null)) {
                 apply_subtitles ();
                 external_subtitle_changed (uri);
             };

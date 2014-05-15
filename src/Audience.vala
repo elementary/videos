@@ -53,14 +53,14 @@ namespace Audience {
 
         public GLib.VolumeMonitor monitor;
         
-        private  const string[] subtitle_extensions = {
-                                                "sub",
-                                                "srt",
-                                                "smi",
-                                                "ssa",
-                                                "ass",
-                                                "asc"
-	                                            };
+        private  const string[] SUBTITLE_EXTENSIONS = {
+														"sub",
+														"srt",
+														"smi",
+														"ssa",
+														"ass",
+														"asc"
+														};
 
         public App () {
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
@@ -605,7 +605,7 @@ namespace Audience {
                 video_player.fullscreened = true;
             }
         }
-        
+
         internal void open_file (string filename, bool dont_modify=false)
         {
             var file = File.new_for_commandline_arg (filename);
@@ -615,7 +615,7 @@ namespace Audience {
                     playlist.add_item (file_ret);
                 });
                 file = playlist.get_first_item ();
-            }else if (is_subtitle (filename) && video_player.playing){
+            } else if (is_subtitle (filename) && video_player.playing) {
                 video_player.set_subtitle_uri (filename);
                 return;
             }
@@ -625,14 +625,11 @@ namespace Audience {
             play_file (file.get_uri ());
         }
         
-        private bool is_subtitle (string uri){
-            //string ext = uri.substring (uri.last_index_of_char ('.')).down ();
-            /*if (ext in subtitle_extensions)
-                return true;*/
+        private bool is_subtitle (string uri) {
             if (uri.length < 4 || uri.get_char (uri.length-4) != '.')
                 return false;
-            foreach (string ext in subtitle_extensions){
-                if (uri.has_suffix (ext))
+            foreach (string ext in SUBTITLE_EXTENSIONS) {
+                if (uri.down ().has_suffix (ext))
                     return true;
             }
             return false;
@@ -687,6 +684,7 @@ namespace Audience {
         }
     }
 }
+
 public static void main (string [] args) {
     X.init_threads ();
 
