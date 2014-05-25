@@ -195,6 +195,15 @@ namespace Audience {
                     }
                     d.destroy ();
                 }
+
+				var current_state = welcome.get_window ().get_state ();
+				bool currently_maximized = (current_state & Gdk.WindowState.MAXIMIZED) == 0;
+
+				// video is playing and we are maximized, go fullscreen.
+				if (video_player.playing && currently_maximized) {
+					mainwindow.fullscreen ();
+					video_player.fullscreened = true;
+				}
             });
 
             //media keys
@@ -695,4 +704,3 @@ public static void main (string [] args) {
 
     app.run (args);
 }
-
