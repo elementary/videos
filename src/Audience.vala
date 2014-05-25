@@ -413,7 +413,9 @@ namespace Audience {
 
             //fullscreen on maximize
             mainwindow.window_state_event.connect ( (e) => {
-                if (!((e.window.get_state () & Gdk.WindowState.MAXIMIZED) == 0) && !video_player.fullscreened){
+				bool currently_maximized = (e.window.get_state () & Gdk.WindowState.MAXIMIZED) == 0;
+				
+                if (!currently_maximized && !video_player.fullscreened && !welcome.is_visible ()){
                     mainwindow.fullscreen ();
                     video_player.fullscreened = true;
 
