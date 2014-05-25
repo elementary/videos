@@ -429,8 +429,8 @@ namespace Audience {
                     video_player.fullscreened = true;
 
                     return true;
-                 }
-                 return false;
+                }
+                return false;
             });
 
             //positioning
