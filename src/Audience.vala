@@ -199,7 +199,7 @@ namespace Audience {
                 int current_state = mainwindow.get_window ().get_state ();
                 bool currently_maximized = (current_state & Gdk.WindowState.MAXIMIZED) != 0;
 
-                // video is playing and we are maximized, go fullscreen.
+                // video is playing and we are maximized, go fullscreen
                 if (video_player.playing && currently_maximized) {
                     mainwindow.fullscreen ();
                     video_player.fullscreened = true;
@@ -422,15 +422,15 @@ namespace Audience {
 
             //fullscreen on maximize
             mainwindow.window_state_event.connect ( (e) => {
-            bool currently_maximized = (e.window.get_state () & Gdk.WindowState.MAXIMIZED) == 0;
+                bool currently_maximized = (e.window.get_state () & Gdk.WindowState.MAXIMIZED) == 0;
 
-                if (!currently_maximized && !video_player.fullscreened && !welcome.is_visible ()){
+                if (!currently_maximized && !video_player.fullscreened && !welcome.is_visible ()) {
                     mainwindow.fullscreen ();
                     video_player.fullscreened = true;
 
                     return true;
-                }
-                return false;
+                 }
+                 return false;
             });
 
             //positioning
