@@ -73,6 +73,9 @@ namespace Audience.Widgets
             external_subtitle_file.file_set.connect (() => {
                 select_external_subtitle (external_subtitle_file.get_uri ());
             });
+            app.video_player.external_subtitle_changed.connect ( (uri) => {
+                external_subtitle_file.set_uri (uri);
+            });
             this.subtitles.changed.connect ( () => {
                 if (subtitles.active_id == null || currently_parsing)
                     return;

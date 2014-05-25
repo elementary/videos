@@ -52,6 +52,15 @@ namespace Audience {
         public List<string> last_played_videos; //taken from settings, but splitted
 
         public GLib.VolumeMonitor monitor;
+        
+        private  const string[] SUBTITLE_EXTENSIONS = {
+														"sub",
+														"srt",
+														"smi",
+														"ssa",
+														"ass",
+														"asc"
+														};
 
         public App () {
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
@@ -600,11 +609,24 @@ namespace Audience {
                     playlist.add_item (file_ret);
                 });
                 file = playlist.get_first_item ();
+            } else if (is_subtitle (filename) && video_player.playing) {
+                video_player.set_subtitle_uri (filename);
+                return;
             }
             else
                 playlist.add_item (file);
 
             play_file (file.get_uri ());
+        }
+        
+        private bool is_subtitle (string uri) {
+            if (uri.length < 4 || uri.get_char (uri.length-4) != '.')
+                return false;
+            foreach (string ext in SUBTITLE_EXTENSIONS) {
+                if (uri.down ().has_suffix (ext))
+                    return true;
+            }
+            return false;
         }
 
         public void play_file (string uri) {
