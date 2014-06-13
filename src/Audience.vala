@@ -46,13 +46,16 @@ namespace Audience {
         public GtkClutter.Embed           clutter;
         public Granite.Widgets.Welcome    welcome;
         public Audience.Widgets.VideoPlayer video_player;
+
+        public bool fullscreened { get; set; }
+
         private Audience.Widgets.BottomBar bottom_bar;
         private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_bar;
         private GtkClutter.Actor bottom_actor;
         private GtkClutter.Actor unfullscreen_actor;
-        public bool fullscreened { get; set; }
-        int bottom_bar_size = 0;
+        private bool mouse_primary_down = false;
+        private int bottom_bar_size = 0;
 
         public GLib.VolumeMonitor monitor;
 
@@ -195,6 +198,13 @@ namespace Audience {
             mainwindow.motion_notify_event.connect ((event) => {
                 if (event.window == null)
                     return false;
+
+                if (mouse_primary_down && settings.move_window) {
+                    mouse_primary_down = false;
+                    mainwindow.begin_move_drag (Gdk.BUTTON_PRIMARY,
+                        (int)event.x_root, (int)event.y_root, event.time);
+                }
+
                 return update_pointer_position (event.y, event.window.get_height ());
             });
 
@@ -202,6 +212,17 @@ namespace Audience {
                 if (event.type == Gdk.EventType.2BUTTON_PRESS) {
                     toggle_fullscreen ();
                 }
+
+                if (event.button == Gdk.BUTTON_PRIMARY)
+                    mouse_primary_down = true;
+
+                return false;
+            });
+
+            mainwindow.button_release_event.connect ((event) => {
+                if (event.button == Gdk.BUTTON_PRIMARY)
+                    mouse_primary_down = false;
+
                 return false;
             });
 
