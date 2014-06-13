@@ -29,6 +29,8 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         
         /*setup*/
         var setupgrid  = new Gtk.Grid ();
+        setupgrid.row_spacing = 6;
+
         this.languages = new Gtk.ComboBoxText ();
         this.subtitles = new Gtk.ComboBoxText ();
         this.external_subtitle_file = new Gtk.FileChooserButton (_("External Subtitles"), Gtk.FileChooserAction.OPEN);
