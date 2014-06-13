@@ -36,6 +36,9 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
                     return true;
                 seeked (scale.get_value ());
                 is_seeking = false;
+
+                timeout_id = 0;
+
                 return false;
             });
 
