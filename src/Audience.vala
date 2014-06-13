@@ -208,6 +208,12 @@ namespace Audience {
                 return update_pointer_position (event.y, event.window.get_height ());
             });
 
+            bottom_bar.time_widget.slider_motion_event.connect ((event) => {
+                int x, y;
+                bottom_bar.translate_coordinates (mainwindow, (int)event.x, (int)event.y, out x, out y);
+                update_pointer_position (y, mainwindow.get_window ().get_height ());
+            });
+
             mainwindow.button_press_event.connect ((event) => {
                 if (event.type == Gdk.EventType.2BUTTON_PRESS) {
                     toggle_fullscreen ();

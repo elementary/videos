@@ -1,5 +1,8 @@
 
 public class Audience.Widgets.TimeWidget : Gtk.Grid {
+
+    public signal void slider_motion_event (Gdk.EventMotion event);
+
     public Gtk.Label progression_label;
     public Gtk.Label time_label;
     public Gtk.Scale scale;
@@ -65,6 +68,9 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
             pointing.x = (int)(event.x) - event.window.get_width ()/2 - distance/2;
             preview_popover.set_pointing_to ((Gdk.Rectangle)pointing);
             preview_popover.set_preview_progress (((double)event.x)/((double)event.window.get_width ()));
+
+            slider_motion_event (event);
+
             return false;
         });
 

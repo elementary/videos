@@ -8,12 +8,12 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     public bool hovered { get; set; default=false; }
     public bool fullscreen { get; set; default=false; }
     public SettingsPopover preferences_popover;
+    public TimeWidget time_widget;
 
     private Gtk.Button play_button;
     private Gtk.Button preferences_button;
     private Gtk.Revealer unfullscreen_revealer;
     private Gtk.Popover playlist_popover;
-    private TimeWidget time_widget;
     private bool is_playing = false;
     private uint hiding_timer = 0;
 
