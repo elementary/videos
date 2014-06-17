@@ -326,9 +326,9 @@ namespace Audience.Widgets {
         }
 
         void show_error (string? message=null) {
-            var dlg  = new Gtk.Dialog.with_buttons (_("Error"), null, Gtk.DialogFlags.MODAL, Gtk.Stock.OK, Gtk.ResponseType.OK);
+            var dlg  = new Gtk.Dialog.with_buttons (_("Error"), null, Gtk.DialogFlags.MODAL, _("_OK"), Gtk.ResponseType.OK);
             var grid = new Gtk.Grid ();
-            var err  = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
+            var err  = new Gtk.Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
             err.margin_right = 12;
             
             var err_label = new Gtk.Label ("");
@@ -351,7 +351,7 @@ namespace Audience.Widgets {
             var detail = Gst.PbUtils.missing_plugin_message_get_description (msg);
             var dlg = new Gtk.Dialog.with_buttons ("Missing plugin", null, Gtk.DialogFlags.MODAL);
             var grid = new Gtk.Grid ();
-            var err  = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
+            var err  = new Gtk.Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
             var phrase = new Gtk.Label (_("Some media files need extra software to be played. Audience can install this software automatically."));
 
             err.margin_right = 12;

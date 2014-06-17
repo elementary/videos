@@ -334,8 +334,8 @@ namespace Audience {
                     default:
                         var d = new Gtk.Dialog.with_buttons (_("Open location"),
                             this.mainwindow, Gtk.DialogFlags.MODAL,
-                            Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                            Gtk.Stock.OK,     Gtk.ResponseType.OK);
+                            _("_Cancel"), Gtk.ResponseType.CANCEL,
+                            _("_OK"),     Gtk.ResponseType.OK);
 
                         var grid  = new Gtk.Grid ();
                         var entry = new Gtk.Entry ();
@@ -553,7 +553,7 @@ namespace Audience {
         public void run_open (int type) { //0=file, 2=dvd
             if (type == 0) {
                 var file = new Gtk.FileChooserDialog (_("Open"), mainwindow, Gtk.FileChooserAction.OPEN,
-                    Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL, Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
+                    _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
                 file.select_multiple = true;
 
                 var all_files_filter = new Gtk.FileFilter ();
