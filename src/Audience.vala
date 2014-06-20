@@ -59,6 +59,15 @@ namespace Audience {
 
         public GLib.VolumeMonitor monitor;
 
+        private  const string[] SUBTITLE_EXTENSIONS = {
+            "sub",
+            "srt",
+            "smi",
+            "ssa",
+            "ass",
+            "asc"
+        };
+
         public App () {
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
 
@@ -89,7 +98,8 @@ namespace Audience {
 
             bottom_bar = new Widgets.BottomBar ();
             bottom_bar.set_valign (Gtk.Align.END);
-            bottom_bar.run_open.connect ((type) => {run_open (type);});
+            bottom_bar.run_open_file.connect (() => {run_open_file ();});
+            bottom_bar.run_open_dvd.connect (() => {run_open_dvd ();});
             bottom_bar.play_toggled.connect (() => {video_player.playing = !video_player.playing;});
             bottom_bar.seeked.connect ((val) => {video_player.progress = val;});
             bottom_bar.unfullscreen.connect (() => {toggle_fullscreen ();});
@@ -319,12 +329,9 @@ namespace Audience {
 
             //handle welcome
             welcome.activated.connect ((index) => {
-                if (filename == "" && index == 1)
-                    index = 2;
-
                 switch (index) {
                     case 0:
-                        run_open (0);
+                        run_open_file ();
                         break;
                     case 1:
                         welcome.hide ();
@@ -335,7 +342,7 @@ namespace Audience {
                         video_player.playing = true;
                         break;
                     case 2:
-                        run_open (2);
+                        run_open_dvd ();
                         break;
                     default:
                         var d = new Gtk.Dialog.with_buttons (_("Open location"),
@@ -363,6 +370,15 @@ namespace Audience {
 
                         d.destroy ();
                         break;
+                    }
+
+                int current_state = mainwindow.get_window ().get_state ();
+                bool currently_maximized = (current_state & Gdk.WindowState.MAXIMIZED) != 0;
+
+                // video is playing and we are maximized, go fullscreen
+                if (video_player.playing && currently_maximized) {
+                    mainwindow.fullscreen ();
+                    fullscreened = true;
                 }
             });
         }
@@ -380,7 +396,7 @@ namespace Audience {
                         mainwindow.destroy ();
                     break;
                 case Gdk.Key.o:
-                    run_open (0);
+                    run_open_file ();
                     break;
                 case Gdk.Key.f:
                 case Gdk.Key.F11:
@@ -443,7 +459,9 @@ namespace Audience {
         }
 
         private void on_window_state_changed (Gdk.WindowState window_state) {
-            if (!((window_state & Gdk.WindowState.MAXIMIZED) == 0) && !fullscreened){
+            bool currently_maximized = (window_state & Gdk.WindowState.MAXIMIZED) == 0;
+
+            if (!currently_maximized && !fullscreened && !welcome.is_visible ()) {
                 mainwindow.fullscreen ();
                 fullscreened = true;
             }
@@ -556,38 +574,40 @@ namespace Audience {
                 settings.last_stopped = 0;
         }
 
-        public void run_open (int type) { //0=file, 2=dvd
-            if (type == 0) {
-                var file = new Gtk.FileChooserDialog (_("Open"), mainwindow, Gtk.FileChooserAction.OPEN,
-                    _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
-                file.select_multiple = true;
+        public void run_open_file () {
+            var file = new Gtk.FileChooserDialog (_("Open"), mainwindow, Gtk.FileChooserAction.OPEN,
+                _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
+            file.select_multiple = true;
 
-                var all_files_filter = new Gtk.FileFilter ();
-                all_files_filter.set_filter_name (_("All files"));
-                all_files_filter.add_pattern ("*");
+            var all_files_filter = new Gtk.FileFilter ();
+            all_files_filter.set_filter_name (_("All files"));
+            all_files_filter.add_pattern ("*");
 
-                var video_filter = new Gtk.FileFilter ();
-                video_filter.set_filter_name (_("Video files"));
-                video_filter.add_mime_type ("video/*");
+            var video_filter = new Gtk.FileFilter ();
+            video_filter.set_filter_name (_("Video files"));
+            video_filter.add_mime_type ("video/*");
 
-                file.add_filter (video_filter);
-                file.add_filter (all_files_filter);
+            file.add_filter (video_filter);
+            file.add_filter (all_files_filter);
 
-                file.set_current_folder (settings.last_folder);
-                if (file.run () == Gtk.ResponseType.ACCEPT) {
-                    welcome.hide ();
-                    clutter.show_all ();
-                    for (var i=1;i<file.get_files ().length ();i++) {
-                        playlist.add_item (file.get_files ().nth_data (i));
-                    }
-                    open_file (file.get_uri ());
-                    bottom_bar.set_preview_uri (file.get_uri ());
-                    settings.last_folder = file.get_current_folder ();
+            file.set_current_folder (settings.last_folder);
+            if (file.run () == Gtk.ResponseType.ACCEPT) {
+                welcome.hide ();
+                clutter.show_all ();
+                foreach (var gfile in file.get_files ()) {
+                    playlist.add_item (gfile);
                 }
-                file.destroy ();
-            } else if (type == 2) {
-                read_first_disk.begin ();
+
+                open_file (file.get_uri ());
+                bottom_bar.set_preview_uri (file.get_uri ());
+                settings.last_folder = file.get_current_folder ();
             }
+
+            file.destroy ();
+        }
+
+        public void run_open_dvd () {
+            read_first_disk.begin ();
         }
 
         private async void read_first_disk () {
@@ -627,11 +647,26 @@ namespace Audience {
                     playlist.add_item (file_ret);
                 });
                 file = playlist.get_first_item ();
+            } else if (is_subtitle (filename) && video_player.playing) {
+                video_player.set_subtitle_uri (filename);
+                return;
             } else {
                 playlist.add_item (file);
             }
 
             play_file (file.get_uri ());
+        }
+
+        private bool is_subtitle (string uri) {
+            if (uri.length < 4 || uri.get_char (uri.length-4) != '.')
+                return false;
+
+            foreach (string ext in SUBTITLE_EXTENSIONS) {
+                if (uri.down ().has_suffix (ext))
+                    return true;
+            }
+
+            return false;
         }
 
         public void play_file (string uri) {

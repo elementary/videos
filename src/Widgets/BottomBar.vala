@@ -1,6 +1,7 @@
 
 public class Audience.Widgets.BottomBar : Gtk.Revealer {
-    public signal void run_open (int type);
+    public signal void run_open_file ();
+    public signal void run_open_dvd ();
     public signal void play_toggled ();
     public signal void unfullscreen ();
     public signal void seeked (double val);
@@ -144,12 +145,12 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
         fil.clicked.connect ( () => {
             playlist_popover.hide ();
-            run_open (0);
+            run_open_file ();
         });
 
         dvd.clicked.connect ( () => {
             playlist_popover.hide ();
-            run_open (2);
+            run_open_dvd ();
         });
 
         net.clicked.connect ( () => {

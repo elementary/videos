@@ -8,90 +8,90 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-11-06 19:57+0530\n"
-"PO-Revision-Date: 2014-04-27 19:58+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-05-01 16:42+0000\n"
+"Last-Translator: Max_ym <kontact.cat@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-28 06:02+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"X-Launchpad-Export-Date: 2014-05-26 06:26+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "No Videos Open"
-msgstr ""
+msgstr "Немає Відкритих Відео"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "Виберіть джерело для початку програвання."
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
 msgid "Open file"
-msgstr ""
+msgstr "Відкрити файл"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
 msgid "Open a saved file."
-msgstr ""
+msgstr "Відкрити збережений файл."
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:95
 msgid "Resume last video"
-msgstr ""
+msgstr "Відновити попереднє відео"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
 msgid "Play from Disc"
-msgstr ""
+msgstr "Відтворити з Диску"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
 msgid "Watch a DVD or open a file from disc"
-msgstr ""
+msgstr "Дивитися DVD або відкрити файл з диску"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:170
 msgid "Open location"
-msgstr ""
+msgstr "Відкрити розташування"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:180
 msgid "Choose location"
-msgstr ""
+msgstr "Виберіть розташування"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:290
 msgid "Add from Harddrive"
-msgstr ""
+msgstr "Додати з Жорсткого Диску"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:292
 msgid "Play a DVD"
-msgstr ""
+msgstr "Грати DVD"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:294
 msgid "Network File"
-msgstr ""
+msgstr "Мережевий Файл"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:550
 msgid "Open"
-msgstr ""
+msgstr "Відкрити"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:555
 msgid "All files"
-msgstr ""
+msgstr "Усі файли"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:559
 msgid "Video files"
-msgstr ""
+msgstr "Відеофайли"
 
 #: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
-msgstr ""
+msgstr "Відтворюйте ваші медіа-файли"
 
 #: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
-msgstr ""
+msgstr "Медіа-програвач"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:527
 msgid "Error"
-msgstr ""
+msgstr "Помилка"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:535
 msgid "Oops! Audience can't play this file!"
-msgstr ""
+msgstr "Ой! Audience не може відтворити цей файл!"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:559
 msgid ""
@@ -102,15 +102,15 @@ msgstr ""
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:565
 #, c-format
 msgid "Audience needs %s to play this file."
-msgstr ""
+msgstr "Потрібен %s, щоб Audience відтворив цей файл."
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:568
 msgid "Don't install"
-msgstr ""
+msgstr "Не встановлювати"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:569
 msgid "Install"
-msgstr ""
+msgstr "Встановити"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:59
 msgid "External Subtitle"
@@ -118,11 +118,11 @@ msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:60
 msgid "Audio"
-msgstr ""
+msgstr "Аудіо"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:61
 msgid "Subtitles"
-msgstr ""
+msgstr "Субтитри"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:62
 msgid "External Subtitles"
@@ -130,16 +130,16 @@ msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:92
 msgid "Playlist"
-msgstr ""
+msgstr "Плейлист"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:93
 msgid "Options"
-msgstr ""
+msgstr "Параметри"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:242
 msgid "Default"
-msgstr ""
+msgstr "Типова"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:255
 msgid "None"
-msgstr ""
+msgstr "Немає"

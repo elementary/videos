@@ -1,16 +1,16 @@
-# Norwegian Bokmal translation for audience
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Hebrew translation for audience
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the audience package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-11-06 19:57+0530\n"
-"PO-Revision-Date: 2014-03-04 10:23+0000\n"
-"Last-Translator: Åka Sikrom <Unknown>\n"
-"Language-Team: Norwegian Bokmal <nb@li.org>\n"
+"PO-Revision-Date: 2014-05-06 11:57+0000\n"
+"Last-Translator: Uri Damsker  אורי דמסקר <ud1955@gmail.com>\n"
+"Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,129 +19,129 @@ msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "No Videos Open"
-msgstr "Ingen videoer åpne."
+msgstr "לא נפתחו מקורות לנגינה"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "Select a source to begin playing."
-msgstr "Velg en kilde for å begynne avspilling."
+msgstr "בחירת מקור לנגינה"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
 msgid "Open file"
-msgstr "Åpne fil"
+msgstr "Open file"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
 msgid "Open a saved file."
-msgstr "Åpne en lagret fil."
+msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:95
 msgid "Resume last video"
-msgstr "Fortsett forrige videoavspilling."
+msgstr "שחזור הוידאו האחרון"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
 msgid "Play from Disc"
-msgstr "Spill av fra plate."
+msgstr "נגינה מתקליטור"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
 msgid "Watch a DVD or open a file from disc"
-msgstr "Se en DVD eller åpne en fil fra en plate."
+msgstr "צפייה ב DVD או פתיחת קובץ מכונן"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:170
 msgid "Open location"
-msgstr "Åpne område."
+msgstr "פתיחת מיקום"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:180
 msgid "Choose location"
-msgstr "Velg område."
+msgstr "בחירת מיקום"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:290
 msgid "Add from Harddrive"
-msgstr "Legg til fra harddisk."
+msgstr "הוספה מכונן קשיח"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:292
 msgid "Play a DVD"
-msgstr "Spill av en DVD."
+msgstr "ניגון DVD"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:294
 msgid "Network File"
-msgstr "Nettverksfil"
+msgstr "קובץ רשת"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:550
 msgid "Open"
-msgstr "Åpne"
+msgstr "פתוחה"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:555
 msgid "All files"
-msgstr "Alle filer"
+msgstr "כל הקבצים"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:559
 msgid "Video files"
-msgstr "Videofiler"
+msgstr "קובצי וידאו"
 
 #: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
-msgstr "Spill av mediene dine"
+msgstr "לנגן את המדיה שלך"
 
 #: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
-msgstr "Medieavspiller"
+msgstr "נגן מדיה"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:527
 msgid "Error"
-msgstr "Feil"
+msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:535
 msgid "Oops! Audience can't play this file!"
-msgstr "Oisann! Audience klarer ikke å spille av denne filen!"
+msgstr "אופס! Audience אינו יכול לנגן קובץ זה!"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:559
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
-"Noen mediefiler krever tillegsprogramvare for å avspilles. Audience kan "
-"installere denne programvaren automatisk."
+"מספר קבצי מדיה צריכים תוכנה נוספת כדי לאפשר נגינה. Audience יכול להתקין "
+"תוכנה זו באופן אוטומטי."
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:565
 #, c-format
 msgid "Audience needs %s to play this file."
-msgstr "Audience trenger %s for å spille av denne filen."
+msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:568
 msgid "Don't install"
-msgstr "Ikke installér."
+msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:569
 msgid "Install"
-msgstr "Installer"
+msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:59
 msgid "External Subtitle"
-msgstr "Ekstern undertekst"
+msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:60
 msgid "Audio"
-msgstr "Lyd"
+msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:61
 msgid "Subtitles"
-msgstr "Undertekster"
+msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:62
 msgid "External Subtitles"
-msgstr "Ekstern undertekst"
+msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:92
 msgid "Playlist"
-msgstr "Spilleliste"
+msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:93
 msgid "Options"
-msgstr "Alternativer"
+msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:242
 msgid "Default"
-msgstr "Standardvalg"
+msgstr ""
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:255
 msgid "None"
-msgstr "Ingen"
+msgstr ""
