@@ -112,6 +112,12 @@ namespace Audience {
             mainbox.pack_start (clutter);
             mainbox.pack_start (welcome);
 
+            var header = new Gtk.HeaderBar ();
+            header.set_show_close_button (true);
+            header.get_style_context ().remove_class ("header-bar");
+
+            mainwindow.set_titlebar (header);
+
             mainwindow.events |= Gdk.EventMask.POINTER_MOTION_MASK;
             mainwindow.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
             mainwindow.events |= Gdk.EventMask.BUTTON_PRESS_MASK;
