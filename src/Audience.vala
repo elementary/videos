@@ -1,3 +1,23 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
+/*-
+ * Copyright (c) 2013-2014 Audience Developers (http://launchpad.net/pantheon-chat)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Authored by: Tom Beckmann <tomjonabc@gmail.com>
+ *              Cody Garver <cody@elementaryos.org>
+ */
 
 /*
 [CCode (cname="gst_navigation_query_parse_commands_length")]
@@ -8,7 +28,6 @@ public extern bool gst_navigation_query_parse_commands_nth (Gst.Query q, uint n,
 namespace Audience {
 
     public Audience.Settings settings; //global space for easier access...
-    public const uint global_opacity = 204;
 
     public class App : Granite.Application {
 
@@ -22,7 +41,7 @@ namespace Audience {
             build_version = Constants.VERSION;
             build_version_info = Constants.VERSION_INFO;
 
-            app_years = "2011-2013";
+            app_years = "2011-2014";
             app_icon = "audience";
             app_launcher = "audience.desktop";
             application_id = "net.launchpad.audience";
@@ -45,10 +64,10 @@ namespace Audience {
         public Audience.Widgets.Playlist  playlist;
         public GtkClutter.Embed           clutter;
         public Granite.Widgets.Welcome    welcome;
-        public Audience.Widgets.VideoPlayer video_player;
 
         public bool fullscreened { get; set; }
 
+        private Audience.Widgets.VideoPlayer video_player;
         private Audience.Widgets.BottomBar bottom_bar;
         private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_bar;
@@ -79,7 +98,7 @@ namespace Audience {
             playlist = new Widgets.Playlist ();
             settings = new Settings ();
             mainwindow = new Gtk.Window ();
-            video_player = new Widgets.VideoPlayer ();
+            video_player = Widgets.VideoPlayer.get_default ();
             video_player.notify["playing"].connect (() => {bottom_bar.toggle_play_pause ();});
 
             clutter = new GtkClutter.Embed ();
@@ -98,8 +117,6 @@ namespace Audience {
 
             bottom_bar = new Widgets.BottomBar ();
             bottom_bar.set_valign (Gtk.Align.END);
-            bottom_bar.run_open_file.connect (() => {run_open_file ();});
-            bottom_bar.run_open_dvd.connect (() => {run_open_dvd ();});
             bottom_bar.play_toggled.connect (() => {video_player.playing = !video_player.playing;});
             bottom_bar.seeked.connect ((val) => {video_player.progress = val;});
             bottom_bar.unfullscreen.connect (() => {toggle_fullscreen ();});
@@ -109,11 +126,11 @@ namespace Audience {
             unfullscreen_bar = bottom_bar.get_unfullscreen_button ();
 
             bottom_actor = new GtkClutter.Actor.with_contents (bottom_bar);
-            bottom_actor.opacity = global_opacity;
+            bottom_actor.opacity = GLOBAL_OPACITY;
             stage.add_child (bottom_actor);
 
             unfullscreen_actor = new GtkClutter.Actor.with_contents (unfullscreen_bar);
-            unfullscreen_actor.opacity = global_opacity;
+            unfullscreen_actor.opacity = GLOBAL_OPACITY;
             stage.add_child (unfullscreen_actor);
 
             setup_welcome_screen ();
@@ -171,8 +188,8 @@ namespace Audience {
             }
 
             /*events*/
-            video_player.text_tags_changed.connect (bottom_bar.preferences_popover.setup_text_setup);
-            video_player.audio_tags_changed.connect (bottom_bar.preferences_popover.setup_audio_setup);
+            video_player.text_tags_changed.connect (bottom_bar.preferences_popover.setup_text);
+            video_player.audio_tags_changed.connect (bottom_bar.preferences_popover.setup_audio);
             video_player.progression_changed.connect ((current_time, total_time) => {
                 bottom_bar.set_progression_time (current_time, total_time);
             });
@@ -347,8 +364,8 @@ namespace Audience {
                     default:
                         var d = new Gtk.Dialog.with_buttons (_("Open location"),
                             this.mainwindow, Gtk.DialogFlags.MODAL,
-                            _("_Cancel"), Gtk.ResponseType.CANCEL,
-                            _("_OK"),     Gtk.ResponseType.OK);
+                            _("Cancel"), Gtk.ResponseType.CANCEL,
+                            _("OK"),     Gtk.ResponseType.OK);
 
                         var grid  = new Gtk.Grid ();
                         var entry = new Gtk.Entry ();
@@ -415,10 +432,10 @@ namespace Audience {
                     video_player.progress += 0.05;
                     break;
                 case Gdk.Key.a:
-                    next_audio ();
+                    bottom_bar.preferences_popover.next_audio ();
                     break;
                 case Gdk.Key.s:
-                    next_text ();
+                    bottom_bar.preferences_popover.next_text ();
                     break;
                 default:
                     break;
@@ -535,36 +552,6 @@ namespace Audience {
             return false;
         }
 
-        public void next_audio () {
-            int n_audio;
-            video_player.playbin.get ("n-audio", out n_audio);
-            int current = video_player.current_audio;
-            if (n_audio > 1) {
-                if (current < n_audio - 1) {
-                    current += 1;
-                } else {
-                    current = 0;
-                }
-            }
-
-            bottom_bar.preferences_popover.languages.active_id = current.to_string ();
-        }
-
-        public void next_text () {
-            int n_text;
-            video_player.playbin.get ("n-text", out n_text);
-            int current = int.parse (bottom_bar.preferences_popover.subtitles.active_id);
-            if (n_text > 1) {
-                if (current < n_text - 1) {
-                    current  += 1;
-                } else {
-                    current = -1;
-                }
-            }
-
-            bottom_bar.preferences_popover.subtitles.active_id = current.to_string ();
-        }
-
         private inline void save_last_played_videos () {
             playlist.save_playlist_config ();
 
@@ -594,12 +581,7 @@ namespace Audience {
             if (file.run () == Gtk.ResponseType.ACCEPT) {
                 welcome.hide ();
                 clutter.show_all ();
-                foreach (var gfile in file.get_files ()) {
-                    playlist.add_item (gfile);
-                }
-
                 open_file (file.get_uri ());
-                bottom_bar.set_preview_uri (file.get_uri ());
                 settings.last_folder = file.get_current_folder ();
             }
 
@@ -672,6 +654,7 @@ namespace Audience {
         public void play_file (string uri) {
             debug ("Opening %s", uri);
             video_player.uri = uri;
+            bottom_bar.set_preview_uri (uri);
 
             mainwindow.title = get_title (uri);
             if (!settings.playback_wait)
@@ -681,8 +664,8 @@ namespace Audience {
             recent_manager.add_item (uri);
 
             /*subtitles/audio tracks*/
-            bottom_bar.preferences_popover.setup_setup ("text");
-            bottom_bar.preferences_popover.setup_setup ("audio");
+            bottom_bar.preferences_popover.setup_text ();
+            bottom_bar.preferences_popover.setup_audio ();
         }
 
         //the application started

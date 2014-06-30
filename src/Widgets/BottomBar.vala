@@ -1,7 +1,24 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
+/*-
+ * Copyright (c) 2013-2014 Audience Developers (http://launchpad.net/pantheon-chat)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Authored by: Corentin Noël <corentin@elementaryos.org>
+ */
 
 public class Audience.Widgets.BottomBar : Gtk.Revealer {
-    public signal void run_open_file ();
-    public signal void run_open_dvd ();
     public signal void play_toggled ();
     public signal void unfullscreen ();
     public signal void seeked (double val);
@@ -14,14 +31,14 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     private Gtk.Button play_button;
     private Gtk.Button preferences_button;
     private Gtk.Revealer unfullscreen_revealer;
-    private Gtk.Popover playlist_popover;
+    private PlaylistPopover playlist_popover;
     private bool is_playing = false;
     private uint hiding_timer = 0;
 
     public BottomBar () {
         transition_type = Gtk.RevealerTransitionType.CROSSFADE;
         var main_actionbar = new Gtk.ActionBar ();
-        main_actionbar.opacity = global_opacity;
+        main_actionbar.opacity = GLOBAL_OPACITY;
 
         play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON);
         play_button.tooltip_text = _("Play");
@@ -29,25 +46,25 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
         var playlist_button = new Gtk.Button.from_icon_name ("view-list-symbolic", Gtk.IconSize.BUTTON);
         playlist_button.tooltip_text = _("Playlist");
-        playlist_button.clicked.connect (() => {playlist_popover.show_all ();playlist_popover.queue_resize ();});
+        playlist_button.clicked.connect (() => {playlist_popover.show_all (); playlist_popover.queue_resize ();});
 
         preferences_button = new Gtk.Button.from_icon_name ("document-properties-symbolic", Gtk.IconSize.BUTTON);
         preferences_button.tooltip_text = _("Settings");
-        preferences_button.clicked.connect (() => {preferences_popover.show_all ();playlist_popover.queue_resize ();});
+        preferences_button.clicked.connect (() => {preferences_popover.show_all (); preferences_popover.queue_resize ();});
 
         time_widget = new TimeWidget ();
         time_widget.seeked.connect ((val) => {seeked (val);});
 
-        playlist_popover = new Gtk.Popover (playlist_button);
-        preferences_popover = new SettingsPopover (preferences_button);
+        playlist_popover = new PlaylistPopover ();
+        playlist_popover.relative_to = playlist_button;
+        preferences_popover = new SettingsPopover ();
+        preferences_popover.relative_to = preferences_button;
 
         main_actionbar.pack_start (play_button);
         main_actionbar.set_center_widget (time_widget);
         main_actionbar.pack_end (preferences_button);
         main_actionbar.pack_end (playlist_button);
         add (main_actionbar);
-
-        pupulate_playlist_popover ();
 
         notify["hovered"].connect (() => {
             if (hovered == false) {
@@ -77,7 +94,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
     public Gtk.Revealer get_unfullscreen_button () {
         unfullscreen_revealer = new Gtk.Revealer ();
-        unfullscreen_revealer.opacity = global_opacity;
+        unfullscreen_revealer.opacity = GLOBAL_OPACITY;
         unfullscreen_revealer.get_style_context ().add_class ("header-bar");
         unfullscreen_revealer.transition_type = Gtk.RevealerTransitionType.CROSSFADE;
         var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic", Gtk.IconSize.BUTTON);
@@ -112,9 +129,9 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
     public override void get_preferred_width (out int minimum_width, out int natural_width) {
         base.get_preferred_width (out minimum_width, out natural_width);
-
         if (parent.get_window () == null)
             return;
+
         var width = parent.get_window ().get_width ();
         if (width > 0 && width >= minimum_width) {
             natural_width = width;
@@ -123,54 +140,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
     public void set_progression_time (double current_time, double total_time) {
         time_widget.set_progression_time (current_time, total_time);
-    }
-
-    private void pupulate_playlist_popover () {
-        playlist_popover.opacity = global_opacity;
-        var grid = new Gtk.Grid ();
-        grid.row_spacing = 6;
-        grid.column_spacing = 12;
-        grid.margin = 6;
-
-        var fil   = new Gtk.Button.with_label (_("Add from Harddrive…"));
-        fil.image = new Gtk.Image.from_icon_name ("document-open", Gtk.IconSize.DIALOG);
-        var dvd   = new Gtk.Button.with_label (_("Play a DVD…"));
-        dvd.image = new Gtk.Image.from_icon_name ("media-cdrom", Gtk.IconSize.DIALOG);
-        var net   = new Gtk.Button.with_label (_("Network File…"));
-        net.image = new Gtk.Image.from_icon_name ("internet-web-browser", Gtk.IconSize.DIALOG);
-
-        var playlist_scrolled = new Gtk.ScrolledWindow (null, null);
-        var app = ((Audience.App) GLib.Application.get_default ());
-        playlist_scrolled.add (app.playlist);
-
-        fil.clicked.connect ( () => {
-            playlist_popover.hide ();
-            run_open_file ();
-        });
-
-        dvd.clicked.connect ( () => {
-            playlist_popover.hide ();
-            run_open_dvd ();
-        });
-
-        net.clicked.connect ( () => {
-            /*var entry = new Gtk.Entry ();
-            entry.secondary_icon_stock = Gtk.Stock.OPEN;
-            entry.icon_release.connect ( (pos, e) => {
-                open_file (entry.text);
-                video_player.playing = true;
-                pop.destroy ();
-            });
-            box.remove (net);
-            box.reorder_child (entry, 2);
-            entry.show ();*/
-        });
-
-        grid.attach (playlist_scrolled, 0, 0, 2, 1);
-        grid.attach (fil, 0, 1, 1, 1);
-        grid.attach (dvd, 1, 1, 1, 1);
-        //grid.add (net);
-        playlist_popover.add (grid);
     }
 
     private void set_timeout () {

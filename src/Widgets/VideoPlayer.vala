@@ -1,3 +1,24 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
+/*-
+ * Copyright (c) 2013-2014 Audience Developers (http://launchpad.net/pantheon-chat)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Authored by: Tom Beckmann <tomjonabc@gmail.com>
+ *              Corentin Noël <corentin@elementaryos.org>
+ */
+
 using Clutter;
 
 enum PlayFlags {
@@ -16,6 +37,13 @@ enum PlayFlags {
 
 namespace Audience.Widgets {
     public class VideoPlayer : Actor {
+        private static VideoPlayer? video_player = null;
+        public static VideoPlayer get_default () {
+            if (video_player == null)
+                video_player = new VideoPlayer ();
+            return video_player;
+        }
+
         public bool at_end;
 
         bool _playing;
@@ -149,7 +177,7 @@ namespace Audience.Widgets {
         public signal void progression_changed (double current_time, double total_time);
         public signal void external_subtitle_changed (string? uri);
         
-        public VideoPlayer () {
+        private VideoPlayer () {
             video = new Clutter.Texture ();
 
             dynamic Gst.Element video_sink = Gst.ElementFactory.make ("cluttersink", "source");

@@ -40,6 +40,7 @@ vala_precompile (VALA_C ${EXEC_NAME}
     Widgets/PreviewPopover.vala
     Widgets/TimeWidget.vala
     Widgets/Playlist.vala
+    Widgets/PlaylistPopover.vala
     Widgets/VideoPlayer.vala
     desktop-launcher.vala
   PACKAGES
