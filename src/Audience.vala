@@ -458,19 +458,13 @@ namespace Audience {
                 height = (int)((double)video_h / video_w * width);
             }
 
-            var geom = Gdk.Geometry ();
-            if (settings.keep_aspect) {
-                geom.min_aspect = geom.max_aspect = video_w / (double)video_h;
-            } else {
-                geom.min_aspect = 0.0;
-                geom.max_aspect = 99999999.0;
-            }
-
             mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
                 monitor.height / 2 - height / 2 + monitor.y,
                 width, height);
 
             if (settings.keep_aspect) {
+                var geom = Gdk.Geometry ();
+                geom.min_aspect = geom.max_aspect = video_w / (double)video_h;
                 mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
             }
         }
@@ -524,8 +518,7 @@ namespace Audience {
         private int old_h = - 1;
         private int old_w = - 1;
         private void on_size_allocate (Gtk.Allocation alloc) {
-            if (alloc.width != old_w ||
-                alloc.height != old_h) {
+            if (alloc.width != old_w || alloc.height != old_h) {
                 if (video_player.relayout ()) {
                     old_w = alloc.width;
                     old_h = alloc.height;
@@ -632,11 +625,12 @@ namespace Audience {
             } else if (is_subtitle (filename) && video_player.playing) {
                 video_player.set_subtitle_uri (filename);
                 return;
+            } else if (video_player.playing == true) {
+                playlist.add_item (file);
             } else {
                 playlist.add_item (file);
+                play_file (file.get_uri ());
             }
-
-            play_file (file.get_uri ());
         }
 
         private bool is_subtitle (string uri) {
@@ -677,9 +671,6 @@ namespace Audience {
         public override void open (File[] files, string hint) {
             if (mainwindow == null)
                 activate ();
-
-            foreach (var file in files)
-                playlist.add_item (file);
 
             open_file (files[0].get_path ());
             welcome.hide ();
