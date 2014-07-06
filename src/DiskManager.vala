@@ -27,6 +27,7 @@ public class Audience.DiskManager : GLib.Object {
         if (disk_manager == null) {
             disk_manager = new DiskManager ();
         }
+
         return disk_manager;
     }
 
@@ -38,21 +39,11 @@ public class Audience.DiskManager : GLib.Object {
         volumes = monitor.get_volumes ();
 
         monitor.drive_changed.connect ((drive) => {
-            stdout.printf ("Drive changed: %s\n", drive.get_name ());
-            if (drive.is_media_check_automatic ()) {
-                if (drive.has_media ()) {
-                    
-                }
-            }
+            debug ("Drive changed: %s\n", drive.get_name ());
         });
 
         monitor.drive_connected.connect ((drive) => {
             debug ("Drive connected: %s", drive.get_name ());
-            if (drive.is_media_check_automatic ()) {
-                if (drive.has_media ()) {
-                    
-                }
-            }
         });
 
         monitor.drive_disconnected.connect ((drive) => {
@@ -68,22 +59,12 @@ public class Audience.DiskManager : GLib.Object {
         });
 
         monitor.volume_added.connect ((volume) => {
-            if (volume.get_drive ().is_media_check_automatic ()) {
-                if (volume.get_drive ().has_media ()) {
-                    volumes.append (volume);
-                    volume_found (volume);
-                }
-            }
+            check_for_volume (volume);
             debug ("Volume added: %s", volume.get_name ());
         });
 
         monitor.volume_changed.connect ((volume) => {
-            if (volume.get_drive ().is_media_check_automatic ()) {
-                if (volume.get_drive ().has_media ()) {
-                    volumes.append (volume);
-                    volume_found (volume);
-                }
-            }
+            check_for_volume (volume);
             debug ("Volume changed: %s", volume.get_name ());
         });
 
@@ -93,8 +74,25 @@ public class Audience.DiskManager : GLib.Object {
             debug ("Volume removed: %s", volume.get_name ());
         });
     }
-    
+
     public GLib.List<Volume> get_volumes () {
         return volumes.copy ();
+    }
+
+    private void check_for_volume (Volume volume) {
+        if (volume.get_drive ().is_media_check_automatic () == true) {
+            if (volume.get_drive ().has_media () == true) {
+                var root = volume.get_activation_root ();
+                if (root != null) {
+                    var video = root.get_child ("VIDEO_TS");
+                    var bdmv = root.get_child ("BDMV");
+                    var audio = root.get_child ("AUDIO_TS");
+                    if (audio.query_exists () == true || video.query_exists () == true || bdmv.query_exists () == true) {
+                        volumes.append (volume);
+                        volume_found (volume);
+                    }
+                }
+            }
+        }
     }
 }
