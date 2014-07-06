@@ -152,11 +152,13 @@ namespace Audience.Widgets {
             });
 
             uint i = 0;
-            //settings.last_played_videos = new string[list.length ()];
+            var videos = new string[list.length ()];
             foreach (var filename in list) {
-                settings.last_played_videos[i] = filename;
+                videos[i] = filename;
                 i++;
             }
+
+            settings.last_played_videos = videos;
         }
 
     }

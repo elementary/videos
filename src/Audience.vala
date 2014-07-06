@@ -238,13 +238,17 @@ namespace Audience {
                         (int)event.x_root, (int)event.y_root, event.time);
                 }
 
-                return update_pointer_position (event.y, event.window.get_height ());
+                Gtk.Allocation allocation;
+                clutter.get_allocation (out allocation);
+                return update_pointer_position (event.y, allocation.height);
             });
 
             bottom_bar.time_widget.slider_motion_event.connect ((event) => {
                 int x, y;
                 bottom_bar.translate_coordinates (mainwindow, (int)event.x, (int)event.y, out x, out y);
-                update_pointer_position (y, mainwindow.get_window ().get_height ());
+                Gtk.Allocation allocation;
+                clutter.get_allocation (out allocation);
+                update_pointer_position (y, allocation.height);
             });
 
             mainwindow.button_press_event.connect ((event) => {
@@ -268,14 +272,17 @@ namespace Audience {
             mainwindow.leave_notify_event.connect ((event) => {
                 if (event.window == null)
                     return false;
+
+                Gtk.Allocation allocation;
+                clutter.get_allocation (out allocation);
                 if (event.x == event.window.get_width ())
-                    return update_pointer_position (event.window.get_height (), event.window.get_height ());
+                    return update_pointer_position (event.window.get_height (), allocation.height);
                 else if (event.x == 0)
-                    return update_pointer_position (event.window.get_height (), event.window.get_height ());
-                return update_pointer_position (event.y, event.window.get_height ());
+                    return update_pointer_position (event.window.get_height (), allocation.height);
+                return update_pointer_position (event.y, allocation.height);
             });
             //shortcuts
-            this.mainwindow.key_press_event.connect ( (e) => {
+            this.mainwindow.key_press_event.connect ((e) => {
                 return on_key_press_event (e);
             });
 
@@ -283,7 +290,7 @@ namespace Audience {
             mainwindow.destroy.connect (() => {on_destroy ();});
 
             //playlist wants us to open a file
-            playlist.play.connect ( (file) => {
+            playlist.play.connect ((file) => {
                 this.play_file (file.get_uri ());
             });
 
@@ -295,20 +302,27 @@ namespace Audience {
                 }
             });
 
-            stage.notify["allocation"].connect (() => {
-                bottom_actor.width = stage.get_width ();
-                bottom_bar.queue_resize ();
-                bottom_actor.y = stage.get_height () - bottom_bar_size;
-                unfullscreen_actor.y = 6;
-                unfullscreen_actor.x = stage.get_width () - bottom_bar_size - 6;
-            });
+            stage.notify["allocation"].connect (() => {allocate_bottombar ();});
 
-            if (settings.resume_videos) {
+            if (settings.resume_videos == true && settings.last_played_videos.length > 0) {
+                welcome.hide ();
+                clutter.show_all ();
                 foreach (var filename in settings.last_played_videos) {
-                    var file = File.new_for_commandline_arg (filename);
-                    playlist.add_item (file);
+                    open_file (filename);
                 }
+
+                video_player.playing = false;
+                video_player.progress = settings.last_stopped;
+                video_player.playing = true;
             }
+        }
+
+        private void allocate_bottombar () {
+            bottom_actor.width = stage.get_width ();
+            bottom_bar.queue_resize ();
+            bottom_actor.y = stage.get_height () - bottom_bar_size;
+            unfullscreen_actor.y = 6;
+            unfullscreen_actor.x = stage.get_width () - bottom_bar_size - 6;
         }
 
         private void setup_welcome_screen () {
@@ -317,7 +331,7 @@ namespace Audience {
 
             //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
             var filename = settings.last_played_videos.length > 0 ? settings.last_played_videos[0] : "";
-            var last_file = File.new_for_uri (filename);
+            var last_file = File.new_for_path (filename);
             welcome.append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
             bool show_last_file = settings.last_played_videos.length > 0;
             if (last_file.query_exists () == false) {
@@ -496,21 +510,6 @@ namespace Audience {
             if (video_player.uri == null || video_player.uri == "" || video_player.uri.has_prefix ("dvd://"))
                 return;
             if (!video_player.at_end) {
-                /*for (var i = 0; i < last_played_videos.length (); i += 2){
-                    if (video_player.uri == last_played_videos.nth_data (i)){
-                        last_played_videos.nth (i+1).data = video_player.progress.to_string ();
-                        save_last_played_videos ();
-
-                        return;
-                    }
-                }
-                //not in list yet, insert at start
-                last_played_videos.insert (video_player.uri, 0);
-                last_played_videos.insert (video_player.progress.to_string (), 1);
-                if (last_played_videos.length () > 10) {
-                    last_played_videos.delete_link (last_played_videos.nth (10));
-                    last_played_videos.delete_link (last_played_videos.nth (11));
-                }*/
                 save_last_played_videos ();
             }
         }
@@ -527,6 +526,7 @@ namespace Audience {
         }
 
         private bool update_pointer_position (double y, int window_height) {
+            allocate_bottombar ();
             mainwindow.get_window ().set_cursor (null);
             if (bottom_bar_size == 0) {
                 int minimum = 0;
@@ -536,7 +536,7 @@ namespace Audience {
             if (bottom_bar.child_revealed == false)
                 bottom_bar.set_reveal_child (true);
 
-            if (y >= window_height - bottom_bar_size && y < window_height) {
+            if (y >= (window_height - bottom_bar_size) && y < window_height) {
                 bottom_bar.hovered = true;
             } else {
                 bottom_bar.hovered = false;
@@ -587,6 +587,8 @@ namespace Audience {
 
         private async void read_first_disk () {
             var disk_manager = DiskManager.get_default ();
+            if (disk_manager.get_volumes ().length () <= 0)
+                return;
             var volume = disk_manager.get_volumes ().nth_data (0);
             if (volume.can_mount () == true && volume.get_mount ().can_unmount () == false) {
                 try {
@@ -595,6 +597,7 @@ namespace Audience {
                     critical (e.message);
                 }
             }
+
             var root = volume.get_mount ().get_default_location ();
             open_file (root.get_uri (), true);
             video_player.playing = true;
@@ -621,10 +624,10 @@ namespace Audience {
                 Audience.recurse_over_dir (file, (file_ret) => {
                     playlist.add_item (file_ret);
                 });
+
                 file = playlist.get_first_item ();
             } else if (is_subtitle (filename) && video_player.playing) {
                 video_player.set_subtitle_uri (filename);
-                return;
             } else if (video_player.playing == true) {
                 playlist.add_item (file);
             } else {
@@ -672,9 +675,11 @@ namespace Audience {
             if (mainwindow == null)
                 activate ();
 
-            open_file (files[0].get_path ());
             welcome.hide ();
             clutter.show_all ();
+            foreach (var file in files) {
+                open_file (file.get_path ());
+            }
         }
     }
 }
