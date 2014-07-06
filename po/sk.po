@@ -1,147 +1,147 @@
-# Latvian translation for audience
-# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# Slovak translation for audience
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the audience package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-11-06 19:57+0530\n"
-"PO-Revision-Date: 2014-06-29 18:20+0000\n"
-"Last-Translator: Matiss Roberts Treinis <matiss@marolind.com>\n"
-"Language-Team: Latvian <lv@li.org>\n"
+"PO-Revision-Date: 2014-06-22 13:16+0000\n"
+"Last-Translator: Milan Slovák <Unknown>\n"
+"Language-Team: Slovak <sk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-30 06:00+0000\n"
-"X-Generator: Launchpad (build 17077)\n"
+"X-Launchpad-Export-Date: 2014-06-23 06:00+0000\n"
+"X-Generator: Launchpad (build 17065)\n"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "No Videos Open"
-msgstr "Nav atvērtu video"
+msgstr "Nie je otvorené žiadne video"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
 msgid "Select a source to begin playing."
-msgstr "Izvēlies avotu lai sāktu atskaņošanu"
+msgstr "Vyberte zdroj ktorý chcete prehrať."
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
 msgid "Open file"
-msgstr "Atvērt failu"
+msgstr "Otvoriť súbor"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
 msgid "Open a saved file."
-msgstr "Atvērt saglabātu failu."
+msgstr "Otvoriť uložený súbor."
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:95
 msgid "Resume last video"
-msgstr "Atsākt pēdējo video"
+msgstr "Obnoviť posledné video"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
 msgid "Play from Disc"
-msgstr "Atskaņot no diska"
+msgstr "Prehrať z disku"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
 msgid "Watch a DVD or open a file from disc"
-msgstr "Skaties DVD vai atver failu no diska"
+msgstr "Pozrieť DVD alebo otvoriť súbor uložený na disku"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:170
 msgid "Open location"
-msgstr "Atvērt atrašanās vietu"
+msgstr "Otvoriť umiestnenie"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:180
 msgid "Choose location"
-msgstr "Izvēlēties atrašanās vietu"
+msgstr "Vyberte umiestnenie"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:290
 msgid "Add from Harddrive"
-msgstr "Pievienot no cietā diska"
+msgstr "Pridať z disku"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:292
 msgid "Play a DVD"
-msgstr "Atskaņot DVD"
+msgstr "Prehrať DVD"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:294
 msgid "Network File"
-msgstr "Tīkla Fails"
+msgstr "Súbor zo siete"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:550
 msgid "Open"
-msgstr "Atvērt"
+msgstr "Otvoriť"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:555
 msgid "All files"
-msgstr "Visi faili"
+msgstr "Všetky súbory"
 
 #: /home/voldyman/x/audience/po/../Audience/Audience.vala:559
 msgid "Video files"
-msgstr "Video faili"
+msgstr "Video súbory"
 
 #: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:5
 msgid "Play your media"
-msgstr "Atskaņot savu mediju"
+msgstr "Prehrať vaše media"
 
 #: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:6
 msgid "Media Player"
-msgstr "Mediju atskaņotājs"
+msgstr "Prehrávač multimedií"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:527
 msgid "Error"
-msgstr "Kļūda"
+msgstr "Chyba"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:535
 msgid "Oops! Audience can't play this file!"
-msgstr "Oops! Audience nespēj atskaņot šo failu!"
+msgstr "Fíha! Audience nedokáže prehrať tento súbor!"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:559
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
-"Dažu mediju atskaņošanai nepieciešama papildus programmatūra. Audience var "
-"uzstādīt šo programmatūru automātiski."
+"Niektoré súbory vyžadujú daľší softvér pre prehrávanie. Audience nemôže "
+"tento softvér nainštalovať automaticky."
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:565
 #, c-format
 msgid "Audience needs %s to play this file."
-msgstr "Audience nepieciešams %s lai atskaņotu šo failu."
+msgstr "Audience požaduje %s na prehranie tohto súboru."
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:568
 msgid "Don't install"
-msgstr "Neuzstādīt"
+msgstr "Neinštalovať"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:569
 msgid "Install"
-msgstr "Uzstādīt"
+msgstr "Inštalovať"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:59
 msgid "External Subtitle"
-msgstr "Ārējie subtitri"
+msgstr "Externé titulky"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:60
 msgid "Audio"
-msgstr "Audio"
+msgstr "Zvuk"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:61
 msgid "Subtitles"
-msgstr "Subtitri"
+msgstr "Titulky"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:62
 msgid "External Subtitles"
-msgstr "Ārējie subtitri"
+msgstr "Externé titulky"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:92
 msgid "Playlist"
-msgstr "Atskaņošanas saraksts"
+msgstr "Zoznam skladieb"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:93
 msgid "Options"
-msgstr "Opcijas"
+msgstr "Nastavenia"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:242
 msgid "Default"
-msgstr "Noklusējuma"
+msgstr "Predvolené"
 
 #: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:255
 msgid "None"
-msgstr "Neviens"
+msgstr "Žiadne"
