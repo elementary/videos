@@ -14,6 +14,8 @@ set (VERSION "0.1")
 set (VERSION_INFO "The Red Comet")
 
 add_definitions (-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
+
+# Comment this out to enable C compiler warnings
 add_definitions (-w)
 
 
