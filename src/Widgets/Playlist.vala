@@ -1,93 +1,98 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
+/*-
+ * Copyright (c) 2013-2014 Audience Developers (http://launchpad.net/pantheon-chat)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Authored by: Tom Beckmann <tomjonabc@gmail.com>
+ */
 
 namespace Audience.Widgets {
-
     public class Playlist : Gtk.TreeView {
-
-        /*the player is requested to play path*/
+        // the player is requested to play path
         public signal void play (File path);
 
-        private int                 current;
-        private Gtk.ListStore       playlist;
+        private enum Columns {
+            PLAYING,
+            TITLE,
+            FILENAME,
+            N_COLUMNS
+        }
+
+        private int current = 0;
+        private Gtk.ListStore playlist;
 
         public Playlist () {
-            this.current  = 0;
-            this.playlist = new Gtk.ListStore (4, typeof (Gdk.Pixbuf),  /*playing*/
-                                                  typeof (Gdk.Pixbuf),  /*icon*/
-                                                  typeof (string),      /*title*/
-                                                  typeof (string));     /*filename*/
+            this.playlist = new Gtk.ListStore (Columns.N_COLUMNS, typeof (Icon), typeof (string), typeof (string));
             this.model = this.playlist;
             this.expand = true;
             this.headers_visible = false;
+            this.activate_on_single_click = true;
+            this.can_focus = false;
+            get_selection ().mode = Gtk.SelectionMode.NONE;
 
             var text_render = new Gtk.CellRendererText ();
             text_render.ellipsize = Pango.EllipsizeMode.END;
 
-            this.insert_column_with_attributes (-1, "", new Gtk.CellRendererPixbuf (),
-                "pixbuf", 0);
-            this.insert_column_with_attributes (-1, "", new Gtk.CellRendererPixbuf (),
-                "pixbuf", 1);
-            this.insert_column_with_attributes (-1, "", text_render, "text", 2);
+            this.insert_column_with_attributes (-1, "Playing", new Gtk.CellRendererPixbuf (), "gicon", Columns.PLAYING);
+            this.insert_column_with_attributes (-1, "Title", text_render, "text", Columns.TITLE);
 
-            this.row_activated.connect ( (path ,col) => {
+            this.row_activated.connect ((path ,col) => {
                 Gtk.TreeIter iter;
                 playlist.get_iter (out iter, path);
                 string filename;
-                playlist.get (iter, 3, out filename);
+                playlist.get (iter, Columns.FILENAME, out filename);
                 play (File.new_for_commandline_arg (filename));
                 change_current_symbol (iter);
                 this.current = int.parse (path.to_string ());
             });
 
             this.reorderable = true;
-            this.model.row_inserted.connect ( (path, iter) => {
+            this.model.row_inserted.connect ((path, iter) => {
                 Gtk.TreeIter it;
                 playlist.get_iter (out it, path);
                 Gdk.Pixbuf playing;
-                playlist.get (it, 0, out playing);
+                playlist.get (it, Columns.PLAYING, out playing);
                 if (playing != null) //if playing is not null it's the current item
                     this.current = int.parse (path.to_string ());
             });
-
-            var css_fix = new Gtk.CssProvider ();
-            try {
-                css_fix.load_from_data ("
-                    * {
-                        background-image:none;
-                        background-color:@transparent;
-                        border-color:@transparent;
-                    }", -1);
-            } catch (Error e) { warning (e.message); }
-            this.get_style_context ().add_provider (css_fix, 20000);
         }
 
         private inline void change_current_symbol (Gtk.TreeIter new_item) {
-            try{
-                playlist.set (new_item, 0, Gtk.IconTheme.get_default ().
-                    load_icon ("media-playback-start-symbolic", 16, 0));
-            }catch (Error e) { warning (e.message); }
             Gtk.TreeIter old_item;
             playlist.get_iter_from_string (out old_item, this.current.to_string ());
-            playlist.set (old_item, 0, null);
+            playlist.set (old_item, Columns.PLAYING, null);
+            playlist.set (new_item, Columns.PLAYING, new ThemedIcon ("media-playback-start-symbolic"));
         }
 
         public void next () {
-            Gtk.TreeIter it;
-            if (playlist.get_iter_from_string (out it, (this.current + 1).to_string ())){
+            Gtk.TreeIter iter;
+            if (playlist.get_iter_from_string (out iter, (this.current + 1).to_string ())){
                 string filename;
-                playlist.get (it, 3, out filename);
-                change_current_symbol (it);
+                playlist.get (iter, Columns.FILENAME, out filename);
+                change_current_symbol (iter);
                 current++;
                 play (File.new_for_commandline_arg (filename));
             }
         }
 
         public void previous () {
-            Gtk.TreeIter it;
-            if (playlist.get_iter_from_string (out it, (this.current - 1).to_string ())){
+            Gtk.TreeIter iter;
+            if (playlist.get_iter_from_string (out iter, (this.current - 1).to_string ())){
                 string filename;
-                playlist.get (it, 3, out filename);
-                change_current_symbol (it);
+                playlist.get (iter, Columns.FILENAME, out filename);
+                change_current_symbol (iter);
                 current--;
                 play (File.new_for_commandline_arg (filename));
             }
@@ -95,35 +100,65 @@ namespace Audience.Widgets {
 
         public void add_item (File path) {
             Gtk.TreeIter iter;
-            Gdk.Pixbuf pix = null; //may becoming the thumb...
 
-            Gdk.Pixbuf? playing = null;
+            Icon? playing = null;
             Gtk.TreeIter dummy;
-            if (!playlist.get_iter_first (out dummy)){ //first item
-                try {
-                    playing = Gtk.IconTheme.get_default ().lookup_icon ("media-playback-start-symbolic",
-                        16, 0).load_symbolic ({0, 0, 0, 255}, null, null, null);
-                } catch (Error e) { warning (e.message); }
+            if (!playlist.get_iter_first (out dummy)){
+                playing = new ThemedIcon ("media-playback-start-symbolic");
             } else {
                 playing = null;
             }
 
             playlist.append (out iter);
-            playlist.set (iter, 0, playing, 1, pix,
-                                2, Audience.get_title (path.get_basename ()), 3, path.get_path ());
+            playlist.set (iter, Columns.PLAYING, playing,
+                                Columns.TITLE, Audience.get_title (path.get_basename ()),
+                                Columns.FILENAME, path.get_path ());
         }
 
         public void remove_item (File path) {
             /*not needed up to now*/
         }
+
         public File? get_first_item () {
-            Gtk.TreeIter it;
-            if (playlist.get_iter_from_string (out it, 0.to_string ())){
+            Gtk.TreeIter iter;
+            if (playlist.get_iter_first (out iter)){
                 string filename;
-                playlist.get (it, 3, out filename);
+                playlist.get (iter, Columns.FILENAME, out filename);
                 return File.new_for_commandline_arg (filename);
             }
             return null;
+        }
+
+        public List<string> get_all_items () {
+            var list = new List<string> ();
+            playlist.foreach ((model, path, iter) => {
+                Value filename;
+                playlist.get_value (iter, Columns.FILENAME, out filename);
+                string name = filename.get_string ();
+                list.append (name);
+                return false;
+            });
+            return list.copy ();
+        }
+
+        public void save_playlist_config () {
+            var list = new List<string> ();
+            playlist.foreach ((model, path, iter) => {
+                Value filename;
+                playlist.get_value (iter, Columns.FILENAME, out filename);
+                string name = filename.get_string ();
+                list.append (name);
+                return false;
+            });
+
+            uint i = 0;
+            var videos = new string[list.length ()];
+            foreach (var filename in list) {
+                videos[i] = filename;
+                i++;
+            }
+
+            settings.last_played_videos = videos;
         }
 
     }
