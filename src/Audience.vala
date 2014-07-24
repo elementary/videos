@@ -636,6 +636,24 @@ namespace Audience {
             }
         }
 
+        private string? get_subtitle_for_uri (string uri) {
+            string without_ext;
+            int last_dot = uri.last_index_of (".", 0);
+            int last_slash = uri.last_index_of ("/", 0);
+            
+            if (last_dot < last_slash) //we dont have extension
+                without_ext = uri;
+            else
+                without_ext = uri.slice (0, last_dot);
+            
+            foreach (string ext in SUBTITLE_EXTENSIONS){
+                string sub_uri = without_ext + "." + ext;
+                if (File.new_for_uri (sub_uri).query_exists ())
+                    return sub_uri;
+            }
+            return null;
+        }
+
         private bool is_subtitle (string uri) {
             if (uri.length < 4 || uri.get_char (uri.length-4) != '.')
                 return false;
@@ -652,6 +670,10 @@ namespace Audience {
             debug ("Opening %s", uri);
             video_player.uri = uri;
             bottom_bar.set_preview_uri (uri);
+
+            string? sub_uri = get_subtitle_for_uri (uri);
+            if (sub_uri != null)
+                video_player.set_subtitle_uri (sub_uri);
 
             mainwindow.title = get_title (uri);
             if (!settings.playback_wait)
