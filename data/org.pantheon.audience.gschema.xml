@@ -20,6 +20,11 @@
             <summary>List of last played videos</summary>
             <description>A list of the last played</description>
         </key>
+        <key name="current-video" type="s">
+            <default>""</default>
+            <summary>last played video</summary>
+            <description></description>
+        </key>
         <key name="last-stopped" type="d">
             <default>0</default>
             <summary>Last stopped time of last played video</summary>

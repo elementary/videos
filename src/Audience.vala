@@ -682,10 +682,9 @@ namespace Audience {
                 welcome.hide ();
                 clutter.show_all ();
                 foreach (var filename in settings.last_played_videos) {
-                    var file = File.new_for_uri (filename);
-                    if (file!=null)
-                        open_file (filename);
+                    playlist.add_item (File.new_for_path(filename));
                 }
+                open_file (settings.current_video);
 
                 video_player.playing = false;
                 video_player.progress = settings.last_stopped;
