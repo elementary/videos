@@ -303,18 +303,6 @@ namespace Audience {
             });
 
             stage.notify["allocation"].connect (() => {allocate_bottombar ();});
-
-            if (settings.resume_videos == true && settings.last_played_videos.length > 0) {
-                welcome.hide ();
-                clutter.show_all ();
-                foreach (var filename in settings.last_played_videos) {
-                    open_file (filename);
-                }
-
-                video_player.playing = false;
-                video_player.progress = settings.last_stopped;
-                video_player.playing = true;
-            }
         }
 
         private void allocate_bottombar () {
@@ -690,13 +678,26 @@ namespace Audience {
         //the application started
         public override void activate () {
             build ();
+            if (settings.resume_videos == true && settings.last_played_videos.length > 0) {
+                welcome.hide ();
+                clutter.show_all ();
+                foreach (var filename in settings.last_played_videos) {
+                    var file = File.new_for_uri (filename);
+                    if (file!=null)
+                        open_file (filename);
+                }
+
+                video_player.playing = false;
+                video_player.progress = settings.last_stopped;
+                video_player.playing = true;
+            }
         }
 
         //the application was requested to open some files
         public override void open (File[] files, string hint) {
             if (mainwindow == null)
-                activate ();
-
+                build ();
+                
             welcome.hide ();
             clutter.show_all ();
             foreach (var file in files) {
