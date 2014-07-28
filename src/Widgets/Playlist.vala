@@ -99,7 +99,20 @@ namespace Audience.Widgets {
         }
 
         public void add_item (File path) {
+            var file_name = path.get_path ();
+            bool exist = false;
             Gtk.TreeIter iter;
+
+            playlist.foreach ((model, path, iter) => {
+                Value filename;
+                playlist.get_value (iter, Columns.FILENAME, out filename);
+                string name = filename.get_string ();
+                if (name == file_name)
+                    exist = true;
+                return false;
+            });
+            if (exist)
+                return;
 
             Icon? playing = null;
             Gtk.TreeIter dummy;
