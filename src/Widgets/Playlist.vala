@@ -99,7 +99,22 @@ namespace Audience.Widgets {
         }
 
         public void add_item (File path) {
+            if (!path.query_exists ())
+                return;
+            var file_name = path.get_path ();
+            bool exist = false;
             Gtk.TreeIter iter;
+
+            playlist.foreach ((model, path, iter) => {
+                Value filename;
+                playlist.get_value (iter, Columns.FILENAME, out filename);
+                string name = filename.get_string ();
+                if (name == file_name)
+                    exist = true;
+                return false;
+            });
+            if (exist)
+                return;
 
             Icon? playing = null;
             Gtk.TreeIter dummy;
@@ -116,7 +131,16 @@ namespace Audience.Widgets {
         }
 
         public void remove_item (File path) {
-            /*not needed up to now*/
+            var file_name = path.get_path ();
+            
+            playlist.foreach ((model, path, iter) => {
+                Value filename;
+                playlist.get_value (iter, Columns.FILENAME, out filename);
+                string name = filename.get_string ();
+                if (name == file_name)
+                    playlist.remove (iter);
+                return false;
+            });
         }
 
         public File? get_first_item () {
@@ -159,6 +183,7 @@ namespace Audience.Widgets {
             }
 
             settings.last_played_videos = videos;
+            settings.current_video = videos[current];
         }
 
     }
