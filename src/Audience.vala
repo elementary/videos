@@ -682,7 +682,7 @@ namespace Audience {
                 welcome.hide ();
                 clutter.show_all ();
                 foreach (var filename in settings.last_played_videos) {
-                    playlist.add_item (File.new_for_path(filename));
+                    playlist.add_item (File.new_for_path (filename));
                 }
                 open_file (settings.current_video);
 

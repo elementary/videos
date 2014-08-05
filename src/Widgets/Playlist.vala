@@ -99,6 +99,8 @@ namespace Audience.Widgets {
         }
 
         public void add_item (File path) {
+            if (!path.query_exists ())
+                return;
             var file_name = path.get_path ();
             bool exist = false;
             Gtk.TreeIter iter;
