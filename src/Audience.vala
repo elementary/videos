@@ -687,7 +687,7 @@ namespace Audience {
                 open_file (settings.current_video);
 
                 video_player.playing = false;
-                video_player.progress = settings.last_stopped;
+                Idle.add (() => { video_player.progress = settings.last_stopped; return false;});
                 video_player.playing = true;
             }
         }
