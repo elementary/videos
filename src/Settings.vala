@@ -31,7 +31,7 @@ public class Audience.Settings : Granite.Services.Settings {
     public bool show_window_decoration {get; set;}
 
     public Settings () {
-        base ("org.pantheon.Audience");
+        base ("org.pantheon.audience");
     }
 
 }
