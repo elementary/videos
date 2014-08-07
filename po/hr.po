@@ -7,93 +7,145 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-11-06 19:57+0530\n"
+"POT-Creation-Date: 2014-08-06 23:39-0500\n"
 "PO-Revision-Date: 2014-04-09 13:26+0000\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-10 07:04+0000\n"
-"X-Generator: Launchpad (build 17100)\n"
+"X-Launchpad-Export-Date: 2014-08-07 06:16+0000\n"
+"X-Generator: Launchpad (build 17147)\n"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
+#: ../src/Audience.vala:317
 msgid "No Videos Open"
 msgstr "Nema otvorenih video snimaka"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
+#: ../src/Audience.vala:317
 msgid "Select a source to begin playing."
 msgstr "Odaberi izvor za početak reprodukcije."
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
+#: ../src/Audience.vala:318
 msgid "Open file"
 msgstr "Otvori datoteku"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
+#: ../src/Audience.vala:318
 msgid "Open a saved file."
 msgstr "Otvori spremljenu datoteku."
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:95
+#: ../src/Audience.vala:323
 msgid "Resume last video"
 msgstr "Nastavi posljednji video"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
+#: ../src/Audience.vala:331
 msgid "Play from Disc"
 msgstr "Reproduciraj s diska"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
+#: ../src/Audience.vala:331
 msgid "Watch a DVD or open a file from disc"
 msgstr "Gledajte DVD ili otvorite datoteku s diska"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:170
+#: ../src/Audience.vala:367
 msgid "Open location"
 msgstr "Otvori lokaciju"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:180
+#: ../src/Audience.vala:369
+msgid "Cancel"
+msgstr ""
+
+#: ../src/Audience.vala:370
+msgid "OK"
+msgstr ""
+
+#: ../src/Audience.vala:377
 msgid "Choose location"
 msgstr "Odaberi lokaciju"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:290
-msgid "Add from Harddrive"
-msgstr "Dodaj s diska"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:292
-msgid "Play a DVD"
-msgstr "Reproduciraj DVD"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:294
-msgid "Network File"
-msgstr "Mrežna datoteka"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:550
+#: ../src/Audience.vala:546
 msgid "Open"
 msgstr "Otvori"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:555
+#: ../src/Audience.vala:547
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/Audience.vala:547
+msgid "_Open"
+msgstr ""
+
+#: ../src/Audience.vala:551
 msgid "All files"
 msgstr "Sve datoteke"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:559
+#: ../src/Audience.vala:555
 msgid "Video files"
 msgstr "Video datoteke"
 
-#: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:5
+#: ../src/desktop-launcher.vala:5
 msgid "Play your media"
 msgstr "Gledajte vaše video datoteke"
 
-#: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:6
+#: ../src/desktop-launcher.vala:6
 msgid "Media Player"
 msgstr "Multimedijski preglednik"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:527
+#: ../src/Widgets/SettingsPopover.vala:31
+msgid "External Subtitles"
+msgstr "Vanjski podnaslovi"
+
+#: ../src/Widgets/SettingsPopover.vala:33
+msgid "Audio:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:36
+msgid "Subtitles:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:39
+msgid "External Subtitles:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:107
+msgid "None"
+msgstr "Isključeni"
+
+#: ../src/Widgets/SettingsPopover.vala:138
+msgid "Default"
+msgstr "Uobičajen"
+
+#: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:116
+msgid "Play"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:48
+msgid "Playlist"
+msgstr "Popis izvođenja"
+
+#: ../src/Widgets/BottomBar.vala:52
+msgid "Settings"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:101
+msgid "Unfullscreen"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:112
+msgid "Pause"
+msgstr ""
+
+#: ../src/Widgets/VideoPlayer.vala:360
 msgid "Error"
 msgstr "Greška"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:535
+#: ../src/Widgets/VideoPlayer.vala:360
+msgid "_OK"
+msgstr ""
+
+#: ../src/Widgets/VideoPlayer.vala:366
 msgid "Oops! Audience can't play this file!"
 msgstr "Ups! Audience ne može pokrenuti ovu datoteku!"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:559
+#: ../src/Widgets/VideoPlayer.vala:386
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -101,47 +153,47 @@ msgstr ""
 "Neke medijske datoteke trebaju dodatni softver za reprodukciju. Audience "
 "može instalirati taj softver automatski."
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:565
-#, c-format
+#: ../src/Widgets/VideoPlayer.vala:391
 msgid "Audience needs %s to play this file."
 msgstr "Audience treba %s za reprodukciju ove datoteke."
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:568
+#: ../src/Widgets/VideoPlayer.vala:398
 msgid "Don't install"
 msgstr "Nemoj instalirati"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:569
+#: ../src/Widgets/VideoPlayer.vala:399
 msgid "Install"
 msgstr "Instaliraj"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:59
-msgid "External Subtitle"
-msgstr "Vanjski podnaslov"
+#: ../src/Widgets/PlaylistPopover.vala:30
+msgid "Add from Harddrive…"
+msgstr ""
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:60
-msgid "Audio"
-msgstr "Zvuk"
+#: ../src/Widgets/PlaylistPopover.vala:32
+msgid "Play a DVD…"
+msgstr ""
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:61
-msgid "Subtitles"
-msgstr "Podnaslovi"
+#: ../src/Widgets/PlaylistPopover.vala:35
+msgid "Network File…"
+msgstr ""
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:62
-msgid "External Subtitles"
-msgstr "Vanjski podnaslovi"
+#~ msgid "Network File"
+#~ msgstr "Mrežna datoteka"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:92
-msgid "Playlist"
-msgstr "Popis izvođenja"
+#~ msgid "Play a DVD"
+#~ msgstr "Reproduciraj DVD"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:93
-msgid "Options"
-msgstr "Mogućnosti"
+#~ msgid "Subtitles"
+#~ msgstr "Podnaslovi"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:242
-msgid "Default"
-msgstr "Uobičajen"
+#~ msgid "Options"
+#~ msgstr "Mogućnosti"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:255
-msgid "None"
-msgstr "Isključeni"
+#~ msgid "Audio"
+#~ msgstr "Zvuk"
+
+#~ msgid "External Subtitle"
+#~ msgstr "Vanjski podnaslov"
+
+#~ msgid "Add from Harddrive"
+#~ msgstr "Dodaj s diska"
