@@ -355,6 +355,7 @@ namespace Audience {
                     case 1:
                         welcome.hide ();
                         clutter.show_all ();
+                        restore_playlist ();
                         open_file (filename);
                         video_player.playing = false;
                         Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
@@ -542,6 +543,12 @@ namespace Audience {
                 settings.last_stopped = 0;
         }
 
+        private void restore_playlist (){
+            foreach (var filename in settings.last_played_videos) {
+                playlist.add_item (File.new_for_path (filename));
+            }
+        }
+
         public void run_open_file () {
             var file = new Gtk.FileChooserDialog (_("Open"), mainwindow, Gtk.FileChooserAction.OPEN,
                 _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
@@ -683,9 +690,7 @@ namespace Audience {
                 && settings.current_video != "") {
                 welcome.hide ();
                 clutter.show_all ();
-                foreach (var filename in settings.last_played_videos) {
-                    playlist.add_item (File.new_for_path (filename));
-                }
+                restore_playlist ();
                 open_file (settings.current_video);
                 video_player.playing = false;
                 Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
