@@ -319,7 +319,7 @@ namespace Audience {
 
             //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
             var filename = settings.current_video;
-            var last_file = File.new_for_path (filename);
+            var last_file = File.new_for_uri (filename);
             welcome.append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
             bool show_last_file = settings.current_video != "";
             if (last_file.query_exists () == false) {
@@ -545,7 +545,7 @@ namespace Audience {
 
         private void restore_playlist (){
             foreach (var filename in settings.last_played_videos) {
-                playlist.add_item (File.new_for_path (filename));
+                playlist.add_item (File.new_for_uri (filename));
             }
         }
 
@@ -621,6 +621,7 @@ namespace Audience {
                 });
 
                 file = playlist.get_first_item ();
+                play_file (file.get_uri ());
             } else if (is_subtitle (filename) && video_player.playing) {
                 video_player.set_subtitle_uri (filename);
             } else if (video_player.playing == true) {
@@ -664,6 +665,7 @@ namespace Audience {
         public void play_file (string uri) {
             debug ("Opening %s", uri);
             video_player.uri = uri;
+            playlist.set_current (uri);
             bottom_bar.set_preview_uri (uri);
 
             string? sub_uri = get_subtitle_for_uri (uri);
@@ -706,7 +708,7 @@ namespace Audience {
             welcome.hide ();
             clutter.show_all ();
             foreach (var file in files) {
-                open_file (file.get_path ());
+                open_file (file.get_uri ());
             }
         }
     }
