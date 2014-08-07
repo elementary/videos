@@ -356,7 +356,10 @@ namespace Audience {
                     case 1:
                         welcome.hide ();
                         clutter.show_all ();
-                        open_file (filename);
+                            open_file (filename);
+                    video_player.playing = false;
+                    Idle.add (() => { video_player.progress = settings.last_stopped; return false;});
+                    video_player.playing = true;
                         break;
                     case 2:
                         run_open_dvd ();
