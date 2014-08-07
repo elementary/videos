@@ -318,12 +318,13 @@ namespace Audience {
             welcome.append ("document-open", _("Open file"), _("Open a saved file."));
 
             //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
-            var filename = settings.last_played_videos.length > 0 ? settings.last_played_videos[0] : "";
+            var filename = settings.current_video;
             var last_file = File.new_for_path (filename);
             welcome.append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
-            bool show_last_file = settings.last_played_videos.length > 0;
+            bool show_last_file = settings.current_video != "";
             if (last_file.query_exists () == false) {
                 show_last_file = false;
+                message ("no last file");
             }
 
             welcome.set_item_visible (1, show_last_file);
@@ -356,9 +357,6 @@ namespace Audience {
                         welcome.hide ();
                         clutter.show_all ();
                         open_file (filename);
-                        video_player.playing = false;
-                        video_player.progress = settings.last_stopped;
-                        video_player.playing = true;
                         break;
                     case 2:
                         run_open_dvd ();
@@ -536,7 +534,7 @@ namespace Audience {
         private inline void save_last_played_videos () {
             playlist.save_playlist_config ();
 
-            if (settings.last_played_videos.length > 0)
+            if (settings.current_video != "")
                 settings.last_stopped = video_player.progress;
             else
                 settings.last_stopped = 0;
@@ -678,14 +676,15 @@ namespace Audience {
         //the application started
         public override void activate () {
             build ();
-            if (settings.resume_videos == true && settings.last_played_videos.length > 0) {
+            if (settings.resume_videos == true 
+                && settings.last_played_videos.length > 0 
+                && settings.current_video != "") {
                 welcome.hide ();
                 clutter.show_all ();
                 foreach (var filename in settings.last_played_videos) {
                     playlist.add_item (File.new_for_path (filename));
                 }
                 open_file (settings.current_video);
-
                 video_player.playing = false;
                 Idle.add (() => { video_player.progress = settings.last_stopped; return false;});
                 video_player.playing = true;
