@@ -689,7 +689,8 @@ namespace Audience {
             build ();
             if (settings.resume_videos == true 
                 && settings.last_played_videos.length > 0 
-                && settings.current_video != "") {
+                && settings.current_video != ""
+                && file_exists (settings.current_video)) {
                 welcome.hide ();
                 clutter.show_all ();
                 restore_playlist ();
