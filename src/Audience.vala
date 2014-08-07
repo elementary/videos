@@ -324,7 +324,6 @@ namespace Audience {
             bool show_last_file = settings.current_video != "";
             if (last_file.query_exists () == false) {
                 show_last_file = false;
-                message ("no last file");
             }
 
             welcome.set_item_visible (1, show_last_file);
