@@ -487,9 +487,9 @@ namespace Audience {
             Gtk.drag_dest_set (mainwindow, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
             mainwindow.drag_data_received.connect ( (ctx, x, y, sel, info, time) => {
                 foreach (var uri in sel.get_uris ()) {
-                    playlist.add_item (File.new_for_uri (uri));
+                    open_file (uri);
                 }
-                open_file (sel.get_uris ()[0]);
+                
                 welcome.hide ();
                 clutter.show_all ();
             });
