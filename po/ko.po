@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-07 06:16+0000\n"
-"X-Generator: Launchpad (build 17147)\n"
+"X-Launchpad-Export-Date: 2014-08-08 06:47+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
 
 #: ../src/Audience.vala:317
 msgid "No Videos Open"
@@ -176,24 +176,3 @@ msgstr ""
 #: ../src/Widgets/PlaylistPopover.vala:35
 msgid "Network File…"
 msgstr ""
-
-#~ msgid "Add from Harddrive"
-#~ msgstr "하드디스크 드라이브에서 추가"
-
-#~ msgid "Play a DVD"
-#~ msgstr "DVD 재생하기"
-
-#~ msgid "Network File"
-#~ msgstr "네트워크 파일"
-
-#~ msgid "Subtitles"
-#~ msgstr "자막"
-
-#~ msgid "Options"
-#~ msgstr "옵션"
-
-#~ msgid "External Subtitle"
-#~ msgstr "외부 자막"
-
-#~ msgid "Audio"
-#~ msgstr "오디오"
