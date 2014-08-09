@@ -142,11 +142,11 @@ namespace Audience.Widgets {
             return null;
         }
 
-        public int get_current (){
+        public int get_current () {
             return current;
         }
 
-        public void set_current (string current_file){
+        public void set_current (string current_file) {
             int count = 0;
             int current_played = 0;
             playlist.foreach ((model, path, iter) => {

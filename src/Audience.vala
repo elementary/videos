@@ -543,7 +543,7 @@ namespace Audience {
                 settings.last_stopped = 0;
         }
 
-        private void restore_playlist (){
+        private void restore_playlist () {
             foreach (var filename in settings.last_played_videos) {
                 playlist.add_item (File.new_for_uri (filename));
             }

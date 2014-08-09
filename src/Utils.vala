@@ -107,7 +107,7 @@ namespace Audience {
         return disk_manager.get_volumes ().length () > 0;
     }
 
-    public static bool file_exists (string uri){
+    public static bool file_exists (string uri) {
         var file = File.new_for_uri (uri);
         return file.query_exists ();
     }
