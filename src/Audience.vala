@@ -624,8 +624,6 @@ namespace Audience {
                 play_file (file.get_uri ());
             } else if (is_subtitle (filename) && video_player.playing) {
                 video_player.set_subtitle_uri (filename);
-            } else if (video_player.playing == true) {
-                playlist.add_item (file);
             } else {
                 playlist.add_item (file);
                 play_file (file.get_uri ());
@@ -709,8 +707,11 @@ namespace Audience {
             welcome.hide ();
             clutter.show_all ();
             foreach (var file in files) {
-                open_file (file.get_uri ());
+                playlist.add_item (file);
             }
+
+            if (video_player.uri == null)
+                open_file(files[0].get_uri ());
         }
     }
 }
