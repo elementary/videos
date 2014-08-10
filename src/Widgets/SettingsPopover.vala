@@ -130,14 +130,17 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             if (desc != null) {
                 readable = Gst.Tag.get_language_name (desc);
                 languages.append (i.to_string (), readable == null ? desc : readable);
-                languages.sensitive = true;
             }
         }
 
-        if (languages.model.iter_n_children (null) <= 0) {
+        var audio_items = languages.model.iter_n_children (null);
+        if (audio_items <= 0) {
             languages.append ("def", _("Default"));
             languages.active = 0;
         } else {
+            if (audio_items != 1)
+                languages.sensitive = true;
+
             languages.active_id = VideoPlayer.get_default ().current_audio.to_string ();
         }
     }
