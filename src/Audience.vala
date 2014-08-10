@@ -569,7 +569,11 @@ namespace Audience {
             if (file.run () == Gtk.ResponseType.ACCEPT) {
                 welcome.hide ();
                 clutter.show_all ();
-                open_file (file.get_uri ());
+
+                playlist.add_item (file.get_file ());
+                if (video_player.uri == null)
+                    open_file (file.get_uri ());
+
                 settings.last_folder = file.get_current_folder ();
             }
 
