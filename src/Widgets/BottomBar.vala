@@ -95,7 +95,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     public Gtk.Revealer get_unfullscreen_button () {
         unfullscreen_revealer = new Gtk.Revealer ();
         unfullscreen_revealer.opacity = GLOBAL_OPACITY;
-        unfullscreen_revealer.get_style_context ().add_class ("header-bar");
         unfullscreen_revealer.transition_type = Gtk.RevealerTransitionType.CROSSFADE;
         var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic", Gtk.IconSize.BUTTON);
         unfullscreen_button.tooltip_text = _("Unfullscreen");

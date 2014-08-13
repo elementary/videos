@@ -106,4 +106,9 @@ namespace Audience {
         var disk_manager = DiskManager.get_default ();
         return disk_manager.get_volumes ().length () > 0;
     }
+
+    public static bool file_exists (string uri) {
+        var file = File.new_for_uri (uri);
+        return file.query_exists ();
+    }
 }

@@ -318,10 +318,10 @@ namespace Audience {
             welcome.append ("document-open", _("Open file"), _("Open a saved file."));
 
             //welcome.append ("internet-web-browser", _("Open a location"), _("Watch something from the infinity of the internet"));
-            var filename = settings.last_played_videos.length > 0 ? settings.last_played_videos[0] : "";
-            var last_file = File.new_for_path (filename);
+            var filename = settings.current_video;
+            var last_file = File.new_for_uri (filename);
             welcome.append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
-            bool show_last_file = settings.last_played_videos.length > 0;
+            bool show_last_file = settings.current_video != "";
             if (last_file.query_exists () == false) {
                 show_last_file = false;
             }
@@ -355,9 +355,10 @@ namespace Audience {
                     case 1:
                         welcome.hide ();
                         clutter.show_all ();
+                        restore_playlist ();
                         open_file (filename);
                         video_player.playing = false;
-                        video_player.progress = settings.last_stopped;
+                        Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
                         video_player.playing = true;
                         break;
                     case 2:
@@ -486,9 +487,9 @@ namespace Audience {
             Gtk.drag_dest_set (mainwindow, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
             mainwindow.drag_data_received.connect ( (ctx, x, y, sel, info, time) => {
                 foreach (var uri in sel.get_uris ()) {
-                    playlist.add_item (File.new_for_uri (uri));
+                    open_file (uri);
                 }
-                open_file (sel.get_uris ()[0]);
+                
                 welcome.hide ();
                 clutter.show_all ();
             });
@@ -536,10 +537,16 @@ namespace Audience {
         private inline void save_last_played_videos () {
             playlist.save_playlist_config ();
 
-            if (settings.last_played_videos.length > 0)
+            if (settings.current_video != "")
                 settings.last_stopped = video_player.progress;
             else
                 settings.last_stopped = 0;
+        }
+
+        private void restore_playlist () {
+            foreach (var filename in settings.last_played_videos) {
+                playlist.add_item (File.new_for_uri (filename));
+            }
         }
 
         public void run_open_file () {
@@ -562,7 +569,11 @@ namespace Audience {
             if (file.run () == Gtk.ResponseType.ACCEPT) {
                 welcome.hide ();
                 clutter.show_all ();
-                open_file (file.get_uri ());
+
+                playlist.add_item (file.get_file ());
+                if (video_player.uri == null)
+                    open_file (file.get_uri ());
+
                 settings.last_folder = file.get_current_folder ();
             }
 
@@ -614,10 +625,9 @@ namespace Audience {
                 });
 
                 file = playlist.get_first_item ();
+                play_file (file.get_uri ());
             } else if (is_subtitle (filename) && video_player.playing) {
                 video_player.set_subtitle_uri (filename);
-            } else if (video_player.playing == true) {
-                playlist.add_item (file);
             } else {
                 playlist.add_item (file);
                 play_file (file.get_uri ());
@@ -657,6 +667,7 @@ namespace Audience {
         public void play_file (string uri) {
             debug ("Opening %s", uri);
             video_player.uri = uri;
+            playlist.set_current (uri);
             bottom_bar.set_preview_uri (uri);
 
             string? sub_uri = get_subtitle_for_uri (uri);
@@ -678,16 +689,16 @@ namespace Audience {
         //the application started
         public override void activate () {
             build ();
-            if (settings.resume_videos == true && settings.last_played_videos.length > 0) {
+            if (settings.resume_videos == true 
+                && settings.last_played_videos.length > 0 
+                && settings.current_video != ""
+                && file_exists (settings.current_video)) {
                 welcome.hide ();
                 clutter.show_all ();
-                foreach (var filename in settings.last_played_videos) {
-                    playlist.add_item (File.new_for_path (filename));
-                }
+                restore_playlist ();
                 open_file (settings.current_video);
-
                 video_player.playing = false;
-                video_player.progress = settings.last_stopped;
+                Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
                 video_player.playing = true;
             }
         }
@@ -700,8 +711,11 @@ namespace Audience {
             welcome.hide ();
             clutter.show_all ();
             foreach (var file in files) {
-                open_file (file.get_path ());
+                playlist.add_item (file);
             }
+
+            if (video_player.uri == null)
+                open_file(files[0].get_uri ());
         }
     }
 }
