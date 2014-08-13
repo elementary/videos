@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-06 23:39-0500\n"
-"PO-Revision-Date: 2014-02-12 22:26+0000\n"
-"Last-Translator: MinSik CHO <Unknown>\n"
+"PO-Revision-Date: 2014-08-12 14:04+0000\n"
+"Last-Translator: Chang Geon Kang <kangha02@naver.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-08 06:47+0000\n"
+"X-Launchpad-Export-Date: 2014-08-13 06:37+0000\n"
 "X-Generator: Launchpad (build 17156)\n"
 
 #: ../src/Audience.vala:317
@@ -51,11 +51,11 @@ msgstr "위치 열기"
 
 #: ../src/Audience.vala:369
 msgid "Cancel"
-msgstr ""
+msgstr "취소"
 
 #: ../src/Audience.vala:370
 msgid "OK"
-msgstr ""
+msgstr "확인"
 
 #: ../src/Audience.vala:377
 msgid "Choose location"
@@ -67,11 +67,11 @@ msgstr "열기"
 
 #: ../src/Audience.vala:547
 msgid "_Cancel"
-msgstr ""
+msgstr "_취소"
 
 #: ../src/Audience.vala:547
 msgid "_Open"
-msgstr ""
+msgstr "_열기"
 
 #: ../src/Audience.vala:551
 msgid "All files"
@@ -95,15 +95,15 @@ msgstr "외부 자막들"
 
 #: ../src/Widgets/SettingsPopover.vala:33
 msgid "Audio:"
-msgstr ""
+msgstr "소리:"
 
 #: ../src/Widgets/SettingsPopover.vala:36
 msgid "Subtitles:"
-msgstr ""
+msgstr "자막:"
 
 #: ../src/Widgets/SettingsPopover.vala:39
 msgid "External Subtitles:"
-msgstr ""
+msgstr "외부 자막:"
 
 #: ../src/Widgets/SettingsPopover.vala:107
 msgid "None"
@@ -115,7 +115,7 @@ msgstr "기본값"
 
 #: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:116
 msgid "Play"
-msgstr ""
+msgstr "재생"
 
 #: ../src/Widgets/BottomBar.vala:48
 msgid "Playlist"
@@ -123,15 +123,15 @@ msgstr "재생목록"
 
 #: ../src/Widgets/BottomBar.vala:52
 msgid "Settings"
-msgstr ""
+msgstr "설정"
 
 #: ../src/Widgets/BottomBar.vala:101
 msgid "Unfullscreen"
-msgstr ""
+msgstr "전체화면 해제"
 
 #: ../src/Widgets/BottomBar.vala:112
 msgid "Pause"
-msgstr ""
+msgstr "일시정지"
 
 #: ../src/Widgets/VideoPlayer.vala:360
 msgid "Error"
@@ -139,7 +139,7 @@ msgstr "오류"
 
 #: ../src/Widgets/VideoPlayer.vala:360
 msgid "_OK"
-msgstr ""
+msgstr "_확인"
 
 #: ../src/Widgets/VideoPlayer.vala:366
 msgid "Oops! Audience can't play this file!"
@@ -167,11 +167,11 @@ msgstr "설치"
 
 #: ../src/Widgets/PlaylistPopover.vala:30
 msgid "Add from Harddrive…"
-msgstr ""
+msgstr "하드디스크에서 추가"
 
 #: ../src/Widgets/PlaylistPopover.vala:32
 msgid "Play a DVD…"
-msgstr ""
+msgstr "DVD재생"
 
 #: ../src/Widgets/PlaylistPopover.vala:35
 msgid "Network File…"
