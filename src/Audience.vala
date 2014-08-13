@@ -26,6 +26,7 @@ public extern bool gst_navigation_query_parse_commands_length (Gst.Query q, out 
 public extern bool gst_navigation_query_parse_commands_nth (Gst.Query q, uint n, out Gst.NavigationCommand cmd);
 */
 namespace Audience {
+    public App app;
 
     public Audience.Settings settings; //global space for easier access...
 
@@ -714,7 +715,12 @@ namespace Audience {
                 playlist.add_item (file);
             }
 
-            if (video_player.uri == null)
+            if (video_player.uri != null){//we already play some file
+                if (files.length == 1)
+                    show_notification (_("File added to playlist"), files[0].get_basename ());
+                else 
+                    show_notification (_("%i file added to playlist").printf (files.length),"");
+            } else
                 open_file(files[0].get_uri ());
         }
     }
@@ -730,7 +736,8 @@ public static void main (string [] args) {
 
     Gst.init (ref args);
 
-    var app = new Audience.App ();
+    if (Audience.app == null)
+        Audience.app = new Audience.App ();
 
-    app.run (args);
+    Audience.app.run (args);
 }
