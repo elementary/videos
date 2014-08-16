@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-06 23:39-0500\n"
-"PO-Revision-Date: 2014-02-18 16:02+0000\n"
-"Last-Translator: Bennici Piercarlo <Unknown>\n"
+"PO-Revision-Date: 2014-08-15 18:15+0000\n"
+"Last-Translator: Federico Mameli <requiemvi@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-08 06:47+0000\n"
+"X-Launchpad-Export-Date: 2014-08-16 06:38+0000\n"
 "X-Generator: Launchpad (build 17156)\n"
 
 #: ../src/Audience.vala:317
@@ -23,7 +23,7 @@ msgstr "Nessun Video Aperto"
 
 #: ../src/Audience.vala:317
 msgid "Select a source to begin playing."
-msgstr "Seleziona un'origine per avviare la riproduzione."
+msgstr "Selezionare una sorgente per iniziare la riproduzione."
 
 #: ../src/Audience.vala:318
 msgid "Open file"
@@ -31,7 +31,7 @@ msgstr "Apri file"
 
 #: ../src/Audience.vala:318
 msgid "Open a saved file."
-msgstr "Apri un file esistente"
+msgstr "Apri un file esistente."
 
 #: ../src/Audience.vala:323
 msgid "Resume last video"
@@ -51,11 +51,11 @@ msgstr "Apri percorso"
 
 #: ../src/Audience.vala:369
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #: ../src/Audience.vala:370
 msgid "OK"
-msgstr ""
+msgstr "Ok"
 
 #: ../src/Audience.vala:377
 msgid "Choose location"
@@ -67,11 +67,11 @@ msgstr "Apri"
 
 #: ../src/Audience.vala:547
 msgid "_Cancel"
-msgstr ""
+msgstr "_Annulla"
 
 #: ../src/Audience.vala:547
 msgid "_Open"
-msgstr ""
+msgstr "_Apri"
 
 #: ../src/Audience.vala:551
 msgid "All files"
@@ -95,15 +95,15 @@ msgstr "Sottotitoli Esterni"
 
 #: ../src/Widgets/SettingsPopover.vala:33
 msgid "Audio:"
-msgstr ""
+msgstr "Audio:"
 
 #: ../src/Widgets/SettingsPopover.vala:36
 msgid "Subtitles:"
-msgstr ""
+msgstr "Sottotitoli:"
 
 #: ../src/Widgets/SettingsPopover.vala:39
 msgid "External Subtitles:"
-msgstr ""
+msgstr "Sottotitoli esterni:"
 
 #: ../src/Widgets/SettingsPopover.vala:107
 msgid "None"
@@ -115,7 +115,7 @@ msgstr "Predefinita"
 
 #: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:116
 msgid "Play"
-msgstr ""
+msgstr "Riproduci"
 
 #: ../src/Widgets/BottomBar.vala:48
 msgid "Playlist"
@@ -123,15 +123,15 @@ msgstr "Playlist"
 
 #: ../src/Widgets/BottomBar.vala:52
 msgid "Settings"
-msgstr ""
+msgstr "Impostazioni"
 
 #: ../src/Widgets/BottomBar.vala:101
 msgid "Unfullscreen"
-msgstr ""
+msgstr "Disabilita vista a schermo intero"
 
 #: ../src/Widgets/BottomBar.vala:112
 msgid "Pause"
-msgstr ""
+msgstr "Pausa"
 
 #: ../src/Widgets/VideoPlayer.vala:360
 msgid "Error"
@@ -139,7 +139,7 @@ msgstr "Errore"
 
 #: ../src/Widgets/VideoPlayer.vala:360
 msgid "_OK"
-msgstr ""
+msgstr "_Ok"
 
 #: ../src/Widgets/VideoPlayer.vala:366
 msgid "Oops! Audience can't play this file!"
@@ -167,12 +167,12 @@ msgstr "Installa"
 
 #: ../src/Widgets/PlaylistPopover.vala:30
 msgid "Add from Harddrive…"
-msgstr ""
+msgstr "Aggiungi da disco rigido..."
 
 #: ../src/Widgets/PlaylistPopover.vala:32
 msgid "Play a DVD…"
-msgstr ""
+msgstr "Riproduci un DVD..."
 
 #: ../src/Widgets/PlaylistPopover.vala:35
 msgid "Network File…"
-msgstr ""
+msgstr "File di rete..."
