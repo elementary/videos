@@ -26,8 +26,8 @@ public extern bool gst_navigation_query_parse_commands_length (Gst.Query q, out 
 public extern bool gst_navigation_query_parse_commands_nth (Gst.Query q, uint n, out Gst.NavigationCommand cmd);
 */
 namespace Audience {
-    public App app;
 
+    public static App app;//global App instance
     public Audience.Settings settings; //global space for easier access...
 
     public class App : Granite.Application {
