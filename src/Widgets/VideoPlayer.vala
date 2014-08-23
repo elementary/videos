@@ -99,7 +99,7 @@ namespace Audience.Widgets {
                 try {
                     var info = new Gst.PbUtils.Discoverer (10 * Gst.SECOND).discover_uri (value);
                     var video = info.get_video_streams ();
-                    if (video.data != null) {
+                    if (video != null && video.data != null) {
                         var video_info = (Gst.PbUtils.DiscovererVideoInfo)video.data;
                         video_width = video_info.get_width ();
                         video_height = video_info.get_height ();
