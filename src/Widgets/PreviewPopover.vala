@@ -63,7 +63,11 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     public void set_preview_uri (string uri) {
         preview_playbin.set_state (Gst.State.READY);
         preview_playbin.uri = uri;
-        preview_playbin.volume = 0.0;
+        int flags;
+        preview_playbin.get ("flags", out flags);
+        flags &= ~PlayFlags.TEXT;   //disable subtitle
+        flags &= ~PlayFlags.AUDIO;  //disable audio sink
+        preview_playbin.set ("flags", flags);
         
         try {
             var info = new Gst.PbUtils.Discoverer (10 * Gst.SECOND).discover_uri (uri);
