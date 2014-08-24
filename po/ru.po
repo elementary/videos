@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-06 23:39-0500\n"
-"PO-Revision-Date: 2014-03-21 16:35+0000\n"
-"Last-Translator: Pasha. P. Komar <Unknown>\n"
+"PO-Revision-Date: 2014-08-23 17:34+0000\n"
+"Last-Translator: Artem Anufrij <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-08 06:47+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-08-24 06:35+0000\n"
+"X-Generator: Launchpad (build 17163)\n"
 
 #: ../src/Audience.vala:317
 msgid "No Videos Open"
@@ -51,11 +51,11 @@ msgstr "Открыть местоположение"
 
 #: ../src/Audience.vala:369
 msgid "Cancel"
-msgstr ""
+msgstr "Отменить"
 
 #: ../src/Audience.vala:370
 msgid "OK"
-msgstr ""
+msgstr "ОК"
 
 #: ../src/Audience.vala:377
 msgid "Choose location"
@@ -67,11 +67,11 @@ msgstr "Открыть"
 
 #: ../src/Audience.vala:547
 msgid "_Cancel"
-msgstr ""
+msgstr "_Отменить"
 
 #: ../src/Audience.vala:547
 msgid "_Open"
-msgstr ""
+msgstr "_Открыть"
 
 #: ../src/Audience.vala:551
 msgid "All files"
@@ -99,7 +99,7 @@ msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:36
 msgid "Subtitles:"
-msgstr ""
+msgstr "Субтитры:"
 
 #: ../src/Widgets/SettingsPopover.vala:39
 msgid "External Subtitles:"
@@ -115,7 +115,7 @@ msgstr "По умолчанию"
 
 #: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:116
 msgid "Play"
-msgstr ""
+msgstr "Воспроизвести"
 
 #: ../src/Widgets/BottomBar.vala:48
 msgid "Playlist"
@@ -123,7 +123,7 @@ msgstr "Список воспроизведения"
 
 #: ../src/Widgets/BottomBar.vala:52
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: ../src/Widgets/BottomBar.vala:101
 msgid "Unfullscreen"
@@ -172,7 +172,7 @@ msgstr ""
 
 #: ../src/Widgets/PlaylistPopover.vala:32
 msgid "Play a DVD…"
-msgstr ""
+msgstr "Воспроизвести DVD"
 
 #: ../src/Widgets/PlaylistPopover.vala:35
 msgid "Network File…"
