@@ -27,15 +27,15 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         grid.column_spacing = 12;
         grid.margin = 6;
 
-        var fil   = new Gtk.Button.with_label (_("Add from Harddrive…"));
-        fil.image = new Gtk.Image.from_icon_name ("document-open", Gtk.IconSize.DIALOG);
-        var dvd   = new Gtk.Button.with_label (_("Play a DVD…"));
-        dvd.image = new Gtk.Image.from_icon_name ("media-cdrom", Gtk.IconSize.DIALOG);
+        var fil = new Gtk.Button.from_icon_name ("document-open-symbolic", Gtk.IconSize.BUTTON);
+        fil.set_tooltip_text (_("Open file"));
+        var dvd = new Gtk.Button.from_icon_name ("media-optical-symbolic", Gtk.IconSize.BUTTON);
+        dvd.set_tooltip_text (_("Play from Disc"));
         dvd.no_show_all = true;
-        var net   = new Gtk.Button.with_label (_("Network File…"));
-        net.image = new Gtk.Image.from_icon_name ("internet-web-browser", Gtk.IconSize.DIALOG);
 
         playlist_scrolled = new Gtk.ScrolledWindow (null, null);
+        playlist_scrolled.set_min_content_height (100);
+        playlist_scrolled.set_min_content_width (200);
         var app = ((Audience.App) GLib.Application.get_default ());
         playlist_scrolled.add (app.playlist);
 
@@ -47,19 +47,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         dvd.clicked.connect ( () => {
             hide ();
             app.run_open_dvd ();
-        });
-
-        net.clicked.connect ( () => {
-            /*var entry = new Gtk.Entry ();
-            entry.secondary_icon_stock = Gtk.Stock.OPEN;
-            entry.icon_release.connect ( (pos, e) => {
-                open_file (entry.text);
-                video_player.playing = true;
-                pop.destroy ();
-            });
-            box.remove (net);
-            box.reorder_child (entry, 2);
-            entry.show ();*/
         });
 
         grid.attach (playlist_scrolled, 0, 0, 2, 1);
@@ -85,7 +72,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             }
         });
 
-        //grid.add (net);
         add (grid);
     }
 
