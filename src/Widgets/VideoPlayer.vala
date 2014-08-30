@@ -441,5 +441,21 @@ namespace Audience.Widgets {
                 warning (e.message);
             }
         }
+
+        public void seek_jump_seconds (int seconds)
+        {
+            int64 position;
+            playbin.query_position (Gst.Format.TIME, out position);
+
+            var gst_seconds = 1000000000 * (int64)seconds;
+            var new_position = position + gst_seconds;
+
+            if (new_position < 0) {
+                playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, int64.max (new_position, 1));
+                return;
+            }
+            
+            playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, new_position);
+        }
     }
 }

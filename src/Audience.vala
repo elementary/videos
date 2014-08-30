@@ -426,13 +426,18 @@ namespace Audience {
                     mainwindow.destroy ();
                     break;
                 case Gdk.Key.Left:
-                    if ((video_player.progress - 0.05) < 0)
-                        video_player.progress = 0.0;
-                    else
-                        video_player.progress -= 0.05;
+                    if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) {
+                        video_player.seek_jump_seconds (-1); // 1 sec
+                    } else {
+                        video_player.seek_jump_seconds (-10); // 10 secs
+                    }
                     break;
                 case Gdk.Key.Right:
-                    video_player.progress += 0.05;
+                    if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) {
+                        video_player.seek_jump_seconds (1); // 1 sec
+                    } else {
+                        video_player.seek_jump_seconds (10); // 10 secs
+                    }
                     break;
                 case Gdk.Key.a:
                     bottom_bar.preferences_popover.next_audio ();
@@ -614,6 +619,11 @@ namespace Audience {
                 mainwindow.fullscreen ();
                 fullscreened = true;
             }
+        }
+
+        private bool modifier_is_pressed (Gdk.EventKey event, Gdk.ModifierType modifier)
+        {
+            return (event.state & modifier) == modifier;
         }
 
         internal void open_file (string filename, bool dont_modify = false) {
