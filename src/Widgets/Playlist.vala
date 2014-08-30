@@ -54,8 +54,6 @@ namespace Audience.Widgets {
                 string filename;
                 playlist.get (iter, Columns.FILENAME, out filename);
                 play (File.new_for_commandline_arg (filename));
-                change_current_symbol (iter);
-                this.current = int.parse (path.to_string ());
             });
 
             this.reorderable = true;
@@ -69,19 +67,11 @@ namespace Audience.Widgets {
             });
         }
 
-        private inline void change_current_symbol (Gtk.TreeIter new_item) {
-            Gtk.TreeIter old_item;
-            playlist.get_iter_from_string (out old_item, this.current.to_string ());
-            playlist.set (old_item, Columns.PLAYING, null);
-            playlist.set (new_item, Columns.PLAYING, new ThemedIcon ("media-playback-start-symbolic"));
-        }
-
         public void next () {
             Gtk.TreeIter iter;
             if (playlist.get_iter_from_string (out iter, (this.current + 1).to_string ())){
                 string filename;
                 playlist.get (iter, Columns.FILENAME, out filename);
-                change_current_symbol (iter);
                 current++;
                 play (File.new_for_commandline_arg (filename));
             }
@@ -92,14 +82,28 @@ namespace Audience.Widgets {
             if (playlist.get_iter_from_string (out iter, (this.current - 1).to_string ())){
                 string filename;
                 playlist.get (iter, Columns.FILENAME, out filename);
-                change_current_symbol (iter);
                 current--;
                 play (File.new_for_commandline_arg (filename));
             }
         }
 
         public void add_item (File path) {
+            if (!path.query_exists ())
+                return;
+            var file_name = path.get_uri ();
+            bool exist = false;
             Gtk.TreeIter iter;
+
+            playlist.foreach ((model, path, iter) => {
+                Value filename;
+                playlist.get_value (iter, Columns.FILENAME, out filename);
+                string name = filename.get_string ();
+                if (name == file_name)
+                    exist = true;
+                return false;
+            });
+            if (exist)
+                return;
 
             Icon? playing = null;
             Gtk.TreeIter dummy;
@@ -112,11 +116,20 @@ namespace Audience.Widgets {
             playlist.append (out iter);
             playlist.set (iter, Columns.PLAYING, playing,
                                 Columns.TITLE, Audience.get_title (path.get_basename ()),
-                                Columns.FILENAME, path.get_path ());
+                                Columns.FILENAME, path.get_uri ());
         }
 
         public void remove_item (File path) {
-            /*not needed up to now*/
+            var file_name = path.get_uri ();
+            
+            playlist.foreach ((model, path, iter) => {
+                Value filename;
+                playlist.get_value (iter, Columns.FILENAME, out filename);
+                string name = filename.get_string ();
+                if (name == file_name)
+                    playlist.remove (iter);
+                return false;
+            });
         }
 
         public File? get_first_item () {
@@ -127,6 +140,32 @@ namespace Audience.Widgets {
                 return File.new_for_commandline_arg (filename);
             }
             return null;
+        }
+
+        public int get_current () {
+            return current;
+        }
+
+        public void set_current (string current_file) {
+            int count = 0;
+            int current_played = 0;
+            playlist.foreach ((model, path, iter) => {
+                playlist.set (iter, Columns.PLAYING, null);
+                Value filename;
+                playlist.get_value (iter, Columns.FILENAME, out filename);
+                string name = filename.get_string ();
+                if (name == current_file)
+                    current_played = count;
+                count++;
+                return false;
+            });
+
+            Gtk.TreeIter new_iter;
+            playlist.get_iter_from_string (out new_iter, current_played.to_string ());
+            playlist.set (new_iter, Columns.PLAYING, new ThemedIcon ("media-playback-start-symbolic"));
+
+            this.current = current_played;
+            
         }
 
         public List<string> get_all_items () {
@@ -159,6 +198,7 @@ namespace Audience.Widgets {
             }
 
             settings.last_played_videos = videos;
+            settings.current_video = videos[current];
         }
 
     }

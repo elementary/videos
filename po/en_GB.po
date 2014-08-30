@@ -7,93 +7,45 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-11-06 19:57+0530\n"
+"POT-Creation-Date: 2014-08-28 21:25-0500\n"
 "PO-Revision-Date: 2013-11-24 13:31+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-10 07:04+0000\n"
-"X-Generator: Launchpad (build 17100)\n"
+"X-Launchpad-Export-Date: 2014-08-30 07:20+0000\n"
+"X-Generator: Launchpad (build 17176)\n"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
-msgid "No Videos Open"
-msgstr "No Videos Open"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
-msgid "Select a source to begin playing."
-msgstr "Select a source to begin playing."
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
-msgid "Open file"
-msgstr "Open file"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
-msgid "Open a saved file."
-msgstr "Open a saved file."
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:95
-msgid "Resume last video"
-msgstr "Resume last video"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
-msgid "Play from Disc"
-msgstr "Play from Disc"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
-msgid "Watch a DVD or open a file from disc"
-msgstr "Watch a DVD or open a file from disc"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:170
-msgid "Open location"
-msgstr "Open location"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:180
-msgid "Choose location"
-msgstr "Choose location"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:290
-msgid "Add from Harddrive"
-msgstr "Add from Harddrive"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:292
-msgid "Play a DVD"
-msgstr "Play a DVD"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:294
-msgid "Network File"
-msgstr "Network File"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:550
-msgid "Open"
-msgstr "Open"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:555
-msgid "All files"
-msgstr "All files"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:559
-msgid "Video files"
-msgstr "Video files"
-
-#: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:5
+#: ../src/desktop-launcher.vala:5
 msgid "Play your media"
 msgstr "Play your media"
 
-#: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:6
+#: ../src/desktop-launcher.vala:6
 msgid "Media Player"
 msgstr "Media Player"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:527
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:318
+msgid "Open file"
+msgstr "Open file"
+
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:331
+msgid "Play from Disc"
+msgstr "Play from Disc"
+
+#: ../src/Widgets/VideoPlayer.vala:360
 msgid "Error"
 msgstr "Error"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:535
+#: ../src/Widgets/VideoPlayer.vala:360
+msgid "_OK"
+msgstr ""
+
+#: ../src/Widgets/VideoPlayer.vala:366
 msgid "Oops! Audience can't play this file!"
 msgstr "Oops! Audience can't play this file!"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:559
+#: ../src/Widgets/VideoPlayer.vala:386
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -101,47 +53,118 @@ msgstr ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:565
-#, c-format
+#: ../src/Widgets/VideoPlayer.vala:391
 msgid "Audience needs %s to play this file."
 msgstr "Audience needs %s to play this file."
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:568
+#: ../src/Widgets/VideoPlayer.vala:398
 msgid "Don't install"
 msgstr "Don't install"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:569
+#: ../src/Widgets/VideoPlayer.vala:399
 msgid "Install"
 msgstr "Install"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:59
-msgid "External Subtitle"
-msgstr "External Subtitle"
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:558
+msgid "All files"
+msgstr "All files"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:60
-msgid "Audio"
-msgstr "Audio"
+#: ../src/Widgets/SettingsPopover.vala:37
+msgid "Subtitle files"
+msgstr ""
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:61
-msgid "Subtitles"
-msgstr "Subtitles"
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:62
+#: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
 msgstr "External Subtitles"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:92
-msgid "Playlist"
-msgstr "Playlist"
+#: ../src/Widgets/SettingsPopover.vala:48
+msgid "Audio:"
+msgstr ""
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:93
-msgid "Options"
-msgstr "Options"
+#: ../src/Widgets/SettingsPopover.vala:51
+msgid "Subtitles:"
+msgstr ""
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:242
+#: ../src/Widgets/SettingsPopover.vala:54
+msgid "External Subtitles:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:122
+msgid "None"
+msgstr "None"
+
+#: ../src/Widgets/SettingsPopover.vala:153
 msgid "Default"
 msgstr "Default"
 
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:255
-msgid "None"
-msgstr "None"
+#: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
+msgid "Play"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:48
+msgid "Playlist"
+msgstr "Playlist"
+
+#: ../src/Widgets/BottomBar.vala:52
+msgid "Settings"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:100
+msgid "Unfullscreen"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:111
+msgid "Pause"
+msgstr ""
+
+#: ../src/Audience.vala:317
+msgid "No Videos Open"
+msgstr "No Videos Open"
+
+#: ../src/Audience.vala:317
+msgid "Select a source to begin playing."
+msgstr "Select a source to begin playing."
+
+#: ../src/Audience.vala:318
+msgid "Open a saved file."
+msgstr "Open a saved file."
+
+#: ../src/Audience.vala:323
+msgid "Resume last video"
+msgstr "Resume last video"
+
+#: ../src/Audience.vala:331
+msgid "Watch a DVD or open a file from disc"
+msgstr "Watch a DVD or open a file from disc"
+
+#: ../src/Audience.vala:368
+msgid "Open location"
+msgstr "Open location"
+
+#: ../src/Audience.vala:370
+msgid "Cancel"
+msgstr ""
+
+#: ../src/Audience.vala:371
+msgid "OK"
+msgstr ""
+
+#: ../src/Audience.vala:378
+msgid "Choose location"
+msgstr "Choose location"
+
+#: ../src/Audience.vala:553
+msgid "Open"
+msgstr "Open"
+
+#: ../src/Audience.vala:554
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/Audience.vala:554
+msgid "_Open"
+msgstr ""
+
+#: ../src/Audience.vala:562
+msgid "Video files"
+msgstr "Video files"

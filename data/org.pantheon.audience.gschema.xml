@@ -1,5 +1,5 @@
 <schemalist>
-    <schema path="/org/pantheon/audience/" id="org.pantheon.Audience" gettext-domain="audience">
+    <schema path="/org/pantheon/audience/" id="org.pantheon.audience" gettext-domain="audience">
         <key name="move-window" type="b">
             <default>true</default>
             <summary>Move the window</summary>
@@ -19,6 +19,11 @@
             <default>[]</default>
             <summary>List of last played videos</summary>
             <description>A list of the last played</description>
+        </key>
+        <key name="current-video" type="s">
+            <default>""</default>
+            <summary>last played video</summary>
+            <description></description>
         </key>
         <key name="last-stopped" type="d">
             <default>0</default>
