@@ -425,6 +425,13 @@ namespace Audience {
                 case Gdk.Key.q:
                     mainwindow.destroy ();
                     break;
+                case Gdk.Key.Down:
+                    if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) {
+                        video_player.seek_jump_seconds (-5); // 5 secs
+                    } else {
+                        video_player.seek_jump_seconds (-60); // 1 min
+                    }
+                    break;
                 case Gdk.Key.Left:
                     if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) {
                         video_player.seek_jump_seconds (-1); // 1 sec
@@ -437,6 +444,13 @@ namespace Audience {
                         video_player.seek_jump_seconds (1); // 1 sec
                     } else {
                         video_player.seek_jump_seconds (10); // 10 secs
+                    }
+                    break;
+                case Gdk.Key.Up:
+                    if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) {
+                        video_player.seek_jump_seconds (5); // 5 secs
+                    } else {
+                        video_player.seek_jump_seconds (60); // 1 min
                     }
                     break;
                 case Gdk.Key.a:
