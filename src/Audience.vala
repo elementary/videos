@@ -453,6 +453,12 @@ namespace Audience {
                         video_player.seek_jump_seconds (60); // 1 min
                     }
                     break;
+                case Gdk.Key.Page_Down:
+                    video_player.seek_jump_seconds (-600); // 10 mins
+                    break;
+                case Gdk.Key.Page_Up:
+                    video_player.seek_jump_seconds (600); // 10 mins
+                    break;
                 case Gdk.Key.a:
                     bottom_bar.preferences_popover.next_audio ();
                     break;
