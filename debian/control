@@ -3,7 +3,7 @@ Section: video
 Priority: optional
 Maintainer: Cody Garver <codygarver@gmail.com>
 Build-Depends: cmake (>= 2.8),
-               debhelper (>= 7.0.50~),
+               debhelper (>= 9),
                libclutter-gst-2.0-dev,
                libclutter-gtk-1.0-dev,
                libgranite-dev,
