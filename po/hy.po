@@ -1,0 +1,168 @@
+# Armenian translation for audience
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the audience package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: audience\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-08-28 21:25-0500\n"
+"PO-Revision-Date: 2014-08-31 13:38+0000\n"
+"Last-Translator: Arsen Khachatryan <arsench2000@gmail.com>\n"
+"Language-Team: Armenian <hy@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2014-09-01 07:19+0000\n"
+"X-Generator: Launchpad (build 17176)\n"
+
+#: ../src/desktop-launcher.vala:5
+msgid "Play your media"
+msgstr ""
+
+#: ../src/desktop-launcher.vala:6
+msgid "Media Player"
+msgstr "Նվագարկիչ"
+
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:318
+msgid "Open file"
+msgstr "Բացել ֆաիլը"
+
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:331
+msgid "Play from Disc"
+msgstr "Նվագարկել սկավառակից"
+
+#: ../src/Widgets/VideoPlayer.vala:360
+msgid "Error"
+msgstr "Սխալ"
+
+#: ../src/Widgets/VideoPlayer.vala:360
+msgid "_OK"
+msgstr "ԼԱՎ"
+
+#: ../src/Widgets/VideoPlayer.vala:366
+msgid "Oops! Audience can't play this file!"
+msgstr "Audience -ը չի կարող նվագարկել այս ֆաիլը"
+
+#: ../src/Widgets/VideoPlayer.vala:386
+msgid ""
+"Some media files need extra software to be played. Audience can install this "
+"software automatically."
+msgstr ""
+
+#: ../src/Widgets/VideoPlayer.vala:391
+msgid "Audience needs %s to play this file."
+msgstr ""
+
+#: ../src/Widgets/VideoPlayer.vala:398
+msgid "Don't install"
+msgstr ""
+
+#: ../src/Widgets/VideoPlayer.vala:399
+msgid "Install"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:558
+msgid "All files"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:37
+msgid "Subtitle files"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:44
+msgid "External Subtitles"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:48
+msgid "Audio:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:51
+msgid "Subtitles:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:54
+msgid "External Subtitles:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:122
+msgid "None"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:153
+msgid "Default"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
+msgid "Play"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:48
+msgid "Playlist"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:52
+msgid "Settings"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:100
+msgid "Unfullscreen"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:111
+msgid "Pause"
+msgstr ""
+
+#: ../src/Audience.vala:317
+msgid "No Videos Open"
+msgstr ""
+
+#: ../src/Audience.vala:317
+msgid "Select a source to begin playing."
+msgstr ""
+
+#: ../src/Audience.vala:318
+msgid "Open a saved file."
+msgstr ""
+
+#: ../src/Audience.vala:323
+msgid "Resume last video"
+msgstr ""
+
+#: ../src/Audience.vala:331
+msgid "Watch a DVD or open a file from disc"
+msgstr ""
+
+#: ../src/Audience.vala:368
+msgid "Open location"
+msgstr ""
+
+#: ../src/Audience.vala:370
+msgid "Cancel"
+msgstr ""
+
+#: ../src/Audience.vala:371
+msgid "OK"
+msgstr ""
+
+#: ../src/Audience.vala:378
+msgid "Choose location"
+msgstr ""
+
+#: ../src/Audience.vala:553
+msgid "Open"
+msgstr ""
+
+#: ../src/Audience.vala:554
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/Audience.vala:554
+msgid "_Open"
+msgstr ""
+
+#: ../src/Audience.vala:562
+msgid "Video files"
+msgstr ""
