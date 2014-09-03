@@ -752,11 +752,11 @@ namespace Audience {
                 playlist.add_item (file);
             }
 
-            if (video_player.uri != null){//we already play some file
+            if (video_player.uri != null) { // we already play some file
                 if (files.length == 1)
                     show_notification (_("File added to playlist"), files[0].get_basename ());
                 else 
-                    show_notification (_("%i files added to playlist").printf (files.length),"");
+                    show_notification (_("%i files added to playlist").printf (files.length), "");
             } else
                 open_file(files[0].get_uri ());
         }
