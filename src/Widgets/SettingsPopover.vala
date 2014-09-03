@@ -28,7 +28,22 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
         languages = new Gtk.ComboBoxText ();
         subtitles = new Gtk.ComboBoxText ();
+
+        var all_files_filter = new Gtk.FileFilter ();
+        all_files_filter.set_filter_name (_("All files"));
+        all_files_filter.add_pattern ("*");
+
+        var subtitle_files_filter = new Gtk.FileFilter ();
+        subtitle_files_filter.set_filter_name (_("Subtitle files"));
+        subtitle_files_filter.add_mime_type ("application/smil"); // .smi
+        subtitle_files_filter.add_mime_type ("application/x-subrip"); // .srt
+        subtitle_files_filter.add_mime_type ("text/x-microdvd"); // .sub
+        subtitle_files_filter.add_mime_type ("text/x-ssa"); // .ssa & .ass
+        // exclude .asc, mimetype is generic "application/pgp-encrypted"
+
         external_subtitle_file = new Gtk.FileChooserButton (_("External Subtitles"), Gtk.FileChooserAction.OPEN);
+        external_subtitle_file.add_filter (subtitle_files_filter);
+        external_subtitle_file.add_filter (all_files_filter);
 
         var lang_label = new Gtk.Label (_("Audio:"));
         lang_label.halign = Gtk.Align.END;

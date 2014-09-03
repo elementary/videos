@@ -7,79 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-06 23:39-0500\n"
+"POT-Creation-Date: 2014-08-28 21:25-0500\n"
 "PO-Revision-Date: 2014-03-18 18:59+0000\n"
 "Last-Translator: Silas Riisager Dahl <dahl.silas@yahoo.com>\n"
 "Language-Team: Danish <da@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-08 06:46+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
-
-#: ../src/Audience.vala:317
-msgid "No Videos Open"
-msgstr ""
-
-#: ../src/Audience.vala:317
-msgid "Select a source to begin playing."
-msgstr ""
-
-#: ../src/Audience.vala:318
-msgid "Open file"
-msgstr "Åbn fil"
-
-#: ../src/Audience.vala:318
-msgid "Open a saved file."
-msgstr "Åben en gemt fil."
-
-#: ../src/Audience.vala:323
-msgid "Resume last video"
-msgstr "Genoptag sidste video"
-
-#: ../src/Audience.vala:331
-msgid "Play from Disc"
-msgstr "Afspil fra disk"
-
-#: ../src/Audience.vala:331
-msgid "Watch a DVD or open a file from disc"
-msgstr "Se en DVD eller åben en fil fra disk"
-
-#: ../src/Audience.vala:367
-msgid "Open location"
-msgstr "Åbn placering"
-
-#: ../src/Audience.vala:369
-msgid "Cancel"
-msgstr ""
-
-#: ../src/Audience.vala:370
-msgid "OK"
-msgstr ""
-
-#: ../src/Audience.vala:377
-msgid "Choose location"
-msgstr "Vælg placering"
-
-#: ../src/Audience.vala:546
-msgid "Open"
-msgstr "Åbn"
-
-#: ../src/Audience.vala:547
-msgid "_Cancel"
-msgstr ""
-
-#: ../src/Audience.vala:547
-msgid "_Open"
-msgstr ""
-
-#: ../src/Audience.vala:551
-msgid "All files"
-msgstr "Alle filer"
-
-#: ../src/Audience.vala:555
-msgid "Video files"
-msgstr "Videofiler"
+"X-Launchpad-Export-Date: 2014-08-30 07:19+0000\n"
+"X-Generator: Launchpad (build 17176)\n"
 
 #: ../src/desktop-launcher.vala:5
 msgid "Play your media"
@@ -89,49 +25,13 @@ msgstr "Afspil dit medie"
 msgid "Media Player"
 msgstr "Medieafspiller"
 
-#: ../src/Widgets/SettingsPopover.vala:31
-msgid "External Subtitles"
-msgstr ""
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:318
+msgid "Open file"
+msgstr "Åbn fil"
 
-#: ../src/Widgets/SettingsPopover.vala:33
-msgid "Audio:"
-msgstr ""
-
-#: ../src/Widgets/SettingsPopover.vala:36
-msgid "Subtitles:"
-msgstr ""
-
-#: ../src/Widgets/SettingsPopover.vala:39
-msgid "External Subtitles:"
-msgstr ""
-
-#: ../src/Widgets/SettingsPopover.vala:107
-msgid "None"
-msgstr ""
-
-#: ../src/Widgets/SettingsPopover.vala:138
-msgid "Default"
-msgstr ""
-
-#: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:116
-msgid "Play"
-msgstr ""
-
-#: ../src/Widgets/BottomBar.vala:48
-msgid "Playlist"
-msgstr ""
-
-#: ../src/Widgets/BottomBar.vala:52
-msgid "Settings"
-msgstr ""
-
-#: ../src/Widgets/BottomBar.vala:101
-msgid "Unfullscreen"
-msgstr ""
-
-#: ../src/Widgets/BottomBar.vala:112
-msgid "Pause"
-msgstr ""
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:331
+msgid "Play from Disc"
+msgstr "Afspil fra disk"
 
 #: ../src/Widgets/VideoPlayer.vala:360
 msgid "Error"
@@ -163,14 +63,106 @@ msgstr ""
 msgid "Install"
 msgstr ""
 
-#: ../src/Widgets/PlaylistPopover.vala:30
-msgid "Add from Harddrive…"
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:558
+msgid "All files"
+msgstr "Alle filer"
+
+#: ../src/Widgets/SettingsPopover.vala:37
+msgid "Subtitle files"
 msgstr ""
 
-#: ../src/Widgets/PlaylistPopover.vala:32
-msgid "Play a DVD…"
+#: ../src/Widgets/SettingsPopover.vala:44
+msgid "External Subtitles"
 msgstr ""
 
-#: ../src/Widgets/PlaylistPopover.vala:35
-msgid "Network File…"
+#: ../src/Widgets/SettingsPopover.vala:48
+msgid "Audio:"
 msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:51
+msgid "Subtitles:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:54
+msgid "External Subtitles:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:122
+msgid "None"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:153
+msgid "Default"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
+msgid "Play"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:48
+msgid "Playlist"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:52
+msgid "Settings"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:100
+msgid "Unfullscreen"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:111
+msgid "Pause"
+msgstr ""
+
+#: ../src/Audience.vala:317
+msgid "No Videos Open"
+msgstr ""
+
+#: ../src/Audience.vala:317
+msgid "Select a source to begin playing."
+msgstr ""
+
+#: ../src/Audience.vala:318
+msgid "Open a saved file."
+msgstr "Åben en gemt fil."
+
+#: ../src/Audience.vala:323
+msgid "Resume last video"
+msgstr "Genoptag sidste video"
+
+#: ../src/Audience.vala:331
+msgid "Watch a DVD or open a file from disc"
+msgstr "Se en DVD eller åben en fil fra disk"
+
+#: ../src/Audience.vala:368
+msgid "Open location"
+msgstr "Åbn placering"
+
+#: ../src/Audience.vala:370
+msgid "Cancel"
+msgstr ""
+
+#: ../src/Audience.vala:371
+msgid "OK"
+msgstr ""
+
+#: ../src/Audience.vala:378
+msgid "Choose location"
+msgstr "Vælg placering"
+
+#: ../src/Audience.vala:553
+msgid "Open"
+msgstr "Åbn"
+
+#: ../src/Audience.vala:554
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/Audience.vala:554
+msgid "_Open"
+msgstr ""
+
+#: ../src/Audience.vala:562
+msgid "Video files"
+msgstr "Videofiler"

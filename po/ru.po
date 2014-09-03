@@ -7,79 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-06 23:39-0500\n"
-"PO-Revision-Date: 2014-03-21 16:35+0000\n"
-"Last-Translator: Pasha. P. Komar <Unknown>\n"
+"POT-Creation-Date: 2014-08-28 21:25-0500\n"
+"PO-Revision-Date: 2014-08-24 20:58+0000\n"
+"Last-Translator: Artem Anufrij <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-08 06:47+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
-
-#: ../src/Audience.vala:317
-msgid "No Videos Open"
-msgstr "Нет открытых видеофайлов"
-
-#: ../src/Audience.vala:317
-msgid "Select a source to begin playing."
-msgstr "Выберите файл для воспроизведения"
-
-#: ../src/Audience.vala:318
-msgid "Open file"
-msgstr "Открыть файл"
-
-#: ../src/Audience.vala:318
-msgid "Open a saved file."
-msgstr "Открыть сохранённый файл."
-
-#: ../src/Audience.vala:323
-msgid "Resume last video"
-msgstr "Возобновить последнюю видеозапись"
-
-#: ../src/Audience.vala:331
-msgid "Play from Disc"
-msgstr "Воспроизвести с диска"
-
-#: ../src/Audience.vala:331
-msgid "Watch a DVD or open a file from disc"
-msgstr "Воспроизвести DVD или открыть файл с диска"
-
-#: ../src/Audience.vala:367
-msgid "Open location"
-msgstr "Открыть местоположение"
-
-#: ../src/Audience.vala:369
-msgid "Cancel"
-msgstr ""
-
-#: ../src/Audience.vala:370
-msgid "OK"
-msgstr ""
-
-#: ../src/Audience.vala:377
-msgid "Choose location"
-msgstr "Выберите местоположение"
-
-#: ../src/Audience.vala:546
-msgid "Open"
-msgstr "Открыть"
-
-#: ../src/Audience.vala:547
-msgid "_Cancel"
-msgstr ""
-
-#: ../src/Audience.vala:547
-msgid "_Open"
-msgstr ""
-
-#: ../src/Audience.vala:551
-msgid "All files"
-msgstr "Все файлы"
-
-#: ../src/Audience.vala:555
-msgid "Video files"
-msgstr "Видеофайлы"
+"X-Launchpad-Export-Date: 2014-08-30 07:20+0000\n"
+"X-Generator: Launchpad (build 17176)\n"
 
 #: ../src/desktop-launcher.vala:5
 msgid "Play your media"
@@ -89,49 +25,13 @@ msgstr "Воспроизводите ваши медиа-файлы"
 msgid "Media Player"
 msgstr "Мультимедийный проигрыватель"
 
-#: ../src/Widgets/SettingsPopover.vala:31
-msgid "External Subtitles"
-msgstr "Внешние субтитры"
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:318
+msgid "Open file"
+msgstr "Открыть файл"
 
-#: ../src/Widgets/SettingsPopover.vala:33
-msgid "Audio:"
-msgstr ""
-
-#: ../src/Widgets/SettingsPopover.vala:36
-msgid "Subtitles:"
-msgstr ""
-
-#: ../src/Widgets/SettingsPopover.vala:39
-msgid "External Subtitles:"
-msgstr ""
-
-#: ../src/Widgets/SettingsPopover.vala:107
-msgid "None"
-msgstr "Нет"
-
-#: ../src/Widgets/SettingsPopover.vala:138
-msgid "Default"
-msgstr "По умолчанию"
-
-#: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:116
-msgid "Play"
-msgstr ""
-
-#: ../src/Widgets/BottomBar.vala:48
-msgid "Playlist"
-msgstr "Список воспроизведения"
-
-#: ../src/Widgets/BottomBar.vala:52
-msgid "Settings"
-msgstr ""
-
-#: ../src/Widgets/BottomBar.vala:101
-msgid "Unfullscreen"
-msgstr ""
-
-#: ../src/Widgets/BottomBar.vala:112
-msgid "Pause"
-msgstr ""
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:331
+msgid "Play from Disc"
+msgstr "Воспроизвести с диска"
 
 #: ../src/Widgets/VideoPlayer.vala:360
 msgid "Error"
@@ -166,14 +66,106 @@ msgstr "Не устанавливать"
 msgid "Install"
 msgstr "Установить"
 
-#: ../src/Widgets/PlaylistPopover.vala:30
-msgid "Add from Harddrive…"
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:558
+msgid "All files"
+msgstr "Все файлы"
+
+#: ../src/Widgets/SettingsPopover.vala:37
+msgid "Subtitle files"
 msgstr ""
 
-#: ../src/Widgets/PlaylistPopover.vala:32
-msgid "Play a DVD…"
+#: ../src/Widgets/SettingsPopover.vala:44
+msgid "External Subtitles"
+msgstr "Внешние субтитры"
+
+#: ../src/Widgets/SettingsPopover.vala:48
+msgid "Audio:"
 msgstr ""
 
-#: ../src/Widgets/PlaylistPopover.vala:35
-msgid "Network File…"
+#: ../src/Widgets/SettingsPopover.vala:51
+msgid "Subtitles:"
+msgstr "Субтитры:"
+
+#: ../src/Widgets/SettingsPopover.vala:54
+msgid "External Subtitles:"
+msgstr "Субтитры из файла:"
+
+#: ../src/Widgets/SettingsPopover.vala:122
+msgid "None"
+msgstr "Нет"
+
+#: ../src/Widgets/SettingsPopover.vala:153
+msgid "Default"
+msgstr "По умолчанию"
+
+#: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
+msgid "Play"
+msgstr "Воспроизвести"
+
+#: ../src/Widgets/BottomBar.vala:48
+msgid "Playlist"
+msgstr "Список воспроизведения"
+
+#: ../src/Widgets/BottomBar.vala:52
+msgid "Settings"
+msgstr "Настройки"
+
+#: ../src/Widgets/BottomBar.vala:100
+msgid "Unfullscreen"
 msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:111
+msgid "Pause"
+msgstr ""
+
+#: ../src/Audience.vala:317
+msgid "No Videos Open"
+msgstr "Нет открытых видеофайлов"
+
+#: ../src/Audience.vala:317
+msgid "Select a source to begin playing."
+msgstr "Выберите файл для воспроизведения"
+
+#: ../src/Audience.vala:318
+msgid "Open a saved file."
+msgstr "Открыть сохранённый файл."
+
+#: ../src/Audience.vala:323
+msgid "Resume last video"
+msgstr "Возобновить последнюю видеозапись"
+
+#: ../src/Audience.vala:331
+msgid "Watch a DVD or open a file from disc"
+msgstr "Воспроизвести DVD или открыть файл с диска"
+
+#: ../src/Audience.vala:368
+msgid "Open location"
+msgstr "Открыть местоположение"
+
+#: ../src/Audience.vala:370
+msgid "Cancel"
+msgstr "Отменить"
+
+#: ../src/Audience.vala:371
+msgid "OK"
+msgstr "ОК"
+
+#: ../src/Audience.vala:378
+msgid "Choose location"
+msgstr "Выберите местоположение"
+
+#: ../src/Audience.vala:553
+msgid "Open"
+msgstr "Открыть"
+
+#: ../src/Audience.vala:554
+msgid "_Cancel"
+msgstr "_Отменить"
+
+#: ../src/Audience.vala:554
+msgid "_Open"
+msgstr "_Открыть"
+
+#: ../src/Audience.vala:562
+msgid "Video files"
+msgstr "Видеофайлы"

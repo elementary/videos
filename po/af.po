@@ -1,16 +1,16 @@
-# Czech translation for audience
-# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# Afrikaans translation for audience
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the audience package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-28 21:25-0500\n"
-"PO-Revision-Date: 2012-10-21 09:36+0000\n"
-"Last-Translator: Hlobil Vaclav <Unknown>\n"
-"Language-Team: Czech <cs@li.org>\n"
+"PO-Revision-Date: 2014-08-15 08:42+0000\n"
+"Last-Translator: Jaycee Lock <jaycee.lock@gmail.com>\n"
+"Language-Team: Afrikaans <af@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,55 +19,55 @@ msgstr ""
 
 #: ../src/desktop-launcher.vala:5
 msgid "Play your media"
-msgstr "Přehrát"
+msgstr "Speel jou media"
 
 #: ../src/desktop-launcher.vala:6
 msgid "Media Player"
-msgstr "Přehrávač médií"
+msgstr "Mediaspeler"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:318
 msgid "Open file"
-msgstr "Otevřít soubor"
+msgstr "Maak lêer oop"
 
 #: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:331
 msgid "Play from Disc"
-msgstr "Přehrávat z disku."
+msgstr "Speel vanaf CD Skyf"
 
 #: ../src/Widgets/VideoPlayer.vala:360
 msgid "Error"
-msgstr "Chyba"
+msgstr "Fout"
 
 #: ../src/Widgets/VideoPlayer.vala:360
 msgid "_OK"
-msgstr ""
+msgstr "_OK"
 
 #: ../src/Widgets/VideoPlayer.vala:366
 msgid "Oops! Audience can't play this file!"
-msgstr "Hups! Audience nemůže tento soubor přehrát!"
+msgstr "Oeps! Audience kan nie hierdie leêr speel nie!"
 
 #: ../src/Widgets/VideoPlayer.vala:386
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
-"Některé soubory vyžadují pro přehrání dodatečný software. Audience může "
-"tento software automaticky nainstalovat."
+"Sommige medialeêrs kort ekstra sagteware om gespeel te word. Audience kan "
+"hierdie sagteware outomaties installeer."
 
 #: ../src/Widgets/VideoPlayer.vala:391
 msgid "Audience needs %s to play this file."
-msgstr "Audience potřebuje %s k přehrání tohoto souboru."
+msgstr "Audience benodig %s om hierdie leêr te speel"
 
 #: ../src/Widgets/VideoPlayer.vala:398
 msgid "Don't install"
-msgstr "Neinstalovat"
+msgstr "Moenie installeer nie"
 
 #: ../src/Widgets/VideoPlayer.vala:399
 msgid "Install"
-msgstr "Instalovat"
+msgstr "Installeer"
 
 #: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:558
 msgid "All files"
-msgstr "Všechny soubory"
+msgstr "Alle leêrs"
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
@@ -75,96 +75,96 @@ msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
-msgstr ""
+msgstr "Eksterne Subtitels"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
-msgstr ""
+msgstr "Klank"
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"
-msgstr ""
+msgstr "Onderskrifte"
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr ""
+msgstr "Eksterne Onderskirfte"
 
 #: ../src/Widgets/SettingsPopover.vala:122
 msgid "None"
-msgstr "Žádný"
+msgstr "Geen"
 
 #: ../src/Widgets/SettingsPopover.vala:153
 msgid "Default"
-msgstr "Výchozí"
+msgstr "Verstek"
 
 #: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
 msgid "Play"
-msgstr ""
+msgstr "Speel"
 
 #: ../src/Widgets/BottomBar.vala:48
 msgid "Playlist"
-msgstr "Seznam souborů"
+msgstr "Speellys"
 
 #: ../src/Widgets/BottomBar.vala:52
 msgid "Settings"
-msgstr ""
+msgstr "Instellings"
 
 #: ../src/Widgets/BottomBar.vala:100
 msgid "Unfullscreen"
-msgstr ""
+msgstr "Skakel volskerm"
 
 #: ../src/Widgets/BottomBar.vala:111
 msgid "Pause"
-msgstr ""
+msgstr "Wag"
 
 #: ../src/Audience.vala:317
 msgid "No Videos Open"
-msgstr ""
+msgstr "Geen videos oop nie"
 
 #: ../src/Audience.vala:317
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "Kies 'n bron om video te begin"
 
 #: ../src/Audience.vala:318
 msgid "Open a saved file."
-msgstr "Otevřít uložený soubor."
+msgstr "Maak 'n verbergte leêr oop."
 
 #: ../src/Audience.vala:323
 msgid "Resume last video"
-msgstr "Pokračovat v přehrávání posledního videa"
+msgstr "Hervat laaste video"
 
 #: ../src/Audience.vala:331
 msgid "Watch a DVD or open a file from disc"
-msgstr "Přehrávat DVD nebo otevřít soubor z disku."
+msgstr "Kyk 'n DVD op maak 'n leêr oop vanaf die hardeskyf"
 
 #: ../src/Audience.vala:368
 msgid "Open location"
-msgstr "Otevřít umístění"
+msgstr "Maak leêr oop"
 
 #: ../src/Audience.vala:370
 msgid "Cancel"
-msgstr ""
+msgstr "Kanselleer"
 
 #: ../src/Audience.vala:371
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/Audience.vala:378
 msgid "Choose location"
-msgstr "Vybrat umístění"
+msgstr "Kies leêr"
 
 #: ../src/Audience.vala:553
 msgid "Open"
-msgstr "Otevřít"
+msgstr "Maak Oop"
 
 #: ../src/Audience.vala:554
 msgid "_Cancel"
-msgstr ""
+msgstr "_Kanselleer"
 
 #: ../src/Audience.vala:554
 msgid "_Open"
-msgstr ""
+msgstr "_Open"
 
 #: ../src/Audience.vala:562
 msgid "Video files"
-msgstr "Video soubory"
+msgstr "Videoleêrs"
