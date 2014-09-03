@@ -51,8 +51,9 @@ namespace Audience {
             help_url = "https://code.launchpad.net/audience";
             translate_url = "https://translations.launchpad.net/audience";
 
-            /*about_authors = {""};
-            about_documenters = {""};
+            about_authors = { "Cody Garver <cody@elementaryos.org>",
+                              "Tom Beckmann <tom@elementaryos.org>" };
+            /*about_documenters = {""};
             about_artists = {""};
             about_translators = "Launchpad Translators";
             about_comments = "To be determined"; */

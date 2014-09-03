@@ -4,4 +4,5 @@ namespace DesktopLauncher {
     /* changes in these launcher keys in .desktop file.          */
     public const string COMMENT = N_("Play your media");
     public const string GENERIC_NAME = N_("Media Player");
+    public const string ABOUT = N_("About Audience");
 }
