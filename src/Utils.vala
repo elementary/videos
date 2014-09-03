@@ -131,7 +131,14 @@ namespace Audience {
             }
         }
 
-        notification = new Notify.Notification (primary_text, secondary_text, "");
+        if (notification == null) {
+            notification = new Notify.Notification (primary_text, secondary_text, "");
+        } else {
+            notification.clear_hints ();
+            notification.clear_actions ();
+            notification.update (primary_text, secondary_text, "");
+        }
+
         if (pixbuf != null)
             notification.set_image_from_pixbuf (pixbuf);
         else
