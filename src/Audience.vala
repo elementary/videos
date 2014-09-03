@@ -27,7 +27,6 @@ public extern bool gst_navigation_query_parse_commands_nth (Gst.Query q, uint n,
 */
 namespace Audience {
 
-    public static App app;//global App instance
     public Audience.Settings settings; //global space for easier access...
 
     public class App : Granite.Application {
@@ -69,6 +68,7 @@ namespace Audience {
 
         public bool fullscreened { get; set; }
 
+        private static App app; // global App instance
         private Audience.Widgets.VideoPlayer video_player;
         private Audience.Widgets.BottomBar bottom_bar;
         private Clutter.Stage stage;
@@ -94,6 +94,12 @@ namespace Audience {
 
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
+        }
+
+        public static App get_instance () {
+            if (app == null)
+                app = new App ();
+            return app;
         }
 
         void build () {
@@ -767,8 +773,7 @@ public static void main (string [] args) {
 
     Gst.init (ref args);
 
-    if (Audience.app == null)
-        Audience.app = new Audience.App ();
+    var app = Audience.App.get_instance ();
 
-    Audience.app.run (args);
+    app.run (args);
 }

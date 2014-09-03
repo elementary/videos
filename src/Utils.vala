@@ -125,7 +125,7 @@ namespace Audience {
             urgency = Notify.Urgency.NORMAL;
 
         if (!Notify.is_initted ()) {
-            if (!Notify.init (Audience.app.application_id)) {
+            if (!Notify.init (App.get_instance ().application_id)) {
                 warning ("Could not init libnotify");
                 return;
             }
@@ -142,7 +142,7 @@ namespace Audience {
         if (pixbuf != null)
             notification.set_image_from_pixbuf (pixbuf);
         else
-            notification.icon_name = Audience.app.app_icon;
+            notification.icon_name = App.get_instance ().app_icon;
 
         notification.set_urgency ((Notify.Urgency) urgency);
 
