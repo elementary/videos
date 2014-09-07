@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-28 21:25-0500\n"
-"PO-Revision-Date: 2013-11-24 13:31+0000\n"
+"POT-Creation-Date: 2014-09-06 10:16-0500\n"
+"PO-Revision-Date: 2014-09-06 10:32+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-30 07:20+0000\n"
-"X-Generator: Launchpad (build 17176)\n"
+"X-Launchpad-Export-Date: 2014-09-07 06:44+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
 msgid "Play your media"
@@ -25,11 +25,15 @@ msgstr "Reproduzca sus archivos multimedia"
 msgid "Media Player"
 msgstr "Reproductor multimedia"
 
-#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:318
+#: ../src/desktop-launcher.vala:7
+msgid "About Audience"
+msgstr ""
+
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:319
 msgid "Open file"
 msgstr "Abrir un archivo"
 
-#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:331
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:332
 msgid "Play from Disc"
 msgstr "Reproducir desde disco"
 
@@ -39,7 +43,7 @@ msgstr "Error"
 
 #: ../src/Widgets/VideoPlayer.vala:360
 msgid "_OK"
-msgstr ""
+msgstr "_Aceptar"
 
 #: ../src/Widgets/VideoPlayer.vala:366
 msgid "Oops! Audience can't play this file!"
@@ -65,13 +69,13 @@ msgstr "No instalar"
 msgid "Install"
 msgstr "Instalar"
 
-#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:558
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:584
 msgid "All files"
 msgstr "Todos los archivos"
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
-msgstr ""
+msgstr "Archivos de subtítulos"
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
@@ -79,15 +83,15 @@ msgstr "Subtítulos externos"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
-msgstr ""
+msgstr "Audio:"
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"
-msgstr ""
+msgstr "Subtítulos:"
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr ""
+msgstr "Subtítulos externos:"
 
 #: ../src/Widgets/SettingsPopover.vala:122
 msgid "None"
@@ -99,7 +103,7 @@ msgstr "Predeterminado"
 
 #: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
 msgid "Play"
-msgstr ""
+msgstr "Reproducir"
 
 #: ../src/Widgets/BottomBar.vala:48
 msgid "Playlist"
@@ -107,7 +111,7 @@ msgstr "Lista de reproducción"
 
 #: ../src/Widgets/BottomBar.vala:52
 msgid "Settings"
-msgstr ""
+msgstr "Configuración"
 
 #: ../src/Widgets/BottomBar.vala:100
 msgid "Unfullscreen"
@@ -115,56 +119,56 @@ msgstr ""
 
 #: ../src/Widgets/BottomBar.vala:111
 msgid "Pause"
-msgstr ""
+msgstr "Pausar"
 
-#: ../src/Audience.vala:317
+#: ../src/Audience.vala:318
 msgid "No Videos Open"
 msgstr "No hay ningún vídeo abierto"
 
-#: ../src/Audience.vala:317
+#: ../src/Audience.vala:318
 msgid "Select a source to begin playing."
 msgstr "Seleccione una fuente para comenzar la reproducción."
 
-#: ../src/Audience.vala:318
+#: ../src/Audience.vala:319
 msgid "Open a saved file."
 msgstr "Abrir un archivo guardado."
 
-#: ../src/Audience.vala:323
+#: ../src/Audience.vala:324
 msgid "Resume last video"
 msgstr "Continuar reproduciendo el último video"
 
-#: ../src/Audience.vala:331
+#: ../src/Audience.vala:332
 msgid "Watch a DVD or open a file from disc"
 msgstr "Ver un DVD o abrir un archivo desde un disco"
 
-#: ../src/Audience.vala:368
+#: ../src/Audience.vala:369
 msgid "Open location"
 msgstr "Abrir ubicación"
 
-#: ../src/Audience.vala:370
-msgid "Cancel"
-msgstr ""
-
 #: ../src/Audience.vala:371
-msgid "OK"
-msgstr ""
+msgid "Cancel"
+msgstr "Cancelar"
 
-#: ../src/Audience.vala:378
+#: ../src/Audience.vala:372
+msgid "OK"
+msgstr "Aceptar"
+
+#: ../src/Audience.vala:379
 msgid "Choose location"
 msgstr "Elegir ubicación"
 
-#: ../src/Audience.vala:553
+#: ../src/Audience.vala:579
 msgid "Open"
 msgstr "Abrir"
 
-#: ../src/Audience.vala:554
+#: ../src/Audience.vala:580
 msgid "_Cancel"
-msgstr ""
+msgstr "_Cancelar"
 
-#: ../src/Audience.vala:554
+#: ../src/Audience.vala:580
 msgid "_Open"
-msgstr ""
+msgstr "_Abrir"
 
-#: ../src/Audience.vala:562
+#: ../src/Audience.vala:588
 msgid "Video files"
 msgstr "Archivos de vídeo"

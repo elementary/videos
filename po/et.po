@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-28 21:25-0500\n"
+"POT-Creation-Date: 2014-09-06 10:16-0500\n"
 "PO-Revision-Date: 2014-08-13 00:47+0000\n"
 "Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-30 07:19+0000\n"
-"X-Generator: Launchpad (build 17176)\n"
+"X-Launchpad-Export-Date: 2014-09-07 06:43+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
 msgid "Play your media"
@@ -25,11 +25,15 @@ msgstr "Videode esitamine"
 msgid "Media Player"
 msgstr "Video esitaja"
 
-#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:318
+#: ../src/desktop-launcher.vala:7
+msgid "About Audience"
+msgstr ""
+
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:319
 msgid "Open file"
 msgstr "Ava videofail"
 
-#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:331
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:332
 msgid "Play from Disc"
 msgstr "Ava plaadilt"
 
@@ -65,7 +69,7 @@ msgstr "Ära paigalda"
 msgid "Install"
 msgstr "Paigalda"
 
-#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:558
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:584
 msgid "All files"
 msgstr "Kõik Failid"
 
@@ -117,54 +121,54 @@ msgstr "Välju täisekraanist"
 msgid "Pause"
 msgstr "Peata"
 
-#: ../src/Audience.vala:317
+#: ../src/Audience.vala:318
 msgid "No Videos Open"
 msgstr "Ühtegi videot pole avatud"
 
-#: ../src/Audience.vala:317
+#: ../src/Audience.vala:318
 msgid "Select a source to begin playing."
 msgstr "Video esitamiseks ava videofail või DVD"
 
-#: ../src/Audience.vala:318
+#: ../src/Audience.vala:319
 msgid "Open a saved file."
 msgstr "Kindla videofaili esitamine"
 
-#: ../src/Audience.vala:323
+#: ../src/Audience.vala:324
 msgid "Resume last video"
 msgstr "Ava eelnev video"
 
-#: ../src/Audience.vala:331
+#: ../src/Audience.vala:332
 msgid "Watch a DVD or open a file from disc"
 msgstr "DVD või sellelt kindla videofaili esitamine"
 
-#: ../src/Audience.vala:368
+#: ../src/Audience.vala:369
 msgid "Open location"
 msgstr "Ava asukoht"
 
-#: ../src/Audience.vala:370
+#: ../src/Audience.vala:371
 msgid "Cancel"
 msgstr "Loobu"
 
-#: ../src/Audience.vala:371
+#: ../src/Audience.vala:372
 msgid "OK"
 msgstr "Olgu"
 
-#: ../src/Audience.vala:378
+#: ../src/Audience.vala:379
 msgid "Choose location"
 msgstr "Vali asukoht"
 
-#: ../src/Audience.vala:553
+#: ../src/Audience.vala:579
 msgid "Open"
 msgstr "Ava"
 
-#: ../src/Audience.vala:554
+#: ../src/Audience.vala:580
 msgid "_Cancel"
 msgstr "_Loobu"
 
-#: ../src/Audience.vala:554
+#: ../src/Audience.vala:580
 msgid "_Open"
 msgstr "_Ava"
 
-#: ../src/Audience.vala:562
+#: ../src/Audience.vala:588
 msgid "Video files"
 msgstr "Videofailid"
