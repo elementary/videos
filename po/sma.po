@@ -1,16 +1,16 @@
-# Norwegian Bokmal translation for audience
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Southern Sami translation for audience
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the audience package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-06 10:16-0500\n"
-"PO-Revision-Date: 2014-09-11 21:20+0000\n"
-"Last-Translator: Beren <berencamlost@msn.com>\n"
-"Language-Team: Norwegian Bokmal <nb@li.org>\n"
+"PO-Revision-Date: 2014-09-11 11:55+0000\n"
+"Last-Translator: Skandee <Unknown>\n"
+"Language-Team: Southern Sami <sma@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,27 +19,27 @@ msgstr ""
 
 #: ../src/desktop-launcher.vala:5
 msgid "Play your media"
-msgstr "Spill av mediene dine"
+msgstr ""
 
 #: ../src/desktop-launcher.vala:6
 msgid "Media Player"
-msgstr "Medieavspiller"
+msgstr ""
 
 #: ../src/desktop-launcher.vala:7
 msgid "About Audience"
-msgstr "Om Audience"
+msgstr "Audience bijre"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:319
 msgid "Open file"
-msgstr "Åpne fil"
+msgstr "Geehpehtidh gïeje"
 
 #: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:332
 msgid "Play from Disc"
-msgstr "Spill av fra plate."
+msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:360
 msgid "Error"
-msgstr "Feil"
+msgstr "båajhtode"
 
 #: ../src/Widgets/VideoPlayer.vala:360
 msgid "_OK"
@@ -47,107 +47,105 @@ msgstr "_OK"
 
 #: ../src/Widgets/VideoPlayer.vala:366
 msgid "Oops! Audience can't play this file!"
-msgstr "Oisann! Audience klarer ikke å spille av denne filen!"
+msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:386
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
-"Noen mediefiler krever tillegsprogramvare for å avspilles. Audience kan "
-"installere denne programvaren automatisk."
 
 #: ../src/Widgets/VideoPlayer.vala:391
 msgid "Audience needs %s to play this file."
-msgstr "Audience trenger %s for å spille av denne filen."
+msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:398
 msgid "Don't install"
-msgstr "Ikke installér."
+msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:399
 msgid "Install"
-msgstr "Installer"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:584
 msgid "All files"
-msgstr "Alle filer"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
-msgstr "Undertekstfiler"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
-msgstr "Ekstern undertekst"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
-msgstr "Lyd:"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"
-msgstr "Undertekster:"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr "Eksterne undertekster:"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:122
 msgid "None"
-msgstr "Ingen"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:153
 msgid "Default"
-msgstr "Standardvalg"
+msgstr ""
 
 #: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
 msgid "Play"
-msgstr "Spill av"
+msgstr ""
 
 #: ../src/Widgets/BottomBar.vala:48
 msgid "Playlist"
-msgstr "Spilleliste"
+msgstr ""
 
 #: ../src/Widgets/BottomBar.vala:52
 msgid "Settings"
-msgstr "Innstillinger"
+msgstr ""
 
 #: ../src/Widgets/BottomBar.vala:100
 msgid "Unfullscreen"
-msgstr "Forlat fullskjerm"
+msgstr ""
 
 #: ../src/Widgets/BottomBar.vala:111
 msgid "Pause"
-msgstr "Pause"
+msgstr ""
 
 #: ../src/Audience.vala:318
 msgid "No Videos Open"
-msgstr "Ingen videoer åpne."
+msgstr ""
 
 #: ../src/Audience.vala:318
 msgid "Select a source to begin playing."
-msgstr "Velg en kilde for å begynne avspilling."
+msgstr ""
 
 #: ../src/Audience.vala:319
 msgid "Open a saved file."
-msgstr "Åpne en lagret fil."
+msgstr ""
 
 #: ../src/Audience.vala:324
 msgid "Resume last video"
-msgstr "Fortsett forrige videoavspilling."
+msgstr ""
 
 #: ../src/Audience.vala:332
 msgid "Watch a DVD or open a file from disc"
-msgstr "Se en DVD eller åpne en fil fra en plate."
+msgstr ""
 
 #: ../src/Audience.vala:369
 msgid "Open location"
-msgstr "Åpne område."
+msgstr ""
 
 #: ../src/Audience.vala:371
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr "Orrijidh"
 
 #: ../src/Audience.vala:372
 msgid "OK"
@@ -155,20 +153,20 @@ msgstr "OK"
 
 #: ../src/Audience.vala:379
 msgid "Choose location"
-msgstr "Velg område."
+msgstr ""
 
 #: ../src/Audience.vala:579
 msgid "Open"
-msgstr "Åpne"
+msgstr "Geehpehtidh"
 
 #: ../src/Audience.vala:580
 msgid "_Cancel"
-msgstr "_Avbryt"
+msgstr ""
 
 #: ../src/Audience.vala:580
 msgid "_Open"
-msgstr "_Åpne"
+msgstr "_Geehpehtidh"
 
 #: ../src/Audience.vala:588
 msgid "Video files"
-msgstr "Videofiler"
+msgstr "videoe"
