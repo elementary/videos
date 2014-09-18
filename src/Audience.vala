@@ -199,6 +199,8 @@ namespace Audience {
             video_player.ended.connect (() => {
                 Idle.add (() => {
                     playlist.next ();
+                    welcome.show_all ();
+                    clutter.hide ();
                     return false;
                 });
             });
@@ -522,9 +524,15 @@ namespace Audience {
         }
 
         private void on_destroy () {
-            if (video_player.uri == null || video_player.uri == "" || video_player.uri.has_prefix ("dvd://"))
+            if (video_player.uri == null || video_player.uri == "" || video_player.uri.has_prefix ("dvd://")) {
+                clear_video_settings();
                 return;
-            if (!video_player.at_end) {
+            }
+            
+            if (video_player.at_end) {
+                clear_video_settings();
+            }
+            else {
                 save_last_played_videos ();
             }
         }
@@ -565,9 +573,14 @@ namespace Audience {
 
             if (settings.current_video != "")
                 settings.last_stopped = video_player.progress;
-            else
-                settings.last_stopped = 0;
         }
+        
+        private inline void clear_video_settings() {
+            settings.last_stopped = 0;
+            settings.last_played_videos = null;
+            settings.current_video = "";
+        }
+        
 
         private void restore_playlist () {
             foreach (var filename in settings.last_played_videos) {
