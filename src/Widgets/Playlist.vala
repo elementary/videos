@@ -67,14 +67,16 @@ namespace Audience.Widgets {
             });
         }
 
-        public void next () {
+        public bool next () {
             Gtk.TreeIter iter;
             if (playlist.get_iter_from_string (out iter, (this.current + 1).to_string ())){
                 string filename;
                 playlist.get (iter, Columns.FILENAME, out filename);
                 current++;
                 play (File.new_for_commandline_arg (filename));
+                return true;
             }
+            return false;
         }
 
         public void previous () {
@@ -131,6 +133,11 @@ namespace Audience.Widgets {
                 return false;
             });
         }
+        
+        public void clear_items(){
+            current = 0;
+            playlist.clear();
+        }
 
         public File? get_first_item () {
             Gtk.TreeIter iter;
@@ -165,7 +172,7 @@ namespace Audience.Widgets {
             playlist.set (new_iter, Columns.PLAYING, new ThemedIcon ("media-playback-start-symbolic"));
 
             this.current = current_played;
-            
+
         }
 
         public List<string> get_all_items () {

@@ -116,6 +116,7 @@ namespace Audience.Widgets {
                 playbin.suburi = null;
                 subtitle_uri = null;
                 playbin.uri = value;
+                debug ("Gst.State.READY");
                 volume = 1.0;
                 at_end = false;
 
@@ -199,8 +200,10 @@ namespace Audience.Widgets {
             });
 
             playbin.about_to_finish.connect (() => {
-                at_end = true;
-                ended ();
+                if(!at_end) {
+                    at_end = true;
+                    ended ();
+                }
             });
 
             playbin.text_tags_changed.connect ((el) => {

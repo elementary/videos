@@ -198,9 +198,11 @@ namespace Audience {
             //end
             video_player.ended.connect (() => {
                 Idle.add (() => {
-                    playlist.next ();
-                    welcome.show_all ();
-                    clutter.hide ();
+                    if(!playlist.next ()) {
+                        welcome.set_item_visible (1, false);
+                        welcome.show_all ();
+                        clutter.hide ();
+                    }
                     return false;
                 });
             });
@@ -606,13 +608,20 @@ namespace Audience {
 
             file.set_current_folder (settings.last_folder);
             if (file.run () == Gtk.ResponseType.ACCEPT) {
+                if(welcome.is_visible()) {
+                    playlist.clear_items();
+                }
+                
+                foreach(File item in file.get_files()) {
+                    playlist.add_item (item);
+                }
+                
+                if (video_player.uri == null || welcome.is_visible())
+                    open_file (file.get_uri ());
+                    
                 welcome.hide ();
                 clutter.show_all ();
-
-                playlist.add_item (file.get_file ());
-                if (video_player.uri == null)
-                    open_file (file.get_uri ());
-
+                
                 settings.last_folder = file.get_current_folder ();
             }
 
@@ -737,13 +746,7 @@ namespace Audience {
                 && settings.last_played_videos.length > 0 
                 && settings.current_video != ""
                 && file_exists (settings.current_video)) {
-                welcome.hide ();
-                clutter.show_all ();
                 restore_playlist ();
-                open_file (settings.current_video);
-                video_player.playing = false;
-                Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
-                video_player.playing = true;
             }
         }
 
