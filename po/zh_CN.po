@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-06 10:16-0500\n"
-"PO-Revision-Date: 2014-09-18 14:09+0000\n"
+"PO-Revision-Date: 2014-09-21 03:21+0000\n"
 "Last-Translator: colindemian <dengmengpc@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-19 07:55+0000\n"
+"X-Launchpad-Export-Date: 2014-09-21 06:12+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
 msgid "Play your media"
-msgstr "播放媒体"
+msgstr "播放您的媒体"
 
 #: ../src/desktop-launcher.vala:6
 msgid "Media Player"
@@ -43,11 +43,11 @@ msgstr "错误"
 
 #: ../src/Widgets/VideoPlayer.vala:360
 msgid "_OK"
-msgstr "确认(_O)"
+msgstr "确定(_O)"
 
 #: ../src/Widgets/VideoPlayer.vala:366
 msgid "Oops! Audience can't play this file!"
-msgstr "抱歉！Audience 无法播放该文件！"
+msgstr "抱歉！Audience无法播放此文件！"
 
 #: ../src/Widgets/VideoPlayer.vala:386
 msgid ""
@@ -81,7 +81,7 @@ msgstr "外挂字幕"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
-msgstr "音频："
+msgstr "音频选择："
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"

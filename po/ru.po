@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-06 10:16-0500\n"
-"PO-Revision-Date: 2014-09-18 21:30+0000\n"
+"PO-Revision-Date: 2014-09-20 23:13+0000\n"
 "Last-Translator: Artem Anufrij <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-19 07:55+0000\n"
+"X-Launchpad-Export-Date: 2014-09-21 06:12+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
@@ -128,7 +128,7 @@ msgstr "Нет открытых видеофайлов"
 
 #: ../src/Audience.vala:318
 msgid "Select a source to begin playing."
-msgstr "Выберите файл для воспроизведения"
+msgstr "Выберите файл для воспроизведения."
 
 #: ../src/Audience.vala:319
 msgid "Open a saved file."
@@ -140,7 +140,7 @@ msgstr "Продолжить последнюю видеозапись"
 
 #: ../src/Audience.vala:332
 msgid "Watch a DVD or open a file from disc"
-msgstr "Воспроизвести DVD или открыть файл с диска"
+msgstr "Воспроизвести DVD или открыть файл с диска."
 
 #: ../src/Audience.vala:369
 msgid "Open location"
