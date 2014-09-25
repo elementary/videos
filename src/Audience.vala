@@ -200,6 +200,7 @@ namespace Audience {
                 Idle.add (() => {
                     if(!playlist.next ()) {
                         welcome.set_item_visible (1, false);
+                        welcome.set_item_visible (3, true);
                         welcome.show_all ();
                         clutter.hide ();
                     }
@@ -351,6 +352,9 @@ namespace Audience {
                     welcome.set_item_visible (2, false);
             });
 
+            welcome.append ("media-playlist-repeat", _("Replay"), _("Replay last video, or playlist"));
+            welcome.set_item_visible (3, false);
+            
             //handle welcome
             welcome.activated.connect ((index) => {
                 switch (index) {
@@ -368,6 +372,14 @@ namespace Audience {
                         break;
                     case 2:
                         run_open_dvd ();
+                        break;
+                    case 3:                        
+                        welcome.hide ();
+                        clutter.show_all ();
+                        open_file (playlist.get_first_item ().get_path ());
+                        video_player.playing = false;
+                        Idle.add (() => {video_player.progress = 0; return false;});
+                        video_player.playing = true;
                         break;
                     default:
                         var d = new Gtk.Dialog.with_buttons (_("Open location"),

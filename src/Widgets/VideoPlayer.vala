@@ -116,7 +116,6 @@ namespace Audience.Widgets {
                 playbin.suburi = null;
                 subtitle_uri = null;
                 playbin.uri = value;
-                debug ("Gst.State.READY");
                 volume = 1.0;
                 at_end = false;
 

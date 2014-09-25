@@ -76,6 +76,7 @@ namespace Audience.Widgets {
                 play (File.new_for_commandline_arg (filename));
                 return true;
             }
+            current = 0;
             return false;
         }
 
