@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-06 10:16-0500\n"
-"PO-Revision-Date: 2014-09-11 21:20+0000\n"
-"Last-Translator: Beren <berencamlost@msn.com>\n"
+"PO-Revision-Date: 2014-09-25 11:28+0000\n"
+"Last-Translator: ProsjektX <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-12 06:44+0000\n"
+"X-Launchpad-Export-Date: 2014-09-26 06:36+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
@@ -54,7 +54,7 @@ msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
-"Noen mediefiler krever tillegsprogramvare for å avspilles. Audience kan "
+"Noen mediefiler krever tilleggsprogramvare for å avspilles. Audience kan "
 "installere denne programvaren automatisk."
 
 #: ../src/Widgets/VideoPlayer.vala:391
@@ -63,7 +63,7 @@ msgstr "Audience trenger %s for å spille av denne filen."
 
 #: ../src/Widgets/VideoPlayer.vala:398
 msgid "Don't install"
-msgstr "Ikke installér."
+msgstr "Ikke installer"
 
 #: ../src/Widgets/VideoPlayer.vala:399
 msgid "Install"
@@ -79,7 +79,7 @@ msgstr "Undertekstfiler"
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
-msgstr "Ekstern undertekst"
+msgstr "Eksterne undertekster"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
