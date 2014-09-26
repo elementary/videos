@@ -199,7 +199,7 @@ namespace Audience.Widgets {
             });
 
             playbin.about_to_finish.connect (() => {
-                if(!at_end) {
+                if (!at_end) {
                     at_end = true;
                     ended ();
                 }

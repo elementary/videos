@@ -135,9 +135,9 @@ namespace Audience.Widgets {
             });
         }
         
-        public void clear_items(){
+        public void clear_items () {
             current = 0;
-            playlist.clear();
+            playlist.clear ();
         }
 
         public File? get_first_item () {
