@@ -40,6 +40,7 @@ namespace Audience.Widgets {
             this.headers_visible = false;
             this.activate_on_single_click = true;
             this.can_focus = false;
+            this.tooltip_column = 1;
             get_selection ().mode = Gtk.SelectionMode.NONE;
 
             var text_render = new Gtk.CellRendererText ();
