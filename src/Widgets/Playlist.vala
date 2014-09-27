@@ -40,7 +40,6 @@ namespace Audience.Widgets {
             this.headers_visible = false;
             this.activate_on_single_click = true;
             this.can_focus = false;
-            this.tooltip_column = 1;
             get_selection ().mode = Gtk.SelectionMode.NONE;
 
             var text_render = new Gtk.CellRendererText ();
@@ -48,6 +47,7 @@ namespace Audience.Widgets {
 
             this.insert_column_with_attributes (-1, "Playing", new Gtk.CellRendererPixbuf (), "gicon", Columns.PLAYING);
             this.insert_column_with_attributes (-1, "Title", text_render, "text", Columns.TITLE);
+            this.set_tooltip_column (1);
 
             this.row_activated.connect ((path ,col) => {
                 Gtk.TreeIter iter;
