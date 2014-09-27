@@ -44,7 +44,7 @@ namespace Audience.Widgets {
             get_selection ().mode = Gtk.SelectionMode.NONE;
 
             var text_render = new Gtk.CellRendererText ();
-            text_render.ellipsize = Pango.EllipsizeMode.END;
+            text_render.ellipsize = Pango.EllipsizeMode.MIDDLE;
 
             this.insert_column_with_attributes (-1, "Playing", new Gtk.CellRendererPixbuf (), "gicon", Columns.PLAYING);
             this.insert_column_with_attributes (-1, "Title", text_render, "text", Columns.TITLE);
