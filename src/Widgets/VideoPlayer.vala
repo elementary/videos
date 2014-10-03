@@ -199,8 +199,10 @@ namespace Audience.Widgets {
             });
 
             playbin.about_to_finish.connect (() => {
-                at_end = true;
-                ended ();
+                if (!at_end) {
+                    at_end = true;
+                    ended ();
+                }
             });
 
             playbin.text_tags_changed.connect ((el) => {
@@ -442,8 +444,7 @@ namespace Audience.Widgets {
             }
         }
 
-        public void seek_jump_seconds (int seconds)
-        {
+        public void seek_jump_seconds (int seconds) {
             int64 position;
             playbin.query_position (Gst.Format.TIME, out position);
 

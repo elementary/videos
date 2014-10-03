@@ -198,7 +198,12 @@ namespace Audience {
             //end
             video_player.ended.connect (() => {
                 Idle.add (() => {
-                    playlist.next ();
+                    if (!playlist.next ()) {
+                        welcome.set_item_visible (1, false);
+                        welcome.set_item_visible (2, true);
+                        welcome.show_all ();
+                        clutter.hide ();
+                    }
                     return false;
                 });
             });
@@ -328,25 +333,30 @@ namespace Audience {
             }
 
             welcome.set_item_visible (1, show_last_file);
-
-            welcome.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
+            
+            welcome.append ("media-playlist-repeat", _("Replay"), _("Replay last video, or playlist"));
             welcome.set_item_visible (2, false);
+            
+            welcome.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
+            welcome.set_item_visible (3, false);
 
             //look for dvd
             var disk_manager = DiskManager.get_default ();
             foreach (var volume in disk_manager.get_volumes ()) {
-                welcome.set_item_visible (2, true);
+                welcome.set_item_visible (3, true);
             }
 
             disk_manager.volume_found.connect ((vol) => {
-                welcome.set_item_visible (2, true);
+                welcome.set_item_visible (3, true);
             });
 
             disk_manager.volume_removed.connect ((vol) => {
                 if (disk_manager.get_volumes ().length () <= 0)
-                    welcome.set_item_visible (2, false);
+                    welcome.set_item_visible (3, false);
             });
 
+            
+            
             //handle welcome
             welcome.activated.connect ((index) => {
                 switch (index) {
@@ -361,8 +371,16 @@ namespace Audience {
                         video_player.playing = false;
                         Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
                         video_player.playing = true;
+                        break;                   
+                    case 2:                        
+                        welcome.hide ();
+                        clutter.show_all ();
+                        open_file (playlist.get_first_item ().get_path ());
+                        video_player.playing = false;
+                        Idle.add (() => {video_player.progress = 0; return false;});
+                        video_player.playing = true;
                         break;
-                    case 2:
+                    case 3:
                         run_open_dvd ();
                         break;
                     default:
@@ -522,11 +540,15 @@ namespace Audience {
         }
 
         private void on_destroy () {
-            if (video_player.uri == null || video_player.uri == "" || video_player.uri.has_prefix ("dvd://"))
+            if (video_player.uri.has_prefix ("dvd://")) {
+                clear_video_settings ();
                 return;
-            if (!video_player.at_end) {
-                save_last_played_videos ();
             }
+
+            if (video_player.uri == null || video_player.uri == "")
+                return;                
+                
+            save_last_played_videos ();
         }
 
         private int old_h = - 1;
@@ -563,11 +585,22 @@ namespace Audience {
         private inline void save_last_played_videos () {
             playlist.save_playlist_config ();
 
-            if (settings.current_video != "")
+            debug ("saving settings for: %s", playlist.get_first_item ().get_uri ());
+
+            if (settings.current_video != "" && !video_player.at_end)
                 settings.last_stopped = video_player.progress;
-            else
+            else if (settings.current_video != "" && video_player.at_end) {
+                settings.current_video = playlist.get_first_item ().get_uri ();
                 settings.last_stopped = 0;
+            }
         }
+        
+        private inline void clear_video_settings () {
+            settings.last_stopped = 0;
+            settings.last_played_videos = null;
+            settings.current_video = "";
+        }
+        
 
         private void restore_playlist () {
             foreach (var filename in settings.last_played_videos) {
@@ -593,13 +626,20 @@ namespace Audience {
 
             file.set_current_folder (settings.last_folder);
             if (file.run () == Gtk.ResponseType.ACCEPT) {
+                if (welcome.is_visible ()) {
+                    playlist.clear_items ();
+                }
+                
+                foreach (File item in file.get_files ()) {
+                    playlist.add_item (item);
+                }
+                
+                if (video_player.uri == null || welcome.is_visible ())
+                    open_file (file.get_uri ());
+                    
                 welcome.hide ();
                 clutter.show_all ();
-
-                playlist.add_item (file.get_file ());
-                if (video_player.uri == null)
-                    open_file (file.get_uri ());
-
+                
                 settings.last_folder = file.get_current_folder ();
             }
 
@@ -724,13 +764,16 @@ namespace Audience {
                 && settings.last_played_videos.length > 0 
                 && settings.current_video != ""
                 && file_exists (settings.current_video)) {
-                welcome.hide ();
-                clutter.show_all ();
                 restore_playlist ();
-                open_file (settings.current_video);
-                video_player.playing = false;
-                Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
-                video_player.playing = true;
+                
+                if (settings.last_stopped > 0) {
+                    welcome.hide ();
+                    clutter.show_all ();
+                    open_file (settings.current_video);
+                    video_player.playing = false;
+                    Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
+                    video_player.playing = true;
+                }
             }
         }
 
