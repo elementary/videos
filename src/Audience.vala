@@ -68,6 +68,7 @@ namespace Audience {
 
         public bool fullscreened { get; set; }
 
+        private static App app; // global App instance
         private Audience.Widgets.VideoPlayer video_player;
         private Audience.Widgets.BottomBar bottom_bar;
         private Clutter.Stage stage;
@@ -93,6 +94,12 @@ namespace Audience {
 
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
+        }
+
+        public static App get_instance () {
+            if (app == null)
+                app = new App ();
+            return app;
         }
 
         void build () {
@@ -788,7 +795,12 @@ namespace Audience {
                 playlist.add_item (file);
             }
 
-            if (video_player.uri == null)
+            if (video_player.uri != null) { // we already play some file
+                if (files.length == 1)
+                    show_notification (_("Video added to playlist"), files[0].get_basename ());
+                else 
+                    show_notification (_("%i videos added to playlist").printf (files.length), "");
+            } else
                 open_file(files[0].get_uri ());
         }
     }
@@ -804,7 +816,7 @@ public static void main (string [] args) {
 
     Gst.init (ref args);
 
-    var app = new Audience.App ();
+    var app = Audience.App.get_instance ();
 
     app.run (args);
 }
