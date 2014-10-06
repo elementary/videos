@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-06 10:16-0500\n"
+"POT-Creation-Date: 2014-10-05 00:04-0500\n"
 "PO-Revision-Date: 2014-08-12 14:04+0000\n"
 "Last-Translator: Chang Geon Kang <kangha02@naver.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-07 06:43+0000\n"
+"X-Launchpad-Export-Date: 2014-10-06 06:43+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
@@ -29,27 +29,27 @@ msgstr "미디어 플레이어"
 msgid "About Audience"
 msgstr ""
 
-#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:319
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:331
 msgid "Open file"
 msgstr "파일 열기"
 
-#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:332
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:347
 msgid "Play from Disc"
 msgstr "디스크 롬 재생하기"
 
-#: ../src/Widgets/VideoPlayer.vala:360
+#: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
 msgstr "오류"
 
-#: ../src/Widgets/VideoPlayer.vala:360
+#: ../src/Widgets/VideoPlayer.vala:362
 msgid "_OK"
 msgstr "_확인"
 
-#: ../src/Widgets/VideoPlayer.vala:366
+#: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
 msgstr "앗! Audience 플레이어가 이 파일을 재생할 수 없습니다!"
 
-#: ../src/Widgets/VideoPlayer.vala:386
+#: ../src/Widgets/VideoPlayer.vala:388
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -57,19 +57,19 @@ msgstr ""
 "어떠한 미디어 파일을 재생하기 위해서는 제3자 소프트웨어 등의 추가 패키지가 필요합니다. Audience 플레이어는 필요한 의존성 패키지 "
 "(dependencies)를 자동으로 검색하여 설치할 수 있습니다."
 
-#: ../src/Widgets/VideoPlayer.vala:391
+#: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
 msgstr "이 파일을 재생하려면 %s가 필요합니다."
 
-#: ../src/Widgets/VideoPlayer.vala:398
+#: ../src/Widgets/VideoPlayer.vala:400
 msgid "Don't install"
 msgstr "설치하지 않음"
 
-#: ../src/Widgets/VideoPlayer.vala:399
+#: ../src/Widgets/VideoPlayer.vala:401
 msgid "Install"
 msgstr "설치"
 
-#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:584
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:624
 msgid "All files"
 msgstr "모든 파일"
 
@@ -121,54 +121,70 @@ msgstr "전체화면 해제"
 msgid "Pause"
 msgstr "일시정지"
 
-#: ../src/Audience.vala:318
+#: ../src/Audience.vala:330
 msgid "No Videos Open"
 msgstr "비디오가 열려 있지 않음"
 
-#: ../src/Audience.vala:318
+#: ../src/Audience.vala:330
 msgid "Select a source to begin playing."
 msgstr "재생하고 싶은 소스를 선택해주세요."
 
-#: ../src/Audience.vala:319
+#: ../src/Audience.vala:331
 msgid "Open a saved file."
 msgstr "저장된 파일을 엽니다."
 
-#: ../src/Audience.vala:324
+#: ../src/Audience.vala:336
 msgid "Resume last video"
 msgstr "마지막으로 재생한 비디오를 계속 재생하기"
 
-#: ../src/Audience.vala:332
+#: ../src/Audience.vala:344
+msgid "Replay"
+msgstr ""
+
+#: ../src/Audience.vala:344
+msgid "Replay last video, or playlist"
+msgstr ""
+
+#: ../src/Audience.vala:347
 msgid "Watch a DVD or open a file from disc"
 msgstr "DVD를 재생하거나, 디스크 롬에서 파일 재생하기"
 
-#: ../src/Audience.vala:369
+#: ../src/Audience.vala:394
 msgid "Open location"
 msgstr "위치 열기"
 
-#: ../src/Audience.vala:371
+#: ../src/Audience.vala:396
 msgid "Cancel"
 msgstr "취소"
 
-#: ../src/Audience.vala:372
+#: ../src/Audience.vala:397
 msgid "OK"
 msgstr "확인"
 
-#: ../src/Audience.vala:379
+#: ../src/Audience.vala:404
 msgid "Choose location"
 msgstr "위치 선택"
 
-#: ../src/Audience.vala:579
+#: ../src/Audience.vala:619
 msgid "Open"
 msgstr "열기"
 
-#: ../src/Audience.vala:580
+#: ../src/Audience.vala:620
 msgid "_Cancel"
 msgstr "_취소"
 
-#: ../src/Audience.vala:580
+#: ../src/Audience.vala:620
 msgid "_Open"
 msgstr "_열기"
 
-#: ../src/Audience.vala:588
+#: ../src/Audience.vala:628
 msgid "Video files"
 msgstr "비디오 파일"
+
+#: ../src/Audience.vala:800
+msgid "Video added to playlist"
+msgstr ""
+
+#: ../src/Audience.vala:802
+msgid "%i videos added to playlist"
+msgstr ""

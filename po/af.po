@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-06 10:16-0500\n"
+"POT-Creation-Date: 2014-10-05 00:04-0500\n"
 "PO-Revision-Date: 2014-08-15 08:42+0000\n"
 "Last-Translator: Jaycee Lock <jaycee.lock@gmail.com>\n"
 "Language-Team: Afrikaans <af@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-07 06:43+0000\n"
+"X-Launchpad-Export-Date: 2014-10-06 06:43+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
@@ -29,27 +29,27 @@ msgstr "Mediaspeler"
 msgid "About Audience"
 msgstr ""
 
-#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:319
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:331
 msgid "Open file"
 msgstr "Maak lêer oop"
 
-#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:332
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:347
 msgid "Play from Disc"
 msgstr "Speel vanaf CD Skyf"
 
-#: ../src/Widgets/VideoPlayer.vala:360
+#: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
 msgstr "Fout"
 
-#: ../src/Widgets/VideoPlayer.vala:360
+#: ../src/Widgets/VideoPlayer.vala:362
 msgid "_OK"
 msgstr "_OK"
 
-#: ../src/Widgets/VideoPlayer.vala:366
+#: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
 msgstr "Oeps! Audience kan nie hierdie leêr speel nie!"
 
-#: ../src/Widgets/VideoPlayer.vala:386
+#: ../src/Widgets/VideoPlayer.vala:388
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -57,19 +57,19 @@ msgstr ""
 "Sommige medialeêrs kort ekstra sagteware om gespeel te word. Audience kan "
 "hierdie sagteware outomaties installeer."
 
-#: ../src/Widgets/VideoPlayer.vala:391
+#: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
 msgstr "Audience benodig %s om hierdie leêr te speel"
 
-#: ../src/Widgets/VideoPlayer.vala:398
+#: ../src/Widgets/VideoPlayer.vala:400
 msgid "Don't install"
 msgstr "Moenie installeer nie"
 
-#: ../src/Widgets/VideoPlayer.vala:399
+#: ../src/Widgets/VideoPlayer.vala:401
 msgid "Install"
 msgstr "Installeer"
 
-#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:584
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:624
 msgid "All files"
 msgstr "Alle leêrs"
 
@@ -121,54 +121,70 @@ msgstr "Skakel volskerm"
 msgid "Pause"
 msgstr "Wag"
 
-#: ../src/Audience.vala:318
+#: ../src/Audience.vala:330
 msgid "No Videos Open"
 msgstr "Geen videos oop nie"
 
-#: ../src/Audience.vala:318
+#: ../src/Audience.vala:330
 msgid "Select a source to begin playing."
 msgstr "Kies 'n bron om video te begin"
 
-#: ../src/Audience.vala:319
+#: ../src/Audience.vala:331
 msgid "Open a saved file."
 msgstr "Maak 'n verbergte leêr oop."
 
-#: ../src/Audience.vala:324
+#: ../src/Audience.vala:336
 msgid "Resume last video"
 msgstr "Hervat laaste video"
 
-#: ../src/Audience.vala:332
+#: ../src/Audience.vala:344
+msgid "Replay"
+msgstr ""
+
+#: ../src/Audience.vala:344
+msgid "Replay last video, or playlist"
+msgstr ""
+
+#: ../src/Audience.vala:347
 msgid "Watch a DVD or open a file from disc"
 msgstr "Kyk 'n DVD op maak 'n leêr oop vanaf die hardeskyf"
 
-#: ../src/Audience.vala:369
+#: ../src/Audience.vala:394
 msgid "Open location"
 msgstr "Maak leêr oop"
 
-#: ../src/Audience.vala:371
+#: ../src/Audience.vala:396
 msgid "Cancel"
 msgstr "Kanselleer"
 
-#: ../src/Audience.vala:372
+#: ../src/Audience.vala:397
 msgid "OK"
 msgstr "OK"
 
-#: ../src/Audience.vala:379
+#: ../src/Audience.vala:404
 msgid "Choose location"
 msgstr "Kies leêr"
 
-#: ../src/Audience.vala:579
+#: ../src/Audience.vala:619
 msgid "Open"
 msgstr "Maak Oop"
 
-#: ../src/Audience.vala:580
+#: ../src/Audience.vala:620
 msgid "_Cancel"
 msgstr "_Kanselleer"
 
-#: ../src/Audience.vala:580
+#: ../src/Audience.vala:620
 msgid "_Open"
 msgstr "_Open"
 
-#: ../src/Audience.vala:588
+#: ../src/Audience.vala:628
 msgid "Video files"
 msgstr "Videoleêrs"
+
+#: ../src/Audience.vala:800
+msgid "Video added to playlist"
+msgstr ""
+
+#: ../src/Audience.vala:802
+msgid "%i videos added to playlist"
+msgstr ""

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-06 10:16-0500\n"
-"PO-Revision-Date: 2014-09-26 20:42+0000\n"
-"Last-Translator: Artem Anufrij <Unknown>\n"
+"POT-Creation-Date: 2014-10-05 00:04-0500\n"
+"PO-Revision-Date: 2014-10-05 10:21+0000\n"
+"Last-Translator: Eugene Marshal <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-27 06:16+0000\n"
+"X-Launchpad-Export-Date: 2014-10-06 06:43+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
@@ -29,27 +29,27 @@ msgstr "Мультимедийный проигрыватель"
 msgid "About Audience"
 msgstr "О программе"
 
-#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:319
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:331
 msgid "Open file"
 msgstr "Открыть файл"
 
-#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:332
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:347
 msgid "Play from Disc"
 msgstr "Воспроизвести с диска"
 
-#: ../src/Widgets/VideoPlayer.vala:360
+#: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
 msgstr "Ошибка"
 
-#: ../src/Widgets/VideoPlayer.vala:360
+#: ../src/Widgets/VideoPlayer.vala:362
 msgid "_OK"
 msgstr "_OK"
 
-#: ../src/Widgets/VideoPlayer.vala:366
+#: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
 msgstr "Audience не может воспроизвести этот файл!"
 
-#: ../src/Widgets/VideoPlayer.vala:386
+#: ../src/Widgets/VideoPlayer.vala:388
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -58,19 +58,19 @@ msgstr ""
 "дополнительное программное обеспечение. Audience может установить это "
 "программное обеспечение автоматически."
 
-#: ../src/Widgets/VideoPlayer.vala:391
+#: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
 msgstr "Audience необходим %s для воспроизведения этого файла."
 
-#: ../src/Widgets/VideoPlayer.vala:398
+#: ../src/Widgets/VideoPlayer.vala:400
 msgid "Don't install"
 msgstr "Не устанавливать"
 
-#: ../src/Widgets/VideoPlayer.vala:399
+#: ../src/Widgets/VideoPlayer.vala:401
 msgid "Install"
 msgstr "Установить"
 
-#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:584
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:624
 msgid "All files"
 msgstr "Все файлы"
 
@@ -122,54 +122,70 @@ msgstr "Выйти из полноэкранного режима"
 msgid "Pause"
 msgstr "Пауза"
 
-#: ../src/Audience.vala:318
+#: ../src/Audience.vala:330
 msgid "No Videos Open"
 msgstr "Нет открытых видеофайлов"
 
-#: ../src/Audience.vala:318
+#: ../src/Audience.vala:330
 msgid "Select a source to begin playing."
 msgstr "Выберите файл для воспроизведения."
 
-#: ../src/Audience.vala:319
+#: ../src/Audience.vala:331
 msgid "Open a saved file."
 msgstr "Открыть сохранённый файл."
 
-#: ../src/Audience.vala:324
+#: ../src/Audience.vala:336
 msgid "Resume last video"
 msgstr "Продолжить последнюю видеозапись."
 
-#: ../src/Audience.vala:332
+#: ../src/Audience.vala:344
+msgid "Replay"
+msgstr "Повторить"
+
+#: ../src/Audience.vala:344
+msgid "Replay last video, or playlist"
+msgstr "Воспроизвести видеофайл или список воспроизведения снова"
+
+#: ../src/Audience.vala:347
 msgid "Watch a DVD or open a file from disc"
 msgstr "Воспроизвести DVD или открыть файл с диска."
 
-#: ../src/Audience.vala:369
+#: ../src/Audience.vala:394
 msgid "Open location"
 msgstr "Открыть местоположение"
 
-#: ../src/Audience.vala:371
+#: ../src/Audience.vala:396
 msgid "Cancel"
 msgstr "Отменить"
 
-#: ../src/Audience.vala:372
+#: ../src/Audience.vala:397
 msgid "OK"
 msgstr "ОК"
 
-#: ../src/Audience.vala:379
+#: ../src/Audience.vala:404
 msgid "Choose location"
 msgstr "Выберите местоположение"
 
-#: ../src/Audience.vala:579
+#: ../src/Audience.vala:619
 msgid "Open"
 msgstr "Открыть"
 
-#: ../src/Audience.vala:580
+#: ../src/Audience.vala:620
 msgid "_Cancel"
 msgstr "_Отменить"
 
-#: ../src/Audience.vala:580
+#: ../src/Audience.vala:620
 msgid "_Open"
 msgstr "_Открыть"
 
-#: ../src/Audience.vala:588
+#: ../src/Audience.vala:628
 msgid "Video files"
 msgstr "Видеофайлы"
+
+#: ../src/Audience.vala:800
+msgid "Video added to playlist"
+msgstr "Видеофайлы добавленные в список воспроизведения"
+
+#: ../src/Audience.vala:802
+msgid "%i videos added to playlist"
+msgstr "%i видеофайлов добавлено в список воспроизведения"

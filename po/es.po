@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-06 10:16-0500\n"
+"POT-Creation-Date: 2014-10-05 00:04-0500\n"
 "PO-Revision-Date: 2014-09-06 10:32+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-07 06:44+0000\n"
+"X-Launchpad-Export-Date: 2014-10-06 06:43+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
@@ -29,27 +29,27 @@ msgstr "Reproductor multimedia"
 msgid "About Audience"
 msgstr ""
 
-#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:319
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:331
 msgid "Open file"
 msgstr "Abrir un archivo"
 
-#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:332
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:347
 msgid "Play from Disc"
 msgstr "Reproducir desde disco"
 
-#: ../src/Widgets/VideoPlayer.vala:360
+#: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
 msgstr "Error"
 
-#: ../src/Widgets/VideoPlayer.vala:360
+#: ../src/Widgets/VideoPlayer.vala:362
 msgid "_OK"
 msgstr "_Aceptar"
 
-#: ../src/Widgets/VideoPlayer.vala:366
+#: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
 msgstr "Vaya, Audience no puede reproducir este archivo."
 
-#: ../src/Widgets/VideoPlayer.vala:386
+#: ../src/Widgets/VideoPlayer.vala:388
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -57,19 +57,19 @@ msgstr ""
 "Algunos archivos multimedia necesitan software adicional para su "
 "reproducción. Audience puede descargarlo automáticamente."
 
-#: ../src/Widgets/VideoPlayer.vala:391
+#: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
 msgstr "Audience necesita %s para reproducir este archivo."
 
-#: ../src/Widgets/VideoPlayer.vala:398
+#: ../src/Widgets/VideoPlayer.vala:400
 msgid "Don't install"
 msgstr "No instalar"
 
-#: ../src/Widgets/VideoPlayer.vala:399
+#: ../src/Widgets/VideoPlayer.vala:401
 msgid "Install"
 msgstr "Instalar"
 
-#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:584
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:624
 msgid "All files"
 msgstr "Todos los archivos"
 
@@ -121,54 +121,70 @@ msgstr ""
 msgid "Pause"
 msgstr "Pausar"
 
-#: ../src/Audience.vala:318
+#: ../src/Audience.vala:330
 msgid "No Videos Open"
 msgstr "No hay ningún vídeo abierto"
 
-#: ../src/Audience.vala:318
+#: ../src/Audience.vala:330
 msgid "Select a source to begin playing."
 msgstr "Seleccione una fuente para comenzar la reproducción."
 
-#: ../src/Audience.vala:319
+#: ../src/Audience.vala:331
 msgid "Open a saved file."
 msgstr "Abrir un archivo guardado."
 
-#: ../src/Audience.vala:324
+#: ../src/Audience.vala:336
 msgid "Resume last video"
 msgstr "Continuar reproduciendo el último video"
 
-#: ../src/Audience.vala:332
+#: ../src/Audience.vala:344
+msgid "Replay"
+msgstr ""
+
+#: ../src/Audience.vala:344
+msgid "Replay last video, or playlist"
+msgstr ""
+
+#: ../src/Audience.vala:347
 msgid "Watch a DVD or open a file from disc"
 msgstr "Ver un DVD o abrir un archivo desde un disco"
 
-#: ../src/Audience.vala:369
+#: ../src/Audience.vala:394
 msgid "Open location"
 msgstr "Abrir ubicación"
 
-#: ../src/Audience.vala:371
+#: ../src/Audience.vala:396
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../src/Audience.vala:372
+#: ../src/Audience.vala:397
 msgid "OK"
 msgstr "Aceptar"
 
-#: ../src/Audience.vala:379
+#: ../src/Audience.vala:404
 msgid "Choose location"
 msgstr "Elegir ubicación"
 
-#: ../src/Audience.vala:579
+#: ../src/Audience.vala:619
 msgid "Open"
 msgstr "Abrir"
 
-#: ../src/Audience.vala:580
+#: ../src/Audience.vala:620
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: ../src/Audience.vala:580
+#: ../src/Audience.vala:620
 msgid "_Open"
 msgstr "_Abrir"
 
-#: ../src/Audience.vala:588
+#: ../src/Audience.vala:628
 msgid "Video files"
 msgstr "Archivos de vídeo"
+
+#: ../src/Audience.vala:800
+msgid "Video added to playlist"
+msgstr ""
+
+#: ../src/Audience.vala:802
+msgid "%i videos added to playlist"
+msgstr ""
