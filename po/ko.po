@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-05 00:04-0500\n"
-"PO-Revision-Date: 2014-08-12 14:04+0000\n"
-"Last-Translator: Chang Geon Kang <kangha02@naver.com>\n"
+"PO-Revision-Date: 2014-10-07 00:53+0000\n"
+"Last-Translator: Juyoung <ejuyoung@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-06 06:43+0000\n"
+"X-Launchpad-Export-Date: 2014-10-07 06:46+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
@@ -27,7 +27,7 @@ msgstr "미디어 플레이어"
 
 #: ../src/desktop-launcher.vala:7
 msgid "About Audience"
-msgstr ""
+msgstr "도움말 (Audience)"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:331
 msgid "Open file"
@@ -75,7 +75,7 @@ msgstr "모든 파일"
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
-msgstr ""
+msgstr "자막 파일"
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
@@ -139,11 +139,11 @@ msgstr "마지막으로 재생한 비디오를 계속 재생하기"
 
 #: ../src/Audience.vala:344
 msgid "Replay"
-msgstr ""
+msgstr "다시보기"
 
 #: ../src/Audience.vala:344
 msgid "Replay last video, or playlist"
-msgstr ""
+msgstr "최근 영상 혹은 재생목록 다시보기"
 
 #: ../src/Audience.vala:347
 msgid "Watch a DVD or open a file from disc"

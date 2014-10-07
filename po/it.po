@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-05 00:04-0500\n"
-"PO-Revision-Date: 2014-09-21 20:48+0000\n"
-"Last-Translator: Fabio Zaramella <FFabio.96.X@Gmail.com>\n"
+"PO-Revision-Date: 2014-10-06 18:32+0000\n"
+"Last-Translator: frao0 <francesco987@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-06 06:43+0000\n"
+"X-Launchpad-Export-Date: 2014-10-07 06:46+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
@@ -139,11 +139,11 @@ msgstr "Riprendi l'ultimo video"
 
 #: ../src/Audience.vala:344
 msgid "Replay"
-msgstr ""
+msgstr "Ripeti"
 
 #: ../src/Audience.vala:344
 msgid "Replay last video, or playlist"
-msgstr ""
+msgstr "Ripeti l'ultimo video o playlist"
 
 #: ../src/Audience.vala:347
 msgid "Watch a DVD or open a file from disc"
@@ -183,8 +183,8 @@ msgstr "File dalla rete"
 
 #: ../src/Audience.vala:800
 msgid "Video added to playlist"
-msgstr ""
+msgstr "Video aggiunto alla playlist"
 
 #: ../src/Audience.vala:802
 msgid "%i videos added to playlist"
-msgstr ""
+msgstr "%i video aggiunti alla playlist"
