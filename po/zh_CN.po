@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-05 00:04-0500\n"
-"PO-Revision-Date: 2014-09-21 03:21+0000\n"
+"PO-Revision-Date: 2014-10-10 02:01+0000\n"
 "Last-Translator: colindemian <dengmengpc@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-06 06:43+0000\n"
+"X-Launchpad-Export-Date: 2014-10-10 05:12+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
@@ -137,11 +137,11 @@ msgstr "恢复上一次播放"
 
 #: ../src/Audience.vala:344
 msgid "Replay"
-msgstr ""
+msgstr "重播"
 
 #: ../src/Audience.vala:344
 msgid "Replay last video, or playlist"
-msgstr ""
+msgstr "重播上次打开的视频或播放别表"
 
 #: ../src/Audience.vala:347
 msgid "Watch a DVD or open a file from disc"
@@ -181,8 +181,8 @@ msgstr "视频文件"
 
 #: ../src/Audience.vala:800
 msgid "Video added to playlist"
-msgstr ""
+msgstr "视频已添加至播放列表"
 
 #: ../src/Audience.vala:802
 msgid "%i videos added to playlist"
-msgstr ""
+msgstr "%i 视频已添加至播放列表"
