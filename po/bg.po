@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-05 00:04-0500\n"
-"PO-Revision-Date: 2014-08-11 07:27+0000\n"
-"Last-Translator: Ivan Dokov <ivangdokov@gmail.com>\n"
+"PO-Revision-Date: 2014-10-12 10:58+0000\n"
+"Last-Translator: Yennefer of Vengerberg <Unknown>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-06 06:43+0000\n"
+"X-Launchpad-Export-Date: 2014-10-13 06:05+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
@@ -27,7 +27,7 @@ msgstr "Медиен плеър"
 
 #: ../src/desktop-launcher.vala:7
 msgid "About Audience"
-msgstr ""
+msgstr "За Audience"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:331
 msgid "Open file"
@@ -75,7 +75,7 @@ msgstr "Всички файлове"
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
-msgstr ""
+msgstr "Файлове със субтитри"
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
@@ -139,11 +139,11 @@ msgstr "Продължаване на последното видео"
 
 #: ../src/Audience.vala:344
 msgid "Replay"
-msgstr ""
+msgstr "Повтори"
 
 #: ../src/Audience.vala:344
 msgid "Replay last video, or playlist"
-msgstr ""
+msgstr "Повтори последно видео или плейлест"
 
 #: ../src/Audience.vala:347
 msgid "Watch a DVD or open a file from disc"
@@ -183,7 +183,7 @@ msgstr "Видео файлове"
 
 #: ../src/Audience.vala:800
 msgid "Video added to playlist"
-msgstr ""
+msgstr "Видеото е добавено в плейлист"
 
 #: ../src/Audience.vala:802
 msgid "%i videos added to playlist"
