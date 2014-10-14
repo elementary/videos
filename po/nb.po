@@ -7,23 +7,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-10-05 00:04-0500\n"
-"PO-Revision-Date: 2014-09-25 11:28+0000\n"
+"POT-Creation-Date: 2014-10-13 19:39-0500\n"
+"PO-Revision-Date: 2014-10-13 11:33+0000\n"
 "Last-Translator: ProsjektX <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-06 06:43+0000\n"
+"X-Launchpad-Export-Date: 2014-10-14 07:00+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
-msgid "Play your media"
-msgstr "Spill av mediene dine"
+msgid "Watch videos and movies"
+msgstr ""
 
 #: ../src/desktop-launcher.vala:6
-msgid "Media Player"
-msgstr "Medieavspiller"
+msgid "Video Player"
+msgstr ""
 
 #: ../src/desktop-launcher.vala:7
 msgid "About Audience"
@@ -35,7 +35,7 @@ msgstr "Åpne fil"
 
 #: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:347
 msgid "Play from Disc"
-msgstr "Spill av fra plate."
+msgstr "Spill av fra plate"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
@@ -139,11 +139,11 @@ msgstr "Fortsett forrige videoavspilling."
 
 #: ../src/Audience.vala:344
 msgid "Replay"
-msgstr ""
+msgstr "Gjenta avspilling"
 
 #: ../src/Audience.vala:344
 msgid "Replay last video, or playlist"
-msgstr ""
+msgstr "Gjenta avspilling av siste video eller spilleliste"
 
 #: ../src/Audience.vala:347
 msgid "Watch a DVD or open a file from disc"
@@ -151,7 +151,7 @@ msgstr "Se en DVD eller åpne en fil fra en plate."
 
 #: ../src/Audience.vala:394
 msgid "Open location"
-msgstr "Åpne område."
+msgstr "Åpne område"
 
 #: ../src/Audience.vala:396
 msgid "Cancel"
@@ -163,7 +163,7 @@ msgstr "OK"
 
 #: ../src/Audience.vala:404
 msgid "Choose location"
-msgstr "Velg område."
+msgstr "Velg område"
 
 #: ../src/Audience.vala:619
 msgid "Open"
@@ -183,8 +183,14 @@ msgstr "Videofiler"
 
 #: ../src/Audience.vala:800
 msgid "Video added to playlist"
-msgstr ""
+msgstr "Video lagt til spilleliste"
 
 #: ../src/Audience.vala:802
 msgid "%i videos added to playlist"
-msgstr ""
+msgstr "%i videoer lagt til spilleliste"
+
+#~ msgid "Media Player"
+#~ msgstr "Medieavspiller"
+
+#~ msgid "Play your media"
+#~ msgstr "Spill av mediene dine"
