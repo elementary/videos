@@ -1,8 +1,8 @@
 [Desktop Entry]
 Version=1.0
 Name=Audience
-GenericName=Media Player
-Comment=Play your media
+GenericName=Video Player
+Comment=Watch videos and movies
 Exec=audience %U
 Icon=audience
 StartupNotify=true
