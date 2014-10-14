@@ -62,7 +62,6 @@ vala_precompile (VALA_C ${EXEC_NAME}
     Widgets/Playlist.vala
     Widgets/PlaylistPopover.vala
     Widgets/VideoPlayer.vala
-    desktop-launcher.vala
   PACKAGES
     ${VALA_DEPS}
   OPTIONS
