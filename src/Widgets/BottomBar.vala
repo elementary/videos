@@ -48,7 +48,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         playlist_button.tooltip_text = _("Playlist");
         playlist_button.clicked.connect (() => {playlist_popover.show_all (); playlist_popover.queue_resize ();});
 
-        preferences_button = new Gtk.Button.from_icon_name ("document-properties-symbolic", Gtk.IconSize.BUTTON);
+        preferences_button = new Gtk.Button.from_icon_name ("open-menu-symbolic", Gtk.IconSize.BUTTON);
         preferences_button.tooltip_text = _("Settings");
         preferences_button.clicked.connect (() => {preferences_popover.show_all (); preferences_popover.queue_resize ();});
 
