@@ -409,7 +409,7 @@ namespace Audience {
 
                         if (d.run () == Gtk.ResponseType.OK) {
                             open_file (entry.text, true);
-                            video_player.playing = true;
+                            video_player.playing = !settings.playback_wait;
                             welcome.hide ();
                             clutter.show_all ();
                         }
@@ -672,7 +672,7 @@ namespace Audience {
 
             var root = volume.get_mount ().get_default_location ();
             open_file (root.get_uri (), true);
-            video_player.playing = true;
+            video_player.playing = !settings.playback_wait;
 
             welcome.hide ();
             clutter.show_all ();
@@ -753,8 +753,7 @@ namespace Audience {
                 video_player.set_subtitle_uri (sub_uri);
 
             mainwindow.title = get_title (uri);
-            if (!settings.playback_wait)
-                video_player.playing = true;
+            video_player.playing = !settings.playback_wait;
 
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
@@ -779,7 +778,7 @@ namespace Audience {
                     open_file (settings.current_video);
                     video_player.playing = false;
                     Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
-                    video_player.playing = true;
+                    video_player.playing = !settings.playback_wait;
                 }
             }
         }
