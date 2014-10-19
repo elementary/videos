@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-13 19:39-0500\n"
-"PO-Revision-Date: 2014-10-07 00:53+0000\n"
+"PO-Revision-Date: 2014-10-18 14:14+0000\n"
 "Last-Translator: Juyoung <ejuyoung@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-14 07:00+0000\n"
+"X-Launchpad-Export-Date: 2014-10-19 06:54+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/desktop-launcher.vala:5
@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../src/desktop-launcher.vala:6
 msgid "Video Player"
-msgstr ""
+msgstr "동영상 재생기"
 
 #: ../src/desktop-launcher.vala:7
 msgid "About Audience"
@@ -183,14 +183,8 @@ msgstr "비디오 파일"
 
 #: ../src/Audience.vala:800
 msgid "Video added to playlist"
-msgstr ""
+msgstr "플레이리스트에 동영상 추가"
 
 #: ../src/Audience.vala:802
 msgid "%i videos added to playlist"
 msgstr ""
-
-#~ msgid "Play your media"
-#~ msgstr "미디어를 재생합니다."
-
-#~ msgid "Media Player"
-#~ msgstr "미디어 플레이어"
