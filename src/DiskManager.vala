@@ -79,20 +79,40 @@ public class Audience.DiskManager : GLib.Object {
         return volumes.copy ();
     }
 
+    public GLib.List<Volume> get_media_volumes () {
+        GLib.List<Volume> returnValue = new GLib.List<Volume> ();
+        foreach (Volume volume in get_volumes ()) {
+            if (has_dvd_media (volume))
+                returnValue.append (volume);
+        }
+        return returnValue;
+    }
+
+    public bool has_media_volumes () {
+        return (get_media_volumes ().length () > 0);
+    }
+
     private void check_for_volume (Volume volume) {
-        if (volume.get_drive ().is_media_check_automatic () == true) {
-            if (volume.get_drive ().has_media () == true) {
-                var root = volume.get_activation_root ();
-                if (root != null) {
-                    var video = root.get_child ("VIDEO_TS");
-                    var bdmv = root.get_child ("BDMV");
-                    var audio = root.get_child ("AUDIO_TS");
-                    if (audio.query_exists () == true || video.query_exists () == true || bdmv.query_exists () == true) {
-                        volumes.append (volume);
-                        volume_found (volume);
-                    }
+        if (has_dvd_media (volume)) {
+            volumes.append (volume);
+            volume_found (volume);
+        }
+    }
+
+    private bool has_dvd_media (Volume volume) {
+        debug ("Check DVD media for: %s", volume.get_name ());
+        if (volume.get_drive () != null && volume.get_drive ().has_media ()) {
+            var root = volume.get_mount ().get_default_location ();
+            if (root != null) {
+                debug ("Activation root: %s", root.get_uri ());
+                var video = root.get_child ("VIDEO_TS");
+                var bdmv = root.get_child ("BDMV");
+                var audio = root.get_child ("AUDIO_TS");
+                if (audio.query_exists () == true || video.query_exists () == true || bdmv.query_exists () == true) {
+                    return true;
                 }
             }
         }
+        return false;
     }
 }
