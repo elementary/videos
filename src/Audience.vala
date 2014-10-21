@@ -349,17 +349,14 @@ namespace Audience {
 
             //look for dvd
             var disk_manager = DiskManager.get_default ();
-            foreach (var volume in disk_manager.get_volumes ()) {
-                welcome.set_item_visible (3, true);
-            }
+            welcome.set_item_visible (3, disk_manager.has_media_volumes ());
 
             disk_manager.volume_found.connect ((vol) => {
-                welcome.set_item_visible (3, true);
+                welcome.set_item_visible (3, disk_manager.has_media_volumes ());
             });
 
             disk_manager.volume_removed.connect ((vol) => {
-                if (disk_manager.get_volumes ().length () <= 0)
-                    welcome.set_item_visible (3, false);
+                welcome.set_item_visible (3, disk_manager.has_media_volumes ());
             });
 
             
