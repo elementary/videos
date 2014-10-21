@@ -107,8 +107,7 @@ public class Audience.DiskManager : GLib.Object {
                 debug ("Activation root: %s", root.get_uri ());
                 var video = root.get_child ("VIDEO_TS");
                 var bdmv = root.get_child ("BDMV");
-                var audio = root.get_child ("AUDIO_TS");
-                if (audio.query_exists () || video.query_exists () || bdmv.query_exists ()) {
+                if (video.query_exists () || bdmv.query_exists ()) {
                     return true;
                 }
             }
