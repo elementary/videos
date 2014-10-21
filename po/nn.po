@@ -1,16 +1,16 @@
-# Spanish translation for audience
-# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# Norwegian Nynorsk translation for audience
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the audience package.
-# FIRST AUTHOR <robertoserrano83@gmail.com>, 2011.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-13 19:39-0500\n"
-"PO-Revision-Date: 2014-10-20 05:38+0000\n"
-"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
-"Language-Team: Spanish <es@li.org>\n"
+"PO-Revision-Date: 2014-10-20 17:42+0000\n"
+"Last-Translator: Martin Myrvold <Unknown>\n"
+"Language-Team: Norwegian Nynorsk <nn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,172 +19,172 @@ msgstr ""
 
 #: ../src/desktop-launcher.vala:5
 msgid "Watch videos and movies"
-msgstr "Vea vídeos y películas"
+msgstr "Sjå video og filmar"
 
 #: ../src/desktop-launcher.vala:6
 msgid "Video Player"
-msgstr "Reproductor de vídeo"
+msgstr "Videospelar"
 
 #: ../src/desktop-launcher.vala:7
 msgid "About Audience"
-msgstr "Acerca de Audience"
+msgstr "Om Audience"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:331
 msgid "Open file"
-msgstr "Abrir un archivo"
+msgstr "Opne fil"
 
 #: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:347
 msgid "Play from Disc"
-msgstr "Reproducir desde disco"
+msgstr "Spel frå disk"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
-msgstr "Error"
+msgstr "Feil"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "_OK"
-msgstr "_Aceptar"
+msgstr "_OK"
 
 #: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
-msgstr "Vaya, Audience no puede reproducir este archivo."
+msgstr "Oisann! Audience kan ikke spele av denne fila!"
 
 #: ../src/Widgets/VideoPlayer.vala:388
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
-"Algunos archivos multimedia necesitan software adicional para su "
-"reproducción. Audience puede descargarlo automáticamente."
+"Nokre filtyper treng tilleggsprogramvare for å kunne spelast. Audience kan "
+"installere programvara automatisk."
 
 #: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
-msgstr "Audience necesita %s para reproducir este archivo."
+msgstr "Audience treng %s for å spele denne fila."
 
 #: ../src/Widgets/VideoPlayer.vala:400
 msgid "Don't install"
-msgstr "No instalar"
+msgstr "Ikkje installer"
 
 #: ../src/Widgets/VideoPlayer.vala:401
 msgid "Install"
-msgstr "Instalar"
+msgstr "Installer"
 
 #: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:624
 msgid "All files"
-msgstr "Todos los archivos"
+msgstr "Alle filer"
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
-msgstr "Archivos de subtítulos"
+msgstr "Filer med undertekstar"
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
-msgstr "Subtítulos externos"
+msgstr "Eksterne undertekstar"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
-msgstr "Audio:"
+msgstr "Lyd:"
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"
-msgstr "Subtítulos:"
+msgstr "Undertekstar:"
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr "Subtítulos externos:"
+msgstr "Eksterne undertekstar:"
 
 #: ../src/Widgets/SettingsPopover.vala:122
 msgid "None"
-msgstr "Ninguno"
+msgstr "Ingen"
 
 #: ../src/Widgets/SettingsPopover.vala:153
 msgid "Default"
-msgstr "Predeterminado"
+msgstr "Standard"
 
 #: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
 msgid "Play"
-msgstr "Reproducir"
+msgstr "Spel av"
 
 #: ../src/Widgets/BottomBar.vala:48
 msgid "Playlist"
-msgstr "Lista de reproducción"
+msgstr "Speleliste"
 
 #: ../src/Widgets/BottomBar.vala:52
 msgid "Settings"
-msgstr "Configuración"
+msgstr "Innstillingar"
 
 #: ../src/Widgets/BottomBar.vala:100
 msgid "Unfullscreen"
-msgstr "Salir de pantalla completa"
+msgstr "Ut av fullskjerm"
 
 #: ../src/Widgets/BottomBar.vala:111
 msgid "Pause"
-msgstr "Pausar"
+msgstr "Pause"
 
 #: ../src/Audience.vala:330
 msgid "No Videos Open"
-msgstr "No hay ningún vídeo abierto"
+msgstr "Ingen videoar er opne"
 
 #: ../src/Audience.vala:330
 msgid "Select a source to begin playing."
-msgstr "Seleccione una fuente para comenzar la reproducción."
+msgstr "Velg ei fil for å spele av."
 
 #: ../src/Audience.vala:331
 msgid "Open a saved file."
-msgstr "Abrir un archivo guardado."
+msgstr "Opna ei lagra fil."
 
 #: ../src/Audience.vala:336
 msgid "Resume last video"
-msgstr "Continuar reproduciendo el último video"
+msgstr "Spel av forrige video"
 
 #: ../src/Audience.vala:344
 msgid "Replay"
-msgstr "Repetir"
+msgstr "Spel om igjen"
 
 #: ../src/Audience.vala:344
 msgid "Replay last video, or playlist"
-msgstr "Reproducir de nuevo el último vídeo o lista"
+msgstr "Spel om igjen forrige video, eller speleliste"
 
 #: ../src/Audience.vala:347
 msgid "Watch a DVD or open a file from disc"
-msgstr "Ver un DVD o abrir un archivo desde un disco"
+msgstr "Spel av ein DVD eller opne ei fil frå disk"
 
 #: ../src/Audience.vala:394
 msgid "Open location"
-msgstr "Abrir ubicación"
+msgstr "Opne plasseringa"
 
 #: ../src/Audience.vala:396
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Avbryt"
 
 #: ../src/Audience.vala:397
 msgid "OK"
-msgstr "Aceptar"
+msgstr "OK"
 
 #: ../src/Audience.vala:404
 msgid "Choose location"
-msgstr "Elegir ubicación"
+msgstr "Velg plassering"
 
 #: ../src/Audience.vala:619
 msgid "Open"
-msgstr "Abrir"
+msgstr "Opne"
 
 #: ../src/Audience.vala:620
 msgid "_Cancel"
-msgstr "_Cancelar"
+msgstr "_Avbryt"
 
 #: ../src/Audience.vala:620
 msgid "_Open"
-msgstr "_Abrir"
+msgstr "_Opne"
 
 #: ../src/Audience.vala:628
 msgid "Video files"
-msgstr "Archivos de vídeo"
+msgstr "Videofiler"
 
 #: ../src/Audience.vala:800
 msgid "Video added to playlist"
-msgstr "Vídeo añadido a la lista"
+msgstr "Videoen er lagt til i spelelista"
 
 #: ../src/Audience.vala:802
 msgid "%i videos added to playlist"
-msgstr "%i vídeos añadidos a la lista"
+msgstr "%i videoar lagt til i spelelista"
