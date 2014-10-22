@@ -8,26 +8,26 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-13 19:39-0500\n"
-"PO-Revision-Date: 2014-02-18 21:08+0000\n"
-"Last-Translator: Nikos <Unknown>\n"
+"PO-Revision-Date: 2014-10-21 08:11+0000\n"
+"Last-Translator: Thomas Moraine <th.moraine@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-14 07:00+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-10-22 06:01+0000\n"
+"X-Generator: Launchpad (build 17203)\n"
 
 #: ../src/desktop-launcher.vala:5
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Regarder des vidéos et des films"
 
 #: ../src/desktop-launcher.vala:6
 msgid "Video Player"
-msgstr ""
+msgstr "Lecteur vidéo"
 
 #: ../src/desktop-launcher.vala:7
 msgid "About Audience"
-msgstr ""
+msgstr "À propos d'Audience"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:331
 msgid "Open file"
@@ -43,7 +43,7 @@ msgstr "Erreur"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "_OK"
-msgstr ""
+msgstr "_OK"
 
 #: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
@@ -75,7 +75,7 @@ msgstr "Tous les fichiers"
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
-msgstr ""
+msgstr "Fichiers de sous-titres"
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
@@ -83,15 +83,15 @@ msgstr "Sous-titres Externes"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
-msgstr ""
+msgstr "Audio :"
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"
-msgstr ""
+msgstr "Sous-titres :"
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr ""
+msgstr "Sous-titres externes :"
 
 #: ../src/Widgets/SettingsPopover.vala:122
 msgid "None"
@@ -103,7 +103,7 @@ msgstr "Par défaut"
 
 #: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
 msgid "Play"
-msgstr ""
+msgstr "Lire"
 
 #: ../src/Widgets/BottomBar.vala:48
 msgid "Playlist"
@@ -111,15 +111,15 @@ msgstr "Liste de lecture"
 
 #: ../src/Widgets/BottomBar.vala:52
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: ../src/Widgets/BottomBar.vala:100
 msgid "Unfullscreen"
-msgstr ""
+msgstr "Quitter le mode plein écran"
 
 #: ../src/Widgets/BottomBar.vala:111
 msgid "Pause"
-msgstr ""
+msgstr "Mettre en pause"
 
 #: ../src/Audience.vala:330
 msgid "No Videos Open"
@@ -139,11 +139,11 @@ msgstr "Reprendre la lecture de la dernière vidéo"
 
 #: ../src/Audience.vala:344
 msgid "Replay"
-msgstr ""
+msgstr "Rejouer"
 
 #: ../src/Audience.vala:344
 msgid "Replay last video, or playlist"
-msgstr ""
+msgstr "Rejouer la dernière vidéo ou playlist"
 
 #: ../src/Audience.vala:347
 msgid "Watch a DVD or open a file from disc"
@@ -155,11 +155,11 @@ msgstr "Ouvrir l'emplacement"
 
 #: ../src/Audience.vala:396
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #: ../src/Audience.vala:397
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/Audience.vala:404
 msgid "Choose location"
@@ -171,11 +171,11 @@ msgstr "Ouvrir"
 
 #: ../src/Audience.vala:620
 msgid "_Cancel"
-msgstr ""
+msgstr "_Annuler"
 
 #: ../src/Audience.vala:620
 msgid "_Open"
-msgstr ""
+msgstr "_Ouvrir"
 
 #: ../src/Audience.vala:628
 msgid "Video files"
@@ -183,14 +183,8 @@ msgstr "Fichiers vidéo"
 
 #: ../src/Audience.vala:800
 msgid "Video added to playlist"
-msgstr ""
+msgstr "Vidéo ajoutée à la playlist"
 
 #: ../src/Audience.vala:802
 msgid "%i videos added to playlist"
-msgstr ""
-
-#~ msgid "Media Player"
-#~ msgstr "Lecteur multimédia"
-
-#~ msgid "Play your media"
-#~ msgstr "Lisez votre média"
+msgstr "%i vidéos ajoutées à la playlist"
