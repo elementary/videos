@@ -31,16 +31,16 @@ namespace Audience {
 
     public class App : Granite.Application {
 
-    /**
-     * Translatable launcher (.desktop) strings to be added to template (.pot) file.
-     * These strings should reflect any changes in these launcher keys in .desktop file
-     */
-    public const string VIDEOS = N_("Videos");
-    public const string PROGRAM_NAME = "Audience";
-    public const string KEYWORDS = N_("Audience;Video;Player;Movies;");
-    public const string COMMENT = N_("Watch videos and movies");
-    public const string GENERIC_NAME = N_("Video Player");
-    public string QUICKLIST_ABOUT = N_("About ") + PROGRAM_NAME;
+        /**
+         * Translatable launcher (.desktop) strings to be added to template (.pot) file.
+         * These strings should reflect any changes in these launcher keys in .desktop file
+         */
+        public const string VIDEOS = N_("Videos");
+        public const string PROGRAM_NAME = "Audience";
+        public const string KEYWORDS = N_("Audience;Video;Player;Movies;");
+        public const string COMMENT = N_("Watch videos and movies");
+        public const string GENERIC_NAME = N_("Video Player");
+        public string QUICKLIST_ABOUT = N_("About ") + PROGRAM_NAME;
 
         construct {
             program_name = PROGRAM_NAME;
