@@ -7,33 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-10-13 19:39-0500\n"
+"POT-Creation-Date: 2014-10-23 06:51-0500\n"
 "PO-Revision-Date: 2014-07-29 18:28+0000\n"
 "Last-Translator: Shawn McTear <Unknown>\n"
 "Language-Team: English (Canada) <en_CA@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-14 07:01+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-10-24 06:27+0000\n"
+"X-Generator: Launchpad (build 17203)\n"
 
-#: ../src/desktop-launcher.vala:5
-msgid "Watch videos and movies"
-msgstr ""
-
-#: ../src/desktop-launcher.vala:6
-msgid "Video Player"
-msgstr ""
-
-#: ../src/desktop-launcher.vala:7
-msgid "About Audience"
-msgstr ""
-
-#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:331
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:350
 msgid "Open file"
 msgstr "Open file"
 
-#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:347
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:369
 msgid "Play from Disc"
 msgstr "Play from Disc"
 
@@ -69,7 +57,7 @@ msgstr "Don't install"
 msgid "Install"
 msgstr "Install"
 
-#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:624
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:644
 msgid "All files"
 msgstr "All files"
 
@@ -121,76 +109,94 @@ msgstr ""
 msgid "Pause"
 msgstr ""
 
-#: ../src/Audience.vala:330
+#: ../src/Audience.vala:38
+msgid "Videos"
+msgstr ""
+
+#: ../src/Audience.vala:40
+msgid "Audience;Video;Player;Movies;"
+msgstr ""
+
+#: ../src/Audience.vala:41
+msgid "Watch videos and movies"
+msgstr ""
+
+#: ../src/Audience.vala:42
+msgid "Video Player"
+msgstr ""
+
+#: ../src/Audience.vala:43
+msgid "About "
+msgstr ""
+
+#: ../src/Audience.vala:349
 msgid "No Videos Open"
 msgstr "No Videos Open"
 
-#: ../src/Audience.vala:330
+#: ../src/Audience.vala:349
 msgid "Select a source to begin playing."
 msgstr "Select a source to begin playing."
 
-#: ../src/Audience.vala:331
+#: ../src/Audience.vala:350
 msgid "Open a saved file."
 msgstr "Open a saved file."
 
-#: ../src/Audience.vala:336
+#: ../src/Audience.vala:355
 msgid "Resume last video"
 msgstr "Resume last video"
 
-#: ../src/Audience.vala:344
+#: ../src/Audience.vala:363 ../src/Audience.vala:366
 msgid "Replay"
 msgstr ""
 
-#: ../src/Audience.vala:344
-msgid "Replay last video, or playlist"
+#: ../src/Audience.vala:363
+msgid "Replay last video"
 msgstr ""
 
-#: ../src/Audience.vala:347
+#: ../src/Audience.vala:366
+msgid "Replay last playlist"
+msgstr ""
+
+#: ../src/Audience.vala:369
 msgid "Watch a DVD or open a file from disc"
 msgstr "Watch a DVD or open a file from disc"
 
-#: ../src/Audience.vala:394
+#: ../src/Audience.vala:414
 msgid "Open location"
 msgstr "Open location"
 
-#: ../src/Audience.vala:396
+#: ../src/Audience.vala:416
 msgid "Cancel"
 msgstr ""
 
-#: ../src/Audience.vala:397
+#: ../src/Audience.vala:417
 msgid "OK"
 msgstr ""
 
-#: ../src/Audience.vala:404
+#: ../src/Audience.vala:424
 msgid "Choose location"
 msgstr "Choose location"
 
-#: ../src/Audience.vala:619
+#: ../src/Audience.vala:639
 msgid "Open"
 msgstr "Open"
 
-#: ../src/Audience.vala:620
+#: ../src/Audience.vala:640
 msgid "_Cancel"
 msgstr ""
 
-#: ../src/Audience.vala:620
+#: ../src/Audience.vala:640
 msgid "_Open"
 msgstr ""
 
-#: ../src/Audience.vala:628
+#: ../src/Audience.vala:648
 msgid "Video files"
 msgstr "Video files"
 
-#: ../src/Audience.vala:800
+#: ../src/Audience.vala:819
 msgid "Video added to playlist"
 msgstr ""
 
-#: ../src/Audience.vala:802
+#: ../src/Audience.vala:821
 msgid "%i videos added to playlist"
 msgstr ""
-
-#~ msgid "Media Player"
-#~ msgstr "Media Player"
-
-#~ msgid "Play your media"
-#~ msgstr "Play your media"
