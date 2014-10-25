@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-23 06:51-0500\n"
-"PO-Revision-Date: 2014-10-23 18:57+0000\n"
-"Last-Translator: Artem Anufrij <Unknown>\n"
+"PO-Revision-Date: 2014-10-24 11:22+0000\n"
+"Last-Translator: Phillip Sz <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-24 06:26+0000\n"
+"X-Launchpad-Export-Date: 2014-10-25 05:53+0000\n"
 "X-Generator: Launchpad (build 17203)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:350
@@ -111,23 +111,23 @@ msgstr "Pause"
 
 #: ../src/Audience.vala:38
 msgid "Videos"
-msgstr ""
+msgstr "Videos"
 
 #: ../src/Audience.vala:40
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Videos;Player;Filme;Wiedergabe;Abspielen;"
 
 #: ../src/Audience.vala:41
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Schauen Sie Videos und Filme"
 
 #: ../src/Audience.vala:42
 msgid "Video Player"
-msgstr ""
+msgstr "Video-Wiedergabe"
 
 #: ../src/Audience.vala:43
 msgid "About "
-msgstr ""
+msgstr "Info zu "
 
 #: ../src/Audience.vala:349
 msgid "No Videos Open"
