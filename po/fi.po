@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-23 06:51-0500\n"
-"PO-Revision-Date: 2014-10-14 10:11+0000\n"
+"PO-Revision-Date: 2014-10-25 18:47+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-24 06:26+0000\n"
+"X-Launchpad-Export-Date: 2014-10-26 05:48+0000\n"
 "X-Generator: Launchpad (build 17203)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:350
@@ -112,11 +112,11 @@ msgstr "Keskeytä"
 
 #: ../src/Audience.vala:38
 msgid "Videos"
-msgstr ""
+msgstr "Videot"
 
 #: ../src/Audience.vala:40
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Video;Player;Movies;videot;elokuvat;leffat;"
 
 #: ../src/Audience.vala:41
 msgid "Watch videos and movies"
@@ -128,7 +128,7 @@ msgstr "Videosoitin"
 
 #: ../src/Audience.vala:43
 msgid "About "
-msgstr ""
+msgstr "Tietoja "
 
 #: ../src/Audience.vala:349
 msgid "No Videos Open"
@@ -152,11 +152,11 @@ msgstr "Toista uudelleen"
 
 #: ../src/Audience.vala:363
 msgid "Replay last video"
-msgstr ""
+msgstr "Toista uudelleen viimeisin video"
 
 #: ../src/Audience.vala:366
 msgid "Replay last playlist"
-msgstr ""
+msgstr "Toista uudelleen viimeisin soittolista"
 
 #: ../src/Audience.vala:369
 msgid "Watch a DVD or open a file from disc"
