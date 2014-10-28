@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-23 06:51-0500\n"
-"PO-Revision-Date: 2014-10-11 07:24+0000\n"
+"PO-Revision-Date: 2014-10-27 14:00+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-24 06:26+0000\n"
+"X-Launchpad-Export-Date: 2014-10-28 07:02+0000\n"
 "X-Generator: Launchpad (build 17203)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:350
@@ -111,23 +111,23 @@ msgstr "Jeda"
 
 #: ../src/Audience.vala:38
 msgid "Videos"
-msgstr ""
+msgstr "Video"
 
 #: ../src/Audience.vala:40
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Video;Pemain;Cereka;"
 
 #: ../src/Audience.vala:41
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Tonton video dan cereka"
 
 #: ../src/Audience.vala:42
 msgid "Video Player"
-msgstr ""
+msgstr "Pemain Video"
 
 #: ../src/Audience.vala:43
 msgid "About "
-msgstr ""
+msgstr "Perihal "
 
 #: ../src/Audience.vala:349
 msgid "No Videos Open"
@@ -151,11 +151,11 @@ msgstr "Main Semula"
 
 #: ../src/Audience.vala:363
 msgid "Replay last video"
-msgstr ""
+msgstr "Main semula video terakhir"
 
 #: ../src/Audience.vala:366
 msgid "Replay last playlist"
-msgstr ""
+msgstr "Main semula senarai main terakhir"
 
 #: ../src/Audience.vala:369
 msgid "Watch a DVD or open a file from disc"
