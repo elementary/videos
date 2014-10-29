@@ -35,12 +35,16 @@ namespace Audience {
          * Translatable launcher (.desktop) strings to be added to template (.pot) file.
          * These strings should reflect any changes in these launcher keys in .desktop file
          */
+        /// TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
         public const string VIDEOS = N_("Videos");
         public const string PROGRAM_NAME = "Audience";
+        /// TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
         public const string KEYWORDS = N_("Audience;Video;Player;Movies;");
         public const string COMMENT = N_("Watch videos and movies");
         public const string GENERIC_NAME = N_("Video Player");
+        /// TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
         public const string ABOUT_STOCK = N_("About Audience");
+        /// TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
         public const string ABOUT_GENERIC = N_("About Videos");
 
         construct {
