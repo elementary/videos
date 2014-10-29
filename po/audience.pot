@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-28 11:16-0500\n"
+"POT-Creation-Date: 2014-10-29 07:53-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:351
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:355
 msgid "Open file"
 msgstr ""
 
-#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:370
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:374
 msgid "Play from Disc"
 msgstr ""
 
@@ -55,7 +55,7 @@ msgstr ""
 msgid "Install"
 msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:645
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:649
 msgid "All files"
 msgstr ""
 
@@ -107,98 +107,102 @@ msgstr ""
 msgid "Pause"
 msgstr ""
 
-#: ../src/Audience.vala:38
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:39
 msgid "Videos"
 msgstr ""
 
-#: ../src/Audience.vala:40
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
 msgstr ""
 
-#: ../src/Audience.vala:41
+#: ../src/Audience.vala:43
 msgid "Watch videos and movies"
 msgstr ""
 
-#: ../src/Audience.vala:42
+#: ../src/Audience.vala:44
 msgid "Video Player"
 msgstr ""
 
-#: ../src/Audience.vala:43
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:46
 msgid "About Audience"
 msgstr ""
 
-#: ../src/Audience.vala:44
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:48
 msgid "About Videos"
 msgstr ""
 
-#: ../src/Audience.vala:350
+#: ../src/Audience.vala:354
 msgid "No Videos Open"
 msgstr ""
 
-#: ../src/Audience.vala:350
+#: ../src/Audience.vala:354
 msgid "Select a source to begin playing."
 msgstr ""
 
-#: ../src/Audience.vala:351
+#: ../src/Audience.vala:355
 msgid "Open a saved file."
 msgstr ""
 
-#: ../src/Audience.vala:356
+#: ../src/Audience.vala:360
 msgid "Resume last video"
 msgstr ""
 
-#: ../src/Audience.vala:364 ../src/Audience.vala:367
+#: ../src/Audience.vala:368 ../src/Audience.vala:371
 msgid "Replay"
 msgstr ""
 
-#: ../src/Audience.vala:364
+#: ../src/Audience.vala:368
 msgid "Replay last video"
 msgstr ""
 
-#: ../src/Audience.vala:367
+#: ../src/Audience.vala:371
 msgid "Replay last playlist"
 msgstr ""
 
-#: ../src/Audience.vala:370
+#: ../src/Audience.vala:374
 msgid "Watch a DVD or open a file from disc"
 msgstr ""
 
-#: ../src/Audience.vala:415
+#: ../src/Audience.vala:419
 msgid "Open location"
 msgstr ""
 
-#: ../src/Audience.vala:417
+#: ../src/Audience.vala:421
 msgid "Cancel"
 msgstr ""
 
-#: ../src/Audience.vala:418
+#: ../src/Audience.vala:422
 msgid "OK"
 msgstr ""
 
-#: ../src/Audience.vala:425
+#: ../src/Audience.vala:429
 msgid "Choose location"
 msgstr ""
 
-#: ../src/Audience.vala:640
+#: ../src/Audience.vala:644
 msgid "Open"
 msgstr ""
 
-#: ../src/Audience.vala:641
+#: ../src/Audience.vala:645
 msgid "_Cancel"
 msgstr ""
 
-#: ../src/Audience.vala:641
+#: ../src/Audience.vala:645
 msgid "_Open"
 msgstr ""
 
-#: ../src/Audience.vala:649
+#: ../src/Audience.vala:653
 msgid "Video files"
 msgstr ""
 
-#: ../src/Audience.vala:820
+#: ../src/Audience.vala:824
 msgid "Video added to playlist"
 msgstr ""
 
-#: ../src/Audience.vala:822
+#: ../src/Audience.vala:826
 msgid "%i videos added to playlist"
 msgstr ""
