@@ -7,21 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-10-28 11:16-0500\n"
+"POT-Creation-Date: 2014-10-29 07:53-0500\n"
 "PO-Revision-Date: 2014-10-29 06:12+0000\n"
 "Last-Translator: 강창건(Chang-geon Kang) <kangha02@naver.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-29 07:15+0000\n"
+"X-Launchpad-Export-Date: 2014-10-30 06:25+0000\n"
 "X-Generator: Launchpad (build 17203)\n"
 
-#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:351
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:355
 msgid "Open file"
 msgstr "파일 열기"
 
-#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:370
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:374
 msgid "Play from Disc"
 msgstr "디스크 롬 재생하기"
 
@@ -57,7 +57,7 @@ msgstr "설치하지 않음"
 msgid "Install"
 msgstr "설치"
 
-#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:645
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:649
 msgid "All files"
 msgstr "모든 파일"
 
@@ -109,98 +109,102 @@ msgstr "전체화면 해제"
 msgid "Pause"
 msgstr "일시정지"
 
-#: ../src/Audience.vala:38
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:39
 msgid "Videos"
 msgstr "동영상"
 
-#: ../src/Audience.vala:40
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
 msgstr ""
 
-#: ../src/Audience.vala:41
+#: ../src/Audience.vala:43
 msgid "Watch videos and movies"
 msgstr "동영상 재생"
 
-#: ../src/Audience.vala:42
+#: ../src/Audience.vala:44
 msgid "Video Player"
 msgstr "동영상 재생기"
 
-#: ../src/Audience.vala:43
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:46
 msgid "About Audience"
 msgstr ""
 
-#: ../src/Audience.vala:44
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:48
 msgid "About Videos"
 msgstr ""
 
-#: ../src/Audience.vala:350
+#: ../src/Audience.vala:354
 msgid "No Videos Open"
 msgstr "비디오가 열려 있지 않음"
 
-#: ../src/Audience.vala:350
+#: ../src/Audience.vala:354
 msgid "Select a source to begin playing."
 msgstr "재생하고 싶은 소스를 선택해주세요."
 
-#: ../src/Audience.vala:351
+#: ../src/Audience.vala:355
 msgid "Open a saved file."
 msgstr "저장된 파일을 엽니다."
 
-#: ../src/Audience.vala:356
+#: ../src/Audience.vala:360
 msgid "Resume last video"
 msgstr "마지막으로 재생한 비디오를 계속 재생하기"
 
-#: ../src/Audience.vala:364 ../src/Audience.vala:367
+#: ../src/Audience.vala:368 ../src/Audience.vala:371
 msgid "Replay"
 msgstr "다시보기"
 
-#: ../src/Audience.vala:364
+#: ../src/Audience.vala:368
 msgid "Replay last video"
 msgstr ""
 
-#: ../src/Audience.vala:367
+#: ../src/Audience.vala:371
 msgid "Replay last playlist"
 msgstr ""
 
-#: ../src/Audience.vala:370
+#: ../src/Audience.vala:374
 msgid "Watch a DVD or open a file from disc"
 msgstr "DVD를 재생하거나, 디스크 롬에서 파일 재생하기"
 
-#: ../src/Audience.vala:415
+#: ../src/Audience.vala:419
 msgid "Open location"
 msgstr "위치 열기"
 
-#: ../src/Audience.vala:417
+#: ../src/Audience.vala:421
 msgid "Cancel"
 msgstr "취소"
 
-#: ../src/Audience.vala:418
+#: ../src/Audience.vala:422
 msgid "OK"
 msgstr "확인"
 
-#: ../src/Audience.vala:425
+#: ../src/Audience.vala:429
 msgid "Choose location"
 msgstr "위치 선택"
 
-#: ../src/Audience.vala:640
+#: ../src/Audience.vala:644
 msgid "Open"
 msgstr "열기"
 
-#: ../src/Audience.vala:641
+#: ../src/Audience.vala:645
 msgid "_Cancel"
 msgstr "_취소"
 
-#: ../src/Audience.vala:641
+#: ../src/Audience.vala:645
 msgid "_Open"
 msgstr "_열기"
 
-#: ../src/Audience.vala:649
+#: ../src/Audience.vala:653
 msgid "Video files"
 msgstr "비디오 파일"
 
-#: ../src/Audience.vala:820
+#: ../src/Audience.vala:824
 msgid "Video added to playlist"
 msgstr "플레이리스트에 동영상 추가"
 
-#: ../src/Audience.vala:822
+#: ../src/Audience.vala:826
 msgid "%i videos added to playlist"
 msgstr "%i 개의 동영상이 재생목록에 추가되었습니다"
