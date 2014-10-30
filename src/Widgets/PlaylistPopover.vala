@@ -56,7 +56,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             app.repeat = rep.active;
         });
 
-        grid.attach (playlist_scrolled, 0, 0, 2, 1);
+        grid.attach (playlist_scrolled, 0, 0, 3, 1);
         grid.attach (fil, 0, 1, 1, 1);
         grid.attach (dvd, 1, 1, 1, 1);
         grid.attach (rep, 2, 1, 1, 1);
