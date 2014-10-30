@@ -34,7 +34,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         dvd.no_show_all = true;
         var rep = new Gtk.ToggleButton ();
         rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-repeat", Gtk.IconSize.BUTTON));
-        rep.set_tooltip_text (_("Replay playlist"));
+        rep.set_tooltip_text (_("Repeat playlist"));
 
         playlist_scrolled = new Gtk.ScrolledWindow (null, null);
         playlist_scrolled.set_min_content_height (100);
