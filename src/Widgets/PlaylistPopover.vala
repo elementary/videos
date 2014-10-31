@@ -33,8 +33,8 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         dvd.set_tooltip_text (_("Play from Disc"));
         dvd.no_show_all = true;
         var rep = new Gtk.ToggleButton ();
-        rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-repeat", Gtk.IconSize.BUTTON));
-        rep.set_tooltip_text (_("Repeat playlist"));
+        rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON));
+        rep.set_tooltip_text (_("Enable Repeat"));
 
         playlist_scrolled = new Gtk.ScrolledWindow (null, null);
         playlist_scrolled.set_min_content_height (100);
@@ -54,12 +54,20 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
 
         rep.toggled.connect ( () => {
             app.repeat = rep.active;
+            if (rep.active) {
+                rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.BUTTON));
+                rep.set_tooltip_text (_("Disable Repeat"));
+            }
+            else {
+                rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON));
+                rep.set_tooltip_text (_("Enable Repeat"));
+            }
         });
 
-        grid.attach (playlist_scrolled, 0, 0, 3, 1);
-        grid.attach (fil, 0, 1, 1, 1);
-        grid.attach (dvd, 1, 1, 1, 1);
-        grid.attach (rep, 2, 1, 1, 1);
+        grid.attach (playlist_scrolled, 0, 0, 7, 1);
+        grid.attach (fil, 0, 1, 3, 1);
+        grid.attach (dvd, 3, 1, 3, 1);
+        grid.attach (rep, 6, 1, 1, 1);
 
         //look for dvd
         var disk_manager = DiskManager.get_default ();
