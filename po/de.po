@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-29 07:53-0500\n"
-"PO-Revision-Date: 2014-10-24 11:22+0000\n"
+"PO-Revision-Date: 2014-10-30 19:41+0000\n"
 "Last-Translator: Phillip Sz <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-30 06:25+0000\n"
-"X-Generator: Launchpad (build 17203)\n"
+"X-Launchpad-Export-Date: 2014-10-31 06:33+0000\n"
+"X-Generator: Launchpad (build 17211)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:355
 msgid "Open file"
@@ -130,12 +130,12 @@ msgstr "Video-Wiedergabe"
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
 msgid "About Audience"
-msgstr ""
+msgstr "Info über Audience"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
 msgid "About Videos"
-msgstr ""
+msgstr "Info über Videos"
 
 #: ../src/Audience.vala:354
 msgid "No Videos Open"
