@@ -57,8 +57,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             if (rep.active) {
                 rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.BUTTON));
                 rep.set_tooltip_text (_("Disable Repeat"));
-            }
-            else {
+            } else {
                 rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON));
                 rep.set_tooltip_text (_("Enable Repeat"));
             }
