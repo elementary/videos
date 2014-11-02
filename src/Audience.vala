@@ -47,6 +47,8 @@ namespace Audience {
         /// TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
         public const string ABOUT_GENERIC = N_("About Videos");
 
+        public bool repeat { get; set; }
+
         construct {
             program_name = PROGRAM_NAME;
             exec_name = "audience";
@@ -110,6 +112,8 @@ namespace Audience {
 
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
+
+            repeat = false;
         }
 
         public static App get_instance () {
@@ -141,9 +145,9 @@ namespace Audience {
 
             bottom_bar = new Widgets.BottomBar ();
             bottom_bar.set_valign (Gtk.Align.END);
-            bottom_bar.play_toggled.connect (() => {video_player.playing = !video_player.playing;});
-            bottom_bar.seeked.connect ((val) => {video_player.progress = val;});
-            bottom_bar.unfullscreen.connect (() => {toggle_fullscreen ();});
+            bottom_bar.play_toggled.connect (() => { video_player.playing = !video_player.playing; });
+            bottom_bar.seeked.connect ((val) => { video_player.progress = val; });
+            bottom_bar.unfullscreen.connect (() => { toggle_fullscreen (); });
 
             //tagview.select_external_subtitle.connect (video_player.set_subtitle_uri);
 
@@ -223,17 +227,24 @@ namespace Audience {
                 Idle.add (() => {
                     int last_played_index = playlist.get_current ();
                     if (!playlist.next ()) {
-                        welcome.set_item_visible (1, false);
-                        if (last_played_index > 0) {
-                            welcome.set_item_visible (2, false);
-                            welcome.set_item_visible (3, true);
+
+                        if (repeat) {
+                            open_file (playlist.get_first_item ().get_path ());
+                            Idle.add (() => { video_player.progress = 0; return false; });
+                            video_player.playing = true;
                         } else {
-                            welcome.set_item_visible (2, true);
-                            welcome.set_item_visible (3, false);
+                            welcome.set_item_visible (1, false);
+                            if (last_played_index > 0) {
+                                welcome.set_item_visible (2, false);
+                                welcome.set_item_visible (3, true);
+                            } else {
+                                welcome.set_item_visible (2, true);
+                                welcome.set_item_visible (3, false);
+                            }
+
+                            welcome.show_all ();
+                            clutter.hide ();
                         }
-                        
-                        welcome.show_all ();
-                        clutter.hide ();
                     }
                     return false;
                 });
@@ -364,13 +375,13 @@ namespace Audience {
             }
 
             welcome.set_item_visible (1, show_last_file);
-            
+
             welcome.append ("media-playlist-repeat", _("Replay"), _("Replay last video"));
             welcome.set_item_visible (2, false);
-            
+
             welcome.append ("media-playlist-repeat", _("Replay"), _("Replay last playlist"));
             welcome.set_item_visible (3, false);
-            
+
             welcome.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
             welcome.set_item_visible (4, false);
 
@@ -386,8 +397,8 @@ namespace Audience {
                 welcome.set_item_visible (4, disk_manager.has_media_volumes ());
             });
 
-            
-            
+
+
             //handle welcome
             welcome.activated.connect ((index) => {
                 switch (index) {
@@ -402,7 +413,7 @@ namespace Audience {
                         video_player.playing = false;
                         Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
                         video_player.playing = true;
-                        break;                   
+                        break;
                     case 2:
                     case 3:
                         welcome.hide ();
@@ -565,7 +576,7 @@ namespace Audience {
                 foreach (var uri in sel.get_uris ()) {
                     open_file (uri);
                 }
-                
+
                 welcome.hide ();
                 clutter.show_all ();
             });
@@ -578,8 +589,8 @@ namespace Audience {
             }
 
             if (video_player.uri == null || video_player.uri == "")
-                return;                
-                
+                return;
+
             save_last_played_videos ();
         }
 
@@ -626,13 +637,13 @@ namespace Audience {
                 settings.last_stopped = 0;
             }
         }
-        
+
         private inline void clear_video_settings () {
             settings.last_stopped = 0;
             settings.last_played_videos = null;
             settings.current_video = "";
         }
-        
+
 
         private void restore_playlist () {
             foreach (var filename in settings.last_played_videos) {
@@ -661,17 +672,17 @@ namespace Audience {
                 if (welcome.is_visible ()) {
                     playlist.clear_items ();
                 }
-                
+
                 foreach (File item in file.get_files ()) {
                     playlist.add_item (item);
                 }
-                
+
                 if (video_player.uri == null || welcome.is_visible ())
                     open_file (file.get_uri ());
-                    
+
                 welcome.hide ();
                 clutter.show_all ();
-                
+
                 settings.last_folder = file.get_current_folder ();
             }
 
@@ -741,12 +752,12 @@ namespace Audience {
             string without_ext;
             int last_dot = uri.last_index_of (".", 0);
             int last_slash = uri.last_index_of ("/", 0);
-            
+
             if (last_dot < last_slash) //we dont have extension
                 without_ext = uri;
             else
                 without_ext = uri.slice (0, last_dot);
-            
+
             foreach (string ext in SUBTITLE_EXTENSIONS){
                 string sub_uri = without_ext + "." + ext;
                 if (File.new_for_uri (sub_uri).query_exists ())
@@ -791,12 +802,12 @@ namespace Audience {
         //the application started
         public override void activate () {
             build ();
-            if (settings.resume_videos == true 
-                && settings.last_played_videos.length > 0 
+            if (settings.resume_videos == true
+                && settings.last_played_videos.length > 0
                 && settings.current_video != ""
                 && file_exists (settings.current_video)) {
                 restore_playlist ();
-                
+
                 if (settings.last_stopped > 0) {
                     welcome.hide ();
                     clutter.show_all ();
@@ -812,7 +823,7 @@ namespace Audience {
         public override void open (File[] files, string hint) {
             if (mainwindow == null)
                 build ();
-                
+
             welcome.hide ();
             clutter.show_all ();
             foreach (var file in files) {
@@ -822,7 +833,7 @@ namespace Audience {
             if (video_player.uri != null) { // we already play some file
                 if (files.length == 1)
                     show_notification (_("Video added to playlist"), files[0].get_basename ());
-                else 
+                else
                     show_notification (_("%i videos added to playlist").printf (files.length), "");
             } else
                 open_file(files[0].get_uri ());

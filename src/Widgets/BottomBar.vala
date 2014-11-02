@@ -113,7 +113,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         } else {
             play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON);
             play_button.tooltip_text = _("Play");
-            set_reveal_child (true);
+            set_reveal_child (!VideoPlayer.get_default ().at_end);
         }
     }
 
