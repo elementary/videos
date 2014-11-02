@@ -68,7 +68,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         flags &= ~PlayFlags.TEXT;   //disable subtitle
         flags &= ~PlayFlags.AUDIO;  //disable audio sink
         preview_playbin.set ("flags", flags);
-        
+
         try {
             var info = new Gst.PbUtils.Discoverer (10 * Gst.SECOND).discover_uri (uri);
             var video = info.get_video_streams ();
@@ -90,5 +90,9 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         preview_playbin.query_duration (Gst.Format.TIME, out length);
         preview_playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, (int64)(double.max (progress, 0.0) * length));
         preview_playbin.set_state (Gst.State.PLAYING);
+        Timeout.add_seconds (5, () => {
+            set_preview_progress (progress);
+            return false;
+        });
     }
 }
