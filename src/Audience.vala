@@ -230,7 +230,7 @@ namespace Audience {
 
                         if (repeat) {
                             open_file (playlist.get_first_item ().get_path ());
-                            Idle.add (() => {video_player.progress = 0; return false;});
+                            Idle.add (() => { video_player.progress = 0; return false; });
                             video_player.playing = true;
                         } else {
                             welcome.set_item_visible (1, false);
