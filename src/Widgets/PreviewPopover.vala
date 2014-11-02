@@ -23,6 +23,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     dynamic Gst.Element preview_playbin;
     Clutter.Texture video;
     double ratio = 0;
+    uint? timer_id = null;
     public PreviewPopover () {
         opacity = GLOBAL_OPACITY;
         can_focus = false;
@@ -57,7 +58,10 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         stage.add_child (video);
         add (clutter);
         //show_all ();
-        closed.connect (() => {preview_playbin.set_state (Gst.State.PAUSED);});
+        closed.connect (() => {
+            preview_playbin.set_state (Gst.State.PAUSED);
+            cancel_loop_timer ();
+        });
     }
 
     public void set_preview_uri (string uri) {
@@ -86,13 +90,21 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     }
 
     public void set_preview_progress (double progress) {
+        cancel_loop_timer ();
         int64 length;
         preview_playbin.query_duration (Gst.Format.TIME, out length);
         preview_playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, (int64)(double.max (progress, 0.0) * length));
         preview_playbin.set_state (Gst.State.PLAYING);
-        Timeout.add_seconds (5, () => {
+        timer_id = Timeout.add_seconds (5, () => {
             set_preview_progress (progress);
             return false;
         });
+    }
+
+    private void cancel_loop_timer () {
+        if (timer_id != null) {
+            Source.remove (timer_id);
+            timer_id = null;
+        }
     }
 }
