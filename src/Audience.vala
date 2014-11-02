@@ -145,9 +145,9 @@ namespace Audience {
 
             bottom_bar = new Widgets.BottomBar ();
             bottom_bar.set_valign (Gtk.Align.END);
-            bottom_bar.play_toggled.connect (() => {video_player.playing = !video_player.playing;});
-            bottom_bar.seeked.connect ((val) => {video_player.progress = val;});
-            bottom_bar.unfullscreen.connect (() => {toggle_fullscreen ();});
+            bottom_bar.play_toggled.connect (() => { video_player.playing = !video_player.playing; });
+            bottom_bar.seeked.connect ((val) => { video_player.progress = val; });
+            bottom_bar.unfullscreen.connect (() => { toggle_fullscreen (); });
 
             //tagview.select_external_subtitle.connect (video_player.set_subtitle_uri);
 
