@@ -7,23 +7,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-10-29 07:53-0500\n"
+"POT-Creation-Date: 2014-11-02 15:37-0600\n"
 "PO-Revision-Date: 2014-08-19 20:38+0000\n"
 "Last-Translator: Иван Благојевић <ivan_blagojevic@mail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-30 06:25+0000\n"
-"X-Generator: Launchpad (build 17203)\n"
+"X-Launchpad-Export-Date: 2014-11-03 06:21+0000\n"
+"X-Generator: Launchpad (build 17211)\n"
 
-#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:355
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
 msgid "Open file"
 msgstr "Отвори датотеку"
 
-#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:374
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:385
 msgid "Play from Disc"
 msgstr "Изведи са диска"
+
+#: ../src/Widgets/PlaylistPopover.vala:37
+#: ../src/Widgets/PlaylistPopover.vala:62
+msgid "Enable Repeat"
+msgstr ""
+
+#: ../src/Widgets/PlaylistPopover.vala:59
+msgid "Disable Repeat"
+msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
@@ -57,7 +66,7 @@ msgstr "Немој инсталирати"
 msgid "Install"
 msgstr "Инсталирај"
 
-#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:649
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:660
 msgid "All files"
 msgstr "Све датотеке"
 
@@ -137,74 +146,74 @@ msgstr ""
 msgid "About Videos"
 msgstr ""
 
-#: ../src/Audience.vala:354
+#: ../src/Audience.vala:365
 msgid "No Videos Open"
 msgstr "Нема отворених снимака"
 
-#: ../src/Audience.vala:354
+#: ../src/Audience.vala:365
 msgid "Select a source to begin playing."
 msgstr "Одабери извор да започне извођење."
 
-#: ../src/Audience.vala:355
+#: ../src/Audience.vala:366
 msgid "Open a saved file."
 msgstr "Отвори сачувану датотеку."
 
-#: ../src/Audience.vala:360
+#: ../src/Audience.vala:371
 msgid "Resume last video"
 msgstr "Настави последњи снимак"
 
-#: ../src/Audience.vala:368 ../src/Audience.vala:371
+#: ../src/Audience.vala:379 ../src/Audience.vala:382
 msgid "Replay"
 msgstr ""
 
-#: ../src/Audience.vala:368
+#: ../src/Audience.vala:379
 msgid "Replay last video"
 msgstr ""
 
-#: ../src/Audience.vala:371
+#: ../src/Audience.vala:382
 msgid "Replay last playlist"
 msgstr ""
 
-#: ../src/Audience.vala:374
+#: ../src/Audience.vala:385
 msgid "Watch a DVD or open a file from disc"
 msgstr "Гледај ДВД или отвори датотеку са диска"
 
-#: ../src/Audience.vala:419
+#: ../src/Audience.vala:430
 msgid "Open location"
 msgstr "Отвори са локације"
 
-#: ../src/Audience.vala:421
+#: ../src/Audience.vala:432
 msgid "Cancel"
 msgstr "Одустани"
 
-#: ../src/Audience.vala:422
+#: ../src/Audience.vala:433
 msgid "OK"
 msgstr "У реду"
 
-#: ../src/Audience.vala:429
+#: ../src/Audience.vala:440
 msgid "Choose location"
 msgstr "Одабери локацију"
 
-#: ../src/Audience.vala:644
+#: ../src/Audience.vala:655
 msgid "Open"
 msgstr "Отвори"
 
-#: ../src/Audience.vala:645
+#: ../src/Audience.vala:656
 msgid "_Cancel"
 msgstr "Оду_стани"
 
-#: ../src/Audience.vala:645
+#: ../src/Audience.vala:656
 msgid "_Open"
 msgstr "_Отвори"
 
-#: ../src/Audience.vala:653
+#: ../src/Audience.vala:664
 msgid "Video files"
 msgstr "Видео датотеке"
 
-#: ../src/Audience.vala:824
+#: ../src/Audience.vala:835
 msgid "Video added to playlist"
 msgstr ""
 
-#: ../src/Audience.vala:826
+#: ../src/Audience.vala:837
 msgid "%i videos added to playlist"
 msgstr ""
