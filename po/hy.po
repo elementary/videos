@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2014-08-31 13:38+0000\n"
-"Last-Translator: Arsen Khachatryan <arsench2000@gmail.com>\n"
+"PO-Revision-Date: 2014-11-03 10:26+0000\n"
+"Last-Translator: Vahan Harutyunyan <Unknown>\n"
 "Language-Team: Armenian <hy@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-03 06:21+0000\n"
+"X-Launchpad-Export-Date: 2014-11-04 06:48+0000\n"
 "X-Generator: Launchpad (build 17211)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
 msgid "Open file"
-msgstr "Բացել ֆաիլը"
+msgstr "Բացել ֆաjլը"
 
 #: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:385
 msgid "Play from Disc"
@@ -40,11 +40,11 @@ msgstr "Սխալ"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "_OK"
-msgstr "ԼԱՎ"
+msgstr "_OK"
 
 #: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
-msgstr "Audience -ը չի կարող նվագարկել այս ֆաիլը"
+msgstr "Audience -ը չի կարող նվագարկել այս ֆայլը"
 
 #: ../src/Widgets/VideoPlayer.vala:388
 msgid ""
@@ -58,15 +58,15 @@ msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:400
 msgid "Don't install"
-msgstr ""
+msgstr "Չտեղադրել"
 
 #: ../src/Widgets/VideoPlayer.vala:401
 msgid "Install"
-msgstr ""
+msgstr "Տեղադրել"
 
 #: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:660
 msgid "All files"
-msgstr ""
+msgstr "Բոլոր ֆայլերը"
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
@@ -78,7 +78,7 @@ msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
-msgstr ""
+msgstr "Աուդիո՝"
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"
@@ -90,23 +90,23 @@ msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:122
 msgid "None"
-msgstr ""
+msgstr "Ոչ մեկը"
 
 #: ../src/Widgets/SettingsPopover.vala:153
 msgid "Default"
-msgstr ""
+msgstr "Լռելյայն"
 
 #: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
 msgid "Play"
-msgstr ""
+msgstr "Նվագարկել"
 
 #: ../src/Widgets/BottomBar.vala:48
 msgid "Playlist"
-msgstr ""
+msgstr "Երգացանկ"
 
 #: ../src/Widgets/BottomBar.vala:52
 msgid "Settings"
-msgstr ""
+msgstr "Կարգավորումներ"
 
 #: ../src/Widgets/BottomBar.vala:100
 msgid "Unfullscreen"
@@ -114,39 +114,39 @@ msgstr ""
 
 #: ../src/Widgets/BottomBar.vala:111
 msgid "Pause"
-msgstr ""
+msgstr "Դադար"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:39
 msgid "Videos"
-msgstr ""
+msgstr "Videos"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Video;Player;Movies;"
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Դիտել վիդեոներ և ֆիլմեր"
 
 #: ../src/Audience.vala:44
 msgid "Video Player"
-msgstr ""
+msgstr "Վիդեո նվագարկիչ"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
 msgid "About Audience"
-msgstr ""
+msgstr "Audience-ի մասին"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
 msgid "About Videos"
-msgstr ""
+msgstr "Videos-ի մասին"
 
 #: ../src/Audience.vala:365
 msgid "No Videos Open"
-msgstr ""
+msgstr "Բացված վիդեոներ չկան"
 
 #: ../src/Audience.vala:365
 msgid "Select a source to begin playing."
@@ -154,7 +154,7 @@ msgstr ""
 
 #: ../src/Audience.vala:366
 msgid "Open a saved file."
-msgstr ""
+msgstr "Բացել պահված ֆայլը:"
 
 #: ../src/Audience.vala:371
 msgid "Resume last video"
@@ -162,15 +162,15 @@ msgstr ""
 
 #: ../src/Audience.vala:379 ../src/Audience.vala:382
 msgid "Replay"
-msgstr ""
+msgstr "Վերանվագարկել"
 
 #: ../src/Audience.vala:379
 msgid "Replay last video"
-msgstr ""
+msgstr "Վերանվագարկել վերջին վիդեոն"
 
 #: ../src/Audience.vala:382
 msgid "Replay last playlist"
-msgstr ""
+msgstr "Վերանվագարկել վերջին վիդեոցանկը"
 
 #: ../src/Audience.vala:385
 msgid "Watch a DVD or open a file from disc"
@@ -182,11 +182,11 @@ msgstr ""
 
 #: ../src/Audience.vala:432
 msgid "Cancel"
-msgstr ""
+msgstr "Չեղյալ համարել"
 
 #: ../src/Audience.vala:433
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/Audience.vala:440
 msgid "Choose location"
@@ -194,23 +194,23 @@ msgstr ""
 
 #: ../src/Audience.vala:655
 msgid "Open"
-msgstr ""
+msgstr "Բացել"
 
 #: ../src/Audience.vala:656
 msgid "_Cancel"
-msgstr ""
+msgstr "_Չեղյալ համարել"
 
 #: ../src/Audience.vala:656
 msgid "_Open"
-msgstr ""
+msgstr "_Բացել"
 
 #: ../src/Audience.vala:664
 msgid "Video files"
-msgstr ""
+msgstr "Վիդեո ֆայլեր"
 
 #: ../src/Audience.vala:835
 msgid "Video added to playlist"
-msgstr ""
+msgstr "Վիդեոն ավելացվել է վիդեոցանկում"
 
 #: ../src/Audience.vala:837
 msgid "%i videos added to playlist"

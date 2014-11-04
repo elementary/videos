@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2014-10-29 12:04+0000\n"
-"Last-Translator: Sergey \"Shnatsel\" Davidoff <Shnatsel@gmail.com>\n"
+"PO-Revision-Date: 2014-11-03 21:13+0000\n"
+"Last-Translator: 13i <merkvlad@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-03 06:21+0000\n"
+"X-Launchpad-Export-Date: 2014-11-04 06:48+0000\n"
 "X-Generator: Launchpad (build 17211)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
@@ -51,9 +51,8 @@ msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
-"Для возможности воспроизведения некоторых мультимедийных файлов необходимо "
-"дополнительное программное обеспечение. Audience может установить это "
-"программное обеспечение автоматически."
+"Для воспроизведения некоторых файлов необходимо дополнительное программное "
+"обеспечение. Программа Audience может установить его автоматически."
 
 #: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
@@ -77,7 +76,7 @@ msgstr "Файлы субтитров"
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
-msgstr "Внешние субтитры"
+msgstr "Субтитры из файла"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
@@ -127,7 +126,7 @@ msgstr "Видео"
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Video;Player;Movies;Аудиенс;Видео;Плеер;Кино;"
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
@@ -140,12 +139,12 @@ msgstr "Видео"
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
 msgid "About Audience"
-msgstr "Об Audience"
+msgstr "О программе"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
 msgid "About Videos"
-msgstr "О проигрывателе"
+msgstr "О программе"
 
 #: ../src/Audience.vala:365
 msgid "No Videos Open"
