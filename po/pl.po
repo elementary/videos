@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2014-03-06 14:03+0000\n"
-"Last-Translator: Mateusz Czylok <mczylok@maydex.info>\n"
+"PO-Revision-Date: 2014-11-08 13:16+0000\n"
+"Last-Translator: Marcin Kozłowski <kozlowsky.marcin@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-03 06:21+0000\n"
-"X-Generator: Launchpad (build 17211)\n"
+"X-Launchpad-Export-Date: 2014-11-09 06:36+0000\n"
+"X-Generator: Launchpad (build 17231)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
 msgid "Open file"
@@ -28,11 +28,11 @@ msgstr "Odtwarzaj z dysku"
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Włącza powtarzanie nagrania"
 
 #: ../src/Widgets/PlaylistPopover.vala:59
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Wyłącza powtarzanie nagrania"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
@@ -72,7 +72,7 @@ msgstr "Wszystkie pliki"
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
-msgstr ""
+msgstr "Pliki z napisami"
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
@@ -80,15 +80,15 @@ msgstr "Zewnętrzne napisy"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
-msgstr ""
+msgstr "Dźwięk:"
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"
-msgstr ""
+msgstr "Napisy:"
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr ""
+msgstr "Napisy zewnętrzne:"
 
 #: ../src/Widgets/SettingsPopover.vala:122
 msgid "None"
@@ -100,7 +100,7 @@ msgstr "Domyślne"
 
 #: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
 msgid "Play"
-msgstr ""
+msgstr "Odtwórz"
 
 #: ../src/Widgets/BottomBar.vala:48
 msgid "Playlist"
@@ -108,43 +108,43 @@ msgstr "Playlista"
 
 #: ../src/Widgets/BottomBar.vala:52
 msgid "Settings"
-msgstr ""
+msgstr "Ustawienia"
 
 #: ../src/Widgets/BottomBar.vala:100
 msgid "Unfullscreen"
-msgstr ""
+msgstr "Wyłącz pełny ekran"
 
 #: ../src/Widgets/BottomBar.vala:111
 msgid "Pause"
-msgstr ""
+msgstr "Pauza"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:39
 msgid "Videos"
-msgstr ""
+msgstr "Odtwarzacz wideo"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Wideo;Odtwarzacz;Filmy;"
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Oglądaj filmy"
 
 #: ../src/Audience.vala:44
 msgid "Video Player"
-msgstr ""
+msgstr "Odtwarzacz wideo"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
 msgid "About Audience"
-msgstr ""
+msgstr "O Audience"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
 msgid "About Videos"
-msgstr ""
+msgstr "O odtwarzaczu wideo"
 
 #: ../src/Audience.vala:365
 msgid "No Videos Open"
@@ -164,15 +164,15 @@ msgstr "Wznów ostatnio odtwarzane wideo"
 
 #: ../src/Audience.vala:379 ../src/Audience.vala:382
 msgid "Replay"
-msgstr ""
+msgstr "Odtwórz ponownie"
 
 #: ../src/Audience.vala:379
 msgid "Replay last video"
-msgstr ""
+msgstr "Odtwórz ponownie ostatnie wideo"
 
 #: ../src/Audience.vala:382
 msgid "Replay last playlist"
-msgstr ""
+msgstr "Odtwórz ponownie ostatnią playlistę"
 
 #: ../src/Audience.vala:385
 msgid "Watch a DVD or open a file from disc"
@@ -184,7 +184,7 @@ msgstr "Otwórz położenie"
 
 #: ../src/Audience.vala:432
 msgid "Cancel"
-msgstr ""
+msgstr "Anuluj"
 
 #: ../src/Audience.vala:433
 msgid "OK"
@@ -212,7 +212,7 @@ msgstr "Pliki wideo"
 
 #: ../src/Audience.vala:835
 msgid "Video added to playlist"
-msgstr ""
+msgstr "Wideo dodane do playlisty"
 
 #: ../src/Audience.vala:837
 msgid "%i videos added to playlist"
