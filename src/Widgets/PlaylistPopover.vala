@@ -64,8 +64,8 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         });
 
         grid.attach (playlist_scrolled, 0, 0, 7, 1);
-        grid.attach (fil, 0, 1, 3, 1);
-        grid.attach (dvd, 3, 1, 3, 1);
+        grid.attach (fil, 0, 1, 1, 1);
+        grid.attach (dvd, 1, 1, 1, 1);
         grid.attach (rep, 6, 1, 1, 1);
 
         //look for dvd
