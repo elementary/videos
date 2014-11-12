@@ -1,16 +1,16 @@
-# Croatian translation for audience
-# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# Bosnian translation for audience
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the audience package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2014-11-11 17:46+0000\n"
-"Last-Translator: Ivan Vrljić <vrlja92@gmail.com>\n"
-"Language-Team: Croatian <hr@li.org>\n"
+"PO-Revision-Date: 2014-11-11 12:05+0000\n"
+"Last-Translator: Coa_brate <aleksandar.todorovic@mail.ru>\n"
+"Language-Team: Bosnian <bs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,7 +23,7 @@ msgstr "Otvori datoteku"
 
 #: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:385
 msgid "Play from Disc"
-msgstr "Reproduciraj s diska"
+msgstr "Reprodukuj sa diska"
 
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
@@ -44,19 +44,19 @@ msgstr "_Uredu"
 
 #: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
-msgstr "Ups! Audience ne može pokrenuti ovu datoteku!"
+msgstr "Ups! Audience ne može da reprodukuje ovu datoteku!"
 
 #: ../src/Widgets/VideoPlayer.vala:388
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
-"Neke medijske datoteke trebaju dodatni softver za reprodukciju. Audience "
-"može instalirati taj softver automatski."
+"Neke datoteke zahtijevaju dodatan softver da bi se reprodukovali. Audience "
+"može automatski instalirati ovaj softver."
 
 #: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
-msgstr "Audience treba %s za reprodukciju ove datoteke."
+msgstr "Audience-u je potreban %s da bi reprodukovao ovu datoteku."
 
 #: ../src/Widgets/VideoPlayer.vala:400
 msgid "Don't install"
@@ -72,11 +72,11 @@ msgstr "Sve datoteke"
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
-msgstr "Datoteke podnaslova"
+msgstr "Datoteke sa titlom"
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
-msgstr "Vanjski podnaslovi"
+msgstr "Spoljašnji titlovi"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
@@ -84,39 +84,39 @@ msgstr "Audio:"
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"
-msgstr "Podnaslovi:"
+msgstr "Titlovi:"
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr "Vanjski podnaslovi"
+msgstr "Spoljašnji titlovi:"
 
 #: ../src/Widgets/SettingsPopover.vala:122
 msgid "None"
-msgstr "Isključeni"
+msgstr "Nijedan"
 
 #: ../src/Widgets/SettingsPopover.vala:153
 msgid "Default"
-msgstr "Uobičajen"
+msgstr "Podrazumijevano"
 
 #: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
 msgid "Play"
-msgstr "Pokreni"
+msgstr "Pusti"
 
 #: ../src/Widgets/BottomBar.vala:48
 msgid "Playlist"
-msgstr "Popis izvođenja"
+msgstr "Lista za reprodukciju"
 
 #: ../src/Widgets/BottomBar.vala:52
 msgid "Settings"
-msgstr "Postavke"
+msgstr "Podešavanja"
 
 #: ../src/Widgets/BottomBar.vala:100
 msgid "Unfullscreen"
-msgstr ""
+msgstr "Izađi iz prikaza preko cijelog ekrana"
 
 #: ../src/Widgets/BottomBar.vala:111
 msgid "Pause"
-msgstr "Pauza"
+msgstr "Pauziraj"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:39
@@ -126,57 +126,57 @@ msgstr "Video"
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Video;Player;Movies;"
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
-msgstr "Gledaj videozapise i filmove"
+msgstr "Gledaj video datoteke i filmove"
 
 #: ../src/Audience.vala:44
 msgid "Video Player"
-msgstr ""
+msgstr "Video plejer"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
 msgid "About Audience"
-msgstr "O Audience-u"
+msgstr "O Audience programu"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
 msgid "About Videos"
-msgstr ""
+msgstr "O Video programu"
 
 #: ../src/Audience.vala:365
 msgid "No Videos Open"
-msgstr "Nema otvorenih video snimaka"
+msgstr "Nema otvorenih videa"
 
 #: ../src/Audience.vala:365
 msgid "Select a source to begin playing."
-msgstr "Odaberi izvor za početak reprodukcije."
+msgstr "Izaberite izvod da pokrenete reprodukciju"
 
 #: ../src/Audience.vala:366
 msgid "Open a saved file."
-msgstr "Otvori spremljenu datoteku."
+msgstr "Otvori sačuvanu datoteku."
 
 #: ../src/Audience.vala:371
 msgid "Resume last video"
-msgstr "Nastavi posljednji video"
+msgstr "Nastavi posljednje gledani video"
 
 #: ../src/Audience.vala:379 ../src/Audience.vala:382
 msgid "Replay"
-msgstr "Ponovi"
+msgstr "Ponovo reprodukuj"
 
 #: ../src/Audience.vala:379
 msgid "Replay last video"
-msgstr "Ponovi zadnji videozapis"
+msgstr "Ponovo reprodukuj posljednje gledani video"
 
 #: ../src/Audience.vala:382
 msgid "Replay last playlist"
-msgstr "Ponovi zadnju listu"
+msgstr "Ponovo reprodukuj zadnju listu za reprodukciju"
 
 #: ../src/Audience.vala:385
 msgid "Watch a DVD or open a file from disc"
-msgstr "Gledajte DVD ili otvorite datoteku s diska"
+msgstr "Gledaj DVD ili otvori datoteku sa diska"
 
 #: ../src/Audience.vala:430
 msgid "Open location"
@@ -188,11 +188,11 @@ msgstr "Otkaži"
 
 #: ../src/Audience.vala:433
 msgid "OK"
-msgstr "U redu"
+msgstr "OK"
 
 #: ../src/Audience.vala:440
 msgid "Choose location"
-msgstr "Odaberi lokaciju"
+msgstr "Izaberi lokaciju"
 
 #: ../src/Audience.vala:655
 msgid "Open"
@@ -200,7 +200,7 @@ msgstr "Otvori"
 
 #: ../src/Audience.vala:656
 msgid "_Cancel"
-msgstr "_Otkaži"
+msgstr "_Odustani"
 
 #: ../src/Audience.vala:656
 msgid "_Open"
@@ -212,8 +212,8 @@ msgstr "Video datoteke"
 
 #: ../src/Audience.vala:835
 msgid "Video added to playlist"
-msgstr "Videozapis dodan na listu"
+msgstr "Video je dodan u listu za reprodukciju"
 
 #: ../src/Audience.vala:837
 msgid "%i videos added to playlist"
-msgstr "%I videozapisa dodano na listu"
+msgstr "%i videa dodano u listu za reprodukciju"
