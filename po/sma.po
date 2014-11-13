@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2014-09-11 11:55+0000\n"
+"PO-Revision-Date: 2014-11-12 23:05+0000\n"
 "Last-Translator: Skandee <Unknown>\n"
 "Language-Team: Southern Sami <sma@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-03 06:21+0000\n"
-"X-Generator: Launchpad (build 17211)\n"
+"X-Launchpad-Export-Date: 2014-11-13 06:22+0000\n"
+"X-Generator: Launchpad (build 17241)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
 msgid "Open file"
-msgstr "Geehpehtidh gïeje"
+msgstr "Rihpestidh fijle"
 
 #: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:385
 msgid "Play from Disc"
-msgstr ""
+msgstr "CD-em spïeleste"
 
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
@@ -36,7 +36,7 @@ msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
-msgstr "båajhtode"
+msgstr "Maejnie"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "_OK"
@@ -44,7 +44,7 @@ msgstr "_OK"
 
 #: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
-msgstr ""
+msgstr "Audience ij maahta dihte fijle spïeledh"
 
 #: ../src/Widgets/VideoPlayer.vala:388
 msgid ""
@@ -54,11 +54,11 @@ msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
-msgstr ""
+msgstr "Audiencem darpesjh %s"
 
 #: ../src/Widgets/VideoPlayer.vala:400
 msgid "Don't install"
-msgstr ""
+msgstr "ij sijjiedehtedh"
 
 #: ../src/Widgets/VideoPlayer.vala:401
 msgid "Install"
