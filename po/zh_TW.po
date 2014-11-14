@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2014-03-16 07:17+0000\n"
+"PO-Revision-Date: 2014-11-13 13:00+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-03 06:22+0000\n"
-"X-Generator: Launchpad (build 17211)\n"
+"X-Launchpad-Export-Date: 2014-11-14 06:24+0000\n"
+"X-Generator: Launchpad (build 17241)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
 msgid "Open file"
@@ -28,11 +28,11 @@ msgstr "從光碟播放"
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
 msgid "Enable Repeat"
-msgstr ""
+msgstr "啟動重複播放"
 
 #: ../src/Widgets/PlaylistPopover.vala:59
 msgid "Disable Repeat"
-msgstr ""
+msgstr "停用重複播放"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
@@ -40,7 +40,7 @@ msgstr "錯誤"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "_OK"
-msgstr ""
+msgstr "確定(_O)"
 
 #: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
@@ -70,7 +70,7 @@ msgstr "所有檔案"
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
-msgstr ""
+msgstr "字幕檔"
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
@@ -78,15 +78,15 @@ msgstr "外部字幕"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
-msgstr ""
+msgstr "音訊："
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"
-msgstr ""
+msgstr "字幕："
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr ""
+msgstr "外部字幕："
 
 #: ../src/Widgets/SettingsPopover.vala:122
 msgid "None"
@@ -98,7 +98,7 @@ msgstr "預設"
 
 #: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
 msgid "Play"
-msgstr ""
+msgstr "播放"
 
 #: ../src/Widgets/BottomBar.vala:48
 msgid "Playlist"
@@ -106,43 +106,43 @@ msgstr "播放清單"
 
 #: ../src/Widgets/BottomBar.vala:52
 msgid "Settings"
-msgstr ""
+msgstr "設定值"
 
 #: ../src/Widgets/BottomBar.vala:100
 msgid "Unfullscreen"
-msgstr ""
+msgstr "退出全螢幕"
 
 #: ../src/Widgets/BottomBar.vala:111
 msgid "Pause"
-msgstr ""
+msgstr "暫停"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:39
 msgid "Videos"
-msgstr ""
+msgstr "影片"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Video;Player;Movies;影片;電影;視訊;播放器;"
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "觀賞影片與電影"
 
 #: ../src/Audience.vala:44
 msgid "Video Player"
-msgstr ""
+msgstr "影片播放器"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
 msgid "About Audience"
-msgstr ""
+msgstr "關於 Audience"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
 msgid "About Videos"
-msgstr ""
+msgstr "關於《影片》"
 
 #: ../src/Audience.vala:365
 msgid "No Videos Open"
@@ -162,15 +162,15 @@ msgstr "恢復播放最後一次播放的視訊"
 
 #: ../src/Audience.vala:379 ../src/Audience.vala:382
 msgid "Replay"
-msgstr ""
+msgstr "再次播放"
 
 #: ../src/Audience.vala:379
 msgid "Replay last video"
-msgstr ""
+msgstr "再次播放上個影片"
 
 #: ../src/Audience.vala:382
 msgid "Replay last playlist"
-msgstr ""
+msgstr "再次播放上個播放清單"
 
 #: ../src/Audience.vala:385
 msgid "Watch a DVD or open a file from disc"
@@ -182,11 +182,11 @@ msgstr "開啟位置"
 
 #: ../src/Audience.vala:432
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: ../src/Audience.vala:433
 msgid "OK"
-msgstr ""
+msgstr "確定"
 
 #: ../src/Audience.vala:440
 msgid "Choose location"
@@ -198,11 +198,11 @@ msgstr "開啟"
 
 #: ../src/Audience.vala:656
 msgid "_Cancel"
-msgstr ""
+msgstr "取消(_C)"
 
 #: ../src/Audience.vala:656
 msgid "_Open"
-msgstr ""
+msgstr "開啟(_O)"
 
 #: ../src/Audience.vala:664
 msgid "Video files"
@@ -210,8 +210,8 @@ msgstr "視訊檔"
 
 #: ../src/Audience.vala:835
 msgid "Video added to playlist"
-msgstr ""
+msgstr "視訊已加入播放清單中"
 
 #: ../src/Audience.vala:837
 msgid "%i videos added to playlist"
-msgstr ""
+msgstr "%i 份視訊已加入播放清單中"
