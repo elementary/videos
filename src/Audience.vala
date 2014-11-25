@@ -89,6 +89,7 @@ namespace Audience {
         private static App app; // global App instance
         private Audience.Widgets.VideoPlayer video_player;
         private Audience.Widgets.BottomBar bottom_bar;
+        private Gtk.HeaderBar header;
         private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_bar;
         private GtkClutter.Actor bottom_actor;
@@ -167,7 +168,7 @@ namespace Audience {
             mainbox.pack_start (clutter);
             mainbox.pack_start (welcome);
 
-            var header = new Gtk.HeaderBar ();
+            header = new Gtk.HeaderBar ();
             header.set_show_close_button (true);
             header.get_style_context ().remove_class ("header-bar");
 
@@ -275,7 +276,7 @@ namespace Audience {
                 return false;
             });
 
-            mainwindow.size_allocate.connect ((alloc) => {on_size_allocate (alloc);});
+            mainwindow.size_allocate.connect (on_size_allocate);
             mainwindow.motion_notify_event.connect ((event) => {
                 if (event.window == null)
                     return false;
@@ -551,12 +552,50 @@ namespace Audience {
             mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
                 monitor.height / 2 - height / 2 + monitor.y,
                 width, height);
+        }
 
-            if (settings.keep_aspect) {
+        uint update_aspect_ratio_timeout = 0;
+        bool update_aspect_ratio_locked = false;
+        int prev_width = 0;
+        int prev_height = 0;
+        /**
+         * Updates the window's aspect ratio locking if enabled.
+         * Return type is just there to make it compatible with Idle.add()
+         */
+        private bool update_aspect_ratio ()
+        {
+            if (!settings.keep_aspect || video_player.video_width < 1 || video_player.height < 1 || update_aspect_ratio_locked)
+                return false;
+
+            if (update_aspect_ratio_timeout != 0)
+                Source.remove (update_aspect_ratio_timeout);
+
+            update_aspect_ratio_timeout = Timeout.add (1000, () => {
+                var width = clutter.get_allocated_width ();
+                var height = width * video_player.video_height / (double) video_player.video_width;
+                var height_offset = header.get_allocated_height ();
+                print ("Width: %f, Height: %f, Offset: %f (%f, %f)\n", width, height, height_offset, video_player.video_width, video_player.video_height);
+
                 var geom = Gdk.Geometry ();
-                geom.min_aspect = geom.max_aspect = video_w / (double)video_h;
+                geom.min_aspect = geom.max_aspect = width / (height + height_offset);
                 mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
-            }
+
+                update_aspect_ratio_timeout = 0;
+                update_aspect_ratio_locked = true;
+
+                Idle.add (() => {
+                    update_aspect_ratio_locked = false;
+
+                    prev_width = mainwindow.get_allocated_width ();
+                    prev_height = mainwindow.get_allocated_height ();
+
+                    return false;
+                });
+
+                return false;
+            });
+
+            return false;
         }
 
         private void on_window_state_changed (Gdk.WindowState window_state) {
@@ -603,6 +642,9 @@ namespace Audience {
                     old_h = alloc.height;
                 }
             }
+
+            if (!update_aspect_ratio_locked && prev_width != mainwindow.get_allocated_width () && prev_height != mainwindow.get_allocated_height ())
+                Idle.add (update_aspect_ratio);
         }
 
         private bool update_pointer_position (double y, int window_height) {
