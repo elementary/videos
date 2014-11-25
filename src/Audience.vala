@@ -564,20 +564,23 @@ namespace Audience {
          */
         private bool update_aspect_ratio ()
         {
-            if (!settings.keep_aspect || video_player.video_width < 1 || video_player.height < 1 || update_aspect_ratio_locked)
+            if (!settings.keep_aspect || video_player.video_width < 1 || video_player.height < 1 || update_aspect_ratio_locked
+                || !clutter.visible)
                 return false;
 
             if (update_aspect_ratio_timeout != 0)
                 Source.remove (update_aspect_ratio_timeout);
 
-            update_aspect_ratio_timeout = Timeout.add (1000, () => {
-                var width = clutter.get_allocated_width ();
-                var height = width * video_player.video_height / (double) video_player.video_width;
-                var height_offset = header.get_allocated_height ();
+            update_aspect_ratio_timeout = Timeout.add (100, () => {
+                double width = clutter.get_allocated_width ();
+                double height = width * video_player.video_height / (double) video_player.video_width;
+                double width_offset = mainwindow.get_allocated_width () - width;
+                double height_offset = mainwindow.get_allocated_height () - clutter.get_allocated_height ();
+
                 print ("Width: %f, Height: %f, Offset: %f (%f, %f)\n", width, height, height_offset, video_player.video_width, video_player.video_height);
 
                 var geom = Gdk.Geometry ();
-                geom.min_aspect = geom.max_aspect = width / (height + height_offset);
+                geom.min_aspect = geom.max_aspect = (width + width_offset) / (height + height_offset);
                 mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
 
                 update_aspect_ratio_timeout = 0;
