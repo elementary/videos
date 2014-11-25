@@ -564,14 +564,17 @@ namespace Audience {
          */
         private bool update_aspect_ratio ()
         {
-            if (!settings.keep_aspect || video_player.video_width < 1 || video_player.height < 1 || update_aspect_ratio_locked
+            if (!settings.keep_aspect || video_player.video_width < 1 || video_player.height < 1
                 || !clutter.visible)
                 return false;
 
             if (update_aspect_ratio_timeout != 0)
                 Source.remove (update_aspect_ratio_timeout);
 
-            update_aspect_ratio_timeout = Timeout.add (100, () => {
+            update_aspect_ratio_timeout = Timeout.add (200, () => {
+                Gtk.Allocation a;
+                clutter.get_allocation (out a);
+                print ("%i %i %i,%i\n", a.x, a.y, (mainwindow.get_allocated_width () - clutter.get_allocated_width ()) / 2, (mainwindow.get_allocated_height () - clutter.get_allocated_height ()) / 2);
                 double width = clutter.get_allocated_width ();
                 double height = width * video_player.video_height / (double) video_player.video_width;
                 double width_offset = mainwindow.get_allocated_width () - width;
@@ -581,14 +584,20 @@ namespace Audience {
 
                 var geom = Gdk.Geometry ();
                 geom.min_aspect = geom.max_aspect = (width + width_offset) / (height + height_offset);
+
+                var w = mainwindow.get_allocated_width ();
+                var h = (int) (w * geom.max_aspect);
+                int b, c;
+
                 mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
 
+                mainwindow.get_window ().constrain_size (geom, Gdk.WindowHints.ASPECT, w, h, out b, out c);
+                print ("Result: %i %i == %i %i\n", w, h, b, c);
+                mainwindow.get_window ().resize (b, c);
+
                 update_aspect_ratio_timeout = 0;
-                update_aspect_ratio_locked = true;
 
                 Idle.add (() => {
-                    update_aspect_ratio_locked = false;
-
                     prev_width = mainwindow.get_allocated_width ();
                     prev_height = mainwindow.get_allocated_height ();
 
@@ -646,7 +655,7 @@ namespace Audience {
                 }
             }
 
-            if (!update_aspect_ratio_locked && prev_width != mainwindow.get_allocated_width () && prev_height != mainwindow.get_allocated_height ())
+            if (prev_width != mainwindow.get_allocated_width () && prev_height != mainwindow.get_allocated_height ())
                 Idle.add (update_aspect_ratio);
         }
 
