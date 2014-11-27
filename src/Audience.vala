@@ -17,6 +17,7 @@
  *
  * Authored by: Tom Beckmann <tomjonabc@gmail.com>
  *              Cody Garver <cody@elementaryos.org>
+ *              Artem Anufrij <artem.anufrij@live.de>
  */
 
 /*

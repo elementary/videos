@@ -16,6 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  * Authored by: Corentin Noël <corentin@elementaryos.org>
+ *              Artem Anufrij <artem.anufrij@live.de>
  */
 
 public class Audience.Widgets.BottomBar : Gtk.Revealer {

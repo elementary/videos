@@ -17,6 +17,7 @@
  *
  * Authored by: Tom Beckmann <tomjonabc@gmail.com>
  *              Corentin Noël <corentin@elementaryos.org>
+ *              Artem Anufrij <artem.anufrij@live.de>
  */
 
 public class Audience.Widgets.TimeWidget : Gtk.Grid {
