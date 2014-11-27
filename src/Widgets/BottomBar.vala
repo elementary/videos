@@ -53,6 +53,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         preferences_button.clicked.connect (() => {preferences_popover.show_all (); preferences_popover.queue_resize ();});
 
         time_widget = new TimeWidget ();
+        time_widget.preview.connect ((open) => {hovered = open;});
         time_widget.seeked.connect ((val) => {seeked (val);});
 
         playlist_popover = new PlaylistPopover ();
