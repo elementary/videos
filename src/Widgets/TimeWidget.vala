@@ -17,7 +17,6 @@
  *
  * Authored by: Tom Beckmann <tomjonabc@gmail.com>
  *              Corentin Noël <corentin@elementaryos.org>
- *              Artem Anufrij <artem.anufrij@live.de>
  */
 
 public class Audience.Widgets.TimeWidget : Gtk.Grid {
@@ -27,7 +26,6 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
     public Gtk.Label time_label;
     public Gtk.Scale scale;
     public signal void seeked (double val);
-    public signal void preview (bool open);
     private Audience.Widgets.PreviewPopover preview_popover;
     private bool is_seeking = false;
     private bool released = true;
@@ -71,13 +69,11 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
 
         scale.enter_notify_event.connect ((event) => {
             preview_popover.show_all ();
-            preview (true);
             return false;
         });
 
         scale.leave_notify_event.connect ((event) => {
             preview_popover.hide ();
-            preview (false);
             return false;
         });
 
