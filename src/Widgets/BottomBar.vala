@@ -37,6 +37,13 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     private uint hiding_timer = 0;
 
     public BottomBar () {
+        this.events |= Gdk.EventMask.POINTER_MOTION_MASK;
+        this.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
+        this.events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
+
+        this.enter_notify_event.connect ((event) => { this.hovered = true; return false; });
+        this.leave_notify_event.connect ((event) => { this.hovered = false; return false; });
+
         transition_type = Gtk.RevealerTransitionType.CROSSFADE;
         var main_actionbar = new Gtk.ActionBar ();
         main_actionbar.opacity = GLOBAL_OPACITY;
@@ -54,7 +61,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         preferences_button.clicked.connect (() => {preferences_popover.show_all (); preferences_popover.queue_resize ();});
 
         time_widget = new TimeWidget ();
-        time_widget.preview.connect ((open) => {hovered = open;});
         time_widget.seeked.connect ((val) => {seeked (val);});
 
         playlist_popover = new PlaylistPopover ();
