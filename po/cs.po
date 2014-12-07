@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2012-10-21 09:36+0000\n"
-"Last-Translator: Hlobil Vaclav <Unknown>\n"
+"PO-Revision-Date: 2014-12-06 21:41+0000\n"
+"Last-Translator: Long Do Hai <mailbox@thinky.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-03 06:21+0000\n"
-"X-Generator: Launchpad (build 17211)\n"
+"X-Launchpad-Export-Date: 2014-12-07 06:02+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
 msgid "Open file"
@@ -76,7 +76,7 @@ msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
-msgstr ""
+msgstr "Externí titulky"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
@@ -84,11 +84,11 @@ msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"
-msgstr ""
+msgstr "Titulky:"
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr ""
+msgstr "Externí titulky:"
 
 #: ../src/Widgets/SettingsPopover.vala:122
 msgid "None"
@@ -121,16 +121,16 @@ msgstr ""
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:39
 msgid "Videos"
-msgstr ""
+msgstr "Videa"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Video;Přehrávač;Filmy;"
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Sledovat videa a filmy"
 
 #: ../src/Audience.vala:44
 msgid "Video Player"
@@ -139,20 +139,20 @@ msgstr ""
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
 msgid "About Audience"
-msgstr ""
+msgstr "O programu Audience"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
 msgid "About Videos"
-msgstr ""
+msgstr "O programu Videos"
 
 #: ../src/Audience.vala:365
 msgid "No Videos Open"
-msgstr ""
+msgstr "Nejsou otevřena žádná videa"
 
 #: ../src/Audience.vala:365
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "Zvolte zdroj pro spuštění přehrávání"
 
 #: ../src/Audience.vala:366
 msgid "Open a saved file."
@@ -168,11 +168,11 @@ msgstr ""
 
 #: ../src/Audience.vala:379
 msgid "Replay last video"
-msgstr ""
+msgstr "Přehrát poslední video"
 
 #: ../src/Audience.vala:382
 msgid "Replay last playlist"
-msgstr ""
+msgstr "Přehrát poslední playlist"
 
 #: ../src/Audience.vala:385
 msgid "Watch a DVD or open a file from disc"
@@ -184,11 +184,11 @@ msgstr "Otevřít umístění"
 
 #: ../src/Audience.vala:432
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušit"
 
 #: ../src/Audience.vala:433
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/Audience.vala:440
 msgid "Choose location"
@@ -212,8 +212,8 @@ msgstr "Video soubory"
 
 #: ../src/Audience.vala:835
 msgid "Video added to playlist"
-msgstr ""
+msgstr "Video bylo přidáno do playlistu"
 
 #: ../src/Audience.vala:837
 msgid "%i videos added to playlist"
-msgstr ""
+msgstr "%i videí bylo přidáno do playlistu"
