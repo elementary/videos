@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2014-12-23 19:57+0000\n"
+"PO-Revision-Date: 2014-12-24 14:00+0000\n"
 "Last-Translator: Jernej Virag <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-24 06:44+0000\n"
+"X-Launchpad-Export-Date: 2014-12-25 06:00+0000\n"
 "X-Generator: Launchpad (build 17286)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
@@ -23,7 +23,7 @@ msgstr "Odpri datoteko"
 
 #: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:385
 msgid "Play from Disc"
-msgstr "Predvajaj z diska"
+msgstr "Predvajaj s CDja"
 
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
@@ -164,15 +164,15 @@ msgstr "Nadaljuj zadnji video"
 
 #: ../src/Audience.vala:379 ../src/Audience.vala:382
 msgid "Replay"
-msgstr ""
+msgstr "Ponovno predvajaj"
 
 #: ../src/Audience.vala:379
 msgid "Replay last video"
-msgstr ""
+msgstr "Predvajaj zadnji video"
 
 #: ../src/Audience.vala:382
 msgid "Replay last playlist"
-msgstr ""
+msgstr "Predvajaj zadnji seznam predvajanja"
 
 #: ../src/Audience.vala:385
 msgid "Watch a DVD or open a file from disc"
@@ -184,11 +184,11 @@ msgstr "Odpri mesto"
 
 #: ../src/Audience.vala:432
 msgid "Cancel"
-msgstr ""
+msgstr "Prekliči"
 
 #: ../src/Audience.vala:433
 msgid "OK"
-msgstr ""
+msgstr "V redu"
 
 #: ../src/Audience.vala:440
 msgid "Choose location"
@@ -200,11 +200,11 @@ msgstr "Odpri"
 
 #: ../src/Audience.vala:656
 msgid "_Cancel"
-msgstr ""
+msgstr "_Prekliči"
 
 #: ../src/Audience.vala:656
 msgid "_Open"
-msgstr ""
+msgstr "_Odpri"
 
 #: ../src/Audience.vala:664
 msgid "Video files"
@@ -212,8 +212,8 @@ msgstr "Video datoteke"
 
 #: ../src/Audience.vala:835
 msgid "Video added to playlist"
-msgstr ""
+msgstr "Posnetek dodan na seznam predvajanja"
 
 #: ../src/Audience.vala:837
 msgid "%i videos added to playlist"
-msgstr ""
+msgstr "%i posnetkov dodanih na seznam predvajanja"
