@@ -17,6 +17,7 @@
  *
  * Authored by: Tom Beckmann <tomjonabc@gmail.com>
  *              Cody Garver <cody@elementaryos.org>
+ *              Artem Anufrij <artem.anufrij@live.de>
  */
 
 /*
@@ -615,12 +616,6 @@ namespace Audience {
 
             if (bottom_bar.child_revealed == false)
                 bottom_bar.set_reveal_child (true);
-
-            if (y >= (window_height - bottom_bar_size) && y < window_height) {
-                bottom_bar.hovered = true;
-            } else {
-                bottom_bar.hovered = false;
-            }
 
             return false;
         }

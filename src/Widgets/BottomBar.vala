@@ -16,6 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  * Authored by: Corentin Noël <corentin@elementaryos.org>
+ *              Artem Anufrij <artem.anufrij@live.de>
  */
 
 public class Audience.Widgets.BottomBar : Gtk.Revealer {
@@ -36,6 +37,13 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     private uint hiding_timer = 0;
 
     public BottomBar () {
+        this.events |= Gdk.EventMask.POINTER_MOTION_MASK;
+        this.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
+        this.events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
+
+        this.enter_notify_event.connect ((event) => { this.hovered = true; return false; });
+        this.leave_notify_event.connect ((event) => { this.hovered = false; return false; });
+
         transition_type = Gtk.RevealerTransitionType.CROSSFADE;
         var main_actionbar = new Gtk.ActionBar ();
         main_actionbar.opacity = GLOBAL_OPACITY;
