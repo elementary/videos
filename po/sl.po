@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2014-12-25 10:59+0000\n"
+"PO-Revision-Date: 2014-12-27 09:51+0000\n"
 "Last-Translator: Jernej Virag <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-26 06:11+0000\n"
+"X-Launchpad-Export-Date: 2014-12-28 05:58+0000\n"
 "X-Generator: Launchpad (build 17286)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
@@ -126,7 +126,7 @@ msgstr "Video predvajalnik"
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Video;Posnetki;Predvajalnik;Filmi;Serije"
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
