@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2014-11-08 13:16+0000\n"
+"PO-Revision-Date: 2015-01-03 17:29+0000\n"
 "Last-Translator: Marcin Kozłowski <kozlowsky.marcin@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-09 06:36+0000\n"
-"X-Generator: Launchpad (build 17231)\n"
+"X-Launchpad-Export-Date: 2015-01-04 06:17+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
 msgid "Open file"
@@ -40,7 +40,7 @@ msgstr "Błąd"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "_OK"
-msgstr ""
+msgstr "_OK"
 
 #: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
@@ -52,7 +52,7 @@ msgid ""
 "software automatically."
 msgstr ""
 "Niektóre pliki multimedialne wymagają dodatkowego oprogramowania. Audience "
-"zainstaluje je automatyczne."
+"może automatycznie zainstalować to oprogramowanie."
 
 #: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
@@ -216,4 +216,4 @@ msgstr "Wideo dodane do playlisty"
 
 #: ../src/Audience.vala:837
 msgid "%i videos added to playlist"
-msgstr ""
+msgstr "%i filmów dodano do listy odtwarzania"
