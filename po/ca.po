@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2014-10-19 14:51+0000\n"
-"Last-Translator: Alfredo Hernández <Unknown>\n"
+"PO-Revision-Date: 2015-01-04 07:42+0000\n"
+"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-03 06:21+0000\n"
-"X-Generator: Launchpad (build 17211)\n"
+"X-Launchpad-Export-Date: 2015-01-05 06:34+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
 msgid "Open file"
@@ -28,11 +28,11 @@ msgstr "Reprodueix des d'un disc"
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Habilita la repetició"
 
 #: ../src/Widgets/PlaylistPopover.vala:59
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Inhabilita la repetició"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
@@ -121,12 +121,12 @@ msgstr "Atura"
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:39
 msgid "Videos"
-msgstr ""
+msgstr "Vídeos"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Vídeo;Reproductor;Pel·lícules;"
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
@@ -139,12 +139,12 @@ msgstr "Reproductor de vídeo"
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
 msgid "About Audience"
-msgstr ""
+msgstr "Quant a l’Audience"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
 msgid "About Videos"
-msgstr ""
+msgstr "Quant al Vídeos"
 
 #: ../src/Audience.vala:365
 msgid "No Videos Open"
