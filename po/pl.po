@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2015-01-03 17:29+0000\n"
-"Last-Translator: Marcin Kozłowski <kozlowsky.marcin@gmail.com>\n"
+"PO-Revision-Date: 2015-01-05 17:37+0000\n"
+"Last-Translator: Piotr Strębski <strebski@o2.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-01-04 06:17+0000\n"
+"X-Launchpad-Export-Date: 2015-01-06 06:56+0000\n"
 "X-Generator: Launchpad (build 17286)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
@@ -188,7 +188,7 @@ msgstr "Anuluj"
 
 #: ../src/Audience.vala:433
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/Audience.vala:440
 msgid "Choose location"
@@ -200,11 +200,11 @@ msgstr "Otwórz"
 
 #: ../src/Audience.vala:656
 msgid "_Cancel"
-msgstr ""
+msgstr "_Anuluj"
 
 #: ../src/Audience.vala:656
 msgid "_Open"
-msgstr ""
+msgstr "_Otwórz"
 
 #: ../src/Audience.vala:664
 msgid "Video files"
