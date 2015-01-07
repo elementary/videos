@@ -181,7 +181,7 @@ namespace Audience {
             mainwindow.window_position = Gtk.WindowPosition.CENTER;
             mainwindow.set_application (this);
             mainwindow.add (mainbox);
-            mainwindow.set_default_size (910, 640);
+            mainwindow.set_default_size (960, 640);
             mainwindow.set_size_request (350, 300);
             mainwindow.show_all ();
             if (!settings.show_window_decoration)
