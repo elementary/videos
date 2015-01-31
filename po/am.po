@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2014-08-12 17:13+0000\n"
+"PO-Revision-Date: 2015-01-31 01:50+0000\n"
 "Last-Translator: samson <Unknown>\n"
 "Language-Team: Amharic <am@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-01-15 05:53+0000\n"
-"X-Generator: Launchpad (build 17303)\n"
+"X-Launchpad-Export-Date: 2015-01-31 06:06+0000\n"
+"X-Generator: Launchpad (build 17306)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
 msgid "Open file"
@@ -119,7 +119,7 @@ msgstr "ማስቆሚያ"
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:39
 msgid "Videos"
-msgstr ""
+msgstr "ቪዲዮዎች"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
@@ -128,11 +128,11 @@ msgstr ""
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "ቪዲዮዎች እና ሙቪዎች ይመልከቱ"
 
 #: ../src/Audience.vala:44
 msgid "Video Player"
-msgstr ""
+msgstr "ቪዲዮ ማጫወቻ"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
@@ -142,7 +142,7 @@ msgstr ""
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
 msgid "About Videos"
-msgstr ""
+msgstr "ስለ ቪዲዮዎች"
 
 #: ../src/Audience.vala:365
 msgid "No Videos Open"
@@ -162,15 +162,15 @@ msgstr "የመጨረሻውን ቪዲዮ መቀጠያ"
 
 #: ../src/Audience.vala:379 ../src/Audience.vala:382
 msgid "Replay"
-msgstr ""
+msgstr "እንደገና ማጫወቻ"
 
 #: ../src/Audience.vala:379
 msgid "Replay last video"
-msgstr ""
+msgstr "የ መጨረሻውን ቪዲዮ እንደገና ማጫወቻ"
 
 #: ../src/Audience.vala:382
 msgid "Replay last playlist"
-msgstr ""
+msgstr "የ መጨረሻውን የማጫወቻ ዝርዝር እንደገና ማጫወቻ"
 
 #: ../src/Audience.vala:385
 msgid "Watch a DVD or open a file from disc"
@@ -210,8 +210,8 @@ msgstr "የ ቪዲዮ ፋይሎች"
 
 #: ../src/Audience.vala:835
 msgid "Video added to playlist"
-msgstr ""
+msgstr "ቪዲዮ ወደ ማጫወቻ ዝርዝር ተጨምሯል"
 
 #: ../src/Audience.vala:837
 msgid "%i videos added to playlist"
-msgstr ""
+msgstr "%i ቪዲዮዎች ወደ ማጫወቻ ዝርዝር ተጨምረዋል"
