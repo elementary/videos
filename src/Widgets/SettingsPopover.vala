@@ -63,7 +63,6 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.attach (subtitles, 1, 2, 1, 1);
         setupgrid.attach (sub_ext_label, 0, 3, 1, 1);
         setupgrid.attach (external_subtitle_file, 1, 3, 1, 1);
-        setupgrid.column_homogeneous = true;
         setupgrid.column_spacing = 12;
 
         external_subtitle_file.file_set.connect (() => {
