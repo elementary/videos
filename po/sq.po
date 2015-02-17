@@ -1,0 +1,217 @@
+# Albanian translation for audience
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the audience package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: audience\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-11-02 15:37-0600\n"
+"PO-Revision-Date: 2015-02-16 16:54+0000\n"
+"Last-Translator: Indrit Bashkimi <indrit.bashkimi@gmail.com>\n"
+"Language-Team: Albanian <sq@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-02-17 06:12+0000\n"
+"X-Generator: Launchpad (build 17341)\n"
+
+#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
+msgid "Open file"
+msgstr "Hap një skedar"
+
+#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:385
+msgid "Play from Disc"
+msgstr ""
+
+#: ../src/Widgets/PlaylistPopover.vala:37
+#: ../src/Widgets/PlaylistPopover.vala:62
+msgid "Enable Repeat"
+msgstr ""
+
+#: ../src/Widgets/PlaylistPopover.vala:59
+msgid "Disable Repeat"
+msgstr ""
+
+#: ../src/Widgets/VideoPlayer.vala:362
+msgid "Error"
+msgstr "Gabim"
+
+#: ../src/Widgets/VideoPlayer.vala:362
+msgid "_OK"
+msgstr "_OK"
+
+#: ../src/Widgets/VideoPlayer.vala:368
+msgid "Oops! Audience can't play this file!"
+msgstr "Ups! Audience nuk mund të riprodhojë këtë skedar!"
+
+#: ../src/Widgets/VideoPlayer.vala:388
+msgid ""
+"Some media files need extra software to be played. Audience can install this "
+"software automatically."
+msgstr ""
+
+#: ../src/Widgets/VideoPlayer.vala:393
+msgid "Audience needs %s to play this file."
+msgstr "Audience nevojit %s për të riprodhuar këtë skedar."
+
+#: ../src/Widgets/VideoPlayer.vala:400
+msgid "Don't install"
+msgstr "Mos instalo"
+
+#: ../src/Widgets/VideoPlayer.vala:401
+msgid "Install"
+msgstr "Instalo"
+
+#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:660
+msgid "All files"
+msgstr "Të gjithë skedarët"
+
+#: ../src/Widgets/SettingsPopover.vala:37
+msgid "Subtitle files"
+msgstr "Skedarët për titra"
+
+#: ../src/Widgets/SettingsPopover.vala:44
+msgid "External Subtitles"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:48
+msgid "Audio:"
+msgstr "Audio:"
+
+#: ../src/Widgets/SettingsPopover.vala:51
+msgid "Subtitles:"
+msgstr "Titrat:"
+
+#: ../src/Widgets/SettingsPopover.vala:54
+msgid "External Subtitles:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:122
+msgid "None"
+msgstr "Asnjë"
+
+#: ../src/Widgets/SettingsPopover.vala:153
+msgid "Default"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
+msgid "Play"
+msgstr "Riprodho"
+
+#: ../src/Widgets/BottomBar.vala:48
+msgid "Playlist"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:52
+msgid "Settings"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:100
+msgid "Unfullscreen"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:111
+msgid "Pause"
+msgstr ""
+
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:39
+msgid "Videos"
+msgstr ""
+
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:42
+msgid "Audience;Video;Player;Movies;"
+msgstr ""
+
+#: ../src/Audience.vala:43
+msgid "Watch videos and movies"
+msgstr "Shiko video dhe filma"
+
+#: ../src/Audience.vala:44
+msgid "Video Player"
+msgstr ""
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:46
+msgid "About Audience"
+msgstr "Rreth Audience"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:48
+msgid "About Videos"
+msgstr ""
+
+#: ../src/Audience.vala:365
+msgid "No Videos Open"
+msgstr "Asnjë video e hapur"
+
+#: ../src/Audience.vala:365
+msgid "Select a source to begin playing."
+msgstr ""
+
+#: ../src/Audience.vala:366
+msgid "Open a saved file."
+msgstr "Hap një skedar të ruajtur."
+
+#: ../src/Audience.vala:371
+msgid "Resume last video"
+msgstr ""
+
+#: ../src/Audience.vala:379 ../src/Audience.vala:382
+msgid "Replay"
+msgstr ""
+
+#: ../src/Audience.vala:379
+msgid "Replay last video"
+msgstr ""
+
+#: ../src/Audience.vala:382
+msgid "Replay last playlist"
+msgstr ""
+
+#: ../src/Audience.vala:385
+msgid "Watch a DVD or open a file from disc"
+msgstr "Shiko një DVD ose hap një skedar nga disku"
+
+#: ../src/Audience.vala:430
+msgid "Open location"
+msgstr ""
+
+#: ../src/Audience.vala:432
+msgid "Cancel"
+msgstr "Anulo"
+
+#: ../src/Audience.vala:433
+msgid "OK"
+msgstr "OK"
+
+#: ../src/Audience.vala:440
+msgid "Choose location"
+msgstr ""
+
+#: ../src/Audience.vala:655
+msgid "Open"
+msgstr "Hap"
+
+#: ../src/Audience.vala:656
+msgid "_Cancel"
+msgstr "_Anulo"
+
+#: ../src/Audience.vala:656
+msgid "_Open"
+msgstr "_Hap"
+
+#: ../src/Audience.vala:664
+msgid "Video files"
+msgstr ""
+
+#: ../src/Audience.vala:835
+msgid "Video added to playlist"
+msgstr ""
+
+#: ../src/Audience.vala:837
+msgid "%i videos added to playlist"
+msgstr ""
