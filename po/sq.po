@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2015-02-16 16:54+0000\n"
+"PO-Revision-Date: 2015-02-21 12:38+0000\n"
 "Last-Translator: Indrit Bashkimi <indrit.bashkimi@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-02-17 06:12+0000\n"
-"X-Generator: Launchpad (build 17341)\n"
+"X-Launchpad-Export-Date: 2015-02-22 05:25+0000\n"
+"X-Generator: Launchpad (build 17355)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
 msgid "Open file"
@@ -23,16 +23,16 @@ msgstr "Hap një skedar"
 
 #: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:385
 msgid "Play from Disc"
-msgstr ""
+msgstr "Riprodho nga disku"
 
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Aktivizo përsëritjen"
 
 #: ../src/Widgets/PlaylistPopover.vala:59
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Çaktivizo përsëritjen"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
@@ -51,6 +51,8 @@ msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
+"Nevojiten disa programe shtesë për të riprodhuar disa skedarë. Audience mund "
+"t'i instalojë automatikisht."
 
 #: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
@@ -74,7 +76,7 @@ msgstr "Skedarët për titra"
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
-msgstr ""
+msgstr "Titra të jashtëm"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
@@ -86,7 +88,7 @@ msgstr "Titrat:"
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr ""
+msgstr "Titrat e jashtëm:"
 
 #: ../src/Widgets/SettingsPopover.vala:122
 msgid "None"
@@ -124,7 +126,7 @@ msgstr ""
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Video;Riprodhues;Film;"
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
@@ -132,7 +134,7 @@ msgstr "Shiko video dhe filma"
 
 #: ../src/Audience.vala:44
 msgid "Video Player"
-msgstr ""
+msgstr "Riprodhues video"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
@@ -150,7 +152,7 @@ msgstr "Asnjë video e hapur"
 
 #: ../src/Audience.vala:365
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "Përzgjidh një burim për të filluar riprodhimin."
 
 #: ../src/Audience.vala:366
 msgid "Open a saved file."
