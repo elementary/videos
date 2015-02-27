@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2015-02-21 12:38+0000\n"
+"PO-Revision-Date: 2015-02-26 17:11+0000\n"
 "Last-Translator: Indrit Bashkimi <indrit.bashkimi@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-02-22 05:25+0000\n"
-"X-Generator: Launchpad (build 17355)\n"
+"X-Launchpad-Export-Date: 2015-02-27 05:41+0000\n"
+"X-Generator: Launchpad (build 17361)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
 msgid "Open file"
@@ -96,7 +96,7 @@ msgstr "Asnjë"
 
 #: ../src/Widgets/SettingsPopover.vala:153
 msgid "Default"
-msgstr ""
+msgstr "Parazgjedhje"
 
 #: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
 msgid "Play"
@@ -108,15 +108,15 @@ msgstr ""
 
 #: ../src/Widgets/BottomBar.vala:52
 msgid "Settings"
-msgstr ""
+msgstr "Rregullimet"
 
 #: ../src/Widgets/BottomBar.vala:100
 msgid "Unfullscreen"
-msgstr ""
+msgstr "Çaktivizo pamjen me ekran të plotë"
 
 #: ../src/Widgets/BottomBar.vala:111
 msgid "Pause"
-msgstr ""
+msgstr "Pusho"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:39
@@ -160,7 +160,7 @@ msgstr "Hap një skedar të ruajtur."
 
 #: ../src/Audience.vala:371
 msgid "Resume last video"
-msgstr ""
+msgstr "Rimerr videon e fundit"
 
 #: ../src/Audience.vala:379 ../src/Audience.vala:382
 msgid "Replay"
@@ -208,7 +208,7 @@ msgstr "_Hap"
 
 #: ../src/Audience.vala:664
 msgid "Video files"
-msgstr ""
+msgstr "Skedarë video"
 
 #: ../src/Audience.vala:835
 msgid "Video added to playlist"
