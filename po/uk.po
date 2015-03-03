@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-02 15:37-0600\n"
-"PO-Revision-Date: 2014-05-01 16:42+0000\n"
-"Last-Translator: Max_ym <b.maxym.naumtchyk@gmail.com>\n"
+"PO-Revision-Date: 2015-03-02 22:57+0000\n"
+"Last-Translator: Leo Milano <leonardomilano13@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-01-15 05:53+0000\n"
-"X-Generator: Launchpad (build 17303)\n"
+"X-Launchpad-Export-Date: 2015-03-03 05:43+0000\n"
+"X-Generator: Launchpad (build 17361)\n"
 
 #: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
 msgid "Open file"
@@ -28,11 +28,11 @@ msgstr "Відтворити з Диску"
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Ввімкнути повторення"
 
 #: ../src/Widgets/PlaylistPopover.vala:59
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Вимкнути Повторення"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
@@ -51,6 +51,8 @@ msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
+"Для відтворення деяких медіа-файлів потрібно завантажити додаткові програми. "
+"Audience може встановити їх автоматично."
 
 #: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
@@ -70,23 +72,23 @@ msgstr "Усі файли"
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
-msgstr ""
+msgstr "Файли субтитрів"
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
-msgstr ""
+msgstr "Зовнішні субтитри"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
-msgstr ""
+msgstr "Звук:"
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"
-msgstr ""
+msgstr "Субтитри:"
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr ""
+msgstr "Зовнішні Субтитри:"
 
 #: ../src/Widgets/SettingsPopover.vala:122
 msgid "None"
@@ -98,7 +100,7 @@ msgstr "Типова"
 
 #: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
 msgid "Play"
-msgstr ""
+msgstr "Відтворити"
 
 #: ../src/Widgets/BottomBar.vala:48
 msgid "Playlist"
@@ -106,20 +108,20 @@ msgstr "Плейлист"
 
 #: ../src/Widgets/BottomBar.vala:52
 msgid "Settings"
-msgstr ""
+msgstr "Параметри"
 
 #: ../src/Widgets/BottomBar.vala:100
 msgid "Unfullscreen"
-msgstr ""
+msgstr "Вийти з повноекранного режиму"
 
 #: ../src/Widgets/BottomBar.vala:111
 msgid "Pause"
-msgstr ""
+msgstr "Призупинити"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:39
 msgid "Videos"
-msgstr ""
+msgstr "Відео"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
@@ -128,16 +130,16 @@ msgstr ""
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Переглядайте відео та фільми"
 
 #: ../src/Audience.vala:44
 msgid "Video Player"
-msgstr ""
+msgstr "Програвач відеофайлів"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
 msgid "About Audience"
-msgstr ""
+msgstr "Про Audience"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
