@@ -494,6 +494,7 @@ namespace Audience {
                     } else {
                         video_player.seek_jump_seconds (-60); // 1 min
                     }
+                    bottom_bar.reveal_control ();
                     break;
                 case Gdk.Key.Left:
                     if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) {
@@ -501,6 +502,7 @@ namespace Audience {
                     } else {
                         video_player.seek_jump_seconds (-10); // 10 secs
                     }
+                    bottom_bar.reveal_control ();
                     break;
                 case Gdk.Key.Right:
                     if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) {
@@ -508,6 +510,7 @@ namespace Audience {
                     } else {
                         video_player.seek_jump_seconds (10); // 10 secs
                     }
+                    bottom_bar.reveal_control ();
                     break;
                 case Gdk.Key.Up:
                     if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) {
@@ -515,12 +518,15 @@ namespace Audience {
                     } else {
                         video_player.seek_jump_seconds (60); // 1 min
                     }
+                    bottom_bar.reveal_control ();
                     break;
                 case Gdk.Key.Page_Down:
                     video_player.seek_jump_seconds (-600); // 10 mins
+                    bottom_bar.reveal_control ();
                     break;
                 case Gdk.Key.Page_Up:
                     video_player.seek_jump_seconds (600); // 10 mins
+                    bottom_bar.reveal_control ();
                     break;
                 case Gdk.Key.a:
                     bottom_bar.preferences_popover.next_audio ();
@@ -614,8 +620,7 @@ namespace Audience {
                 bottom_bar.get_preferred_height (out minimum, out bottom_bar_size);
             }
 
-            if (bottom_bar.child_revealed == false)
-                bottom_bar.set_reveal_child (true);
+            bottom_bar.reveal_control ();
 
             return false;
         }

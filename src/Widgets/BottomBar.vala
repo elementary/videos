@@ -76,7 +76,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
         notify["hovered"].connect (() => {
             if (hovered == false) {
-                set_timeout ();
+                reveal_control ();
             } else {
                 if (hiding_timer != 0) {
                     Source.remove (hiding_timer);
@@ -117,7 +117,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         if (is_playing == true) {
             play_button.image = new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.BUTTON);
             play_button.tooltip_text = _("Pause");
-            set_timeout ();
+            reveal_control ();
         } else {
             play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON);
             play_button.tooltip_text = _("Play");
@@ -125,7 +125,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         }
     }
 
-    public new void set_reveal_child (bool reveal) {
+    private new void set_reveal_child (bool reveal) {
         base.set_reveal_child (reveal);
         if (reveal == true && fullscreen == true) {
             unfullscreen_revealer.set_reveal_child (reveal);
@@ -149,7 +149,10 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         time_widget.set_progression_time (current_time, total_time);
     }
 
-    private void set_timeout () {
+    public void reveal_control () {
+        if (child_revealed == false)
+            set_reveal_child (true);
+
         if (hiding_timer != 0)
             Source.remove (hiding_timer);
 
