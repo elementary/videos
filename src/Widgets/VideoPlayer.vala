@@ -102,7 +102,7 @@ namespace Audience.Widgets {
                     if (video != null && video.data != null) {
                         var video_info = (Gst.PbUtils.DiscovererVideoInfo)video.data;
                         video_height = video_info.get_height ();
-                        video_width = get_video_width (video_info);
+                        video_width = query_video_width (video_info);
                     }
                 } catch (Error e) {
                     error ();
@@ -161,8 +161,8 @@ namespace Audience.Widgets {
         public dynamic Gst.Element playbin;
         Clutter.Texture video;
 
-        uint video_width;
-        uint video_height;
+        public uint video_width { get; private set; }
+        public uint video_height { get; private set; }
 
         public GnomeSessionManager session_manager;
         uint32 inhibit_cookie;
@@ -459,7 +459,7 @@ namespace Audience.Widgets {
             playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, new_position);
         }
 
-        uint get_video_width (Gst.PbUtils.DiscovererVideoInfo video_info) {
+        uint query_video_width (Gst.PbUtils.DiscovererVideoInfo video_info) {
             var par = get_video_par (video_info);
             if (par == -1) {
                 return video_info.get_width ();
