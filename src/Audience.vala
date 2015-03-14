@@ -306,7 +306,7 @@ namespace Audience {
                     toggle_fullscreen ();
                 }
 
-                if (event.button == Gdk.BUTTON_SECONDARY) { // single right click
+                if (event.button == Gdk.BUTTON_SECONDARY) { // right click
                     bottom_bar.play_toggled ();
                 }
 
