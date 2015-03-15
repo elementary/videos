@@ -7,23 +7,127 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-11-02 15:37-0600\n"
+"POT-Creation-Date: 2015-03-14 19:43-0500\n"
 "PO-Revision-Date: 2014-11-09 23:28+0000\n"
 "Last-Translator: Olivier Vopat <olivier.vopat@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-01-15 05:53+0000\n"
-"X-Generator: Launchpad (build 17303)\n"
+"X-Launchpad-Export-Date: 2015-03-15 05:23+0000\n"
+"X-Generator: Launchpad (build 17389)\n"
 
-#: ../src/Widgets/PlaylistPopover.vala:31 ../src/Audience.vala:366
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:40
+msgid "Videos"
+msgstr "Vidéos"
+
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:42
+msgid "Audience;Video;Player;Movies;"
+msgstr "Audience;Vidéo;Lecteur;Film;"
+
+#: ../src/Audience.vala:43
+msgid "Watch videos and movies"
+msgstr "Regarder des vidéos et des films"
+
+#: ../src/Audience.vala:44
+msgid "Video Player"
+msgstr "Lecteur vidéo"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:46
+msgid "About Audience"
+msgstr "À propos d'Audience"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:48
+msgid "About Videos"
+msgstr "À propos de Vidéos"
+
+#: ../src/Audience.vala:366
+msgid "No Videos Open"
+msgstr "Aucun fichier vidéo ouvert"
+
+#: ../src/Audience.vala:366
+msgid "Select a source to begin playing."
+msgstr "Sélectionnez une source pour commencer à jouer."
+
+#: ../src/Audience.vala:367 ../src/Widgets/PlaylistPopover.vala:31
 msgid "Open file"
 msgstr "Ouvrir un fichier"
 
-#: ../src/Widgets/PlaylistPopover.vala:33 ../src/Audience.vala:385
+#: ../src/Audience.vala:367
+msgid "Open a saved file."
+msgstr "Ouvrir un fichier sauvegardé."
+
+#: ../src/Audience.vala:372
+msgid "Resume last video"
+msgstr "Reprendre la lecture de la dernière vidéo"
+
+#: ../src/Audience.vala:380 ../src/Audience.vala:383
+msgid "Replay"
+msgstr "Rejouer"
+
+#: ../src/Audience.vala:380
+msgid "Replay last video"
+msgstr "Rejouer la dernière vidéo"
+
+#: ../src/Audience.vala:383
+msgid "Replay last playlist"
+msgstr "Rejouer la dernière liste de lecture"
+
+#: ../src/Audience.vala:386 ../src/Widgets/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "Lire le disque"
+
+#: ../src/Audience.vala:386
+msgid "Watch a DVD or open a file from disc"
+msgstr "Regarder un DVD ou ouvrir un fichier sur le disque"
+
+#: ../src/Audience.vala:431
+msgid "Open location"
+msgstr "Ouvrir l'emplacement"
+
+#: ../src/Audience.vala:433
+msgid "Cancel"
+msgstr "Annuler"
+
+#: ../src/Audience.vala:434
+msgid "OK"
+msgstr "OK"
+
+#: ../src/Audience.vala:441
+msgid "Choose location"
+msgstr "Choisir l'emplacement"
+
+#: ../src/Audience.vala:708
+msgid "Open"
+msgstr "Ouvrir"
+
+#: ../src/Audience.vala:709
+msgid "_Cancel"
+msgstr "_Annuler"
+
+#: ../src/Audience.vala:709
+msgid "_Open"
+msgstr "_Ouvrir"
+
+#: ../src/Audience.vala:713 ../src/Widgets/SettingsPopover.vala:33
+msgid "All files"
+msgstr "Tous les fichiers"
+
+#: ../src/Audience.vala:717
+msgid "Video files"
+msgstr "Fichiers vidéo"
+
+#: ../src/Audience.vala:888
+msgid "Video added to playlist"
+msgstr "Vidéo ajoutée à la playlist"
+
+#: ../src/Audience.vala:890
+msgid "%i videos added to playlist"
+msgstr "%i vidéos ajoutées à la playlist"
 
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
@@ -33,6 +137,26 @@ msgstr "Activer la lecture en boucle"
 #: ../src/Widgets/PlaylistPopover.vala:59
 msgid "Disable Repeat"
 msgstr "Désactiver la lecture en boucle"
+
+#: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:123
+msgid "Play"
+msgstr "Lire"
+
+#: ../src/Widgets/BottomBar.vala:56
+msgid "Playlist"
+msgstr "Liste de lecture"
+
+#: ../src/Widgets/BottomBar.vala:60
+msgid "Settings"
+msgstr "Paramètres"
+
+#: ../src/Widgets/BottomBar.vala:108
+msgid "Unfullscreen"
+msgstr "Quitter le mode plein écran"
+
+#: ../src/Widgets/BottomBar.vala:119
+msgid "Pause"
+msgstr "Mettre en pause"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
@@ -66,10 +190,6 @@ msgstr "Ne pas installer"
 msgid "Install"
 msgstr "Installer"
 
-#: ../src/Widgets/SettingsPopover.vala:33 ../src/Audience.vala:660
-msgid "All files"
-msgstr "Tous les fichiers"
-
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
 msgstr "Fichiers de sous-titres"
@@ -90,130 +210,10 @@ msgstr "Sous-titres :"
 msgid "External Subtitles:"
 msgstr "Sous-titres externes :"
 
-#: ../src/Widgets/SettingsPopover.vala:122
+#: ../src/Widgets/SettingsPopover.vala:121
 msgid "None"
 msgstr "Aucun"
 
-#: ../src/Widgets/SettingsPopover.vala:153
+#: ../src/Widgets/SettingsPopover.vala:152
 msgid "Default"
 msgstr "Par défaut"
-
-#: ../src/Widgets/BottomBar.vala:44 ../src/Widgets/BottomBar.vala:115
-msgid "Play"
-msgstr "Lire"
-
-#: ../src/Widgets/BottomBar.vala:48
-msgid "Playlist"
-msgstr "Liste de lecture"
-
-#: ../src/Widgets/BottomBar.vala:52
-msgid "Settings"
-msgstr "Paramètres"
-
-#: ../src/Widgets/BottomBar.vala:100
-msgid "Unfullscreen"
-msgstr "Quitter le mode plein écran"
-
-#: ../src/Widgets/BottomBar.vala:111
-msgid "Pause"
-msgstr "Mettre en pause"
-
-#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-#: ../src/Audience.vala:39
-msgid "Videos"
-msgstr "Vidéos"
-
-#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-#: ../src/Audience.vala:42
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Vidéo;Lecteur;Film;"
-
-#: ../src/Audience.vala:43
-msgid "Watch videos and movies"
-msgstr "Regarder des vidéos et des films"
-
-#: ../src/Audience.vala:44
-msgid "Video Player"
-msgstr "Lecteur vidéo"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-#: ../src/Audience.vala:46
-msgid "About Audience"
-msgstr "À propos d'Audience"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-#: ../src/Audience.vala:48
-msgid "About Videos"
-msgstr "À propos de Vidéos"
-
-#: ../src/Audience.vala:365
-msgid "No Videos Open"
-msgstr "Aucun fichier vidéo ouvert"
-
-#: ../src/Audience.vala:365
-msgid "Select a source to begin playing."
-msgstr "Sélectionnez une source pour commencer à jouer."
-
-#: ../src/Audience.vala:366
-msgid "Open a saved file."
-msgstr "Ouvrir un fichier sauvegardé."
-
-#: ../src/Audience.vala:371
-msgid "Resume last video"
-msgstr "Reprendre la lecture de la dernière vidéo"
-
-#: ../src/Audience.vala:379 ../src/Audience.vala:382
-msgid "Replay"
-msgstr "Rejouer"
-
-#: ../src/Audience.vala:379
-msgid "Replay last video"
-msgstr "Rejouer la dernière vidéo"
-
-#: ../src/Audience.vala:382
-msgid "Replay last playlist"
-msgstr "Rejouer la dernière liste de lecture"
-
-#: ../src/Audience.vala:385
-msgid "Watch a DVD or open a file from disc"
-msgstr "Regarder un DVD ou ouvrir un fichier sur le disque"
-
-#: ../src/Audience.vala:430
-msgid "Open location"
-msgstr "Ouvrir l'emplacement"
-
-#: ../src/Audience.vala:432
-msgid "Cancel"
-msgstr "Annuler"
-
-#: ../src/Audience.vala:433
-msgid "OK"
-msgstr "OK"
-
-#: ../src/Audience.vala:440
-msgid "Choose location"
-msgstr "Choisir l'emplacement"
-
-#: ../src/Audience.vala:655
-msgid "Open"
-msgstr "Ouvrir"
-
-#: ../src/Audience.vala:656
-msgid "_Cancel"
-msgstr "_Annuler"
-
-#: ../src/Audience.vala:656
-msgid "_Open"
-msgstr "_Ouvrir"
-
-#: ../src/Audience.vala:664
-msgid "Video files"
-msgstr "Fichiers vidéo"
-
-#: ../src/Audience.vala:835
-msgid "Video added to playlist"
-msgstr "Vidéo ajoutée à la playlist"
-
-#: ../src/Audience.vala:837
-msgid "%i videos added to playlist"
-msgstr "%i vidéos ajoutées à la playlist"
