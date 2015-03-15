@@ -1,14 +1,14 @@
 --- a/src/Audience.vala
 +++ b/src/Audience.vala
-@@ -37,7 +37,7 @@
-          */
-         /// TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-         public const string VIDEOS = N_("Videos");
--        public const string PROGRAM_NAME = "Audience";
-+        public const string PROGRAM_NAME = VIDEOS;
-         /// TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-         public const string KEYWORDS = N_("Audience;Video;Player;Movies;");
-         public const string COMMENT = N_("Watch videos and movies");
+@@ -177,7 +177,7 @@
+             mainwindow.events |= Gdk.EventMask.POINTER_MOTION_MASK;
+             mainwindow.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
+             mainwindow.events |= Gdk.EventMask.BUTTON_PRESS_MASK;
+-            mainwindow.title = program_name;
++            mainwindow.title = _("Videos");
+             mainwindow.window_position = Gtk.WindowPosition.CENTER;
+             mainwindow.set_application (this);
+             mainwindow.add (mainbox);
 --- a/data/audience.desktop
 +++ b/data/audience.desktop
 @@ -1,6 +1,6 @@
