@@ -38,7 +38,6 @@ namespace Audience {
          */
         /// TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
         public const string VIDEOS = N_("Videos");
-        public const string PROGRAM_NAME = "Audience";
         /// TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
         public const string KEYWORDS = N_("Audience;Video;Player;Movies;");
         public const string COMMENT = N_("Watch videos and movies");
@@ -51,7 +50,7 @@ namespace Audience {
         public bool repeat { get; set; }
 
         construct {
-            program_name = PROGRAM_NAME;
+            program_name = "Audience";
             exec_name = "audience";
 
             build_data_dir = Constants.DATADIR;
