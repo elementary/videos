@@ -302,9 +302,9 @@ namespace Audience {
             });
 
             mainwindow.button_press_event.connect ((event) => {
-                if (event.button == Gdk.BUTTON_PRIMARY && event.type == Gdk.EventType.2BUTTON_PRESS) { // double left click
+                if (event.button == Gdk.BUTTON_PRIMARY
+                    && event.type == Gdk.EventType.2BUTTON_PRESS) // double left click
                     toggle_fullscreen ();
-                }
 
                 if (event.button == Gdk.BUTTON_SECONDARY) { // right click
                     bottom_bar.play_toggled ();
