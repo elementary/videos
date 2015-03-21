@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-03-14 19:43-0500\n"
-"PO-Revision-Date: 2014-11-19 07:19+0000\n"
+"PO-Revision-Date: 2015-03-20 15:56+0000\n"
 "Last-Translator: colindemian <dengmengpc@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-16 05:54+0000\n"
-"X-Generator: Launchpad (build 17389)\n"
+"X-Launchpad-Export-Date: 2015-03-21 05:34+0000\n"
+"X-Generator: Launchpad (build 17405)\n"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:40
@@ -25,7 +25,7 @@ msgstr "视频"
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;视频;播放器;影片;"
+msgstr "视频;视频;播放器;影片;"
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
@@ -47,11 +47,11 @@ msgstr "关于视频"
 
 #: ../src/Audience.vala:366
 msgid "No Videos Open"
-msgstr "未打开视频"
+msgstr "未打开任何视频"
 
 #: ../src/Audience.vala:366
 msgid "Select a source to begin playing."
-msgstr "选择一个视频以开始播放。"
+msgstr "请选择您想要播放的视频"
 
 #: ../src/Audience.vala:367 ../src/Widgets/PlaylistPopover.vala:31
 msgid "Open file"
@@ -59,7 +59,7 @@ msgstr "打开文件"
 
 #: ../src/Audience.vala:367
 msgid "Open a saved file."
-msgstr "打开一个已保存的文件。"
+msgstr "打开已保存的文件"
 
 #: ../src/Audience.vala:372
 msgid "Resume last video"
@@ -127,7 +127,7 @@ msgstr "视频已添加至播放列表"
 
 #: ../src/Audience.vala:890
 msgid "%i videos added to playlist"
-msgstr "%i 视频已添加至播放列表"
+msgstr "%i个视频已添加至播放列表"
 
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
@@ -174,7 +174,7 @@ msgstr "抱歉！Audience无法播放此文件！"
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
-msgstr "部分媒体文件需要额外软件才能播放。Audience 可以自动安装该软件。"
+msgstr "部分媒体文件需要额外插件才能播放。Audience 可以自动安装这些插件。"
 
 #: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
