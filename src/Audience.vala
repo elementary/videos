@@ -59,7 +59,7 @@ namespace Audience {
             build_version = Constants.VERSION;
             build_version_info = Constants.VERSION_INFO;
 
-            app_years = "2011-2014";
+            app_years = "2011-2015";
             app_icon = "audience";
             app_launcher = "audience.desktop";
             application_id = "net.launchpad.audience";
