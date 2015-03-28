@@ -11,9 +11,9 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Config.vala.cmake ${CONFIG_FILE})
 # pkgconfig, real C code
 find_package (PkgConfig)
 
-set (PKG_DEPS granite clutter-gtk-1.0 gstreamer-1.0 gstreamer-pbutils-1.0 gstreamer-tag-1.0)
-set (VALA_DEPS 
-    granite
+set (PKG_DEPS granite>=0.3.0 clutter-gtk-1.0 gstreamer-1.0 gstreamer-pbutils-1.0 gstreamer-tag-1.0)
+set (VALA_DEPS
+    granite>=0.3.0
     clutter-gtk-1.0
     gdk-x11-3.0
     gstreamer-1.0

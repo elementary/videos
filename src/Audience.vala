@@ -234,13 +234,13 @@ namespace Audience {
                             Idle.add (() => { video_player.progress = 0; return false; });
                             video_player.playing = true;
                         } else {
+                            var button = welcome.get_button_from_index (2);
                             welcome.set_item_visible (1, false);
+                            welcome.set_item_visible (2, true);
                             if (last_played_index > 0) {
-                                welcome.set_item_visible (2, false);
-                                welcome.set_item_visible (3, true);
+                                button.description = _("Replay last playlist");
                             } else {
-                                welcome.set_item_visible (2, true);
-                                welcome.set_item_visible (3, false);
+                                button.description = _("Replay '%s'").printf (get_title (playlist.get_first_item ().get_basename ()));
                             }
 
                             welcome.show_all ();
@@ -380,22 +380,19 @@ namespace Audience {
             welcome.append ("media-playlist-repeat", _("Replay"), _("Replay last video"));
             welcome.set_item_visible (2, false);
 
-            welcome.append ("media-playlist-repeat", _("Replay"), _("Replay last playlist"));
-            welcome.set_item_visible (3, false);
-
             welcome.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
-            welcome.set_item_visible (4, false);
+            welcome.set_item_visible (3, false);
 
             //look for dvd
             var disk_manager = DiskManager.get_default ();
-            welcome.set_item_visible (4, disk_manager.has_media_volumes ());
+            welcome.set_item_visible (3, disk_manager.has_media_volumes ());
 
             disk_manager.volume_found.connect ((vol) => {
-                welcome.set_item_visible (4, disk_manager.has_media_volumes ());
+                welcome.set_item_visible (3, disk_manager.has_media_volumes ());
             });
 
             disk_manager.volume_removed.connect ((vol) => {
-                welcome.set_item_visible (4, disk_manager.has_media_volumes ());
+                welcome.set_item_visible (3, disk_manager.has_media_volumes ());
             });
 
 
@@ -416,7 +413,6 @@ namespace Audience {
                         video_player.playing = true;
                         break;
                     case 2:
-                    case 3:
                         welcome.hide ();
                         clutter.show_all ();
                         open_file (playlist.get_first_item ().get_path ());
@@ -424,7 +420,7 @@ namespace Audience {
                         Idle.add (() => {video_player.progress = 0; return false;});
                         video_player.playing = true;
                         break;
-                    case 4:
+                    case 3:
                         run_open_dvd ();
                         break;
                     default:
