@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-03-14 19:43-0500\n"
+"POT-Creation-Date: 2015-03-28 13:16-0500\n"
 "PO-Revision-Date: 2015-03-05 23:33+0000\n"
 "Last-Translator: MinSik CHO <Unknown>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-16 05:54+0000\n"
-"X-Generator: Launchpad (build 17389)\n"
+"X-Launchpad-Export-Date: 2015-03-29 05:37+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:40
@@ -45,6 +45,14 @@ msgstr "Audience에 대해"
 msgid "About Videos"
 msgstr "비디오에 대해"
 
+#: ../src/Audience.vala:241
+msgid "Replay last playlist"
+msgstr "마지막 재생목록 다시 재생"
+
+#: ../src/Audience.vala:243
+msgid "Replay '%s'"
+msgstr ""
+
 #: ../src/Audience.vala:366
 msgid "No Videos Open"
 msgstr "비디오가 열려 있지 않음"
@@ -65,7 +73,7 @@ msgstr "저장된 파일을 엽니다."
 msgid "Resume last video"
 msgstr "마지막으로 재생한 비디오를 계속 재생하기"
 
-#: ../src/Audience.vala:380 ../src/Audience.vala:383
+#: ../src/Audience.vala:380
 msgid "Replay"
 msgstr "다시보기"
 
@@ -73,59 +81,55 @@ msgstr "다시보기"
 msgid "Replay last video"
 msgstr "마지막 비디오 다시 재생"
 
-#: ../src/Audience.vala:383
-msgid "Replay last playlist"
-msgstr "마지막 재생목록 다시 재생"
-
-#: ../src/Audience.vala:386 ../src/Widgets/PlaylistPopover.vala:33
+#: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "디스크 롬 재생하기"
 
-#: ../src/Audience.vala:386
+#: ../src/Audience.vala:383
 msgid "Watch a DVD or open a file from disc"
 msgstr "DVD를 재생하거나, 디스크 롬에서 파일 재생하기"
 
-#: ../src/Audience.vala:431
+#: ../src/Audience.vala:427
 msgid "Open location"
 msgstr "위치 열기"
 
-#: ../src/Audience.vala:433
+#: ../src/Audience.vala:429
 msgid "Cancel"
 msgstr "취소"
 
-#: ../src/Audience.vala:434
+#: ../src/Audience.vala:430
 msgid "OK"
 msgstr "확인"
 
-#: ../src/Audience.vala:441
+#: ../src/Audience.vala:437
 msgid "Choose location"
 msgstr "위치 선택"
 
-#: ../src/Audience.vala:708
+#: ../src/Audience.vala:704
 msgid "Open"
 msgstr "열기"
 
-#: ../src/Audience.vala:709
+#: ../src/Audience.vala:705
 msgid "_Cancel"
 msgstr "_취소"
 
-#: ../src/Audience.vala:709
+#: ../src/Audience.vala:705
 msgid "_Open"
 msgstr "_열기"
 
-#: ../src/Audience.vala:713 ../src/Widgets/SettingsPopover.vala:33
+#: ../src/Audience.vala:709 ../src/Widgets/SettingsPopover.vala:33
 msgid "All files"
 msgstr "모든 파일"
 
-#: ../src/Audience.vala:717
+#: ../src/Audience.vala:713
 msgid "Video files"
 msgstr "비디오 파일"
 
-#: ../src/Audience.vala:888
+#: ../src/Audience.vala:884
 msgid "Video added to playlist"
 msgstr "플레이리스트에 동영상 추가"
 
-#: ../src/Audience.vala:890
+#: ../src/Audience.vala:886
 msgid "%i videos added to playlist"
 msgstr "%i 개의 동영상이 재생목록에 추가되었습니다"
 

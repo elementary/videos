@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-03-14 19:43-0500\n"
+"POT-Creation-Date: 2015-03-28 13:16-0500\n"
 "PO-Revision-Date: 2014-11-14 16:56+0000\n"
 "Last-Translator: Ivan Vrljić <vrlja92@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-16 05:54+0000\n"
-"X-Generator: Launchpad (build 17389)\n"
+"X-Launchpad-Export-Date: 2015-03-29 05:37+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:40
@@ -45,6 +45,14 @@ msgstr "O Audience-u"
 msgid "About Videos"
 msgstr "O Videu"
 
+#: ../src/Audience.vala:241
+msgid "Replay last playlist"
+msgstr "Ponovi zadnju listu"
+
+#: ../src/Audience.vala:243
+msgid "Replay '%s'"
+msgstr ""
+
 #: ../src/Audience.vala:366
 msgid "No Videos Open"
 msgstr "Nema otvorenih video snimaka"
@@ -65,7 +73,7 @@ msgstr "Otvori spremljenu datoteku."
 msgid "Resume last video"
 msgstr "Nastavi posljednji video"
 
-#: ../src/Audience.vala:380 ../src/Audience.vala:383
+#: ../src/Audience.vala:380
 msgid "Replay"
 msgstr "Ponovi"
 
@@ -73,59 +81,55 @@ msgstr "Ponovi"
 msgid "Replay last video"
 msgstr "Ponovi zadnji videozapis"
 
-#: ../src/Audience.vala:383
-msgid "Replay last playlist"
-msgstr "Ponovi zadnju listu"
-
-#: ../src/Audience.vala:386 ../src/Widgets/PlaylistPopover.vala:33
+#: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "Reproduciraj s diska"
 
-#: ../src/Audience.vala:386
+#: ../src/Audience.vala:383
 msgid "Watch a DVD or open a file from disc"
 msgstr "Gledajte DVD ili otvorite datoteku s diska"
 
-#: ../src/Audience.vala:431
+#: ../src/Audience.vala:427
 msgid "Open location"
 msgstr "Otvori lokaciju"
 
-#: ../src/Audience.vala:433
+#: ../src/Audience.vala:429
 msgid "Cancel"
 msgstr "Otkaži"
 
-#: ../src/Audience.vala:434
+#: ../src/Audience.vala:430
 msgid "OK"
 msgstr "U redu"
 
-#: ../src/Audience.vala:441
+#: ../src/Audience.vala:437
 msgid "Choose location"
 msgstr "Odaberi lokaciju"
 
-#: ../src/Audience.vala:708
+#: ../src/Audience.vala:704
 msgid "Open"
 msgstr "Otvori"
 
-#: ../src/Audience.vala:709
+#: ../src/Audience.vala:705
 msgid "_Cancel"
 msgstr "_Otkaži"
 
-#: ../src/Audience.vala:709
+#: ../src/Audience.vala:705
 msgid "_Open"
 msgstr "_Otvori"
 
-#: ../src/Audience.vala:713 ../src/Widgets/SettingsPopover.vala:33
+#: ../src/Audience.vala:709 ../src/Widgets/SettingsPopover.vala:33
 msgid "All files"
 msgstr "Sve datoteke"
 
-#: ../src/Audience.vala:717
+#: ../src/Audience.vala:713
 msgid "Video files"
 msgstr "Video datoteke"
 
-#: ../src/Audience.vala:888
+#: ../src/Audience.vala:884
 msgid "Video added to playlist"
 msgstr "Videozapis dodan na listu"
 
-#: ../src/Audience.vala:890
+#: ../src/Audience.vala:886
 msgid "%i videos added to playlist"
 msgstr "%I videozapisa dodano na listu"
 

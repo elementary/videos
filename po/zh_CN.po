@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-03-14 19:43-0500\n"
+"POT-Creation-Date: 2015-03-28 13:16-0500\n"
 "PO-Revision-Date: 2015-03-20 15:56+0000\n"
 "Last-Translator: colindemian <dengmengpc@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-21 05:34+0000\n"
-"X-Generator: Launchpad (build 17405)\n"
+"X-Launchpad-Export-Date: 2015-03-29 05:38+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:40
@@ -45,6 +45,14 @@ msgstr "关于 Audience"
 msgid "About Videos"
 msgstr "关于视频"
 
+#: ../src/Audience.vala:241
+msgid "Replay last playlist"
+msgstr "重播上次打开的列表"
+
+#: ../src/Audience.vala:243
+msgid "Replay '%s'"
+msgstr ""
+
 #: ../src/Audience.vala:366
 msgid "No Videos Open"
 msgstr "未打开任何视频"
@@ -65,7 +73,7 @@ msgstr "打开已保存的文件"
 msgid "Resume last video"
 msgstr "恢复上一次播放"
 
-#: ../src/Audience.vala:380 ../src/Audience.vala:383
+#: ../src/Audience.vala:380
 msgid "Replay"
 msgstr "重播"
 
@@ -73,59 +81,55 @@ msgstr "重播"
 msgid "Replay last video"
 msgstr "重播上次打开的视频"
 
-#: ../src/Audience.vala:383
-msgid "Replay last playlist"
-msgstr "重播上次打开的列表"
-
-#: ../src/Audience.vala:386 ../src/Widgets/PlaylistPopover.vala:33
+#: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "从光盘播放"
 
-#: ../src/Audience.vala:386
+#: ../src/Audience.vala:383
 msgid "Watch a DVD or open a file from disc"
 msgstr "观看 DVD 或打开光盘中的文件"
 
-#: ../src/Audience.vala:431
+#: ../src/Audience.vala:427
 msgid "Open location"
 msgstr "打开位置"
 
-#: ../src/Audience.vala:433
+#: ../src/Audience.vala:429
 msgid "Cancel"
 msgstr "取消"
 
-#: ../src/Audience.vala:434
+#: ../src/Audience.vala:430
 msgid "OK"
 msgstr "确定"
 
-#: ../src/Audience.vala:441
+#: ../src/Audience.vala:437
 msgid "Choose location"
 msgstr "选择位置"
 
-#: ../src/Audience.vala:708
+#: ../src/Audience.vala:704
 msgid "Open"
 msgstr "打开"
 
-#: ../src/Audience.vala:709
+#: ../src/Audience.vala:705
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: ../src/Audience.vala:709
+#: ../src/Audience.vala:705
 msgid "_Open"
 msgstr "打开(_O)"
 
-#: ../src/Audience.vala:713 ../src/Widgets/SettingsPopover.vala:33
+#: ../src/Audience.vala:709 ../src/Widgets/SettingsPopover.vala:33
 msgid "All files"
 msgstr "所有文件"
 
-#: ../src/Audience.vala:717
+#: ../src/Audience.vala:713
 msgid "Video files"
 msgstr "视频文件"
 
-#: ../src/Audience.vala:888
+#: ../src/Audience.vala:884
 msgid "Video added to playlist"
 msgstr "视频已添加至播放列表"
 
-#: ../src/Audience.vala:890
+#: ../src/Audience.vala:886
 msgid "%i videos added to playlist"
 msgstr "%i个视频已添加至播放列表"
 
