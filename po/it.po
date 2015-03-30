@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-03-28 13:16-0500\n"
-"PO-Revision-Date: 2014-11-06 22:42+0000\n"
+"PO-Revision-Date: 2015-03-29 19:17+0000\n"
 "Last-Translator: Fabio Zaramella <FFabio.96.X@Gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-29 05:37+0000\n"
+"X-Launchpad-Export-Date: 2015-03-30 05:30+0000\n"
 "X-Generator: Launchpad (build 17413)\n"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
@@ -47,11 +47,11 @@ msgstr "Informazioni"
 
 #: ../src/Audience.vala:241
 msgid "Replay last playlist"
-msgstr "Replay ultima playlist"
+msgstr "Ripeti ultima playlist"
 
 #: ../src/Audience.vala:243
 msgid "Replay '%s'"
-msgstr ""
+msgstr "Ripeti '%s'"
 
 #: ../src/Audience.vala:366
 msgid "No Videos Open"
@@ -79,7 +79,7 @@ msgstr "Ripeti"
 
 #: ../src/Audience.vala:380
 msgid "Replay last video"
-msgstr "Replay ultimo video"
+msgstr "Ripeti ultimo video"
 
 #: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
 msgid "Play from Disc"
