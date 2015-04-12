@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-03-28 13:16-0500\n"
-"PO-Revision-Date: 2015-03-02 22:57+0000\n"
-"Last-Translator: Leo Milano <leonardomilano13@gmail.com>\n"
+"PO-Revision-Date: 2015-04-11 19:02+0000\n"
+"Last-Translator: lem8r <Unknown>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-29 05:38+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-04-12 05:47+0000\n"
+"X-Generator: Launchpad (build 17423)\n"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:40
@@ -25,7 +25,7 @@ msgstr "Відео"
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Video;Player;Movies;відео;фільми;програвач;"
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
@@ -33,7 +33,7 @@ msgstr "Переглядайте відео та фільми"
 
 #: ../src/Audience.vala:44
 msgid "Video Player"
-msgstr "Програвач відеофайлів"
+msgstr "Програвач відео"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
@@ -43,19 +43,19 @@ msgstr "Про Audience"
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
 msgid "About Videos"
-msgstr ""
+msgstr "Про Відео"
 
 #: ../src/Audience.vala:241
 msgid "Replay last playlist"
-msgstr ""
+msgstr "Повторити останній список відтворення"
 
 #: ../src/Audience.vala:243
 msgid "Replay '%s'"
-msgstr ""
+msgstr "Повторити '%s'"
 
 #: ../src/Audience.vala:366
 msgid "No Videos Open"
-msgstr "Немає Відкритих Відео"
+msgstr "Немає відкритих відео"
 
 #: ../src/Audience.vala:366
 msgid "Select a source to begin playing."
@@ -75,15 +75,15 @@ msgstr "Відновити попереднє відео"
 
 #: ../src/Audience.vala:380
 msgid "Replay"
-msgstr ""
+msgstr "Повторити"
 
 #: ../src/Audience.vala:380
 msgid "Replay last video"
-msgstr ""
+msgstr "Повторити останнє відео"
 
 #: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
 msgid "Play from Disc"
-msgstr "Відтворити з Диску"
+msgstr "Відтворити з диску"
 
 #: ../src/Audience.vala:383
 msgid "Watch a DVD or open a file from disc"
@@ -95,11 +95,11 @@ msgstr "Відкрити розташування"
 
 #: ../src/Audience.vala:429
 msgid "Cancel"
-msgstr ""
+msgstr "Скасувати"
 
 #: ../src/Audience.vala:430
 msgid "OK"
-msgstr ""
+msgstr "Гаразд"
 
 #: ../src/Audience.vala:437
 msgid "Choose location"
@@ -111,11 +111,11 @@ msgstr "Відкрити"
 
 #: ../src/Audience.vala:705
 msgid "_Cancel"
-msgstr ""
+msgstr "_Скасувати"
 
 #: ../src/Audience.vala:705
 msgid "_Open"
-msgstr ""
+msgstr "_Відкрити"
 
 #: ../src/Audience.vala:709 ../src/Widgets/SettingsPopover.vala:33
 msgid "All files"
@@ -127,11 +127,11 @@ msgstr "Відеофайли"
 
 #: ../src/Audience.vala:884
 msgid "Video added to playlist"
-msgstr ""
+msgstr "Відео додане у список відтворення"
 
 #: ../src/Audience.vala:886
 msgid "%i videos added to playlist"
-msgstr ""
+msgstr "%i видео було додано до списку відтворення"
 
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
@@ -140,7 +140,7 @@ msgstr "Ввімкнути повторення"
 
 #: ../src/Widgets/PlaylistPopover.vala:59
 msgid "Disable Repeat"
-msgstr "Вимкнути Повторення"
+msgstr "Вимкнути повторення"
 
 #: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:123
 msgid "Play"
@@ -148,7 +148,7 @@ msgstr "Відтворити"
 
 #: ../src/Widgets/BottomBar.vala:56
 msgid "Playlist"
-msgstr "Плейлист"
+msgstr "Список відтворення"
 
 #: ../src/Widgets/BottomBar.vala:60
 msgid "Settings"
@@ -160,7 +160,7 @@ msgstr "Вийти з повноекранного режиму"
 
 #: ../src/Widgets/BottomBar.vala:119
 msgid "Pause"
-msgstr "Призупинити"
+msgstr "Пауза"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
@@ -168,7 +168,7 @@ msgstr "Помилка"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "_OK"
-msgstr ""
+msgstr "_Гаразд"
 
 #: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
@@ -212,7 +212,7 @@ msgstr "Субтитри:"
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr "Зовнішні Субтитри:"
+msgstr "Зовнішні субтитри:"
 
 #: ../src/Widgets/SettingsPopover.vala:121
 msgid "None"
@@ -220,4 +220,4 @@ msgstr "Немає"
 
 #: ../src/Widgets/SettingsPopover.vala:152
 msgid "Default"
-msgstr "Типова"
+msgstr "Типово"
