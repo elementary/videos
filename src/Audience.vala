@@ -82,8 +82,6 @@ namespace Audience {
 
         public Gtk.Window     mainwindow;
         private Gtk.HeaderBar header;
-        public WelcomePage    welcome_page;
-        public PlayerPage     player_page;
 
         public bool fullscreened { get; set; }
         private Page _page;
@@ -94,26 +92,24 @@ namespace Audience {
             set {
                 switch (value) {
                     case Page.PLAYER:
-                        if (welcome_page != null)
-                            mainwindow.remove (welcome_page);
+                        if (mainwindow.get_child()!=null)
+                            mainwindow.get_child().destroy ();
 
-                        if (player_page == null) {
-                            player_page = new PlayerPage ();
-                            player_page.ended.connect (on_player_ended);
-                        }
-                        mainwindow.add (player_page);
+                        var new_widget = new PlayerPage ();
+                        new_widget.ended.connect (on_player_ended);
+                        mainwindow.add (new_widget);
+                        mainwindow.show_all ();
+
                         _page = Page.PLAYER;
                         break;
                     case Page.WELCOME:
-                        if (player_page != null) {
-                            player_page.ended.disconnect (on_player_ended);
-                            mainwindow.remove (player_page);
-                        }
+                        if (mainwindow.get_child()!=null)
+                            mainwindow.get_child().destroy ();
 
-                        if (welcome_page == null) {
-                            welcome_page = new WelcomePage ();
-                        }
-                        mainwindow.add (welcome_page);
+                        var new_widget = new WelcomePage ();
+                        mainwindow.add (new_widget);
+                        mainwindow.show_all ();
+
                         _page = Page.WELCOME;
                         break;
                 }
@@ -146,8 +142,6 @@ namespace Audience {
             if (settings.last_folder == "-1")
                 settings.last_folder = Environment.get_home_dir ();
 
-            welcome_page = new WelcomePage ();
-
             header = new Gtk.HeaderBar ();
             header.set_show_close_button (true);
             header.get_style_context ().remove_class ("header-bar");
@@ -159,11 +153,9 @@ namespace Audience {
             mainwindow.events |= Gdk.EventMask.POINTER_MOTION_MASK;
             mainwindow.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
             mainwindow.events |= Gdk.EventMask.BUTTON_PRESS_MASK;
-            mainwindow.title = program_name;
             mainwindow.window_position = Gtk.WindowPosition.CENTER;
             mainwindow.set_application (this);
-            mainwindow.set_default_size (960, 640);
-            mainwindow.set_size_request (350, 300);
+            mainwindow.title = program_name;
             mainwindow.show_all ();
             if (!settings.show_window_decoration)
                 mainwindow.decorated = false;
@@ -176,7 +168,7 @@ namespace Audience {
 
             mainwindow.size_allocate.connect (on_size_allocate);
             mainwindow.motion_notify_event.connect ((event) => {
-                if (event.window == null || player_page == null)
+                if (event.window == null || page != Page.PLAYER)
                     return false;
 
                 if (mouse_primary_down && settings.move_window) {
@@ -186,16 +178,19 @@ namespace Audience {
                 }
 
                 Gtk.Allocation allocation;
-                player_page.clutter.get_allocation (out allocation);
+                (mainwindow.get_child () as PlayerPage).clutter.get_allocation (out allocation);
                 return update_pointer_position (event.y, allocation.height);
             });
             mainwindow.button_press_event.connect ((event) => {
+                if (event.window == null || page != Page.PLAYER)
+                    return false;
+
                 if (event.button == Gdk.BUTTON_PRIMARY
                     && event.type == Gdk.EventType.2BUTTON_PRESS) // double left click
                     toggle_fullscreen ();
 
                 if (event.button == Gdk.BUTTON_SECONDARY) // right click
-                    player_page.bottom_bar.play_toggled ();
+                    (mainwindow.get_child() as PlayerPage).bottom_bar.play_toggled ();
 
                 if (event.button == Gdk.BUTTON_PRIMARY)
                     mouse_primary_down = true;
@@ -211,13 +206,11 @@ namespace Audience {
             });
 
             mainwindow.leave_notify_event.connect ((event) => {
-                if (player_page == null)
-                    return false;
-                if (event.window == null)
+                if (event.window == null || page != Page.PLAYER)
                     return false;
 
                 Gtk.Allocation allocation;
-                player_page.clutter.get_allocation (out allocation);
+                (mainwindow.get_child() as PlayerPage).clutter.get_allocation (out allocation);
                 if (event.x == event.window.get_width ())
                     return update_pointer_position (event.window.get_height (), allocation.height);
                 else if (event.x == 0)
@@ -339,8 +332,9 @@ namespace Audience {
          */
         private bool update_aspect_ratio ()
         {
-            if (player_page == null)
+            if (page != Page.PLAYER)
                 return false;
+            var player_page = mainwindow.get_child () as PlayerPage;
             if (!settings.keep_aspect || player_page.video_player.video_width < 1 || player_page.video_player.height < 1
                 || !player_page.clutter.visible)
                 return false;
@@ -390,7 +384,7 @@ namespace Audience {
         private void on_window_state_changed (Gdk.WindowState window_state) {
             bool currently_maximized = (window_state & Gdk.WindowState.MAXIMIZED) == 0;
 
-            if (!currently_maximized && !fullscreened && !welcome_page.is_visible ()) {
+            if (!currently_maximized && !fullscreened && page == Page.PLAYER) {
                 mainwindow.fullscreen ();
                 fullscreened = true;
             }
@@ -424,8 +418,9 @@ namespace Audience {
         private int old_h = - 1;
         private int old_w = - 1;
         private void on_size_allocate (Gtk.Allocation alloc) {
-            if (player_page == null)
+            if (page != Page.PLAYER)
                 return;
+            var player_page = mainwindow.get_child() as PlayerPage;
             if (alloc.width != old_w || alloc.height != old_h) {
                 if (player_page.video_player.relayout ()) {
                     old_w = alloc.width;
@@ -438,6 +433,7 @@ namespace Audience {
         }
 
         public bool update_pointer_position (double y, int window_height) {
+            var player_page = mainwindow.get_child() as PlayerPage;
             player_page.allocate_bottombar ();
             mainwindow.get_window ().set_cursor (null);
             if (player_page.bottom_bar_size == 0) {
@@ -543,7 +539,7 @@ namespace Audience {
 
             var root = volume.get_mount ().get_default_location ();
             open_file (root.get_uri (), true);
-            player_page.video_player.playing = !settings.playback_wait;
+            /* player_page.video_player.playing = !settings.playback_wait; */
 
             page = Page.PLAYER;
         }
@@ -567,6 +563,7 @@ namespace Audience {
         internal void open_file (string filename, bool dont_modify = false) {
             var file = File.new_for_commandline_arg (filename);
 
+            var player_page = mainwindow.get_child() as PlayerPage;
             if (file.query_file_type (0) == FileType.DIRECTORY) {
                 Audience.recurse_over_dir (file, (file_ret) => {
                     player_page.playlist.add_item (file_ret);
@@ -609,11 +606,14 @@ namespace Audience {
 
             page = Page.PLAYER;
 
+            var player = (mainwindow.get_child () as PlayerPage);
+            if (player == null)
+                message ("player null");
             foreach (var file in files) {
                 message (file.get_uri ());
-                player_page.playlist.add_item (file);
+                player.playlist.add_item (file);
             }
-            player_page.play_file (files[0].get_uri ());
+            player.play_file (files[0].get_uri ());
 
             //TODO:enable notification
             /* if (video_player.uri != null) { // we already play some file */

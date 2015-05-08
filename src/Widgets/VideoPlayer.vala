@@ -222,6 +222,8 @@ namespace Audience.Widgets {
         }
 
         ~VideoPlayer () {
+            playbin.set_state (Gst.State.NULL);
+            playbin.get_bus ().message.disconnect (watch);
             message ("video player destroyed");
         }
 
