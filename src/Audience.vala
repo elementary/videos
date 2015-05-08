@@ -103,8 +103,11 @@ namespace Audience {
                         _page = Page.PLAYER;
                         break;
                     case Page.WELCOME:
-                        if (mainwindow.get_child()!=null)
-                            mainwindow.get_child().destroy ();
+                        var pl = mainwindow.get_child () as PlayerPage;
+                        if (pl!=null) {
+                            pl.ended.disconnect (on_player_ended);
+                            pl.destroy ();
+                        }
 
                         var new_widget = new WelcomePage ();
                         mainwindow.add (new_widget);
