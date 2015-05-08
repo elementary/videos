@@ -221,6 +221,10 @@ namespace Audience.Widgets {
             playbin.get_bus ().message.connect (watch);
         }
 
+        ~VideoPlayer () {
+            message ("video player destroyed");
+        }
+
         void watch () {
             var msg = playbin.get_bus ().peek ();
             if (msg == null)

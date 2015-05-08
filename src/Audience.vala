@@ -27,6 +27,10 @@ public extern bool gst_navigation_query_parse_commands_length (Gst.Query q, out 
 public extern bool gst_navigation_query_parse_commands_nth (Gst.Query q, uint n, out Gst.NavigationCommand cmd);
 */
 namespace Audience {
+    public enum Page {
+        WELCOME,
+        PLAYER
+    }
 
     public Audience.Settings settings; //global space for easier access...
 
@@ -46,7 +50,6 @@ namespace Audience {
         public const string ABOUT_STOCK = N_("About Audience");
         /// TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
         public const string ABOUT_GENERIC = N_("About Videos");
-
 
         construct {
             program_name = "Audience";
@@ -77,12 +80,45 @@ namespace Audience {
             about_license_type = Gtk.License.GPL_3_0;
         }
 
-        public Gtk.Window                 mainwindow;
+        public Gtk.Window     mainwindow;
         private Gtk.HeaderBar header;
         public WelcomePage    welcome_page;
         public PlayerPage     player_page;
 
         public bool fullscreened { get; set; }
+        private Page _page;
+        public Page page {
+            get {
+                return _page;
+            }
+            set {
+                switch (value) {
+                    case Page.PLAYER:
+                        if (welcome_page != null)
+                            mainwindow.remove (welcome_page);
+
+                        if (player_page == null) {
+                            player_page = new PlayerPage ();
+                            player_page.ended.connect (on_player_ended);
+                        }
+                        mainwindow.add (player_page);
+                        _page = Page.PLAYER;
+                        break;
+                    case Page.WELCOME:
+                        if (player_page != null) {
+                            player_page.ended.disconnect (on_player_ended);
+                            mainwindow.remove (player_page);
+                        }
+
+                        if (welcome_page == null) {
+                            welcome_page = new WelcomePage ();
+                        }
+                        mainwindow.add (welcome_page);
+                        _page = Page.WELCOME;
+                        break;
+                }
+            }
+        }
 
         private static App app; // global App instance
         private bool mouse_primary_down = false;
@@ -116,6 +152,8 @@ namespace Audience {
             header.set_show_close_button (true);
             header.get_style_context ().remove_class ("header-bar");
 
+            page = Page.WELCOME;
+
             mainwindow.set_titlebar (header);
 
             mainwindow.events |= Gdk.EventMask.POINTER_MOTION_MASK;
@@ -124,14 +162,11 @@ namespace Audience {
             mainwindow.title = program_name;
             mainwindow.window_position = Gtk.WindowPosition.CENTER;
             mainwindow.set_application (this);
-            mainwindow.add (welcome_page);
             mainwindow.set_default_size (960, 640);
             mainwindow.set_size_request (350, 300);
             mainwindow.show_all ();
             if (!settings.show_window_decoration)
                 mainwindow.decorated = false;
-
-            /* clutter.hide (); */
 
                         //fullscreen on maximize
             mainwindow.window_state_event.connect ((e) => {
@@ -370,8 +405,7 @@ namespace Audience {
                     open_file (uri);
                 }
 
-                /* welcome_page.hide (); */
-                /* clutter.show_all (); */
+                page = Page.PLAYER;
             });
         }
 
@@ -414,6 +448,11 @@ namespace Audience {
             player_page.bottom_bar.reveal_control ();
 
             return false;
+        }
+
+        private void on_player_ended () {
+            message ("player ended");
+            page = Page.WELCOME;
         }
 
         private inline void save_last_played_videos () {
@@ -506,8 +545,7 @@ namespace Audience {
             open_file (root.get_uri (), true);
             player_page.video_player.playing = !settings.playback_wait;
 
-            /* welcome_page.hide (); */
-            /* clutter.show_all (); */
+            page = Page.PLAYER;
         }
 
         public void toggle_fullscreen () {
@@ -569,11 +607,8 @@ namespace Audience {
             if (mainwindow == null)
                 build ();
 
-            /* welcome_page.hide (); */
-            /* clutter.show_all (); */
-            mainwindow.remove(welcome_page);
-            player_page = new PlayerPage ();
-            mainwindow.add(player_page);
+            page = Page.PLAYER;
+
             foreach (var file in files) {
                 message (file.get_uri ());
                 player_page.playlist.add_item (file);
