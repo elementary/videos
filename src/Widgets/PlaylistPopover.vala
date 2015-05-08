@@ -40,7 +40,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         playlist_scrolled.set_min_content_height (100);
         playlist_scrolled.set_min_content_width (260);
         var app = ((Audience.App) GLib.Application.get_default ());
-        playlist_scrolled.add (app.playlist);
+        /* playlist_scrolled.add (app.playlist); */
 
         fil.clicked.connect ( () => {
             hide ();
@@ -53,7 +53,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         });
 
         rep.toggled.connect ( () => {
-            app.repeat = rep.active;
+            /* app.repeat = rep.active; */
             if (rep.active) {
                 rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.BUTTON));
                 rep.set_tooltip_text (_("Disable Repeat"));
@@ -93,10 +93,10 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     //Override because the Popover doesn't auto-rejust his size.
     public override void get_preferred_height (out int minimum_height, out int natural_height) {
         base.get_preferred_height (out minimum_height, out natural_height);
-        int p_minimum_height;
-        int p_natural_height;
+        int p_minimum_height=0;
+        int p_natural_height=0;
         var app = ((Audience.App) GLib.Application.get_default ());
-        app.playlist.get_preferred_height (out p_minimum_height, out p_natural_height);
+        /* app.playlist.get_preferred_height (out p_minimum_height, out p_natural_height); */
         int temp_minimum_height = minimum_height + p_minimum_height;
         int r_minimum_height;
         int r_natural_height;
