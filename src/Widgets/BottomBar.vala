@@ -100,6 +100,10 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         time_widget.set_preview_uri (uri);
     }
 
+    public void set_playlist (Gtk.TreeView playlist) {
+        playlist_popover.set_playlist (playlist);
+    }
+
     public Gtk.Revealer get_unfullscreen_button () {
         unfullscreen_revealer = new Gtk.Revealer ();
         unfullscreen_revealer.opacity = GLOBAL_OPACITY;

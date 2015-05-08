@@ -121,8 +121,14 @@ namespace Audience {
 
         private static App app; // global App instance
         private bool mouse_primary_down = false;
+        private DiskManager disk_manager;
+        public bool has_media_volumes () {
+            return disk_manager.has_media_volumes ();
+        }
 
         public GLib.VolumeMonitor monitor;
+
+        public signal void media_volumes_changed ();
 
         public App () {
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
@@ -148,6 +154,16 @@ namespace Audience {
             header = new Gtk.HeaderBar ();
             header.set_show_close_button (true);
             header.get_style_context ().remove_class ("header-bar");
+
+            disk_manager = DiskManager.get_default ();
+
+            disk_manager.volume_found.connect ((vol) => {
+                media_volumes_changed ();
+            });
+
+            disk_manager.volume_removed.connect ((vol) => {
+                media_volumes_changed ();
+            });
 
             page = Page.WELCOME;
 
@@ -221,6 +237,7 @@ namespace Audience {
                 return update_pointer_position (event.y, allocation.height);
             });
 
+
             setup_drag_n_drop ();
             //shortcuts
             //TODO:move keypress to each page
@@ -231,6 +248,30 @@ namespace Audience {
             //save position in video when not finished playing
             mainwindow.destroy.connect (() => {on_destroy ();});
         }
+
+        public void run_open_dvd () {
+            read_first_disk.begin ();
+        }
+
+        private async void read_first_disk () {
+            if (disk_manager.get_volumes ().length () <= 0)
+                return;
+            var volume = disk_manager.get_volumes ().nth_data (0);
+            if (volume.can_mount () == true && volume.get_mount ().can_unmount () == false) {
+                try {
+                    yield volume.mount (MountMountFlags.NONE, null);
+                } catch (Error e) {
+                    critical (e.message);
+                }
+            }
+
+            page = Page.PLAYER;
+            var root = volume.get_mount ().get_default_location ();
+            open_file (root.get_uri (), true);
+            /* player_page.video_player.playing = !settings.playback_wait; */
+
+        }
+
         /* private bool on_key_press_event (Gdk.EventKey e) { */
         /*     switch (e.keyval) { */
         /*         case Gdk.Key.p: */
@@ -474,12 +515,6 @@ namespace Audience {
         }
 
 
-        /* private void restore_playlist () { */
-        /*     foreach (var filename in settings.last_played_videos) { */
-        /*         playlist.add_item (File.new_for_uri (filename)); */
-        /*     } */
-        /* } */
-        /*  */
         public void run_open_file () {
             var file = new Gtk.FileChooserDialog (_("Open"), mainwindow, Gtk.FileChooserAction.OPEN,
                 _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
@@ -521,30 +556,11 @@ namespace Audience {
             file.destroy ();
         }
 
-        // TODO: move to WelcomePage
-        public void run_open_dvd () {
-            read_first_disk.begin ();
-        }
-
-        private async void read_first_disk () {
-            // TODO: move to WelcomePage
-            var disk_manager = DiskManager.get_default ();
-            if (disk_manager.get_volumes ().length () <= 0)
-                return;
-            var volume = disk_manager.get_volumes ().nth_data (0);
-            if (volume.can_mount () == true && volume.get_mount ().can_unmount () == false) {
-                try {
-                    yield volume.mount (MountMountFlags.NONE, null);
-                } catch (Error e) {
-                    critical (e.message);
-                }
-            }
-
-            var root = volume.get_mount ().get_default_location ();
-            open_file (root.get_uri (), true);
-            /* player_page.video_player.playing = !settings.playback_wait; */
-
+        public void resume_last_videos () {
             page = Page.PLAYER;
+
+            var player = mainwindow.get_child () as PlayerPage;
+            player.resume_last_videos ();
         }
 
         public void toggle_fullscreen () {
@@ -578,10 +594,10 @@ namespace Audience {
             //TODO:move to PlayerPage
             /* else if (is_subtitle (filename) && video_player.playing) {
                 player_page.video_player.set_subtitle_uri (filename);
-            } else {
+            }*/ else {
                 player_page.playlist.add_item (file);
                 player_page.play_file (file.get_uri ());
-            }*/
+            }
         }
         public override void activate () {
             build ();

@@ -19,6 +19,7 @@
  */
 
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
+    Gtk.TreeView playlist;
     Gtk.ScrolledWindow playlist_scrolled;
     public PlaylistPopover () {
         opacity = GLOBAL_OPACITY;
@@ -40,7 +41,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         playlist_scrolled.set_min_content_height (100);
         playlist_scrolled.set_min_content_width (260);
         var app = ((Audience.App) GLib.Application.get_default ());
-        /* playlist_scrolled.add (app.playlist); */
+        /* playlist_scrolled.add (playlist); */
 
         fil.clicked.connect ( () => {
             hide ();
@@ -90,13 +91,18 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         add (grid);
     }
 
+    public void set_playlist (Gtk.TreeView playlist) {
+        this.playlist = playlist;
+        playlist_scrolled.add (playlist);
+    }
+
     //Override because the Popover doesn't auto-rejust his size.
     public override void get_preferred_height (out int minimum_height, out int natural_height) {
         base.get_preferred_height (out minimum_height, out natural_height);
-        int p_minimum_height=0;
-        int p_natural_height=0;
+        int p_minimum_height;
+        int p_natural_height;
         var app = ((Audience.App) GLib.Application.get_default ());
-        /* app.playlist.get_preferred_height (out p_minimum_height, out p_natural_height); */
+        playlist.get_preferred_height (out p_minimum_height, out p_natural_height);
         int temp_minimum_height = minimum_height + p_minimum_height;
         int r_minimum_height;
         int r_natural_height;
