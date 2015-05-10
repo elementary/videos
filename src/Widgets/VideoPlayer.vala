@@ -202,6 +202,10 @@ namespace Audience.Widgets {
                 if (!at_end) {
                     at_end = true;
                     ended ();
+                    Idle.add (()=>{
+                        playbin.set_state (Gst.State.PAUSED);
+                        return false;
+                        });
                 }
             });
 

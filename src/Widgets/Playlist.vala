@@ -66,7 +66,11 @@ namespace Audience.Widgets {
                 if (playing != null) //if playing is not null it's the current item
                     this.current = int.parse (path.to_string ());
             });
+            message ("playlist created");
         }
+         ~Playlist () {
+             message("Playlist destructed");
+         }
 
         public bool next () {
             Gtk.TreeIter iter;

@@ -104,6 +104,14 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         playlist_popover.set_playlist (playlist);
     }
 
+    public bool get_repeat () {
+        return playlist_popover.rep.active;
+    }
+
+    public void set_repeat (bool repeat) {
+        playlist_popover.rep.active = repeat;
+    }
+
     public Gtk.Revealer get_unfullscreen_button () {
         unfullscreen_revealer = new Gtk.Revealer ();
         unfullscreen_revealer.opacity = GLOBAL_OPACITY;

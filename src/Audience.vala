@@ -123,7 +123,8 @@ namespace Audience {
         private bool mouse_primary_down = false;
         private DiskManager disk_manager;
         public bool has_media_volumes () {
-            return disk_manager.has_media_volumes ();
+            /* return disk_manager.has_media_volumes (); */
+            return true;
         }
 
         public GLib.VolumeMonitor monitor;
@@ -157,13 +158,13 @@ namespace Audience {
 
             disk_manager = DiskManager.get_default ();
 
-            disk_manager.volume_found.connect ((vol) => {
-                media_volumes_changed ();
-            });
-
-            disk_manager.volume_removed.connect ((vol) => {
-                media_volumes_changed ();
-            });
+            /* disk_manager.volume_found.connect ((vol) => { */
+            /*     media_volumes_changed (); */
+            /* }); */
+            /*  */
+            /* disk_manager.volume_removed.connect ((vol) => { */
+            /*     media_volumes_changed (); */
+            /* }); */
 
             page = Page.WELCOME;
 
@@ -537,9 +538,11 @@ namespace Audience {
             /*         playlist.clear_items (); */
             /*     } */
             /*  */
+                    message ("item.");
                 File[] files = {};
                 foreach (File item in file.get_files ()) {
                     files += item;
+                    message ("item."+item.get_uri ());
                     /* player_page.playlist.add_item (item); */
                 }
                 open (files, "");
@@ -550,7 +553,7 @@ namespace Audience {
             /*     welcome_page.hide (); */
             /*     clutter.show_all (); */
             /*  */
-                settings.last_folder = file.get_current_folder ();
+                /* settings.last_folder = file.get_current_folder (); */
             }
 
             file.destroy ();

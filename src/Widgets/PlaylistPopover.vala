@@ -19,6 +19,7 @@
  */
 
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
+    public Gtk.ToggleButton rep;
     Gtk.TreeView playlist;
     Gtk.ScrolledWindow playlist_scrolled;
     public PlaylistPopover () {
@@ -33,7 +34,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         var dvd = new Gtk.Button.from_icon_name ("media-optical-symbolic", Gtk.IconSize.BUTTON);
         dvd.set_tooltip_text (_("Play from Disc"));
         dvd.no_show_all = true;
-        var rep = new Gtk.ToggleButton ();
+        rep = new Gtk.ToggleButton ();
         rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON));
         rep.set_tooltip_text (_("Enable Repeat"));
 
