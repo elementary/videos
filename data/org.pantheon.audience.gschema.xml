@@ -1,5 +1,9 @@
 <schemalist>
-    <schema path="/org/pantheon/audience/" id="org.pantheon.audience" gettext-domain="audience">
+  <schema path="/org/pantheon/audience/" id="org.pantheon.audience" gettext-domain="audience">
+        <key name="subtitle-font" type="s">
+            <default>""</default>
+            <summary>Set the default font of video subtitles</summary>
+        </key>
         <key name="move-window" type="b">
             <default>true</default>
             <summary>Move the window</summary>
