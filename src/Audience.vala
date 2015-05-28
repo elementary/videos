@@ -118,6 +118,7 @@ namespace Audience {
                 }
             }
         }
+        public static Widgets.Playlist playlist;
 
         private static App app; // global App instance
         private bool mouse_primary_down = false;
@@ -237,6 +238,8 @@ namespace Audience {
                     return update_pointer_position (event.window.get_height (), allocation.height);
                 return update_pointer_position (event.y, allocation.height);
             });
+
+            playlist = new Widgets.Playlist ();
 
 
             setup_drag_n_drop ();
@@ -588,17 +591,17 @@ namespace Audience {
             var player_page = mainwindow.get_child() as PlayerPage;
             if (file.query_file_type (0) == FileType.DIRECTORY) {
                 Audience.recurse_over_dir (file, (file_ret) => {
-                    player_page.playlist.add_item (file_ret);
+                    playlist.add_item (file_ret);
                 });
 
-                file = player_page.playlist.get_first_item ();
+                file = playlist.get_first_item ();
                 player_page.play_file (file.get_uri ());
             }
             //TODO:move to PlayerPage
             /* else if (is_subtitle (filename) && video_player.playing) {
                 player_page.video_player.set_subtitle_uri (filename);
             }*/ else {
-                player_page.playlist.add_item (file);
+                playlist.add_item (file);
                 player_page.play_file (file.get_uri ());
             }
         }
@@ -633,7 +636,7 @@ namespace Audience {
                 message ("player null");
             foreach (var file in files) {
                 message (file.get_uri ());
-                player.playlist.add_item (file);
+                playlist.add_item (file);
             }
             player.play_file (files[0].get_uri ());
 

@@ -96,12 +96,12 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         show_all ();
     }
 
-    public void set_preview_uri (string uri) {
-        time_widget.set_preview_uri (uri);
+    ~BottomBar () {
+        message ("BottomBar destroyed");
     }
 
-    public void set_playlist (Gtk.TreeView playlist) {
-        playlist_popover.set_playlist (playlist);
+    public void set_preview_uri (string uri) {
+        time_widget.set_preview_uri (uri);
     }
 
     public bool get_repeat () {
@@ -133,7 +133,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         } else {
             play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON);
             play_button.tooltip_text = _("Play");
-            set_reveal_child (!VideoPlayer.get_default ().at_end);
+            /* set_reveal_child (!VideoPlayer.get_default ().at_end); */
         }
     }
 

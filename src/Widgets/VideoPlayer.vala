@@ -38,9 +38,11 @@ enum PlayFlags {
 namespace Audience.Widgets {
     public class VideoPlayer : Actor {
         private static VideoPlayer? video_player = null;
-        public static VideoPlayer get_default () {
+        public static unowned VideoPlayer get_default () {
             if (video_player == null)
                 video_player = new VideoPlayer ();
+            video_player.build ();
+
             return video_player;
         }
 
@@ -111,10 +113,13 @@ namespace Audience.Widgets {
                 }
 
                 intial_relayout = true;
+
+                playbin.get_bus ().set_flushing (true);
                 playing = false;
                 playbin.set_state (Gst.State.READY);
                 playbin.suburi = null;
                 subtitle_uri = null;
+                playbin.get_bus ().set_flushing (false);
                 playbin.uri = value;
                 volume = 1.0;
                 at_end = false;
@@ -164,7 +169,7 @@ namespace Audience.Widgets {
         public uint video_width { get; private set; }
         public uint video_height { get; private set; }
 
-        public GnomeSessionManager session_manager;
+        /* public GnomeSessionManager session_manager; */
         uint32 inhibit_cookie;
 
         public signal void ended ();
@@ -177,37 +182,10 @@ namespace Audience.Widgets {
         public signal void progression_changed (double current_time, double total_time);
         public signal void external_subtitle_changed (string? uri);
         
-        private VideoPlayer () {
+        public VideoPlayer () {
             video = new Clutter.Texture ();
-
-            dynamic Gst.Element video_sink = Gst.ElementFactory.make ("cluttersink", "source");
-            video_sink.texture = video;
-
             playbin = Gst.ElementFactory.make ("playbin", "playbin");
-            playbin.video_sink = video_sink;
-
-            add_child (video);
-            Timeout.add (100, () => {
-                int64 length, prog;
-                playbin.query_position (Gst.Format.TIME, out prog);
-                playbin.query_duration (Gst.Format.TIME, out length);
-                if (length == 0)
-                    return true;
-
-                progression_changed ((double)prog, (double)length);
-                return true;
-            });
-
-            playbin.about_to_finish.connect (() => {
-                if (!at_end) {
-                    at_end = true;
-                    ended ();
-                    Idle.add (()=>{
-                        playbin.set_state (Gst.State.PAUSED);
-                        return false;
-                        });
-                }
-            });
+            build ();
 
             playbin.text_tags_changed.connect ((el) => {
                 var structure = new Gst.Structure.empty ("tags-changed");
@@ -221,6 +199,17 @@ namespace Audience.Widgets {
                 el.post_message (new Gst.Message.application (el, (owned) structure));
             });
 
+            Timeout.add (100, () => {
+                int64 length, prog;
+                playbin.query_position (Gst.Format.TIME, out prog);
+                playbin.query_duration (Gst.Format.TIME, out length);
+                if (length == 0)
+                    return true;
+
+                progression_changed ((double)prog, (double)length);
+                return true;
+            });
+
             playbin.get_bus ().add_signal_watch ();
             playbin.get_bus ().message.connect (watch);
         }
@@ -229,6 +218,26 @@ namespace Audience.Widgets {
             playbin.set_state (Gst.State.NULL);
             playbin.get_bus ().message.disconnect (watch);
             message ("video player destroyed");
+        }
+
+        public void build (){
+
+            if (video.get_parent ()!=null)
+                remove_child (video);
+            dynamic Gst.Element video_sink = Gst.ElementFactory.make ("cluttersink", "source");
+            video_sink.texture = video;
+            playbin.video_sink = video_sink;
+            add_child(video);
+
+            playbin.about_to_finish.connect (() => {
+                message ("playbin about to finish");
+                if (!at_end) {
+                    at_end = true;
+                    ended ();
+                    Idle.add (()=>{
+                        playbin.set_state (Gst.State.PAUSED);
+                        return false; }); }
+            });
         }
 
         void watch () {
@@ -441,17 +450,17 @@ namespace Audience.Widgets {
 
         //prevent screenlocking in Gnome 3 using org.gnome.SessionManager
         void set_screenlock (bool enable) {
-            try {
-                session_manager = Bus.get_proxy_sync (BusType.SESSION, 
-                        "org.gnome.SessionManager", "/org/gnome/SessionManager");
-                if (enable) {
-                    session_manager.Uninhibit (inhibit_cookie);
-                } else {
-                    inhibit_cookie = session_manager.Inhibit ("audience", 0, "Playing Video using Audience", 12);
-                }
-            } catch (Error e) {
-                warning (e.message);
-            }
+            /* try { */
+            /*     session_manager = Bus.get_proxy_sync (BusType.SESSION,  */
+            /*             "org.gnome.SessionManager", "/org/gnome/SessionManager"); */
+            /*     if (enable) { */
+            /*         session_manager.Uninhibit (inhibit_cookie); */
+            /*     } else { */
+            /*         inhibit_cookie = session_manager.Inhibit ("audience", 0, "Playing Video using Audience", 12); */
+            /*     } */
+            /* } catch (Error e) { */
+            /*     warning (e.message); */
+            /* } */
         }
 
         public void seek_jump_seconds (int seconds) {
