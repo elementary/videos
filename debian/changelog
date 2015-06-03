@@ -1,3 +1,9 @@
+audience (0.1.0.1) trusty; urgency=medium
+
+  * Custom subtitle font support (lp:1455752)
+
+ -- Cody Garver <cody@elementaryos.org>  Wed, 03 Jun 2015 16:37:52 -0500
+
 audience (0.1-0) oneiric; urgency=low
 
   * Initial release
