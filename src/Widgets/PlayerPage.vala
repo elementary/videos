@@ -229,6 +229,7 @@ namespace Audience {
             message ("PlayerPage destroying"+this.ref_count.to_string ());
 
             App.get_instance ().mainwindow.key_press_event.disconnect (on_key_press_event);
+            App.get_instance ().mainwindow.get_window ().set_cursor (null);
 
             video_player.text_tags_changed.disconnect (bottom_bar.preferences_popover.setup_text);
             video_player.audio_tags_changed.disconnect (bottom_bar.preferences_popover.setup_audio);
@@ -269,7 +270,6 @@ namespace Audience {
                 App.playlist.add_item (File.new_for_uri (filename));
             }
         }
-
 
         private string? get_subtitle_for_uri (string uri) {
             string without_ext;
