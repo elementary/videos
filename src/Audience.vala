@@ -121,7 +121,6 @@ namespace Audience {
         public static Widgets.Playlist playlist;
 
         private static App app; // global App instance
-        private bool mouse_primary_down = false;
         private DiskManager disk_manager;
         public bool has_media_volumes () {
             //FIXME:why we cant resume with this?
@@ -190,57 +189,6 @@ namespace Audience {
 
             mainwindow.size_allocate.connect (on_size_allocate);
             mainwindow.key_press_event.connect (on_key_press_event);
-
-            mainwindow.motion_notify_event.connect ((event) => {
-                if (event.window == null || page != Page.PLAYER)
-                    return false;
-
-                if (mouse_primary_down && settings.move_window) {
-                    mouse_primary_down = false;
-                    mainwindow.begin_move_drag (Gdk.BUTTON_PRIMARY,
-                        (int)event.x_root, (int)event.y_root, event.time);
-                }
-
-                Gtk.Allocation allocation;
-                (mainwindow.get_child () as PlayerPage).clutter.get_allocation (out allocation);
-                return update_pointer_position (event.y, allocation.height);
-            });
-            mainwindow.button_press_event.connect ((event) => {
-                if (event.window == null || page != Page.PLAYER)
-                    return false;
-
-                if (event.button == Gdk.BUTTON_PRIMARY
-                    && event.type == Gdk.EventType.2BUTTON_PRESS) // double left click
-                    toggle_fullscreen ();
-
-                if (event.button == Gdk.BUTTON_SECONDARY) // right click
-                    (mainwindow.get_child() as PlayerPage).bottom_bar.play_toggled ();
-
-                if (event.button == Gdk.BUTTON_PRIMARY)
-                    mouse_primary_down = true;
-
-                return false;
-            });
-
-            mainwindow.button_release_event.connect ((event) => {
-                if (event.button == Gdk.BUTTON_PRIMARY)
-                    mouse_primary_down = false;
-
-                return false;
-            });
-
-            mainwindow.leave_notify_event.connect ((event) => {
-                if (event.window == null || page != Page.PLAYER)
-                    return false;
-
-                Gtk.Allocation allocation;
-                (mainwindow.get_child() as PlayerPage).clutter.get_allocation (out allocation);
-                if (event.x == event.window.get_width ())
-                    return update_pointer_position (event.window.get_height (), allocation.height);
-                else if (event.x == 0)
-                    return update_pointer_position (event.window.get_height (), allocation.height);
-                return update_pointer_position (event.y, allocation.height);
-            });
 
             playlist = new Widgets.Playlist ();
 
@@ -400,20 +348,6 @@ namespace Audience {
 
             if (prev_width != mainwindow.get_allocated_width () && prev_height != mainwindow.get_allocated_height ())
                 Idle.add (update_aspect_ratio);
-        }
-
-        public bool update_pointer_position (double y, int window_height) {
-            var player_page = mainwindow.get_child() as PlayerPage;
-            player_page.allocate_bottombar ();
-            mainwindow.get_window ().set_cursor (null);
-            if (player_page.bottom_bar_size == 0) {
-                int minimum = 0;
-                player_page.bottom_bar.get_preferred_height (out minimum, out player_page.bottom_bar_size);
-            }
-
-            player_page.bottom_bar.reveal_control ();
-
-            return false;
         }
 
         private void on_player_ended () {

@@ -9,6 +9,7 @@ namespace Audience {
     };
     public class PlayerPage : Gtk.Bin {
         public GnomeMediaKeys             mediakeys;
+
         public GtkClutter.Embed           clutter;
         public Audience.Widgets.VideoPlayer video_player;
         public Audience.Widgets.BottomBar bottom_bar;
@@ -16,14 +17,19 @@ namespace Audience {
         private Gtk.Revealer unfullscreen_bar;
         private GtkClutter.Actor unfullscreen_actor;
         private GtkClutter.Actor bottom_actor;
+
+        private bool mouse_primary_down = false;
+
         public bool repeat {
             get{
                 return bottom_bar.get_repeat ();
             }
+
             set{
                 bottom_bar.set_repeat (value);
             }
         }
+
         public int bottom_bar_size = 0;
 
         public signal void ended ();
@@ -92,6 +98,51 @@ namespace Audience {
                 warning (e.message);
             }
 
+            this.motion_notify_event.connect ((event) => {
+                if (mouse_primary_down && settings.move_window) {
+                    mouse_primary_down = false;
+                    App.get_instance ().mainwindow.begin_move_drag (Gdk.BUTTON_PRIMARY,
+                        (int)event.x_root, (int)event.y_root, event.time);
+                }
+
+                Gtk.Allocation allocation;
+                clutter.get_allocation (out allocation);
+                return update_pointer_position (event.y, allocation.height);
+            });
+
+            this.button_press_event.connect ((event) => {
+                if (event.button == Gdk.BUTTON_PRIMARY
+                    && event.type == Gdk.EventType.2BUTTON_PRESS) // double left click
+                    App.get_instance ().toggle_fullscreen ();
+
+                if (event.button == Gdk.BUTTON_SECONDARY) // right click
+                    bottom_bar.play_toggled ();
+
+                if (event.button == Gdk.BUTTON_PRIMARY)
+                    mouse_primary_down = true;
+
+                return false;
+            });
+
+            this.button_release_event.connect ((event) => {
+                if (event.button == Gdk.BUTTON_PRIMARY)
+                    mouse_primary_down = false;
+
+                return false;
+            });
+
+            this.leave_notify_event.connect ((event) => {
+                Gtk.Allocation allocation;
+                clutter.get_allocation (out allocation);
+
+                if (event.x == event.window.get_width ())
+                    return update_pointer_position (event.window.get_height (), allocation.height);
+                else if (event.x == 0)
+                    return update_pointer_position (event.window.get_height (), allocation.height);
+
+                return update_pointer_position (event.y, allocation.height);
+            });
+
             /*events*/
             video_player.text_tags_changed.connect (bottom_bar.preferences_popover.setup_text);
             video_player.audio_tags_changed.connect (bottom_bar.preferences_popover.setup_audio);
@@ -142,7 +193,6 @@ namespace Audience {
 
             App.get_instance ().notify["fullscreened"].connect (() => {bottom_bar.fullscreen = App.get_instance ().fullscreened;});
 
-            /* setup_drag_n_drop (); */
             video_player.configure_window.connect ((video_w, video_h) => {App.get_instance ().on_configure_window (video_w, video_h);});
 
             bottom_bar.time_widget.slider_motion_event.connect ((event) => {
@@ -150,7 +200,7 @@ namespace Audience {
                 bottom_bar.translate_coordinates (App.get_instance ().mainwindow, (int)event.x, (int)event.y, out x, out y);
                 Gtk.Allocation allocation;
                 clutter.get_allocation (out allocation);
-                App.get_instance ().update_pointer_position (y, allocation.height);
+                update_pointer_position (y, allocation.height);
             });
 
             //playlist wants us to open a file
@@ -257,6 +307,19 @@ namespace Audience {
             bottom_actor.y = stage.get_height () - bottom_bar_size;
             unfullscreen_actor.y = 6;
             unfullscreen_actor.x = stage.get_width () - bottom_bar_size - 6;
+        }
+
+        public bool update_pointer_position (double y, int window_height) {
+            allocate_bottombar ();
+            App.get_instance ().mainwindow.get_window ().set_cursor (null);
+            if (bottom_bar_size == 0) {
+                int minimum = 0;
+                bottom_bar.get_preferred_height (out minimum, out bottom_bar_size);
+            }
+
+            bottom_bar.reveal_control ();
+
+            return false;
         }
 
         public bool on_key_press_event (Gdk.EventKey e) {
