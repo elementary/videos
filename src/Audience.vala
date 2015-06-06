@@ -124,6 +124,7 @@ namespace Audience {
         private bool mouse_primary_down = false;
         private DiskManager disk_manager;
         public bool has_media_volumes () {
+            //FIXME:why we cant resume with this?
             /* return disk_manager.has_media_volumes (); */
             return true;
         }
@@ -159,13 +160,13 @@ namespace Audience {
 
             disk_manager = DiskManager.get_default ();
 
-            /* disk_manager.volume_found.connect ((vol) => { */
-            /*     media_volumes_changed (); */
-            /* }); */
-            /*  */
-            /* disk_manager.volume_removed.connect ((vol) => { */
-            /*     media_volumes_changed (); */
-            /* }); */
+            disk_manager.volume_found.connect ((vol) => {
+                media_volumes_changed ();
+            });
+
+            disk_manager.volume_removed.connect ((vol) => {
+                media_volumes_changed ();
+            });
 
             page = Page.WELCOME;
 
@@ -188,6 +189,8 @@ namespace Audience {
             });
 
             mainwindow.size_allocate.connect (on_size_allocate);
+            mainwindow.key_press_event.connect (on_key_press_event);
+
             mainwindow.motion_notify_event.connect ((event) => {
                 if (event.window == null || page != Page.PLAYER)
                     return false;
@@ -241,13 +244,7 @@ namespace Audience {
 
             playlist = new Widgets.Playlist ();
 
-
             setup_drag_n_drop ();
-            //shortcuts
-            //TODO:move keypress to each page
-            /* this.mainwindow.key_press_event.connect ((e) => { */
-            /*     return on_key_press_event (e); */
-            /* }); */
 
             //save position in video when not finished playing
             mainwindow.destroy.connect (() => {on_destroy ();});
@@ -276,81 +273,6 @@ namespace Audience {
 
         }
 
-        /* private bool on_key_press_event (Gdk.EventKey e) { */
-        /*     switch (e.keyval) { */
-        /*         case Gdk.Key.p: */
-        /*         case Gdk.Key.space: */
-        /*             video_player.playing = !video_player.playing; */
-        /*             break; */
-        /*         case Gdk.Key.Escape: */
-        /*             if (fullscreened) */
-        /*                 toggle_fullscreen (); */
-        /*             else */
-        /*                 mainwindow.destroy (); */
-        /*             break; */
-        /*         case Gdk.Key.o: */
-        /*             run_open_file (); */
-        /*             break; */
-        /*         case Gdk.Key.f: */
-        /*         case Gdk.Key.F11: */
-        /*             toggle_fullscreen (); */
-        /*             break; */
-        /*         case Gdk.Key.q: */
-        /*             mainwindow.destroy (); */
-        /*             break; */
-        /*         case Gdk.Key.Down: */
-        /*             if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) { */
-        /*                 video_player.seek_jump_seconds (-5); // 5 secs */
-        /*             } else { */
-        /*                 video_player.seek_jump_seconds (-60); // 1 min */
-        /*             } */
-        /*             bottom_bar.reveal_control (); */
-        /*             break; */
-        /*         case Gdk.Key.Left: */
-        /*             if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) { */
-        /*                 video_player.seek_jump_seconds (-1); // 1 sec */
-        /*             } else { */
-        /*                 video_player.seek_jump_seconds (-10); // 10 secs */
-        /*             } */
-        /*             bottom_bar.reveal_control (); */
-        /*             break; */
-        /*         case Gdk.Key.Right: */
-        /*             if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) { */
-        /*                 video_player.seek_jump_seconds (1); // 1 sec */
-        /*             } else { */
-        /*                 video_player.seek_jump_seconds (10); // 10 secs */
-        /*             } */
-        /*             bottom_bar.reveal_control (); */
-        /*             break; */
-        /*         case Gdk.Key.Up: */
-        /*             if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) { */
-        /*                 video_player.seek_jump_seconds (5); // 5 secs */
-        /*             } else { */
-        /*                 video_player.seek_jump_seconds (60); // 1 min */
-        /*             } */
-        /*             bottom_bar.reveal_control (); */
-        /*             break; */
-        /*         case Gdk.Key.Page_Down: */
-        /*             video_player.seek_jump_seconds (-600); // 10 mins */
-        /*             bottom_bar.reveal_control (); */
-        /*             break; */
-        /*         case Gdk.Key.Page_Up: */
-        /*             video_player.seek_jump_seconds (600); // 10 mins */
-        /*             bottom_bar.reveal_control (); */
-        /*             break; */
-        /*         case Gdk.Key.a: */
-        /*             bottom_bar.preferences_popover.next_audio (); */
-        /*             break; */
-        /*         case Gdk.Key.s: */
-        /*             bottom_bar.preferences_popover.next_text (); */
-        /*             break; */
-        /*         default: */
-        /*             break; */
-        /*     } */
-        /*  */
-        /*     return true; */
-        /* } */
-        /*  */
         public void on_configure_window (uint video_w, uint video_h) {
             Gdk.Rectangle monitor;
             var screen = Gdk.Screen.get_default ();
@@ -580,11 +502,6 @@ namespace Audience {
             }
         }
 
-        private bool modifier_is_pressed (Gdk.EventKey event, Gdk.ModifierType modifier)
-        {
-            return (event.state & modifier) == modifier;
-        }
-
         internal void open_file (string filename, bool dont_modify = false) {
             var file = File.new_for_commandline_arg (filename);
 
@@ -648,6 +565,27 @@ namespace Audience {
             /*         show_notification (_("%i videos added to playlist").printf (files.length), ""); */
             /* } else */
             /*     open_file(files[0].get_uri ()); */
+        }
+
+        public bool on_key_press_event (Gdk.EventKey e) {
+            switch (e.keyval) {
+                case Gdk.Key.Escape:
+                    App.get_instance ().mainwindow.destroy ();
+                    break;
+                case Gdk.Key.o:
+                    App.get_instance ().run_open_file ();
+                    break;
+                case Gdk.Key.f:
+                case Gdk.Key.F11:
+                    App.get_instance ().toggle_fullscreen ();
+                    break;
+                case Gdk.Key.q:
+                    App.get_instance ().mainwindow.destroy ();
+                    break;
+                default:
+                    break;
+            }
+            return false;
         }
     }
 }
