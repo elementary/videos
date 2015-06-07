@@ -118,7 +118,7 @@ namespace Audience {
                 }
             }
         }
-        public static Widgets.Playlist playlist;
+        /* public static Widgets.Playlist playlist; */
 
         private static App app; // global App instance
         private DiskManager disk_manager;
@@ -190,7 +190,7 @@ namespace Audience {
             mainwindow.size_allocate.connect (on_size_allocate);
             mainwindow.key_press_event.connect (on_key_press_event);
 
-            playlist = new Widgets.Playlist ();
+            /* playlist = new Widgets.Playlist (); */
 
             setup_drag_n_drop ();
 
@@ -313,11 +313,10 @@ namespace Audience {
             Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
             Gtk.drag_dest_set (mainwindow, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
             mainwindow.drag_data_received.connect ( (ctx, x, y, sel, info, time) => {
+                page = Page.PLAYER;
                 foreach (var uri in sel.get_uris ()) {
                     open_file (uri);
                 }
-
-                page = Page.PLAYER;
             });
         }
 
@@ -330,7 +329,7 @@ namespace Audience {
             /* if (video_player.uri == null || video_player.uri == "") */
             /*     return; */
             /*  */
-            save_last_played_videos ();
+            /* save_last_played_videos (); */
         }
 
         private int old_h = - 1;
@@ -355,25 +354,11 @@ namespace Audience {
             page = Page.WELCOME;
         }
 
-        private inline void save_last_played_videos () {
-            /* playlist.save_playlist_config (); */
-            /*  */
-            /* debug ("saving settings for: %s", playlist.get_first_item ().get_uri ()); */
-            /*  */
-            /* if (settings.current_video != "" && !video_player.at_end) */
-            /*     settings.last_stopped = video_player.progress; */
-            /* else if (settings.current_video != "" && video_player.at_end) { */
-            /*     settings.current_video = playlist.get_first_item ().get_uri (); */
-            /*     settings.last_stopped = 0; */
-            /* } */
-        }
-
         private inline void clear_video_settings () {
             settings.last_stopped = 0;
             settings.last_played_videos = null;
             settings.current_video = "";
         }
-
 
         public void run_open_file () {
             var file = new Gtk.FileChooserDialog (_("Open"), mainwindow, Gtk.FileChooserAction.OPEN,
@@ -393,11 +378,9 @@ namespace Audience {
 
             file.set_current_folder (settings.last_folder);
             if (file.run () == Gtk.ResponseType.ACCEPT) {
-            /*     if (welcome_page.is_visible ()) { */
-            /*         playlist.clear_items (); */
-            /*     } */
-            /*  */
-                    message ("item.");
+                if (page == Page.WELCOME)
+                    clear_video_settings ();
+
                 File[] files = {};
                 foreach (File item in file.get_files ()) {
                     files += item;
@@ -440,20 +423,25 @@ namespace Audience {
             var file = File.new_for_commandline_arg (filename);
 
             var player_page = mainwindow.get_child() as PlayerPage;
+            if (player_page == null)
+                message ("player page is null");
             if (file.query_file_type (0) == FileType.DIRECTORY) {
                 Audience.recurse_over_dir (file, (file_ret) => {
-                    playlist.add_item (file_ret);
+                    player_page.append_to_playlist (file_ret);
                 });
 
-                file = playlist.get_first_item ();
-                player_page.play_file (file.get_uri ());
+                player_page.play_first_in_playlist ();
             }
             //TODO:move to PlayerPage
             /* else if (is_subtitle (filename) && video_player.playing) {
                 player_page.video_player.set_subtitle_uri (filename);
             }*/ else {
-                playlist.add_item (file);
+                /* playlist.add_item (file); */
+                player_page.append_to_playlist (file);
+                message ("append to playlist");
+
                 player_page.play_file (file.get_uri ());
+                message ("play file");
             }
         }
         public override void activate () {
@@ -480,16 +468,19 @@ namespace Audience {
             if (mainwindow == null)
                 build ();
 
+            if (page != Page.PLAYER)
+                clear_video_settings ();
+
             page = Page.PLAYER;
 
             var player = (mainwindow.get_child () as PlayerPage);
-            if (player == null)
-                message ("player null");
             foreach (var file in files) {
                 message (file.get_uri ());
-                playlist.add_item (file);
+                player.append_to_playlist (file);
             }
-            player.play_file (files[0].get_uri ());
+
+            /* player.play_file (files[0].get_uri ()); */
+            open_file (files[0].get_uri ());
 
             //TODO:enable notification
             /* if (video_player.uri != null) { // we already play some file */

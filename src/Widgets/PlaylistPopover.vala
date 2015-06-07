@@ -19,6 +19,7 @@
  */
 
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
+    public Playlist playlist;
     public Gtk.ToggleButton rep;
     Gtk.ScrolledWindow playlist_scrolled;
     public PlaylistPopover () {
@@ -41,7 +42,9 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         playlist_scrolled.set_min_content_height (100);
         playlist_scrolled.set_min_content_width (260);
         var app = ((Audience.App) GLib.Application.get_default ());
-        playlist_scrolled.add (App.playlist);
+
+        playlist = new Playlist ();
+        playlist_scrolled.add (playlist);
 
         fil.clicked.connect ( () => {
             hide ();
@@ -92,7 +95,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     }
 
     ~PlaylistPopover () {
-        playlist_scrolled.remove (App.playlist);
         message ("PlaylistPopover destroyed");
     }
 
@@ -102,7 +104,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         int p_minimum_height;
         int p_natural_height;
         var app = ((Audience.App) GLib.Application.get_default ());
-        App.playlist.get_preferred_height (out p_minimum_height, out p_natural_height);
+        playlist.get_preferred_height (out p_minimum_height, out p_natural_height);
         int temp_minimum_height = minimum_height + p_minimum_height;
         int r_minimum_height;
         int r_natural_height;

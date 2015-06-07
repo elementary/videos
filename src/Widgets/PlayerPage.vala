@@ -12,7 +12,7 @@ namespace Audience {
 
         public GtkClutter.Embed           clutter;
         public Audience.Widgets.VideoPlayer video_player;
-        public Audience.Widgets.BottomBar bottom_bar;
+        private Audience.Widgets.BottomBar bottom_bar;
         private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_bar;
         private GtkClutter.Actor unfullscreen_actor;
@@ -30,7 +30,7 @@ namespace Audience {
             }
         }
 
-        public int bottom_bar_size = 0;
+        private int bottom_bar_size = 0;
 
         public signal void ended ();
 
@@ -80,10 +80,10 @@ namespace Audience {
                        return;
                     switch (key) {
                         case "Previous":
-                            App.playlist.previous ();
+                            get_playlist_widget ().previous ();
                             break;
                         case "Next":
-                            App.playlist.next ();
+                            get_playlist_widget ().next ();
                             break;
                         case "Play":
                             video_player.playing = !video_player.playing;
@@ -155,11 +155,11 @@ namespace Audience {
                 message ("video_player ended");
                 Idle.add (() => {
                     video_player.playing = false;
-                    int last_played_index = App.playlist.get_current ();
-                    if (!App.playlist.next ()) {
+                    int last_played_index = get_playlist_widget ().get_current ();
+                    if (!get_playlist_widget ().next ()) {
 
                         if (repeat) {
-                            play_file (App.playlist.get_first_item ().get_uri ());
+                            play_file (get_playlist_widget ().get_first_item ().get_uri ());
                             Idle.add (() => { video_player.progress = 0; return false; });
                             video_player.playing = true;
                         } else {
@@ -171,6 +171,7 @@ namespace Audience {
                             /* } else { App.get_instance ().*/
                             /*     button.description = _("Replay '%s'").printf (get_title (playlist.get_first_item ().get_basename ())); */
                             /* } */
+                            get_playlist_widget ().save_playlist ();
 
                             ended ();
                         }
@@ -204,7 +205,7 @@ namespace Audience {
             });
 
             //playlist wants us to open a file
-            App.playlist.play.connect ((file) => {
+            get_playlist_widget ().play.connect ((file) => {
                 this.play_file (file.get_uri ());
             });
 
@@ -238,22 +239,28 @@ namespace Audience {
         public void play_file (string uri) {
             debug ("Opening %s", uri);
             video_player.uri = uri;
-            App.playlist.set_current (uri);
+            get_playlist_widget ().set_current (uri);
             bottom_bar.set_preview_uri (uri);
+
+            message ("1");
 
             string? sub_uri = get_subtitle_for_uri (uri);
             if (sub_uri != null)
                 video_player.set_subtitle_uri (sub_uri);
+            message ("2");
 
             App.get_instance ().mainwindow.title = get_title (uri);
             video_player.playing = !settings.playback_wait;
+            message ("3");
 
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
+            message ("4");
 
             /*subtitles/audio tracks*/
             bottom_bar.preferences_popover.setup_text ();
             bottom_bar.preferences_popover.setup_audio ();
+            message ("5");
         }
 
         public void resume_last_videos () {
@@ -265,10 +272,34 @@ namespace Audience {
             video_player.playing = true;
         }
 
+        public void clear_playlist () {
+        }
+
+        public void append_to_playlist (File file) {
+            get_playlist_widget ().add_item (file);
+        }
+
+        public void play_first_in_playlist () {
+            var file = get_playlist_widget ().get_first_item ();
+            play_file (file.get_uri ());
+        }
+
+        public void next () {
+            get_playlist_widget ().next ();
+        }
+
+        public void prev () {
+            get_playlist_widget ().next ();
+        }
+
         private void restore_playlist () {
             foreach (var filename in settings.last_played_videos) {
-                App.playlist.add_item (File.new_for_uri (filename));
+                get_playlist_widget ().add_item (File.new_for_uri (filename));
             }
+        }
+
+        private Widgets.Playlist get_playlist_widget () {
+            return bottom_bar.playlist_popover.playlist;
         }
 
         private string? get_subtitle_for_uri (string uri) {

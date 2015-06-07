@@ -66,10 +66,15 @@ namespace Audience.Widgets {
                 if (playing != null) //if playing is not null it's the current item
                     this.current = int.parse (path.to_string ());
             });
+
+            restore_playlist ();
+
             message ("playlist created");
         }
-         ~Playlist () {
+
+        ~Playlist () {
              message("Playlist destructed");
+             save_playlist ();
          }
 
         public bool next () {
@@ -193,7 +198,7 @@ namespace Audience.Widgets {
             return list.copy ();
         }
 
-        public void save_playlist_config () {
+        public void save_playlist () {
             var list = new List<string> ();
             playlist.foreach ((model, path, iter) => {
                 Value filename;
@@ -214,6 +219,14 @@ namespace Audience.Widgets {
             settings.current_video = videos[current];
         }
 
+        private void restore_playlist () {
+            this.current = 0;
+            /* foreach (var filename in settings.last_played_videos) { */
+            for (int i = 0;i<settings.last_played_videos.length;i++) {
+                if (settings.last_played_videos[i] == settings.current_video)
+                    this.current = i;
+                add_item (File.new_for_uri (settings.last_played_videos[i]));
+            }
+        }
     }
-
 }

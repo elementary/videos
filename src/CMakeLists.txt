@@ -72,6 +72,7 @@ vala_precompile (VALA_C ${EXEC_NAME}
     --target-glib=2.32 # Remember to keep this updated.
     --thread
     -g
+    --save-temps
 )
 
 add_executable (${EXEC_NAME} ${VALA_C})
