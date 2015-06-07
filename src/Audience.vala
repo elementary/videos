@@ -430,7 +430,7 @@ namespace Audience {
                     /* video_player.playing = false; */
                     /* Idle.add (() => {video_player.progress = settings.last_stopped; return false;}); */
                     /* video_player.playing = !settings.playback_wait; */
-                }
+                /* } */
             }
         }
 
