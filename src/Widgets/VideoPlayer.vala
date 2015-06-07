@@ -163,6 +163,17 @@ namespace Audience.Widgets {
             }
         }
 
+        private string _subtitle_font;
+        public string subtitle_font {
+            get {
+                return _subtitle_font;
+            }
+            set {
+                _subtitle_font = value;
+                playbin.set ("subtitle-font-desc", _subtitle_font);
+            }
+        }
+
         public dynamic Gst.Element playbin;
         Clutter.Texture video;
 
@@ -228,6 +239,10 @@ namespace Audience.Widgets {
             video_sink.texture = video;
             playbin.video_sink = video_sink;
             add_child(video);
+            update_subtitle_font ();
+            settings.changed.connect (() => {
+                update_subtitle_font ();
+            });
 
             playbin.about_to_finish.connect (() => {
                 if (!at_end) {
@@ -494,6 +509,17 @@ namespace Audience.Widgets {
                 return -1; //Error.
             }
             return num / (double)denom;
+        }
+
+        void update_subtitle_font () {
+            debug ("Updating subtitle font");
+            var font = settings.subtitle_font;
+
+            if (font == "") {
+                var gnome_settings = new GLib.Settings ("org.gnome.desktop.interface");
+                font = gnome_settings.get_string ("font-name");
+            } 
+            subtitle_font = font;
         }
     }
 }

@@ -8,50 +8,50 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-03-28 13:16-0500\n"
-"PO-Revision-Date: 2014-07-19 18:44+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"PO-Revision-Date: 2015-05-18 15:35+0000\n"
+"Last-Translator: Salih <hernandomtoto@gmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-29 05:37+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-05-19 05:31+0000\n"
+"X-Generator: Launchpad (build 17508)\n"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:40
 msgid "Videos"
-msgstr ""
+msgstr "Videolar"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Video;Oynatıcı;Filmler;"
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Video ve Film Seyret"
 
 #: ../src/Audience.vala:44
 msgid "Video Player"
-msgstr ""
+msgstr "Video Oynatıcı"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
 msgid "About Audience"
-msgstr ""
+msgstr "Audience Hakkında"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
 msgid "About Videos"
-msgstr ""
+msgstr "Videolar Hakkında"
 
 #: ../src/Audience.vala:241
 msgid "Replay last playlist"
-msgstr ""
+msgstr "Son çalma listesini tekrar oynat"
 
 #: ../src/Audience.vala:243
 msgid "Replay '%s'"
-msgstr ""
+msgstr "Tekrar Oynat '%s'"
 
 #: ../src/Audience.vala:366
 msgid "No Videos Open"
@@ -75,11 +75,11 @@ msgstr "Son videodan devam et"
 
 #: ../src/Audience.vala:380
 msgid "Replay"
-msgstr ""
+msgstr "Tekrar Oynat"
 
 #: ../src/Audience.vala:380
 msgid "Replay last video"
-msgstr ""
+msgstr "Son videoyu tekrar oynat"
 
 #: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
 msgid "Play from Disc"
@@ -95,11 +95,11 @@ msgstr "Konumu aç"
 
 #: ../src/Audience.vala:429
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #: ../src/Audience.vala:430
 msgid "OK"
-msgstr ""
+msgstr "Tamam"
 
 #: ../src/Audience.vala:437
 msgid "Choose location"
@@ -111,11 +111,11 @@ msgstr "Aç"
 
 #: ../src/Audience.vala:705
 msgid "_Cancel"
-msgstr ""
+msgstr "_Vazgeç"
 
 #: ../src/Audience.vala:705
 msgid "_Open"
-msgstr ""
+msgstr "_Aç"
 
 #: ../src/Audience.vala:709 ../src/Widgets/SettingsPopover.vala:33
 msgid "All files"
@@ -127,24 +127,24 @@ msgstr "Video dosyaları"
 
 #: ../src/Audience.vala:884
 msgid "Video added to playlist"
-msgstr ""
+msgstr "Video oynatma listesine eklendi"
 
 #: ../src/Audience.vala:886
 msgid "%i videos added to playlist"
-msgstr ""
+msgstr "%i videolar oynatma listesine eklendi"
 
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Tekrar Açık"
 
 #: ../src/Widgets/PlaylistPopover.vala:59
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Tekrar Kapalı"
 
 #: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:123
 msgid "Play"
-msgstr ""
+msgstr "Oynat"
 
 #: ../src/Widgets/BottomBar.vala:56
 msgid "Playlist"
@@ -152,15 +152,15 @@ msgstr "Oynatma Listesi"
 
 #: ../src/Widgets/BottomBar.vala:60
 msgid "Settings"
-msgstr ""
+msgstr "Ayarlar"
 
 #: ../src/Widgets/BottomBar.vala:108
 msgid "Unfullscreen"
-msgstr ""
+msgstr "Tam Ekrandan Çık"
 
 #: ../src/Widgets/BottomBar.vala:119
 msgid "Pause"
-msgstr ""
+msgstr "Duraklat"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
@@ -168,11 +168,11 @@ msgstr "Hata"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "_OK"
-msgstr ""
+msgstr "_Tamam"
 
 #: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
-msgstr "Oops! Audience bu dosyayı oynatamıyor!"
+msgstr "Hay Allah! Audience bu dosyayı oynatamıyor!"
 
 #: ../src/Widgets/VideoPlayer.vala:388
 msgid ""
@@ -196,7 +196,7 @@ msgstr "Yükle"
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
-msgstr ""
+msgstr "Altyazı dosyaları"
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
@@ -204,15 +204,15 @@ msgstr "Harici Altyazılar"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
-msgstr ""
+msgstr "Ses:"
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"
-msgstr ""
+msgstr "Altyazılar:"
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr ""
+msgstr "Harici Altyazılar:"
 
 #: ../src/Widgets/SettingsPopover.vala:121
 msgid "None"
