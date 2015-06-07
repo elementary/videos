@@ -126,7 +126,6 @@ namespace Audience {
         public DiskManager disk_manager;
         public bool has_media_volumes () {
             return disk_manager.has_media_volumes ();
-            /* return true; */
         }
 
         public GLib.VolumeMonitor monitor;
@@ -212,7 +211,7 @@ namespace Audience {
 
             page = Page.PLAYER;
             var root = volume.get_mount ().get_default_location ();
-            open_file (root.get_uri (), true);
+            play_file (root.get_uri (), true);
         }
 
         public void on_configure_window (uint video_w, uint video_h) {
@@ -309,7 +308,7 @@ namespace Audience {
             mainwindow.drag_data_received.connect ( (ctx, x, y, sel, info, time) => {
                 page = Page.PLAYER;
                 foreach (var uri in sel.get_uris ()) {
-                    open_file (uri);
+                    play_file (uri);
                 }
             });
         }
@@ -365,7 +364,6 @@ namespace Audience {
                 File[] files = {};
                 foreach (File item in file.get_files ()) {
                     files += item;
-                    /* player_page.playlist.add_item (item); */
                 }
 
                 open (files, "");
@@ -393,29 +391,18 @@ namespace Audience {
             }
         }
 
-        internal void open_file (string filename, bool dont_modify = false) {
-            var file = File.new_for_commandline_arg (filename);
+        /*
+           make sure we are in player page and play file
+        */
+        internal void play_file (string uri, bool dont_modify = false) {
+            if (page != Page.PLAYER)
+                page = Page.PLAYER;
 
             PlayerPage player_page = mainwindow.get_child() as PlayerPage;
-            if (player_page == null)
-                return;
+            player_page.play_file (uri);
 
-            if (file.query_file_type (0) == FileType.DIRECTORY) {
-                Audience.recurse_over_dir (file, (file_ret) => {
-                    player_page.append_to_playlist (file_ret);
-                });
-
-                player_page.play_first_in_playlist ();
-            }
-            //TODO:move to PlayerPage
-            /* else if (is_subtitle (filename) && video_player.playing) {
-                player_page.video_player.set_subtitle_uri (filename);
-            }*/ else {
-                player_page.append_to_playlist (file);
-
-                player_page.play_file (file.get_uri ());
-            }
         }
+
         public override void activate () {
             build ();
             if (settings.resume_videos == true
@@ -442,13 +429,26 @@ namespace Audience {
                 clear_video_settings ();
 
             page = Page.PLAYER;
-
-            var player = (mainwindow.get_child () as PlayerPage);
+            var player_page = (mainwindow.get_child () as PlayerPage);
+            string[] videos = {};
             foreach (var file in files) {
-                player.append_to_playlist (file);
+            //TODO: detect subtitle
+            /* else if (is_subtitle (filename) && video_player.playing) {
+               player_page.video_player.set_subtitle_uri (filename);
+             */
+
+                if (file.query_file_type (0) == FileType.DIRECTORY) {
+                    Audience.recurse_over_dir (file, (file_ret) => {
+                        player_page.append_to_playlist (file);
+                        videos += file_ret.get_uri ();
+                    });
+                } else {
+                    player_page.append_to_playlist (file);
+                    videos += file.get_uri ();
+                }
             }
 
-            open_file (files[0].get_uri ());
+            play_file (videos [0]);
 
             //TODO:enable notification
             /* if (video_player.uri != null) { // we already play some file */
