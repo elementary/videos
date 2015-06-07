@@ -13,18 +13,20 @@ namespace Audience {
                 show_last_file = false;
             }
 
-            this.append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
+            if (settings.last_stopped == 0.0)
+                this.append ("media-playlist-repeat", _("Replay last video"), get_title (last_file.get_basename ()));
+            else
+                this.append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
             this.set_item_visible (1, show_last_file);
 
-            this.append ("media-playlist-repeat", _("Replay"), _("Replay last video"));
-            this.set_item_visible (2, false);
+            /* this.set_item_visible (2, false); */
 
 
             //look for dvd
             this.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
-            this.set_item_visible (3, App.get_instance ().has_media_volumes ());
+            this.set_item_visible (2, App.get_instance ().has_media_volumes ());
             App.get_instance ().media_volumes_changed.connect (() => {
-                this.set_item_visible (3, App.get_instance ().has_media_volumes ());
+                this.set_item_visible (2, App.get_instance ().has_media_volumes ());
             });
 
            //handle welcome
@@ -51,9 +53,6 @@ namespace Audience {
                     App.get_instance ().resume_last_videos ();
                     break;
                 case 2:
-                    App.get_instance ().resume_last_videos ();
-                    break;
-                case 3:
                     App.get_instance ().run_open_dvd ();
                     break;
             }

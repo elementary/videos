@@ -170,9 +170,6 @@ namespace Audience {
                             Idle.add (() => { video_player.progress = 0; return false; });
                             video_player.playing = true;
                         } else {
-                            /* var button = welcome_page.get_button_from_index (2); */
-                            /* welcome_page.set_item_visible (1, false); */
-                            /* welcome_page.set_item_visible (2, true); */
                             /* if (last_played_index > 0) { */
                             /*     button.description = _("Replay last playlist"); */
                             /* } else { App.get_instance ().*/
@@ -284,12 +281,6 @@ namespace Audience {
 
         public void prev () {
             get_playlist_widget ().next ();
-        }
-
-        private void restore_playlist () {
-            foreach (var filename in settings.last_played_videos) {
-                get_playlist_widget ().add_item (File.new_for_uri (filename));
-            }
         }
 
         private Widgets.Playlist get_playlist_widget () {
