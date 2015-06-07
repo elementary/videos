@@ -35,8 +35,6 @@ namespace Audience {
         public signal void ended ();
 
         public PlayerPage () {
-            message("PlayerPage created");
-
             video_player = Widgets.VideoPlayer.get_default ();
             video_player.notify["playing"].connect (() => {bottom_bar.toggle_play_pause ();});
 
@@ -162,7 +160,6 @@ namespace Audience {
 
             //end
             video_player.ended.connect (() => {
-                message ("video_player ended");
                 Idle.add (() => {
                     video_player.playing = false;
                     int last_played_index = get_playlist_widget ().get_current ();
@@ -236,7 +233,6 @@ namespace Audience {
 
         ~PlayerPage () {
             video_player.playing = false;
-            message ("PlayerPage destroying"+this.ref_count.to_string ());
 
             App.get_instance ().mainwindow.key_press_event.disconnect (on_key_press_event);
             App.get_instance ().mainwindow.get_window ().set_cursor (null);
@@ -267,15 +263,10 @@ namespace Audience {
         }
 
         public void resume_last_videos () {
-            /* restore_playlist (); */
-            message (settings.current_video);
             play_file (settings.current_video);
             video_player.playing = false;
             Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
             video_player.playing = true;
-        }
-
-        public void clear_playlist () {
         }
 
         public void append_to_playlist (File file) {
@@ -323,7 +314,7 @@ namespace Audience {
             return null;
         }
 
-        private bool is_subtitle (string uri) {
+        public static bool is_subtitle (string uri) {
             if (uri.length < 4 || uri.get_char (uri.length-4) != '.')
                 return false;
 

@@ -193,9 +193,6 @@ namespace Audience {
             mainwindow.key_press_event.connect (on_key_press_event);
 
             setup_drag_n_drop ();
-
-            //save position in video when not finished playing
-            mainwindow.destroy.connect (() => {on_destroy ();});
         }
 
         public void run_open_dvd () {
@@ -217,7 +214,7 @@ namespace Audience {
             page = Page.PLAYER;
             var root = volume.get_mount ().get_default_location ();
             open_file (root.get_uri (), true);
-            /* player_page.video_player.playing = !settings.playback_wait; */
+            player_page.video_player.playing = !settings.playback_wait;
 
         }
 
@@ -320,18 +317,6 @@ namespace Audience {
             });
         }
 
-        private void on_destroy () {
-            /* if (video_player.uri.has_prefix ("dvd://")) { */
-            /*     clear_video_settings (); */
-            /*     return; */
-            /* } */
-            /*  */
-            /* if (video_player.uri == null || video_player.uri == "") */
-            /*     return; */
-            /*  */
-            /* save_last_played_videos (); */
-        }
-
         private int old_h = - 1;
         private int old_w = - 1;
         private void on_size_allocate (Gtk.Allocation alloc) {
@@ -350,7 +335,6 @@ namespace Audience {
         }
 
         private void on_player_ended () {
-            message ("player ended");
             page = Page.WELCOME;
         }
 
@@ -384,18 +368,11 @@ namespace Audience {
                 File[] files = {};
                 foreach (File item in file.get_files ()) {
                     files += item;
-                    message ("item."+item.get_uri ());
                     /* player_page.playlist.add_item (item); */
                 }
+
                 open (files, "");
-            /*  */
-            /*     if (video_player.uri == null || welcome_page.is_visible ()) */
-            /*         open_file (file.get_uri ()); */
-            /*  */
-            /*     welcome_page.hide (); */
-            /*     clutter.show_all (); */
-            /*  */
-                /* settings.last_folder = file.get_current_folder (); */
+                settings.last_folder = file.get_current_folder ();
             }
 
             file.destroy ();
@@ -448,10 +425,10 @@ namespace Audience {
                 && settings.last_played_videos.length > 0
                 && settings.current_video != ""
                 && file_exists (settings.current_video)) {
-                /* restore_playlist (); */
 
                 if (settings.last_stopped > 0) {
-                    open_file (settings.current_video);
+                    resume_last_videos ();
+                    /* open_file (settings.current_video); */
                     /* video_player.playing = false; */
                     /* Idle.add (() => {video_player.progress = settings.last_stopped; return false;}); */
                     /* video_player.playing = !settings.playback_wait; */
