@@ -1,7 +1,6 @@
 namespace Audience {
     public class WelcomePage : Granite.Widgets.Welcome {
         public WelcomePage () {
-            message ("WelcomePage created");
             base (_("No Videos Open"), _("Select a source to begin playing."));
             this.append ("document-open", _("Open file"), _("Open a saved file."));
 
@@ -25,7 +24,6 @@ namespace Audience {
             this.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
             this.set_item_visible (3, App.get_instance ().has_media_volumes ());
             App.get_instance ().media_volumes_changed.connect (() => {
-                message ("hase_media volumes");
                 this.set_item_visible (3, App.get_instance ().has_media_volumes ());
             });
 
@@ -43,7 +41,6 @@ namespace Audience {
         ~WelcomePage () {
             this.activated.disconnect (on_activate);
             App.get_instance ().mainwindow.key_press_event.disconnect (on_key_press_event);
-            message ("WelcomePage destroyed");
         }
         public void on_activate (int index) {
             switch (index) {

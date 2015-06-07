@@ -123,11 +123,10 @@ namespace Audience {
         }
 
         private static App app; // global App instance
-        private DiskManager disk_manager;
+        public DiskManager disk_manager;
         public bool has_media_volumes () {
-            //FIXME:why we cant resume with this?
-            /* return disk_manager.has_media_volumes (); */
-            return true;
+            return disk_manager.has_media_volumes ();
+            /* return true; */
         }
 
         public GLib.VolumeMonitor monitor;
@@ -399,7 +398,7 @@ namespace Audience {
 
             PlayerPage player_page = mainwindow.get_child() as PlayerPage;
             if (player_page == null)
-                message ("player page is null");
+                return;
 
             if (file.query_file_type (0) == FileType.DIRECTORY) {
                 Audience.recurse_over_dir (file, (file_ret) => {
@@ -446,7 +445,6 @@ namespace Audience {
 
             var player = (mainwindow.get_child () as PlayerPage);
             foreach (var file in files) {
-                message (file.get_uri ());
                 player.append_to_playlist (file);
             }
 

@@ -22,6 +22,8 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     public Playlist playlist;
     public Gtk.ToggleButton rep;
     Gtk.ScrolledWindow playlist_scrolled;
+    private Gtk.Button dvd;
+
     public PlaylistPopover () {
         opacity = GLOBAL_OPACITY;
         var grid = new Gtk.Grid ();
@@ -31,9 +33,11 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
 
         var fil = new Gtk.Button.from_icon_name ("document-open-symbolic", Gtk.IconSize.BUTTON);
         fil.set_tooltip_text (_("Open file"));
-        var dvd = new Gtk.Button.from_icon_name ("media-optical-symbolic", Gtk.IconSize.BUTTON);
+        dvd = new Gtk.Button.from_icon_name ("media-optical-symbolic", Gtk.IconSize.BUTTON);
         dvd.set_tooltip_text (_("Play from Disc"));
         dvd.no_show_all = true;
+        set_dvd_visibility (App.get_instance ().has_media_volumes ());
+
         rep = new Gtk.ToggleButton ();
         rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON));
         rep.set_tooltip_text (_("Enable Repeat"));
@@ -72,30 +76,22 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         grid.attach (dvd, 1, 1, 1, 1);
         grid.attach (rep, 6, 1, 1, 1);
 
-        //look for dvd
-        var disk_manager = DiskManager.get_default ();
-        foreach (var volume in disk_manager.get_volumes ()) {
-            dvd.no_show_all = false;
-            dvd.show ();
-        }
-
-        disk_manager.volume_found.connect ((vol) => {
-            dvd.no_show_all = false;
-            dvd.show ();
-        });
-
-        disk_manager.volume_removed.connect ((vol) => {
-            if (disk_manager.get_volumes ().length () <= 0) {
-                dvd.no_show_all = true;
-                dvd.hide ();
-            }
-        });
-
         add (grid);
+
+        App.get_instance ().media_volumes_changed.connect (on_media_volumes_changed);
     }
 
     ~PlaylistPopover () {
-        message ("PlaylistPopover destroyed");
+        App.get_instance ().media_volumes_changed.disconnect (on_media_volumes_changed);
+    }
+
+    private void on_media_volumes_changed () {
+        set_dvd_visibility (App.get_instance ().has_media_volumes ());
+    }
+
+    private void set_dvd_visibility (bool visible) {
+        dvd.no_show_all = true;
+        dvd.visible = visible;
     }
 
     //Override because the Popover doesn't auto-rejust his size.
