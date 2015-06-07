@@ -214,8 +214,6 @@ namespace Audience {
             page = Page.PLAYER;
             var root = volume.get_mount ().get_default_location ();
             open_file (root.get_uri (), true);
-            player_page.video_player.playing = !settings.playback_wait;
-
         }
 
         public void on_configure_window (uint video_w, uint video_h) {
@@ -426,8 +424,8 @@ namespace Audience {
                 && settings.current_video != ""
                 && file_exists (settings.current_video)) {
 
-                if (settings.last_stopped > 0) {
-                    resume_last_videos ();
+                /* if (settings.last_stopped > 0) { */
+                /*     resume_last_videos (); */
                     /* open_file (settings.current_video); */
                     /* video_player.playing = false; */
                     /* Idle.add (() => {video_player.progress = settings.last_stopped; return false;}); */
