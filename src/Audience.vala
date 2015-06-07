@@ -307,9 +307,12 @@ namespace Audience {
             Gtk.drag_dest_set (mainwindow, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
             mainwindow.drag_data_received.connect ( (ctx, x, y, sel, info, time) => {
                 page = Page.PLAYER;
+                File[] files = {};
                 foreach (var uri in sel.get_uris ()) {
-                    play_file (uri);
+                    var file = File.new_for_uri (uri);
+                    files += file;
                 }
+                open (files,"");
             });
         }
 
@@ -432,16 +435,16 @@ namespace Audience {
             var player_page = (mainwindow.get_child () as PlayerPage);
             string[] videos = {};
             foreach (var file in files) {
-            //TODO: detect subtitle
-            /* else if (is_subtitle (filename) && video_player.playing) {
-               player_page.video_player.set_subtitle_uri (filename);
-             */
 
                 if (file.query_file_type (0) == FileType.DIRECTORY) {
                     Audience.recurse_over_dir (file, (file_ret) => {
                         player_page.append_to_playlist (file);
                         videos += file_ret.get_uri ();
                     });
+                } else if (player_page.video_player.playing &&
+                        PlayerPage.is_subtitle (file.get_uri ())) {
+                    message ("is subtitle");
+                    player_page.video_player.set_subtitle_uri (file.get_uri ());
                 } else {
                     player_page.append_to_playlist (file);
                     videos += file.get_uri ();
