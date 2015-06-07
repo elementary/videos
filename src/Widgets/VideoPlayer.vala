@@ -230,8 +230,8 @@ namespace Audience.Widgets {
             add_child(video);
 
             playbin.about_to_finish.connect (() => {
-                message ("playbin about to finish");
                 if (!at_end) {
+                    message ("playbin about to finish");
                     at_end = true;
                     ended ();
                     Idle.add (()=>{
