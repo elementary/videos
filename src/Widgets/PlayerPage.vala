@@ -143,6 +143,16 @@ namespace Audience {
                 return update_pointer_position (event.y, allocation.height);
             });
 
+            this.destroy.connect (() => {
+                // FIXME:should find better way to decide if its end of playlist
+                if (video_player.progress > 0.99)
+                    settings.last_stopped = 0;
+                else
+                    settings.last_stopped = video_player.progress;
+
+                get_playlist_widget ().save_playlist ();
+            });
+
             /*events*/
             video_player.text_tags_changed.connect (bottom_bar.preferences_popover.setup_text);
             video_player.audio_tags_changed.connect (bottom_bar.preferences_popover.setup_audio);
@@ -171,7 +181,6 @@ namespace Audience {
                             /* } else { App.get_instance ().*/
                             /*     button.description = _("Replay '%s'").printf (get_title (playlist.get_first_item ().get_basename ())); */
                             /* } */
-                            get_playlist_widget ().save_playlist ();
 
                             ended ();
                         }
@@ -242,25 +251,19 @@ namespace Audience {
             get_playlist_widget ().set_current (uri);
             bottom_bar.set_preview_uri (uri);
 
-            message ("1");
-
             string? sub_uri = get_subtitle_for_uri (uri);
             if (sub_uri != null)
                 video_player.set_subtitle_uri (sub_uri);
-            message ("2");
 
             App.get_instance ().mainwindow.title = get_title (uri);
             video_player.playing = !settings.playback_wait;
-            message ("3");
 
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
-            message ("4");
 
             /*subtitles/audio tracks*/
             bottom_bar.preferences_popover.setup_text ();
             bottom_bar.preferences_popover.setup_audio ();
-            message ("5");
         }
 
         public void resume_last_videos () {

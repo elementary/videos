@@ -92,6 +92,9 @@ namespace Audience {
             set {
                 switch (value) {
                     case Page.PLAYER:
+                        if (page == Page.PLAYER)
+                            break;
+
                         if (mainwindow.get_child()!=null)
                             mainwindow.get_child().destroy ();
 
@@ -118,7 +121,6 @@ namespace Audience {
                 }
             }
         }
-        /* public static Widgets.Playlist playlist; */
 
         private static App app; // global App instance
         private DiskManager disk_manager;
@@ -189,8 +191,6 @@ namespace Audience {
 
             mainwindow.size_allocate.connect (on_size_allocate);
             mainwindow.key_press_event.connect (on_key_press_event);
-
-            /* playlist = new Widgets.Playlist (); */
 
             setup_drag_n_drop ();
 
@@ -422,9 +422,10 @@ namespace Audience {
         internal void open_file (string filename, bool dont_modify = false) {
             var file = File.new_for_commandline_arg (filename);
 
-            var player_page = mainwindow.get_child() as PlayerPage;
+            PlayerPage player_page = mainwindow.get_child() as PlayerPage;
             if (player_page == null)
                 message ("player page is null");
+
             if (file.query_file_type (0) == FileType.DIRECTORY) {
                 Audience.recurse_over_dir (file, (file_ret) => {
                     player_page.append_to_playlist (file_ret);
@@ -436,12 +437,9 @@ namespace Audience {
             /* else if (is_subtitle (filename) && video_player.playing) {
                 player_page.video_player.set_subtitle_uri (filename);
             }*/ else {
-                /* playlist.add_item (file); */
                 player_page.append_to_playlist (file);
-                message ("append to playlist");
 
                 player_page.play_file (file.get_uri ());
-                message ("play file");
             }
         }
         public override void activate () {
@@ -453,8 +451,6 @@ namespace Audience {
                 /* restore_playlist (); */
 
                 if (settings.last_stopped > 0) {
-                    /* welcome_page.hide (); */
-                    /* clutter.show_all (); */
                     open_file (settings.current_video);
                     /* video_player.playing = false; */
                     /* Idle.add (() => {video_player.progress = settings.last_stopped; return false;}); */
@@ -479,7 +475,6 @@ namespace Audience {
                 player.append_to_playlist (file);
             }
 
-            /* player.play_file (files[0].get_uri ()); */
             open_file (files[0].get_uri ());
 
             //TODO:enable notification
