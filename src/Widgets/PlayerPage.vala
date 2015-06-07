@@ -251,7 +251,7 @@ namespace Audience {
             if (sub_uri != null)
                 video_player.set_subtitle_uri (sub_uri);
 
-            App.get_instance ().mainwindow.title = get_title (uri);
+            App.get_instance ().set_window_title (get_title (uri));
             video_player.playing = !settings.playback_wait;
 
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();

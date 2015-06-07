@@ -96,10 +96,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         show_all ();
     }
 
-    ~BottomBar () {
-        message ("BottomBar destroyed");
-    }
-
     public void set_preview_uri (string uri) {
         time_widget.set_preview_uri (uri);
     }

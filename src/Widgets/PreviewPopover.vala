@@ -65,7 +65,6 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     }
     ~PreviewPopover () {
         preview_playbin.set_state (Gst.State.NULL);
-        message ("PreviewPopover destructed");
     }
 
     public void set_preview_uri (string uri) {

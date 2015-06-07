@@ -30,10 +30,9 @@ namespace Audience {
            //handle welcome
             this.activated.connect (on_activate);
 
-            App.get_instance ().mainwindow.title = App.get_instance ().program_name;
+            App.get_instance ().set_window_title (App.get_instance ().program_name);
+            // FIXME : dont know why but cant move this to Audience.vala
             App.get_instance ().mainwindow.set_default_size (960, 640);
-            App.get_instance ().mainwindow.set_size_request (350, 300);
-            App.get_instance ().mainwindow.show_all ();
 
             App.get_instance ().mainwindow.key_press_event.connect (on_key_press_event);
 

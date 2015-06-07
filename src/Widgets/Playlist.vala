@@ -68,12 +68,9 @@ namespace Audience.Widgets {
             });
 
             restore_playlist ();
-
-            message ("playlist created");
         }
 
         ~Playlist () {
-             message("Playlist destructed");
              save_playlist ();
          }
 

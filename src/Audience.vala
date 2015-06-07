@@ -170,14 +170,10 @@ namespace Audience {
 
             page = Page.WELCOME;
 
-            mainwindow.set_titlebar (header);
-
-            mainwindow.events |= Gdk.EventMask.POINTER_MOTION_MASK;
-            mainwindow.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
-            mainwindow.events |= Gdk.EventMask.BUTTON_PRESS_MASK;
-            mainwindow.window_position = Gtk.WindowPosition.CENTER;
             mainwindow.set_application (this);
-            mainwindow.title = program_name;
+            mainwindow.set_titlebar (header);
+            mainwindow.window_position = Gtk.WindowPosition.CENTER;
+            /* mainwindow.set_default_size (960,640); */
             mainwindow.show_all ();
             if (!settings.show_window_decoration)
                 mainwindow.decorated = false;
@@ -192,6 +188,10 @@ namespace Audience {
             mainwindow.key_press_event.connect (on_key_press_event);
 
             setup_drag_n_drop ();
+        }
+
+        public void set_window_title (string title) {
+            mainwindow.title = title;
         }
 
         public void run_open_dvd () {

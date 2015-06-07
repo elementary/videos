@@ -82,7 +82,6 @@ public class Audience.DiskManager : GLib.Object {
     public GLib.List<Volume> get_media_volumes () {
         GLib.List<Volume> returnValue = new GLib.List<Volume> ();
         foreach (Volume volume in volumes) {
-            debug ("Check DVD media for: %s", volume.get_name ());
             if (has_dvd_media (volume))
                 returnValue.append (volume);
         }
@@ -101,6 +100,8 @@ public class Audience.DiskManager : GLib.Object {
     }
 
     private bool has_dvd_media (Volume volume) {
+        debug ("Check DVD media for: %s", volume.get_name ());
+
         // Stupid way to detect if its an optical drive
         var icon_name = volume.get_icon ().to_string ();
         if (!icon_name.contains ("optical"))
