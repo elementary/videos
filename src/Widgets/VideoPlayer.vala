@@ -180,7 +180,7 @@ namespace Audience.Widgets {
         public uint video_width { get; private set; }
         public uint video_height { get; private set; }
 
-        /* public GnomeSessionManager session_manager; */
+        public GnomeSessionManager session_manager;
         uint32 inhibit_cookie;
 
         public signal void ended ();
@@ -465,17 +465,17 @@ namespace Audience.Widgets {
 
         //prevent screenlocking in Gnome 3 using org.gnome.SessionManager
         void set_screenlock (bool enable) {
-            /* try { */
-            /*     session_manager = Bus.get_proxy_sync (BusType.SESSION,  */
-            /*             "org.gnome.SessionManager", "/org/gnome/SessionManager"); */
-            /*     if (enable) { */
-            /*         session_manager.Uninhibit (inhibit_cookie); */
-            /*     } else { */
-            /*         inhibit_cookie = session_manager.Inhibit ("audience", 0, "Playing Video using Audience", 12); */
-            /*     } */
-            /* } catch (Error e) { */
-            /*     warning (e.message); */
-            /* } */
+            try {
+                session_manager = Bus.get_proxy_sync (BusType.SESSION, 
+                        "org.gnome.SessionManager", "/org/gnome/SessionManager");
+                if (enable) {
+                    session_manager.Uninhibit (inhibit_cookie);
+                } else {
+                    inhibit_cookie = session_manager.Inhibit ("audience", 0, "Playing Video using Audience", 12);
+                }
+            } catch (Error e) {
+                warning (e.message);
+            }
         }
 
         public void seek_jump_seconds (int seconds) {
