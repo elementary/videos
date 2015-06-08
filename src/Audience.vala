@@ -124,9 +124,6 @@ namespace Audience {
 
         private static App app; // global App instance
         public DiskManager disk_manager;
-        public bool has_media_volumes () {
-            return disk_manager.has_media_volumes ();
-        }
 
         public GLib.VolumeMonitor monitor;
 
@@ -187,14 +184,6 @@ namespace Audience {
             mainwindow.key_press_event.connect (on_key_press_event);
 
             setup_drag_n_drop ();
-        }
-
-        public void set_window_title (string title) {
-            mainwindow.title = title;
-        }
-
-        public void run_open_dvd () {
-            read_first_disk.begin ();
         }
 
         private async void read_first_disk () {
@@ -301,21 +290,6 @@ namespace Audience {
             }
         }
 
-        /*DnD*/
-        private void setup_drag_n_drop () {
-            Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
-            Gtk.drag_dest_set (mainwindow, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
-            mainwindow.drag_data_received.connect ( (ctx, x, y, sel, info, time) => {
-                page = Page.PLAYER;
-                File[] files = {};
-                foreach (var uri in sel.get_uris ()) {
-                    var file = File.new_for_uri (uri);
-                    files += file;
-                }
-                open (files,"");
-            });
-        }
-
         private int old_h = - 1;
         private int old_w = - 1;
         private void on_size_allocate (Gtk.Allocation alloc) {
@@ -335,6 +309,31 @@ namespace Audience {
 
         private void on_player_ended () {
             page = Page.WELCOME;
+        }
+
+        public bool on_key_press_event (Gdk.EventKey e) {
+            switch (e.keyval) {
+                case Gdk.Key.Escape:
+                    App.get_instance ().mainwindow.destroy ();
+                    break;
+                case Gdk.Key.o:
+                    App.get_instance ().run_open_file ();
+                    break;
+                case Gdk.Key.f:
+                case Gdk.Key.F11:
+                    App.get_instance ().toggle_fullscreen ();
+                    break;
+                case Gdk.Key.q:
+                    App.get_instance ().mainwindow.destroy ();
+                    break;
+                default:
+                    break;
+            }
+            return false;
+        }
+
+        public bool has_media_volumes () {
+            return disk_manager.has_media_volumes ();
         }
 
         private inline void clear_video_settings () {
@@ -376,11 +375,34 @@ namespace Audience {
             file.destroy ();
         }
 
+        public void run_open_dvd () {
+            read_first_disk.begin ();
+        }
+
+        /*DnD*/
+        private void setup_drag_n_drop () {
+            Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
+            Gtk.drag_dest_set (mainwindow, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
+            mainwindow.drag_data_received.connect ( (ctx, x, y, sel, info, time) => {
+                page = Page.PLAYER;
+                File[] files = {};
+                foreach (var uri in sel.get_uris ()) {
+                    var file = File.new_for_uri (uri);
+                    files += file;
+                }
+                open (files,"");
+            });
+        }
+
         public void resume_last_videos () {
             page = Page.PLAYER;
 
             var player = mainwindow.get_child () as PlayerPage;
             player.resume_last_videos ();
+        }
+
+        public void set_window_title (string title) {
+            mainwindow.title = title;
         }
 
         public void toggle_fullscreen () {
@@ -463,26 +485,6 @@ namespace Audience {
             /*     open_file(files[0].get_uri ()); */
         }
 
-        public bool on_key_press_event (Gdk.EventKey e) {
-            switch (e.keyval) {
-                case Gdk.Key.Escape:
-                    App.get_instance ().mainwindow.destroy ();
-                    break;
-                case Gdk.Key.o:
-                    App.get_instance ().run_open_file ();
-                    break;
-                case Gdk.Key.f:
-                case Gdk.Key.F11:
-                    App.get_instance ().toggle_fullscreen ();
-                    break;
-                case Gdk.Key.q:
-                    App.get_instance ().mainwindow.destroy ();
-                    break;
-                default:
-                    break;
-            }
-            return false;
-        }
     }
 }
 

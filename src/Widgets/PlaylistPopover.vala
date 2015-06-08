@@ -21,7 +21,7 @@
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     public Playlist playlist;
     public Gtk.ToggleButton rep;
-    Gtk.ScrolledWindow playlist_scrolled;
+    private Gtk.ScrolledWindow playlist_scrolled;
     private Gtk.Button dvd;
 
     public PlaylistPopover () {

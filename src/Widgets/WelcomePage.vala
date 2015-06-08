@@ -43,7 +43,7 @@ namespace Audience {
             this.activated.disconnect (on_activate);
             App.get_instance ().mainwindow.key_press_event.disconnect (on_key_press_event);
         }
-        public void on_activate (int index) {
+        private void on_activate (int index) {
             switch (index) {
                 case 0:
                     // Open file
@@ -57,7 +57,7 @@ namespace Audience {
                     break;
             }
         }
-        public bool on_key_press_event (Gdk.EventKey e) {
+        private bool on_key_press_event (Gdk.EventKey e) {
             switch (e.keyval) {
                 case Gdk.Key.p:
                 case Gdk.Key.space:

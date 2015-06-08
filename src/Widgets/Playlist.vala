@@ -67,6 +67,7 @@ namespace Audience.Widgets {
                     this.current = int.parse (path.to_string ());
             });
 
+            // Automatically load from gsettings last_played_videos
             restore_playlist ();
         }
 

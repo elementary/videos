@@ -8,8 +8,6 @@ namespace Audience {
         "asc"
     };
     public class PlayerPage : Gtk.Bin {
-        public GnomeMediaKeys             mediakeys;
-
         public GtkClutter.Embed           clutter;
         public Audience.Widgets.VideoPlayer video_player;
         private Audience.Widgets.BottomBar bottom_bar;
@@ -17,6 +15,7 @@ namespace Audience {
         private Gtk.Revealer unfullscreen_bar;
         private GtkClutter.Actor unfullscreen_actor;
         private GtkClutter.Actor bottom_actor;
+        private GnomeMediaKeys             mediakeys;
 
         private bool mouse_primary_down = false;
 
@@ -54,8 +53,6 @@ namespace Audience {
             bottom_bar.seeked.connect ((val) => { video_player.progress = val; });
             bottom_bar.unfullscreen.connect (() => { App.get_instance ().toggle_fullscreen (); });
             bottom_bar.set_repeat (false);
-
-            //tagview.select_external_subtitle.connect (video_player.set_subtitle_uri);
 
             unfullscreen_bar = bottom_bar.get_unfullscreen_button ();
 
@@ -259,6 +256,14 @@ namespace Audience {
             bottom_bar.preferences_popover.setup_audio ();
         }
 
+        public void next () {
+            get_playlist_widget ().next ();
+        }
+
+        public void prev () {
+            get_playlist_widget ().next ();
+        }
+
         public void resume_last_videos () {
             play_file (settings.current_video);
             video_player.playing = false;
@@ -273,14 +278,6 @@ namespace Audience {
         public void play_first_in_playlist () {
             var file = get_playlist_widget ().get_first_item ();
             play_file (file.get_uri ());
-        }
-
-        public void next () {
-            get_playlist_widget ().next ();
-        }
-
-        public void prev () {
-            get_playlist_widget ().next ();
         }
 
         private Widgets.Playlist get_playlist_widget () {
@@ -317,7 +314,7 @@ namespace Audience {
             return false;
         }
 
-        public void allocate_bottombar () {
+        private void allocate_bottombar () {
             bottom_actor.width = stage.get_width ();
             bottom_bar.queue_resize ();
             bottom_actor.y = stage.get_height () - bottom_bar_size;
@@ -338,7 +335,7 @@ namespace Audience {
             return false;
         }
 
-        public bool on_key_press_event (Gdk.EventKey e) {
+        private bool on_key_press_event (Gdk.EventKey e) {
             switch (e.keyval) {
                 case Gdk.Key.p:
                 case Gdk.Key.space:
