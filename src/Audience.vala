@@ -128,7 +128,7 @@ namespace Audience {
             settings = new Settings ();
             mainwindow = new Gtk.Window ();
             video_player = Widgets.VideoPlayer.get_default ();
-            video_player.notify["playing"].connect (() => {bottom_bar.toggle_play_pause ();});
+            video_player.notify["playing"].connect (() => { bottom_bar.toggle_play_pause (); });
 
             clutter = new GtkClutter.Embed ();
 
@@ -339,7 +339,7 @@ namespace Audience {
             });
 
             //save position in video when not finished playing
-            mainwindow.destroy.connect (() => {on_destroy ();});
+            mainwindow.destroy.connect (() => { on_destroy (); });
 
             //playlist wants us to open a file
             playlist.play.connect ((file) => {
@@ -354,7 +354,7 @@ namespace Audience {
                 }
             });
 
-            stage.notify["allocation"].connect (() => {allocate_bottombar ();});
+            stage.notify["allocation"].connect (() => { allocate_bottombar (); });
         }
 
         private void allocate_bottombar () {
@@ -412,7 +412,7 @@ namespace Audience {
                         restore_playlist ();
                         open_file (filename);
                         video_player.playing = false;
-                        Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
+                        Idle.add (() => { video_player.progress = settings.last_stopped; return false; });
                         video_player.playing = true;
                         break;
                     case 2:
@@ -420,7 +420,7 @@ namespace Audience {
                         clutter.show_all ();
                         open_file (playlist.get_first_item ().get_path ());
                         video_player.playing = false;
-                        Idle.add (() => {video_player.progress = 0; return false;});
+                        Idle.add (() => { video_player.progress = 0; return false; });
                         video_player.playing = true;
                         break;
                     case 3:
@@ -445,7 +445,6 @@ namespace Audience {
 
                         if (d.run () == Gtk.ResponseType.OK) {
                             open_file (entry.text, true);
-                            video_player.playing = !settings.playback_wait;
                             welcome.hide ();
                             clutter.show_all ();
                         }
@@ -760,7 +759,6 @@ namespace Audience {
 
             var root = volume.get_mount ().get_default_location ();
             open_file (root.get_uri (), true);
-            video_player.playing = !settings.playback_wait;
 
             welcome.hide ();
             clutter.show_all ();
@@ -782,7 +780,7 @@ namespace Audience {
             return (event.state & modifier) == modifier;
         }
 
-        internal void open_file (string filename, bool dont_modify = false) {
+        internal void open_file (string filename, bool play = true) {
             var file = File.new_for_commandline_arg (filename);
 
             if (file.query_file_type (0) == FileType.DIRECTORY) {
@@ -791,12 +789,12 @@ namespace Audience {
                 });
 
                 file = playlist.get_first_item ();
-                play_file (file.get_uri ());
+                play_file (file.get_uri (), play);
             } else if (is_subtitle (filename) && video_player.playing) {
                 video_player.set_subtitle_uri (filename);
             } else {
                 playlist.add_item (file);
-                play_file (file.get_uri ());
+                play_file (file.get_uri (), play);
             }
         }
 
@@ -830,7 +828,7 @@ namespace Audience {
             return false;
         }
 
-        public void play_file (string uri) {
+        public void play_file (string uri, bool play = true) {
             debug ("Opening %s", uri);
             video_player.uri = uri;
             playlist.set_current (uri);
@@ -841,7 +839,7 @@ namespace Audience {
                 video_player.set_subtitle_uri (sub_uri);
 
             mainwindow.title = get_title (uri);
-            video_player.playing = true;
+            video_player.playing = play;
 
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
@@ -863,9 +861,8 @@ namespace Audience {
                 if (settings.last_stopped > 0) {
                     welcome.hide ();
                     clutter.show_all ();
-                    open_file (settings.current_video);
-                    video_player.playing = false;
-                    Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
+                    open_file (settings.current_video, false);
+                    Idle.add (() => { video_player.progress = settings.last_stopped; return false; });
                 }
             }
         }
