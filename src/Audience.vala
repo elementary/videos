@@ -172,10 +172,13 @@ namespace Audience {
             if (!settings.show_window_decoration)
                 mainwindow.decorated = false;
 
-            /* mainwindow.size_allocate.connect (on_size_allocate); */
             mainwindow.key_press_event.connect (on_key_press_event);
 
             setup_drag_n_drop ();
+        }
+
+        public bool has_media_volumes () {
+            return disk_manager.has_media_volumes ();
         }
 
         private async void read_first_disk () {
@@ -195,21 +198,6 @@ namespace Audience {
             play_file (root.get_uri (), true);
         }
 
-        public void on_configure_window (uint video_w, uint video_h) {
-            Gdk.Rectangle monitor;
-            var screen = Gdk.Screen.get_default ();
-            screen.get_monitor_geometry (screen.get_monitor_at_window (mainwindow.get_window ()), out monitor);
-
-            int width = 0, height = 0;
-            if (monitor.width > video_w && monitor.height > video_h) {
-                width = (int) mainwindow.get_allocated_width ();
-                height = (int) mainwindow.get_allocated_height ();
-            } else {
-                width = (int)(monitor.width * 0.9);
-                height = (int)((double)video_h / video_w * width);
-            }
-            mainwindow.resize(width, height);
-        }
         public void set_content_size (double width, double height, double content_height){
             double width_offset = mainwindow.get_allocated_width () - width;
             double height_offset = mainwindow.get_allocated_height () - content_height;
@@ -231,6 +219,22 @@ namespace Audience {
 
         }
 
+        public void on_configure_window (uint video_w, uint video_h) {
+            Gdk.Rectangle monitor;
+            var screen = Gdk.Screen.get_default ();
+            screen.get_monitor_geometry (screen.get_monitor_at_window (mainwindow.get_window ()), out monitor);
+
+            int width = 0, height = 0;
+            if (monitor.width > video_w && monitor.height > video_h) {
+                width = (int) mainwindow.get_allocated_width ();
+                height = (int) mainwindow.get_allocated_height ();
+            } else {
+                width = (int)(monitor.width * 0.9);
+                height = (int)((double)video_h / video_w * width);
+            }
+            mainwindow.resize(width, height);
+        }
+
         private void on_player_ended () {
             page = Page.WELCOME;
         }
@@ -250,10 +254,6 @@ namespace Audience {
                     break;
             }
             return false;
-        }
-
-        public bool has_media_volumes () {
-            return disk_manager.has_media_volumes ();
         }
 
         private inline void clear_video_settings () {
@@ -338,20 +338,8 @@ namespace Audience {
         }
 
         public override void activate () {
-            build ();
-            if (settings.resume_videos == true
-                && settings.last_played_videos.length > 0
-                && settings.current_video != ""
-                && file_exists (settings.current_video)) {
-
-                /* if (settings.last_stopped > 0) { */
-                /*     resume_last_videos (); */
-                    /* open_file (settings.current_video); */
-                    /* video_player.playing = false; */
-                    /* Idle.add (() => {video_player.progress = settings.last_stopped; return false;}); */
-                    /* video_player.playing = !settings.playback_wait; */
-                /* } */
-            }
+            if (mainwindow == null)
+                build ();
         }
 
         //the application was requested to open some files

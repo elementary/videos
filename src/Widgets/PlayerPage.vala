@@ -165,7 +165,6 @@ namespace Audience {
             video_player.ended.connect (() => {
                 Idle.add (() => {
                     video_player.progress = 0;
-                    int last_played_index = get_playlist_widget ().get_current ();
                     if (!get_playlist_widget ().next ()) {
                         if (repeat) {
                             play_file (get_playlist_widget ().get_first_item ().get_uri ());
