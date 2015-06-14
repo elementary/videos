@@ -65,6 +65,7 @@ namespace Audience {
             unfullscreen_actor.opacity = GLOBAL_OPACITY;
             stage.add_child (unfullscreen_actor);
 
+            this.size_allocate.connect (on_size_allocate);
             App.get_instance ().mainwindow.key_press_event.connect (on_key_press_event);
 
             //media keys
@@ -247,6 +248,9 @@ namespace Audience {
                 video_player.set_subtitle_uri (sub_uri);
 
             App.get_instance ().set_window_title (get_title (uri));
+            init_size_variable ();
+            video_player.relayout ();
+            update_aspect_ratio ();
             video_player.playing = !settings.playback_wait;
 
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
@@ -400,5 +404,65 @@ namespace Audience {
 
             return false;
         }
+
+        private uint update_aspect_ratio_timeout = 0;
+        private bool update_aspect_ratio_locked = false;
+        private int prev_width = 0;
+        private int prev_height = 0;
+        private int old_h = -1;
+        private int old_w = -1;
+        void init_size_variable () {
+            update_aspect_ratio_timeout = 0;
+            update_aspect_ratio_locked = false;
+            prev_width = 0;
+            prev_height = 0;
+            old_h = -1;
+            old_w = -1;
+        }
+        /**
+         * Updates the window's aspect ratio locking if enabled.
+         * Return type is just there to make it compatible with Idle.add()
+         */
+        private bool update_aspect_ratio () {
+            if (!settings.keep_aspect
+                || video_player.video_width < 1
+                || video_player.height < 1
+                || !clutter.visible)
+                return false;
+
+            if (update_aspect_ratio_timeout != 0)
+                Source.remove (update_aspect_ratio_timeout);
+
+            update_aspect_ratio_timeout = Timeout.add (200, () => {
+                Gtk.Allocation a;
+                clutter.get_allocation (out a);
+                print ("%i %i %i,%i\n", a.x, a.y, (this.get_allocated_width () - this.clutter.get_allocated_width ()) / 2, (this.get_allocated_height () - this.clutter.get_allocated_height ()) / 2);
+                double width = clutter.get_allocated_width ();
+                double height = width * video_player.video_height / (double) video_player.video_width;
+
+                App.get_instance ().set_content_size (width, height,clutter.get_allocated_height ());
+
+                prev_width = this.get_allocated_width ();
+                prev_height = this.get_allocated_height ();
+
+                update_aspect_ratio_timeout = 0;
+
+                return false;
+            });
+
+            return false;
+        }
+        private void on_size_allocate (Gtk.Allocation alloc) {
+            if (alloc.width != old_w || alloc.height != old_h) {
+                if (video_player.relayout ()) {
+                    old_w = alloc.width;
+                    old_h = alloc.height;
+                }
+            }
+
+            if (prev_width != this.get_allocated_width () && prev_height != this.get_allocated_height ())
+                Idle.add (update_aspect_ratio);
+        }
+
     }
 }

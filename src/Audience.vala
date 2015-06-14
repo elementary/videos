@@ -180,7 +180,7 @@ namespace Audience {
                 return false;
             });
 
-            mainwindow.size_allocate.connect (on_size_allocate);
+            /* mainwindow.size_allocate.connect (on_size_allocate); */
             mainwindow.key_press_event.connect (on_key_press_event);
 
             setup_drag_n_drop ();
@@ -210,77 +210,38 @@ namespace Audience {
 
             int width = 0, height = 0;
             if (monitor.width > video_w && monitor.height > video_h) {
-                width = (int)video_w;
-                height = (int)video_h;
-            } else {
+                /* width = (int)video_w; */
+                /* height = (int)video_h; */
                 width = (int)(monitor.width * 0.9);
                 height = (int)((double)video_h / video_w * width);
+            } else {
+                width = (int) mainwindow.get_allocated_width ();
+                height = (int) mainwindow.get_allocated_height ();
             }
+            mainwindow.resize(width, height);
+        }
+        public void set_content_size (double width, double height, double content_height){
+            double width_offset = mainwindow.get_allocated_width () - width;
+            double height_offset = mainwindow.get_allocated_height () - content_height;
 
-            mainwindow.get_window ().move_resize (monitor.width / 2 - width / 2 + monitor.x,
-                monitor.height / 2 - height / 2 + monitor.y,
-                width, height);
+            print ("Width: %f, Height: %f, Offset: %f )\n", width, height,content_height);
+
+            var geom = Gdk.Geometry ();
+            geom.min_aspect = geom.max_aspect = (width + width_offset) / (height + height_offset);
+
+            var w = mainwindow.get_allocated_width ();
+            var h = (int) (w * geom.max_aspect);
+            int b, c;
+
+            mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
+
+            mainwindow.get_window ().constrain_size (geom, Gdk.WindowHints.ASPECT, w, h, out b, out c);
+            print ("Result: %i %i == %i %i\n", w, h, b, c);
+            mainwindow.get_window ().resize (b, c);
+
         }
 
-        uint update_aspect_ratio_timeout = 0;
-        bool update_aspect_ratio_locked = false;
-        int prev_width = 0;
-        int prev_height = 0;
-        /**
-         * Updates the window's aspect ratio locking if enabled.
-         * Return type is just there to make it compatible with Idle.add()
-         */
-        private bool update_aspect_ratio ()
-        {
-            if (page != Page.PLAYER)
-                return false;
-            var player_page = mainwindow.get_child () as PlayerPage;
-            if (!settings.keep_aspect || player_page.video_player.video_width < 1 || player_page.video_player.height < 1
-                || !player_page.clutter.visible)
-                return false;
-
-            if (update_aspect_ratio_timeout != 0)
-                Source.remove (update_aspect_ratio_timeout);
-
-            update_aspect_ratio_timeout = Timeout.add (200, () => {
-                Gtk.Allocation a;
-                player_page.clutter.get_allocation (out a);
-                print ("%i %i %i,%i\n", a.x, a.y, (mainwindow.get_allocated_width () - player_page.clutter.get_allocated_width ()) / 2, (mainwindow.get_allocated_height () - player_page.clutter.get_allocated_height ()) / 2);
-                double width = player_page.clutter.get_allocated_width ();
-                double height = width * player_page.video_player.video_height / (double) player_page.video_player.video_width;
-                double width_offset = mainwindow.get_allocated_width () - width;
-                double height_offset = mainwindow.get_allocated_height () - player_page.clutter.get_allocated_height ();
-
-                print ("Width: %f, Height: %f, Offset: %f (%f, %f)\n", width, height, height_offset, player_page.video_player.video_width, player_page.video_player.video_height);
-
-                var geom = Gdk.Geometry ();
-                geom.min_aspect = geom.max_aspect = (width + width_offset) / (height + height_offset);
-
-                var w = mainwindow.get_allocated_width ();
-                var h = (int) (w * geom.max_aspect);
-                int b, c;
-
-                mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
-
-                mainwindow.get_window ().constrain_size (geom, Gdk.WindowHints.ASPECT, w, h, out b, out c);
-                print ("Result: %i %i == %i %i\n", w, h, b, c);
-                mainwindow.get_window ().resize (b, c);
-
-                update_aspect_ratio_timeout = 0;
-
-                Idle.add (() => {
-                    prev_width = mainwindow.get_allocated_width ();
-                    prev_height = mainwindow.get_allocated_height ();
-
-                    return false;
-                });
-
-                return false;
-            });
-
-            return false;
-        }
-
+        
         private void on_window_state_changed (Gdk.WindowState window_state) {
             bool currently_maximized = (window_state & Gdk.WindowState.MAXIMIZED) == 0;
 
@@ -290,22 +251,6 @@ namespace Audience {
             }
         }
 
-        private int old_h = - 1;
-        private int old_w = - 1;
-        private void on_size_allocate (Gtk.Allocation alloc) {
-            if (page != Page.PLAYER)
-                return;
-            var player_page = mainwindow.get_child() as PlayerPage;
-            if (alloc.width != old_w || alloc.height != old_h) {
-                if (player_page.video_player.relayout ()) {
-                    old_w = alloc.width;
-                    old_h = alloc.height;
-                }
-            }
-
-            if (prev_width != mainwindow.get_allocated_width () && prev_height != mainwindow.get_allocated_height ())
-                Idle.add (update_aspect_ratio);
-        }
 
         private void on_player_ended () {
             page = Page.WELCOME;
