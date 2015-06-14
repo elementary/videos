@@ -202,13 +202,11 @@ namespace Audience {
 
             int width = 0, height = 0;
             if (monitor.width > video_w && monitor.height > video_h) {
-                /* width = (int)video_w; */
-                /* height = (int)video_h; */
-                width = (int)(monitor.width * 0.9);
-                height = (int)((double)video_h / video_w * width);
-            } else {
                 width = (int) mainwindow.get_allocated_width ();
                 height = (int) mainwindow.get_allocated_height ();
+            } else {
+                width = (int)(monitor.width * 0.9);
+                height = (int)((double)video_h / video_w * width);
             }
             mainwindow.resize(width, height);
         }

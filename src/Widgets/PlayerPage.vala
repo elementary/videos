@@ -421,7 +421,6 @@ namespace Audience {
         private void set_fullscreen (bool full){
             fullscreened = full;
             if (full) {
-                App.get_instance ().mainwindow.unmaximize ();
                 App.get_instance ().mainwindow.fullscreen ();
             } else {
                 // unfullscreen shoulnd't be call from elsewhere other than here
