@@ -22,12 +22,14 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     private Gtk.ComboBoxText languages;
     private Gtk.ComboBoxText subtitles;
     private Gtk.FileChooserButton external_subtitle_file;
+    private Widgets.VideoPlayer player;
 
-    public SettingsPopover () {
+    public SettingsPopover (Widgets.VideoPlayer player) {
         opacity = GLOBAL_OPACITY;
 
         languages = new Gtk.ComboBoxText ();
         subtitles = new Gtk.ComboBoxText ();
+        this.player = player;
 
         var all_files_filter = new Gtk.FileFilter ();
         all_files_filter.set_filter_name (_("All files"));
@@ -66,10 +68,10 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.column_spacing = 12;
 
         external_subtitle_file.file_set.connect (() => {
-            VideoPlayer.get_default ().set_subtitle_uri (external_subtitle_file.get_uri ());
+            player.set_subtitle_uri (external_subtitle_file.get_uri ());
         });
 
-        VideoPlayer.get_default ().external_subtitle_changed.connect ((uri) => {
+        player.external_subtitle_changed.connect ((uri) => {
             external_subtitle_file.select_uri (uri);
         });
 
@@ -78,14 +80,14 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
                 return;
 
             var id = int.parse (subtitles.active_id);
-            VideoPlayer.get_default ().current_text = id;
+            player.current_text = id;
         });
 
         languages.changed.connect ( () => { //place it here to not get problems
             if (languages.active_id == null)
                 return;
 
-            VideoPlayer.get_default ().current_audio = int.parse (languages.active_id);
+            player.current_audio = int.parse (languages.active_id);
         });
 
         add (setupgrid);
@@ -97,10 +99,10 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             subtitles.remove_all ();
 
         int n_text;
-        VideoPlayer.get_default ().playbin.get ("n-text", out n_text);
+        player.playbin.get ("n-text", out n_text);
         for (var i=0; i<n_text; i++) {
             Gst.TagList tags = null;
-            Signal.emit_by_name (VideoPlayer.get_default ().playbin, "get-text-tags", i, out tags);
+            Signal.emit_by_name (player.playbin, "get-text-tags", i, out tags);
             if (tags == null)
                 continue;
 
@@ -119,7 +121,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         }
 
         subtitles.append ("-1", _("None"));
-        subtitles.active_id = VideoPlayer.get_default ().current_text.to_string ();
+        subtitles.active_id = player.current_text.to_string ();
     }
 
     public void setup_audio () {
@@ -128,10 +130,10 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             languages.remove_all ();
 
         int n_audio;
-        VideoPlayer.get_default ().playbin.get ("n-audio", out n_audio);
+        player.playbin.get ("n-audio", out n_audio);
         for (var i=0; i<n_audio; i++) {
             Gst.TagList tags = null;
-            Signal.emit_by_name (VideoPlayer.get_default ().playbin, "get-audio-tags", i, out tags);
+            Signal.emit_by_name (player.playbin, "get-audio-tags", i, out tags);
             if (tags == null)
                 continue;
 
@@ -155,7 +157,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             if (audio_items != 1)
                 languages.sensitive = true;
 
-            languages.active_id = VideoPlayer.get_default ().current_audio.to_string ();
+            languages.active_id = player.current_audio.to_string ();
         }
     }
 

@@ -17,6 +17,8 @@ add_definitions (-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 
 # Comment this out to enable C compiler warnings
 add_definitions (-w)
+add_definitions (-g)
+add_definitions (--save-temps)
 
 
 set (CPACK_PACKAGE_VERSION ${VERSION})

@@ -34,7 +34,8 @@ namespace Audience {
         public signal void ended ();
 
         public PlayerPage () {
-            video_player = Widgets.VideoPlayer.get_default ();
+            /* video_player = Widgets.VideoPlayer.get_default (); */
+            video_player = new Widgets.VideoPlayer();
             video_player.notify["playing"].connect (() => {bottom_bar.toggle_play_pause ();});
 
             clutter = new GtkClutter.Embed ();
@@ -47,7 +48,7 @@ namespace Audience {
 
             stage.add_child (video_player);
 
-            bottom_bar = new Widgets.BottomBar ();
+            bottom_bar = new Widgets.BottomBar (video_player);
             bottom_bar.set_valign (Gtk.Align.END);
             bottom_bar.play_toggled.connect (() => { video_player.playing = !video_player.playing; });
             bottom_bar.seeked.connect ((val) => { video_player.progress = val; });

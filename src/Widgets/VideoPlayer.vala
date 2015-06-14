@@ -37,15 +37,6 @@ enum PlayFlags {
 
 namespace Audience.Widgets {
     public class VideoPlayer : Actor {
-        private static VideoPlayer? video_player = null;
-        public static unowned VideoPlayer get_default () {
-            if (video_player == null)
-                video_player = new VideoPlayer ();
-            video_player.build ();
-
-            return video_player;
-        }
-
         public bool at_end;
 
         bool _playing;
@@ -251,7 +242,8 @@ namespace Audience.Widgets {
                     ended ();
                     Idle.add (()=>{
                         playbin.set_state (Gst.State.PAUSED);
-                        return false; }); }
+                        return false; }); 
+                }
             });
         }
 
