@@ -94,7 +94,7 @@ namespace Audience {
                 warning (e.message);
             }
 
-            this.motion_notify_event.connect ((event) => {
+            App.get_instance ().mainwindow.motion_notify_event.connect ((event) => {
                 if (mouse_primary_down && settings.move_window) {
                     mouse_primary_down = false;
                     App.get_instance ().mainwindow.begin_move_drag (Gdk.BUTTON_PRIMARY,
