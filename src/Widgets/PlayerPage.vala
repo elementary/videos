@@ -164,21 +164,14 @@ namespace Audience {
             //end
             video_player.ended.connect (() => {
                 Idle.add (() => {
-                    video_player.playing = false;
+                    video_player.progress = 0;
                     int last_played_index = get_playlist_widget ().get_current ();
                     if (!get_playlist_widget ().next ()) {
-
                         if (repeat) {
                             play_file (get_playlist_widget ().get_first_item ().get_uri ());
-                            Idle.add (() => { video_player.progress = 0; return false; });
                             video_player.playing = true;
                         } else {
-                            /* if (last_played_index > 0) { */
-                            /*     button.description = _("Replay last playlist"); */
-                            /* } else { App.get_instance ().*/
-                            /*     button.description = _("Replay '%s'").printf (get_title (playlist.get_first_item ().get_basename ())); */
-                            /* } */
-
+                            video_player.playing = false;
                             ended ();
                         }
                     }
@@ -258,7 +251,7 @@ namespace Audience {
             init_size_variable ();
             video_player.relayout ();
             update_aspect_ratio ();
-            video_player.playing = !settings.playback_wait;
+            video_player.playing = true;
 
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);

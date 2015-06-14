@@ -240,9 +240,6 @@ namespace Audience.Widgets {
                     message ("playbin about to finish");
                     at_end = true;
                     ended ();
-                    Idle.add (()=>{
-                        playbin.set_state (Gst.State.PAUSED);
-                        return false; }); 
                 }
             });
         }
