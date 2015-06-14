@@ -18,6 +18,7 @@ namespace Audience {
         private GnomeMediaKeys             mediakeys;
 
         private bool mouse_primary_down = false;
+        private bool fullscreened = false;
 
         public bool repeat {
             get{
@@ -52,7 +53,7 @@ namespace Audience {
             bottom_bar.set_valign (Gtk.Align.END);
             bottom_bar.play_toggled.connect (() => { video_player.playing = !video_player.playing; });
             bottom_bar.seeked.connect ((val) => { video_player.progress = val; });
-            bottom_bar.unfullscreen.connect (() => { App.get_instance ().toggle_fullscreen (); });
+            bottom_bar.unfullscreen.connect (()=>{set_fullscreen (false);});
             bottom_bar.set_repeat (false);
 
             unfullscreen_bar = bottom_bar.get_unfullscreen_button ();
@@ -67,6 +68,9 @@ namespace Audience {
 
             this.size_allocate.connect (on_size_allocate);
             App.get_instance ().mainwindow.key_press_event.connect (on_key_press_event);
+            App.get_instance ().mainwindow.window_state_event.connect (on_window_state_event);
+            if (App.get_instance ().mainwindow.is_maximized)
+                set_fullscreen (true);
 
             //media keys
             try {
@@ -110,7 +114,7 @@ namespace Audience {
             this.button_press_event.connect ((event) => {
                 if (event.button == Gdk.BUTTON_PRIMARY
                     && event.type == Gdk.EventType.2BUTTON_PRESS) // double left click
-                    App.get_instance ().toggle_fullscreen ();
+                    set_fullscreen(!fullscreened);
 
                 if (event.button == Gdk.BUTTON_SECONDARY) // right click
                     bottom_bar.play_toggled ();
@@ -194,8 +198,6 @@ namespace Audience {
                 App.get_instance ().mainwindow.set_keep_above (video_player.playing && settings.stay_on_top);
             });
 
-            App.get_instance ().notify["fullscreened"].connect (() => {bottom_bar.fullscreen = App.get_instance ().fullscreened;});
-
             video_player.configure_window.connect ((video_w, video_h) => {App.get_instance ().on_configure_window (video_w, video_h);});
 
             bottom_bar.time_widget.slider_motion_event.connect ((event) => {
@@ -230,8 +232,13 @@ namespace Audience {
         ~PlayerPage () {
             video_player.playing = false;
 
+            App.get_instance ().mainwindow.window_state_event.disconnect (on_window_state_event);
             App.get_instance ().mainwindow.key_press_event.disconnect (on_key_press_event);
             App.get_instance ().mainwindow.get_window ().set_cursor (null);
+
+            App.get_instance ().mainwindow.unfullscreen ();
+            if (fullscreened)
+                App.get_instance ().mainwindow.maximize ();
 
             video_player.text_tags_changed.disconnect (bottom_bar.preferences_popover.setup_text);
             video_player.audio_tags_changed.disconnect (bottom_bar.preferences_popover.setup_audio);
@@ -347,8 +354,8 @@ namespace Audience {
                     video_player.playing = !video_player.playing;
                     break;
                 case Gdk.Key.Escape:
-                    if (App.get_instance ().fullscreened) {
-                        App.get_instance ().toggle_fullscreen ();
+                    if (fullscreened) {
+                        set_fullscreen (false);
                         return true;
                     }
                     break;
@@ -403,6 +410,32 @@ namespace Audience {
             }
 
             return false;
+        }
+
+        private bool on_window_state_event (Gdk.EventWindowState e){
+            switch (e.changed_mask){
+                case Gdk.WindowState.FULLSCREEN:
+                fullscreened= ((e.new_window_state & Gdk.WindowState.FULLSCREEN)!=0);
+                break;
+                case Gdk.WindowState.MAXIMIZED:
+                bool currently_maximixed = ((e.new_window_state & Gdk.WindowState.MAXIMIZED)!=0);
+                set_fullscreen (currently_maximixed);
+                break;
+            }
+            return false;
+        }
+
+        private void set_fullscreen (bool full){
+            fullscreened = full;
+            if (full) {
+                App.get_instance ().mainwindow.unmaximize ();
+                App.get_instance ().mainwindow.fullscreen ();
+            } else {
+                // unfullscreen shoulnd't be call from elsewhere other than here
+                App.get_instance ().mainwindow.maximize ();
+                App.get_instance ().mainwindow.unfullscreen ();
+            }
+            bottom_bar.fullscreen = full;
         }
 
         private uint update_aspect_ratio_timeout = 0;

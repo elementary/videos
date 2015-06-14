@@ -83,7 +83,6 @@ namespace Audience {
         public Gtk.Window     mainwindow;
         private Gtk.HeaderBar header;
 
-        public bool fullscreened { get; set; }
         private Page _page;
         public Page page {
             get {
@@ -169,16 +168,9 @@ namespace Audience {
             mainwindow.set_application (this);
             mainwindow.set_titlebar (header);
             mainwindow.window_position = Gtk.WindowPosition.CENTER;
-            /* mainwindow.set_default_size (960,640); */
             mainwindow.show_all ();
             if (!settings.show_window_decoration)
                 mainwindow.decorated = false;
-
-                        //fullscreen on maximize
-            mainwindow.window_state_event.connect ((e) => {
-                on_window_state_changed (e.window.get_state ());
-                return false;
-            });
 
             /* mainwindow.size_allocate.connect (on_size_allocate); */
             mainwindow.key_press_event.connect (on_key_press_event);
@@ -241,17 +233,6 @@ namespace Audience {
 
         }
 
-        
-        private void on_window_state_changed (Gdk.WindowState window_state) {
-            bool currently_maximized = (window_state & Gdk.WindowState.MAXIMIZED) == 0;
-
-            if (!currently_maximized && !fullscreened && page == Page.PLAYER) {
-                mainwindow.fullscreen ();
-                fullscreened = true;
-            }
-        }
-
-
         private void on_player_ended () {
             page = Page.WELCOME;
         }
@@ -263,10 +244,6 @@ namespace Audience {
                     break;
                 case Gdk.Key.o:
                     App.get_instance ().run_open_file ();
-                    break;
-                case Gdk.Key.f:
-                case Gdk.Key.F11:
-                    App.get_instance ().toggle_fullscreen ();
                     break;
                 case Gdk.Key.q:
                     App.get_instance ().mainwindow.destroy ();
@@ -348,17 +325,6 @@ namespace Audience {
 
         public void set_window_title (string title) {
             mainwindow.title = title;
-        }
-
-        public void toggle_fullscreen () {
-            if (fullscreened) {
-                mainwindow.unmaximize ();
-                mainwindow.unfullscreen ();
-                fullscreened = false;
-            } else {
-                mainwindow.fullscreen ();
-                fullscreened = true;
-            }
         }
 
         /*
