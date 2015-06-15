@@ -19,9 +19,6 @@ namespace Audience {
                 this.append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
             this.set_item_visible (1, show_last_file);
 
-            /* this.set_item_visible (2, false); */
-
-
             //look for dvd
             this.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
             this.set_item_visible (2, App.get_instance ().has_media_volumes ());
