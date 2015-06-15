@@ -237,7 +237,6 @@ namespace Audience.Widgets {
 
             playbin.about_to_finish.connect (() => {
                 if (!at_end) {
-                    message ("playbin about to finish");
                     at_end = true;
                     ended ();
                 }

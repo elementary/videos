@@ -227,7 +227,8 @@ namespace Audience {
             this.size_allocate.disconnect (on_size_allocate);
             App.get_instance ().mainwindow.window_state_event.disconnect (on_window_state_event);
             App.get_instance ().mainwindow.key_press_event.disconnect (on_key_press_event);
-            App.get_instance ().mainwindow.get_window ().set_cursor (null);
+            if (App.get_instance ().mainwindow != null)
+                App.get_instance ().mainwindow.get_window ().set_cursor (null);
 
             App.get_instance ().mainwindow.unfullscreen ();
             if (fullscreened)
