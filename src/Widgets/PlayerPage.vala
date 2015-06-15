@@ -237,7 +237,7 @@ namespace Audience {
             video_player.audio_tags_changed.disconnect (bottom_bar.preferences_popover.setup_audio);
         }
 
-        public void play_file (string uri) {
+        public void play_file (string uri, bool from_beginning = true) {
             debug ("Opening %s", uri);
             video_player.uri = uri;
             get_playlist_widget ().set_current (uri);
@@ -252,6 +252,8 @@ namespace Audience {
             video_player.relayout ();
             update_aspect_ratio ();
             video_player.playing = !settings.playback_wait;
+            if (from_beginning)
+                video_player.progress = 0.0;
 
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
@@ -283,6 +285,7 @@ namespace Audience {
         public void play_first_in_playlist () {
             var file = get_playlist_widget ().get_first_item ();
             play_file (file.get_uri ());
+            video_player.progress = 0.0;
         }
 
         private Widgets.Playlist get_playlist_widget () {
