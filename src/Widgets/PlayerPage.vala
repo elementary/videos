@@ -224,6 +224,7 @@ namespace Audience {
         ~PlayerPage () {
             video_player.playing = false;
 
+            this.size_allocate.disconnect (on_size_allocate);
             App.get_instance ().mainwindow.window_state_event.disconnect (on_window_state_event);
             App.get_instance ().mainwindow.key_press_event.disconnect (on_key_press_event);
             App.get_instance ().mainwindow.get_window ().set_cursor (null);
@@ -348,9 +349,10 @@ namespace Audience {
                 case Gdk.Key.Escape:
                     if (fullscreened) {
                         set_fullscreen (false);
-                        return true;
+                    } else {
+                        App.get_instance ().mainwindow.destroy ();
                     }
-                    break;
+                    return true;
                 case Gdk.Key.Down:
                     if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) {
                         video_player.seek_jump_seconds (-5); // 5 secs
@@ -396,6 +398,13 @@ namespace Audience {
                     break;
                 case Gdk.Key.s:
                     bottom_bar.preferences_popover.next_text ();
+                    break;
+                case Gdk.Key.f:
+                    if (fullscreened)
+                        set_fullscreen (false);
+                    else
+                        set_fullscreen (true);
+
                     break;
                 default:
                     break;

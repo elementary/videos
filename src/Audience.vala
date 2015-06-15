@@ -241,9 +241,6 @@ namespace Audience {
 
         public bool on_key_press_event (Gdk.EventKey e) {
             switch (e.keyval) {
-                case Gdk.Key.Escape:
-                    App.get_instance ().mainwindow.destroy ();
-                    break;
                 case Gdk.Key.o:
                     App.get_instance ().run_open_file ();
                     break;
