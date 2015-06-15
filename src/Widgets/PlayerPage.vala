@@ -274,7 +274,14 @@ namespace Audience {
         public void resume_last_videos () {
             play_file (settings.current_video);
             video_player.playing = false;
-            Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
+            Idle.add (() => {
+                    if (settings.resume_videos)
+                        video_player.progress = settings.last_stopped;
+                    else
+                        video_player.progress = 0.0;
+
+                    return false;
+                    });
             video_player.playing = !settings.playback_wait;
         }
 

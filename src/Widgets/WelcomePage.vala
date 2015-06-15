@@ -13,7 +13,7 @@ namespace Audience {
                 show_last_file = false;
             }
 
-            if (settings.last_stopped == 0.0)
+            if (settings.last_stopped == 0.0 || !settings.resume_videos)
                 this.append ("media-playlist-repeat", _("Replay last video"), get_title (last_file.get_basename ()));
             else
                 this.append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
