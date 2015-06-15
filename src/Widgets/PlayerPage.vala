@@ -251,7 +251,7 @@ namespace Audience {
             init_size_variable ();
             video_player.relayout ();
             update_aspect_ratio ();
-            video_player.playing = true;
+            video_player.playing = !settings.playback_wait;
 
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
@@ -273,7 +273,7 @@ namespace Audience {
             play_file (settings.current_video);
             video_player.playing = false;
             Idle.add (() => {video_player.progress = settings.last_stopped; return false;});
-            video_player.playing = true;
+            video_player.playing = !settings.playback_wait;
         }
 
         public void append_to_playlist (File file) {
