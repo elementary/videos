@@ -171,6 +171,7 @@ namespace Audience {
             mainwindow.show_all ();
             if (!settings.show_window_decoration)
                 mainwindow.decorated = false;
+            set_window_title (program_name);
 
             mainwindow.key_press_event.connect (on_key_press_event);
 
