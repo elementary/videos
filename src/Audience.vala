@@ -335,8 +335,11 @@ namespace Audience {
         }
 
         public override void activate () {
-            if (mainwindow == null)
+            if (mainwindow == null) {
                 build ();
+                if (settings.resume_videos)
+                    resume_last_videos ();
+            }
         }
 
         //the application was requested to open some files
