@@ -212,7 +212,7 @@ namespace Audience {
             var h = (int) (w * geom.max_aspect);
             int b, c;
 
-            mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
+            mainwindow.set_geometry_hints (mainwindow, geom, Gdk.WindowHints.ASPECT);
 
             mainwindow.get_window ().constrain_size (geom, Gdk.WindowHints.ASPECT, w, h, out b, out c);
             print ("Result: %i %i == %i %i\n", w, h, b, c);
