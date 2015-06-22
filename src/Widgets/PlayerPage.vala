@@ -35,7 +35,6 @@ namespace Audience {
         public signal void ended ();
 
         public PlayerPage () {
-            /* video_player = Widgets.VideoPlayer.get_default (); */
             video_player = new Widgets.VideoPlayer();
             video_player.notify["playing"].connect (() => {bottom_bar.toggle_play_pause ();});
 
@@ -189,8 +188,6 @@ namespace Audience {
             video_player.notify["playing"].connect (() => {
                 App.get_instance ().mainwindow.set_keep_above (video_player.playing && settings.stay_on_top);
             });
-
-            video_player.configure_window.connect ((video_w, video_h) => {App.get_instance ().on_configure_window (video_w, video_h);});
 
             bottom_bar.time_widget.slider_motion_event.connect ((event) => {
                 int x, y;

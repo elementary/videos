@@ -103,8 +103,6 @@ namespace Audience.Widgets {
                     return;
                 }
 
-                intial_relayout = true;
-
                 playbin.get_bus ().set_flushing (true);
                 playing = false;
                 playbin.set_state (Gst.State.READY);
@@ -180,7 +178,6 @@ namespace Audience.Widgets {
         public signal void audio_tags_changed ();
         public signal void error ();
         public signal void plugin_install_done ();
-        public signal void configure_window (uint video_w, uint video_h);
         public signal void progression_changed (double current_time, double total_time);
         public signal void external_subtitle_changed (string? uri);
         
@@ -359,15 +356,9 @@ namespace Audience.Widgets {
             }
         }
 
-        bool intial_relayout = false;
         public bool relayout () {
             if (video_width < 1 || video_height < 1 || uri == null)
                 return false;
-
-            if (intial_relayout) {
-                configure_window (video_width, video_height);
-                intial_relayout = false;
-            }
 
             var stage = get_stage ();
             var aspect = stage.width / video_width < stage.height / video_height ?

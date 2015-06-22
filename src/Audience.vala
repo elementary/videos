@@ -216,24 +216,6 @@ namespace Audience {
 
             mainwindow.get_window ().constrain_size (geom, Gdk.WindowHints.ASPECT, w, h, out b, out c);
             print ("Result: %i %i == %i %i\n", w, h, b, c);
-            mainwindow.get_window ().resize (b, c);
-
-        }
-
-        public void on_configure_window (uint video_w, uint video_h) {
-            Gdk.Rectangle monitor;
-            var screen = Gdk.Screen.get_default ();
-            screen.get_monitor_geometry (screen.get_monitor_at_window (mainwindow.get_window ()), out monitor);
-
-            int width = 0, height = 0;
-            if (monitor.width > video_w && monitor.height > video_h) {
-                width = (int) mainwindow.get_allocated_width ();
-                height = (int) mainwindow.get_allocated_height ();
-            } else {
-                width = (int)(monitor.width * 0.9);
-                height = (int)((double)video_h / video_w * width);
-            }
-            mainwindow.resize(width, height);
         }
 
         private void on_player_ended () {
