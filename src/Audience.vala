@@ -168,6 +168,7 @@ namespace Audience {
             mainwindow.set_application (this);
             mainwindow.set_titlebar (header);
             mainwindow.window_position = Gtk.WindowPosition.CENTER;
+            mainwindow.gravity = Gdk.Gravity.CENTER;
             mainwindow.show_all ();
             if (!settings.show_window_decoration)
                 mainwindow.decorated = false;
