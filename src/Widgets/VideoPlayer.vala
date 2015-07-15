@@ -268,7 +268,6 @@ namespace Audience.Widgets {
                     break;
                 case Gst.MessageType.EOS:
                     Idle.add (()=>{
-                            message ("eos");
                             playbin.set_state (Gst.State.READY);
                             ended ();
                             return false;
