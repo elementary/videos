@@ -267,7 +267,12 @@ namespace Audience.Widgets {
                     show_error (e.message);
                     break;
                 case Gst.MessageType.EOS:
-                    playbin.set_state (Gst.State.READY);
+                    Idle.add (()=>{
+                            message ("eos");
+                            playbin.set_state (Gst.State.READY);
+                            ended ();
+                            return false;
+                            });
                     break;
                 case Gst.MessageType.ELEMENT:
                     if (msg.get_structure () == null)
