@@ -66,7 +66,7 @@ namespace Audience {
 
             main_url = "https://code.launchpad.net/audience";
             bug_url = "https://bugs.launchpad.net/audience";
-            help_url = "https://code.launchpad.net/audience";
+            help_url = "https://answers.launchpad.net/audience";
             translate_url = "https://translations.launchpad.net/audience";
 
             about_authors = { "Cody Garver <cody@elementaryos.org>",
