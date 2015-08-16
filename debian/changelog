@@ -1,3 +1,9 @@
+audience (0.1.0.2) trusty; urgency=medium
+
+  * Fix icon in about dialog (lp:1478005)
+
+ -- Cody Garver <cody@elementary.io>  Sun, 16 Aug 2015 02:36:30 -0500
+
 audience (0.1.0.1) trusty; urgency=medium
 
   * Custom subtitle font support (lp:1455752)
