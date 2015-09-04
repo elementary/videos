@@ -168,6 +168,7 @@ namespace Audience {
             mainwindow.set_application (this);
             mainwindow.set_titlebar (header);
             mainwindow.window_position = Gtk.WindowPosition.CENTER;
+            mainwindow.gravity = Gdk.Gravity.CENTER;
             mainwindow.show_all ();
             if (!settings.show_window_decoration)
                 mainwindow.decorated = false;
@@ -200,40 +201,26 @@ namespace Audience {
         }
 
         public void set_content_size (double width, double height, double content_height){
-            double width_offset = mainwindow.get_allocated_width () - width;
-            double height_offset = mainwindow.get_allocated_height () - content_height;
-
-            print ("Width: %f, Height: %f, Offset: %f )\n", width, height,content_height);
-
             var geom = Gdk.Geometry ();
-            geom.min_aspect = geom.max_aspect = (width + width_offset) / (height + height_offset);
 
-            var w = mainwindow.get_allocated_width ();
-            var h = (int) (w * geom.max_aspect);
-            int b, c;
-
-            mainwindow.get_window ().set_geometry_hints (geom, Gdk.WindowHints.ASPECT);
-
-            mainwindow.get_window ().constrain_size (geom, Gdk.WindowHints.ASPECT, w, h, out b, out c);
-            print ("Result: %i %i == %i %i\n", w, h, b, c);
-            mainwindow.get_window ().resize (b, c);
-
-        }
-
-        public void on_configure_window (uint video_w, uint video_h) {
-            Gdk.Rectangle monitor;
-            var screen = Gdk.Screen.get_default ();
-            screen.get_monitor_geometry (screen.get_monitor_at_window (mainwindow.get_window ()), out monitor);
-
-            int width = 0, height = 0;
-            if (monitor.width > video_w && monitor.height > video_h) {
-                width = (int) mainwindow.get_allocated_width ();
-                height = (int) mainwindow.get_allocated_height ();
+            if (width == 0
+                && height == 0
+                && content_height == 0) {
+                geom.min_aspect = geom.max_aspect = 0;
             } else {
-                width = (int)(monitor.width * 0.9);
-                height = (int)((double)video_h / video_w * width);
+                double width_offset = mainwindow.get_allocated_width () - width;
+                double height_offset = mainwindow.get_allocated_height () - content_height;
+
+                debug ("Width: %f, Height: %f, Offset: %f )\n", width, height, content_height);
+
+                geom.min_aspect = geom.max_aspect = (width + width_offset) / (height + height_offset);
+
+                var w = mainwindow.get_allocated_width ();
+                var h = (int) (w * geom.max_aspect);
+                int b, c;
             }
-            mainwindow.resize(width, height);
+
+            mainwindow.set_geometry_hints (mainwindow, geom, Gdk.WindowHints.ASPECT);
         }
 
         private void on_player_ended () {
