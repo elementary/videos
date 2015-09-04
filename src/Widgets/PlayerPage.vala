@@ -221,6 +221,7 @@ namespace Audience {
         ~PlayerPage () {
             video_player.playing = false;
 
+            App.get_instance ().set_content_size (0, 0, 0);
             this.size_allocate.disconnect (on_size_allocate);
             App.get_instance ().mainwindow.window_state_event.disconnect (on_window_state_event);
             App.get_instance ().mainwindow.key_press_event.disconnect (on_key_press_event);

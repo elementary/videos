@@ -201,17 +201,24 @@ namespace Audience {
         }
 
         public void set_content_size (double width, double height, double content_height){
-            double width_offset = mainwindow.get_allocated_width () - width;
-            double height_offset = mainwindow.get_allocated_height () - content_height;
-
-            debug ("Width: %f, Height: %f, Offset: %f )\n", width, height, content_height);
-
             var geom = Gdk.Geometry ();
-            geom.min_aspect = geom.max_aspect = (width + width_offset) / (height + height_offset);
 
-            var w = mainwindow.get_allocated_width ();
-            var h = (int) (w * geom.max_aspect);
-            int b, c;
+            if (width == 0
+                && height == 0
+                && content_height == 0) {
+                geom.min_aspect = geom.max_aspect = 0;
+            } else {
+                double width_offset = mainwindow.get_allocated_width () - width;
+                double height_offset = mainwindow.get_allocated_height () - content_height;
+
+                debug ("Width: %f, Height: %f, Offset: %f )\n", width, height, content_height);
+
+                geom.min_aspect = geom.max_aspect = (width + width_offset) / (height + height_offset);
+
+                var w = mainwindow.get_allocated_width ();
+                var h = (int) (w * geom.max_aspect);
+                int b, c;
+            }
 
             mainwindow.set_geometry_hints (mainwindow, geom, Gdk.WindowHints.ASPECT);
         }
