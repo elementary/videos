@@ -94,8 +94,10 @@ namespace Audience.Widgets {
                     var video = info.get_video_streams ();
                     if (video != null && video.data != null) {
                         var video_info = (Gst.PbUtils.DiscovererVideoInfo)video.data;
-                        video_height = video_info.get_height ();
-                        video_width = query_video_width (video_info);
+                        uint w, h;
+                        get_media_size (video_info, out w, out h);
+                        video_width = w;
+                        video_height = h;
                     }
                 } catch (Error e) {
                     error ();
@@ -476,6 +478,36 @@ namespace Audience.Widgets {
             playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, new_position);
         }
 
+        private void get_media_size (Gst.PbUtils.DiscovererVideoInfo video_info, out uint video_width, out uint video_height) {
+            var video_w = video_info.get_width ();
+            var video_h = video_info.get_height ();
+            var video_par_n = video_info.get_par_num ();
+            var video_par_d = video_info.get_par_denom ();
+            if (video_par_n == 0 || video_par_d == 0) {
+                debug ("width and/or height 0, assumming 1/1");
+                video_par_n = 1;
+                video_par_d = 1;
+            }
+
+            uint num=0;
+            uint den=0;
+            if (!Gst.Video.calculate_display_ratio (num, den, video_w, video_h, video_par_n, video_par_d, 1366, 768)) {
+                num = 1;
+                den = 1;
+            }
+            debug ("calculate_display_ratio %u / %u", num, den);
+
+            if (video_w % num == 0) {
+                debug ("keeping video width");
+                video_width = video_w;
+                video_height = (uint) Gst.Util.uint64_scale (video_w, den, num);
+            } else {
+                debug ("keeping video height");
+                video_width = (uint) Gst.Util.uint64_scale (video_h, num, den);
+                video_height = video_h;
+                message (video_width.to_string ()+" "+video_height.to_string ());
+            }
+        }
         uint query_video_width (Gst.PbUtils.DiscovererVideoInfo video_info) {
             var par = get_video_par (video_info);
             if (par == -1) {
