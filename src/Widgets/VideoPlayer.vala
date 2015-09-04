@@ -35,6 +35,16 @@ enum PlayFlags {
     SOFT_COLORBALANCE = (1 << 10)
 }
 
+/* use internal function while
+ * https://bugzilla.gnome.org/show_bug.cgi?id=754567
+ * isn't fixed
+ */
+[CCode (cprefix = "Gst", gir_namespace="GstVideo", gir_version="1.0", lower_case_cprefix="gst_video_", cheader_filename = "gst/video/video.h")]
+namespace GstVideo {
+    [CCode (cheader_filename = "gst/video/video.h")]
+    public static extern bool calculate_display_ratio (out uint dar_n, out uint dar_d, uint video_width, uint video_height, uint video_par_n, uint video_par_d, uint display_par_n, uint display_par_d);
+}
+
 namespace Audience.Widgets {
     public class VideoPlayer : Actor {
         public bool at_end;
@@ -478,6 +488,8 @@ namespace Audience.Widgets {
             playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, new_position);
         }
 
+
+
         private void get_media_size (Gst.PbUtils.DiscovererVideoInfo video_info, out uint video_width, out uint video_height) {
             var video_w = video_info.get_width ();
             var video_h = video_info.get_height ();
@@ -488,14 +500,16 @@ namespace Audience.Widgets {
                 video_par_n = 1;
                 video_par_d = 1;
             }
+            debug ("video PAR %u/%u", video_par_n, video_par_d);
 
-            uint num=0;
-            uint den=0;
-            if (!Gst.Video.calculate_display_ratio (num, den, video_w, video_h, video_par_n, video_par_d, 1366, 768)) {
+            uint num;
+            uint den;
+            if (!GstVideo.calculate_display_ratio (out num, out den, video_w, video_h, video_par_n, video_par_d, 1, 1)) {
+                warning ("overflow calculating display ratio");
                 num = 1;
                 den = 1;
             }
-            debug ("calculate_display_ratio %u / %u", num, den);
+            debug ("calculated scale ratio %u / %u for %ux%u", num, den, video_w, video_h);
 
             if (video_w % num == 0) {
                 debug ("keeping video width");
@@ -505,25 +519,8 @@ namespace Audience.Widgets {
                 debug ("keeping video height");
                 video_width = (uint) Gst.Util.uint64_scale (video_h, num, den);
                 video_height = video_h;
-                message (video_width.to_string ()+" "+video_height.to_string ());
             }
-        }
-        uint query_video_width (Gst.PbUtils.DiscovererVideoInfo video_info) {
-            var par = get_video_par (video_info);
-            if (par == -1) {
-                return video_info.get_width ();
-            }
-            return (uint)(video_height * par);
-        }
-
-        //pixel aspect ratio
-        double get_video_par (Gst.PbUtils.DiscovererVideoInfo video_info) {
-            var num = video_info.get_par_num ();
-            var denom = video_info.get_par_denom ();
-            if (num == 1 && denom == 1) {
-                return -1; //Error.
-            }
-            return num / (double)denom;
+            debug ("scaling to %ux%u", video_width, video_height);
         }
 
         void update_subtitle_font () {
