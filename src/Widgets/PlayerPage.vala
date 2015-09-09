@@ -247,7 +247,6 @@ namespace Audience {
                 video_player.set_subtitle_uri (sub_uri);
 
             App.get_instance ().set_window_title (get_title (uri));
-            init_size_variable ();
             video_player.relayout ();
             update_aspect_ratio ();
             video_player.playing = !settings.playback_wait;
@@ -453,14 +452,6 @@ namespace Audience {
         private int prev_height = 0;
         private int old_h = -1;
         private int old_w = -1;
-        void init_size_variable () {
-            update_aspect_ratio_timeout = 0;
-            update_aspect_ratio_locked = false;
-            prev_width = 0;
-            prev_height = 0;
-            old_h = -1;
-            old_w = -1;
-        }
         /**
          * Updates the window's aspect ratio locking if enabled.
          * Return type is just there to make it compatible with Idle.add()
@@ -502,7 +493,7 @@ namespace Audience {
                 }
             }
 
-            if (prev_width != this.get_allocated_width () && prev_height != this.get_allocated_height ())
+            if (prev_width != this.get_allocated_width () || prev_height != this.get_allocated_height ())
                 Idle.add (update_aspect_ratio);
         }
 
