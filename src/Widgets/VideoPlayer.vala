@@ -120,7 +120,7 @@ namespace Audience.Widgets {
                 at_end = false;
 
                 relayout ();
-                playbin.set_state (Gst.State.PAUSED);
+                playing = false;
             }
         }
 
