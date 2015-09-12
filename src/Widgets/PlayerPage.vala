@@ -248,6 +248,11 @@ namespace Audience {
 
             App.get_instance ().set_window_title (get_title (uri));
             video_player.relayout ();
+
+            int target_width, target_height, center_x, center_y;
+            get_target_size (out target_width, out target_height, out center_x, out center_y);
+            get_window ().move_resize (center_x, center_y, target_width, target_height);
+
             update_aspect_ratio ();
             video_player.playing = !settings.playback_wait;
             if (from_beginning)
@@ -346,6 +351,25 @@ namespace Audience {
             bottom_bar.reveal_control ();
 
             return false;
+        }
+
+        private void get_target_size (out int target_width, out int target_height,
+                out int center_x, out int center_y) {
+            Gdk.Rectangle monitor;
+            var screen = Gdk.Screen.get_default ();
+            screen.get_monitor_geometry (screen.get_monitor_at_window (get_window ()),
+                    out monitor);
+
+            if (monitor.width > video_player.video_width
+                && monitor.height > video_player.video_height) {
+                target_width = (int) video_player.video_width;
+                target_height = (int) video_player.video_height;
+            } else {
+                target_width = (int)(monitor.width * 0.9);
+                target_height = (int)((double) video_player.video_height / video_player.video_width * target_width);
+            }
+            center_x = monitor.width / 2 - target_width /2 + monitor.x;
+            center_y = monitor.height / 2 - target_height /2 + monitor.y;
         }
 
         private bool on_key_press_event (Gdk.EventKey e) {
@@ -470,8 +494,10 @@ namespace Audience {
                 Gtk.Allocation a;
                 clutter.get_allocation (out a);
                 print ("%i %i %i,%i\n", a.x, a.y, (this.get_allocated_width () - this.clutter.get_allocated_width ()) / 2, (this.get_allocated_height () - this.clutter.get_allocated_height ()) / 2);
-                double width = clutter.get_allocated_width ();
-                double height = width * video_player.video_height / (double) video_player.video_width;
+
+                double width, height;
+                width = clutter.get_allocated_width ();
+                height = width * video_player.video_height / (double) video_player.video_width;
 
                 App.get_instance ().set_content_size (width, height,clutter.get_allocated_height ());
 
