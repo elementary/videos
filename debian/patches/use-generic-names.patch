@@ -1,5 +1,14 @@
 --- a/src/Audience.vala
 +++ b/src/Audience.vala
+@@ -50,7 +50,7 @@
+         public bool repeat { get; set; }
+ 
+         construct {
+-            program_name = "Audience";
++            program_name = _("Videos");
+             exec_name = "audience";
+ 
+             build_data_dir = Constants.DATADIR;
 @@ -177,7 +177,7 @@
              mainwindow.events |= Gdk.EventMask.POINTER_MOTION_MASK;
              mainwindow.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
