@@ -246,6 +246,7 @@ namespace Audience {
         public void run_open_file () {
             var file = new Gtk.FileChooserDialog (_("Open"), mainwindow, Gtk.FileChooserAction.OPEN,
                 _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
+            file.set_transient_for (mainwindow);
             file.select_multiple = true;
 
             var all_files_filter = new Gtk.FileFilter ();
@@ -362,9 +363,10 @@ namespace Audience {
                     show_notification (_("Video added to playlist"), get_title (videos[0]));
                 else
                     show_notification (_("%i videos added to playlist").printf (videos.length), "");
-            } else {
-                play_file (videos [0]);
             }
+
+            play_file (videos [0]);
+
 
         }
 
