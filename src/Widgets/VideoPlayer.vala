@@ -126,7 +126,7 @@ namespace Audience.Widgets {
                 at_end = false;
 
                 relayout ();
-                playing = true;
+                playing = false;
             }
         }
 
@@ -192,7 +192,7 @@ namespace Audience.Widgets {
         public signal void plugin_install_done ();
         public signal void progression_changed (double current_time, double total_time);
         public signal void external_subtitle_changed (string? uri);
-        
+
         public VideoPlayer () {
             video = new Clutter.Texture ();
             playbin = Gst.ElementFactory.make ("playbin", "playbin");
@@ -270,9 +270,9 @@ namespace Audience.Widgets {
                     GLib.Error e; string detail;
                     msg.parse_error (out e, out detail);
                     playbin.set_state (Gst.State.NULL);
-                    
+
                     warning (detail);
-                    
+
                     show_error (e.message);
                     break;
                 case Gst.MessageType.EOS:
@@ -285,19 +285,19 @@ namespace Audience.Widgets {
                 case Gst.MessageType.ELEMENT:
                     if (msg.get_structure () == null)
                         break;
-                    
+
                     if (Gst.PbUtils.is_missing_plugin_message (msg)) {
                         error ();
                         playbin.set_state (Gst.State.NULL);
-                        
+
                         handle_missing_plugin (msg);
                     /*TODO } else { //may be navigation command
                         var nav_msg = Gst.Navigation.message_get_type (msg);
-                        
+
                         if (nav_msg == Gst.NavigationMessageType.COMMANDS_CHANGED) {
                             var q = Gst.Navigation.query_new_commands ();
                             pipeline.query (q);
-                            
+
                             uint n;
                             gst_navigation_query_parse_commands_length (q, out n);
                             for (var i=0;i<n;i++) {
@@ -392,10 +392,10 @@ namespace Audience.Widgets {
             var grid = new Gtk.Grid ();
             var err  = new Gtk.Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
             err.margin_right = 12;
-            
+
             var err_label = new Gtk.Label ("");
             err_label.set_markup ("<b>%s</b>".printf (_("Oops! Audience can't play this file!")));
-            
+
             grid.margin = 12;
             grid.attach (err, 0, 0, 1, 1);
             grid.attach (err_label, 1, 0, 1, 1);
@@ -461,7 +461,7 @@ namespace Audience.Widgets {
         //prevent screenlocking in Gnome 3 using org.gnome.SessionManager
         void set_screenlock (bool enable) {
             try {
-                session_manager = Bus.get_proxy_sync (BusType.SESSION, 
+                session_manager = Bus.get_proxy_sync (BusType.SESSION,
                         "org.gnome.SessionManager", "/org/gnome/SessionManager");
                 if (enable) {
                     session_manager.Uninhibit (inhibit_cookie);
@@ -484,7 +484,7 @@ namespace Audience.Widgets {
                 playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, int64.max (new_position, 1));
                 return;
             }
-            
+
             playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, new_position);
         }
 
@@ -530,7 +530,7 @@ namespace Audience.Widgets {
             if (font == "") {
                 var gnome_settings = new GLib.Settings ("org.gnome.desktop.interface");
                 font = gnome_settings.get_string ("font-name");
-            } 
+            }
             subtitle_font = font;
         }
     }

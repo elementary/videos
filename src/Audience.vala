@@ -62,13 +62,13 @@ namespace Audience {
             build_version_info = Constants.VERSION_INFO;
 
             app_years = "2011-2015";
-            app_icon = "audience";
+            app_icon = "multimedia-video-player";
             app_launcher = "audience.desktop";
             application_id = "net.launchpad.audience";
 
             main_url = "https://code.launchpad.net/audience";
             bug_url = "https://bugs.launchpad.net/audience";
-            help_url = "https://code.launchpad.net/audience";
+            help_url = "https://answers.launchpad.net/audience";
             translate_url = "https://translations.launchpad.net/audience";
 
             about_authors = { "Cody Garver <cody@elementaryos.org>",
