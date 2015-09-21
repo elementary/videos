@@ -321,8 +321,6 @@ namespace Audience {
         public override void activate () {
             if (mainwindow == null) {
                 build ();
-                if (settings.resume_videos && settings.last_stopped > 0.0)
-                    resume_last_videos ();
             }
         }
 
