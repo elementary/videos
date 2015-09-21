@@ -354,16 +354,20 @@ namespace Audience {
                 }
             }
 
-            play_file (videos [0]);
+            if (videos.length == 0)
+                return;
 
-            //TODO:enable notification
-            /* if (video_player.uri != null) { // we already play some file */
-            /*     if (files.length == 1) */
-            /*         show_notification (_("Video added to playlist"), files[0].get_basename ()); */
-            /*     else */
-            /*         show_notification (_("%i videos added to playlist").printf (files.length), ""); */
-            /* } else */
-            /*     open_file(files[0].get_uri ()); */
+            // notification when adding video to playlist
+            if (!player_page.video_player.playing // we are paused
+                && (mainwindow.get_window ().get_state () & Gdk.WindowState.FOCUSED) == 0) {
+                if (videos.length == 1)
+                    show_notification (_("Video added to playlist"), get_title (videos[0]));
+                else
+                    show_notification (_("%i videos added to playlist").printf (videos.length), "");
+            } else {
+                play_file (videos [0]);
+            }
+
         }
 
     }
