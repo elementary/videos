@@ -35,15 +35,18 @@ enum PlayFlags {
     SOFT_COLORBALANCE = (1 << 10)
 }
 
+/* use internal function while
+ * https://bugzilla.gnome.org/show_bug.cgi?id=754567
+ * isn't fixed
+ */
+[CCode (cprefix = "Gst", gir_namespace="GstVideo", gir_version="1.0", lower_case_cprefix="gst_video_", cheader_filename = "gst/video/video.h")]
+namespace GstVideo {
+    [CCode (cheader_filename = "gst/video/video.h")]
+    public static extern bool calculate_display_ratio (out uint dar_n, out uint dar_d, uint video_width, uint video_height, uint video_par_n, uint video_par_d, uint display_par_n, uint display_par_d);
+}
+
 namespace Audience.Widgets {
     public class VideoPlayer : Actor {
-        private static VideoPlayer? video_player = null;
-        public static VideoPlayer get_default () {
-            if (video_player == null)
-                video_player = new VideoPlayer ();
-            return video_player;
-        }
-
         public bool at_end;
 
         bool _playing;
@@ -101,8 +104,10 @@ namespace Audience.Widgets {
                     var video = info.get_video_streams ();
                     if (video != null && video.data != null) {
                         var video_info = (Gst.PbUtils.DiscovererVideoInfo)video.data;
-                        video_height = video_info.get_height ();
-                        video_width = query_video_width (video_info);
+                        uint w, h;
+                        get_media_size (video_info, out w, out h);
+                        video_width = w;
+                        video_height = h;
                     }
                 } catch (Error e) {
                     error ();
@@ -110,11 +115,12 @@ namespace Audience.Widgets {
                     return;
                 }
 
-                intial_relayout = true;
+                playbin.get_bus ().set_flushing (true);
                 playing = false;
                 playbin.set_state (Gst.State.READY);
                 playbin.suburi = null;
                 subtitle_uri = null;
+                playbin.get_bus ().set_flushing (false);
                 playbin.uri = value;
                 volume = 1.0;
                 at_end = false;
@@ -184,42 +190,13 @@ namespace Audience.Widgets {
         public signal void audio_tags_changed ();
         public signal void error ();
         public signal void plugin_install_done ();
-        public signal void configure_window (uint video_w, uint video_h);
         public signal void progression_changed (double current_time, double total_time);
         public signal void external_subtitle_changed (string? uri);
 
-        private VideoPlayer () {
+        public VideoPlayer () {
             video = new Clutter.Texture ();
-
-            dynamic Gst.Element video_sink = Gst.ElementFactory.make ("cluttersink", "source");
-            video_sink.texture = video;
-
             playbin = Gst.ElementFactory.make ("playbin", "playbin");
-            playbin.video_sink = video_sink;
-
-            add_child (video);
-            Timeout.add (100, () => {
-                int64 length, prog;
-                playbin.query_position (Gst.Format.TIME, out prog);
-                playbin.query_duration (Gst.Format.TIME, out length);
-                if (length == 0)
-                    return true;
-
-                progression_changed ((double)prog, (double)length);
-                return true;
-            });
-
-            update_subtitle_font ();
-            settings.changed.connect (() => {
-                update_subtitle_font ();
-            });
-
-            playbin.about_to_finish.connect (() => {
-                if (!at_end) {
-                    at_end = true;
-                    ended ();
-                }
-            });
+            build ();
 
             playbin.text_tags_changed.connect ((el) => {
                 var structure = new Gst.Structure.empty ("tags-changed");
@@ -233,8 +210,46 @@ namespace Audience.Widgets {
                 el.post_message (new Gst.Message.application (el, (owned) structure));
             });
 
+            Timeout.add (100, () => {
+                int64 length, prog;
+                playbin.query_position (Gst.Format.TIME, out prog);
+                playbin.query_duration (Gst.Format.TIME, out length);
+                if (length == 0)
+                    return true;
+
+                progression_changed ((double)prog, (double)length);
+                return true;
+            });
+
             playbin.get_bus ().add_signal_watch ();
             playbin.get_bus ().message.connect (watch);
+        }
+
+        ~VideoPlayer () {
+            playbin.set_state (Gst.State.NULL);
+            playbin.get_bus ().message.disconnect (watch);
+            message ("video player destroyed");
+        }
+
+        public void build (){
+
+            if (video.get_parent ()!=null)
+                remove_child (video);
+            dynamic Gst.Element video_sink = Gst.ElementFactory.make ("cluttersink", "source");
+            video_sink.texture = video;
+            playbin.video_sink = video_sink;
+            add_child(video);
+            update_subtitle_font ();
+            settings.changed.connect (() => {
+                update_subtitle_font ();
+            });
+
+            playbin.about_to_finish.connect (() => {
+                if (!at_end) {
+                    at_end = true;
+                    ended ();
+                }
+            });
         }
 
         void watch () {
@@ -261,7 +276,11 @@ namespace Audience.Widgets {
                     show_error (e.message);
                     break;
                 case Gst.MessageType.EOS:
-                    playbin.set_state (Gst.State.READY);
+                    Idle.add (()=>{
+                            playbin.set_state (Gst.State.READY);
+                            ended ();
+                            return false;
+                            });
                     break;
                 case Gst.MessageType.ELEMENT:
                     if (msg.get_structure () == null)
@@ -353,15 +372,9 @@ namespace Audience.Widgets {
             }
         }
 
-        bool intial_relayout = false;
         public bool relayout () {
             if (video_width < 1 || video_height < 1 || uri == null)
                 return false;
-
-            if (intial_relayout) {
-                configure_window (video_width, video_height);
-                intial_relayout = false;
-            }
 
             var stage = get_stage ();
             var aspect = stage.width / video_width < stage.height / video_height ?
@@ -475,22 +488,39 @@ namespace Audience.Widgets {
             playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, new_position);
         }
 
-        uint query_video_width (Gst.PbUtils.DiscovererVideoInfo video_info) {
-            var par = get_video_par (video_info);
-            if (par == -1) {
-                return video_info.get_width ();
-            }
-            return (uint)(video_height * par);
-        }
 
-        //pixel aspect ratio
-        double get_video_par (Gst.PbUtils.DiscovererVideoInfo video_info) {
-            var num = video_info.get_par_num ();
-            var denom = video_info.get_par_denom ();
-            if (num == 1 && denom == 1) {
-                return -1; //Error.
+
+        private void get_media_size (Gst.PbUtils.DiscovererVideoInfo video_info, out uint video_width, out uint video_height) {
+            var video_w = video_info.get_width ();
+            var video_h = video_info.get_height ();
+            var video_par_n = video_info.get_par_num ();
+            var video_par_d = video_info.get_par_denom ();
+            if (video_par_n == 0 || video_par_d == 0) {
+                debug ("width and/or height 0, assumming 1/1");
+                video_par_n = 1;
+                video_par_d = 1;
             }
-            return num / (double)denom;
+            debug ("video PAR %u/%u", video_par_n, video_par_d);
+
+            uint num;
+            uint den;
+            if (!GstVideo.calculate_display_ratio (out num, out den, video_w, video_h, video_par_n, video_par_d, 1, 1)) {
+                warning ("overflow calculating display ratio");
+                num = 1;
+                den = 1;
+            }
+            debug ("calculated scale ratio %u / %u for %ux%u", num, den, video_w, video_h);
+
+            if (video_w % num == 0) {
+                debug ("keeping video width");
+                video_width = video_w;
+                video_height = (uint) Gst.Util.uint64_scale (video_w, den, num);
+            } else {
+                debug ("keeping video height");
+                video_width = (uint) Gst.Util.uint64_scale (video_h, num, den);
+                video_height = video_h;
+            }
+            debug ("scaling to %ux%u", video_width, video_height);
         }
 
         void update_subtitle_font () {

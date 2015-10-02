@@ -63,6 +63,9 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
             cancel_loop_timer ();
         });
     }
+    ~PreviewPopover () {
+        preview_playbin.set_state (Gst.State.NULL);
+    }
 
     public void set_preview_uri (string uri) {
         preview_playbin.set_state (Gst.State.READY);

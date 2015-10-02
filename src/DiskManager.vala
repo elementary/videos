@@ -71,7 +71,7 @@ public class Audience.DiskManager : GLib.Object {
         monitor.volume_removed.connect ((volume) => {
             volumes.remove (volume);
             volume_removed (volume);
-            debug ("Volume removed: %s", volume.get_name ());
+            debug ("Volume removed: %s"+volumes.length ().to_string (), volume.get_name ());
         });
     }
 
@@ -81,7 +81,7 @@ public class Audience.DiskManager : GLib.Object {
 
     public GLib.List<Volume> get_media_volumes () {
         GLib.List<Volume> returnValue = new GLib.List<Volume> ();
-        foreach (Volume volume in get_volumes ()) {
+        foreach (Volume volume in volumes) {
             if (has_dvd_media (volume))
                 returnValue.append (volume);
         }
@@ -101,6 +101,12 @@ public class Audience.DiskManager : GLib.Object {
 
     private bool has_dvd_media (Volume volume) {
         debug ("Check DVD media for: %s", volume.get_name ());
+
+        // Stupid way to detect if its an optical drive
+        var icon_name = volume.get_icon ().to_string ();
+        if (!icon_name.contains ("optical"))
+            return false;
+
         if (volume.get_drive () != null && volume.get_drive ().has_media ()) {
             var root = volume.get_mount ().get_default_location ();
             if (root != null) {

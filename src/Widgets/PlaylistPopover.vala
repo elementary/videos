@@ -19,7 +19,11 @@
  */
 
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
-    Gtk.ScrolledWindow playlist_scrolled;
+    public Playlist playlist;
+    public Gtk.ToggleButton rep;
+    private Gtk.ScrolledWindow playlist_scrolled;
+    private Gtk.Button dvd;
+
     public PlaylistPopover () {
         opacity = GLOBAL_OPACITY;
         var grid = new Gtk.Grid ();
@@ -29,10 +33,12 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
 
         var fil = new Gtk.Button.from_icon_name ("document-open-symbolic", Gtk.IconSize.BUTTON);
         fil.set_tooltip_text (_("Open file"));
-        var dvd = new Gtk.Button.from_icon_name ("media-optical-symbolic", Gtk.IconSize.BUTTON);
+        dvd = new Gtk.Button.from_icon_name ("media-optical-symbolic", Gtk.IconSize.BUTTON);
         dvd.set_tooltip_text (_("Play from Disc"));
         dvd.no_show_all = true;
-        var rep = new Gtk.ToggleButton ();
+        set_dvd_visibility (App.get_instance ().has_media_volumes ());
+
+        rep = new Gtk.ToggleButton ();
         rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON));
         rep.set_tooltip_text (_("Enable Repeat"));
 
@@ -40,7 +46,9 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         playlist_scrolled.set_min_content_height (100);
         playlist_scrolled.set_min_content_width (260);
         var app = ((Audience.App) GLib.Application.get_default ());
-        playlist_scrolled.add (app.playlist);
+
+        playlist = new Playlist ();
+        playlist_scrolled.add (playlist);
 
         fil.clicked.connect ( () => {
             hide ();
@@ -53,7 +61,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         });
 
         rep.toggled.connect ( () => {
-            app.repeat = rep.active;
+            /* app.repeat = rep.active; */
             if (rep.active) {
                 rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.BUTTON));
                 rep.set_tooltip_text (_("Disable Repeat"));
@@ -68,26 +76,22 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         grid.attach (dvd, 1, 1, 1, 1);
         grid.attach (rep, 6, 1, 1, 1);
 
-        //look for dvd
-        var disk_manager = DiskManager.get_default ();
-        foreach (var volume in disk_manager.get_volumes ()) {
-            dvd.no_show_all = false;
-            dvd.show ();
-        }
-
-        disk_manager.volume_found.connect ((vol) => {
-            dvd.no_show_all = false;
-            dvd.show ();
-        });
-
-        disk_manager.volume_removed.connect ((vol) => {
-            if (disk_manager.get_volumes ().length () <= 0) {
-                dvd.no_show_all = true;
-                dvd.hide ();
-            }
-        });
-
         add (grid);
+
+        App.get_instance ().media_volumes_changed.connect (on_media_volumes_changed);
+    }
+
+    ~PlaylistPopover () {
+        App.get_instance ().media_volumes_changed.disconnect (on_media_volumes_changed);
+    }
+
+    private void on_media_volumes_changed () {
+        set_dvd_visibility (App.get_instance ().has_media_volumes ());
+    }
+
+    private void set_dvd_visibility (bool visible) {
+        dvd.no_show_all = true;
+        dvd.visible = visible;
     }
 
     //Override because the Popover doesn't auto-rejust his size.
@@ -96,7 +100,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         int p_minimum_height;
         int p_natural_height;
         var app = ((Audience.App) GLib.Application.get_default ());
-        app.playlist.get_preferred_height (out p_minimum_height, out p_natural_height);
+        playlist.get_preferred_height (out p_minimum_height, out p_natural_height);
         int temp_minimum_height = minimum_height + p_minimum_height;
         int r_minimum_height;
         int r_natural_height;

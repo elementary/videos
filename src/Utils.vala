@@ -153,4 +153,8 @@ namespace Audience {
         }
 #endif
     }
+
+    private bool modifier_is_pressed (Gdk.EventKey event, Gdk.ModifierType modifier) {
+        return (event.state & modifier) == modifier;
+    }
 }

@@ -11,13 +11,14 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Config.vala.cmake ${CONFIG_FILE})
 # pkgconfig, real C code
 find_package (PkgConfig)
 
-set (PKG_DEPS granite>=0.3.0 clutter-gtk-1.0 gstreamer-1.0 gstreamer-pbutils-1.0 gstreamer-tag-1.0)
+set (PKG_DEPS granite>=0.3.0 clutter-gtk-1.0 gstreamer-1.0 gstreamer-pbutils-1.0 gstreamer-video-1.0 gstreamer-tag-1.0)
 set (VALA_DEPS
     granite>=0.3.0
     clutter-gtk-1.0
     gdk-x11-3.0
     gstreamer-1.0
     gstreamer-pbutils-1.0
+    gstreamer-video-1.0
     gstreamer-tag-1.0
 )
 
@@ -62,6 +63,8 @@ vala_precompile (VALA_C ${EXEC_NAME}
     Widgets/Playlist.vala
     Widgets/PlaylistPopover.vala
     Widgets/VideoPlayer.vala
+    Widgets/WelcomePage.vala
+    Widgets/PlayerPage.vala
   PACKAGES
     ${VALA_DEPS}
   OPTIONS
@@ -69,7 +72,6 @@ vala_precompile (VALA_C ${EXEC_NAME}
     --enable-experimental
     --target-glib=2.32 # Remember to keep this updated.
     --thread
-    -g
 )
 
 add_executable (${EXEC_NAME} ${VALA_C})

@@ -27,16 +27,19 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     public bool hovered { get; set; default=false; }
     public bool fullscreen { get; set; default=false; }
     public SettingsPopover preferences_popover;
+    public PlaylistPopover playlist_popover;
     public TimeWidget time_widget;
 
+    private Widgets.VideoPlayer player;
     private Gtk.Button play_button;
     private Gtk.Button preferences_button;
     private Gtk.Revealer unfullscreen_revealer;
-    private PlaylistPopover playlist_popover;
     private bool is_playing = false;
     private uint hiding_timer = 0;
 
-    public BottomBar () {
+    public BottomBar (Widgets.VideoPlayer player) {
+        this.player = player;
+
         this.events |= Gdk.EventMask.POINTER_MOTION_MASK;
         this.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
         this.events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
@@ -65,7 +68,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
         playlist_popover = new PlaylistPopover ();
         playlist_popover.relative_to = playlist_button;
-        preferences_popover = new SettingsPopover ();
+        preferences_popover = new SettingsPopover (player);
         preferences_popover.relative_to = preferences_button;
 
         main_actionbar.pack_start (play_button);
@@ -100,6 +103,14 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         time_widget.set_preview_uri (uri);
     }
 
+    public bool get_repeat () {
+        return playlist_popover.rep.active;
+    }
+
+    public void set_repeat (bool repeat) {
+        playlist_popover.rep.active = repeat;
+    }
+
     public Gtk.Revealer get_unfullscreen_button () {
         unfullscreen_revealer = new Gtk.Revealer ();
         unfullscreen_revealer.opacity = GLOBAL_OPACITY;
@@ -121,7 +132,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         } else {
             play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON);
             play_button.tooltip_text = _("Play");
-            set_reveal_child (!VideoPlayer.get_default ().at_end);
+            set_reveal_child (!player.at_end);
         }
     }
 
