@@ -1,4 +1,4 @@
-# Kurdish (Sorani) translation for audience
+# Kurdish translation for audience
 # Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the audience package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
@@ -8,214 +8,217 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-03-28 13:16-0500\n"
-"PO-Revision-Date: 2015-10-01 02:10+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Kurdish (Sorani) <ckb@li.org>\n"
+"PO-Revision-Date: 2015-10-01 16:12+0000\n"
+"Last-Translator: javad sajjadi <Unknown>\n"
+"Language-Team: Kurdish <ku@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-10-01 05:46+0000\n"
-"X-Generator: Launchpad (build 17780)\n"
+"X-Launchpad-Export-Date: 2015-10-02 05:36+0000\n"
+"X-Generator: Launchpad (build 17783)\n"
+"Language: ku\n"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:40
 msgid "Videos"
-msgstr ""
+msgstr "ڤیدۆکان"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;ڤیدیۆ;پلەیەر;فیلم;"
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "دیتنی ڤیدیۆ و فیلم"
 
 #: ../src/Audience.vala:44
 msgid "Video Player"
-msgstr ""
+msgstr "پلەیەری ڤیدیۆ"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
 msgid "About Audience"
-msgstr ""
+msgstr "دەربارەی Audience"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
 msgid "About Videos"
-msgstr ""
+msgstr "لەبارەی ڤیدیۆکان"
 
 #: ../src/Audience.vala:241
 msgid "Replay last playlist"
-msgstr ""
+msgstr "دووپاتکردنی کۆتایین پلەی لیست"
 
 #: ../src/Audience.vala:243
 msgid "Replay '%s'"
-msgstr ""
+msgstr "دووپات '%s'"
 
 #: ../src/Audience.vala:366
 msgid "No Videos Open"
-msgstr ""
+msgstr "ڤیدۆ نەکراوە"
 
 #: ../src/Audience.vala:366
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "هەڵپژاردنی سەرچاوە بۆ چاولیکردن"
 
 #: ../src/Audience.vala:367 ../src/Widgets/PlaylistPopover.vala:31
 msgid "Open file"
-msgstr ""
+msgstr "کردنەوەی فایل"
 
 #: ../src/Audience.vala:367
 msgid "Open a saved file."
-msgstr ""
+msgstr "کدنەوە و پاشکەوتی فایل"
 
 #: ../src/Audience.vala:372
 msgid "Resume last video"
-msgstr ""
+msgstr "دەستپێکردنەوە کۆتایین ڤیدیۆ"
 
 #: ../src/Audience.vala:380
 msgid "Replay"
-msgstr ""
+msgstr "دووپات"
 
 #: ../src/Audience.vala:380
 msgid "Replay last video"
-msgstr ""
+msgstr "دووپاتکردنی کۆتایین ڤیدیۆ"
 
 #: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
 msgid "Play from Disc"
-msgstr ""
+msgstr "چاولیکردن لە دیسک"
 
 #: ../src/Audience.vala:383
 msgid "Watch a DVD or open a file from disc"
-msgstr ""
+msgstr "دیتن لە سەر DVD  یان فایلێک لە دیسک"
 
 #: ../src/Audience.vala:427
 msgid "Open location"
-msgstr ""
+msgstr "کردنەوەی شوێن"
 
 #: ../src/Audience.vala:429
 msgid "Cancel"
-msgstr ""
+msgstr "بەتال"
 
 #: ../src/Audience.vala:430
 msgid "OK"
-msgstr ""
+msgstr "باشە"
 
 #: ../src/Audience.vala:437
 msgid "Choose location"
-msgstr ""
+msgstr "هەڵبژاردنی شوێن"
 
 #: ../src/Audience.vala:704
 msgid "Open"
-msgstr ""
+msgstr "دیتن"
 
 #: ../src/Audience.vala:705
 msgid "_Cancel"
-msgstr ""
+msgstr "_وازهێنان"
 
 #: ../src/Audience.vala:705
 msgid "_Open"
-msgstr ""
+msgstr "_دیتن"
 
 #: ../src/Audience.vala:709 ../src/Widgets/SettingsPopover.vala:33
 msgid "All files"
-msgstr ""
+msgstr "گشتی فایلەکان"
 
 #: ../src/Audience.vala:713
 msgid "Video files"
-msgstr ""
+msgstr "فایلی ڤیدیۆ"
 
 #: ../src/Audience.vala:884
 msgid "Video added to playlist"
-msgstr ""
+msgstr "زیاد کردنی ڤیدیۆ بە پلەی لیست"
 
 #: ../src/Audience.vala:886
 msgid "%i videos added to playlist"
-msgstr ""
+msgstr "%i ڤیدیۆکان زیاد کران بە پلەی لیست"
 
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
 msgid "Enable Repeat"
-msgstr ""
+msgstr "چالاککردنی دوپات"
 
 #: ../src/Widgets/PlaylistPopover.vala:59
 msgid "Disable Repeat"
-msgstr ""
+msgstr "چالاکنکردنی دوبارە"
 
 #: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:123
 msgid "Play"
-msgstr ""
+msgstr "یاری"
 
 #: ../src/Widgets/BottomBar.vala:56
 msgid "Playlist"
-msgstr ""
+msgstr "پلەی لیست"
 
 #: ../src/Widgets/BottomBar.vala:60
 msgid "Settings"
-msgstr ""
+msgstr "رێکخستن"
 
 #: ../src/Widgets/BottomBar.vala:108
 msgid "Unfullscreen"
-msgstr ""
+msgstr "چکۆلە کردن"
 
 #: ../src/Widgets/BottomBar.vala:119
 msgid "Pause"
-msgstr ""
+msgstr "وێستان"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
-msgstr ""
+msgstr "هەڵە"
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "_OK"
-msgstr ""
+msgstr "_باشە"
 
 #: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
-msgstr ""
+msgstr "بەداخەوە ! Audience  ناتوانێت ئەم فایلە بکاتەوە"
 
 #: ../src/Widgets/VideoPlayer.vala:388
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
+"زۆر فایل دەبێت بکرێنەوە بەنەرمەکالای تایبەت تا چاوی لێکەی.خۆکارانە Audience  "
+"دەتوانێت ئەم نەرمەکالا دامەزرێنێت"
 
 #: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
-msgstr ""
+msgstr "Audience پێویستیەتی %s بۆ دیتنی ئەم فایلە."
 
 #: ../src/Widgets/VideoPlayer.vala:400
 msgid "Don't install"
-msgstr ""
+msgstr "داینەمەزرینە"
 
 #: ../src/Widgets/VideoPlayer.vala:401
 msgid "Install"
-msgstr ""
+msgstr "دامەزراندن"
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
-msgstr ""
+msgstr "فایلی ژێرنووس"
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
-msgstr ""
+msgstr "ژێرنووسی دەرەکی"
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
-msgstr ""
+msgstr "دەنگ :"
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"
-msgstr ""
+msgstr "ژێر نووس"
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr ""
+msgstr "ژێرنووسی دەرەکی"
 
 #: ../src/Widgets/SettingsPopover.vala:121
 msgid "None"
-msgstr ""
+msgstr "هیج"
 
 #: ../src/Widgets/SettingsPopover.vala:152
 msgid "Default"
-msgstr ""
+msgstr "فەرمی"
