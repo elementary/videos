@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-03-28 13:16-0500\n"
-"PO-Revision-Date: 2015-10-13 19:17+0000\n"
+"PO-Revision-Date: 2015-10-14 12:25+0000\n"
 "Last-Translator: ABCDEFGH <aefgh7233@gmail.com>\n"
 "Language-Team: Thai <th@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-10-14 05:46+0000\n"
+"X-Launchpad-Export-Date: 2015-10-15 05:54+0000\n"
 "X-Generator: Launchpad (build 17812)\n"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
@@ -29,7 +29,7 @@ msgstr ""
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "ดูวิดีโอและภาพยนตร์"
 
 #: ../src/Audience.vala:44
 msgid "Video Player"
@@ -43,7 +43,7 @@ msgstr ""
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
 msgid "About Videos"
-msgstr ""
+msgstr "เกี่ยวกับ วิดีโอ"
 
 #: ../src/Audience.vala:241
 msgid "Replay last playlist"
@@ -131,7 +131,7 @@ msgstr ""
 
 #: ../src/Audience.vala:886
 msgid "%i videos added to playlist"
-msgstr ""
+msgstr "%i วิดีโอถูกเพิ่มไปยังเพลย์ลิสต์แล้ว"
 
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
