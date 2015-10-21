@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-03-28 13:16-0500\n"
-"PO-Revision-Date: 2015-03-28 20:55+0000\n"
-"Last-Translator: Artem Anufrij <Unknown>\n"
+"PO-Revision-Date: 2015-10-20 14:50+0000\n"
+"Last-Translator: koshi <koshi.dono@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-10-10 05:47+0000\n"
-"X-Generator: Launchpad (build 17802)\n"
+"X-Launchpad-Export-Date: 2015-10-21 06:08+0000\n"
+"X-Generator: Launchpad (build 17812)\n"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:40
@@ -29,7 +29,7 @@ msgstr "Audience;Video;Player;Movies;Аудиенс;Видео;Плеер;Кин
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
-msgstr "Смотреть видео и фильмы"
+msgstr "Просмотр видео и фильмов"
 
 #: ../src/Audience.vala:44
 msgid "Video Player"
@@ -47,11 +47,11 @@ msgstr "О программе"
 
 #: ../src/Audience.vala:241
 msgid "Replay last playlist"
-msgstr "Повторить просмотр списка воспроизведений"
+msgstr "Повторить список воспроизведения"
 
 #: ../src/Audience.vala:243
 msgid "Replay '%s'"
-msgstr "Повторить просмотр '%s'"
+msgstr "Повторить '%s'"
 
 #: ../src/Audience.vala:366
 msgid "No Videos Open"
@@ -71,7 +71,7 @@ msgstr "Открыть сохранённый файл."
 
 #: ../src/Audience.vala:372
 msgid "Resume last video"
-msgstr "Продолжить последнюю видеозапись."
+msgstr "Продолжить просмотр"
 
 #: ../src/Audience.vala:380
 msgid "Replay"
@@ -79,7 +79,7 @@ msgstr "Повторить"
 
 #: ../src/Audience.vala:380
 msgid "Replay last video"
-msgstr "Повторить просмотр видео"
+msgstr "Повторить последнюю видеозапись"
 
 #: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
 msgid "Play from Disc"
@@ -180,7 +180,7 @@ msgid ""
 "software automatically."
 msgstr ""
 "Для воспроизведения некоторых файлов необходимо дополнительное программное "
-"обеспечение. Программа Audience может установить его автоматически."
+"обеспечение. Audience может установить его автоматически."
 
 #: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
