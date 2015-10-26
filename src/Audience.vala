@@ -27,6 +27,13 @@ public extern bool gst_navigation_query_parse_commands_length (Gst.Query q, out 
 public extern bool gst_navigation_query_parse_commands_nth (Gst.Query q, uint n, out Gst.NavigationCommand cmd);
 */
 namespace Audience {
+
+    [DBus (name = "org.gnome.zeitgeist.Blacklist")]
+    interface BlacklistInterface : Object {
+        [DBus (signature = "a{s(asaasay)}")]
+        public abstract Variant get_templates () throws IOError;
+    }
+
     public enum Page {
         WELCOME,
         PLAYER
@@ -83,6 +90,8 @@ namespace Audience {
         public Gtk.Window     mainwindow;
         private Gtk.HeaderBar header;
 
+        private BlacklistInterface blacklist;
+
         private Page _page;
         public Page page {
             get {
@@ -134,6 +143,11 @@ namespace Audience {
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
 
+            try {
+                blacklist = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.zeitgeist.Engine", "/org/gnome/zeitgeist/blacklist");
+            } catch (Error e) {
+                error (e.message);
+            }
         }
 
         public static App get_instance () {
@@ -384,7 +398,25 @@ namespace Audience {
         internal bool is_privacy_mode_enabled () {
             var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
             bool privacy_mode = !privacy_settings.get_boolean ("remember-recent-files") || !privacy_settings.get_boolean ("remember-app-usage");
-            return privacy_mode;
+
+            if (privacy_mode) {
+                return true;
+            }
+
+            // ZEITGEIST
+            try {
+                foreach(Variant key in blacklist.get_templates ()) {
+                    VariantIter iter = key.iterator ();
+                    string template_id = iter.next_value ().get_string ();
+                    if (template_id == "app-" + exec_name + ".desktop") {
+                        return true;
+                    }
+                }
+            } catch (Error e) {
+                error (e.message);
+            }
+
+            return false;
         }
 
     }
