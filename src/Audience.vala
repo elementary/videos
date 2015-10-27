@@ -1,4 +1,3 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
  * Copyright (c) 2013-2014 Audience Developers (http://launchpad.net/pantheon-chat)
  *
@@ -27,12 +26,6 @@ public extern bool gst_navigation_query_parse_commands_length (Gst.Query q, out 
 public extern bool gst_navigation_query_parse_commands_nth (Gst.Query q, uint n, out Gst.NavigationCommand cmd);
 */
 namespace Audience {
-
-    [DBus (name = "org.gnome.zeitgeist.Blacklist")]
-    interface BlacklistInterface : Object {
-        [DBus (signature = "a{s(asaasay)}")]
-        public abstract Variant get_templates () throws IOError;
-    }
 
     public enum Page {
         WELCOME,
@@ -87,10 +80,10 @@ namespace Audience {
             about_license_type = Gtk.License.GPL_3_0;
         }
 
-        public Gtk.Window     mainwindow;
-        private Gtk.HeaderBar header;
+        private ZeitgeistManager    zeitgeist_manager;
+        private Gtk.HeaderBar       header;
 
-        private BlacklistInterface blacklist;
+        public Gtk.Window           mainwindow;
 
         private Page _page;
         public Page page {
@@ -143,11 +136,7 @@ namespace Audience {
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
 
-            try {
-                blacklist = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.zeitgeist.Engine", "/org/gnome/zeitgeist/blacklist");
-            } catch (Error e) {
-                error (e.message);
-            }
+            zeitgeist_manager = new ZeitgeistManager ();
         }
 
         public static App get_instance () {
@@ -403,20 +392,7 @@ namespace Audience {
                 return true;
             }
 
-            // ZEITGEIST
-            try {
-                foreach(Variant key in blacklist.get_templates ()) {
-                    VariantIter iter = key.iterator ();
-                    string template_id = iter.next_value ().get_string ();
-                    if (template_id == "app-" + exec_name + ".desktop") {
-                        return true;
-                    }
-                }
-            } catch (Error e) {
-                error (e.message);
-            }
-
-            return false;
+            return zeitgeist_manager.app_into_blacklist (exec_name);
         }
 
     }
