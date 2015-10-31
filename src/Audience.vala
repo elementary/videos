@@ -129,7 +129,6 @@ namespace Audience {
         public signal void media_volumes_changed ();
 
         public App () {
-            Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
 
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
