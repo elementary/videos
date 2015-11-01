@@ -493,7 +493,7 @@ namespace Audience {
             update_aspect_ratio_timeout = Timeout.add (200, () => {
                 Gtk.Allocation a;
                 clutter.get_allocation (out a);
-                print ("%i %i %i,%i\n", a.x, a.y, (this.get_allocated_width () - this.clutter.get_allocated_width ()) / 2, (this.get_allocated_height () - this.clutter.get_allocated_height ()) / 2);
+                debug ("%i %i %i,%i\n", a.x, a.y, (this.get_allocated_width () - this.clutter.get_allocated_width ()) / 2, (this.get_allocated_height () - this.clutter.get_allocated_height ()) / 2);
 
                 double width, height;
                 width = clutter.get_allocated_width ();
