@@ -58,8 +58,6 @@ namespace Audience.Widgets {
                 if (value == playing)
                     return;
 
-                set_screensaver (!value);
-                set_screenlock (!value);
                 playbin.set_state (value ? Gst.State.PLAYING : Gst.State.PAUSED);
                 _playing = value;
             }
@@ -180,9 +178,6 @@ namespace Audience.Widgets {
 
         public uint video_width { get; private set; }
         public uint video_height { get; private set; }
-
-        public GnomeSessionManager session_manager;
-        uint32 inhibit_cookie;
 
         public signal void ended ();
         public signal void toggle_side_pane (bool show);
@@ -443,34 +438,6 @@ namespace Audience.Widgets {
             }
 
             dlg.destroy ();
-        }
-
-        //TODO: Remove X Dependency!
-        //store the default values for setting back
-        X.Display dpy; int timeout = -1; int interval; int prefer_blanking; int allow_exposures;
-        void set_screensaver (bool enable) {
-            if (dpy == null)
-                dpy = new X.Display ();
-
-            if (timeout == -1)
-                dpy.get_screensaver (out timeout, out interval, out prefer_blanking, out allow_exposures);
-
-            dpy.set_screensaver (enable ? timeout : 0, interval, prefer_blanking, allow_exposures);
-        }
-
-        //prevent screenlocking in Gnome 3 using org.gnome.SessionManager
-        void set_screenlock (bool enable) {
-            try {
-                session_manager = Bus.get_proxy_sync (BusType.SESSION,
-                        "org.gnome.SessionManager", "/org/gnome/SessionManager");
-                if (enable) {
-                    session_manager.Uninhibit (inhibit_cookie);
-                } else {
-                    inhibit_cookie = session_manager.Inhibit ("audience", 0, "Playing Video using Audience", 12);
-                }
-            } catch (Error e) {
-                warning (e.message);
-            }
         }
 
         public void seek_jump_seconds (int seconds) {
