@@ -47,7 +47,6 @@ namespace GstVideo {
 
 namespace Audience.Widgets {
     public class VideoPlayer : Actor {
-        public bool at_end;
 
         bool _playing;
         public bool playing {
@@ -123,7 +122,6 @@ namespace Audience.Widgets {
                 playbin.get_bus ().set_flushing (false);
                 playbin.uri = value;
                 volume = 1.0;
-                at_end = false;
 
                 relayout ();
                 playing = false;
@@ -195,8 +193,9 @@ namespace Audience.Widgets {
 
         public VideoPlayer () {
             video = new Clutter.Texture ();
-            playbin = Gst.ElementFactory.make ("playbin", "playbin");
+            playbin = Gst.ElementFactory.make ("playbin", "play");
             build ();
+
 
             playbin.text_tags_changed.connect ((el) => {
                 var structure = new Gst.Structure.empty ("tags-changed");
@@ -221,13 +220,10 @@ namespace Audience.Widgets {
                 return true;
             });
 
-            playbin.get_bus ().add_signal_watch ();
-            playbin.get_bus ().message.connect (watch);
+            playbin.get_bus().add_watch(Priority.DEFAULT, watch);
         }
 
         ~VideoPlayer () {
-            playbin.set_state (Gst.State.NULL);
-            playbin.get_bus ().message.disconnect (watch);
             message ("video player destroyed");
         }
 
@@ -243,19 +239,9 @@ namespace Audience.Widgets {
             settings.changed.connect (() => {
                 update_subtitle_font ();
             });
-
-            playbin.about_to_finish.connect (() => {
-                if (!at_end) {
-                    at_end = true;
-                    ended ();
-                }
-            });
         }
 
-        void watch () {
-            var msg = playbin.get_bus ().peek ();
-            if (msg == null)
-                return;
+        bool watch (Gst.Bus bus, Gst.Message msg) {
 
             switch (msg.type) {
                 case Gst.MessageType.APPLICATION:
@@ -311,6 +297,7 @@ namespace Audience.Widgets {
                 default:
                     break;
             }
+            return true;
         }
 
         public void set_subtitle_uri (string? uri) {
