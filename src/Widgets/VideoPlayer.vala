@@ -193,9 +193,8 @@ namespace Audience.Widgets {
 
         public VideoPlayer () {
             video = new Clutter.Texture ();
-            playbin = Gst.ElementFactory.make ("playbin", "play");
+            playbin = Gst.ElementFactory.make ("playbin", "playbin");
             build ();
-
 
             playbin.text_tags_changed.connect ((el) => {
                 var structure = new Gst.Structure.empty ("tags-changed");
@@ -220,10 +219,13 @@ namespace Audience.Widgets {
                 return true;
             });
 
-            playbin.get_bus().add_watch(Priority.DEFAULT, watch);
+            playbin.get_bus ().add_signal_watch ();
+            playbin.get_bus ().message.connect (watch);
         }
 
         ~VideoPlayer () {
+            playbin.set_state (Gst.State.NULL);
+            playbin.get_bus ().message.disconnect (watch);
             message ("video player destroyed");
         }
 
@@ -241,7 +243,7 @@ namespace Audience.Widgets {
             });
         }
 
-        bool watch (Gst.Bus bus, Gst.Message msg) {
+        void watch (Gst.Message msg) {
 
             switch (msg.type) {
                 case Gst.MessageType.APPLICATION:
@@ -263,7 +265,6 @@ namespace Audience.Widgets {
                     break;
                 case Gst.MessageType.EOS:
                     Idle.add (()=>{
-                            playbin.set_state (Gst.State.READY);
                             ended ();
                             return false;
                             });
@@ -297,7 +298,6 @@ namespace Audience.Widgets {
                 default:
                     break;
             }
-            return true;
         }
 
         public void set_subtitle_uri (string? uri) {
