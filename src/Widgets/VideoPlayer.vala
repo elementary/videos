@@ -98,22 +98,6 @@ namespace Audience.Widgets {
                 if (value == (string)playbin.uri)
                     return;
 
-                try {
-                    var info = new Gst.PbUtils.Discoverer (10 * Gst.SECOND).discover_uri (value);
-                    var video = info.get_video_streams ();
-                    if (video != null && video.data != null) {
-                        var video_info = (Gst.PbUtils.DiscovererVideoInfo)video.data;
-                        uint w, h;
-                        get_media_size (video_info, out w, out h);
-                        video_width = w;
-                        video_height = h;
-                    }
-                } catch (Error e) {
-                    error ();
-                    warning (e.message);
-                    return;
-                }
-
                 playbin.get_bus ().set_flushing (true);
                 playing = false;
                 playbin.set_state (Gst.State.READY);
@@ -125,6 +109,22 @@ namespace Audience.Widgets {
 
                 relayout ();
                 playing = false;
+
+                // this has to be done after setting uri playbin, if not codec checking will fail
+                try {
+                    var info = new Gst.PbUtils.Discoverer (10 * Gst.SECOND).discover_uri (value);
+                    var video = info.get_video_streams ();
+                    if (video != null && video.data != null) {
+                        var video_info = (Gst.PbUtils.DiscovererVideoInfo)video.data;
+                        uint w, h;
+                        get_media_size (video_info, out w, out h);
+                        video_width = w;
+                        video_height = h;
+                    }
+                } catch (Error e) {
+                    warning (e.message);
+                    return;
+                }
             }
         }
 
