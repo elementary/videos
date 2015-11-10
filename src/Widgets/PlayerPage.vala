@@ -41,7 +41,6 @@ namespace Audience {
             clutter = new GtkClutter.Embed ();
             stage = (Clutter.Stage)clutter.get_stage ();
             stage.background_color = {0, 0, 0, 0};
-            stage.use_alpha = true;
 
             video_player.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
             video_player.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
