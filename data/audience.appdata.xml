@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2015 elementary, LLC <contact@elementary.io> -->
+<application>
+  <id type="desktop">audience.desktop</id>
+  <metadata_license>CC0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>Audience</name>
+  <summary>A modern video player</summary>
+  <description>
+    <p>
+      Audience is a modern video player that brings lessons
+      learned from the web home to the desktop.
+    </p>
+  </description>
+  <url type="homepage">http://elementary.io/</url>
+  <updatecontact>contact_at_elementary.io</updatecontact>
+</application>
