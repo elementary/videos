@@ -1,16 +1,16 @@
-# Basque translation for audience
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Esperanto translation for audience
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the audience package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-03-28 13:16-0500\n"
-"PO-Revision-Date: 2015-11-24 23:25+0000\n"
-"Last-Translator: Félix Brezo <felixbrezo@gmail.com>\n"
-"Language-Team: Basque <eu@li.org>\n"
+"PO-Revision-Date: 2015-11-24 23:48+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Esperanto <eo@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:40
 msgid "Videos"
-msgstr "Bideoak"
+msgstr ""
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:42
@@ -29,130 +29,130 @@ msgstr ""
 
 #: ../src/Audience.vala:43
 msgid "Watch videos and movies"
-msgstr "Bideoak eta pelikulak ikusi"
+msgstr ""
 
 #: ../src/Audience.vala:44
 msgid "Video Player"
-msgstr "Bideo erreproduzigailua"
+msgstr ""
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:46
 msgid "About Audience"
-msgstr "Audience-i Buruz"
+msgstr ""
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:48
 msgid "About Videos"
-msgstr "Bideoak-i Buruz"
+msgstr ""
 
 #: ../src/Audience.vala:241
 msgid "Replay last playlist"
-msgstr "Azken erreprodukzio-zerrenda"
+msgstr ""
 
 #: ../src/Audience.vala:243
 msgid "Replay '%s'"
-msgstr "'%s' errepikatu"
+msgstr ""
 
 #: ../src/Audience.vala:366
 msgid "No Videos Open"
-msgstr "Bideorik ez irekita"
+msgstr ""
 
 #: ../src/Audience.vala:366
 msgid "Select a source to begin playing."
-msgstr "Hautatu jatorri bat erreproduzitzen hasteko."
+msgstr ""
 
 #: ../src/Audience.vala:367 ../src/Widgets/PlaylistPopover.vala:31
 msgid "Open file"
-msgstr "Ireki fitxategia"
+msgstr ""
 
 #: ../src/Audience.vala:367
 msgid "Open a saved file."
-msgstr "Ireki gordetako fitxategi bat."
+msgstr ""
 
 #: ../src/Audience.vala:372
 msgid "Resume last video"
-msgstr "Jarraitu azken bideoa erreproduzitzen"
+msgstr ""
 
 #: ../src/Audience.vala:380
 msgid "Replay"
-msgstr "Errepikatu"
+msgstr ""
 
 #: ../src/Audience.vala:380
 msgid "Replay last video"
-msgstr "Errepikatu azken bideoa"
+msgstr ""
 
 #: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
 msgid "Play from Disc"
-msgstr "Erreproduzitu diskotik"
+msgstr ""
 
 #: ../src/Audience.vala:383
 msgid "Watch a DVD or open a file from disc"
-msgstr "Ikusi DVD bat edo ireki fitxategi bat diskotik"
+msgstr ""
 
 #: ../src/Audience.vala:427
 msgid "Open location"
-msgstr "Ireki kokalekua"
+msgstr ""
 
 #: ../src/Audience.vala:429
 msgid "Cancel"
-msgstr "Utzi"
+msgstr ""
 
 #: ../src/Audience.vala:430
 msgid "OK"
-msgstr "Ados"
+msgstr ""
 
 #: ../src/Audience.vala:437
 msgid "Choose location"
-msgstr "Hautatu kokalekua"
+msgstr ""
 
 #: ../src/Audience.vala:704
 msgid "Open"
-msgstr "Ireki"
+msgstr ""
 
 #: ../src/Audience.vala:705
 msgid "_Cancel"
-msgstr "_Utzi"
+msgstr ""
 
 #: ../src/Audience.vala:705
 msgid "_Open"
-msgstr "_Ireki"
+msgstr ""
 
 #: ../src/Audience.vala:709 ../src/Widgets/SettingsPopover.vala:33
 msgid "All files"
-msgstr "Fitxategi guztiak"
+msgstr ""
 
 #: ../src/Audience.vala:713
 msgid "Video files"
-msgstr "Bideo-fitxategiak"
+msgstr ""
 
 #: ../src/Audience.vala:884
 msgid "Video added to playlist"
-msgstr "Bideoa erreprodukzio-zerrendara gehituta"
+msgstr ""
 
 #: ../src/Audience.vala:886
 msgid "%i videos added to playlist"
-msgstr "%i bideo gehitutak erreprodukzio-zerrendara"
+msgstr ""
 
 #: ../src/Widgets/PlaylistPopover.vala:37
 #: ../src/Widgets/PlaylistPopover.vala:62
 msgid "Enable Repeat"
-msgstr "Gaitu errepikatzea"
+msgstr ""
 
 #: ../src/Widgets/PlaylistPopover.vala:59
 msgid "Disable Repeat"
-msgstr "Ezgaitu errepikatzea"
+msgstr ""
 
 #: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:123
 msgid "Play"
-msgstr "Jo"
+msgstr ""
 
 #: ../src/Widgets/BottomBar.vala:56
 msgid "Playlist"
-msgstr "Erreprodukzio-zerrenda"
+msgstr ""
 
 #: ../src/Widgets/BottomBar.vala:60
 msgid "Settings"
-msgstr "Ezarpenak"
+msgstr ""
 
 #: ../src/Widgets/BottomBar.vala:108
 msgid "Unfullscreen"
@@ -160,64 +160,62 @@ msgstr ""
 
 #: ../src/Widgets/BottomBar.vala:119
 msgid "Pause"
-msgstr "Gelditu"
+msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "Error"
-msgstr "Errorea"
+msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:362
 msgid "_OK"
-msgstr "_Ados"
+msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:368
 msgid "Oops! Audience can't play this file!"
-msgstr "Hara! Audiencek ezin du fitxategi hau erreproduzitu!"
+msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:388
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
-"Zenbait multimedia-fitxategik software gehigarria behar dute "
-"erreproduzitzeko. Audiencek software hau automatikoki instala dezake."
 
 #: ../src/Widgets/VideoPlayer.vala:393
 msgid "Audience needs %s to play this file."
-msgstr "Audiencek %s behar du fitxategi hau erreproduzitzeko."
+msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:400
 msgid "Don't install"
-msgstr "Ez instalatu"
+msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:401
 msgid "Install"
-msgstr "Instalatu"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:37
 msgid "Subtitle files"
-msgstr "Azpidatzi agiriak"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:44
 msgid "External Subtitles"
-msgstr "Kanpoko azpitituluak"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:48
 msgid "Audio:"
-msgstr "Audioa:"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:51
 msgid "Subtitles:"
-msgstr "Azpidatziak:"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:54
 msgid "External Subtitles:"
-msgstr "Kanpoko azpidatziak:"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:121
 msgid "None"
-msgstr "Bat ere ez"
+msgstr ""
 
 #: ../src/Widgets/SettingsPopover.vala:152
 msgid "Default"
-msgstr "Lehenetsia"
+msgstr ""
