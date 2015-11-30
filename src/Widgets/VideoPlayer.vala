@@ -47,7 +47,6 @@ namespace GstVideo {
 
 namespace Audience.Widgets {
     public class VideoPlayer : Actor {
-        public bool at_end;
 
         bool _playing;
         public bool playing {
@@ -99,6 +98,19 @@ namespace Audience.Widgets {
                 if (value == (string)playbin.uri)
                     return;
 
+                playbin.get_bus ().set_flushing (true);
+                playing = false;
+                playbin.set_state (Gst.State.READY);
+                playbin.suburi = null;
+                subtitle_uri = null;
+                playbin.get_bus ().set_flushing (false);
+                playbin.uri = value;
+                volume = 1.0;
+
+                relayout ();
+                playing = false;
+
+                // this has to be done after setting uri playbin, if not codec checking will fail
                 try {
                     var info = new Gst.PbUtils.Discoverer (10 * Gst.SECOND).discover_uri (value);
                     var video = info.get_video_streams ();
@@ -110,23 +122,9 @@ namespace Audience.Widgets {
                         video_height = h;
                     }
                 } catch (Error e) {
-                    error ();
                     warning (e.message);
                     return;
                 }
-
-                playbin.get_bus ().set_flushing (true);
-                playing = false;
-                playbin.set_state (Gst.State.READY);
-                playbin.suburi = null;
-                subtitle_uri = null;
-                playbin.get_bus ().set_flushing (false);
-                playbin.uri = value;
-                volume = 1.0;
-                at_end = false;
-
-                relayout ();
-                playing = false;
             }
         }
 
@@ -243,19 +241,9 @@ namespace Audience.Widgets {
             settings.changed.connect (() => {
                 update_subtitle_font ();
             });
-
-            playbin.about_to_finish.connect (() => {
-                if (!at_end) {
-                    at_end = true;
-                    ended ();
-                }
-            });
         }
 
-        void watch () {
-            var msg = playbin.get_bus ().peek ();
-            if (msg == null)
-                return;
+        void watch (Gst.Message msg) {
 
             switch (msg.type) {
                 case Gst.MessageType.APPLICATION:
@@ -277,7 +265,6 @@ namespace Audience.Widgets {
                     break;
                 case Gst.MessageType.EOS:
                     Idle.add (()=>{
-                            playbin.set_state (Gst.State.READY);
                             ended ();
                             return false;
                             });
