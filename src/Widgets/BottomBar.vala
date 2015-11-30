@@ -47,9 +47,9 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         this.enter_notify_event.connect ((event) => { this.hovered = true; return false; });
         this.leave_notify_event.connect ((event) => { this.hovered = false; return false; });
 
-        transition_type = Gtk.RevealerTransitionType.CROSSFADE;
+        this.transition_type = Gtk.RevealerTransitionType.SLIDE_UP;
+
         var main_actionbar = new Gtk.ActionBar ();
-        main_actionbar.opacity = GLOBAL_OPACITY;
 
         play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON);
         play_button.tooltip_text = _("Play");
@@ -113,8 +113,8 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
     public Gtk.Revealer get_unfullscreen_button () {
         unfullscreen_revealer = new Gtk.Revealer ();
-        unfullscreen_revealer.opacity = GLOBAL_OPACITY;
-        unfullscreen_revealer.transition_type = Gtk.RevealerTransitionType.CROSSFADE;
+        unfullscreen_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN;
+
         var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic", Gtk.IconSize.BUTTON);
         unfullscreen_button.tooltip_text = _("Unfullscreen");
         unfullscreen_button.clicked.connect (() => {unfullscreen ();});

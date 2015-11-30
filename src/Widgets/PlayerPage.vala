@@ -30,8 +30,6 @@ namespace Audience {
             }
         }
 
-        private int bottom_bar_size = 0;
-
         public signal void ended ();
 
         public PlayerPage () {
@@ -48,7 +46,6 @@ namespace Audience {
             stage.add_child (video_player);
 
             bottom_bar = new Widgets.BottomBar (video_player);
-            bottom_bar.set_valign (Gtk.Align.END);
             bottom_bar.play_toggled.connect (() => { video_player.playing = !video_player.playing; });
             bottom_bar.seeked.connect ((val) => { video_player.progress = val; });
             bottom_bar.unfullscreen.connect (()=>{set_fullscreen (false);});
@@ -58,10 +55,14 @@ namespace Audience {
 
             bottom_actor = new GtkClutter.Actor.with_contents (bottom_bar);
             bottom_actor.opacity = GLOBAL_OPACITY;
+            bottom_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
+            bottom_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 1));
             stage.add_child (bottom_actor);
 
             unfullscreen_actor = new GtkClutter.Actor.with_contents (unfullscreen_bar);
             unfullscreen_actor.opacity = GLOBAL_OPACITY;
+            unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.X_AXIS, 1));
+            unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 0));
             stage.add_child (unfullscreen_actor);
 
             this.size_allocate.connect (on_size_allocate);
@@ -209,8 +210,6 @@ namespace Audience {
                 }
             });
 
-            stage.notify["allocation"].connect (() => {allocate_bottombar ();});
-
             add (clutter);
 
             show_all ();
@@ -331,21 +330,8 @@ namespace Audience {
             return false;
         }
 
-        private void allocate_bottombar () {
-            bottom_actor.width = stage.get_width ();
-            bottom_bar.queue_resize ();
-            bottom_actor.y = stage.get_height () - bottom_bar_size;
-            unfullscreen_actor.y = 6;
-            unfullscreen_actor.x = stage.get_width () - bottom_bar_size - 6;
-        }
-
         public bool update_pointer_position (double y, int window_height) {
-            allocate_bottombar ();
             App.get_instance ().mainwindow.get_window ().set_cursor (null);
-            if (bottom_bar_size == 0) {
-                int minimum = 0;
-                bottom_bar.get_preferred_height (out minimum, out bottom_bar_size);
-            }
 
             bottom_bar.reveal_control ();
 
