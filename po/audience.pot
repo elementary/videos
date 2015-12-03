@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-28 13:16-0500\n"
+"POT-Creation-Date: 2015-12-03 15:10-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,205 +17,182 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-#: ../src/Audience.vala:40
-msgid "Videos"
-msgstr ""
-
-#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-#: ../src/Audience.vala:42
-msgid "Audience;Video;Player;Movies;"
-msgstr ""
-
-#: ../src/Audience.vala:43
-msgid "Watch videos and movies"
-msgstr ""
-
-#: ../src/Audience.vala:44
-msgid "Video Player"
-msgstr ""
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-#: ../src/Audience.vala:46
-msgid "About Audience"
-msgstr ""
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-#: ../src/Audience.vala:48
-msgid "About Videos"
-msgstr ""
-
-#: ../src/Audience.vala:241
-msgid "Replay last playlist"
-msgstr ""
-
-#: ../src/Audience.vala:243
-msgid "Replay '%s'"
-msgstr ""
-
-#: ../src/Audience.vala:366
-msgid "No Videos Open"
-msgstr ""
-
-#: ../src/Audience.vala:366
-msgid "Select a source to begin playing."
-msgstr ""
-
-#: ../src/Audience.vala:367 ../src/Widgets/PlaylistPopover.vala:31
-msgid "Open file"
-msgstr ""
-
-#: ../src/Audience.vala:367
-msgid "Open a saved file."
-msgstr ""
-
-#: ../src/Audience.vala:372
-msgid "Resume last video"
-msgstr ""
-
-#: ../src/Audience.vala:380
-msgid "Replay"
-msgstr ""
-
-#: ../src/Audience.vala:380
-msgid "Replay last video"
-msgstr ""
-
-#: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr ""
-
-#: ../src/Audience.vala:383
-msgid "Watch a DVD or open a file from disc"
-msgstr ""
-
-#: ../src/Audience.vala:427
-msgid "Open location"
-msgstr ""
-
-#: ../src/Audience.vala:429
-msgid "Cancel"
-msgstr ""
-
-#: ../src/Audience.vala:430
-msgid "OK"
-msgstr ""
-
-#: ../src/Audience.vala:437
-msgid "Choose location"
-msgstr ""
-
-#: ../src/Audience.vala:704
-msgid "Open"
-msgstr ""
-
-#: ../src/Audience.vala:705
-msgid "_Cancel"
-msgstr ""
-
-#: ../src/Audience.vala:705
-msgid "_Open"
-msgstr ""
-
-#: ../src/Audience.vala:709 ../src/Widgets/SettingsPopover.vala:33
+#: ../src/Widgets/SettingsPopover.vala:35 ../src/Audience.vala:253
 msgid "All files"
 msgstr ""
 
-#: ../src/Audience.vala:713
-msgid "Video files"
+#: ../src/Widgets/SettingsPopover.vala:39
+msgid "Subtitle files"
 msgstr ""
 
-#: ../src/Audience.vala:884
-msgid "Video added to playlist"
+#. /pgp-encrypted"
+#: ../src/Widgets/SettingsPopover.vala:46
+msgid "External Subtitles"
 msgstr ""
 
-#: ../src/Audience.vala:886
-msgid "%i videos added to playlist"
+#: ../src/Widgets/SettingsPopover.vala:50
+msgid "Audio:"
 msgstr ""
 
-#: ../src/Widgets/PlaylistPopover.vala:37
-#: ../src/Widgets/PlaylistPopover.vala:62
+#: ../src/Widgets/SettingsPopover.vala:53
+msgid "Subtitles:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:56
+msgid "External Subtitles:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:123
+msgid "None"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:154
+msgid "Default"
+msgstr ""
+
+#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:5
+msgid "Open file"
+msgstr ""
+
+#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:23
+msgid "Play from Disc"
+msgstr ""
+
+#: ../src/Widgets/PlaylistPopover.vala:43
+#: ../src/Widgets/PlaylistPopover.vala:70
 msgid "Enable Repeat"
 msgstr ""
 
-#: ../src/Widgets/PlaylistPopover.vala:59
+#: ../src/Widgets/PlaylistPopover.vala:67
 msgid "Disable Repeat"
 msgstr ""
 
-#: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:123
+#: ../src/Widgets/BottomBar.vala:55 ../src/Widgets/BottomBar.vala:134
 msgid "Play"
 msgstr ""
 
-#: ../src/Widgets/BottomBar.vala:56
+#: ../src/Widgets/BottomBar.vala:59
 msgid "Playlist"
 msgstr ""
 
-#: ../src/Widgets/BottomBar.vala:60
+#: ../src/Widgets/BottomBar.vala:63
 msgid "Settings"
 msgstr ""
 
-#: ../src/Widgets/BottomBar.vala:108
+#: ../src/Widgets/BottomBar.vala:119
 msgid "Unfullscreen"
 msgstr ""
 
-#: ../src/Widgets/BottomBar.vala:119
+#: ../src/Widgets/BottomBar.vala:130
 msgid "Pause"
 msgstr ""
 
-#: ../src/Widgets/VideoPlayer.vala:362
+#: ../src/Widgets/VideoPlayer.vala:378
 msgid "Error"
 msgstr ""
 
-#: ../src/Widgets/VideoPlayer.vala:362
+#: ../src/Widgets/VideoPlayer.vala:378
 msgid "_OK"
 msgstr ""
 
-#: ../src/Widgets/VideoPlayer.vala:368
+#: ../src/Widgets/VideoPlayer.vala:384
 msgid "Oops! Audience can't play this file!"
 msgstr ""
 
-#: ../src/Widgets/VideoPlayer.vala:388
+#: ../src/Widgets/VideoPlayer.vala:404
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr ""
 
-#: ../src/Widgets/VideoPlayer.vala:393
+#: ../src/Widgets/VideoPlayer.vala:409
 msgid "Audience needs %s to play this file."
 msgstr ""
 
-#: ../src/Widgets/VideoPlayer.vala:400
+#: ../src/Widgets/VideoPlayer.vala:416
 msgid "Don't install"
 msgstr ""
 
-#: ../src/Widgets/VideoPlayer.vala:401
+#: ../src/Widgets/VideoPlayer.vala:417
 msgid "Install"
 msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:37
-msgid "Subtitle files"
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "No Videos Open"
 msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:44
-msgid "External Subtitles"
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "Select a source to begin playing."
 msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:48
-msgid "Audio:"
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "Open a saved file."
 msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:51
-msgid "Subtitles:"
+#: ../src/Widgets/WelcomePage.vala:17
+msgid "Replay last video"
 msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:54
-msgid "External Subtitles:"
+#: ../src/Widgets/WelcomePage.vala:19
+msgid "Resume last video"
 msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:121
-msgid "None"
+#: ../src/Widgets/WelcomePage.vala:23
+msgid "Watch a DVD or open a file from disc"
 msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:152
-msgid "Default"
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:44
+msgid "Videos"
+msgstr ""
+
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:46
+msgid "Audience;Video;Player;Movies;"
+msgstr ""
+
+#: ../src/Audience.vala:47
+msgid "Watch videos and movies"
+msgstr ""
+
+#: ../src/Audience.vala:48
+msgid "Video Player"
+msgstr ""
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:50
+msgid "About Audience"
+msgstr ""
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:52
+msgid "About Videos"
+msgstr ""
+
+#: ../src/Audience.vala:53
+msgid "translator-credits"
+msgstr ""
+
+#: ../src/Audience.vala:247
+msgid "Open"
+msgstr ""
+
+#: ../src/Audience.vala:248
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/Audience.vala:248
+msgid "_Open"
+msgstr ""
+
+#: ../src/Audience.vala:257
+msgid "Video files"
+msgstr ""
+
+#: ../src/Audience.vala:363
+msgid "Video added to playlist"
+msgstr ""
+
+#: ../src/Audience.vala:365
+msgid "%i videos added to playlist"
 msgstr ""
