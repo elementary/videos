@@ -50,7 +50,8 @@ namespace Audience {
         public const string ABOUT_STOCK = N_("About Audience");
         /// TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
         public const string ABOUT_GENERIC = N_("About Videos");
-
+	public const string ABOUT_TRANSLATORS = N_("translator-credits");
+	
         construct {
             program_name = "Audience";
             exec_name = "audience";
@@ -75,7 +76,7 @@ namespace Audience {
                               "Tom Beckmann <tom@elementaryos.org>" };
             /*about_documenters = {""};
             about_artists = {""};
-            about_translators = "Launchpad Translators";
+            about_translators = Constants.ABOUT_TRANSLATORS;
             about_comments = "To be determined"; */
             about_license_type = Gtk.License.GPL_3_0;
         }
