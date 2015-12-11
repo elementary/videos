@@ -150,7 +150,7 @@ namespace Audience {
 
             header = new Gtk.HeaderBar ();
             header.set_show_close_button (true);
-            header.get_style_context ().remove_class ("header-bar");
+            header.get_style_context ().add_class ("compact");
 
             disk_manager = DiskManager.get_default ();
 
