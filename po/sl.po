@@ -7,174 +7,99 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-03-28 13:16-0500\n"
-"PO-Revision-Date: 2015-06-23 17:36+0000\n"
-"Last-Translator: Jernej Virag <Unknown>\n"
+"POT-Creation-Date: 2015-12-03 15:10-0200\n"
+"PO-Revision-Date: 2015-12-18 19:51+0000\n"
+"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-10-10 05:47+0000\n"
-"X-Generator: Launchpad (build 17802)\n"
+"X-Launchpad-Export-Date: 2015-12-20 05:48+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
-#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-#: ../src/Audience.vala:40
-msgid "Videos"
-msgstr "Video predvajalnik"
-
-#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-#: ../src/Audience.vala:42
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Video;Posnetki;Predvajalnik;Filmi;Serije"
-
-#: ../src/Audience.vala:43
-msgid "Watch videos and movies"
-msgstr "Glej filme in ostale posnetke"
-
-#: ../src/Audience.vala:44
-msgid "Video Player"
-msgstr "Video predvajalnik"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-#: ../src/Audience.vala:46
-msgid "About Audience"
-msgstr "O Audience"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-#: ../src/Audience.vala:48
-msgid "About Videos"
-msgstr "O Video predvajalniku"
-
-#: ../src/Audience.vala:241
-msgid "Replay last playlist"
-msgstr "Predvajaj zadnji seznam predvajanja"
-
-#: ../src/Audience.vala:243
-msgid "Replay '%s'"
-msgstr "Ponovno predvajaj '%s'"
-
-#: ../src/Audience.vala:366
-msgid "No Videos Open"
-msgstr "Ni odprtega posnetka"
-
-#: ../src/Audience.vala:366
-msgid "Select a source to begin playing."
-msgstr "Izberite vir za začetek predvajanja."
-
-#: ../src/Audience.vala:367 ../src/Widgets/PlaylistPopover.vala:31
-msgid "Open file"
-msgstr "Odpri datoteko"
-
-#: ../src/Audience.vala:367
-msgid "Open a saved file."
-msgstr "Odpri shranjeno datoteko."
-
-#: ../src/Audience.vala:372
-msgid "Resume last video"
-msgstr "Nadaljuj zadnji video"
-
-#: ../src/Audience.vala:380
-msgid "Replay"
-msgstr "Ponovno predvajaj"
-
-#: ../src/Audience.vala:380
-msgid "Replay last video"
-msgstr "Predvajaj zadnji video"
-
-#: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr "Predvajaj s CDja"
-
-#: ../src/Audience.vala:383
-msgid "Watch a DVD or open a file from disc"
-msgstr "Oglejte si DVD ali odprite datoteko z diska"
-
-#: ../src/Audience.vala:427
-msgid "Open location"
-msgstr "Odpri mesto"
-
-#: ../src/Audience.vala:429
-msgid "Cancel"
-msgstr "Prekliči"
-
-#: ../src/Audience.vala:430
-msgid "OK"
-msgstr "V redu"
-
-#: ../src/Audience.vala:437
-msgid "Choose location"
-msgstr "Izberite mesto"
-
-#: ../src/Audience.vala:704
-msgid "Open"
-msgstr "Odpri"
-
-#: ../src/Audience.vala:705
-msgid "_Cancel"
-msgstr "_Prekliči"
-
-#: ../src/Audience.vala:705
-msgid "_Open"
-msgstr "_Odpri"
-
-#: ../src/Audience.vala:709 ../src/Widgets/SettingsPopover.vala:33
+#: ../src/Widgets/SettingsPopover.vala:35 ../src/Audience.vala:253
 msgid "All files"
 msgstr "Vse datoteke"
 
-#: ../src/Audience.vala:713
-msgid "Video files"
-msgstr "Video datoteke"
+#: ../src/Widgets/SettingsPopover.vala:39
+msgid "Subtitle files"
+msgstr "Datoteke s podnapisi"
 
-#: ../src/Audience.vala:884
-msgid "Video added to playlist"
-msgstr "Posnetek dodan na seznam predvajanja"
+#. /pgp-encrypted"
+#: ../src/Widgets/SettingsPopover.vala:46
+msgid "External Subtitles"
+msgstr "Zunanji podnapisi"
 
-#: ../src/Audience.vala:886
-msgid "%i videos added to playlist"
-msgstr "%i posnetkov dodanih na seznam predvajanja"
+#: ../src/Widgets/SettingsPopover.vala:50
+msgid "Audio:"
+msgstr "Zvok:"
 
-#: ../src/Widgets/PlaylistPopover.vala:37
-#: ../src/Widgets/PlaylistPopover.vala:62
+#: ../src/Widgets/SettingsPopover.vala:53
+msgid "Subtitles:"
+msgstr "Podnapisi:"
+
+#: ../src/Widgets/SettingsPopover.vala:56
+msgid "External Subtitles:"
+msgstr "Zunanji podnapisi:"
+
+#: ../src/Widgets/SettingsPopover.vala:123
+msgid "None"
+msgstr "Brez"
+
+#: ../src/Widgets/SettingsPopover.vala:154
+msgid "Default"
+msgstr "Privzeto"
+
+#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:5
+msgid "Open file"
+msgstr "Odpri datoteko"
+
+#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:23
+msgid "Play from Disc"
+msgstr "Predvajaj s CDja"
+
+#: ../src/Widgets/PlaylistPopover.vala:43
+#: ../src/Widgets/PlaylistPopover.vala:70
 msgid "Enable Repeat"
 msgstr "Omogoči ponavljanje"
 
-#: ../src/Widgets/PlaylistPopover.vala:59
+#: ../src/Widgets/PlaylistPopover.vala:67
 msgid "Disable Repeat"
 msgstr "Onemogoči ponavljanje"
 
-#: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:123
+#: ../src/Widgets/BottomBar.vala:55 ../src/Widgets/BottomBar.vala:134
 msgid "Play"
 msgstr "Predvajaj"
 
-#: ../src/Widgets/BottomBar.vala:56
+#: ../src/Widgets/BottomBar.vala:59
 msgid "Playlist"
 msgstr "Seznam predvajanja"
 
-#: ../src/Widgets/BottomBar.vala:60
+#: ../src/Widgets/BottomBar.vala:63
 msgid "Settings"
 msgstr "Nastavitve"
 
-#: ../src/Widgets/BottomBar.vala:108
+#: ../src/Widgets/BottomBar.vala:119
 msgid "Unfullscreen"
 msgstr "V okno"
 
-#: ../src/Widgets/BottomBar.vala:119
+#: ../src/Widgets/BottomBar.vala:130
 msgid "Pause"
 msgstr "Premor"
 
-#: ../src/Widgets/VideoPlayer.vala:362
+#: ../src/Widgets/VideoPlayer.vala:378
 msgid "Error"
 msgstr "Napaka"
 
-#: ../src/Widgets/VideoPlayer.vala:362
+#: ../src/Widgets/VideoPlayer.vala:378
 msgid "_OK"
 msgstr "V _redu"
 
-#: ../src/Widgets/VideoPlayer.vala:368
+#: ../src/Widgets/VideoPlayer.vala:384
 msgid "Oops! Audience can't play this file!"
 msgstr "Ups! Audience ne zmore predvajati te datoteke!"
 
-#: ../src/Widgets/VideoPlayer.vala:388
+#: ../src/Widgets/VideoPlayer.vala:404
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -182,42 +107,97 @@ msgstr ""
 "Nekatere predstavne datoteke zahtevajo dodatno programsko opremo za "
 "predvajanje. Audience lahko namesti to programsko opremo samodejno."
 
-#: ../src/Widgets/VideoPlayer.vala:393
+#: ../src/Widgets/VideoPlayer.vala:409
 msgid "Audience needs %s to play this file."
 msgstr "Audience potrebuje %s za predvajanje te datoteke."
 
-#: ../src/Widgets/VideoPlayer.vala:400
+#: ../src/Widgets/VideoPlayer.vala:416
 msgid "Don't install"
 msgstr "Ne namesti"
 
-#: ../src/Widgets/VideoPlayer.vala:401
+#: ../src/Widgets/VideoPlayer.vala:417
 msgid "Install"
 msgstr "Namesti"
 
-#: ../src/Widgets/SettingsPopover.vala:37
-msgid "Subtitle files"
-msgstr "Datoteke s podnapisi"
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "No Videos Open"
+msgstr "Ni odprtega posnetka"
 
-#: ../src/Widgets/SettingsPopover.vala:44
-msgid "External Subtitles"
-msgstr "Zunanji podnapisi"
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "Select a source to begin playing."
+msgstr "Izberite vir za začetek predvajanja."
 
-#: ../src/Widgets/SettingsPopover.vala:48
-msgid "Audio:"
-msgstr "Zvok:"
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "Open a saved file."
+msgstr "Odpri shranjeno datoteko."
 
-#: ../src/Widgets/SettingsPopover.vala:51
-msgid "Subtitles:"
-msgstr "Podnapisi:"
+#: ../src/Widgets/WelcomePage.vala:17
+msgid "Replay last video"
+msgstr "Predvajaj zadnji video"
 
-#: ../src/Widgets/SettingsPopover.vala:54
-msgid "External Subtitles:"
-msgstr "Zunanji podnapisi:"
+#: ../src/Widgets/WelcomePage.vala:19
+msgid "Resume last video"
+msgstr "Nadaljuj zadnji video"
 
-#: ../src/Widgets/SettingsPopover.vala:121
-msgid "None"
-msgstr "Brez"
+#: ../src/Widgets/WelcomePage.vala:23
+msgid "Watch a DVD or open a file from disc"
+msgstr "Oglejte si DVD ali odprite datoteko z diska"
 
-#: ../src/Widgets/SettingsPopover.vala:152
-msgid "Default"
-msgstr "Privzeto"
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:44
+msgid "Videos"
+msgstr "Video predvajalnik"
+
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:46
+msgid "Audience;Video;Player;Movies;"
+msgstr "Audience;Video;Posnetki;Predvajalnik;Filmi;Serije"
+
+#: ../src/Audience.vala:47
+msgid "Watch videos and movies"
+msgstr "Glej filme in ostale posnetke"
+
+#: ../src/Audience.vala:48
+msgid "Video Player"
+msgstr "Video predvajalnik"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:50
+msgid "About Audience"
+msgstr "O Audience"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:52
+msgid "About Videos"
+msgstr "O Video predvajalniku"
+
+#: ../src/Audience.vala:53
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Damir Jerovšek https://launchpad.net/~jierro\n"
+"  Jernej Virag https://launchpad.net/~jernej"
+
+#: ../src/Audience.vala:247
+msgid "Open"
+msgstr "Odpri"
+
+#: ../src/Audience.vala:248
+msgid "_Cancel"
+msgstr "_Prekliči"
+
+#: ../src/Audience.vala:248
+msgid "_Open"
+msgstr "_Odpri"
+
+#: ../src/Audience.vala:257
+msgid "Video files"
+msgstr "Video datoteke"
+
+#: ../src/Audience.vala:363
+msgid "Video added to playlist"
+msgstr "Posnetek dodan na seznam predvajanja"
+
+#: ../src/Audience.vala:365
+msgid "%i videos added to playlist"
+msgstr "%i posnetkov dodanih na seznam predvajanja"

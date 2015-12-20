@@ -7,174 +7,99 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-03-28 13:16-0500\n"
-"PO-Revision-Date: 2015-01-25 20:47+0000\n"
-"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
+"POT-Creation-Date: 2015-12-03 15:10-0200\n"
+"PO-Revision-Date: 2015-12-18 19:51+0000\n"
+"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-10-10 05:47+0000\n"
-"X-Generator: Launchpad (build 17802)\n"
+"X-Launchpad-Export-Date: 2015-12-20 05:47+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
-#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-#: ../src/Audience.vala:40
-msgid "Videos"
-msgstr "Vídeos"
-
-#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-#: ../src/Audience.vala:42
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Vídeo;Reproductor;Pel·lícules;"
-
-#: ../src/Audience.vala:43
-msgid "Watch videos and movies"
-msgstr ""
-
-#: ../src/Audience.vala:44
-msgid "Video Player"
-msgstr "Reproductor de vídeo"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-#: ../src/Audience.vala:46
-msgid "About Audience"
-msgstr "Quant a l’Audience"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-#: ../src/Audience.vala:48
-msgid "About Videos"
-msgstr "Quant al Vídeos"
-
-#: ../src/Audience.vala:241
-msgid "Replay last playlist"
-msgstr ""
-
-#: ../src/Audience.vala:243
-msgid "Replay '%s'"
-msgstr ""
-
-#: ../src/Audience.vala:366
-msgid "No Videos Open"
-msgstr "No hi ha cap vídeo obert"
-
-#: ../src/Audience.vala:366
-msgid "Select a source to begin playing."
-msgstr "Seleccioneu una font per començar la reproducció."
-
-#: ../src/Audience.vala:367 ../src/Widgets/PlaylistPopover.vala:31
-msgid "Open file"
-msgstr "Obre un fitxer"
-
-#: ../src/Audience.vala:367
-msgid "Open a saved file."
-msgstr "Obre un fitxer desat."
-
-#: ../src/Audience.vala:372
-msgid "Resume last video"
-msgstr "Reprèn el darrer vídeo"
-
-#: ../src/Audience.vala:380
-msgid "Replay"
-msgstr ""
-
-#: ../src/Audience.vala:380
-msgid "Replay last video"
-msgstr ""
-
-#: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr "Reprodueix des d'un disc"
-
-#: ../src/Audience.vala:383
-msgid "Watch a DVD or open a file from disc"
-msgstr "Ves un DVD o obre un fitxer des d'un disc"
-
-#: ../src/Audience.vala:427
-msgid "Open location"
-msgstr "Obre una ubicació"
-
-#: ../src/Audience.vala:429
-msgid "Cancel"
-msgstr "Cancel·la"
-
-#: ../src/Audience.vala:430
-msgid "OK"
-msgstr "D'acord"
-
-#: ../src/Audience.vala:437
-msgid "Choose location"
-msgstr "Tria una ubicació"
-
-#: ../src/Audience.vala:704
-msgid "Open"
-msgstr "Obre"
-
-#: ../src/Audience.vala:705
-msgid "_Cancel"
-msgstr "_Cancel·la"
-
-#: ../src/Audience.vala:705
-msgid "_Open"
-msgstr "_Obre"
-
-#: ../src/Audience.vala:709 ../src/Widgets/SettingsPopover.vala:33
+#: ../src/Widgets/SettingsPopover.vala:35 ../src/Audience.vala:253
 msgid "All files"
 msgstr "Tots els fitxers"
 
-#: ../src/Audience.vala:713
-msgid "Video files"
-msgstr "Fitxers de vídeo"
+#: ../src/Widgets/SettingsPopover.vala:39
+msgid "Subtitle files"
+msgstr "Fitxers de subtítols"
 
-#: ../src/Audience.vala:884
-msgid "Video added to playlist"
-msgstr ""
+#. /pgp-encrypted"
+#: ../src/Widgets/SettingsPopover.vala:46
+msgid "External Subtitles"
+msgstr "Subtítols externs"
 
-#: ../src/Audience.vala:886
-msgid "%i videos added to playlist"
-msgstr "S’han afegit %i vídeos a la llista de reproducció"
+#: ../src/Widgets/SettingsPopover.vala:50
+msgid "Audio:"
+msgstr "Àudio:"
 
-#: ../src/Widgets/PlaylistPopover.vala:37
-#: ../src/Widgets/PlaylistPopover.vala:62
+#: ../src/Widgets/SettingsPopover.vala:53
+msgid "Subtitles:"
+msgstr "Subtítols:"
+
+#: ../src/Widgets/SettingsPopover.vala:56
+msgid "External Subtitles:"
+msgstr "Subtítols externs:"
+
+#: ../src/Widgets/SettingsPopover.vala:123
+msgid "None"
+msgstr "Cap"
+
+#: ../src/Widgets/SettingsPopover.vala:154
+msgid "Default"
+msgstr "Predeterminat"
+
+#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:5
+msgid "Open file"
+msgstr "Obre un fitxer"
+
+#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:23
+msgid "Play from Disc"
+msgstr "Reprodueix des d'un disc"
+
+#: ../src/Widgets/PlaylistPopover.vala:43
+#: ../src/Widgets/PlaylistPopover.vala:70
 msgid "Enable Repeat"
 msgstr "Habilita la repetició"
 
-#: ../src/Widgets/PlaylistPopover.vala:59
+#: ../src/Widgets/PlaylistPopover.vala:67
 msgid "Disable Repeat"
 msgstr "Inhabilita la repetició"
 
-#: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:123
+#: ../src/Widgets/BottomBar.vala:55 ../src/Widgets/BottomBar.vala:134
 msgid "Play"
 msgstr "Reprodueix"
 
-#: ../src/Widgets/BottomBar.vala:56
+#: ../src/Widgets/BottomBar.vala:59
 msgid "Playlist"
 msgstr "Llista de reproducció"
 
-#: ../src/Widgets/BottomBar.vala:60
+#: ../src/Widgets/BottomBar.vala:63
 msgid "Settings"
 msgstr "Configuració"
 
-#: ../src/Widgets/BottomBar.vala:108
+#: ../src/Widgets/BottomBar.vala:119
 msgid "Unfullscreen"
 msgstr "Surt del mode de pantalla sencera"
 
-#: ../src/Widgets/BottomBar.vala:119
+#: ../src/Widgets/BottomBar.vala:130
 msgid "Pause"
 msgstr "Atura"
 
-#: ../src/Widgets/VideoPlayer.vala:362
+#: ../src/Widgets/VideoPlayer.vala:378
 msgid "Error"
 msgstr "S'ha produït un error"
 
-#: ../src/Widgets/VideoPlayer.vala:362
+#: ../src/Widgets/VideoPlayer.vala:378
 msgid "_OK"
 msgstr "D'ac_ord"
 
-#: ../src/Widgets/VideoPlayer.vala:368
+#: ../src/Widgets/VideoPlayer.vala:384
 msgid "Oops! Audience can't play this file!"
 msgstr "L'Audience no pot reproduir aquest fitxer."
 
-#: ../src/Widgets/VideoPlayer.vala:388
+#: ../src/Widgets/VideoPlayer.vala:404
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -182,42 +107,99 @@ msgstr ""
 "Alguns fitxers multimèdia necessiten programari adicional per ser "
 "reproduïts. L'Audience pot instal·lar aquest programari automàticament."
 
-#: ../src/Widgets/VideoPlayer.vala:393
+#: ../src/Widgets/VideoPlayer.vala:409
 msgid "Audience needs %s to play this file."
 msgstr "L'Audience necessita %s per reproduir aquest fitxer."
 
-#: ../src/Widgets/VideoPlayer.vala:400
+#: ../src/Widgets/VideoPlayer.vala:416
 msgid "Don't install"
 msgstr "No l'instal·lis"
 
-#: ../src/Widgets/VideoPlayer.vala:401
+#: ../src/Widgets/VideoPlayer.vala:417
 msgid "Install"
 msgstr "Instal·la'l"
 
-#: ../src/Widgets/SettingsPopover.vala:37
-msgid "Subtitle files"
-msgstr "Fitxers de subtítols"
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "No Videos Open"
+msgstr "No hi ha cap vídeo obert"
 
-#: ../src/Widgets/SettingsPopover.vala:44
-msgid "External Subtitles"
-msgstr "Subtítols externs"
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "Select a source to begin playing."
+msgstr "Seleccioneu una font per començar la reproducció."
 
-#: ../src/Widgets/SettingsPopover.vala:48
-msgid "Audio:"
-msgstr "Àudio:"
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "Open a saved file."
+msgstr "Obre un fitxer desat."
 
-#: ../src/Widgets/SettingsPopover.vala:51
-msgid "Subtitles:"
-msgstr "Subtítols:"
+#: ../src/Widgets/WelcomePage.vala:17
+msgid "Replay last video"
+msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:54
-msgid "External Subtitles:"
-msgstr "Subtítols externs:"
+#: ../src/Widgets/WelcomePage.vala:19
+msgid "Resume last video"
+msgstr "Reprèn el darrer vídeo"
 
-#: ../src/Widgets/SettingsPopover.vala:121
-msgid "None"
-msgstr "Cap"
+#: ../src/Widgets/WelcomePage.vala:23
+msgid "Watch a DVD or open a file from disc"
+msgstr "Ves un DVD o obre un fitxer des d'un disc"
 
-#: ../src/Widgets/SettingsPopover.vala:152
-msgid "Default"
-msgstr "Predeterminat"
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:44
+msgid "Videos"
+msgstr "Vídeos"
+
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:46
+msgid "Audience;Video;Player;Movies;"
+msgstr "Audience;Vídeo;Reproductor;Pel·lícules;"
+
+#: ../src/Audience.vala:47
+msgid "Watch videos and movies"
+msgstr ""
+
+#: ../src/Audience.vala:48
+msgid "Video Player"
+msgstr "Reproductor de vídeo"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:50
+msgid "About Audience"
+msgstr "Quant a l’Audience"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:52
+msgid "About Videos"
+msgstr "Quant al Vídeos"
+
+#: ../src/Audience.vala:53
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Adolfo Jayme https://launchpad.net/~fitojb\n"
+"  Alfredo Hernández https://launchpad.net/~aldomann\n"
+"  David https://launchpad.net/~dlh80\n"
+"  devaleitzer https://launchpad.net/~devaleitzer-aim"
+
+#: ../src/Audience.vala:247
+msgid "Open"
+msgstr "Obre"
+
+#: ../src/Audience.vala:248
+msgid "_Cancel"
+msgstr "_Cancel·la"
+
+#: ../src/Audience.vala:248
+msgid "_Open"
+msgstr "_Obre"
+
+#: ../src/Audience.vala:257
+msgid "Video files"
+msgstr "Fitxers de vídeo"
+
+#: ../src/Audience.vala:363
+msgid "Video added to playlist"
+msgstr ""
+
+#: ../src/Audience.vala:365
+msgid "%i videos added to playlist"
+msgstr "S’han afegit %i vídeos a la llista de reproducció"

@@ -7,215 +7,196 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-03-28 13:16-0500\n"
-"PO-Revision-Date: 2015-04-12 02:01+0000\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"POT-Creation-Date: 2015-12-03 15:10-0200\n"
+"PO-Revision-Date: 2015-12-18 19:51+0000\n"
+"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-10-10 05:47+0000\n"
-"X-Generator: Launchpad (build 17802)\n"
+"X-Launchpad-Export-Date: 2015-12-20 05:49+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
-#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-#: ../src/Audience.vala:40
-msgid "Videos"
-msgstr "影片"
-
-#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-#: ../src/Audience.vala:42
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Video;Player;Movies;影片;電影;視訊;播放器;"
-
-#: ../src/Audience.vala:43
-msgid "Watch videos and movies"
-msgstr "觀賞影片與電影"
-
-#: ../src/Audience.vala:44
-msgid "Video Player"
-msgstr "影片播放器"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-#: ../src/Audience.vala:46
-msgid "About Audience"
-msgstr "關於 Audience"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-#: ../src/Audience.vala:48
-msgid "About Videos"
-msgstr "關於《影片》"
-
-#: ../src/Audience.vala:241
-msgid "Replay last playlist"
-msgstr "再次播放上個播放清單"
-
-#: ../src/Audience.vala:243
-msgid "Replay '%s'"
-msgstr "重播「%s」"
-
-#: ../src/Audience.vala:366
-msgid "No Videos Open"
-msgstr "未開啟視訊"
-
-#: ../src/Audience.vala:366
-msgid "Select a source to begin playing."
-msgstr "選擇個來源以開始播放。"
-
-#: ../src/Audience.vala:367 ../src/Widgets/PlaylistPopover.vala:31
-msgid "Open file"
-msgstr "開啟檔案"
-
-#: ../src/Audience.vala:367
-msgid "Open a saved file."
-msgstr "開啟儲存的檔案。"
-
-#: ../src/Audience.vala:372
-msgid "Resume last video"
-msgstr "恢復播放最後一次播放的視訊"
-
-#: ../src/Audience.vala:380
-msgid "Replay"
-msgstr "再次播放"
-
-#: ../src/Audience.vala:380
-msgid "Replay last video"
-msgstr "再次播放上個影片"
-
-#: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr "從光碟播放"
-
-#: ../src/Audience.vala:383
-msgid "Watch a DVD or open a file from disc"
-msgstr "觀賞 DVD 或從光碟開啟檔案"
-
-#: ../src/Audience.vala:427
-msgid "Open location"
-msgstr "開啟位置"
-
-#: ../src/Audience.vala:429
-msgid "Cancel"
-msgstr "取消"
-
-#: ../src/Audience.vala:430
-msgid "OK"
-msgstr "確定"
-
-#: ../src/Audience.vala:437
-msgid "Choose location"
-msgstr "選擇位置"
-
-#: ../src/Audience.vala:704
-msgid "Open"
-msgstr "開啟"
-
-#: ../src/Audience.vala:705
-msgid "_Cancel"
-msgstr "取消(_C)"
-
-#: ../src/Audience.vala:705
-msgid "_Open"
-msgstr "開啟(_O)"
-
-#: ../src/Audience.vala:709 ../src/Widgets/SettingsPopover.vala:33
+#: ../src/Widgets/SettingsPopover.vala:35 ../src/Audience.vala:253
 msgid "All files"
 msgstr "所有檔案"
 
-#: ../src/Audience.vala:713
-msgid "Video files"
-msgstr "視訊檔"
+#: ../src/Widgets/SettingsPopover.vala:39
+msgid "Subtitle files"
+msgstr "字幕檔"
 
-#: ../src/Audience.vala:884
-msgid "Video added to playlist"
-msgstr "視訊已加入播放清單中"
+#. /pgp-encrypted"
+#: ../src/Widgets/SettingsPopover.vala:46
+msgid "External Subtitles"
+msgstr "外部字幕"
 
-#: ../src/Audience.vala:886
-msgid "%i videos added to playlist"
-msgstr "%i 份視訊已加入播放清單中"
+#: ../src/Widgets/SettingsPopover.vala:50
+msgid "Audio:"
+msgstr "音訊："
 
-#: ../src/Widgets/PlaylistPopover.vala:37
-#: ../src/Widgets/PlaylistPopover.vala:62
+#: ../src/Widgets/SettingsPopover.vala:53
+msgid "Subtitles:"
+msgstr "字幕："
+
+#: ../src/Widgets/SettingsPopover.vala:56
+msgid "External Subtitles:"
+msgstr "外部字幕："
+
+#: ../src/Widgets/SettingsPopover.vala:123
+msgid "None"
+msgstr "無"
+
+#: ../src/Widgets/SettingsPopover.vala:154
+msgid "Default"
+msgstr "預設"
+
+#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:5
+msgid "Open file"
+msgstr "開啟檔案"
+
+#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:23
+msgid "Play from Disc"
+msgstr "從光碟播放"
+
+#: ../src/Widgets/PlaylistPopover.vala:43
+#: ../src/Widgets/PlaylistPopover.vala:70
 msgid "Enable Repeat"
 msgstr "啟動重複播放"
 
-#: ../src/Widgets/PlaylistPopover.vala:59
+#: ../src/Widgets/PlaylistPopover.vala:67
 msgid "Disable Repeat"
 msgstr "停用重複播放"
 
-#: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:123
+#: ../src/Widgets/BottomBar.vala:55 ../src/Widgets/BottomBar.vala:134
 msgid "Play"
 msgstr "播放"
 
-#: ../src/Widgets/BottomBar.vala:56
+#: ../src/Widgets/BottomBar.vala:59
 msgid "Playlist"
 msgstr "播放清單"
 
-#: ../src/Widgets/BottomBar.vala:60
+#: ../src/Widgets/BottomBar.vala:63
 msgid "Settings"
 msgstr "設定值"
 
-#: ../src/Widgets/BottomBar.vala:108
+#: ../src/Widgets/BottomBar.vala:119
 msgid "Unfullscreen"
 msgstr "退出全螢幕"
 
-#: ../src/Widgets/BottomBar.vala:119
+#: ../src/Widgets/BottomBar.vala:130
 msgid "Pause"
 msgstr "暫停"
 
-#: ../src/Widgets/VideoPlayer.vala:362
+#: ../src/Widgets/VideoPlayer.vala:378
 msgid "Error"
 msgstr "錯誤"
 
-#: ../src/Widgets/VideoPlayer.vala:362
+#: ../src/Widgets/VideoPlayer.vala:378
 msgid "_OK"
 msgstr "確定(_O)"
 
-#: ../src/Widgets/VideoPlayer.vala:368
+#: ../src/Widgets/VideoPlayer.vala:384
 msgid "Oops! Audience can't play this file!"
 msgstr "哎呀！Audience 無法播放這個檔案！"
 
-#: ../src/Widgets/VideoPlayer.vala:388
+#: ../src/Widgets/VideoPlayer.vala:404
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
 msgstr "有些媒體檔案需要額外的軟體才能播放。Audience 可以自動安裝這些軟體。"
 
-#: ../src/Widgets/VideoPlayer.vala:393
+#: ../src/Widgets/VideoPlayer.vala:409
 msgid "Audience needs %s to play this file."
 msgstr "Audience 需要 %s 才能播放這個檔案。"
 
-#: ../src/Widgets/VideoPlayer.vala:400
+#: ../src/Widgets/VideoPlayer.vala:416
 msgid "Don't install"
 msgstr "不要安裝"
 
-#: ../src/Widgets/VideoPlayer.vala:401
+#: ../src/Widgets/VideoPlayer.vala:417
 msgid "Install"
 msgstr "安裝"
 
-#: ../src/Widgets/SettingsPopover.vala:37
-msgid "Subtitle files"
-msgstr "字幕檔"
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "No Videos Open"
+msgstr "未開啟視訊"
 
-#: ../src/Widgets/SettingsPopover.vala:44
-msgid "External Subtitles"
-msgstr "外部字幕"
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "Select a source to begin playing."
+msgstr "選擇個來源以開始播放。"
 
-#: ../src/Widgets/SettingsPopover.vala:48
-msgid "Audio:"
-msgstr "音訊："
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "Open a saved file."
+msgstr "開啟儲存的檔案。"
 
-#: ../src/Widgets/SettingsPopover.vala:51
-msgid "Subtitles:"
-msgstr "字幕："
+#: ../src/Widgets/WelcomePage.vala:17
+msgid "Replay last video"
+msgstr "再次播放上個影片"
 
-#: ../src/Widgets/SettingsPopover.vala:54
-msgid "External Subtitles:"
-msgstr "外部字幕："
+#: ../src/Widgets/WelcomePage.vala:19
+msgid "Resume last video"
+msgstr "恢復播放最後一次播放的視訊"
 
-#: ../src/Widgets/SettingsPopover.vala:121
-msgid "None"
-msgstr "無"
+#: ../src/Widgets/WelcomePage.vala:23
+msgid "Watch a DVD or open a file from disc"
+msgstr "觀賞 DVD 或從光碟開啟檔案"
 
-#: ../src/Widgets/SettingsPopover.vala:152
-msgid "Default"
-msgstr "預設"
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:44
+msgid "Videos"
+msgstr "影片"
+
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:46
+msgid "Audience;Video;Player;Movies;"
+msgstr "Audience;Video;Player;Movies;影片;電影;視訊;播放器;"
+
+#: ../src/Audience.vala:47
+msgid "Watch videos and movies"
+msgstr "觀賞影片與電影"
+
+#: ../src/Audience.vala:48
+msgid "Video Player"
+msgstr "影片播放器"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:50
+msgid "About Audience"
+msgstr "關於 Audience"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:52
+msgid "About Videos"
+msgstr "關於《影片》"
+
+#: ../src/Audience.vala:53
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Cheng-Chia Tseng https://launchpad.net/~zerng07\n"
+"  Guanlin zhu https://launchpad.net/~784123822-6\n"
+"  taijuin lee https://launchpad.net/~taijuin"
+
+#: ../src/Audience.vala:247
+msgid "Open"
+msgstr "開啟"
+
+#: ../src/Audience.vala:248
+msgid "_Cancel"
+msgstr "取消(_C)"
+
+#: ../src/Audience.vala:248
+msgid "_Open"
+msgstr "開啟(_O)"
+
+#: ../src/Audience.vala:257
+msgid "Video files"
+msgstr "視訊檔"
+
+#: ../src/Audience.vala:363
+msgid "Video added to playlist"
+msgstr "視訊已加入播放清單中"
+
+#: ../src/Audience.vala:365
+msgid "%i videos added to playlist"
+msgstr "%i 份視訊已加入播放清單中"

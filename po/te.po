@@ -7,174 +7,99 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-03-28 13:16-0500\n"
-"PO-Revision-Date: 2015-07-24 10:42+0000\n"
-"Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
+"POT-Creation-Date: 2015-12-03 15:10-0200\n"
+"PO-Revision-Date: 2015-12-18 19:51+0000\n"
+"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Telugu <te@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-10-10 05:47+0000\n"
-"X-Generator: Launchpad (build 17802)\n"
+"X-Launchpad-Export-Date: 2015-12-20 05:49+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
-#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-#: ../src/Audience.vala:40
-msgid "Videos"
-msgstr "దృశ్యకాలు"
-
-#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-#: ../src/Audience.vala:42
-msgid "Audience;Video;Player;Movies;"
-msgstr ""
-
-#: ../src/Audience.vala:43
-msgid "Watch videos and movies"
-msgstr "దృశ్యాలను మరియు చలనచిత్రాలను చూడండి"
-
-#: ../src/Audience.vala:44
-msgid "Video Player"
-msgstr "దృశ్య ప్రదర్శకం"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-#: ../src/Audience.vala:46
-msgid "About Audience"
-msgstr "ఆడియన్స్ గురించి"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-#: ../src/Audience.vala:48
-msgid "About Videos"
-msgstr "వీడియోస్ గురించి"
-
-#: ../src/Audience.vala:241
-msgid "Replay last playlist"
-msgstr "చివరి ప్రదర్శనజాబితాను మళ్ళీ ఆడించు"
-
-#: ../src/Audience.vala:243
-msgid "Replay '%s'"
-msgstr "'%s'ను మళ్ళీ ప్రదర్శించు"
-
-#: ../src/Audience.vala:366
-msgid "No Videos Open"
-msgstr "ఏ దృశ్యకాలు తెరవలేదు"
-
-#: ../src/Audience.vala:366
-msgid "Select a source to begin playing."
-msgstr ""
-
-#: ../src/Audience.vala:367 ../src/Widgets/PlaylistPopover.vala:31
-msgid "Open file"
-msgstr "దస్త్రం తెరువండి"
-
-#: ../src/Audience.vala:367
-msgid "Open a saved file."
-msgstr "భద్రపరచబడిన దస్త్రాన్ని తెరువు"
-
-#: ../src/Audience.vala:372
-msgid "Resume last video"
-msgstr "చివరి దృశ్యకాన్ని తిరిగి కొనసాగించు"
-
-#: ../src/Audience.vala:380
-msgid "Replay"
-msgstr ""
-
-#: ../src/Audience.vala:380
-msgid "Replay last video"
-msgstr ""
-
-#: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr ""
-
-#: ../src/Audience.vala:383
-msgid "Watch a DVD or open a file from disc"
-msgstr ""
-
-#: ../src/Audience.vala:427
-msgid "Open location"
-msgstr "స్థానమును తెరవండి"
-
-#: ../src/Audience.vala:429
-msgid "Cancel"
-msgstr "రద్దుచేయి"
-
-#: ../src/Audience.vala:430
-msgid "OK"
-msgstr "సరే"
-
-#: ../src/Audience.vala:437
-msgid "Choose location"
-msgstr "స్థానమును ఎన్నుకొనండి"
-
-#: ../src/Audience.vala:704
-msgid "Open"
-msgstr "తెరువు"
-
-#: ../src/Audience.vala:705
-msgid "_Cancel"
-msgstr "రద్దుచేయి (_C)"
-
-#: ../src/Audience.vala:705
-msgid "_Open"
-msgstr "తెరువు (_O)"
-
-#: ../src/Audience.vala:709 ../src/Widgets/SettingsPopover.vala:33
+#: ../src/Widgets/SettingsPopover.vala:35 ../src/Audience.vala:253
 msgid "All files"
 msgstr "అన్ని  దస్త్రాలు"
 
-#: ../src/Audience.vala:713
-msgid "Video files"
-msgstr "వీడియో దస్త్రాలు"
+#: ../src/Widgets/SettingsPopover.vala:39
+msgid "Subtitle files"
+msgstr "ఉపశీర్షిక దస్త్రాలు"
 
-#: ../src/Audience.vala:884
-msgid "Video added to playlist"
+#. /pgp-encrypted"
+#: ../src/Widgets/SettingsPopover.vala:46
+msgid "External Subtitles"
 msgstr ""
 
-#: ../src/Audience.vala:886
-msgid "%i videos added to playlist"
+#: ../src/Widgets/SettingsPopover.vala:50
+msgid "Audio:"
 msgstr ""
 
-#: ../src/Widgets/PlaylistPopover.vala:37
-#: ../src/Widgets/PlaylistPopover.vala:62
+#: ../src/Widgets/SettingsPopover.vala:53
+msgid "Subtitles:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:56
+msgid "External Subtitles:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:123
+msgid "None"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:154
+msgid "Default"
+msgstr ""
+
+#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:5
+msgid "Open file"
+msgstr "దస్త్రం తెరువండి"
+
+#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:23
+msgid "Play from Disc"
+msgstr ""
+
+#: ../src/Widgets/PlaylistPopover.vala:43
+#: ../src/Widgets/PlaylistPopover.vala:70
 msgid "Enable Repeat"
 msgstr ""
 
-#: ../src/Widgets/PlaylistPopover.vala:59
+#: ../src/Widgets/PlaylistPopover.vala:67
 msgid "Disable Repeat"
 msgstr ""
 
-#: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:123
+#: ../src/Widgets/BottomBar.vala:55 ../src/Widgets/BottomBar.vala:134
 msgid "Play"
 msgstr "ప్రదర్శించు"
 
-#: ../src/Widgets/BottomBar.vala:56
+#: ../src/Widgets/BottomBar.vala:59
 msgid "Playlist"
 msgstr "ప్రదర్శనజాబితా"
 
-#: ../src/Widgets/BottomBar.vala:60
+#: ../src/Widgets/BottomBar.vala:63
 msgid "Settings"
 msgstr "అమరికలు"
 
-#: ../src/Widgets/BottomBar.vala:108
+#: ../src/Widgets/BottomBar.vala:119
 msgid "Unfullscreen"
 msgstr ""
 
-#: ../src/Widgets/BottomBar.vala:119
+#: ../src/Widgets/BottomBar.vala:130
 msgid "Pause"
 msgstr "నిలిపివేయి"
 
-#: ../src/Widgets/VideoPlayer.vala:362
+#: ../src/Widgets/VideoPlayer.vala:378
 msgid "Error"
 msgstr "దోషం"
 
-#: ../src/Widgets/VideoPlayer.vala:362
+#: ../src/Widgets/VideoPlayer.vala:378
 msgid "_OK"
 msgstr "సరే (_O)"
 
-#: ../src/Widgets/VideoPlayer.vala:368
+#: ../src/Widgets/VideoPlayer.vala:384
 msgid "Oops! Audience can't play this file!"
 msgstr "అయ్యో! ఆడియన్స్ ఈ దస్త్రాన్ని ప్రదర్శించలేదు!"
 
-#: ../src/Widgets/VideoPlayer.vala:388
+#: ../src/Widgets/VideoPlayer.vala:404
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -182,42 +107,96 @@ msgstr ""
 "కొన్ని మాధ్యమ దస్త్రాలను ఆడించాలంటే అదనపు సాఫ్ట్‍వేర్ అవసరం. ఈ సాఫ్ట్‍వేరును "
 "ఆడియన్స్ స్వయంచాలకంగా స్థాపించుకోగలదు."
 
-#: ../src/Widgets/VideoPlayer.vala:393
+#: ../src/Widgets/VideoPlayer.vala:409
 msgid "Audience needs %s to play this file."
 msgstr "ఈ దస్త్రాన్ని ప్రదర్శించుటకు ఆడియన్సుకు %s అవసరం."
 
-#: ../src/Widgets/VideoPlayer.vala:400
+#: ../src/Widgets/VideoPlayer.vala:416
 msgid "Don't install"
 msgstr "స్థాపించవద్దు"
 
-#: ../src/Widgets/VideoPlayer.vala:401
+#: ../src/Widgets/VideoPlayer.vala:417
 msgid "Install"
 msgstr "స్థాపించు"
 
-#: ../src/Widgets/SettingsPopover.vala:37
-msgid "Subtitle files"
-msgstr "ఉపశీర్షిక దస్త్రాలు"
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "No Videos Open"
+msgstr "ఏ దృశ్యకాలు తెరవలేదు"
 
-#: ../src/Widgets/SettingsPopover.vala:44
-msgid "External Subtitles"
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "Select a source to begin playing."
 msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:48
-msgid "Audio:"
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "Open a saved file."
+msgstr "భద్రపరచబడిన దస్త్రాన్ని తెరువు"
+
+#: ../src/Widgets/WelcomePage.vala:17
+msgid "Replay last video"
 msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:51
-msgid "Subtitles:"
+#: ../src/Widgets/WelcomePage.vala:19
+msgid "Resume last video"
+msgstr "చివరి దృశ్యకాన్ని తిరిగి కొనసాగించు"
+
+#: ../src/Widgets/WelcomePage.vala:23
+msgid "Watch a DVD or open a file from disc"
 msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:54
-msgid "External Subtitles:"
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:44
+msgid "Videos"
+msgstr "దృశ్యకాలు"
+
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:46
+msgid "Audience;Video;Player;Movies;"
 msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:121
-msgid "None"
+#: ../src/Audience.vala:47
+msgid "Watch videos and movies"
+msgstr "దృశ్యాలను మరియు చలనచిత్రాలను చూడండి"
+
+#: ../src/Audience.vala:48
+msgid "Video Player"
+msgstr "దృశ్య ప్రదర్శకం"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:50
+msgid "About Audience"
+msgstr "ఆడియన్స్ గురించి"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:52
+msgid "About Videos"
+msgstr "వీడియోస్ గురించి"
+
+#: ../src/Audience.vala:53
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Praveen Illa https://launchpad.net/~telugulinux"
+
+#: ../src/Audience.vala:247
+msgid "Open"
+msgstr "తెరువు"
+
+#: ../src/Audience.vala:248
+msgid "_Cancel"
+msgstr "రద్దుచేయి (_C)"
+
+#: ../src/Audience.vala:248
+msgid "_Open"
+msgstr "తెరువు (_O)"
+
+#: ../src/Audience.vala:257
+msgid "Video files"
+msgstr "వీడియో దస్త్రాలు"
+
+#: ../src/Audience.vala:363
+msgid "Video added to playlist"
 msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:152
-msgid "Default"
+#: ../src/Audience.vala:365
+msgid "%i videos added to playlist"
 msgstr ""

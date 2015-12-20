@@ -7,174 +7,99 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-03-28 13:16-0500\n"
-"PO-Revision-Date: 2015-11-25 08:22+0000\n"
-"Last-Translator: Petr Dombek <dombek@oblati.cz>\n"
+"POT-Creation-Date: 2015-12-03 15:10-0200\n"
+"PO-Revision-Date: 2015-12-18 19:51+0000\n"
+"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-11-26 05:23+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-20 05:47+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
-#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-#: ../src/Audience.vala:40
-msgid "Videos"
-msgstr "Videa"
-
-#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-#: ../src/Audience.vala:42
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Video;Přehrávač;Filmy;"
-
-#: ../src/Audience.vala:43
-msgid "Watch videos and movies"
-msgstr "Sledovat videa a filmy"
-
-#: ../src/Audience.vala:44
-msgid "Video Player"
-msgstr "Přehrávač videa"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-#: ../src/Audience.vala:46
-msgid "About Audience"
-msgstr "O programu Audience"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-#: ../src/Audience.vala:48
-msgid "About Videos"
-msgstr "O programu Videos"
-
-#: ../src/Audience.vala:241
-msgid "Replay last playlist"
-msgstr "Přehrát poslední playlist"
-
-#: ../src/Audience.vala:243
-msgid "Replay '%s'"
-msgstr "Znovu přehrát '%s'"
-
-#: ../src/Audience.vala:366
-msgid "No Videos Open"
-msgstr "Nejsou otevřena žádná videa"
-
-#: ../src/Audience.vala:366
-msgid "Select a source to begin playing."
-msgstr "Zvolte zdroj pro spuštění přehrávání"
-
-#: ../src/Audience.vala:367 ../src/Widgets/PlaylistPopover.vala:31
-msgid "Open file"
-msgstr "Otevřít soubor"
-
-#: ../src/Audience.vala:367
-msgid "Open a saved file."
-msgstr "Otevřít uložený soubor."
-
-#: ../src/Audience.vala:372
-msgid "Resume last video"
-msgstr "Pokračovat v přehrávání posledního videa"
-
-#: ../src/Audience.vala:380
-msgid "Replay"
-msgstr "Přehrát znova"
-
-#: ../src/Audience.vala:380
-msgid "Replay last video"
-msgstr "Přehrát poslední video"
-
-#: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr "Přehrávat z disku."
-
-#: ../src/Audience.vala:383
-msgid "Watch a DVD or open a file from disc"
-msgstr "Přehrávat DVD nebo otevřít soubor z disku."
-
-#: ../src/Audience.vala:427
-msgid "Open location"
-msgstr "Otevřít umístění"
-
-#: ../src/Audience.vala:429
-msgid "Cancel"
-msgstr "Zrušit"
-
-#: ../src/Audience.vala:430
-msgid "OK"
-msgstr "OK"
-
-#: ../src/Audience.vala:437
-msgid "Choose location"
-msgstr "Vybrat umístění"
-
-#: ../src/Audience.vala:704
-msgid "Open"
-msgstr "Otevřít"
-
-#: ../src/Audience.vala:705
-msgid "_Cancel"
-msgstr "_Zrušit"
-
-#: ../src/Audience.vala:705
-msgid "_Open"
-msgstr "_Otevřít"
-
-#: ../src/Audience.vala:709 ../src/Widgets/SettingsPopover.vala:33
+#: ../src/Widgets/SettingsPopover.vala:35 ../src/Audience.vala:253
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: ../src/Audience.vala:713
-msgid "Video files"
-msgstr "Video soubory"
+#: ../src/Widgets/SettingsPopover.vala:39
+msgid "Subtitle files"
+msgstr "Soubory s titulky"
 
-#: ../src/Audience.vala:884
-msgid "Video added to playlist"
-msgstr "Video bylo přidáno do playlistu"
+#. /pgp-encrypted"
+#: ../src/Widgets/SettingsPopover.vala:46
+msgid "External Subtitles"
+msgstr "Externí titulky"
 
-#: ../src/Audience.vala:886
-msgid "%i videos added to playlist"
-msgstr "%i videí bylo přidáno do playlistu"
+#: ../src/Widgets/SettingsPopover.vala:50
+msgid "Audio:"
+msgstr "Zvuk:"
 
-#: ../src/Widgets/PlaylistPopover.vala:37
-#: ../src/Widgets/PlaylistPopover.vala:62
+#: ../src/Widgets/SettingsPopover.vala:53
+msgid "Subtitles:"
+msgstr "Titulky:"
+
+#: ../src/Widgets/SettingsPopover.vala:56
+msgid "External Subtitles:"
+msgstr "Externí titulky:"
+
+#: ../src/Widgets/SettingsPopover.vala:123
+msgid "None"
+msgstr "Žádný"
+
+#: ../src/Widgets/SettingsPopover.vala:154
+msgid "Default"
+msgstr "Výchozí"
+
+#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:5
+msgid "Open file"
+msgstr "Otevřít soubor"
+
+#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:23
+msgid "Play from Disc"
+msgstr "Přehrávat z disku."
+
+#: ../src/Widgets/PlaylistPopover.vala:43
+#: ../src/Widgets/PlaylistPopover.vala:70
 msgid "Enable Repeat"
 msgstr "Povolit opakování"
 
-#: ../src/Widgets/PlaylistPopover.vala:59
+#: ../src/Widgets/PlaylistPopover.vala:67
 msgid "Disable Repeat"
 msgstr "Zakázat opakování"
 
-#: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:123
+#: ../src/Widgets/BottomBar.vala:55 ../src/Widgets/BottomBar.vala:134
 msgid "Play"
 msgstr "Přehrát"
 
-#: ../src/Widgets/BottomBar.vala:56
+#: ../src/Widgets/BottomBar.vala:59
 msgid "Playlist"
 msgstr "Seznam souborů"
 
-#: ../src/Widgets/BottomBar.vala:60
+#: ../src/Widgets/BottomBar.vala:63
 msgid "Settings"
 msgstr "Nastavení"
 
-#: ../src/Widgets/BottomBar.vala:108
+#: ../src/Widgets/BottomBar.vala:119
 msgid "Unfullscreen"
 msgstr "Opustit režim Celé obrazovky"
 
-#: ../src/Widgets/BottomBar.vala:119
+#: ../src/Widgets/BottomBar.vala:130
 msgid "Pause"
 msgstr "Pozastavit"
 
-#: ../src/Widgets/VideoPlayer.vala:362
+#: ../src/Widgets/VideoPlayer.vala:378
 msgid "Error"
 msgstr "Chyba"
 
-#: ../src/Widgets/VideoPlayer.vala:362
+#: ../src/Widgets/VideoPlayer.vala:378
 msgid "_OK"
 msgstr "_OK"
 
-#: ../src/Widgets/VideoPlayer.vala:368
+#: ../src/Widgets/VideoPlayer.vala:384
 msgid "Oops! Audience can't play this file!"
 msgstr "Hups! Audience nemůže tento soubor přehrát!"
 
-#: ../src/Widgets/VideoPlayer.vala:388
+#: ../src/Widgets/VideoPlayer.vala:404
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -182,42 +107,104 @@ msgstr ""
 "Některé soubory vyžadují pro přehrání dodatečný software. Audience může "
 "tento software automaticky nainstalovat."
 
-#: ../src/Widgets/VideoPlayer.vala:393
+#: ../src/Widgets/VideoPlayer.vala:409
 msgid "Audience needs %s to play this file."
 msgstr "Audience potřebuje %s k přehrání tohoto souboru."
 
-#: ../src/Widgets/VideoPlayer.vala:400
+#: ../src/Widgets/VideoPlayer.vala:416
 msgid "Don't install"
 msgstr "Neinstalovat"
 
-#: ../src/Widgets/VideoPlayer.vala:401
+#: ../src/Widgets/VideoPlayer.vala:417
 msgid "Install"
 msgstr "Instalovat"
 
-#: ../src/Widgets/SettingsPopover.vala:37
-msgid "Subtitle files"
-msgstr "Soubory s titulky"
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "No Videos Open"
+msgstr "Nejsou otevřena žádná videa"
 
-#: ../src/Widgets/SettingsPopover.vala:44
-msgid "External Subtitles"
-msgstr "Externí titulky"
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "Select a source to begin playing."
+msgstr "Zvolte zdroj pro spuštění přehrávání"
 
-#: ../src/Widgets/SettingsPopover.vala:48
-msgid "Audio:"
-msgstr "Zvuk:"
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "Open a saved file."
+msgstr "Otevřít uložený soubor."
 
-#: ../src/Widgets/SettingsPopover.vala:51
-msgid "Subtitles:"
-msgstr "Titulky:"
+#: ../src/Widgets/WelcomePage.vala:17
+msgid "Replay last video"
+msgstr "Přehrát poslední video"
 
-#: ../src/Widgets/SettingsPopover.vala:54
-msgid "External Subtitles:"
-msgstr "Externí titulky:"
+#: ../src/Widgets/WelcomePage.vala:19
+msgid "Resume last video"
+msgstr "Pokračovat v přehrávání posledního videa"
 
-#: ../src/Widgets/SettingsPopover.vala:121
-msgid "None"
-msgstr "Žádný"
+#: ../src/Widgets/WelcomePage.vala:23
+msgid "Watch a DVD or open a file from disc"
+msgstr "Přehrávat DVD nebo otevřít soubor z disku."
 
-#: ../src/Widgets/SettingsPopover.vala:152
-msgid "Default"
-msgstr "Výchozí"
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:44
+msgid "Videos"
+msgstr "Videa"
+
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:46
+msgid "Audience;Video;Player;Movies;"
+msgstr "Audience;Video;Přehrávač;Filmy;"
+
+#: ../src/Audience.vala:47
+msgid "Watch videos and movies"
+msgstr "Sledovat videa a filmy"
+
+#: ../src/Audience.vala:48
+msgid "Video Player"
+msgstr "Přehrávač videa"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:50
+msgid "About Audience"
+msgstr "O programu Audience"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:52
+msgid "About Videos"
+msgstr "O programu Videos"
+
+#: ../src/Audience.vala:53
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Alex Strnádek https://launchpad.net/~lexaxelaexl\n"
+"  Filip Zeman https://launchpad.net/~zeman-filip\n"
+"  Hlobil Vaclav https://launchpad.net/~vaclav-hlobil\n"
+"  Jakub Cabal https://launchpad.net/~jakubcabal\n"
+"  Long Do Hai https://launchpad.net/~mailbox-b\n"
+"  Marek Doležel https://launchpad.net/~marekdolezel\n"
+"  Martin Bořkovec https://launchpad.net/~martinborkovec\n"
+"  Petr Šimáček https://launchpad.net/~petr-simacek\n"
+"  Tomo Moto https://launchpad.net/~tomasivanek"
+
+#: ../src/Audience.vala:247
+msgid "Open"
+msgstr "Otevřít"
+
+#: ../src/Audience.vala:248
+msgid "_Cancel"
+msgstr "_Zrušit"
+
+#: ../src/Audience.vala:248
+msgid "_Open"
+msgstr "_Otevřít"
+
+#: ../src/Audience.vala:257
+msgid "Video files"
+msgstr "Video soubory"
+
+#: ../src/Audience.vala:363
+msgid "Video added to playlist"
+msgstr "Video bylo přidáno do playlistu"
+
+#: ../src/Audience.vala:365
+msgid "%i videos added to playlist"
+msgstr "%i videí bylo přidáno do playlistu"

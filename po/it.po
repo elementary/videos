@@ -7,174 +7,99 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-03-28 13:16-0500\n"
-"PO-Revision-Date: 2015-12-06 08:46+0000\n"
-"Last-Translator: Fabio Zaramella <FFabio.96.X@Gmail.com>\n"
+"POT-Creation-Date: 2015-12-03 15:10-0200\n"
+"PO-Revision-Date: 2015-12-18 19:51+0000\n"
+"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-07 05:28+0000\n"
-"X-Generator: Launchpad (build 17862)\n"
+"X-Launchpad-Export-Date: 2015-12-20 05:48+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
-#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-#: ../src/Audience.vala:40
-msgid "Videos"
-msgstr "Video"
-
-#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-#: ../src/Audience.vala:42
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Video;Player;Film;"
-
-#: ../src/Audience.vala:43
-msgid "Watch videos and movies"
-msgstr "Guarda video e film"
-
-#: ../src/Audience.vala:44
-msgid "Video Player"
-msgstr "Riproduttore video"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-#: ../src/Audience.vala:46
-msgid "About Audience"
-msgstr "Informazioni"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-#: ../src/Audience.vala:48
-msgid "About Videos"
-msgstr "Informazioni"
-
-#: ../src/Audience.vala:241
-msgid "Replay last playlist"
-msgstr "Ripeti ultima playlist"
-
-#: ../src/Audience.vala:243
-msgid "Replay '%s'"
-msgstr "Ripeti '%s'"
-
-#: ../src/Audience.vala:366
-msgid "No Videos Open"
-msgstr "Nessun video aperto"
-
-#: ../src/Audience.vala:366
-msgid "Select a source to begin playing."
-msgstr "Selezionare una sorgente per iniziare la riproduzione."
-
-#: ../src/Audience.vala:367 ../src/Widgets/PlaylistPopover.vala:31
-msgid "Open file"
-msgstr "Apri file"
-
-#: ../src/Audience.vala:367
-msgid "Open a saved file."
-msgstr "Apri un file esistente."
-
-#: ../src/Audience.vala:372
-msgid "Resume last video"
-msgstr "Riprendi l'ultimo video"
-
-#: ../src/Audience.vala:380
-msgid "Replay"
-msgstr "Ripeti"
-
-#: ../src/Audience.vala:380
-msgid "Replay last video"
-msgstr "Ripeti ultimo video"
-
-#: ../src/Audience.vala:383 ../src/Widgets/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr "Riproduci dal disco"
-
-#: ../src/Audience.vala:383
-msgid "Watch a DVD or open a file from disc"
-msgstr "Guarda un DVD o apri un file dal disco"
-
-#: ../src/Audience.vala:427
-msgid "Open location"
-msgstr "Apri percorso"
-
-#: ../src/Audience.vala:429
-msgid "Cancel"
-msgstr "Annulla"
-
-#: ../src/Audience.vala:430
-msgid "OK"
-msgstr "Ok"
-
-#: ../src/Audience.vala:437
-msgid "Choose location"
-msgstr "Scegli percorso"
-
-#: ../src/Audience.vala:704
-msgid "Open"
-msgstr "Apri"
-
-#: ../src/Audience.vala:705
-msgid "_Cancel"
-msgstr "_Annulla"
-
-#: ../src/Audience.vala:705
-msgid "_Open"
-msgstr "_Apri"
-
-#: ../src/Audience.vala:709 ../src/Widgets/SettingsPopover.vala:33
+#: ../src/Widgets/SettingsPopover.vala:35 ../src/Audience.vala:253
 msgid "All files"
 msgstr "Tutti i file"
 
-#: ../src/Audience.vala:713
-msgid "Video files"
-msgstr "File dalla rete"
+#: ../src/Widgets/SettingsPopover.vala:39
+msgid "Subtitle files"
+msgstr "File dei sottotitoli"
 
-#: ../src/Audience.vala:884
-msgid "Video added to playlist"
-msgstr "Video aggiunto alla playlist"
+#. /pgp-encrypted"
+#: ../src/Widgets/SettingsPopover.vala:46
+msgid "External Subtitles"
+msgstr "Sottotitoli Esterni"
 
-#: ../src/Audience.vala:886
-msgid "%i videos added to playlist"
-msgstr "%i video aggiunti alla playlist"
+#: ../src/Widgets/SettingsPopover.vala:50
+msgid "Audio:"
+msgstr "Audio:"
 
-#: ../src/Widgets/PlaylistPopover.vala:37
-#: ../src/Widgets/PlaylistPopover.vala:62
+#: ../src/Widgets/SettingsPopover.vala:53
+msgid "Subtitles:"
+msgstr "Sottotitoli:"
+
+#: ../src/Widgets/SettingsPopover.vala:56
+msgid "External Subtitles:"
+msgstr "Sottotitoli esterni:"
+
+#: ../src/Widgets/SettingsPopover.vala:123
+msgid "None"
+msgstr "Nessuno"
+
+#: ../src/Widgets/SettingsPopover.vala:154
+msgid "Default"
+msgstr "Predefinita"
+
+#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:5
+msgid "Open file"
+msgstr "Apri file"
+
+#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:23
+msgid "Play from Disc"
+msgstr "Riproduci dal disco"
+
+#: ../src/Widgets/PlaylistPopover.vala:43
+#: ../src/Widgets/PlaylistPopover.vala:70
 msgid "Enable Repeat"
 msgstr "Abilita ripetizione"
 
-#: ../src/Widgets/PlaylistPopover.vala:59
+#: ../src/Widgets/PlaylistPopover.vala:67
 msgid "Disable Repeat"
 msgstr "Disabilita ripetizione"
 
-#: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:123
+#: ../src/Widgets/BottomBar.vala:55 ../src/Widgets/BottomBar.vala:134
 msgid "Play"
 msgstr "Riproduci"
 
-#: ../src/Widgets/BottomBar.vala:56
+#: ../src/Widgets/BottomBar.vala:59
 msgid "Playlist"
 msgstr "Playlist"
 
-#: ../src/Widgets/BottomBar.vala:60
+#: ../src/Widgets/BottomBar.vala:63
 msgid "Settings"
 msgstr "Impostazioni"
 
-#: ../src/Widgets/BottomBar.vala:108
+#: ../src/Widgets/BottomBar.vala:119
 msgid "Unfullscreen"
 msgstr "Disabilita vista a schermo intero"
 
-#: ../src/Widgets/BottomBar.vala:119
+#: ../src/Widgets/BottomBar.vala:130
 msgid "Pause"
 msgstr "Pausa"
 
-#: ../src/Widgets/VideoPlayer.vala:362
+#: ../src/Widgets/VideoPlayer.vala:378
 msgid "Error"
 msgstr "Errore"
 
-#: ../src/Widgets/VideoPlayer.vala:362
+#: ../src/Widgets/VideoPlayer.vala:378
 msgid "_OK"
 msgstr "_Ok"
 
-#: ../src/Widgets/VideoPlayer.vala:368
+#: ../src/Widgets/VideoPlayer.vala:384
 msgid "Oops! Audience can't play this file!"
 msgstr "Oops! Audience non può riprodurre questo file!"
 
-#: ../src/Widgets/VideoPlayer.vala:388
+#: ../src/Widgets/VideoPlayer.vala:404
 msgid ""
 "Some media files need extra software to be played. Audience can install this "
 "software automatically."
@@ -182,42 +107,105 @@ msgstr ""
 "Alcuni file richiedono un software extra per essere riprodotti. Audience può "
 "installarlo automaticamente."
 
-#: ../src/Widgets/VideoPlayer.vala:393
+#: ../src/Widgets/VideoPlayer.vala:409
 msgid "Audience needs %s to play this file."
 msgstr "Audience richiede %s per riprodurre questo file."
 
-#: ../src/Widgets/VideoPlayer.vala:400
+#: ../src/Widgets/VideoPlayer.vala:416
 msgid "Don't install"
 msgstr "Non installare"
 
-#: ../src/Widgets/VideoPlayer.vala:401
+#: ../src/Widgets/VideoPlayer.vala:417
 msgid "Install"
 msgstr "Installa"
 
-#: ../src/Widgets/SettingsPopover.vala:37
-msgid "Subtitle files"
-msgstr "File dei sottotitoli"
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "No Videos Open"
+msgstr "Nessun video aperto"
 
-#: ../src/Widgets/SettingsPopover.vala:44
-msgid "External Subtitles"
-msgstr "Sottotitoli Esterni"
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "Select a source to begin playing."
+msgstr "Selezionare una sorgente per iniziare la riproduzione."
 
-#: ../src/Widgets/SettingsPopover.vala:48
-msgid "Audio:"
-msgstr "Audio:"
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "Open a saved file."
+msgstr "Apri un file esistente."
 
-#: ../src/Widgets/SettingsPopover.vala:51
-msgid "Subtitles:"
-msgstr "Sottotitoli:"
+#: ../src/Widgets/WelcomePage.vala:17
+msgid "Replay last video"
+msgstr "Ripeti ultimo video"
 
-#: ../src/Widgets/SettingsPopover.vala:54
-msgid "External Subtitles:"
-msgstr "Sottotitoli esterni:"
+#: ../src/Widgets/WelcomePage.vala:19
+msgid "Resume last video"
+msgstr "Riprendi l'ultimo video"
 
-#: ../src/Widgets/SettingsPopover.vala:121
-msgid "None"
-msgstr "Nessuno"
+#: ../src/Widgets/WelcomePage.vala:23
+msgid "Watch a DVD or open a file from disc"
+msgstr "Guarda un DVD o apri un file dal disco"
 
-#: ../src/Widgets/SettingsPopover.vala:152
-msgid "Default"
-msgstr "Predefinita"
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:44
+msgid "Videos"
+msgstr "Video"
+
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:46
+msgid "Audience;Video;Player;Movies;"
+msgstr "Audience;Video;Player;Film;"
+
+#: ../src/Audience.vala:47
+msgid "Watch videos and movies"
+msgstr "Guarda video e film"
+
+#: ../src/Audience.vala:48
+msgid "Video Player"
+msgstr "Riproduttore video"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:50
+msgid "About Audience"
+msgstr "Informazioni"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:52
+msgid "About Videos"
+msgstr "Informazioni"
+
+#: ../src/Audience.vala:53
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Bennici Piercarlo https://launchpad.net/~piercarlo-bennici-"
+"deactivatedaccount-deactivatedaccount\n"
+"  Devid Antonio Filoni https://launchpad.net/~d.filoni\n"
+"  Fabio Zaramella https://launchpad.net/~fabiozaramella\n"
+"  Federico Mameli https://launchpad.net/~piratapopo\n"
+"  Ivan https://launchpad.net/~iyia92\n"
+"  Mirko Pizii https://launchpad.net/~hallino1\n"
+"  Paulo Galardi https://launchpad.net/~lains\n"
+"  frao0 https://launchpad.net/~francesco987\n"
+"  joshg https://launchpad.net/~joshg"
+
+#: ../src/Audience.vala:247
+msgid "Open"
+msgstr "Apri"
+
+#: ../src/Audience.vala:248
+msgid "_Cancel"
+msgstr "_Annulla"
+
+#: ../src/Audience.vala:248
+msgid "_Open"
+msgstr "_Apri"
+
+#: ../src/Audience.vala:257
+msgid "Video files"
+msgstr "File dalla rete"
+
+#: ../src/Audience.vala:363
+msgid "Video added to playlist"
+msgstr "Video aggiunto alla playlist"
+
+#: ../src/Audience.vala:365
+msgid "%i videos added to playlist"
+msgstr "%i video aggiunti alla playlist"
