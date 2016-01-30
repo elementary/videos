@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-12-03 15:10-0200\n"
-"PO-Revision-Date: 2015-12-18 19:51+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"PO-Revision-Date: 2016-01-29 20:19+0000\n"
+"Last-Translator: Félix Brezo <felixbrezo@gmail.com>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-20 05:47+0000\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Launchpad-Export-Date: 2016-01-30 05:32+0000\n"
+"X-Generator: Launchpad (build 17908)\n"
 
 #: ../src/Widgets/SettingsPopover.vala:35 ../src/Audience.vala:253
 msgid "All files"
-msgstr ""
+msgstr "Ĉiuj dosieroj"
 
 #: ../src/Widgets/SettingsPopover.vala:39
 msgid "Subtitle files"
@@ -52,11 +52,11 @@ msgstr ""
 
 #: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:5
 msgid "Open file"
-msgstr ""
+msgstr "Malfermi dosieron"
 
 #: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:23
 msgid "Play from Disc"
-msgstr ""
+msgstr "Ludi de disko"
 
 #: ../src/Widgets/PlaylistPopover.vala:43
 #: ../src/Widgets/PlaylistPopover.vala:70
@@ -173,7 +173,8 @@ msgstr ""
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Félix Brezo https://launchpad.net/~febrezo"
+"  Félix Brezo https://launchpad.net/~febrezo\n"
+"  Robin van der Vliet https://launchpad.net/~robinvdv"
 
 #: ../src/Audience.vala:247
 msgid "Open"
