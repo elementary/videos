@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-12-03 15:10-0200\n"
-"PO-Revision-Date: 2016-01-29 20:19+0000\n"
+"PO-Revision-Date: 2016-02-14 23:44+0000\n"
 "Last-Translator: Félix Brezo <felixbrezo@gmail.com>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-01-30 05:32+0000\n"
-"X-Generator: Launchpad (build 17908)\n"
+"X-Launchpad-Export-Date: 2016-02-15 05:26+0000\n"
+"X-Generator: Launchpad (build 17925)\n"
 
 #: ../src/Widgets/SettingsPopover.vala:35 ../src/Audience.vala:253
 msgid "All files"
@@ -23,32 +23,32 @@ msgstr "Ĉiuj dosieroj"
 
 #: ../src/Widgets/SettingsPopover.vala:39
 msgid "Subtitle files"
-msgstr ""
+msgstr "Subtekstdosieroj"
 
 #. /pgp-encrypted"
 #: ../src/Widgets/SettingsPopover.vala:46
 msgid "External Subtitles"
-msgstr ""
+msgstr "Eksteraj subtitoloj"
 
 #: ../src/Widgets/SettingsPopover.vala:50
 msgid "Audio:"
-msgstr ""
+msgstr "Sono:"
 
 #: ../src/Widgets/SettingsPopover.vala:53
 msgid "Subtitles:"
-msgstr ""
+msgstr "Subtitoloj:"
 
 #: ../src/Widgets/SettingsPopover.vala:56
 msgid "External Subtitles:"
-msgstr ""
+msgstr "Eksteraj subtitoloj:"
 
 #: ../src/Widgets/SettingsPopover.vala:123
 msgid "None"
-msgstr ""
+msgstr "Nenio"
 
 #: ../src/Widgets/SettingsPopover.vala:154
 msgid "Default"
-msgstr ""
+msgstr "Defaŭlta"
 
 #: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:5
 msgid "Open file"
@@ -61,23 +61,23 @@ msgstr "Ludi de disko"
 #: ../src/Widgets/PlaylistPopover.vala:43
 #: ../src/Widgets/PlaylistPopover.vala:70
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Ebligi ripeti"
 
 #: ../src/Widgets/PlaylistPopover.vala:67
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Malebligi ripeti"
 
 #: ../src/Widgets/BottomBar.vala:55 ../src/Widgets/BottomBar.vala:134
 msgid "Play"
-msgstr ""
+msgstr "Ludi"
 
 #: ../src/Widgets/BottomBar.vala:59
 msgid "Playlist"
-msgstr ""
+msgstr "Ludlisto"
 
 #: ../src/Widgets/BottomBar.vala:63
 msgid "Settings"
-msgstr ""
+msgstr "Agordojn"
 
 #: ../src/Widgets/BottomBar.vala:119
 msgid "Unfullscreen"
@@ -85,15 +85,15 @@ msgstr ""
 
 #: ../src/Widgets/BottomBar.vala:130
 msgid "Pause"
-msgstr ""
+msgstr "Paŭzi"
 
 #: ../src/Widgets/VideoPlayer.vala:378
 msgid "Error"
-msgstr ""
+msgstr "Eraro"
 
 #: ../src/Widgets/VideoPlayer.vala:378
 msgid "_OK"
-msgstr ""
+msgstr "_Bone"
 
 #: ../src/Widgets/VideoPlayer.vala:384
 msgid "Oops! Audience can't play this file!"
@@ -111,11 +111,11 @@ msgstr ""
 
 #: ../src/Widgets/VideoPlayer.vala:416
 msgid "Don't install"
-msgstr ""
+msgstr "Ne instali"
 
 #: ../src/Widgets/VideoPlayer.vala:417
 msgid "Install"
-msgstr ""
+msgstr "Instali"
 
 #: ../src/Widgets/WelcomePage.vala:4
 msgid "No Videos Open"
@@ -127,15 +127,15 @@ msgstr ""
 
 #: ../src/Widgets/WelcomePage.vala:5
 msgid "Open a saved file."
-msgstr ""
+msgstr "Malfermi konservitan dosieron."
 
 #: ../src/Widgets/WelcomePage.vala:17
 msgid "Replay last video"
-msgstr ""
+msgstr "Reludi lastan videon"
 
 #: ../src/Widgets/WelcomePage.vala:19
 msgid "Resume last video"
-msgstr ""
+msgstr "Rekomenci lastan videon"
 
 #: ../src/Widgets/WelcomePage.vala:23
 msgid "Watch a DVD or open a file from disc"
@@ -144,7 +144,7 @@ msgstr ""
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:44
 msgid "Videos"
-msgstr ""
+msgstr "Videoj"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:46
@@ -178,23 +178,23 @@ msgstr ""
 
 #: ../src/Audience.vala:247
 msgid "Open"
-msgstr ""
+msgstr "Malfermi"
 
 #: ../src/Audience.vala:248
 msgid "_Cancel"
-msgstr ""
+msgstr "_Rezigni"
 
 #: ../src/Audience.vala:248
 msgid "_Open"
-msgstr ""
+msgstr "_Malfermi"
 
 #: ../src/Audience.vala:257
 msgid "Video files"
-msgstr ""
+msgstr "Video dosierojn"
 
 #: ../src/Audience.vala:363
 msgid "Video added to playlist"
-msgstr ""
+msgstr "Video aldonita al reproduktaĵo listo"
 
 #: ../src/Audience.vala:365
 msgid "%i videos added to playlist"
