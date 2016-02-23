@@ -132,7 +132,7 @@ namespace Audience.Widgets {
 
         public void remove_item (File path) {
             var file_name = path.get_uri ();
-            
+
             playlist.foreach ((model, path, iter) => {
                 Value filename;
                 playlist.get_value (iter, Columns.FILENAME, out filename);
@@ -142,7 +142,7 @@ namespace Audience.Widgets {
                 return false;
             });
         }
-        
+
         public void clear_items () {
             current = 0;
             playlist.clear ();
@@ -197,6 +197,10 @@ namespace Audience.Widgets {
         }
 
         public void save_playlist () {
+            if (Audience.App.get_instance ().is_privacy_mode_enabled ()) {
+                return;
+            }
+
             var list = new List<string> ();
             playlist.foreach ((model, path, iter) => {
                 Value filename;

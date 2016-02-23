@@ -1,4 +1,3 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
  * Copyright (c) 2013-2014 Audience Developers (http://launchpad.net/pantheon-chat)
  *
@@ -27,6 +26,7 @@ public extern bool gst_navigation_query_parse_commands_length (Gst.Query q, out 
 public extern bool gst_navigation_query_parse_commands_nth (Gst.Query q, uint n, out Gst.NavigationCommand cmd);
 */
 namespace Audience {
+
     public enum Page {
         WELCOME,
         PLAYER
@@ -81,8 +81,10 @@ namespace Audience {
             about_license_type = Gtk.License.GPL_3_0;
         }
 
-        public Gtk.Window     mainwindow;
-        private Gtk.HeaderBar header;
+        private ZeitgeistManager    zeitgeist_manager;
+        private Gtk.HeaderBar       header;
+
+        public Gtk.Window           mainwindow;
 
         private Page _page;
         public Page page {
@@ -134,6 +136,7 @@ namespace Audience {
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
 
+            zeitgeist_manager = new ZeitgeistManager ();
         }
 
         public static App get_instance () {
@@ -144,6 +147,10 @@ namespace Audience {
 
         void build () {
             settings = new Settings ();
+            if (is_privacy_mode_enabled ()) {
+                clear_video_settings ();
+            }
+
             mainwindow = new Gtk.Window ();
 
             if (settings.last_folder == "-1")
@@ -175,6 +182,12 @@ namespace Audience {
             set_window_title (program_name);
 
             mainwindow.key_press_event.connect (on_key_press_event);
+
+            mainwindow.destroy.connect (() => {
+                if (is_privacy_mode_enabled ()) {
+                    clear_video_settings ();
+                }
+            });
 
             setup_drag_n_drop ();
         }
@@ -241,6 +254,7 @@ namespace Audience {
             settings.last_stopped = 0;
             settings.last_played_videos = null;
             settings.current_video = "";
+            settings.last_folder = "";
         }
 
         public void run_open_file () {
@@ -368,6 +382,17 @@ namespace Audience {
             play_file (videos [0]);
 
 
+        }
+
+        internal bool is_privacy_mode_enabled () {
+            var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
+            bool privacy_mode = !privacy_settings.get_boolean ("remember-recent-files") || !privacy_settings.get_boolean ("remember-app-usage");
+
+            if (privacy_mode) {
+                return true;
+            }
+
+            return zeitgeist_manager.app_into_blacklist (exec_name);
         }
 
     }

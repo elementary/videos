@@ -51,6 +51,7 @@ set (EXEC_NAME ${CMAKE_PROJECT_NAME})
 
 vala_precompile (VALA_C ${EXEC_NAME}
     ${CONFIG_FILE}
+    ZeitgeistManager.vala
     Audience.vala
     Consts.vala
     Settings.vala
