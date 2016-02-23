@@ -17,6 +17,9 @@ namespace Audience {
         private GtkClutter.Actor bottom_actor;
         private GnomeMediaKeys             mediakeys;
 
+        public GnomeSessionManager session_manager;
+        uint32 inhibit_cookie;
+
         private bool mouse_primary_down = false;
         private bool fullscreened = false;
 
@@ -34,7 +37,10 @@ namespace Audience {
 
         public PlayerPage () {
             video_player = new Widgets.VideoPlayer();
-            video_player.notify["playing"].connect (() => {bottom_bar.toggle_play_pause ();});
+            video_player.notify["playing"].connect (() => {
+                bottom_bar.toggle_play_pause ();
+                inhibit_session (video_player.playing);
+            });
 
             clutter = new GtkClutter.Embed ();
             stage = (Clutter.Stage)clutter.get_stage ();
@@ -508,5 +514,36 @@ namespace Audience {
                 Idle.add (update_aspect_ratio);
         }
 
+        X.Display dpy;
+        int timeout = -1;
+        int interval;
+        int prefer_blanking;
+        int allow_exposures;
+        void inhibit_session (bool inhibit) {
+            debug ("set inhibit to " + (inhibit ? "true" : "false"));
+            //TODO: Remove X Dependency!
+            //store the default values for setting back
+
+            if (dpy == null)
+                dpy = new X.Display ();
+
+            if (timeout == -1)
+                dpy.get_screensaver (out timeout, out interval, out prefer_blanking, out allow_exposures);
+
+            dpy.set_screensaver (inhibit ? 0 : timeout, interval, prefer_blanking, allow_exposures);
+
+            //prevent screenlocking in Gnome 3 using org.gnome.SessionManager
+            try {
+                session_manager = Bus.get_proxy_sync (BusType.SESSION,
+                        "org.gnome.SessionManager", "/org/gnome/SessionManager");
+                if (inhibit) {
+                    inhibit_cookie = session_manager.Inhibit ("audience", 0, "Playing Video using Audience", 12);
+                } else {
+                    session_manager.Uninhibit (inhibit_cookie);
+                }
+            } catch (Error e) {
+                warning (e.message);
+            }
+        }
     }
 }
