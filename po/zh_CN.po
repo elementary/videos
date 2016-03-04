@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-12-03 15:10-0200\n"
-"PO-Revision-Date: 2015-12-18 19:51+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"PO-Revision-Date: 2016-03-03 14:41+0000\n"
+"Last-Translator: colindemian <dengmengpc@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-20 05:49+0000\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Launchpad-Export-Date: 2016-03-04 05:57+0000\n"
+"X-Generator: Launchpad (build 17936)\n"
 
 #: ../src/Widgets/SettingsPopover.vala:35 ../src/Audience.vala:253
 msgid "All files"
@@ -61,11 +61,11 @@ msgstr "从光盘播放"
 #: ../src/Widgets/PlaylistPopover.vala:43
 #: ../src/Widgets/PlaylistPopover.vala:70
 msgid "Enable Repeat"
-msgstr "启用重复"
+msgstr "启用循环"
 
 #: ../src/Widgets/PlaylistPopover.vala:67
 msgid "Disable Repeat"
-msgstr "禁用重复"
+msgstr "禁用循环"
 
 #: ../src/Widgets/BottomBar.vala:55 ../src/Widgets/BottomBar.vala:134
 msgid "Play"
