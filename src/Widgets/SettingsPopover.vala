@@ -22,14 +22,14 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     private Gtk.ComboBoxText languages;
     private Gtk.ComboBoxText subtitles;
     private Gtk.FileChooserButton external_subtitle_file;
-    private Widgets.VideoPlayer player;
+    private ClutterGst.Playback playback;
 
-    public SettingsPopover (Widgets.VideoPlayer player) {
+    public SettingsPopover (ClutterGst.Playback playback) {
+        this.playback = playback;
         opacity = GLOBAL_OPACITY;
 
         languages = new Gtk.ComboBoxText ();
         subtitles = new Gtk.ComboBoxText ();
-        this.player = player;
 
         var all_files_filter = new Gtk.FileFilter ();
         all_files_filter.set_filter_name (_("All files"));
@@ -68,118 +68,84 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.column_spacing = 12;
 
         external_subtitle_file.file_set.connect (() => {
-            player.set_subtitle_uri (external_subtitle_file.get_uri ());
+            playback.set_subtitle_uri (external_subtitle_file.get_uri ());
         });
 
-        player.external_subtitle_changed.connect ((uri) => {
-            external_subtitle_file.select_uri (uri);
+        playback.notify["subtitle_uri"].connect (() => {
+            external_subtitle_file.select_uri (playback.subtitle_uri);
         });
 
         subtitles.changed.connect (() => {
-            if (subtitles.active_id == null)
+            if (subtitles.active <= -1)
                 return;
 
-            var id = int.parse (subtitles.active_id);
-            player.current_text = id;
+            if (subtitles.active_id == "none") {
+                playback.subtitle_track = -1;
+                return;
+            }
+
+            playback.subtitle_track = subtitles.active;
         });
 
         languages.changed.connect ( () => { //place it here to not get problems
-            if (languages.active_id == null)
+            if (languages.active <= -1 || languages.active_id == "def")
                 return;
 
-            player.current_audio = int.parse (languages.active_id);
+            playback.audio_stream = languages.active;
         });
 
         add (setupgrid);
     }
 
     public void setup_text () {
-        subtitles.sensitive = false;
         if (subtitles.model.iter_n_children (null) > 0)
             subtitles.remove_all ();
 
-        int n_text;
-        player.playbin.get ("n-text", out n_text);
-        for (var i=0; i<n_text; i++) {
-            Gst.TagList tags = null;
-            Signal.emit_by_name (player.playbin, "get-text-tags", i, out tags);
-            if (tags == null)
-                continue;
+        playback.get_subtitle_tracks ().foreach ((lang) => {
+            subtitles.append (lang, lang);
+        });
 
-            string desc;
-            string readable = null;
-            tags.get_string (Gst.Tags.LANGUAGE_CODE, out desc);
-            if (desc == null)
-                tags.get_string (Gst.Tags.CODEC, out desc);
-
-            if (desc != null) {
-                readable = Gst.Tag.get_language_name (desc);
-                var language = Gst.Tag.get_language_name (desc);
-                subtitles.append (i.to_string (), language == null ? desc : language);
-                subtitles.sensitive = true;
-            }
-        }
-
-        subtitles.append ("-1", _("None"));
-        subtitles.active_id = player.current_text.to_string ();
+        subtitles.append ("none", _("None"));
+        subtitles.active = playback.subtitle_track;
+        subtitles.sensitive = subtitles.model.iter_n_children (null) > 1;
     }
 
     public void setup_audio () {
-        languages.sensitive = false;
         if (languages.model.iter_n_children (null) > 0)
             languages.remove_all ();
 
-        int n_audio;
-        player.playbin.get ("n-audio", out n_audio);
-        for (var i=0; i<n_audio; i++) {
-            Gst.TagList tags = null;
-            Signal.emit_by_name (player.playbin, "get-audio-tags", i, out tags);
-            if (tags == null)
-                continue;
+        playback.get_audio_streams ().foreach ((lang) => {
+            languages.append (lang, lang);
+        });
 
-            string desc;
-            string readable = null;
-            tags.get_string (Gst.Tags.LANGUAGE_CODE, out desc);
-            if (desc == null)
-                tags.get_string (Gst.Tags.CODEC, out desc);
-
-            if (desc != null) {
-                readable = Gst.Tag.get_language_name (desc);
-                languages.append (i.to_string (), readable == null ? desc : readable);
-            }
-        }
-
-        var audio_items = languages.model.iter_n_children (null);
-        if (audio_items <= 0) {
+        languages.sensitive = languages.model.iter_n_children (null) > 0;
+        if (!languages.sensitive) {
             languages.append ("def", _("Default"));
             languages.active = 0;
         } else {
-            if (audio_items != 1)
-                languages.sensitive = true;
-
-            languages.active_id = player.current_audio.to_string ();
+            languages.active = playback.subtitle_track;
         }
     }
 
     public void next_audio () {
-        int current = int.parse (languages.active_id);
+        int current = languages.active;
         if (current < languages.model.iter_n_children (null) - 1) {
             current++;
         } else {
             current = 0;
         }
 
-        languages.active_id = current.to_string ();
+        languages.active = current;
     }
 
     public void next_text () {
-        int current = int.parse (subtitles.active_id);
+        int current = subtitles.active;
         if (current < subtitles.model.iter_n_children (null)) {
             current++;
         } else {
             current = 0;
         }
 
-        subtitles.active_id = current.to_string ();
+        subtitles.active = current;
     }
 }

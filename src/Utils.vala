@@ -103,8 +103,7 @@ namespace Audience {
     }
 
     public static bool has_dvd () {
-        var disk_manager = DiskManager.get_default ();
-        return disk_manager.get_volumes ().length () > 0;
+        return !DiskManager.get_default ().get_volumes ().is_empty;
     }
 
     public static bool file_exists (string uri) {
@@ -152,9 +151,5 @@ namespace Audience {
             warning ("Could not show notification: %s", err.message);
         }
 #endif
-    }
-
-    private bool modifier_is_pressed (Gdk.EventKey event, Gdk.ModifierType modifier) {
-        return (event.state & modifier) == modifier;
     }
 }

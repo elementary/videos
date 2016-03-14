@@ -49,10 +49,5 @@
             <summary>Cause the audience window to stay on top by default when it's playing</summary>
             <description>Set the option to keep the audience window above all other windows by default when audience is currently playing</description>
         </key>
-        <key name="show-window-decoration" type="b">
-            <default>true</default>
-            <summary>Don't show the window decorations</summary>
-            <description>Hide the window decorations. You can close the window with escape</description>
-        </key>
     </schema>
 </schemalist>

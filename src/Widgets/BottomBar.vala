@@ -24,22 +24,19 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     public signal void unfullscreen ();
     public signal void seeked (double val);
 
+    public bool playing { get; set; default=false; }
     public bool hovered { get; set; default=false; }
     public bool fullscreen { get; set; default=false; }
     public SettingsPopover preferences_popover;
     public PlaylistPopover playlist_popover;
     public TimeWidget time_widget;
 
-    private Widgets.VideoPlayer player;
     private Gtk.Button play_button;
     private Gtk.Button preferences_button;
     private Gtk.Revealer unfullscreen_revealer;
-    private bool is_playing = false;
     private uint hiding_timer = 0;
 
-    public BottomBar (Widgets.VideoPlayer player) {
-        this.player = player;
-
+    public BottomBar (ClutterGst.Playback playback) {
         this.events |= Gdk.EventMask.POINTER_MOTION_MASK;
         this.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
         this.events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
@@ -63,12 +60,11 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         preferences_button.tooltip_text = _("Settings");
         preferences_button.clicked.connect (() => {preferences_popover.show_all (); preferences_popover.queue_resize ();});
 
-        time_widget = new TimeWidget ();
-        time_widget.seeked.connect ((val) => {seeked (val);});
+        time_widget = new TimeWidget (playback);
 
         playlist_popover = new PlaylistPopover ();
         playlist_popover.relative_to = playlist_button;
-        preferences_popover = new SettingsPopover (player);
+        preferences_popover = new SettingsPopover (playback);
         preferences_popover.relative_to = preferences_button;
 
         main_actionbar.pack_start (play_button);
@@ -93,6 +89,22 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
                 unfullscreen_revealer.set_reveal_child (true);
             } else if (fullscreen == false && child_revealed == true) {
                 unfullscreen_revealer.set_reveal_child (false);
+            }
+        });
+
+        play_button.clicked.connect (() => {
+            playing = !playing;
+        });
+
+        notify["playing"].connect (() => {
+            if (playing == true) {
+                ((Gtk.Image) play_button.image).icon_name = "media-playback-pause-symbolic";
+                play_button.tooltip_text = _("Pause");
+                reveal_control ();
+            } else {
+                ((Gtk.Image) play_button.image).icon_name = "media-playback-start-symbolic";
+                play_button.tooltip_text = _("Play");
+                set_reveal_child (true);
             }
         });
 
@@ -123,19 +135,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         return unfullscreen_revealer;
     }
 
-    public void toggle_play_pause () {
-        is_playing = !is_playing;
-        if (is_playing == true) {
-            play_button.image = new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.BUTTON);
-            play_button.tooltip_text = _("Pause");
-            reveal_control ();
-        } else {
-            play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON);
-            play_button.tooltip_text = _("Play");
-            set_reveal_child (true);
-        }
-    }
-
     private new void set_reveal_child (bool reveal) {
         base.set_reveal_child (reveal);
         if (reveal == true && fullscreen == true) {
@@ -156,10 +155,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         }
     }
 
-    public void set_progression_time (double current_time, double total_time) {
-        time_widget.set_progression_time (current_time, total_time);
-    }
-
     public void reveal_control () {
         if (child_revealed == false)
             set_reveal_child (true);
@@ -168,7 +163,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
             Source.remove (hiding_timer);
 
         hiding_timer = GLib.Timeout.add (2000, () => {
-            if (hovered == true || preferences_popover.visible == true || playlist_popover.visible == true || is_playing == false) {
+            if (hovered == true || preferences_popover.visible == true || playlist_popover.visible == true || playing == false) {
                 hiding_timer = 0;
                 return false;
             }

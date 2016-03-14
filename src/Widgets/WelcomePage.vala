@@ -1,10 +1,12 @@
 namespace Audience {
     public class WelcomePage : Granite.Widgets.Welcome {
+        private DiskManager disk_manager;
         public WelcomePage () {
             base (_("No Videos Open"), _("Select a source to begin playing."));
-            this.append ("document-open", _("Open file"), _("Open a saved file."));
+        }
 
-            this.set_size_request (350, 300);
+        construct {
+            append ("document-open", _("Open file"), _("Open a saved file."));
 
             var filename = settings.current_video;
             var last_file = File.new_for_uri (filename);
@@ -13,58 +15,42 @@ namespace Audience {
                 show_last_file = false;
             }
 
-            if (settings.last_stopped == 0.0 || !settings.resume_videos)
-                this.append ("media-playlist-repeat", _("Replay last video"), get_title (last_file.get_basename ()));
-            else
-                this.append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
-            this.set_item_visible (1, show_last_file);
+            if (settings.last_stopped == 0.0 || !settings.resume_videos) {
+                append ("media-playlist-repeat", _("Replay last video"), get_title (last_file.get_basename ()));
+            } else {
+                append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
+            }
+
+            set_item_visible (1, show_last_file);
 
             //look for dvd
-            this.append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
-            this.set_item_visible (2, App.get_instance ().has_media_volumes ());
-            App.get_instance ().media_volumes_changed.connect (() => {
-                this.set_item_visible (2, App.get_instance ().has_media_volumes ());
+            disk_manager = DiskManager.get_default ();
+            disk_manager.volume_found.connect ((vol) => {
+                set_item_visible (2, disk_manager.has_media_volumes ());
             });
 
-           //handle welcome
-            this.activated.connect (on_activate);
+            disk_manager.volume_removed.connect ((vol) => {
+                set_item_visible (2, disk_manager.has_media_volumes ());
+            });
 
-            App.get_instance ().set_window_title (App.get_instance ().program_name);
-            // FIXME : dont know why but cant move this to Audience.vala
-            App.get_instance ().mainwindow.set_default_size (960, 640);
+            append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
+            set_item_visible (2, disk_manager.has_media_volumes ());
 
-            App.get_instance ().mainwindow.key_press_event.connect (on_key_press_event);
-
-        }
-        ~WelcomePage () {
-            this.activated.disconnect (on_activate);
-            App.get_instance ().mainwindow.key_press_event.disconnect (on_key_press_event);
-        }
-        private void on_activate (int index) {
-            switch (index) {
-                case 0:
-                    // Open file
-                    App.get_instance ().run_open_file ();
-                    break;
-                case 1:
-                    App.get_instance ().resume_last_videos ();
-                    break;
-                case 2:
-                    App.get_instance ().run_open_dvd ();
-                    break;
-            }
-        }
-        private bool on_key_press_event (Gdk.EventKey e) {
-            switch (e.keyval) {
-                case Gdk.Key.p:
-                case Gdk.Key.space:
-                    App.get_instance ().resume_last_videos ();
-                    break;
-                default:
-                    break;
-            }
-
-            return false;
+            activated.connect ((index) => {
+                var window = App.get_instance ().mainwindow;
+                switch (index) {
+                    case 0:
+                        // Open file
+                        window.run_open_file ();
+                        break;
+                    case 1:
+                        window.resume_last_videos ();
+                        break;
+                    case 2:
+                        window.run_open_dvd ();
+                        break;
+                }
+            });
         }
     }
 }
