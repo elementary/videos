@@ -68,18 +68,9 @@ namespace Audience {
     }
 
     public static string get_basename (string filename) {
-        uint end = 0;
-        for (uint start=filename.length; start != 0; start--) {
-            if (filename[start] == '/') {
-                start ++;
-                return filename.substring (start, end - start);
-            }
+        var name = Path.get_basename (filename);
 
-            if (filename[start] == '.' && end == 0)
-                end = start;
-        }
-
-        return filename.substring (0, end);
+        return name.split (".", 2)[0];
     }
 
     public static string seconds_to_time (int seconds) {

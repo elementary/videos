@@ -61,6 +61,12 @@ namespace Audience {
         }
 
         public PlayerPage () {
+        }
+
+        construct {
+            events |= Gdk.EventMask.POINTER_MOTION_MASK;
+            events |= Gdk.EventMask.KEY_PRESS_MASK;
+            events |= Gdk.EventMask.KEY_RELEASE_MASK;
             playback = new ClutterGst.Playback ();
             playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
             playback.notify["playing"].connect (() => {
@@ -68,17 +74,32 @@ namespace Audience {
             });
 
             clutter = new GtkClutter.Embed ();
-            clutter.use_layout_size = true;
             stage = (Clutter.Stage)clutter.get_stage ();
             stage.background_color = {0, 0, 0, 0};
 
             video_actor = new Clutter.Actor ();
             var aspect_ratio = ClutterGst.Aspectratio.@new ();
+            ((ClutterGst.Aspectratio) aspect_ratio).paint_borders = false;
             ((ClutterGst.Content) aspect_ratio).player = playback;
+            /* Commented because of a bug in the compositor
+            ((ClutterGst.Content) aspect_ratio).size_change.connect ((width, height) => {
+                double aspect = ((double) width)/((double) height);
+                var geometry = Gdk.Geometry ();
+                geometry.min_aspect = aspect;
+                geometry.max_aspect = aspect;
+                ((Gtk.Window) get_toplevel ()).set_geometry_hints (get_toplevel (), geometry, Gdk.WindowHints.ASPECT);
+            });
+            */
             video_actor.content = aspect_ratio;
 
             video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
             video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
+
+            Signal.connect (clutter, "button-press-event", (GLib.Callback) navigation_event, this);
+            Signal.connect (clutter, "button-release-event", (GLib.Callback) navigation_event, this);
+            Signal.connect (clutter, "key-press-event", (GLib.Callback) navigation_event, this);
+            Signal.connect (clutter, "key-release-event", (GLib.Callback) navigation_event, this);
+            Signal.connect (clutter, "motion-notify-event", (GLib.Callback) navigation_event, this);
 
             stage.add_child (video_actor);
 
@@ -127,7 +148,7 @@ namespace Audience {
                 warning (e.message);
             }
 
-            App.get_instance ().mainwindow.motion_notify_event.connect ((event) => {
+            this.motion_notify_event.connect ((event) => {
                 if (mouse_primary_down && settings.move_window) {
                     mouse_primary_down = false;
                     App.get_instance ().mainwindow.begin_move_drag (Gdk.BUTTON_PRIMARY,
@@ -215,29 +236,32 @@ namespace Audience {
 
         public void play_file (string uri, bool from_beginning = true) {
             debug ("Opening %s", uri);
-            playback.uri = uri;
             get_playlist_widget ().set_current (uri);
-            bottom_bar.set_preview_uri (uri);
+            playback.uri = uri;
 
             string? sub_uri = get_subtitle_for_uri (uri);
-            if (sub_uri != null)
+            if (sub_uri != null && sub_uri != uri)
                 playback.set_subtitle_uri (sub_uri);
 
             App.get_instance ().mainwindow.title = get_title (uri);
 
-            playback.playing = !settings.playback_wait;
             if (from_beginning) {
                 playback.progress = 0.0;
             } else {
                 playback.progress = settings.last_stopped;
             }
 
+            playback.playing = !settings.playback_wait;
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
 
             /*subtitles/audio tracks*/
             bottom_bar.preferences_popover.setup_text ();
             bottom_bar.preferences_popover.setup_audio ();
+        }
+
+        public string get_played_uri () {
+            return playback.uri;
         }
 
         public void next () {
@@ -330,6 +354,44 @@ namespace Audience {
             App.get_instance ().mainwindow.get_window ().set_cursor (null);
 
             bottom_bar.reveal_control ();
+
+            return false;
+        }
+
+        [CCode (instance_pos = -1)]
+        private bool navigation_event (GtkClutter.Embed embed, Clutter.Event event) {
+            var video_sink = playback.get_video_sink ();
+            var frame = video_sink.get_frame ();
+
+            if (frame == null)
+                return true;
+
+            float x, y;
+            event.get_coords (out x, out y);
+            // Transform event coordinates into the actor's coordinates
+            video_actor.transform_stage_point (x, y, out x, out y);
+            float actor_width, actor_height;
+            video_actor.get_size (out actor_width, out actor_height);
+
+            /* Convert event's coordinates into the frame's coordinates. */
+            x = x * frame.resolution.width / actor_width;
+            y = y * frame.resolution.height / actor_height;
+
+            switch (event.type) {
+                case Clutter.EventType.MOTION:
+                    ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-move", 0, x, y);
+                    break;
+                case Clutter.EventType.BUTTON_PRESS:
+                    ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-button-press", (int)event.button.button, x, y);
+                    break;
+                case Clutter.EventType.KEY_PRESS:
+                    warning (X.keysym_to_string (event.key.keyval));
+                    ((Gst.Video.Navigation) video_sink).send_key_event ("key-press", X.keysym_to_string (event.key.keyval));
+                    break;
+                case Clutter.EventType.KEY_RELEASE:
+                    ((Gst.Video.Navigation) video_sink).send_key_event ("key-release", X.keysym_to_string (event.key.keyval));
+                    break;
+            }
 
             return false;
         }

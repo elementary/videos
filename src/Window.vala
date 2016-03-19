@@ -18,7 +18,7 @@
  * Authored by: Tom Beckmann <tomjonabc@gmail.com>
  *              Cody Garver <cody@elementaryos.org>
  *              Artem Anufrij <artem.anufrij@live.de>
- *              Corentin Noël <corentin@elementary.io
+ *              Corentin Noël <corentin@elementary.io>
  */
 
 public class Audience.Window : Gtk.Window {
@@ -298,7 +298,7 @@ public class Audience.Window : Gtk.Window {
         }
 
         var root = volume.get_mount ().get_default_location ();
-        play_file (root.get_uri ());
+        play_file (root.get_uri ().replace ("file:///", "dvd:///"));
     }
 
     private void on_player_ended () {

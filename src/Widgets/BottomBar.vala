@@ -111,10 +111,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         show_all ();
     }
 
-    public void set_preview_uri (string uri) {
-        time_widget.set_preview_uri (uri);
-    }
-
     public bool get_repeat () {
         return playlist_popover.rep.active;
     }

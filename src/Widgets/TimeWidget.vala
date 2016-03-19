@@ -40,8 +40,17 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
         main_playback.notify["progress"].connect (progress_callback);
 
         main_playback.notify["duration"].connect (() => {
+            if (preview_popover != null) {
+                preview_popover.destroy ();
+            }
             time_label.label = seconds_to_time ((int) main_playback.duration);
             progress_callback ();
+            // Don't allow to change the time if there is none.
+            sensitive = (main_playback.duration != 0);
+            if (sensitive) {
+                preview_popover = new Audience.Widgets.PreviewPopover (main_playback);
+                preview_popover.relative_to = this;
+            }
         });
 
         scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 0.1);
@@ -107,16 +116,10 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
             main_playback.notify["progress"].connect (progress_callback);
             return false;
         });
-        preview_popover = new Audience.Widgets.PreviewPopover ();
-        preview_popover.relative_to = this;
 
         add (progression_label);
         add (scale);
         add (time_label);
-    }
-
-    public void set_preview_uri (string uri) {
-        preview_popover.set_preview_uri (uri);
     }
 
     public override void get_preferred_width (out int minimum_width, out int natural_width) {

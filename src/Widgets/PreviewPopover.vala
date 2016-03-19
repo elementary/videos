@@ -37,7 +37,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     GtkClutter.Embed clutter;
     uint? timer_id = null;
 
-    public PreviewPopover () {
+    public PreviewPopover (ClutterGst.Playback main_playback) {
         opacity = GLOBAL_OPACITY;
         can_focus = false;
         sensitive = false;
@@ -54,6 +54,8 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         });
 
         playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
+        playback.uri = main_playback.uri;
+        playback.playing = false;
         clutter = new GtkClutter.Embed ();
         clutter.margin = 3;
         var stage = (Clutter.Stage)clutter.get_stage ();
@@ -79,10 +81,6 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     ~PreviewPopover () {
         playback.playing = false;
         cancel_loop_timer ();
-    }
-
-    public void set_preview_uri (string uri) {
-        playback.uri = uri;
     }
 
     public void set_preview_progress (double progress) {
