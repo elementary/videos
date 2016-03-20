@@ -63,8 +63,12 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
 
         var video_actor = new Clutter.Actor ();
         var aspect_ratio = ClutterGst.Aspectratio.@new ();
+        ((ClutterGst.Aspectratio) aspect_ratio).paint_borders = false;
         ((ClutterGst.Content) aspect_ratio).player = playback;
         video_actor.content = aspect_ratio;
+        ((ClutterGst.Content) aspect_ratio).size_change.connect ((width, height) => {
+            clutter.set_size_request (200, (int)(((double) (height*200))/((double) width)));
+        });
 
         video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
         video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
@@ -87,9 +91,6 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         cancel_loop_timer ();
         playback.progress = progress;
         playback.playing = true;
-        var frame = playback.get_frame ();
-        double aspect = ((double) frame.resolution.width)/((double) frame.resolution.height);
-        set_size_request (200, (int) (200.0/aspect));
 
         timer_id = Timeout.add_seconds (5, () => {
             set_preview_progress (progress);
