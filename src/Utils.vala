@@ -68,18 +68,9 @@ namespace Audience {
     }
 
     public static string get_basename (string filename) {
-        uint end = 0;
-        for (uint start=filename.length; start != 0; start--) {
-            if (filename[start] == '/') {
-                start ++;
-                return filename.substring (start, end - start);
-            }
+        var name = Path.get_basename (filename);
 
-            if (filename[start] == '.' && end == 0)
-                end = start;
-        }
-
-        return filename.substring (0, end);
+        return name.split (".", 2)[0];
     }
 
     public static string seconds_to_time (int seconds) {
@@ -103,8 +94,7 @@ namespace Audience {
     }
 
     public static bool has_dvd () {
-        var disk_manager = DiskManager.get_default ();
-        return disk_manager.get_volumes ().length () > 0;
+        return !DiskManager.get_default ().get_volumes ().is_empty;
     }
 
     public static bool file_exists (string uri) {
@@ -152,9 +142,5 @@ namespace Audience {
             warning ("Could not show notification: %s", err.message);
         }
 #endif
-    }
-
-    private bool modifier_is_pressed (Gdk.EventKey event, Gdk.ModifierType modifier) {
-        return (event.state & modifier) == modifier;
     }
 }

@@ -35,8 +35,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         fil.set_tooltip_text (_("Open file"));
         dvd = new Gtk.Button.from_icon_name ("media-optical-symbolic", Gtk.IconSize.BUTTON);
         dvd.set_tooltip_text (_("Play from Disc"));
-        dvd.no_show_all = true;
-        set_dvd_visibility (App.get_instance ().has_media_volumes ());
 
         rep = new Gtk.ToggleButton ();
         rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON));
@@ -45,19 +43,18 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         playlist_scrolled = new Gtk.ScrolledWindow (null, null);
         playlist_scrolled.set_min_content_height (100);
         playlist_scrolled.set_min_content_width (260);
-        var app = ((Audience.App) GLib.Application.get_default ());
 
         playlist = new Playlist ();
         playlist_scrolled.add (playlist);
 
         fil.clicked.connect ( () => {
             hide ();
-            app.run_open_file ();
+            App.get_instance ().mainwindow.run_open_file ();
         });
 
         dvd.clicked.connect ( () => {
             hide ();
-            app.run_open_dvd ();
+            App.get_instance ().mainwindow.run_open_dvd ();
         });
 
         rep.toggled.connect ( () => {
@@ -78,19 +75,19 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
 
         add (grid);
 
-        App.get_instance ().media_volumes_changed.connect (on_media_volumes_changed);
-    }
+        var disk_manager = DiskManager.get_default ();
+        set_dvd_visibility (disk_manager.has_media_volumes ());
+        disk_manager.volume_found.connect ((vol) => {
+            set_dvd_visibility (disk_manager.has_media_volumes ());
+        });
 
-    ~PlaylistPopover () {
-        App.get_instance ().media_volumes_changed.disconnect (on_media_volumes_changed);
-    }
-
-    private void on_media_volumes_changed () {
-        set_dvd_visibility (App.get_instance ().has_media_volumes ());
+        disk_manager.volume_removed.connect ((vol) => {
+            set_dvd_visibility (disk_manager.has_media_volumes ());
+        });
     }
 
     private void set_dvd_visibility (bool visible) {
-        dvd.no_show_all = true;
+        dvd.no_show_all = !visible;
         dvd.visible = visible;
     }
 

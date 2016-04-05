@@ -28,7 +28,6 @@ public class Audience.Settings : Granite.Services.Settings {
     public string last_folder {get; set;}
     public bool playback_wait {get; set;}
     public bool stay_on_top {get; set;}
-    public bool show_window_decoration {get; set;}
     public string subtitle_font {get; set; }
 
     public Settings () {

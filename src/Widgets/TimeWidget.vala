@@ -20,24 +20,38 @@
  */
 
 public class Audience.Widgets.TimeWidget : Gtk.Grid {
-    public signal void slider_motion_event (Gdk.EventMotion event);
-
+    unowned ClutterGst.Playback main_playback;
     public Gtk.Label progression_label;
     public Gtk.Label time_label;
     public Gtk.Scale scale;
-    public signal void seeked (double val);
     private Audience.Widgets.PreviewPopover preview_popover;
-    private bool is_seeking = false;
     private bool released = true;
     private uint timeout_id = 0;
     private int original = 0;
 
-    public TimeWidget () {
+    public TimeWidget (ClutterGst.Playback main_playback) {
+        this.main_playback = main_playback;
         orientation = Gtk.Orientation.HORIZONTAL;
         column_spacing = 12;
         halign = Gtk.Align.CENTER;
         progression_label = new Gtk.Label ("");
         time_label = new Gtk.Label ("");
+
+        main_playback.notify["progress"].connect (progress_callback);
+
+        main_playback.notify["duration"].connect (() => {
+            if (preview_popover != null) {
+                preview_popover.destroy ();
+            }
+            time_label.label = seconds_to_time ((int) main_playback.duration);
+            progress_callback ();
+            // Don't allow to change the time if there is none.
+            sensitive = (main_playback.duration != 0);
+            if (sensitive) {
+                preview_popover = new Audience.Widgets.PreviewPopover (main_playback);
+                preview_popover.relative_to = this;
+            }
+        });
 
         scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 0.1);
         scale.expand = true;
@@ -47,8 +61,8 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
         scale.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
         scale.events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
         scale.button_press_event.connect ((event) => {
-            is_seeking = true;
             released = false;
+            main_playback.notify["progress"].disconnect (progress_callback);
 
             if (timeout_id != 0)
                 Source.remove (timeout_id);
@@ -56,9 +70,8 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
             timeout_id = Timeout.add (300, () => {
                 if (released == false)
                     return true;
-                seeked (scale.get_value ());
-                is_seeking = false;
 
+                main_playback.progress = scale.get_value ();
                 timeout_id = 0;
 
                 return false;
@@ -68,12 +81,20 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
         });
 
         scale.enter_notify_event.connect ((event) => {
-            preview_popover.show_all ();
+            if (event.detail != Gdk.NotifyType.INFERIOR && event.detail != Gdk.NotifyType.NONLINEAR) {
+                preview_popover.show_all ();
+                return false;
+            }
+
             return false;
         });
 
         scale.leave_notify_event.connect ((event) => {
-            preview_popover.hide ();
+            if (event.detail != Gdk.NotifyType.INFERIOR && event.detail != Gdk.NotifyType.NONLINEAR) {
+                preview_popover.hide ();
+                return false;
+            }
+
             return false;
         });
 
@@ -87,23 +108,18 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
             pointing.x = (int)(event.x) - event.window.get_width ()/2 - distance/2;
             preview_popover.set_pointing_to ((Gdk.Rectangle)pointing);
             preview_popover.set_preview_progress (((double)event.x)/((double)event.window.get_width ()));
-
-            slider_motion_event (event);
-
             return false;
         });
 
-        scale.button_release_event.connect ((event) => {released = true; return false;});
-        preview_popover = new Audience.Widgets.PreviewPopover ();
-        preview_popover.relative_to = this;
+        scale.button_release_event.connect ((event) => {
+            released = true;
+            main_playback.notify["progress"].connect (progress_callback);
+            return false;
+        });
 
         add (progression_label);
         add (scale);
         add (time_label);
-    }
-
-    public void set_preview_uri (string uri) {
-        preview_popover.set_preview_uri (uri);
     }
 
     public override void get_preferred_width (out int minimum_width, out int natural_width) {
@@ -117,11 +133,8 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
         }
     }
 
-    public void set_progression_time (double current_time, double total_time) {
-        if (is_seeking == true)
-            return;
-        scale.set_value (current_time/total_time);
-        progression_label.label = seconds_to_time ((int)(current_time / 1000000000));
-        time_label.label = seconds_to_time ((int)((total_time - current_time) / 1000000000));
+    private void progress_callback () {
+        scale.set_value (main_playback.progress);
+        progression_label.label = seconds_to_time ((int) (main_playback.duration * main_playback.progress));
     }
 }

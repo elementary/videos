@@ -7,21 +7,25 @@ namespace Audience {
         "ass",
         "asc"
     };
-    public class PlayerPage : Gtk.Bin {
-        public GtkClutter.Embed           clutter;
-        public Audience.Widgets.VideoPlayer video_player;
+
+    public class PlayerPage : Gtk.EventBox {
+        public signal void unfullscreen_clicked ();
+        public signal void ended ();
+
+        public GtkClutter.Embed clutter;
+        private Clutter.Actor video_actor;
         private Audience.Widgets.BottomBar bottom_bar;
         private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_bar;
         private GtkClutter.Actor unfullscreen_actor;
         private GtkClutter.Actor bottom_actor;
-        private GnomeMediaKeys             mediakeys;
+        private GnomeMediaKeys mediakeys;
+        private ClutterGst.Playback playback;
 
         public GnomeSessionManager session_manager;
         uint32 inhibit_cookie;
 
         private bool mouse_primary_down = false;
-        private bool fullscreened = false;
 
         public bool repeat {
             get{
@@ -33,29 +37,75 @@ namespace Audience {
             }
         }
 
-        public signal void ended ();
+        public bool playing {
+            get {
+                return playback.playing;
+            }
+            set {
+                if (playback.playing == value)
+                    return;
+
+                playback.playing = value;
+            }
+        }
+
+        private bool _fullscreened = false;
+        public bool fullscreened {
+            get {
+                return _fullscreened;
+            }
+            set {
+                _fullscreened = value;
+                bottom_bar.fullscreen = value;
+            }
+        }
 
         public PlayerPage () {
-            video_player = new Widgets.VideoPlayer();
-            video_player.notify["playing"].connect (() => {
-                bottom_bar.toggle_play_pause ();
-                inhibit_session (video_player.playing);
+        }
+
+        construct {
+            events |= Gdk.EventMask.POINTER_MOTION_MASK;
+            events |= Gdk.EventMask.KEY_PRESS_MASK;
+            events |= Gdk.EventMask.KEY_RELEASE_MASK;
+            playback = new ClutterGst.Playback ();
+            playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
+            playback.notify["playing"].connect (() => {
+                inhibit_session (playback.playing);
             });
 
             clutter = new GtkClutter.Embed ();
             stage = (Clutter.Stage)clutter.get_stage ();
             stage.background_color = {0, 0, 0, 0};
 
-            video_player.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
-            video_player.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
+            video_actor = new Clutter.Actor ();
+            var aspect_ratio = ClutterGst.Aspectratio.@new ();
+            ((ClutterGst.Aspectratio) aspect_ratio).paint_borders = false;
+            ((ClutterGst.Content) aspect_ratio).player = playback;
+            /* Commented because of a bug in the compositor
+            ((ClutterGst.Content) aspect_ratio).size_change.connect ((width, height) => {
+                double aspect = ((double) width)/((double) height);
+                var geometry = Gdk.Geometry ();
+                geometry.min_aspect = aspect;
+                geometry.max_aspect = aspect;
+                ((Gtk.Window) get_toplevel ()).set_geometry_hints (get_toplevel (), geometry, Gdk.WindowHints.ASPECT);
+            });
+            */
+            video_actor.content = aspect_ratio;
 
-            stage.add_child (video_player);
+            video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
+            video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
 
-            bottom_bar = new Widgets.BottomBar (video_player);
-            bottom_bar.play_toggled.connect (() => { video_player.playing = !video_player.playing; });
-            bottom_bar.seeked.connect ((val) => { video_player.progress = val; });
-            bottom_bar.unfullscreen.connect (()=>{set_fullscreen (false);});
-            bottom_bar.set_repeat (false);
+            Signal.connect (clutter, "button-press-event", (GLib.Callback) navigation_event, this);
+            Signal.connect (clutter, "button-release-event", (GLib.Callback) navigation_event, this);
+            Signal.connect (clutter, "key-press-event", (GLib.Callback) navigation_event, this);
+            Signal.connect (clutter, "key-release-event", (GLib.Callback) navigation_event, this);
+            Signal.connect (clutter, "motion-notify-event", (GLib.Callback) navigation_event, this);
+
+            stage.add_child (video_actor);
+
+            bottom_bar = new Widgets.BottomBar (playback);
+            bottom_bar.bind_property ("playing", playback, "playing", BindingFlags.BIDIRECTIONAL);
+            bottom_bar.unfullscreen.connect (() => unfullscreen_clicked ());
 
             unfullscreen_bar = bottom_bar.get_unfullscreen_button ();
 
@@ -70,12 +120,6 @@ namespace Audience {
             unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.X_AXIS, 1));
             unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 0));
             stage.add_child (unfullscreen_actor);
-
-            this.size_allocate.connect (on_size_allocate);
-            App.get_instance ().mainwindow.key_press_event.connect (on_key_press_event);
-            App.get_instance ().mainwindow.window_state_event.connect (on_window_state_event);
-            if (App.get_instance ().mainwindow.is_maximized)
-                set_fullscreen (true);
 
             //media keys
             try {
@@ -92,7 +136,7 @@ namespace Audience {
                             get_playlist_widget ().next ();
                             break;
                         case "Play":
-                            video_player.playing = !video_player.playing;
+                            playback.playing = !playback.playing;
                             break;
                         default:
                             break;
@@ -104,7 +148,7 @@ namespace Audience {
                 warning (e.message);
             }
 
-            App.get_instance ().mainwindow.motion_notify_event.connect ((event) => {
+            this.motion_notify_event.connect ((event) => {
                 if (mouse_primary_down && settings.move_window) {
                     mouse_primary_down = false;
                     App.get_instance ().mainwindow.begin_move_drag (Gdk.BUTTON_PRIMARY,
@@ -117,13 +161,6 @@ namespace Audience {
             });
 
             this.button_press_event.connect ((event) => {
-                if (event.button == Gdk.BUTTON_PRIMARY
-                    && event.type == Gdk.EventType.2BUTTON_PRESS) // double left click
-                    set_fullscreen(!fullscreened);
-
-                if (event.button == Gdk.BUTTON_SECONDARY) // right click
-                    bottom_bar.play_toggled ();
-
                 if (event.button == Gdk.BUTTON_PRIMARY)
                     mouse_primary_down = true;
 
@@ -151,56 +188,30 @@ namespace Audience {
 
             this.destroy.connect (() => {
                 // FIXME:should find better way to decide if its end of playlist
-                if (video_player.progress > 0.99)
+                if (playback.progress > 0.99)
                     settings.last_stopped = 0;
                 else
-                    settings.last_stopped = video_player.progress;
+                    settings.last_stopped = playback.progress;
 
                 get_playlist_widget ().save_playlist ();
             });
 
-            /*events*/
-            video_player.text_tags_changed.connect (bottom_bar.preferences_popover.setup_text);
-            video_player.audio_tags_changed.connect (bottom_bar.preferences_popover.setup_audio);
-            video_player.progression_changed.connect ((current_time, total_time) => {
-                bottom_bar.set_progression_time (current_time, total_time);
-            });
-
             //end
-            video_player.ended.connect (() => {
+            playback.eos.connect (() => {
                 Idle.add (() => {
-                    video_player.progress = 0;
+                    playback.progress = 0;
                     if (!get_playlist_widget ().next ()) {
                         if (repeat) {
                             play_file (get_playlist_widget ().get_first_item ().get_uri ());
-                            video_player.playing = true;
+                            playback.playing = true;
                         } else {
-                            video_player.playing = false;
+                            playback.playing = false;
+                            settings.last_stopped = 0;
                             ended ();
                         }
                     }
                     return false;
                 });
-            });
-
-            video_player.error.connect (() => {
-                App.get_instance ().page = Page.WELCOME;
-            });
-
-            video_player.plugin_install_done.connect (() => {
-                App.get_instance ().page = Page.PLAYER;
-            });
-
-            video_player.notify["playing"].connect (() => {
-                App.get_instance ().mainwindow.set_keep_above (video_player.playing && settings.stay_on_top);
-            });
-
-            bottom_bar.time_widget.slider_motion_event.connect ((event) => {
-                int x, y;
-                bottom_bar.translate_coordinates (App.get_instance ().mainwindow, (int)event.x, (int)event.y, out x, out y);
-                Gtk.Allocation allocation;
-                clutter.get_allocation (out allocation);
-                update_pointer_position (y, allocation.height);
             });
 
             //playlist wants us to open a file
@@ -212,62 +223,45 @@ namespace Audience {
                 if (bottom_bar.child_revealed == true) {
                     App.get_instance ().mainwindow.get_window ().set_cursor (null);
                 } else {
-                    App.get_instance ().mainwindow.get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.BLANK_CURSOR));
+                    var window = App.get_instance ().mainwindow.get_window ();
+                    var display = window.get_display ();
+                    var cursor = new Gdk.Cursor.for_display (display, Gdk.CursorType.BLANK_CURSOR);
+                    window.set_cursor (cursor);
                 }
             });
 
             add (clutter);
-
             show_all ();
-
-        }
-
-        ~PlayerPage () {
-            video_player.playing = false;
-
-            App.get_instance ().set_content_size (0, 0, 0);
-            this.size_allocate.disconnect (on_size_allocate);
-            App.get_instance ().mainwindow.window_state_event.disconnect (on_window_state_event);
-            App.get_instance ().mainwindow.key_press_event.disconnect (on_key_press_event);
-            if (App.get_instance ().mainwindow.get_window () != null)
-                App.get_instance ().mainwindow.get_window ().set_cursor (null);
-
-            App.get_instance ().mainwindow.unfullscreen ();
-            if (fullscreened)
-                App.get_instance ().mainwindow.maximize ();
-
-            video_player.text_tags_changed.disconnect (bottom_bar.preferences_popover.setup_text);
-            video_player.audio_tags_changed.disconnect (bottom_bar.preferences_popover.setup_audio);
         }
 
         public void play_file (string uri, bool from_beginning = true) {
             debug ("Opening %s", uri);
-            video_player.uri = uri;
             get_playlist_widget ().set_current (uri);
-            bottom_bar.set_preview_uri (uri);
+            playback.uri = uri;
 
             string? sub_uri = get_subtitle_for_uri (uri);
-            if (sub_uri != null)
-                video_player.set_subtitle_uri (sub_uri);
+            if (sub_uri != null && sub_uri != uri)
+                playback.set_subtitle_uri (sub_uri);
 
-            App.get_instance ().set_window_title (get_title (uri));
-            video_player.relayout ();
+            App.get_instance ().mainwindow.title = get_title (uri);
 
-            int target_width, target_height, center_x, center_y;
-            get_target_size (out target_width, out target_height, out center_x, out center_y);
-            get_window ().move_resize (center_x, center_y, target_width, target_height);
+            if (from_beginning) {
+                playback.progress = 0.0;
+            } else {
+                playback.progress = settings.last_stopped;
+            }
 
-            update_aspect_ratio ();
-            video_player.playing = !settings.playback_wait;
-            if (from_beginning)
-                video_player.progress = 0.0;
-
+            playback.playing = !settings.playback_wait;
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
 
             /*subtitles/audio tracks*/
             bottom_bar.preferences_popover.setup_text ();
             bottom_bar.preferences_popover.setup_audio ();
+        }
+
+        public string get_played_uri () {
+            return playback.uri;
         }
 
         public void next () {
@@ -280,26 +274,46 @@ namespace Audience {
 
         public void resume_last_videos () {
             play_file (settings.current_video);
-            video_player.playing = false;
-            Idle.add (() => {
-                    if (settings.resume_videos)
-                        video_player.progress = settings.last_stopped;
-                    else
-                        video_player.progress = 0.0;
+            playback.playing = false;
+            if (settings.resume_videos) {
+                playback.progress = settings.last_stopped;
+            } else {
+                playback.progress = 0.0;
+            }
 
-                    return false;
-                    });
-            video_player.playing = !settings.playback_wait;
+            playback.playing = !settings.playback_wait;
         }
 
         public void append_to_playlist (File file) {
-            get_playlist_widget ().add_item (file);
+            if (playback.playing && is_subtitle (file.get_uri ())) {
+                playback.set_subtitle_uri (file.get_uri ());
+            } else {
+                get_playlist_widget ().add_item (file);
+            }
         }
 
         public void play_first_in_playlist () {
             var file = get_playlist_widget ().get_first_item ();
             play_file (file.get_uri ());
-            video_player.progress = 0.0;
+        }
+
+        public void reveal_control () {
+            bottom_bar.reveal_control ();
+        }
+
+        public void next_audio () {
+            bottom_bar.preferences_popover.next_audio ();
+        }
+
+        public void next_text () {
+            bottom_bar.preferences_popover.next_text ();
+        }
+
+        public void seek_jump_seconds (int seconds) {
+            var duration = playback.duration;
+            var progress = playback.progress;
+            var new_progress = ((duration * progress) + (double)seconds)/duration;
+            playback.progress = double.min (new_progress, 1.0);
         }
 
         private Widgets.Playlist get_playlist_widget () {
@@ -324,7 +338,7 @@ namespace Audience {
             return null;
         }
 
-        public static bool is_subtitle (string uri) {
+        private bool is_subtitle (string uri) {
             if (uri.length < 4 || uri.get_char (uri.length-4) != '.')
                 return false;
 
@@ -344,174 +358,42 @@ namespace Audience {
             return false;
         }
 
-        private void get_target_size (out int target_width, out int target_height,
-                out int center_x, out int center_y) {
-            Gdk.Rectangle monitor;
-            var screen = Gdk.Screen.get_default ();
-            screen.get_monitor_geometry (screen.get_monitor_at_window (get_window ()),
-                    out monitor);
+        [CCode (instance_pos = -1)]
+        private bool navigation_event (GtkClutter.Embed embed, Clutter.Event event) {
+            var video_sink = playback.get_video_sink ();
+            var frame = video_sink.get_frame ();
 
-            if (monitor.width > video_player.video_width
-                && monitor.height > video_player.video_height) {
-                target_width = (int) video_player.video_width;
-                target_height = (int) video_player.video_height;
-            } else {
-                target_width = (int)(monitor.width * 0.9);
-                target_height = (int)((double) video_player.video_height / video_player.video_width * target_width);
-            }
-            center_x = monitor.width / 2 - target_width /2 + monitor.x;
-            center_y = monitor.height / 2 - target_height /2 + monitor.y;
-        }
+            if (frame == null)
+                return true;
 
-        private bool on_key_press_event (Gdk.EventKey e) {
-            switch (e.keyval) {
-                case Gdk.Key.p:
-                case Gdk.Key.space:
-                    video_player.playing = !video_player.playing;
-                    break;
-                case Gdk.Key.Escape:
-                    if (fullscreened) {
-                        set_fullscreen (false);
-                    } else {
-                        App.get_instance ().mainwindow.destroy ();
-                    }
-                    return true;
-                case Gdk.Key.Down:
-                    if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) {
-                        video_player.seek_jump_seconds (-5); // 5 secs
-                    } else {
-                        video_player.seek_jump_seconds (-60); // 1 min
-                    }
-                    bottom_bar.reveal_control ();
-                    break;
-                case Gdk.Key.Left:
-                    if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) {
-                        video_player.seek_jump_seconds (-1); // 1 sec
-                    } else {
-                        video_player.seek_jump_seconds (-10); // 10 secs
-                    }
-                    bottom_bar.reveal_control ();
-                    break;
-                case Gdk.Key.Right:
-                    if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) {
-                        video_player.seek_jump_seconds (1); // 1 sec
-                    } else {
-                        video_player.seek_jump_seconds (10); // 10 secs
-                    }
-                    bottom_bar.reveal_control ();
-                    break;
-                case Gdk.Key.Up:
-                    if (modifier_is_pressed (e, Gdk.ModifierType.SHIFT_MASK)) {
-                        video_player.seek_jump_seconds (5); // 5 secs
-                    } else {
-                        video_player.seek_jump_seconds (60); // 1 min
-                    }
-                    bottom_bar.reveal_control ();
-                    break;
-                case Gdk.Key.Page_Down:
-                    video_player.seek_jump_seconds (-600); // 10 mins
-                    bottom_bar.reveal_control ();
-                    break;
-                case Gdk.Key.Page_Up:
-                    video_player.seek_jump_seconds (600); // 10 mins
-                    bottom_bar.reveal_control ();
-                    break;
-                case Gdk.Key.a:
-                    bottom_bar.preferences_popover.next_audio ();
-                    break;
-                case Gdk.Key.s:
-                    bottom_bar.preferences_popover.next_text ();
-                    break;
-                case Gdk.Key.f:
-                    if (fullscreened)
-                        set_fullscreen (false);
-                    else
-                        set_fullscreen (true);
+            float x, y;
+            event.get_coords (out x, out y);
+            // Transform event coordinates into the actor's coordinates
+            video_actor.transform_stage_point (x, y, out x, out y);
+            float actor_width, actor_height;
+            video_actor.get_size (out actor_width, out actor_height);
 
+            /* Convert event's coordinates into the frame's coordinates. */
+            x = x * frame.resolution.width / actor_width;
+            y = y * frame.resolution.height / actor_height;
+
+            switch (event.type) {
+                case Clutter.EventType.MOTION:
+                    ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-move", 0, x, y);
                     break;
-                default:
+                case Clutter.EventType.BUTTON_PRESS:
+                    ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-button-press", (int)event.button.button, x, y);
+                    break;
+                case Clutter.EventType.KEY_PRESS:
+                    warning (X.keysym_to_string (event.key.keyval));
+                    ((Gst.Video.Navigation) video_sink).send_key_event ("key-press", X.keysym_to_string (event.key.keyval));
+                    break;
+                case Clutter.EventType.KEY_RELEASE:
+                    ((Gst.Video.Navigation) video_sink).send_key_event ("key-release", X.keysym_to_string (event.key.keyval));
                     break;
             }
 
             return false;
-        }
-
-        private bool on_window_state_event (Gdk.EventWindowState e){
-            switch (e.changed_mask){
-                case Gdk.WindowState.FULLSCREEN:
-                fullscreened= ((e.new_window_state & Gdk.WindowState.FULLSCREEN)!=0);
-                break;
-                case Gdk.WindowState.MAXIMIZED:
-                bool currently_maximixed = ((e.new_window_state & Gdk.WindowState.MAXIMIZED)!=0);
-                set_fullscreen (currently_maximixed);
-                break;
-            }
-            return false;
-        }
-
-        private void set_fullscreen (bool full){
-            fullscreened = full;
-            if (full) {
-                App.get_instance ().mainwindow.fullscreen ();
-            } else {
-                // unfullscreen shoulnd't be call from elsewhere other than here
-                App.get_instance ().mainwindow.maximize ();
-                App.get_instance ().mainwindow.unfullscreen ();
-            }
-            bottom_bar.fullscreen = full;
-        }
-
-        private uint update_aspect_ratio_timeout = 0;
-        private bool update_aspect_ratio_locked = false;
-        private int prev_width = 0;
-        private int prev_height = 0;
-        private int old_h = -1;
-        private int old_w = -1;
-        /**
-         * Updates the window's aspect ratio locking if enabled.
-         * Return type is just there to make it compatible with Idle.add()
-         */
-        private bool update_aspect_ratio () {
-            if (!settings.keep_aspect
-                || video_player.video_width < 1
-                || video_player.height < 1
-                || !clutter.visible)
-                return false;
-
-            if (update_aspect_ratio_timeout != 0)
-                Source.remove (update_aspect_ratio_timeout);
-
-            update_aspect_ratio_timeout = Timeout.add (200, () => {
-                Gtk.Allocation a;
-                clutter.get_allocation (out a);
-                debug ("%i %i %i,%i\n", a.x, a.y, (this.get_allocated_width () - this.clutter.get_allocated_width ()) / 2, (this.get_allocated_height () - this.clutter.get_allocated_height ()) / 2);
-
-                double width, height;
-                width = clutter.get_allocated_width ();
-                height = width * video_player.video_height / (double) video_player.video_width;
-
-                App.get_instance ().set_content_size (width, height,clutter.get_allocated_height ());
-
-                prev_width = this.get_allocated_width ();
-                prev_height = this.get_allocated_height ();
-
-                update_aspect_ratio_timeout = 0;
-
-                return false;
-            });
-
-            return false;
-        }
-        private void on_size_allocate (Gtk.Allocation alloc) {
-            if (alloc.width != old_w || alloc.height != old_h) {
-                if (video_player.relayout ()) {
-                    old_w = alloc.width;
-                    old_h = alloc.height;
-                }
-            }
-
-            if (prev_width != this.get_allocated_width () || prev_height != this.get_allocated_height ())
-                Idle.add (update_aspect_ratio);
         }
 
         X.Display dpy;

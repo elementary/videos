@@ -32,11 +32,18 @@ public class Audience.DiskManager : GLib.Object {
     }
 
     private GLib.VolumeMonitor monitor;
-    private List<Volume> volumes;
+    private Gee.TreeSet<Volume> volumes;
 
     private DiskManager () {
+        
+    }
+
+    construct {
         monitor = GLib.VolumeMonitor.get ();
-        volumes = monitor.get_volumes ();
+        volumes = new Gee.TreeSet<Volume> ();
+        monitor.get_volumes ().foreach ((volume) => {
+            volumes.add (volume);
+        });
 
         monitor.drive_changed.connect ((drive) => {
             debug ("Drive changed: %s\n", drive.get_name ());
@@ -71,30 +78,32 @@ public class Audience.DiskManager : GLib.Object {
         monitor.volume_removed.connect ((volume) => {
             volumes.remove (volume);
             volume_removed (volume);
-            debug ("Volume removed: %s"+volumes.length ().to_string (), volume.get_name ());
+            debug ("Volume removed: %s", volume.get_name ());
         });
     }
 
-    public GLib.List<Volume> get_volumes () {
-        return volumes.copy ();
+    public Gee.TreeSet<Volume> get_volumes () {
+        return volumes;
     }
 
-    public GLib.List<Volume> get_media_volumes () {
-        GLib.List<Volume> returnValue = new GLib.List<Volume> ();
+    public Gee.TreeSet<Volume> get_media_volumes () {
+        var return_value = new Gee.TreeSet<Volume> ();
         foreach (Volume volume in volumes) {
-            if (has_dvd_media (volume))
-                returnValue.append (volume);
+            if (has_dvd_media (volume)) {
+                return_value.add (volume);
+            }
         }
-        return returnValue;
+
+        return return_value;
     }
 
     public bool has_media_volumes () {
-        return (get_media_volumes ().length () > 0);
+        return (get_media_volumes ().size > 0);
     }
 
     private void check_for_volume (Volume volume) {
         if (has_dvd_media (volume)) {
-            volumes.append (volume);
+            volumes.add (volume);
             volume_found (volume);
         }
     }

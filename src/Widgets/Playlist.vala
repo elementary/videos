@@ -197,7 +197,7 @@ namespace Audience.Widgets {
         }
 
         public void save_playlist () {
-            if (Audience.App.get_instance ().is_privacy_mode_enabled ()) {
+            if (Audience.App.get_instance ().mainwindow.is_privacy_mode_enabled ()) {
                 return;
             }
 

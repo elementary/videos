@@ -19,85 +19,79 @@
  */
 
 public class Audience.Widgets.PreviewPopover : Gtk.Popover {
-    public Clutter.Actor preview_actor;
-    dynamic Gst.Element preview_playbin;
-    Clutter.Texture video;
-    double ratio = 0;
+    private enum PlayFlags {
+        VIDEO         = (1 << 0),
+        AUDIO         = (1 << 1),
+        TEXT          = (1 << 2),
+        VIS           = (1 << 3),
+        SOFT_VOLUME   = (1 << 4),
+        NATIVE_AUDIO  = (1 << 5),
+        NATIVE_VIDEO  = (1 << 6),
+        DOWNLOAD      = (1 << 7),
+        BUFFERING     = (1 << 8),
+        DEINTERLACE   = (1 << 9),
+        SOFT_COLORBALANCE = (1 << 10)
+    }
+
+    ClutterGst.Playback playback;
+    GtkClutter.Embed clutter;
     uint? timer_id = null;
-    public PreviewPopover () {
+
+    public PreviewPopover (ClutterGst.Playback main_playback) {
         opacity = GLOBAL_OPACITY;
         can_focus = false;
         sensitive = false;
         modal = false;
 
-        // connect gstreamer stuff
-        preview_playbin = Gst.ElementFactory.make ("playbin", "play");
-        preview_playbin.get_bus ().add_signal_watch ();
-        preview_playbin.get_bus ().message.connect ((msg) => {
-            switch (msg.type) {
-                case Gst.MessageType.STATE_CHANGED:
-                    break;
-                case Gst.MessageType.ASYNC_DONE:
-                    break;
-            }
+        playback = new ClutterGst.Playback ();
+        playback.ready.connect (() => {
+            unowned Gst.Element pipeline = playback.get_pipeline ();
+            int flags;
+            pipeline.get ("flags", out flags);
+            flags &= ~PlayFlags.TEXT;   //disable subtitle
+            flags &= ~PlayFlags.AUDIO;  //disable audio sink
+            pipeline.set ("flags", flags);
         });
-        video = new Clutter.Texture ();
 
-        dynamic Gst.Element video_sink = Gst.ElementFactory.make ("cluttersink", "source");
-        video_sink.texture = video;
-        preview_playbin.video_sink = video_sink;
-        var clutter = new GtkClutter.Embed ();
-        clutter.margin = 6;
+        playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
+        playback.uri = main_playback.uri;
+        playback.playing = false;
+        clutter = new GtkClutter.Embed ();
+        clutter.margin = 3;
         var stage = (Clutter.Stage)clutter.get_stage ();
         stage.background_color = {0, 0, 0, 0};
-        stage.use_alpha = true;
 
-        video.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
-        video.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
+        var video_actor = new Clutter.Actor ();
+        var aspect_ratio = ClutterGst.Aspectratio.@new ();
+        ((ClutterGst.Aspectratio) aspect_ratio).paint_borders = false;
+        ((ClutterGst.Content) aspect_ratio).player = playback;
+        video_actor.content = aspect_ratio;
+        ((ClutterGst.Content) aspect_ratio).size_change.connect ((width, height) => {
+            clutter.set_size_request (200, (int)(((double) (height*200))/((double) width)));
+        });
 
-        stage.add_child (video);
+        video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
+        video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
+
+        stage.add_child (video_actor);
         add (clutter);
-        //show_all ();
+
         closed.connect (() => {
-            preview_playbin.set_state (Gst.State.PAUSED);
+            playback.playing = false;
             cancel_loop_timer ();
         });
     }
+
     ~PreviewPopover () {
-        preview_playbin.set_state (Gst.State.NULL);
-    }
-
-    public void set_preview_uri (string uri) {
-        preview_playbin.set_state (Gst.State.READY);
-        preview_playbin.uri = uri;
-        int flags;
-        preview_playbin.get ("flags", out flags);
-        flags &= ~PlayFlags.TEXT;   //disable subtitle
-        flags &= ~PlayFlags.AUDIO;  //disable audio sink
-        preview_playbin.set ("flags", flags);
-
-        try {
-            var info = new Gst.PbUtils.Discoverer (10 * Gst.SECOND).discover_uri (uri);
-            var video = info.get_video_streams ();
-            if (video != null && video.data != null) {
-                var video_info = (Gst.PbUtils.DiscovererVideoInfo)video.data;
-                uint video_width = video_info.get_width ();
-                uint video_height = video_info.get_height ();
-                ratio = ((double) video_height) / ((double) video_width);
-                set_size_request (200, (int) (ratio*200));
-            }
-        } catch (Error e) {
-            warning (e.message);
-            return;
-        }
+        playback.playing = false;
+        cancel_loop_timer ();
     }
 
     public void set_preview_progress (double progress) {
         cancel_loop_timer ();
-        int64 length;
-        preview_playbin.query_duration (Gst.Format.TIME, out length);
-        preview_playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, (int64)(double.max (progress, 0.0) * length));
-        preview_playbin.set_state (Gst.State.PLAYING);
+        playback.progress = progress;
+        playback.playing = true;
+
         timer_id = Timeout.add_seconds (5, () => {
             set_preview_progress (progress);
             return false;
