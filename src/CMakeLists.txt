@@ -1,7 +1,7 @@
 # Vala stuff
 find_package (Vala REQUIRED)
 include (ValaVersion)
-ensure_vala_version ("0.22" MINIMUM)
+ensure_vala_version ("0.28" MINIMUM)
 include (ValaPrecompile)
 
 # Configure file
