@@ -4,13 +4,13 @@ Priority: optional
 Maintainer: Cody Garver <codygarver@gmail.com>
 Build-Depends: cmake (>= 2.8),
                debhelper (>= 9),
-               libclutter-gst-2.0-dev,
+               libclutter-gst-3.0-dev,
                libclutter-gtk-1.0-dev,
                libgranite-dev,
-               libgstreamer1.0-dev,
                libgstreamer-plugins-base1.0-dev,
+               libgstreamer1.0-dev,
                libgtk-3-dev,
-               valac (>= 0.18.1)
+               valac (>= 0.28.0)
 Standards-Version: 3.9.5
 Homepage: https://launchpad.net/audience
 Vcs-Bzr: lp:audience
@@ -19,7 +19,6 @@ Vcs-Browser: https://code.launchpad.net/~audience-team/audience/trunk
 Package: audience
 Architecture: any
 Depends: xdg-utils, ${misc:Depends}, ${shlibs:Depends}
-Pre-Depends: dpkg (>= 1.15.6)
 Description: A modern media player
  Audience is a simple, modern media player that makes greater use of
  hardware acceleration than most players out there.
@@ -29,7 +28,6 @@ Architecture: any
 Section: debug
 Priority: extra
 Depends: audience (= ${binary:Version}), ${misc:Depends}
-Pre-Depends: dpkg (>= 1.15.6)
 Enhances: audience
 Description: A modern media player (debugging symbols)
  Audience is a simple, modern media player that makes greater use of
