@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-12-03 15:10-0200\n"
-"PO-Revision-Date: 2015-12-18 19:51+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"PO-Revision-Date: 2016-05-03 12:03+0000\n"
+"Last-Translator: Martin Myrvold <Unknown>\n"
 "Language-Team: Norwegian Nynorsk <nn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-04-13 05:33+0000\n"
-"X-Generator: Launchpad (build 17990)\n"
+"X-Launchpad-Export-Date: 2016-05-04 05:50+0000\n"
+"X-Generator: Launchpad (build 17995)\n"
 
 #: ../src/Widgets/SettingsPopover.vala:35 ../src/Audience.vala:253
 msgid "All files"
@@ -61,11 +61,11 @@ msgstr "Spel frå disk"
 #: ../src/Widgets/PlaylistPopover.vala:43
 #: ../src/Widgets/PlaylistPopover.vala:70
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Slå på gjentaking"
 
 #: ../src/Widgets/PlaylistPopover.vala:67
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Slå av gjentaking"
 
 #: ../src/Widgets/BottomBar.vala:55 ../src/Widgets/BottomBar.vala:134
 msgid "Play"
@@ -133,7 +133,7 @@ msgstr "Opna ei lagra fil."
 
 #: ../src/Widgets/WelcomePage.vala:17
 msgid "Replay last video"
-msgstr ""
+msgstr "Spel siste video på nytt"
 
 #: ../src/Widgets/WelcomePage.vala:19
 msgid "Resume last video"
@@ -146,12 +146,12 @@ msgstr "Spel av ein DVD eller opne ei fil frå disk"
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:44
 msgid "Videos"
-msgstr ""
+msgstr "Videoar"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:46
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Video;Spelar;Filmar;"
 
 #: ../src/Audience.vala:47
 msgid "Watch videos and movies"
@@ -164,12 +164,12 @@ msgstr "Videospelar"
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:50
 msgid "About Audience"
-msgstr ""
+msgstr "Om Audience"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:52
 msgid "About Videos"
-msgstr ""
+msgstr "Om Videoar"
 
 #: ../src/Audience.vala:53
 msgid "translator-credits"
