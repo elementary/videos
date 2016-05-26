@@ -1,0 +1,200 @@
+# Tagalog translation for audience
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
+# This file is distributed under the same license as the audience package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: audience\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2015-12-03 15:10-0200\n"
+"PO-Revision-Date: 2016-05-26 02:05+0000\n"
+"Last-Translator: yavinfour <anjelo.passionist@gmail.com>\n"
+"Language-Team: Tagalog <tl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2016-05-26 05:38+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
+
+#: ../src/Widgets/SettingsPopover.vala:35 ../src/Audience.vala:253
+msgid "All files"
+msgstr "Lahat ng mga File"
+
+#: ../src/Widgets/SettingsPopover.vala:39
+msgid "Subtitle files"
+msgstr ""
+
+#. /pgp-encrypted"
+#: ../src/Widgets/SettingsPopover.vala:46
+msgid "External Subtitles"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:50
+msgid "Audio:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:53
+msgid "Subtitles:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:56
+msgid "External Subtitles:"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:123
+msgid "None"
+msgstr "Wala"
+
+#: ../src/Widgets/SettingsPopover.vala:154
+msgid "Default"
+msgstr ""
+
+#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:5
+msgid "Open file"
+msgstr "Buksan ang file"
+
+#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:23
+msgid "Play from Disc"
+msgstr "I-play mula sa Disc"
+
+#: ../src/Widgets/PlaylistPopover.vala:43
+#: ../src/Widgets/PlaylistPopover.vala:70
+msgid "Enable Repeat"
+msgstr ""
+
+#: ../src/Widgets/PlaylistPopover.vala:67
+msgid "Disable Repeat"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:55 ../src/Widgets/BottomBar.vala:134
+msgid "Play"
+msgstr "Patugtugin"
+
+#: ../src/Widgets/BottomBar.vala:59
+msgid "Playlist"
+msgstr "Listahan ng mga Awit (Playlist)"
+
+#: ../src/Widgets/BottomBar.vala:63
+msgid "Settings"
+msgstr "Pamamahala"
+
+#: ../src/Widgets/BottomBar.vala:119
+msgid "Unfullscreen"
+msgstr ""
+
+#: ../src/Widgets/BottomBar.vala:130
+msgid "Pause"
+msgstr ""
+
+#: ../src/Widgets/VideoPlayer.vala:378
+msgid "Error"
+msgstr ""
+
+#: ../src/Widgets/VideoPlayer.vala:378
+msgid "_OK"
+msgstr "_OK"
+
+#: ../src/Widgets/VideoPlayer.vala:384
+msgid "Oops! Audience can't play this file!"
+msgstr ""
+
+#: ../src/Widgets/VideoPlayer.vala:404
+msgid ""
+"Some media files need extra software to be played. Audience can install this "
+"software automatically."
+msgstr ""
+
+#: ../src/Widgets/VideoPlayer.vala:409
+msgid "Audience needs %s to play this file."
+msgstr "Kailangan ng Audience ng %s para maiplay itong file"
+
+#: ../src/Widgets/VideoPlayer.vala:416
+msgid "Don't install"
+msgstr "Huwag I-install"
+
+#: ../src/Widgets/VideoPlayer.vala:417
+msgid "Install"
+msgstr "I-install"
+
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "No Videos Open"
+msgstr "Walang mga Videong Nakabukas"
+
+#: ../src/Widgets/WelcomePage.vala:4
+msgid "Select a source to begin playing."
+msgstr "Pumili ng source para magsimula nang mag-play"
+
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "Open a saved file."
+msgstr "Magbukas ng nakasave na file"
+
+#: ../src/Widgets/WelcomePage.vala:17
+msgid "Replay last video"
+msgstr "I-play ulit ang huling video"
+
+#: ../src/Widgets/WelcomePage.vala:19
+msgid "Resume last video"
+msgstr "I-resume ang huling video"
+
+#: ../src/Widgets/WelcomePage.vala:23
+msgid "Watch a DVD or open a file from disc"
+msgstr "Manood ng DVD o magbukas ng file mula sa disc"
+
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:44
+msgid "Videos"
+msgstr "Mga Video"
+
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:46
+msgid "Audience;Video;Player;Movies;"
+msgstr "Audience;Video;Player;Movies;Pelikula"
+
+#: ../src/Audience.vala:47
+msgid "Watch videos and movies"
+msgstr "Manood ng mga video at mga pelikula"
+
+#: ../src/Audience.vala:48
+msgid "Video Player"
+msgstr ""
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:50
+msgid "About Audience"
+msgstr "Tungkol sa Audience"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:52
+msgid "About Videos"
+msgstr ""
+
+#: ../src/Audience.vala:53
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  yavinfour https://launchpad.net/~anjelo.delcarmen"
+
+#: ../src/Audience.vala:247
+msgid "Open"
+msgstr "Buksan"
+
+#: ../src/Audience.vala:248
+msgid "_Cancel"
+msgstr "I_kansela"
+
+#: ../src/Audience.vala:248
+msgid "_Open"
+msgstr "_Buksan"
+
+#: ../src/Audience.vala:257
+msgid "Video files"
+msgstr "Mga files ng Video"
+
+#: ../src/Audience.vala:363
+msgid "Video added to playlist"
+msgstr "Nadagdag na ang video sa playlist"
+
+#: ../src/Audience.vala:365
+msgid "%i videos added to playlist"
+msgstr "%i na mga video ang nadagdag sa playlist"
