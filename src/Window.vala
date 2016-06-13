@@ -100,10 +100,6 @@ public class Audience.Window : Gtk.Window {
             case Gdk.Key.o:
                 run_open_file ();
                 return true;
-            case Gdk.Key.p:
-            case Gdk.Key.space:
-                resume_last_videos ();
-                return true;
             case Gdk.Key.q:
                 destroy ();
                 return true;
@@ -184,6 +180,13 @@ public class Audience.Window : Gtk.Window {
                 default:
                     break;
             }
+        } else {
+            switch (e.keyval) {
+                case Gdk.Key.p:
+                case Gdk.Key.space:
+                    resume_last_videos ();
+                return true;
+            }
         }
 
         return false;
@@ -234,7 +237,11 @@ public class Audience.Window : Gtk.Window {
     }
 
     public void resume_last_videos () {
-        play_file (settings.current_video, false);
+        if (settings.current_video != "") {
+            play_file (settings.current_video, false);
+        } else {
+            run_open_file ();
+        }
     }
 
     public void run_open_dvd () {
