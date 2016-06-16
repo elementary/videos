@@ -35,7 +35,10 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
 
     ClutterGst.Playback playback;
     GtkClutter.Embed clutter;
-    uint? timer_id = null;
+    uint loop_timer_id = 0;
+    uint show_timer_id = 0;
+    uint hide_timer_id = 0;
+    uint idle_id = 0;
 
     public PreviewPopover (ClutterGst.Playback main_playback) {
         opacity = GLOBAL_OPACITY;
@@ -79,6 +82,13 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         closed.connect (() => {
             playback.playing = false;
             cancel_loop_timer ();
+            cancel_timer (ref show_timer_id);
+            cancel_timer (ref hide_timer_id);
+        });
+
+        hide.connect (() => {
+            playback.playing = false;
+            cancel_loop_timer ();
         });
     }
 
@@ -87,21 +97,65 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         cancel_loop_timer ();
     }
 
-    public void set_preview_progress (double progress) {
-        cancel_loop_timer ();
-        playback.progress = progress;
-        playback.playing = true;
+    public void set_preview_progress (double progress, bool loop = false, bool force = false) {
+        if (idle_id > 0) {
+            return;
+        }
 
-        timer_id = Timeout.add_seconds (5, () => {
-            set_preview_progress (progress);
+        if (loop) {
+            cancel_loop_timer ();
+        }
+
+        idle_id = Idle.add_full (GLib.Priority.LOW, () => {
+            playback.playing = true;
+            playback.progress = progress;
+            playback.playing = loop;
+            if (loop) {
+                loop_timer_id = Timeout.add_seconds (5, () => {
+                    set_preview_progress (progress, true, true);
+                    loop_timer_id = 0;
+                    return false;
+                });
+            }
+            idle_id = 0;
+            return false;
+        });
+    }
+
+    public void schedule_show () {
+        if (show_timer_id > 0) {
+            return;
+        }
+        cancel_timer (ref hide_timer_id);
+
+        show_timer_id = Timeout.add (300, () => {
+                show_all ();
+                show_timer_id = 0;
+                return false;
+            });
+    }
+
+    public void schedule_hide () {
+        if (hide_timer_id > 0) {
+            return;
+        }
+        cancel_timer (ref show_timer_id);
+
+        hide_timer_id = Timeout.add (300, () => {
+            hide ();
+            hide_timer_id = 0;
             return false;
         });
     }
 
     private void cancel_loop_timer () {
-        if (timer_id != null) {
+        cancel_timer (ref loop_timer_id);
+    }
+
+    private void cancel_timer (ref uint timer_id) {
+        if (timer_id > 0) {
             Source.remove (timer_id);
-            timer_id = null;
+            timer_id = 0;
         }
     }
 }
