@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-04-13 05:33+0000\n"
-"X-Generator: Launchpad (build 17990)\n"
+"X-Launchpad-Export-Date: 2016-06-20 06:06+0000\n"
+"X-Generator: Launchpad (build 18097)\n"
 
 #: ../src/Widgets/SettingsPopover.vala:35 ../src/Audience.vala:253
 msgid "All files"
@@ -178,7 +178,8 @@ msgstr ""
 "  Fathallah Wael https://launchpad.net/~fathallahwael80\n"
 "  Mohamed Sarhan https://launchpad.net/~sarhan-the-fox\n"
 "  Muhammed Abd-ulAziz Abd-ullah https://launchpad.net/~thenubianmuha\n"
-"  ak907k https://launchpad.net/~ak907k"
+"  ak907k https://launchpad.net/~ak907k\n"
+"  mkjdev https://launchpad.net/~mkjdev"
 
 #: ../src/Audience.vala:247
 msgid "Open"
