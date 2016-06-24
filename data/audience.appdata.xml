@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2015 elementary, LLC <contact@elementary.io> -->
-<application>
-  <id type="desktop">audience.desktop</id>
-  <metadata_license>CC0</metadata_license>
+<!-- Copyright 2015-2016 elementary, LLC <contact@elementary.io> -->
+<component type="desktop">
+  <id>audience.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
   <project_group>elementary</project_group>
   <project_license>GPL-3.0+</project_license>
   <name>Audience</name>
-  <icon type="stock">multimedia-video-player</icon>
-  <summary>A modern video player</summary>
+  <summary>Watch videos and movies</summary>
   <description>
     <p>
-      Audience is a modern video player that brings lessons
-      learned from the web home to the desktop.
+      A modern video player that focuses on displaying video content instead of
+      player controls. It remembers your last played video and playback position
+      so you can pick up from where you left off.
     </p>
+    <p>
+      Additional features include:
+    </p>
+    <ul>
+      <li>Subtitle support</li>
+      <li>Play queue</li>
+      <li>Thumbnail previews on the seek bar</li>
+    </ul>
   </description>
+  <provides>
+    <binary>audience</binary>
+  </provides>
+  <developer_name>elementary LLC.</developer_name>
   <url type="homepage">http://elementary.io/</url>
+  <url type="bugtracker">https://bugs.launchpad.net/audience</url>
+  <url type="donation">https://elementary.io/get-involved#funding</url>
+  <url type="help">https://elementaryos.stackexchange.com/questions/tagged/videos</url>
   <updatecontact>contact_at_elementary.io</updatecontact>
-</application>
+</component>
