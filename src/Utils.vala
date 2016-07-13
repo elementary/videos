@@ -70,7 +70,7 @@ namespace Audience {
     public static string get_basename (string filename) {
         var name = Path.get_basename (filename);
 
-        return name.split (".", 2)[0];
+        return name.replace (get_extension(filename), "");
     }
 
     public static string seconds_to_time (int seconds) {
