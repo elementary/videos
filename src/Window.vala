@@ -95,22 +95,49 @@ public class Audience.Window : Gtk.Window {
         });
     }
 
+    /** Returns true if the code parameter matches the keycode of the keyval parameter for
+    * any keyboard group or level (in order to allow for non-QWERTY keyboards) **/
+    protected bool match_keycode (int keyval, uint code) {
+        Gdk.KeymapKey [] keys;
+        Gdk.Keymap keymap = Gdk.Keymap.get_default ();
+        if (keymap.get_entries_for_keyval (keyval, out keys)) {
+            foreach (var key in keys) {
+                if (code == key.keycode)
+                    return true;
+                }
+            }
+
+        return false;
+    }
+
     public override bool key_press_event (Gdk.EventKey e) {
-        switch (e.keyval) {
-            case Gdk.Key.o:
+        uint keycode = e.hardware_keycode;
+        if ((e.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
+            if (match_keycode (Gdk.Key.o, keycode)) {
                 run_open_file ();
                 return true;
-            case Gdk.Key.q:
+            } else if (match_keycode (Gdk.Key.q, keycode)) {
                 destroy ();
                 return true;
+            }
         }
 
         if (main_stack.get_visible_child () == player_page) {
+            if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
+                player_page.playing = !player_page.playing;
+            } else if (match_keycode (Gdk.Key.a, keycode)) {
+                player_page.next_audio ();
+            } else if (match_keycode (Gdk.Key.s, keycode)) {
+                player_page.next_text ();
+            } else if (match_keycode (Gdk.Key.f, keycode)) {
+                if (player_page.fullscreened) {
+                    unfullscreen ();
+                } else {
+                    fullscreen ();
+                }
+            }
+
             switch (e.keyval) {
-                case Gdk.Key.p:
-                case Gdk.Key.space:
-                    player_page.playing = !player_page.playing;
-                    break;
                 case Gdk.Key.Escape:
                     if (player_page.fullscreened) {
                         unfullscreen ();
@@ -163,28 +190,12 @@ public class Audience.Window : Gtk.Window {
                     player_page.seek_jump_seconds (600); // 10 mins
                     player_page.reveal_control ();
                     break;
-                case Gdk.Key.a:
-                    player_page.next_audio ();
-                    break;
-                case Gdk.Key.s:
-                    player_page.next_text ();
-                    break;
-                case Gdk.Key.f:
-                    if (player_page.fullscreened) {
-                        unfullscreen ();
-                    } else {
-                        fullscreen ();
-                    }
-
-                    break;
                 default:
                     break;
             }
         } else {
-            switch (e.keyval) {
-                case Gdk.Key.p:
-                case Gdk.Key.space:
-                    resume_last_videos ();
+            if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
+                resume_last_videos ();
                 return true;
             }
         }
