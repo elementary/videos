@@ -38,7 +38,6 @@ namespace Audience {
         public const string ABOUT_STOCK = N_("About Audience");
         /// TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
         public const string ABOUT_GENERIC = N_("About Videos");
-        public const string ABOUT_TRANSLATORS = N_("translator-credits");
 
         public Window mainwindow;
         public GLib.VolumeMonitor monitor;
@@ -53,7 +52,9 @@ namespace Audience {
             build_version = Constants.VERSION;
             build_version_info = Constants.VERSION_INFO;
 
-            app_years = "2011-2015";
+            Intl.setlocale (LocaleCategory.ALL, "");
+
+            app_years = "2011-2016";
             app_icon = "multimedia-video-player";
             app_launcher = "audience.desktop";
             application_id = "net.launchpad.audience";
@@ -65,10 +66,7 @@ namespace Audience {
 
             about_authors = { "Cody Garver <cody@elementaryos.org>",
                               "Tom Beckmann <tom@elementaryos.org>" };
-            /*about_documenters = {""};
-            about_artists = {""};
-            about_translators = Constants.ABOUT_TRANSLATORS;
-            about_comments = "To be determined"; */
+            about_translators = _("about-translators");
             about_license_type = Gtk.License.GPL_3_0;
         }
 
