@@ -22,9 +22,6 @@ namespace Audience {
         private GnomeMediaKeys mediakeys;
         private ClutterGst.Playback playback;
 
-        public GnomeSessionManager session_manager;
-        uint32 inhibit_cookie;
-
         private bool mouse_primary_down = false;
 
         public bool repeat {
@@ -69,9 +66,6 @@ namespace Audience {
             events |= Gdk.EventMask.KEY_RELEASE_MASK;
             playback = new ClutterGst.Playback ();
             playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
-            playback.notify["playing"].connect (() => {
-                inhibit_session (playback.playing);
-            });
 
             clutter = new GtkClutter.Embed ();
             stage = (Clutter.Stage)clutter.get_stage ();
@@ -194,6 +188,7 @@ namespace Audience {
                     settings.last_stopped = playback.progress;
 
                 get_playlist_widget ().save_playlist ();
+                Audience.Services.Inhibitor.get_instance ().uninhibit ();
             });
 
             //end
@@ -228,6 +223,14 @@ namespace Audience {
                     var cursor = new Gdk.Cursor.for_display (display, Gdk.CursorType.BLANK_CURSOR);
                     window.set_cursor (cursor);
                 }
+            });        
+
+            notify["playing"].connect (() => {
+                if (playing) {
+                    Audience.Services.Inhibitor.get_instance ().inhibit ();
+                } else {
+                    Audience.Services.Inhibitor.get_instance ().uninhibit ();
+                }
             });
 
             add (clutter);
@@ -258,6 +261,8 @@ namespace Audience {
             /*subtitles/audio tracks*/
             bottom_bar.preferences_popover.setup_text ();
             bottom_bar.preferences_popover.setup_audio ();
+            
+            Audience.Services.Inhibitor.get_instance ().inhibit ();
         }
 
         public string get_played_uri () {
@@ -394,38 +399,6 @@ namespace Audience {
             }
 
             return false;
-        }
-
-        X.Display dpy;
-        int timeout = -1;
-        int interval;
-        int prefer_blanking;
-        int allow_exposures;
-        void inhibit_session (bool inhibit) {
-            debug ("set inhibit to " + (inhibit ? "true" : "false"));
-            //TODO: Remove X Dependency!
-            //store the default values for setting back
-
-            if (dpy == null)
-                dpy = new X.Display ();
-
-            if (timeout == -1)
-                dpy.get_screensaver (out timeout, out interval, out prefer_blanking, out allow_exposures);
-
-            dpy.set_screensaver (inhibit ? 0 : timeout, interval, prefer_blanking, allow_exposures);
-
-            //prevent screenlocking in Gnome 3 using org.gnome.SessionManager
-            try {
-                session_manager = Bus.get_proxy_sync (BusType.SESSION,
-                        "org.gnome.SessionManager", "/org/gnome/SessionManager");
-                if (inhibit) {
-                    inhibit_cookie = session_manager.Inhibit ("audience", 0, "Playing Video using Audience", 12);
-                } else {
-                    session_manager.Uninhibit (inhibit_cookie);
-                }
-            } catch (Error e) {
-                warning (e.message);
-            }
         }
     }
 }

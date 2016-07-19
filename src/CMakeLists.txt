@@ -76,6 +76,7 @@ vala_precompile (VALA_C ${EXEC_NAME}
     Widgets/PlaylistPopover.vala
     Widgets/WelcomePage.vala
     Widgets/PlayerPage.vala
+    Services/Inhibitor.vala
   PACKAGES
     ${VALA_DEPS}
   OPTIONS
