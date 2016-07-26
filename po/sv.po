@@ -7,17 +7,69 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-12-03 15:10-0200\n"
+"POT-Creation-Date: 2016-07-17 04:08+0400\n"
 "PO-Revision-Date: 2016-07-20 14:56+0000\n"
 "Last-Translator: Mikael Nyberg <mikanybe@gmail.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-07-21 05:39+0000\n"
-"X-Generator: Launchpad (build 18147)\n"
+"X-Launchpad-Export-Date: 2016-07-26 05:28+0000\n"
+"X-Generator: Launchpad (build 18153)\n"
 
-#: ../src/Widgets/SettingsPopover.vala:35 ../src/Audience.vala:253
+#: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:106
+msgid "Play"
+msgstr "Spela"
+
+#: ../src/Widgets/BottomBar.vala:56
+msgid "Playlist"
+msgstr "Spellista"
+
+#: ../src/Widgets/BottomBar.vala:60
+msgid "Settings"
+msgstr "Inställningar"
+
+#: ../src/Widgets/BottomBar.vala:102
+msgid "Pause"
+msgstr "Pausa"
+
+#: ../src/Widgets/BottomBar.vala:127
+msgid "Unfullscreen"
+msgstr "Stäng fullskärm"
+
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "No Videos Open"
+msgstr "Inga videor öppna"
+
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "Select a source to begin playing."
+msgstr "Välj en källa för att starta uppspelning."
+
+#: ../src/Widgets/WelcomePage.vala:9 ../src/Widgets/PlaylistPopover.vala:35
+msgid "Open file"
+msgstr "Öppna fil"
+
+#: ../src/Widgets/WelcomePage.vala:9
+msgid "Open a saved file."
+msgstr "Öppna en sparad fil"
+
+#: ../src/Widgets/WelcomePage.vala:19
+msgid "Replay last video"
+msgstr "Upprepa senaste videon"
+
+#: ../src/Widgets/WelcomePage.vala:21
+msgid "Resume last video"
+msgstr "Återställ senaste videon"
+
+#: ../src/Widgets/WelcomePage.vala:36 ../src/Widgets/PlaylistPopover.vala:37
+msgid "Play from Disc"
+msgstr "Spela upp från skiva"
+
+#: ../src/Widgets/WelcomePage.vala:36
+msgid "Watch a DVD or open a file from disc"
+msgstr "Spela upp en DVD eller öppna en fil från skivan"
+
+#: ../src/Widgets/SettingsPopover.vala:35 ../src/Window.vala:258
 msgid "All files"
 msgstr "Alla filer"
 
@@ -42,165 +94,75 @@ msgstr "Undertexter:"
 msgid "External Subtitles:"
 msgstr "Externa undertexter:"
 
-#: ../src/Widgets/SettingsPopover.vala:123
+#: ../src/Widgets/SettingsPopover.vala:108
 msgid "None"
 msgstr "Ingen"
 
-#: ../src/Widgets/SettingsPopover.vala:154
+#: ../src/Widgets/SettingsPopover.vala:123
 msgid "Default"
 msgstr "Standard"
 
-#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:5
-msgid "Open file"
-msgstr "Öppna fil"
-
-#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:23
-msgid "Play from Disc"
-msgstr "Spela upp från skiva"
-
-#: ../src/Widgets/PlaylistPopover.vala:43
-#: ../src/Widgets/PlaylistPopover.vala:70
+#: ../src/Widgets/PlaylistPopover.vala:41
+#: ../src/Widgets/PlaylistPopover.vala:67
 msgid "Enable Repeat"
 msgstr "Aktivera upprepning"
 
-#: ../src/Widgets/PlaylistPopover.vala:67
+#: ../src/Widgets/PlaylistPopover.vala:64
 msgid "Disable Repeat"
 msgstr "Inaktivera upprepning"
 
-#: ../src/Widgets/BottomBar.vala:55 ../src/Widgets/BottomBar.vala:134
-msgid "Play"
-msgstr "Spela"
-
-#: ../src/Widgets/BottomBar.vala:59
-msgid "Playlist"
-msgstr "Spellista"
-
-#: ../src/Widgets/BottomBar.vala:63
-msgid "Settings"
-msgstr "Inställningar"
-
-#: ../src/Widgets/BottomBar.vala:119
-msgid "Unfullscreen"
-msgstr "Stäng fullskärm"
-
-#: ../src/Widgets/BottomBar.vala:130
-msgid "Pause"
-msgstr "Pausa"
-
-#: ../src/Widgets/VideoPlayer.vala:378
-msgid "Error"
-msgstr "Fel"
-
-#: ../src/Widgets/VideoPlayer.vala:378
-msgid "_OK"
-msgstr "_OK"
-
-#: ../src/Widgets/VideoPlayer.vala:384
-msgid "Oops! Audience can't play this file!"
-msgstr "Hoppsan! Audience kan inte spela upp den här filen!"
-
-#: ../src/Widgets/VideoPlayer.vala:404
-msgid ""
-"Some media files need extra software to be played. Audience can install this "
-"software automatically."
-msgstr ""
-"Några mediafiler behöver extra mjukvara för att spelas upp. Audience kan "
-"installera denna mjukvara automatiskt."
-
-#: ../src/Widgets/VideoPlayer.vala:409
-msgid "Audience needs %s to play this file."
-msgstr "Audience behöver %s  för att spela upp denna filen."
-
-#: ../src/Widgets/VideoPlayer.vala:416
-msgid "Don't install"
-msgstr "Installera inte"
-
-#: ../src/Widgets/VideoPlayer.vala:417
-msgid "Install"
-msgstr "Installera"
-
-#: ../src/Widgets/WelcomePage.vala:4
-msgid "No Videos Open"
-msgstr "Inga videor öppna"
-
-#: ../src/Widgets/WelcomePage.vala:4
-msgid "Select a source to begin playing."
-msgstr "Välj en källa för att starta uppspelning."
-
-#: ../src/Widgets/WelcomePage.vala:5
-msgid "Open a saved file."
-msgstr "Öppna en sparad fil"
-
-#: ../src/Widgets/WelcomePage.vala:17
-msgid "Replay last video"
-msgstr "Upprepa senaste videon"
-
-#: ../src/Widgets/WelcomePage.vala:19
-msgid "Resume last video"
-msgstr "Återställ senaste videon"
-
-#: ../src/Widgets/WelcomePage.vala:23
-msgid "Watch a DVD or open a file from disc"
-msgstr "Spela upp en DVD eller öppna en fil från skivan"
-
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-#: ../src/Audience.vala:44
+#: ../src/Audience.vala:32
 msgid "Videos"
 msgstr "Videor"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-#: ../src/Audience.vala:46
+#: ../src/Audience.vala:34
 msgid "Audience;Video;Player;Movies;"
 msgstr "Audience;Video;Spelare;Filmer;"
 
-#: ../src/Audience.vala:47
+#: ../src/Audience.vala:35
 msgid "Watch videos and movies"
 msgstr "Titta på videor och filmer"
 
-#: ../src/Audience.vala:48
+#: ../src/Audience.vala:36
 msgid "Video Player"
 msgstr "Videospelare"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-#: ../src/Audience.vala:50
+#: ../src/Audience.vala:38
 msgid "About Audience"
 msgstr "Om Audience"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-#: ../src/Audience.vala:52
+#: ../src/Audience.vala:40
 msgid "About Videos"
 msgstr "Om Videor"
 
-#: ../src/Audience.vala:53
-msgid "translator-credits"
+#: ../src/Audience.vala:69
+msgid "about-translators"
 msgstr ""
-"Launchpad Contributions:\n"
-"  Joachim Johansson https://launchpad.net/~joachim-j\n"
-"  Jon https://launchpad.net/~jomenvisst\n"
-"  KranisXD https://launchpad.net/~kranis-xd-239\n"
-"  Mikael Nyberg https://launchpad.net/~miknyb\n"
-"  Zahirovic Mensur https://launchpad.net/~nookienoq"
 
-#: ../src/Audience.vala:247
+#: ../src/Window.vala:232
+msgid "%u Video added to Playlist"
+msgstr ""
+
+#: ../src/Window.vala:232
+msgid "%u Videos added to Playlist"
+msgstr ""
+
+#: ../src/Window.vala:252
 msgid "Open"
 msgstr "Öppna"
 
-#: ../src/Audience.vala:248
+#: ../src/Window.vala:253
 msgid "_Cancel"
 msgstr "_Avbryt"
 
-#: ../src/Audience.vala:248
+#: ../src/Window.vala:253
 msgid "_Open"
 msgstr "_Öppna"
 
-#: ../src/Audience.vala:257
+#: ../src/Window.vala:262
 msgid "Video files"
 msgstr "Videofiler"
-
-#: ../src/Audience.vala:363
-msgid "Video added to playlist"
-msgstr "Video tillagd i spellistan"
-
-#: ../src/Audience.vala:365
-msgid "%i videos added to playlist"
-msgstr "%i videor lades till i spellistan"
