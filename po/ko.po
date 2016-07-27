@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-07-17 04:08+0400\n"
-"PO-Revision-Date: 2016-04-22 05:49+0000\n"
+"PO-Revision-Date: 2016-07-26 08:25+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-07-26 05:28+0000\n"
+"X-Launchpad-Export-Date: 2016-07-27 06:32+0000\n"
 "X-Generator: Launchpad (build 18153)\n"
 
 #: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:106
@@ -141,15 +141,15 @@ msgstr "오디언스 소개"
 
 #: ../src/Audience.vala:69
 msgid "about-translators"
-msgstr ""
+msgstr "번역한 사람 소개"
 
 #: ../src/Window.vala:232
 msgid "%u Video added to Playlist"
-msgstr ""
+msgstr "%u개 비디오가 재생 목록에 더해졌습니다"
 
 #: ../src/Window.vala:232
 msgid "%u Videos added to Playlist"
-msgstr ""
+msgstr "%u개 비디오가 재생 목록에 더해졌습니다"
 
 #: ../src/Window.vala:252
 msgid "Open"
