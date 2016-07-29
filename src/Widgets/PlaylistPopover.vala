@@ -49,7 +49,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
 
         fil.clicked.connect ( () => {
             hide ();
-            App.get_instance ().mainwindow.run_open_file ();
+            App.get_instance ().mainwindow.run_open_file (false, false);
         });
 
         dvd.clicked.connect ( () => {

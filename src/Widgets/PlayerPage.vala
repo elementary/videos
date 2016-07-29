@@ -321,7 +321,7 @@ namespace Audience {
             playback.progress = double.min (new_progress, 1.0);
         }
 
-        private Widgets.Playlist get_playlist_widget () {
+        public Widgets.Playlist get_playlist_widget () {
             return bottom_bar.playlist_popover.playlist;
         }
 
