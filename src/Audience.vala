@@ -66,7 +66,7 @@ namespace Audience {
 
             about_authors = { "Cody Garver <cody@elementaryos.org>",
                               "Tom Beckmann <tom@elementaryos.org>" };
-            about_translators = _("about-translators");
+            about_translators = _("translator-credits");
             about_license_type = Gtk.License.GPL_3_0;
         }
 
