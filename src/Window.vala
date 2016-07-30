@@ -71,7 +71,7 @@ public class Audience.Window : Gtk.Window {
             var files = new Array<File>();
             foreach (var uri in sel.get_uris ()) {
                 var file = File.new_for_uri (uri);
-                files.prepend_val (file);
+                files.append_val (file);
             }
 
             open_files (files.data, false, false);
