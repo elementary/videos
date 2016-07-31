@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-07-17 04:08+0400\n"
-"PO-Revision-Date: 2015-12-18 19:51+0000\n"
+"POT-Creation-Date: 2016-07-30 18:07+0400\n"
+"PO-Revision-Date: 2016-07-30 14:30+0000\n"
 "Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-07-26 05:28+0000\n"
-"X-Generator: Launchpad (build 18153)\n"
+"X-Launchpad-Export-Date: 2016-07-31 05:54+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
 
 #: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:106
 msgid "Play"
@@ -69,7 +69,7 @@ msgstr "Putar Cakram"
 msgid "Watch a DVD or open a file from disc"
 msgstr "Tonton DVD atau buka berkas dari cakram"
 
-#: ../src/Widgets/SettingsPopover.vala:35 ../src/Window.vala:258
+#: ../src/Widgets/SettingsPopover.vala:35 ../src/Window.vala:269
 msgid "All files"
 msgstr "Semua file"
 
@@ -140,29 +140,33 @@ msgid "About Videos"
 msgstr ""
 
 #: ../src/Audience.vala:69
-msgid "about-translators"
+msgid "translator-credits"
 msgstr ""
+"Launchpad Contributions:\n"
+"  Anna Erdiawan https://launchpad.net/~erdie1\n"
+"  Viko Adi Rahmawan https://launchpad.net/~vikoadi\n"
+"  yulandi https://launchpad.net/~yulandi80"
 
-#: ../src/Window.vala:232
+#: ../src/Window.vala:243
 msgid "%u Video added to Playlist"
 msgstr ""
 
-#: ../src/Window.vala:232
+#: ../src/Window.vala:243
 msgid "%u Videos added to Playlist"
 msgstr ""
 
-#: ../src/Window.vala:252
+#: ../src/Window.vala:263
 msgid "Open"
 msgstr "Buka"
 
-#: ../src/Window.vala:253
+#: ../src/Window.vala:264
 msgid "_Cancel"
 msgstr "_Batal"
 
-#: ../src/Window.vala:253
+#: ../src/Window.vala:264
 msgid "_Open"
 msgstr "_Buka"
 
-#: ../src/Window.vala:262
+#: ../src/Window.vala:273
 msgid "Video files"
 msgstr "Berkas video"
