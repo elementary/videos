@@ -34,25 +34,6 @@ set (VALA_DEPS
 
 pkg_check_modules (DEPS REQUIRED ${PKG_DEPS})
 
-#
-# Libnotify
-#
-pkg_check_modules (LIBNOTIFY QUIET libnotify)
-if (LIBNOTIFY_FOUND)
-  message ("-- libnotify enabled")
-
-  set (GLOBAL_VALAC_OPTIONS ${GLOBAL_VALAC_OPTIONS} --define=HAVE_LIBNOTIFY)
-
-  set (PKG_DEPS ${PKG_DEPS} libnotify)
-  set (VALA_DEPS ${VALA_DEPS} libnotify)
-
-  set (DEPS_CFLAGS ${DEPS_CFLAGS} ${LIBNOTIFY_CFLAGS})
-  set (DEPS_LIBRARIES ${DEPS_LIBRARIES} ${LIBNOTIFY_LIBRARIES})
-  set (DEPS_LIBRARY_DIRS ${DEPS_LIBRARY_DIRS} ${LIBNOTIFY_LIBRARY_DIRS})
-else ()
-  message ("-- libnotify disabled")
-endif ()
-
 set (CFLAGS ${DEPS_CFLAGS} ${DEPS_CFLAGS_OTHER})
 link_directories (${DEPS_LIBRARY_DIRS})
 add_definitions (${CFLAGS})

@@ -20,7 +20,8 @@
  */
 
 public class Audience.Widgets.BottomBar : Gtk.Revealer {
-    private const string GLOW_CLASS = "pulse-success";
+    private const string PULSE_CLASS = "pulse";
+    private const string PULSE_TYPE = "attention";
 
     public signal void play_toggled ();
     public signal void unfullscreen ();
@@ -122,10 +123,12 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     private void playlist_item_added () {
         if (!playlist_glowing) {
             playlist_glowing = true;
-            playlist_button.get_child ().get_style_context ().add_class (GLOW_CLASS);
-
+            playlist_button.get_child ().get_style_context ().add_class (PULSE_CLASS);
+            playlist_button.get_child ().get_style_context ().add_class (PULSE_TYPE);
+            
             Timeout.add (6000, () => {
-                playlist_button.get_child ().get_style_context ().remove_class (GLOW_CLASS);
+                playlist_button.get_child ().get_style_context ().remove_class (PULSE_CLASS);
+                playlist_button.get_child ().get_style_context ().remove_class (PULSE_TYPE);
                 playlist_glowing = false;
                 return false;
             });

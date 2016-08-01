@@ -104,46 +104,4 @@ namespace Audience {
         var file = File.new_for_uri (uri);
         return file.query_exists ();
     }
-    
-    /**
-     * Notifications
-     */
-#if HAVE_LIBNOTIFY
-    private Notify.Notification? notification = null;
-#endif
-
-    public static void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, int urgency = -1) {
-#if HAVE_LIBNOTIFY
-        if (urgency == -1)
-            urgency = Notify.Urgency.NORMAL;
-
-        if (!Notify.is_initted ()) {
-            if (!Notify.init (App.get_instance ().application_id)) {
-                warning ("Could not init libnotify");
-                return;
-            }
-        }
-
-        if (notification == null) {
-            notification = new Notify.Notification (primary_text, secondary_text, "");
-        } else {
-            notification.clear_hints ();
-            notification.clear_actions ();
-            notification.update (primary_text, secondary_text, "");
-        }
-
-        if (pixbuf != null)
-            notification.set_image_from_pixbuf (pixbuf);
-        else
-            notification.icon_name = App.get_instance ().app_icon;
-
-        notification.set_urgency ((Notify.Urgency) urgency);
-
-        try {
-            notification.show ();
-        } catch (GLib.Error err) {
-            warning ("Could not show notification: %s", err.message);
-        }
-#endif
-    }
 }
