@@ -22,6 +22,7 @@ namespace Audience.Widgets {
     public class Playlist : Gtk.TreeView {
         // the player is requested to play path
         public signal void play (File path);
+        public signal void item_added ();
 
         private enum Columns {
             PLAYING,
@@ -128,6 +129,7 @@ namespace Audience.Widgets {
             playlist.set (iter, Columns.PLAYING, playing,
                                 Columns.TITLE, Audience.get_title (path.get_basename ()),
                                 Columns.FILENAME, path.get_uri ());
+            item_added ();
         }
 
         public void remove_item (File path) {

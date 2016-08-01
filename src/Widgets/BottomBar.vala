@@ -20,6 +20,8 @@
  */
 
 public class Audience.Widgets.BottomBar : Gtk.Revealer {
+    private const string GLOW_CLASS = "pulse-success";
+
     public signal void play_toggled ();
     public signal void unfullscreen ();
     public signal void seeked (double val);
@@ -33,8 +35,10 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
     private Gtk.Button play_button;
     private Gtk.Button preferences_button;
+    private Gtk.Button playlist_button;
     private Gtk.Revealer unfullscreen_revealer;
     private uint hiding_timer = 0;
+    private bool playlist_glowing = false;
 
     public BottomBar (ClutterGst.Playback playback) {
         this.events |= Gdk.EventMask.POINTER_MOTION_MASK;
@@ -52,7 +56,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         play_button.tooltip_text = _("Play");
         play_button.clicked.connect (() => {play_toggled ();});
 
-        var playlist_button = new Gtk.Button.from_icon_name ("view-list-symbolic", Gtk.IconSize.BUTTON);
+        playlist_button = new Gtk.Button.from_icon_name ("view-list-symbolic", Gtk.IconSize.BUTTON);
         playlist_button.tooltip_text = _("Playlist");
         playlist_button.clicked.connect (() => {playlist_popover.show_all (); playlist_popover.queue_resize ();});
 
@@ -72,6 +76,10 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         main_actionbar.pack_end (preferences_button);
         main_actionbar.pack_end (playlist_button);
         add (main_actionbar);
+
+        playlist_popover.playlist.item_added.connect (() => {
+            playlist_item_added ();
+        });
 
         notify["hovered"].connect (() => {
             if (hovered == false) {
@@ -109,6 +117,19 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         });
 
         show_all ();
+    }
+
+    private void playlist_item_added () {
+        if (!playlist_glowing) {
+            playlist_glowing = true;
+            playlist_button.get_child ().get_style_context ().add_class (GLOW_CLASS);
+
+            Timeout.add (6000, () => {
+                playlist_button.get_child ().get_style_context ().remove_class (GLOW_CLASS);
+                playlist_glowing = false;
+                return false;
+            });
+        }
     }
 
     public bool get_repeat () {

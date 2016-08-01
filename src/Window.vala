@@ -68,13 +68,13 @@ public class Audience.Window : Gtk.Window {
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
         Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
         drag_data_received.connect ((ctx, x, y, sel, info, time) => {
-            File[] files = {};
+            var files = new Array<File>();
             foreach (var uri in sel.get_uris ()) {
                 var file = File.new_for_uri (uri);
-                files += file;
+                files.append_val (file);
             }
 
-            open_files (files);
+            open_files (files.data, false, false);
         });
 
         player_page.button_press_event.connect ((event) => {
@@ -219,7 +219,11 @@ public class Audience.Window : Gtk.Window {
         return false;
     }
 
-    public void open_files (File[] files) {
+    public void open_files (File[] files, bool clear_playlist = false, bool force_play = true) {
+        if (clear_playlist) {
+            player_page.get_playlist_widget ().clear_items ();
+        }
+        
         string[] videos = {};
         foreach (var file in files) {
             if (file.query_file_type (0) == FileType.DIRECTORY) {
@@ -233,18 +237,13 @@ public class Audience.Window : Gtk.Window {
             }
         }
 
-
         if (videos.length == 0) {
             return;
         }
-
-        // notification when adding video to playlist
-        if (!player_page.playing && (Gdk.WindowState.FOCUSED in get_window ().get_state ())) {
-            var text = ngettext (_("%u Video added to Playlist"), _("%u Videos added to Playlist"), videos.length).printf (videos.length);
-            show_notification (text, (videos.length == 1) ? Audience.get_title (videos[0]) : "");
+        
+        if (force_play) {
+            play_file (videos [0]);
         }
-
-        play_file (videos [0]);
     }
 
     public void resume_last_videos () {
@@ -259,7 +258,7 @@ public class Audience.Window : Gtk.Window {
         read_first_disk.begin ();
     }
 
-    public void run_open_file () {
+    public void run_open_file (bool clear_playlist = false, bool force_play = true) {
         var file = new Gtk.FileChooserDialog (_("Open"), this, Gtk.FileChooserAction.OPEN,
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
         file.set_transient_for (this);
@@ -283,7 +282,7 @@ public class Audience.Window : Gtk.Window {
                 files += item;
             }
 
-            open_files (files);
+            open_files (files, clear_playlist, force_play);
             settings.last_folder = file.get_current_folder ();
         }
 

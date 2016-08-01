@@ -99,9 +99,8 @@ namespace Audience {
         //the application was requested to open some files
         public override void open (File[] files, string hint) {
             activate ();
-            mainwindow.open_files (files);
+            mainwindow.open_files (files, true);
         }
-
     }
 }
 

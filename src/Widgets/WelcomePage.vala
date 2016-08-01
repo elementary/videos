@@ -41,7 +41,7 @@ namespace Audience {
                 switch (index) {
                     case 0:
                         // Open file
-                        window.run_open_file ();
+                        window.run_open_file (true);
                         break;
                     case 1:
                         window.resume_last_videos ();
