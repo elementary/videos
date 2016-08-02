@@ -1,8 +1,8 @@
 [Desktop Entry]
 Version=1.0
-Name=@APP_NAME@
-GenericName=Video Player
-Comment=Watch videos and movies
+_Name=@APP_NAME@
+_GenericName=Video Player
+_Comment=Watch videos and movies
 Exec=audience %U
 Icon=multimedia-video-player
 StartupNotify=true
