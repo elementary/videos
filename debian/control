@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Cody Garver <codygarver@gmail.com>
 Build-Depends: cmake (>= 2.8),
                debhelper (>= 9),
+               intltool,
                libclutter-gst-3.0-dev,
                libclutter-gtk-1.0-dev,
                libgranite-dev,
