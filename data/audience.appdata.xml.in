@@ -5,21 +5,21 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_group>elementary</project_group>
   <project_license>GPL-3.0+</project_license>
-  <name>Audience</name>
-  <summary>Watch videos and movies</summary>
+  <_name>Audience</_name>
+  <_summary>Watch videos and movies</_summary>
   <description>
-    <p>
+    <_p>
       A modern video player that focuses on displaying video content instead of
       player controls. It remembers your last played video and playback position
       so you can pick up from where you left off.
-    </p>
-    <p>
+    </_p>
+    <_p>
       Additional features include:
-    </p>
+    </_p>
     <ul>
-      <li>Subtitle support</li>
-      <li>Play queue</li>
-      <li>Thumbnail previews on the seek bar</li>
+      <_li>Subtitle support</_li>
+      <_li>Play queue</_li>
+      <_li>Thumbnail previews on the seek bar</_li>
     </ul>
   </description>
   <provides>
