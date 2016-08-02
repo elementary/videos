@@ -2,11 +2,23 @@ include (Translations)
 
 set (HICOLOR_DIR ${DATADIR}/icons/hicolor)
 
-configure_file_translation (audience.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/audience.desktop ${CMAKE_SOURCE_DIR}/po/)
-configure_file_translation (audience.appdata.xml.in ${CMAKE_CURRENT_BINARY_DIR}/audience.appdata.xml ${CMAKE_SOURCE_DIR}/po/)
+# We need to create two temporary desktop files in order to have all translations available.
+set (APP_NAME "Videos")
+configure_file(org.pantheon.audience.desktop.in.in ${CMAKE_CURRENT_BINARY_DIR}/org.pantheon.audience.desktop.in)
+set (APP_NAME "Audience")
+configure_file(org.pantheon.audience.desktop.in.in ${CMAKE_CURRENT_BINARY_DIR}/audience-original.desktop.in)
 
-install (FILES ${CMAKE_CURRENT_BINARY_DIR}/audience.desktop DESTINATION ${DATADIR}/applications/)
-install (FILES ${CMAKE_CURRENT_BINARY_DIR}/audience.appdata.xml DESTINATION ${DATADIR}/appdata/)
+if (BUILD_FOR_ELEMENTARY)
+    configure_file_translation(${CMAKE_CURRENT_BINARY_DIR}/org.pantheon.audience.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/org.pantheon.audience.desktop ${CMAKE_SOURCE_DIR}/po/)
+else ()
+    configure_file_translation(${CMAKE_CURRENT_BINARY_DIR}/audience-original.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/org.pantheon.audience.desktop ${CMAKE_SOURCE_DIR}/po/)
+endif ()
+
+configure_file_translation (org.pantheon.audience.appdata.xml.in ${CMAKE_CURRENT_BINARY_DIR}/org.pantheon.audience.appdata.xml ${CMAKE_SOURCE_DIR}/po/)
+
+install (FILES ${CMAKE_CURRENT_BINARY_DIR}/org.pantheon.audience.desktop DESTINATION ${DATADIR}/applications/)
+install (FILES ${CMAKE_CURRENT_BINARY_DIR}/org.pantheon.audience.appdata.xml DESTINATION ${DATADIR}/appdata/)
 
 include (GSettings)
+
 add_schema (org.pantheon.audience.gschema.xml)

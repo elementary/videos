@@ -4,7 +4,8 @@ add_translations_catalog (${GETTEXT_PACKAGE}
     ../src
     ../src/Widgets
     DESKTOP_FILES
-        ../data/audience.desktop.in
+        ${CMAKE_BINARY_DIR}/data/org.pantheon.audience.desktop.in
+        ${CMAKE_BINARY_DIR}/data/audience-original.desktop.in
     APPDATA_FILES
-        ../data/audience.appdata.xml.in
+        ../data/org.pantheon.audience.appdata.xml.in
 )

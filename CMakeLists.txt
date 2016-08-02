@@ -18,7 +18,6 @@ add_definitions (-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 # Comment this out to enable C compiler warnings
 add_definitions (-w)
 
-
 set (CPACK_PACKAGE_VERSION ${VERSION})
 set (CPACK_SOURCE_GENERATOR "TGZ")
 set (CPACK_SOURCE_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${CPACK_PACKAGE_VERSION}")
@@ -26,6 +25,12 @@ set (CPACK_SOURCE_IGNORE_FILES "/build/;/.bzr/;/.bzrignore;~$;${CPACK_SOURCE_IGN
 
 include (CPack)
 add_custom_target (dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
+
+option (BUILD_FOR_ELEMENTARY "Audience name will be replaced by Videos" ON)
+set (APP_NAME "Audience")
+if (BUILD_FOR_ELEMENTARY)
+    set (APP_NAME "Videos")
+endif ()
 
 add_subdirectory (src)
 add_subdirectory (data)

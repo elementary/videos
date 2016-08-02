@@ -1,6 +1,6 @@
 [Desktop Entry]
 Version=1.0
-Name=Audience
+Name=@APP_NAME@
 GenericName=Video Player
 Comment=Watch videos and movies
 Exec=audience %U
@@ -16,4 +16,4 @@ Actions=AboutDialog;
 
 [Desktop Action AboutDialog]
 Exec=audience --about
-Name=About Audience
+Name=About @APP_NAME@
