@@ -7,108 +7,34 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-07-30 18:07+0400\n"
+"POT-Creation-Date: 2016-08-01 20:32-0700\n"
 "PO-Revision-Date: 2016-07-30 14:30+0000\n"
 "Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Akan <ak@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-07-31 05:54+0000\n"
+"X-Launchpad-Export-Date: 2016-08-02 05:50+0000\n"
 "X-Generator: Launchpad (build 18169)\n"
 
-#: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:106
-msgid "Play"
-msgstr "Bɔ"
+#: ../src/Window.vala:262
+msgid "Open"
+msgstr ""
 
-#: ../src/Widgets/BottomBar.vala:56
-msgid "Playlist"
-msgstr "Nwom a w'ahehyɛ sɛ ɛmmɔ"
+#: ../src/Window.vala:263
+msgid "_Cancel"
+msgstr ""
 
-#: ../src/Widgets/BottomBar.vala:60
-msgid "Settings"
-msgstr "Nhyehyeɛ"
+#: ../src/Window.vala:263
+msgid "_Open"
+msgstr ""
 
-#: ../src/Widgets/BottomBar.vala:102
-msgid "Pause"
-msgstr "Gyina"
-
-#: ../src/Widgets/BottomBar.vala:127
-msgid "Unfullscreen"
-msgstr "Gyae so nyinaa kata"
-
-#: ../src/Widgets/WelcomePage.vala:5
-msgid "No Videos Open"
-msgstr "Video biara mbueɛ"
-
-#: ../src/Widgets/WelcomePage.vala:5
-msgid "Select a source to begin playing."
-msgstr "Kyerɛ baabi a ewɔ na ɛmmɔ"
-
-#: ../src/Widgets/WelcomePage.vala:9 ../src/Widgets/PlaylistPopover.vala:35
-msgid "Open file"
-msgstr "Bue file"
-
-#: ../src/Widgets/WelcomePage.vala:9
-msgid "Open a saved file."
-msgstr "Bue file a w'akora dedaw"
-
-#: ../src/Widgets/WelcomePage.vala:19
-msgid "Replay last video"
-msgstr "San bɔ video a ɛtwa toɔ a wobɔeɛ"
-
-#: ../src/Widgets/WelcomePage.vala:21
-msgid "Resume last video"
-msgstr "San toa video a ɛtwa toɔ a na worebɔ no"
-
-#: ../src/Widgets/WelcomePage.vala:36 ../src/Widgets/PlaylistPopover.vala:37
-msgid "Play from Disc"
-msgstr "Bɔ firi Disc so"
-
-#: ../src/Widgets/WelcomePage.vala:36
-msgid "Watch a DVD or open a file from disc"
-msgstr "Hwɛ DVD anaa bue file bi firi disc so"
-
-#: ../src/Widgets/SettingsPopover.vala:35 ../src/Window.vala:269
+#: ../src/Window.vala:268 ../src/Widgets/SettingsPopover.vala:35
 msgid "All files"
 msgstr "Files no nyinaa"
 
-#: ../src/Widgets/SettingsPopover.vala:39
-msgid "Subtitle files"
-msgstr "Ɛho kasa a watwerɔ file"
-
-#. /pgp-encrypted"
-#: ../src/Widgets/SettingsPopover.vala:46
-msgid "External Subtitles"
-msgstr ""
-
-#: ../src/Widgets/SettingsPopover.vala:50
-msgid "Audio:"
-msgstr "Audio:"
-
-#: ../src/Widgets/SettingsPopover.vala:53
-msgid "Subtitles:"
-msgstr "Ɛho kasa a watwerɔ:"
-
-#: ../src/Widgets/SettingsPopover.vala:56
-msgid "External Subtitles:"
-msgstr ""
-
-#: ../src/Widgets/SettingsPopover.vala:108
-msgid "None"
-msgstr "Ɛnnyɛ ɛmu biara"
-
-#: ../src/Widgets/SettingsPopover.vala:123
-msgid "Default"
-msgstr ""
-
-#: ../src/Widgets/PlaylistPopover.vala:41
-#: ../src/Widgets/PlaylistPopover.vala:67
-msgid "Enable Repeat"
-msgstr ""
-
-#: ../src/Widgets/PlaylistPopover.vala:64
-msgid "Disable Repeat"
+#: ../src/Window.vala:272
+msgid "Video files"
 msgstr ""
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
@@ -145,26 +71,92 @@ msgstr ""
 "Launchpad Contributions:\n"
 "  laberba https://launchpad.net/~laberba"
 
-#: ../src/Window.vala:243
-msgid "%u Video added to Playlist"
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "No Videos Open"
+msgstr "Video biara mbueɛ"
+
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "Select a source to begin playing."
+msgstr "Kyerɛ baabi a ewɔ na ɛmmɔ"
+
+#: ../src/Widgets/WelcomePage.vala:9 ../src/Widgets/PlaylistPopover.vala:35
+msgid "Open file"
+msgstr "Bue file"
+
+#: ../src/Widgets/WelcomePage.vala:9
+msgid "Open a saved file."
+msgstr "Bue file a w'akora dedaw"
+
+#: ../src/Widgets/WelcomePage.vala:19
+msgid "Replay last video"
+msgstr "San bɔ video a ɛtwa toɔ a wobɔeɛ"
+
+#: ../src/Widgets/WelcomePage.vala:21
+msgid "Resume last video"
+msgstr "San toa video a ɛtwa toɔ a na worebɔ no"
+
+#: ../src/Widgets/WelcomePage.vala:36 ../src/Widgets/PlaylistPopover.vala:37
+msgid "Play from Disc"
+msgstr "Bɔ firi Disc so"
+
+#: ../src/Widgets/WelcomePage.vala:36
+msgid "Watch a DVD or open a file from disc"
+msgstr "Hwɛ DVD anaa bue file bi firi disc so"
+
+#: ../src/Widgets/SettingsPopover.vala:39
+msgid "Subtitle files"
+msgstr "Ɛho kasa a watwerɔ file"
+
+#. /pgp-encrypted"
+#: ../src/Widgets/SettingsPopover.vala:46
+msgid "External Subtitles"
 msgstr ""
 
-#: ../src/Window.vala:243
-msgid "%u Videos added to Playlist"
+#: ../src/Widgets/SettingsPopover.vala:50
+msgid "Audio:"
+msgstr "Audio:"
+
+#: ../src/Widgets/SettingsPopover.vala:53
+msgid "Subtitles:"
+msgstr "Ɛho kasa a watwerɔ:"
+
+#: ../src/Widgets/SettingsPopover.vala:56
+msgid "External Subtitles:"
 msgstr ""
 
-#: ../src/Window.vala:263
-msgid "Open"
+#: ../src/Widgets/SettingsPopover.vala:108
+msgid "None"
+msgstr "Ɛnnyɛ ɛmu biara"
+
+#: ../src/Widgets/SettingsPopover.vala:123
+msgid "Default"
 msgstr ""
 
-#: ../src/Window.vala:264
-msgid "_Cancel"
+#: ../src/Widgets/BottomBar.vala:57 ../src/Widgets/BottomBar.vala:115
+msgid "Play"
+msgstr "Bɔ"
+
+#: ../src/Widgets/BottomBar.vala:61
+msgid "Playlist"
+msgstr "Nwom a w'ahehyɛ sɛ ɛmmɔ"
+
+#: ../src/Widgets/BottomBar.vala:65
+msgid "Settings"
+msgstr "Nhyehyeɛ"
+
+#: ../src/Widgets/BottomBar.vala:111
+msgid "Pause"
+msgstr "Gyina"
+
+#: ../src/Widgets/BottomBar.vala:151
+msgid "Unfullscreen"
+msgstr "Gyae so nyinaa kata"
+
+#: ../src/Widgets/PlaylistPopover.vala:41
+#: ../src/Widgets/PlaylistPopover.vala:67
+msgid "Enable Repeat"
 msgstr ""
 
-#: ../src/Window.vala:264
-msgid "_Open"
-msgstr ""
-
-#: ../src/Window.vala:273
-msgid "Video files"
+#: ../src/Widgets/PlaylistPopover.vala:64
+msgid "Disable Repeat"
 msgstr ""

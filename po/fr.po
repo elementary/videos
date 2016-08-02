@@ -7,109 +7,35 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-07-30 18:07+0400\n"
+"POT-Creation-Date: 2016-08-01 20:32-0700\n"
 "PO-Revision-Date: 2016-07-30 14:30+0000\n"
 "Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-07-31 05:54+0000\n"
+"X-Launchpad-Export-Date: 2016-08-02 05:51+0000\n"
 "X-Generator: Launchpad (build 18169)\n"
 
-#: ../src/Widgets/BottomBar.vala:52 ../src/Widgets/BottomBar.vala:106
-msgid "Play"
-msgstr "Lire"
+#: ../src/Window.vala:262
+msgid "Open"
+msgstr "Ouvrir"
 
-#: ../src/Widgets/BottomBar.vala:56
-msgid "Playlist"
-msgstr "Liste de lecture"
+#: ../src/Window.vala:263
+msgid "_Cancel"
+msgstr "_Annuler"
 
-#: ../src/Widgets/BottomBar.vala:60
-msgid "Settings"
-msgstr "Paramètres"
+#: ../src/Window.vala:263
+msgid "_Open"
+msgstr "_Ouvrir"
 
-#: ../src/Widgets/BottomBar.vala:102
-msgid "Pause"
-msgstr "Mettre en pause"
-
-#: ../src/Widgets/BottomBar.vala:127
-msgid "Unfullscreen"
-msgstr "Quitter le mode plein écran"
-
-#: ../src/Widgets/WelcomePage.vala:5
-msgid "No Videos Open"
-msgstr "Aucun fichier vidéo ouvert"
-
-#: ../src/Widgets/WelcomePage.vala:5
-msgid "Select a source to begin playing."
-msgstr "Sélectionnez une source pour commencer à jouer."
-
-#: ../src/Widgets/WelcomePage.vala:9 ../src/Widgets/PlaylistPopover.vala:35
-msgid "Open file"
-msgstr "Ouvrir un fichier"
-
-#: ../src/Widgets/WelcomePage.vala:9
-msgid "Open a saved file."
-msgstr "Ouvrir un fichier sauvegardé."
-
-#: ../src/Widgets/WelcomePage.vala:19
-msgid "Replay last video"
-msgstr "Rejouer la dernière vidéo"
-
-#: ../src/Widgets/WelcomePage.vala:21
-msgid "Resume last video"
-msgstr "Reprendre la lecture de la dernière vidéo"
-
-#: ../src/Widgets/WelcomePage.vala:36 ../src/Widgets/PlaylistPopover.vala:37
-msgid "Play from Disc"
-msgstr "Lire le disque"
-
-#: ../src/Widgets/WelcomePage.vala:36
-msgid "Watch a DVD or open a file from disc"
-msgstr "Regarder un DVD ou ouvrir un fichier sur le disque"
-
-#: ../src/Widgets/SettingsPopover.vala:35 ../src/Window.vala:269
+#: ../src/Window.vala:268 ../src/Widgets/SettingsPopover.vala:35
 msgid "All files"
 msgstr "Tous les fichiers"
 
-#: ../src/Widgets/SettingsPopover.vala:39
-msgid "Subtitle files"
-msgstr "Fichiers de sous-titres"
-
-#. /pgp-encrypted"
-#: ../src/Widgets/SettingsPopover.vala:46
-msgid "External Subtitles"
-msgstr "Sous-titres externes"
-
-#: ../src/Widgets/SettingsPopover.vala:50
-msgid "Audio:"
-msgstr "Audio :"
-
-#: ../src/Widgets/SettingsPopover.vala:53
-msgid "Subtitles:"
-msgstr "Sous-titres :"
-
-#: ../src/Widgets/SettingsPopover.vala:56
-msgid "External Subtitles:"
-msgstr "Sous-titres externes :"
-
-#: ../src/Widgets/SettingsPopover.vala:108
-msgid "None"
-msgstr "Aucun"
-
-#: ../src/Widgets/SettingsPopover.vala:123
-msgid "Default"
-msgstr "Par défaut"
-
-#: ../src/Widgets/PlaylistPopover.vala:41
-#: ../src/Widgets/PlaylistPopover.vala:67
-msgid "Enable Repeat"
-msgstr "Activer la lecture en boucle"
-
-#: ../src/Widgets/PlaylistPopover.vala:64
-msgid "Disable Repeat"
-msgstr "Désactiver la lecture en boucle"
+#: ../src/Window.vala:272
+msgid "Video files"
+msgstr "Fichiers vidéo"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:32
@@ -157,26 +83,92 @@ msgstr ""
 "  Thomas Moraine https://launchpad.net/~th-moraine\n"
 "  qperroit https://launchpad.net/~quentin-perroit"
 
-#: ../src/Window.vala:243
-msgid "%u Video added to Playlist"
-msgstr ""
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "No Videos Open"
+msgstr "Aucun fichier vidéo ouvert"
 
-#: ../src/Window.vala:243
-msgid "%u Videos added to Playlist"
-msgstr ""
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "Select a source to begin playing."
+msgstr "Sélectionnez une source pour commencer à jouer."
 
-#: ../src/Window.vala:263
-msgid "Open"
-msgstr "Ouvrir"
+#: ../src/Widgets/WelcomePage.vala:9 ../src/Widgets/PlaylistPopover.vala:35
+msgid "Open file"
+msgstr "Ouvrir un fichier"
 
-#: ../src/Window.vala:264
-msgid "_Cancel"
-msgstr "_Annuler"
+#: ../src/Widgets/WelcomePage.vala:9
+msgid "Open a saved file."
+msgstr "Ouvrir un fichier sauvegardé."
 
-#: ../src/Window.vala:264
-msgid "_Open"
-msgstr "_Ouvrir"
+#: ../src/Widgets/WelcomePage.vala:19
+msgid "Replay last video"
+msgstr "Rejouer la dernière vidéo"
 
-#: ../src/Window.vala:273
-msgid "Video files"
-msgstr "Fichiers vidéo"
+#: ../src/Widgets/WelcomePage.vala:21
+msgid "Resume last video"
+msgstr "Reprendre la lecture de la dernière vidéo"
+
+#: ../src/Widgets/WelcomePage.vala:36 ../src/Widgets/PlaylistPopover.vala:37
+msgid "Play from Disc"
+msgstr "Lire le disque"
+
+#: ../src/Widgets/WelcomePage.vala:36
+msgid "Watch a DVD or open a file from disc"
+msgstr "Regarder un DVD ou ouvrir un fichier sur le disque"
+
+#: ../src/Widgets/SettingsPopover.vala:39
+msgid "Subtitle files"
+msgstr "Fichiers de sous-titres"
+
+#. /pgp-encrypted"
+#: ../src/Widgets/SettingsPopover.vala:46
+msgid "External Subtitles"
+msgstr "Sous-titres externes"
+
+#: ../src/Widgets/SettingsPopover.vala:50
+msgid "Audio:"
+msgstr "Audio :"
+
+#: ../src/Widgets/SettingsPopover.vala:53
+msgid "Subtitles:"
+msgstr "Sous-titres :"
+
+#: ../src/Widgets/SettingsPopover.vala:56
+msgid "External Subtitles:"
+msgstr "Sous-titres externes :"
+
+#: ../src/Widgets/SettingsPopover.vala:108
+msgid "None"
+msgstr "Aucun"
+
+#: ../src/Widgets/SettingsPopover.vala:123
+msgid "Default"
+msgstr "Par défaut"
+
+#: ../src/Widgets/BottomBar.vala:57 ../src/Widgets/BottomBar.vala:115
+msgid "Play"
+msgstr "Lire"
+
+#: ../src/Widgets/BottomBar.vala:61
+msgid "Playlist"
+msgstr "Liste de lecture"
+
+#: ../src/Widgets/BottomBar.vala:65
+msgid "Settings"
+msgstr "Paramètres"
+
+#: ../src/Widgets/BottomBar.vala:111
+msgid "Pause"
+msgstr "Mettre en pause"
+
+#: ../src/Widgets/BottomBar.vala:151
+msgid "Unfullscreen"
+msgstr "Quitter le mode plein écran"
+
+#: ../src/Widgets/PlaylistPopover.vala:41
+#: ../src/Widgets/PlaylistPopover.vala:67
+msgid "Enable Repeat"
+msgstr "Activer la lecture en boucle"
+
+#: ../src/Widgets/PlaylistPopover.vala:64
+msgid "Disable Repeat"
+msgstr "Désactiver la lecture en boucle"

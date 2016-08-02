@@ -1,16 +1,16 @@
-# Chinese (Simplified) translation for audience
-# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# English (Australia) translation for audience
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
 # This file is distributed under the same license as the audience package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-08-01 20:32-0700\n"
-"PO-Revision-Date: 2016-08-01 06:18+0000\n"
-"Last-Translator: colindemian <colindemian@outlook.com>\n"
-"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"PO-Revision-Date: 2016-08-02 01:41+0000\n"
+"Last-Translator: Chris Smart <Unknown>\n"
+"Language-Team: English (Australia) <en_AU@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,146 +19,144 @@ msgstr ""
 
 #: ../src/Window.vala:262
 msgid "Open"
-msgstr "打开"
+msgstr "Open"
 
 #: ../src/Window.vala:263
 msgid "_Cancel"
-msgstr "取消"
+msgstr "_Cancel"
 
 #: ../src/Window.vala:263
 msgid "_Open"
-msgstr "打开"
+msgstr "_Open"
 
 #: ../src/Window.vala:268 ../src/Widgets/SettingsPopover.vala:35
 msgid "All files"
-msgstr "所有文件"
+msgstr "All files"
 
 #: ../src/Window.vala:272
 msgid "Video files"
-msgstr "视频文件"
+msgstr "Video files"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:32
 msgid "Videos"
-msgstr "视频"
+msgstr "Videos"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:34
 msgid "Audience;Video;Player;Movies;"
-msgstr "视频;视频;播放器;影片;"
+msgstr "Audience;Video;Player;Movies;"
 
 #: ../src/Audience.vala:35
 msgid "Watch videos and movies"
-msgstr "观看影片和视频"
+msgstr "Watch videos and movies"
 
 #: ../src/Audience.vala:36
 msgid "Video Player"
-msgstr "视频播放器"
+msgstr "Video Player"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:38
 msgid "About Audience"
-msgstr "关于 Audience"
+msgstr "About Audience"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:40
 msgid "About Videos"
-msgstr "关于视频"
+msgstr "About Videos"
 
 #: ../src/Audience.vala:69
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Wang Dianjin https://launchpad.net/~tuhaihe\n"
-"  colindemian https://launchpad.net/~colindemian\n"
-"  p0ckty https://launchpad.net/~p0ckty"
+"  Chris Smart https://launchpad.net/~csmart"
 
 #: ../src/Widgets/WelcomePage.vala:5
 msgid "No Videos Open"
-msgstr "尚未打开任何视频"
+msgstr "No Videos Open"
 
 #: ../src/Widgets/WelcomePage.vala:5
 msgid "Select a source to begin playing."
-msgstr "请选择您要播放的视频"
+msgstr "Select a source to begin playing."
 
 #: ../src/Widgets/WelcomePage.vala:9 ../src/Widgets/PlaylistPopover.vala:35
 msgid "Open file"
-msgstr "打开文件"
+msgstr "Open file"
 
 #: ../src/Widgets/WelcomePage.vala:9
 msgid "Open a saved file."
-msgstr "打开已保存的文件"
+msgstr "Open a saved file."
 
 #: ../src/Widgets/WelcomePage.vala:19
 msgid "Replay last video"
-msgstr "重复上次播放"
+msgstr "Replay last video"
 
 #: ../src/Widgets/WelcomePage.vala:21
 msgid "Resume last video"
-msgstr "恢复上次播放"
+msgstr "Resume last video"
 
 #: ../src/Widgets/WelcomePage.vala:36 ../src/Widgets/PlaylistPopover.vala:37
 msgid "Play from Disc"
-msgstr "播放光盘"
+msgstr "Play from Disk"
 
 #: ../src/Widgets/WelcomePage.vala:36
 msgid "Watch a DVD or open a file from disc"
-msgstr "观看 DVD 或打开光盘中的文件"
+msgstr "Watch a DVD or open a file from disk"
 
 #: ../src/Widgets/SettingsPopover.vala:39
 msgid "Subtitle files"
-msgstr "字幕文件"
+msgstr "Subtitle files"
 
 #. /pgp-encrypted"
 #: ../src/Widgets/SettingsPopover.vala:46
 msgid "External Subtitles"
-msgstr "外挂字幕"
+msgstr "External Subtitles"
 
 #: ../src/Widgets/SettingsPopover.vala:50
 msgid "Audio:"
-msgstr "音频选择："
+msgstr "Audio:"
 
 #: ../src/Widgets/SettingsPopover.vala:53
 msgid "Subtitles:"
-msgstr "内置字幕："
+msgstr "Subtitles:"
 
 #: ../src/Widgets/SettingsPopover.vala:56
 msgid "External Subtitles:"
-msgstr "外挂字幕："
+msgstr "External Subtitles:"
 
 #: ../src/Widgets/SettingsPopover.vala:108
 msgid "None"
-msgstr "无"
+msgstr "None"
 
 #: ../src/Widgets/SettingsPopover.vala:123
 msgid "Default"
-msgstr "默认"
+msgstr "Default"
 
 #: ../src/Widgets/BottomBar.vala:57 ../src/Widgets/BottomBar.vala:115
 msgid "Play"
-msgstr "播放"
+msgstr "Play"
 
 #: ../src/Widgets/BottomBar.vala:61
 msgid "Playlist"
-msgstr "播放列表"
+msgstr "Playlist"
 
 #: ../src/Widgets/BottomBar.vala:65
 msgid "Settings"
-msgstr "设置"
+msgstr "Settings"
 
 #: ../src/Widgets/BottomBar.vala:111
 msgid "Pause"
-msgstr "暂停"
+msgstr "Pause"
 
 #: ../src/Widgets/BottomBar.vala:151
 msgid "Unfullscreen"
-msgstr "退出全屏"
+msgstr "Unfullscreen"
 
 #: ../src/Widgets/PlaylistPopover.vala:41
 #: ../src/Widgets/PlaylistPopover.vala:67
 msgid "Enable Repeat"
-msgstr "启用循环"
+msgstr "Enable Repeat"
 
 #: ../src/Widgets/PlaylistPopover.vala:64
 msgid "Disable Repeat"
-msgstr "禁用循环"
+msgstr "Disable Repeat"
