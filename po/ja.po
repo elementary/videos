@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-08-01 20:32-0700\n"
-"PO-Revision-Date: 2016-08-02 01:34+0000\n"
+"PO-Revision-Date: 2016-08-03 05:19+0000\n"
 "Last-Translator: BALLOON a.k.a. Fu-sen. (Keiichi SHIGA) <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-08-02 05:51+0000\n"
+"X-Launchpad-Export-Date: 2016-08-03 05:44+0000\n"
 "X-Generator: Launchpad (build 18169)\n"
 
 #: ../src/Window.vala:262
@@ -23,11 +23,11 @@ msgstr "開く"
 
 #: ../src/Window.vala:263
 msgid "_Cancel"
-msgstr ""
+msgstr "キャンセル (_C)"
 
 #: ../src/Window.vala:263
 msgid "_Open"
-msgstr ""
+msgstr "開く (_O)"
 
 #: ../src/Window.vala:268 ../src/Widgets/SettingsPopover.vala:35
 msgid "All files"
@@ -40,45 +40,46 @@ msgstr "動画ファイル"
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:32
 msgid "Videos"
-msgstr ""
+msgstr "ビデオ"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:34
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Video;Player;Movies;"
 
 #: ../src/Audience.vala:35
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "ビデオや映画を見る"
 
 #: ../src/Audience.vala:36
 msgid "Video Player"
-msgstr ""
+msgstr "ビデオプレイヤー"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:38
 msgid "About Audience"
-msgstr ""
+msgstr "Audience について"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:40
 msgid "About Videos"
-msgstr ""
+msgstr "ビデオについて"
 
 #: ../src/Audience.vala:69
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  BALLOON a.k.a. Fu-sen. (Keiichi SHIGA) https://launchpad.net/~balloon\n"
+"  Jun Takeda https://launchpad.net/~takeda-jun\n"
 "  Naoki Kephart https://launchpad.net/~naoki-kephart"
 
 #: ../src/Widgets/WelcomePage.vala:5
 msgid "No Videos Open"
-msgstr ""
+msgstr "開いているビデオはありません"
 
 #: ../src/Widgets/WelcomePage.vala:5
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "再生をはじめるにはソースを選択してください。"
 
 #: ../src/Widgets/WelcomePage.vala:9 ../src/Widgets/PlaylistPopover.vala:35
 msgid "Open file"
@@ -90,40 +91,40 @@ msgstr "保存されたファイルを開きます。"
 
 #: ../src/Widgets/WelcomePage.vala:19
 msgid "Replay last video"
-msgstr ""
+msgstr "最後のビデオをリプレイ"
 
 #: ../src/Widgets/WelcomePage.vala:21
 msgid "Resume last video"
-msgstr ""
+msgstr "最後のビデオの再開"
 
 #: ../src/Widgets/WelcomePage.vala:36 ../src/Widgets/PlaylistPopover.vala:37
 msgid "Play from Disc"
-msgstr ""
+msgstr "ディスクを再生"
 
 #: ../src/Widgets/WelcomePage.vala:36
 msgid "Watch a DVD or open a file from disc"
-msgstr ""
+msgstr "DVD を見る または ディスクからファイルを開く"
 
 #: ../src/Widgets/SettingsPopover.vala:39
 msgid "Subtitle files"
-msgstr ""
+msgstr "字幕ファイル"
 
 #. /pgp-encrypted"
 #: ../src/Widgets/SettingsPopover.vala:46
 msgid "External Subtitles"
-msgstr ""
+msgstr "外部字幕"
 
 #: ../src/Widgets/SettingsPopover.vala:50
 msgid "Audio:"
-msgstr ""
+msgstr "オーディオ："
 
 #: ../src/Widgets/SettingsPopover.vala:53
 msgid "Subtitles:"
-msgstr ""
+msgstr "字幕："
 
 #: ../src/Widgets/SettingsPopover.vala:56
 msgid "External Subtitles:"
-msgstr ""
+msgstr "外部字幕："
 
 #: ../src/Widgets/SettingsPopover.vala:108
 msgid "None"
@@ -135,7 +136,7 @@ msgstr "デフォルト"
 
 #: ../src/Widgets/BottomBar.vala:57 ../src/Widgets/BottomBar.vala:115
 msgid "Play"
-msgstr ""
+msgstr "再生"
 
 #: ../src/Widgets/BottomBar.vala:61
 msgid "Playlist"
@@ -143,21 +144,21 @@ msgstr "プレイリスト"
 
 #: ../src/Widgets/BottomBar.vala:65
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 #: ../src/Widgets/BottomBar.vala:111
 msgid "Pause"
-msgstr ""
+msgstr "一時停止"
 
 #: ../src/Widgets/BottomBar.vala:151
 msgid "Unfullscreen"
-msgstr ""
+msgstr "全画面表示の解除"
 
 #: ../src/Widgets/PlaylistPopover.vala:41
 #: ../src/Widgets/PlaylistPopover.vala:67
 msgid "Enable Repeat"
-msgstr ""
+msgstr "リピートを有効にする"
 
 #: ../src/Widgets/PlaylistPopover.vala:64
 msgid "Disable Repeat"
-msgstr ""
+msgstr "リピートを無効にする"

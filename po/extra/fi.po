@@ -1,0 +1,51 @@
+# Finnish translation for audience
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
+# This file is distributed under the same license as the audience package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: audience\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2016-08-01 20:32-0700\n"
+"PO-Revision-Date: 2016-08-02 06:53+0000\n"
+"Last-Translator: Jiri Grönroos <Unknown>\n"
+"Language-Team: Finnish <fi@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2016-08-03 05:44+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
+
+msgid "Videos"
+msgstr "Videot"
+
+msgid "Video Player"
+msgstr "Videosoitin"
+
+msgid "Watch videos and movies"
+msgstr "Katsele videoita ja elokuvia"
+
+msgid "Audience"
+msgstr "Audience"
+
+msgid ""
+"A modern video player that focuses on displaying video content instead of "
+"player controls. It remembers your last played video and playback position "
+"so you can pick up from where you left off."
+msgstr ""
+"Nykyaikainen videosoitin, jonka keskipisteenä ovat videot, ei soittimen "
+"painikkeet. Sovellus muistaa puolestasi, mihin kohtaan jäit viimeksi videota "
+"katsellessa, joten voit jatkaa toistoa vaivatta."
+
+msgid "Additional features include:"
+msgstr "Lisäominaisuudet:"
+
+msgid "Subtitle support"
+msgstr "Tuki tekstityksille"
+
+msgid "Play queue"
+msgstr "Toistojono"
+
+msgid "Thumbnail previews on the seek bar"
+msgstr "Esikatselukuvat kelatessa"

@@ -1,0 +1,52 @@
+# Italian translation for audience
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
+# This file is distributed under the same license as the audience package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: audience\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2016-08-01 20:32-0700\n"
+"PO-Revision-Date: 2016-08-02 17:01+0000\n"
+"Last-Translator: Fabio Zaramella <FFabio.96.X@Gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2016-08-03 05:44+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
+
+msgid "Videos"
+msgstr "Video"
+
+msgid "Video Player"
+msgstr "Riproduttore video"
+
+msgid "Watch videos and movies"
+msgstr "Guarda video e film"
+
+msgid "Audience"
+msgstr "Audience"
+
+msgid ""
+"A modern video player that focuses on displaying video content instead of "
+"player controls. It remembers your last played video and playback position "
+"so you can pick up from where you left off."
+msgstr ""
+"Un lettore video moderno che si concentra sulla visualizzazione dei "
+"contenuti video invece che sui controlli del lettore in sé. Si ricorda "
+"l'ultimo video riprodotto e la posizione di riproduzione in modo da poter "
+"riprendere da dove ti eri interrotto."
+
+msgid "Additional features include:"
+msgstr "Tra le caratteristiche aggiuntive vi sono:"
+
+msgid "Subtitle support"
+msgstr "Supporto ai sottotitoli"
+
+msgid "Play queue"
+msgstr "Coda di riproduzione"
+
+msgid "Thumbnail previews on the seek bar"
+msgstr "Miniature di anteprima sulla barra di riproduzione"
