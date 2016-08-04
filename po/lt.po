@@ -8,155 +8,156 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-08-01 20:32-0700\n"
-"PO-Revision-Date: 2016-07-30 14:30+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"PO-Revision-Date: 2016-08-03 12:35+0000\n"
+"Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <lt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-08-03 05:44+0000\n"
+"X-Launchpad-Export-Date: 2016-08-04 05:36+0000\n"
 "X-Generator: Launchpad (build 18169)\n"
 
 #: ../src/Window.vala:262
 msgid "Open"
-msgstr ""
+msgstr "Atverti"
 
 #: ../src/Window.vala:263
 msgid "_Cancel"
-msgstr ""
+msgstr "_Atsisakyti"
 
 #: ../src/Window.vala:263
 msgid "_Open"
-msgstr ""
+msgstr "At_verti"
 
 #: ../src/Window.vala:268 ../src/Widgets/SettingsPopover.vala:35
 msgid "All files"
-msgstr ""
+msgstr "Visi failai"
 
 #: ../src/Window.vala:272
 msgid "Video files"
-msgstr ""
+msgstr "Vaizdo įrašų failai"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:32
 msgid "Videos"
-msgstr ""
+msgstr "Vaizdo įrašai"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:34
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Vaizdo įrašai;Video;Grotuvas;Filmai;"
 
 #: ../src/Audience.vala:35
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Žiūrėti vaizdo įrašus ir filmus"
 
 #: ../src/Audience.vala:36
 msgid "Video Player"
-msgstr ""
+msgstr "Vaizdo grotuvas"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:38
 msgid "About Audience"
-msgstr ""
+msgstr "Apie Audience"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:40
 msgid "About Videos"
-msgstr ""
+msgstr "About Vaizdo įrašai"
 
 #: ../src/Audience.vala:69
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
+"  Moo https://launchpad.net/~mooo\n"
 "  Simonas Gudjonis https://launchpad.net/~simonas-8"
 
 #: ../src/Widgets/WelcomePage.vala:5
 msgid "No Videos Open"
-msgstr ""
+msgstr "Nėra atvertų vaizdo įrašų"
 
 #: ../src/Widgets/WelcomePage.vala:5
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "Pasirinkite šaltinį, kad pradėtumėte atkūrimą."
 
 #: ../src/Widgets/WelcomePage.vala:9 ../src/Widgets/PlaylistPopover.vala:35
 msgid "Open file"
-msgstr ""
+msgstr "Atverti failą"
 
 #: ../src/Widgets/WelcomePage.vala:9
 msgid "Open a saved file."
-msgstr ""
+msgstr "Atverkite įrašytą failą."
 
 #: ../src/Widgets/WelcomePage.vala:19
 msgid "Replay last video"
-msgstr ""
+msgstr "Iš naujo groti paskutinį vaizdo įrašą"
 
 #: ../src/Widgets/WelcomePage.vala:21
 msgid "Resume last video"
-msgstr ""
+msgstr "Tęsti žiūrėti paskutinį vaizdo įrašą"
 
 #: ../src/Widgets/WelcomePage.vala:36 ../src/Widgets/PlaylistPopover.vala:37
 msgid "Play from Disc"
-msgstr ""
+msgstr "Groti iš disko"
 
 #: ../src/Widgets/WelcomePage.vala:36
 msgid "Watch a DVD or open a file from disc"
-msgstr ""
+msgstr "Žiūrėti DVD arba atverti failą iš disko"
 
 #: ../src/Widgets/SettingsPopover.vala:39
 msgid "Subtitle files"
-msgstr ""
+msgstr "Subtitrų failai"
 
 #. /pgp-encrypted"
 #: ../src/Widgets/SettingsPopover.vala:46
 msgid "External Subtitles"
-msgstr ""
+msgstr "Išoriniai subtitrai"
 
 #: ../src/Widgets/SettingsPopover.vala:50
 msgid "Audio:"
-msgstr ""
+msgstr "Garsas:"
 
 #: ../src/Widgets/SettingsPopover.vala:53
 msgid "Subtitles:"
-msgstr ""
+msgstr "Subtitrai:"
 
 #: ../src/Widgets/SettingsPopover.vala:56
 msgid "External Subtitles:"
-msgstr ""
+msgstr "Išoriniai subtitrai:"
 
 #: ../src/Widgets/SettingsPopover.vala:108
 msgid "None"
-msgstr ""
+msgstr "Nėra"
 
 #: ../src/Widgets/SettingsPopover.vala:123
 msgid "Default"
-msgstr ""
+msgstr "Numatytasis"
 
 #: ../src/Widgets/BottomBar.vala:57 ../src/Widgets/BottomBar.vala:115
 msgid "Play"
-msgstr ""
+msgstr "Groti"
 
 #: ../src/Widgets/BottomBar.vala:61
 msgid "Playlist"
-msgstr ""
+msgstr "Grojaraštis"
 
 #: ../src/Widgets/BottomBar.vala:65
 msgid "Settings"
-msgstr ""
+msgstr "Nustatymai"
 
 #: ../src/Widgets/BottomBar.vala:111
 msgid "Pause"
-msgstr ""
+msgstr "Pristabdyti"
 
 #: ../src/Widgets/BottomBar.vala:151
 msgid "Unfullscreen"
-msgstr ""
+msgstr "Išjungt visą ekraną"
 
 #: ../src/Widgets/PlaylistPopover.vala:41
 #: ../src/Widgets/PlaylistPopover.vala:67
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Įjungti kartojimą"
 
 #: ../src/Widgets/PlaylistPopover.vala:64
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Išjungti kartojimą"
