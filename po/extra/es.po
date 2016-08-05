@@ -1,4 +1,4 @@
-# Estonian translation for audience
+# Spanish translation for audience
 # Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
 # This file is distributed under the same license as the audience package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-08-01 20:32-0700\n"
-"PO-Revision-Date: 2016-08-03 23:55+0000\n"
-"Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
-"Language-Team: Estonian <et@li.org>\n"
+"PO-Revision-Date: 2016-08-04 15:55+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,35 +18,31 @@ msgstr ""
 "X-Generator: Launchpad (build 18169)\n"
 
 msgid "Videos"
-msgstr "Videod"
+msgstr ""
 
 msgid "Video Player"
-msgstr "Videoesitaja"
+msgstr ""
 
 msgid "Watch videos and movies"
-msgstr "Videode ja filmide vaatamine"
+msgstr ""
 
 msgid "Audience"
-msgstr "Audience"
+msgstr ""
 
 msgid ""
 "A modern video player that focuses on displaying video content instead of "
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
-"Kaasaegne videoesitaja, millel on rõhk pandud video esitamisele, mitte "
-"kontrollnuppude kuvamisele. Meelde jäetakse viimati esitatud video ning "
-"koht, kus video pooleli jäi, et sul hiljem võimalikult mugav vaatamist "
-"jätkata oleks."
 
 msgid "Additional features include:"
-msgstr "Lisafunktsioonid sisaldavad:"
+msgstr ""
 
 msgid "Subtitle support"
-msgstr "Subtiitrite tugi"
+msgstr ""
 
 msgid "Play queue"
-msgstr "Esitamise järjekord"
+msgstr ""
 
 msgid "Thumbnail previews on the seek bar"
-msgstr "Video eelvaade ajateljel"
+msgstr ""
