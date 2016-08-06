@@ -1,0 +1,48 @@
+# Chinese (Simplified) translation for audience
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
+# This file is distributed under the same license as the audience package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: audience\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2016-08-01 20:32-0700\n"
+"PO-Revision-Date: 2016-08-05 10:33+0000\n"
+"Last-Translator: colindemian <colindemian@outlook.com>\n"
+"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2016-08-06 05:36+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
+
+msgid "Videos"
+msgstr "视频"
+
+msgid "Video Player"
+msgstr "视频播放器"
+
+msgid "Watch videos and movies"
+msgstr "观看影片和视频"
+
+msgid "Audience"
+msgstr "Audience"
+
+msgid ""
+"A modern video player that focuses on displaying video content instead of "
+"player controls. It remembers your last played video and playback position "
+"so you can pick up from where you left off."
+msgstr "一款专注于播放内容而非繁琐控制的播放器，记忆播放功能让你不再丢失播放进度。"
+
+msgid "Additional features include:"
+msgstr "特色功能："
+
+msgid "Subtitle support"
+msgstr "字幕支持"
+
+msgid "Play queue"
+msgstr "播放队列"
+
+msgid "Thumbnail previews on the seek bar"
+msgstr "进度条快速预览"
