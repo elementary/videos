@@ -223,7 +223,7 @@ namespace Audience {
                     var cursor = new Gdk.Cursor.for_display (display, Gdk.CursorType.BLANK_CURSOR);
                     window.set_cursor (cursor);
                 }
-            });        
+            });
 
             notify["playing"].connect (() => {
                 if (playing) {
@@ -258,10 +258,8 @@ namespace Audience {
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
 
-            /*subtitles/audio tracks*/
-            bottom_bar.preferences_popover.setup_text ();
-            bottom_bar.preferences_popover.setup_audio ();
-            
+            bottom_bar.preferences_popover.is_setup = false;
+
             Audience.Services.Inhibitor.get_instance ().inhibit ();
         }
 
