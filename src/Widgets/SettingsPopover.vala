@@ -19,6 +19,8 @@
  */
 
 public class Audience.Widgets.SettingsPopover : Gtk.Popover {
+    public bool is_setup = false;
+
     private Gtk.ComboBoxText languages;
     private Gtk.ComboBoxText subtitles;
     private Gtk.FileChooserButton external_subtitle_file;
@@ -97,33 +99,55 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         add (setupgrid);
     }
 
-    public void setup_text () {
+    public void setup () {
+        if (!is_setup) {
+            is_setup = true;
+            setup_text ();
+            setup_audio ();
+        }
+    }
+
+    private void setup_text () {
+        int previous_track = playback.subtitle_track;
         if (subtitles.model.iter_n_children (null) > 0)
             subtitles.remove_all ();
 
+        uint track = 1;
         playback.get_subtitle_tracks ().foreach ((lang) => {
-            subtitles.append (lang, lang);
+            // FIXME: Using Track since lang is actually a bad pointer :/
+            subtitles.append (lang, _("Track %d").printf (track++));
         });
 
         subtitles.append ("none", _("None"));
-        subtitles.active = playback.subtitle_track;
+        subtitles.active = previous_track;
         subtitles.sensitive = subtitles.model.iter_n_children (null) > 1;
+
+        if (!subtitles.sensitive) {
+            subtitles.append ("def", _("Default"));
+            subtitles.active = 0;
+        } else {
+            subtitles.active = previous_track;
+        }
     }
 
-    public void setup_audio () {
+    private void setup_audio () {
+        int previous_track = playback.subtitle_track;
+
         if (languages.model.iter_n_children (null) > 0)
             languages.remove_all ();
 
+        uint track = 1;
         playback.get_audio_streams ().foreach ((lang) => {
-            languages.append (lang, lang);
+            languages.append (lang, _("Track %d").printf (track++));
         });
 
-        languages.sensitive = languages.model.iter_n_children (null) > 0;
+        languages.sensitive = languages.model.iter_n_children (null) > 1;
+
         if (!languages.sensitive) {
             languages.append ("def", _("Default"));
-            languages.active = 0;
+            languages.active = 1;
         } else {
-            languages.active = playback.subtitle_track;
+            languages.active = previous_track;
         }
     }
 

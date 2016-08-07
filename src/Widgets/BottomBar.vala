@@ -63,7 +63,11 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
         preferences_button = new Gtk.Button.from_icon_name ("open-menu-symbolic", Gtk.IconSize.BUTTON);
         preferences_button.tooltip_text = _("Settings");
-        preferences_button.clicked.connect (() => {preferences_popover.show_all (); preferences_popover.queue_resize ();});
+        preferences_button.clicked.connect (() => {
+            preferences_popover.setup ();
+            preferences_popover.show_all (); 
+            preferences_popover.queue_resize ();
+        });
 
         time_widget = new TimeWidget (playback);
 
