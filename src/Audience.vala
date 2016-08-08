@@ -43,7 +43,7 @@ namespace Audience {
         public GLib.VolumeMonitor monitor;
 
         construct {
-            program_name = "Audience";
+            program_name = _(Constants.APP_NAME);
             exec_name = "audience";
 
             build_data_dir = Constants.DATADIR;
