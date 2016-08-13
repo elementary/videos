@@ -1,3 +1,9 @@
+audience (0.2) xenial; urgency=medium
+
+  * New upstream release.
+
+ -- Cody Garver <cody@elementary.io>  Sat, 13 Aug 2016 06:37:38 -0500
+
 audience (0.1.0.2) trusty; urgency=medium
 
   * Fix icon in about dialog (lp:1478005)
