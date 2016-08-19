@@ -220,7 +220,6 @@ namespace Audience.Widgets {
             }
 
             settings.last_played_videos = videos;
-            settings.current_video = videos[current];
         }
 
         private void restore_playlist () {

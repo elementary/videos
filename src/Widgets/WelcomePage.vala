@@ -52,5 +52,25 @@ namespace Audience {
                 }
             });
         }
+
+        public void refresh () {
+            var replay_button = get_button_from_index (1);
+            var disk_button = get_button_from_index (2);
+
+            var filename = settings.current_video;
+            var last_file = File.new_for_uri (filename);
+
+            replay_button.title = _("Replay last video");
+            replay_button.description = get_title (last_file.get_basename ());
+            replay_button.icon.icon_name = ("media-playlist-repeat");
+
+            bool show_last_file = settings.current_video != "";
+            if (last_file.query_exists () == false) {
+                show_last_file = false;
+            }
+
+            set_item_visible (1, show_last_file);
+            set_item_visible (2, disk_manager.has_media_volumes ());
+        }
     }
 }

@@ -261,6 +261,7 @@ namespace Audience {
             bottom_bar.preferences_popover.is_setup = false;
 
             Audience.Services.Inhibitor.get_instance ().inhibit ();
+            settings.current_video = uri;
         }
 
         public string get_played_uri () {
