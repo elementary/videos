@@ -334,5 +334,9 @@ public class Audience.Window : Gtk.Window {
         if (is_maximized) {
             fullscreen ();
         }
+        
+        if (settings.stay_on_top && !settings.playback_wait) {
+            set_keep_above (true);
+        }
     }
 }
