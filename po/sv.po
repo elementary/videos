@@ -7,35 +7,132 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-08-01 20:32-0700\n"
+"POT-Creation-Date: 2016-08-23 23:15-0500\n"
 "PO-Revision-Date: 2016-07-30 14:30+0000\n"
 "Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-08-03 05:44+0000\n"
-"X-Generator: Launchpad (build 18169)\n"
+"X-Launchpad-Export-Date: 2016-08-24 05:34+0000\n"
+"X-Generator: Launchpad (build 18179)\n"
 
-#: ../src/Window.vala:262
+#: ../src/Window.vala:264
 msgid "Open"
 msgstr "Öppna"
 
-#: ../src/Window.vala:263
+#: ../src/Window.vala:265
 msgid "_Cancel"
 msgstr "_Avbryt"
 
-#: ../src/Window.vala:263
+#: ../src/Window.vala:265
 msgid "_Open"
 msgstr "_Öppna"
 
-#: ../src/Window.vala:268 ../src/Widgets/SettingsPopover.vala:35
+#: ../src/Window.vala:270 ../src/Widgets/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Alla filer"
 
-#: ../src/Window.vala:272
+#: ../src/Window.vala:274
 msgid "Video files"
 msgstr "Videofiler"
+
+#: ../src/Widgets/SettingsPopover.vala:41
+msgid "Subtitle files"
+msgstr "Undertextfiler"
+
+#. /pgp-encrypted"
+#: ../src/Widgets/SettingsPopover.vala:48
+msgid "External Subtitles"
+msgstr "Externa undertexter"
+
+#: ../src/Widgets/SettingsPopover.vala:52
+msgid "Audio:"
+msgstr "Ljud:"
+
+#: ../src/Widgets/SettingsPopover.vala:55
+msgid "Subtitles:"
+msgstr "Undertexter:"
+
+#: ../src/Widgets/SettingsPopover.vala:58
+msgid "External Subtitles:"
+msgstr "Externa undertexter:"
+
+#. /
+#: ../src/Widgets/SettingsPopover.vala:118
+#: ../src/Widgets/SettingsPopover.vala:141
+msgid "Track %d"
+msgstr ""
+
+#: ../src/Widgets/SettingsPopover.vala:121
+msgid "None"
+msgstr "Ingen"
+
+#: ../src/Widgets/SettingsPopover.vala:126
+#: ../src/Widgets/SettingsPopover.vala:147
+msgid "Default"
+msgstr "Standard"
+
+#: ../src/Widgets/BottomBar.vala:57 ../src/Widgets/BottomBar.vala:119
+msgid "Play"
+msgstr "Spela"
+
+#: ../src/Widgets/BottomBar.vala:61
+msgid "Playlist"
+msgstr "Spellista"
+
+#: ../src/Widgets/BottomBar.vala:65
+msgid "Settings"
+msgstr "Inställningar"
+
+#: ../src/Widgets/BottomBar.vala:115
+msgid "Pause"
+msgstr "Pausa"
+
+#: ../src/Widgets/BottomBar.vala:155
+msgid "Unfullscreen"
+msgstr "Stäng fullskärm"
+
+#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:9
+msgid "Open file"
+msgstr "Öppna fil"
+
+#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:36
+msgid "Play from Disc"
+msgstr "Spela upp från skiva"
+
+#: ../src/Widgets/PlaylistPopover.vala:41
+#: ../src/Widgets/PlaylistPopover.vala:67
+msgid "Enable Repeat"
+msgstr "Aktivera upprepning"
+
+#: ../src/Widgets/PlaylistPopover.vala:64
+msgid "Disable Repeat"
+msgstr "Inaktivera upprepning"
+
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "No Videos Open"
+msgstr "Inga videor öppna"
+
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "Select a source to begin playing."
+msgstr "Välj en källa för att starta uppspelning."
+
+#: ../src/Widgets/WelcomePage.vala:9
+msgid "Open a saved file."
+msgstr "Öppna en sparad fil"
+
+#: ../src/Widgets/WelcomePage.vala:19 ../src/Widgets/WelcomePage.vala:63
+msgid "Replay last video"
+msgstr "Upprepa senaste videon"
+
+#: ../src/Widgets/WelcomePage.vala:21
+msgid "Resume last video"
+msgstr "Återställ senaste videon"
+
+#: ../src/Widgets/WelcomePage.vala:36
+msgid "Watch a DVD or open a file from disc"
+msgstr "Spela upp en DVD eller öppna en fil från skivan"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:32
@@ -74,93 +171,3 @@ msgstr ""
 "  KranisXD https://launchpad.net/~kranis-xd-239\n"
 "  Mikael Nyberg https://launchpad.net/~miknyb\n"
 "  Zahirovic Mensur https://launchpad.net/~nookienoq"
-
-#: ../src/Widgets/WelcomePage.vala:5
-msgid "No Videos Open"
-msgstr "Inga videor öppna"
-
-#: ../src/Widgets/WelcomePage.vala:5
-msgid "Select a source to begin playing."
-msgstr "Välj en källa för att starta uppspelning."
-
-#: ../src/Widgets/WelcomePage.vala:9 ../src/Widgets/PlaylistPopover.vala:35
-msgid "Open file"
-msgstr "Öppna fil"
-
-#: ../src/Widgets/WelcomePage.vala:9
-msgid "Open a saved file."
-msgstr "Öppna en sparad fil"
-
-#: ../src/Widgets/WelcomePage.vala:19
-msgid "Replay last video"
-msgstr "Upprepa senaste videon"
-
-#: ../src/Widgets/WelcomePage.vala:21
-msgid "Resume last video"
-msgstr "Återställ senaste videon"
-
-#: ../src/Widgets/WelcomePage.vala:36 ../src/Widgets/PlaylistPopover.vala:37
-msgid "Play from Disc"
-msgstr "Spela upp från skiva"
-
-#: ../src/Widgets/WelcomePage.vala:36
-msgid "Watch a DVD or open a file from disc"
-msgstr "Spela upp en DVD eller öppna en fil från skivan"
-
-#: ../src/Widgets/SettingsPopover.vala:39
-msgid "Subtitle files"
-msgstr "Undertextfiler"
-
-#. /pgp-encrypted"
-#: ../src/Widgets/SettingsPopover.vala:46
-msgid "External Subtitles"
-msgstr "Externa undertexter"
-
-#: ../src/Widgets/SettingsPopover.vala:50
-msgid "Audio:"
-msgstr "Ljud:"
-
-#: ../src/Widgets/SettingsPopover.vala:53
-msgid "Subtitles:"
-msgstr "Undertexter:"
-
-#: ../src/Widgets/SettingsPopover.vala:56
-msgid "External Subtitles:"
-msgstr "Externa undertexter:"
-
-#: ../src/Widgets/SettingsPopover.vala:108
-msgid "None"
-msgstr "Ingen"
-
-#: ../src/Widgets/SettingsPopover.vala:123
-msgid "Default"
-msgstr "Standard"
-
-#: ../src/Widgets/BottomBar.vala:57 ../src/Widgets/BottomBar.vala:115
-msgid "Play"
-msgstr "Spela"
-
-#: ../src/Widgets/BottomBar.vala:61
-msgid "Playlist"
-msgstr "Spellista"
-
-#: ../src/Widgets/BottomBar.vala:65
-msgid "Settings"
-msgstr "Inställningar"
-
-#: ../src/Widgets/BottomBar.vala:111
-msgid "Pause"
-msgstr "Pausa"
-
-#: ../src/Widgets/BottomBar.vala:151
-msgid "Unfullscreen"
-msgstr "Stäng fullskärm"
-
-#: ../src/Widgets/PlaylistPopover.vala:41
-#: ../src/Widgets/PlaylistPopover.vala:67
-msgid "Enable Repeat"
-msgstr "Aktivera upprepning"
-
-#: ../src/Widgets/PlaylistPopover.vala:64
-msgid "Disable Repeat"
-msgstr "Inaktivera upprepning"
