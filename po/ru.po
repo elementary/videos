@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-08-23 23:15-0500\n"
-"PO-Revision-Date: 2016-07-30 14:30+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"PO-Revision-Date: 2016-08-27 07:47+0000\n"
+"Last-Translator: Maxim Taranov <png2378@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-08-25 05:35+0000\n"
+"X-Launchpad-Export-Date: 2016-08-28 06:29+0000\n"
 "X-Generator: Launchpad (build 18179)\n"
 
 #: ../src/Window.vala:264
@@ -62,7 +62,7 @@ msgstr "Субтитры из файла:"
 #: ../src/Widgets/SettingsPopover.vala:118
 #: ../src/Widgets/SettingsPopover.vala:141
 msgid "Track %d"
-msgstr ""
+msgstr "Дорожка %d"
 
 #: ../src/Widgets/SettingsPopover.vala:121
 msgid "None"
@@ -170,6 +170,7 @@ msgstr ""
 "  Arsenii Lisunov https://launchpad.net/~arsenii-lis\n"
 "  Artem Anufrij https://launchpad.net/~artem-anufrij\n"
 "  Eugene Marshal https://launchpad.net/~lowrider\n"
+"  Maxim Taranov https://launchpad.net/~png2378\n"
 "  Pasha. P. Komar https://launchpad.net/~cellachain\n"
 "  Sergey \"Shnatsel\" Davidoff https://launchpad.net/~shnatsel\n"
 "  Volkov Sergey https://launchpad.net/~e-gress\n"

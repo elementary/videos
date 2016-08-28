@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-08-23 23:15-0500\n"
-"PO-Revision-Date: 2016-08-03 05:19+0000\n"
-"Last-Translator: BALLOON a.k.a. Fu-sen. (Keiichi SHIGA) <Unknown>\n"
+"PO-Revision-Date: 2016-08-27 06:29+0000\n"
+"Last-Translator: Ryo Nakano <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-08-25 05:35+0000\n"
+"X-Launchpad-Export-Date: 2016-08-28 06:29+0000\n"
 "X-Generator: Launchpad (build 18179)\n"
 
 #: ../src/Window.vala:264
@@ -62,7 +62,7 @@ msgstr "外部字幕："
 #: ../src/Widgets/SettingsPopover.vala:118
 #: ../src/Widgets/SettingsPopover.vala:141
 msgid "Track %d"
-msgstr ""
+msgstr "トラック %d"
 
 #: ../src/Widgets/SettingsPopover.vala:121
 msgid "None"
@@ -168,4 +168,5 @@ msgstr ""
 "Launchpad Contributions:\n"
 "  BALLOON a.k.a. Fu-sen. (Keiichi SHIGA) https://launchpad.net/~balloon\n"
 "  Jun Takeda https://launchpad.net/~takeda-jun\n"
-"  Naoki Kephart https://launchpad.net/~naoki-kephart"
+"  Naoki Kephart https://launchpad.net/~naoki-kephart\n"
+"  Ryo Nakano https://launchpad.net/~uq3-him13de-9spzka7"
