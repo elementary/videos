@@ -56,8 +56,8 @@ namespace Audience {
 
             app_years = "2011-2016";
             app_icon = "multimedia-video-player";
-            app_launcher = "audience.desktop";
-            application_id = "net.launchpad.audience";
+            app_launcher = "org.pantheon.audience.desktop";
+            application_id = "org.pantheon.audience";
 
             main_url = "https://code.launchpad.net/audience";
             bug_url = "https://bugs.launchpad.net/audience";
