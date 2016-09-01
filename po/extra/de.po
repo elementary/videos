@@ -1,0 +1,53 @@
+# German translation for audience
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
+# This file is distributed under the same license as the audience package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: audience\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2016-08-23 23:15-0500\n"
+"PO-Revision-Date: 2016-08-31 14:57+0000\n"
+"Last-Translator: UweS <Unknown>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2016-09-01 06:24+0000\n"
+"X-Generator: Launchpad (build 18179)\n"
+
+msgid "Videos"
+msgstr "Videos"
+
+msgid "Video Player"
+msgstr "Video-Wiedergabe"
+
+msgid "Watch videos and movies"
+msgstr "Videos und Filme ansehen"
+
+msgid "Audience"
+msgstr "Audience"
+
+msgid ""
+"A modern video player that focuses on displaying video content instead of "
+"player controls. It remembers your last played video and playback position "
+"so you can pick up from where you left off."
+msgstr ""
+"Ein moderne Anwendung zur Wiedergabe von Videos, die den Fokus auf die "
+"Wiedergabe des eigentlichen Videoinhalts legt und nicht auf die Darstellung "
+"von Steuerelementen. Videos merkt sich, welcher Film zuletzt wiedergegeben "
+"wurde sowie die letzte Wiedergabeposition, so dass Sie umstandslos ab dort "
+"weitersehen können, wo Sie die Wiedergabe unterbrochen hatten."
+
+msgid "Additional features include:"
+msgstr "Weitere Funktionen:"
+
+msgid "Subtitle support"
+msgstr "Unterstützung von Untertiteln"
+
+msgid "Play queue"
+msgstr "Wiedergabelisten"
+
+msgid "Thumbnail previews on the seek bar"
+msgstr "Vorschau in der Suchleiste"
