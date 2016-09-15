@@ -23,27 +23,6 @@ namespace Audience {
 
     public class LibraryPage : Gtk.IconView {
 
-        private const string STYLESHEET = """
-            .cover {
-                background-clip: padding-box;
-                border: 3px solid transparent;
-                box-shadow: 0 1px 3px alpha (#000, 0.12),
-                            0 1px 2px alpha (#000, 0.24);
-                margin: 12px;
-                transition: all 600ms ease-in-out;
-            }
-    
-            .cover:focused {
-                border-color: @colorAccent;
-                border-radius: 3px;
-            }
-    
-            .cover:hover {
-                box-shadow: 0 3px 6px alpha (#000, 0.16),
-                            0 3px 6px alpha (#000, 0.23);
-            }
-        """;
-
         LibraryItem cell_renderer;
         Gtk.ListStore store;
 
@@ -57,7 +36,6 @@ namespace Audience {
             cell_renderer = new LibraryItem ();
             pack_start (cell_renderer, false);
             add_attribute (cell_renderer, "Video", 0);
-            apply_cover_style (this);
             item_padding = 0;
             margin = 24;
             this.set_model (store);
@@ -89,16 +67,6 @@ namespace Audience {
             store.append(out iter);
             store.set(iter, 0, video);
         }
-        
-        public static void apply_cover_style (Gtk.Widget widget) {
-            var provider = new Gtk.CssProvider ();
-            try {
-                provider.load_from_buffer (STYLESHEET.data);
-                var context = widget.get_style_context ();
-                context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            } catch (GLib.Error e) {
-                critical (e.message);
-            }
-        }
+
     }
 }
