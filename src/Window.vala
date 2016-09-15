@@ -26,6 +26,7 @@ public class Audience.Window : Gtk.Window {
     private Gtk.HeaderBar header;
     private PlayerPage player_page;
     private WelcomePage welcome_page;
+    private LibraryPage library_page;
     private ZeitgeistManager zeitgeist_manager;
 
     public signal void media_volumes_changed ();
@@ -47,6 +48,8 @@ public class Audience.Window : Gtk.Window {
 
         welcome_page = new WelcomePage ();
 
+        library_page = new LibraryPage ();
+
         player_page = new PlayerPage ();
         player_page.ended.connect (on_player_ended);
         player_page.unfullscreen_clicked.connect (() => {
@@ -60,6 +63,7 @@ public class Audience.Window : Gtk.Window {
         main_stack = new Gtk.Stack ();
         main_stack.add (welcome_page);
         main_stack.add (player_page);
+        main_stack.add (library_page);
 
         add (main_stack);
         show_all ();
@@ -260,6 +264,10 @@ public class Audience.Window : Gtk.Window {
         read_first_disk.begin ();
     }
 
+    public void scan_library () {
+        main_stack.set_visible_child (library_page);
+    }
+
     public void run_open_file (bool clear_playlist = false, bool force_play = true) {
         var file = new Gtk.FileChooserDialog (_("Open"), this, Gtk.FileChooserAction.OPEN,
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
@@ -328,7 +336,7 @@ public class Audience.Window : Gtk.Window {
         unfullscreen ();
     }
 
-    private void play_file (string uri, bool from_beginning = true) {
+    public void play_file (string uri, bool from_beginning = true) {
         main_stack.set_visible_child (player_page);
         player_page.play_file (uri, from_beginning);
         if (is_maximized) {

@@ -36,6 +36,8 @@ namespace Audience {
             append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
             set_item_visible (2, disk_manager.has_media_volumes ());
 
+            append ("search", _("Open library"), _("Watch a movie from your library"));
+
             activated.connect ((index) => {
                 var window = App.get_instance ().mainwindow;
                 switch (index) {
@@ -49,6 +51,8 @@ namespace Audience {
                     case 2:
                         window.run_open_dvd ();
                         break;
+                    case 3:
+                        window.scan_library ();
                 }
             });
         }
