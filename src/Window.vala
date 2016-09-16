@@ -27,12 +27,13 @@ public class Audience.Window : Gtk.Window {
     private PlayerPage player_page;
     private WelcomePage welcome_page;
     private LibraryPage library_page;
+    private NavigationButton navigation_button;
     private ZeitgeistManager zeitgeist_manager;
 
     public signal void media_volumes_changed ();
 
     public Window () {
-        
+
     }
 
     construct {
@@ -44,7 +45,23 @@ public class Audience.Window : Gtk.Window {
         header = new Gtk.HeaderBar ();
         header.set_show_close_button (true);
         header.get_style_context ().add_class ("compact");
+
+        navigation_button = new NavigationButton ();
+        navigation_button.clicked.connect (() => {
+            if (navigation_button.get_text () ==_("Back to Welcomescreen")) {
+                navigation_button.hide ();
+                main_stack.set_visible_child (welcome_page);
+            }
+            else if (navigation_button.get_text () == _("Back to Library")) {
+                player_page.playing = false;
+                navigation_button.set_text (_("Back to Welcomescreen"));
+                main_stack.set_visible_child (library_page);
+            }
+        });
+
+        header.pack_start (navigation_button);
         set_titlebar (header);
+
 
         welcome_page = new WelcomePage ();
 
@@ -67,6 +84,8 @@ public class Audience.Window : Gtk.Window {
 
         add (main_stack);
         show_all ();
+
+        navigation_button.hide ();
         main_stack.set_visible_child (welcome_page);
 
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
@@ -107,9 +126,9 @@ public class Audience.Window : Gtk.Window {
             /*/ FIXME: Remove comments once gala bug is fixed: https://bugs.launchpad.net/gala/+bug/1602722
             if (Gdk.WindowState.MAXIMIZED in e.changed_mask) {
                 bool currently_maximixed = Gdk.WindowState.MAXIMIZED in e.new_window_state;
-                
+
                 if (main_stack.get_visible_child () == player_page && currently_maximixed) {
-                   fullscreen (); 
+                   fullscreen ();
                 }
             }*/
 
@@ -229,7 +248,7 @@ public class Audience.Window : Gtk.Window {
         if (clear_playlist) {
             player_page.get_playlist_widget ().clear_items ();
         }
-        
+
         string[] videos = {};
         foreach (var file in files) {
             if (file.query_file_type (0) == FileType.DIRECTORY) {
@@ -246,7 +265,7 @@ public class Audience.Window : Gtk.Window {
         if (videos.length == 0) {
             return;
         }
-        
+
         if (force_play) {
             play_file (videos [0]);
         }
@@ -264,7 +283,9 @@ public class Audience.Window : Gtk.Window {
         read_first_disk.begin ();
     }
 
-    public void scan_library () {
+    public void show_library () {
+        navigation_button.set_text (_("Back to Welcomescreen"));
+        navigation_button.show ();
         main_stack.set_visible_child (library_page);
     }
 
@@ -337,12 +358,15 @@ public class Audience.Window : Gtk.Window {
     }
 
     public void play_file (string uri, bool from_beginning = true) {
+        if (navigation_button.visible)
+            navigation_button.set_text (_("Back to Library"));
+
         main_stack.set_visible_child (player_page);
         player_page.play_file (uri, from_beginning);
         if (is_maximized) {
             fullscreen ();
         }
-        
+
         if (settings.stay_on_top && !settings.playback_wait) {
             set_keep_above (true);
         }

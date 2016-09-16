@@ -52,7 +52,7 @@ namespace Audience {
                         window.run_open_dvd ();
                         break;
                     case 3:
-                        window.scan_library ();
+                        window.show_library ();
                 }
             });
         }
