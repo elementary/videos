@@ -39,7 +39,7 @@ namespace Audience {
         {
             x_offset = 0;
             y_offset = 0;
-            width = 260;
+            width = 240;
             height = 280;
             Padding = 10;
         }

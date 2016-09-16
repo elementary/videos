@@ -21,31 +21,33 @@
 
 namespace Audience {
 
-    public class LibraryPage : Gtk.IconView {
+    public class LibraryPage : Gtk.ScrolledWindow {
 
         LibraryItem cell_renderer;
+        
+        Gtk.IconView view;
         Gtk.ListStore store;
-
         Gtk.TreeIter iter;
 
         LibraryManager manager;
 
         public LibraryPage () {
+            Gtk.IconView view = new Gtk.IconView ();
             store = new Gtk.ListStore (1, typeof (Audience.Objects.Video));
 
             cell_renderer = new LibraryItem ();
-            pack_start (cell_renderer, false);
-            add_attribute (cell_renderer, "Video", 0);
-            item_padding = 0;
-            margin = 24;
-            this.set_model (store);
+            view.pack_start (cell_renderer, false);
+            view.add_attribute (cell_renderer, "Video", 0);
+            view.margin = 24;
+            view.item_padding = 0;
+            view.set_model (store);
 
             manager = new LibraryManager ();
             manager.video_file_detected.connect (add_item);
             manager.begin_scan ();
 
-            this.selection_changed.connect (() => {
-                List<Gtk.TreePath> paths = get_selected_items ();
+            view.selection_changed.connect (() => {
+                List<Gtk.TreePath> paths = view.get_selected_items ();
                 Value val;
 
                 Audience.Objects.Video video = null;
@@ -61,6 +63,8 @@ namespace Audience {
                     App.get_instance ().mainwindow.play_file (video.VideoFile.get_uri ());
                 }
             });
+            
+            this.add (view);
         }
 
         private void add_item (Audience.Objects.Video video){
