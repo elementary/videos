@@ -61,9 +61,10 @@ public class Audience.Window : Gtk.Window {
                 player_page.playing = false;
                 title = App.get_instance ().program_name;
                 navigation_button.set_text (navigation_button_welcomescreen);
-                main_stack.set_visible_child (library_page);
-                get_window ().set_cursor (null);
+                main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
             }
+            
+            get_window ().set_cursor (null);
         });
 
         header.pack_start (navigation_button);
@@ -85,15 +86,21 @@ public class Audience.Window : Gtk.Window {
         });
 
         main_stack = new Gtk.Stack ();
-        main_stack.add (welcome_page);
+        /*main_stack.add (welcome_page);
         main_stack.add (player_page);
-        main_stack.add (library_page);
+        main_stack.add (library_page);*/
+        
+        main_stack.expand = true;
+        main_stack.add_named (welcome_page, "welcome");
+        main_stack.add_named (player_page, "player");
+        main_stack.add_named (library_page, "library");
+        main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
         add (main_stack);
         show_all ();
 
         navigation_button.hide ();
-        main_stack.set_visible_child (welcome_page);
+        main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.NONE);
 
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
         Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
@@ -365,10 +372,14 @@ public class Audience.Window : Gtk.Window {
     }
 
     public void play_file (string uri, bool from_beginning = true) {
-        if (navigation_button.visible)
+        if (navigation_button.visible) {
             navigation_button.set_text (navigation_button_library);
+        } else {
+            navigation_button.show ();
+            navigation_button.set_text (navigation_button_welcomescreen);
+        }
 
-        main_stack.set_visible_child (player_page);
+        main_stack.set_visible_child_full ("player", Gtk.StackTransitionType.SLIDE_LEFT);
         player_page.play_file (uri, from_beginning);
         if (is_maximized) {
             fullscreen ();
