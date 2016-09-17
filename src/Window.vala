@@ -62,6 +62,7 @@ public class Audience.Window : Gtk.Window {
                 title = App.get_instance ().program_name;
                 navigation_button.set_text (navigation_button_welcomescreen);
                 main_stack.set_visible_child (library_page);
+                get_window ().set_cursor (null);
             }
         });
 
