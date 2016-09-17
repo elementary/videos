@@ -95,6 +95,10 @@ namespace Audience {
                 mainwindow.title = program_name;
             }
         }
+        
+        public string get_cache_directory () {
+            return GLib.Environment.get_user_cache_dir () + "/" + exec_name;
+        }
 
         //the application was requested to open some files
         public override void open (File[] files, string hint) {

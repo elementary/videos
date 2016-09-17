@@ -23,28 +23,42 @@ namespace Audience.Objects {
 
     public class Video : Object {
 
+        public signal void poster_detected (string path);
+
         public File VideoFile { get; private set; }
         public string Directory { get; private set; }
         public string Title { get; private set; }
+        public string Poster_Hash_Path { get; private set; }
         public Gdk.Pixbuf? Poster { get; private set; }
 
         public Video (string directory, string file) {
             this.Directory = directory;
             this.Title = file;
             VideoFile = File.new_for_path (this.get_path ());
-            extract_infos ();
         }
 
-        private void extract_infos () {
+        public void extract_infos () {
             // Check if Poster exists
             try {
-                string poster_path = this.get_path () + ".jpg";
+                Poster_Hash_Path = App.get_instance ().get_cache_directory () + "/" + this.get_path ().hash ().to_string () + ".jpg";
+                string poster_path = Poster_Hash_Path;
                 this.Poster = get_poster_pixbuf(poster_path);
+
+                if (Poster != null) {
+                    return;
+                }
+
+
+                if (this.Poster == null) {
+                    poster_path = this.get_path () + ".jpg";
+                    this.Poster = get_poster_pixbuf(poster_path);
+                }
 
                 if (this.Poster == null) {
                     poster_path = this.Directory + "/Poster.jpg";
                     this.Poster = get_poster_pixbuf(poster_path);
                 }
+
                 if (this.Poster == null) {
                     poster_path = this.Directory + "/poster.jpg";
                     this.Poster = get_poster_pixbuf(poster_path);
@@ -60,22 +74,23 @@ namespace Audience.Objects {
                     this.Poster = get_poster_pixbuf(poster_path);
                 }
 
+                if (this.Poster != null) {
+                    poster_detected (poster_path);
+                }
+
             } catch (Error e) {
                 critical (e.message);
             }
         }
 
-        private string get_path (){
+        public string get_path (){
             return Directory + "/" + Title;
         }
 
         public Gdk.Pixbuf? get_poster_pixbuf (string poster_path) {
-            debug ("Poster: %s", poster_path);
-            File poster = File.new_for_path (poster_path);
-            if (poster.query_exists ()) {
-                debug ("Poster EXISTS: %s", poster_path);
-                return new Gdk.Pixbuf.from_file_at_scale (poster_path, -1, 240, true);
 
+            if (File.new_for_path (poster_path).query_exists ()) {
+                return new Gdk.Pixbuf.from_file_at_scale (poster_path, -1, 240, true);
             }
 
             return null;

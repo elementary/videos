@@ -52,7 +52,15 @@ namespace Audience {
                     string mime_type = file_info.get_content_type ();
 
                     if (mime_type.length >=5 && mime_type.substring (0, 5) == "video") {
-                        video_file_detected (new Audience.Objects.Video (source, file_info.get_name ()));
+
+                        Audience.Objects.Video video = new Audience.Objects.Video (source, file_info.get_name ());
+
+                        video.poster_detected.connect ((path) => {
+                            video.Poster.save (video.Poster_Hash_Path, "jpeg");
+                        });
+
+                        video.extract_infos ();
+                        video_file_detected (video);
                     }
                 }
             }

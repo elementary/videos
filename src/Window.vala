@@ -30,6 +30,11 @@ public class Audience.Window : Gtk.Window {
     private NavigationButton navigation_button;
     private ZeitgeistManager zeitgeist_manager;
 
+
+    // For better translation
+    string navigation_button_welcomescreen = _("Welcome Screen");
+    string navigation_button_library = _("Library");
+
     public signal void media_volumes_changed ();
 
     public Window () {
@@ -48,13 +53,13 @@ public class Audience.Window : Gtk.Window {
 
         navigation_button = new NavigationButton ();
         navigation_button.clicked.connect (() => {
-            if (navigation_button.get_text () ==_("Back to Welcomescreen")) {
+            if (navigation_button.get_text () == navigation_button_welcomescreen) {
                 navigation_button.hide ();
                 main_stack.set_visible_child (welcome_page);
             }
-            else if (navigation_button.get_text () == _("Back to Library")) {
+            else if (navigation_button.get_text () == navigation_button_library) {
                 player_page.playing = false;
-                navigation_button.set_text (_("Back to Welcomescreen"));
+                navigation_button.set_text (navigation_button_welcomescreen);
                 main_stack.set_visible_child (library_page);
             }
         });
@@ -284,7 +289,7 @@ public class Audience.Window : Gtk.Window {
     }
 
     public void show_library () {
-        navigation_button.set_text (_("Back to Welcomescreen"));
+        navigation_button.set_text (navigation_button_welcomescreen);
         navigation_button.show ();
         main_stack.set_visible_child (library_page);
     }
@@ -359,7 +364,7 @@ public class Audience.Window : Gtk.Window {
 
     public void play_file (string uri, bool from_beginning = true) {
         if (navigation_button.visible)
-            navigation_button.set_text (_("Back to Library"));
+            navigation_button.set_text (navigation_button_library);
 
         main_stack.set_visible_child (player_page);
         player_page.play_file (uri, from_beginning);
