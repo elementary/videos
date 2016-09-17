@@ -38,9 +38,9 @@ namespace Audience {
             poster = new Gtk.Image.from_pixbuf (video.Poster);
             poster.margin_top = poster.margin_left = poster.margin_right = 12;
             
-            title = new Gtk.Label (video.Title);
+            title = new Gtk.Label (Audience.get_title (video.Title));
             title.get_style_context ().add_class ("h4");
-
+            
             grid.attach (poster, 0, 0, 1, 1);
             grid.attach (title, 0, 1, 1 ,1);
             
