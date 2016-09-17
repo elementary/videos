@@ -31,10 +31,20 @@ namespace Audience {
 
             view = new Gtk.FlowBox ();
             view.margin = 24;
+            view.homogeneous = true;
             view.valign = Gtk.Align.START;
             view.child_activated.connect ((item) => {
                 Audience.LibraryItem video = item as Audience.LibraryItem;
                 App.get_instance ().mainwindow.play_file (video.Video.VideoFile.get_uri ());
+            });
+            
+            view.set_sort_func ((child1, child2) => {
+                var item1 = child1 as LibraryItem;
+                var item2 = child2 as LibraryItem;
+                if (item1 != null && item2 != null) {
+                        return item1.Video.Title.collate (item2.Video.Title);
+                    }
+                return 0;
             });
 
             manager = new LibraryManager ();
