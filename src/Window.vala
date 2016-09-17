@@ -59,6 +59,7 @@ public class Audience.Window : Gtk.Window {
             }
             else if (navigation_button.get_text () == navigation_button_library) {
                 player_page.playing = false;
+                title = App.get_instance ().program_name;
                 navigation_button.set_text (navigation_button_welcomescreen);
                 main_stack.set_visible_child (library_page);
             }
