@@ -52,7 +52,7 @@ namespace Audience.Services {
         public async void detect_video_files (string source) throws GLib.Error {
             File directory = File.new_for_path (source);
 
-            var children = directory.enumerate_children (FileAttribute.STANDARD_CONTENT_TYPE, 0);
+            var children = directory.enumerate_children (FileAttribute.STANDARD_CONTENT_TYPE + "," + FileAttribute.STANDARD_IS_HIDDEN, 0);
 
             if (children != null) {
                 FileInfo file_info;
@@ -65,7 +65,7 @@ namespace Audience.Services {
 
                     string mime_type = file_info.get_content_type ();
 
-                    if (mime_type.length >= 5 && mime_type.substring (0, 5) == "video") {
+                    if (!file_info.get_is_hidden () && mime_type.length >= 5 && mime_type.substring (0, 5) == "video") {
                         var video = new Audience.Objects.Video (source, file_info.get_name (), mime_type);
                         this.video_file_detected (video);
                         has_items = true;
