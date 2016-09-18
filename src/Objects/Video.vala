@@ -39,7 +39,7 @@ namespace Audience.Objects {
 
         private uint dbus_handle = 0;
 
-        public Video (string directory, string file, string mime_type) {        
+        public Video (string directory, string file, string mime_type) {
             manager = Audience.Services.LibraryManager.get_instance ();
 
             this.directory = directory;
@@ -61,7 +61,7 @@ namespace Audience.Objects {
             MatchInfo info;
             try {
                 Regex regex = new Regex("\\(\\d\\d\\d\\d(?=(\\)$))");
-                
+
                 if (regex.match (this.title, 0, out info)) {
                     this.year = int.parse (info.fetch (0).substring (1, 4));
                     this.title = this.title.replace (info.fetch (0) + ")", "");

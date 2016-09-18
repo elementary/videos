@@ -160,6 +160,12 @@ public class Audience.Window : Gtk.Window {
 
     public override bool key_press_event (Gdk.EventKey e) {
         uint keycode = e.hardware_keycode;
+
+        if ((e.state & Gdk.ModifierType.MOD1_MASK) != 0 && e.keyval == Gdk.Key.Left) {
+            navigation_button.clicked ();
+            return true;
+        }
+
         if ((e.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
             if (match_keycode (Gdk.Key.o, keycode)) {
                 run_open_file ();
