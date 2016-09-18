@@ -174,7 +174,7 @@ public class Audience.Window : Gtk.Window {
                 return true;
             }
         }
-
+       
         if (main_stack.get_visible_child () == player_page) {
             if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
                 player_page.playing = !player_page.playing;

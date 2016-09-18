@@ -38,7 +38,13 @@ namespace Audience {
             view_movies.valign = Gtk.Align.START;
             view_movies.selection_mode = Gtk.SelectionMode.NONE;
             view_movies.child_activated.connect ((item) => {
-                App.get_instance ().mainwindow.play_file ((item as Audience.LibraryItem).video.video_file.get_uri ());
+                var selected = (item as Audience.LibraryItem);
+                if (selected.video.video_file.query_exists ()) {
+                    App.get_instance ().mainwindow.play_file (selected.video.video_file.get_uri ());
+                } else {
+                    selected.hide ();
+                    selected.distroy ();
+                }
             });
             
             view_movies.set_sort_func ((child1, child2) => {
