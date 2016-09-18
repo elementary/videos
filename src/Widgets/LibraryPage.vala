@@ -20,7 +20,6 @@
  */
 
 namespace Audience {
-
     public class LibraryPage : Gtk.ScrolledWindow {
 
         Gtk.FlowBox view_movies;
@@ -28,7 +27,9 @@ namespace Audience {
         Audience.Services.LibraryManager manager;
 
         public LibraryPage () {
-
+        }
+        
+        construct {
             view_movies = new Gtk.FlowBox ();
             view_movies.margin = 24;
             view_movies.homogeneous = true;

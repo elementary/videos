@@ -38,28 +38,31 @@ namespace Audience.Services {
         public signal void finished (uint handle);
 
         public DbusThumbnailer () {
-            this.uris = new Gee.ArrayList<string> ();
-            this.mimes = new Gee.ArrayList<string> ();
+        }
+        
+        construct {
+            uris = new Gee.ArrayList<string> ();
+            mimes = new Gee.ArrayList<string> ();
 
             try {
-                this.tumbler = Bus.get_proxy_sync (BusType.SESSION, THUMBNAILER_IFACE, THUMBNAILER_SERVICE);
-                this.tumbler.Finished.connect ((handle) => { finished (handle); });
+                tumbler = Bus.get_proxy_sync (BusType.SESSION, THUMBNAILER_IFACE, THUMBNAILER_SERVICE);
+                tumbler.Finished.connect ((handle) => { finished (handle); });
             } catch (Error e) {
                 warning (e.message);
             }
         }
 
         public uint Queue (string uri, string mime) {
-            this.uris.add (uri);
-            this.mimes.add (mime);
+            uris.add (uri);
+            mimes.add (mime);
             uint handle = 0;
             try {
-                handle = this.tumbler.Queue (this.uris.to_array (), this.mimes.to_array (), "normal", "default", 0);
+                handle = tumbler.Queue (uris.to_array (), mimes.to_array (), "normal", "default", 0);
             } catch (Error e) {
                 warning (e.message);
             }
-            this.uris.clear ();
-            this.mimes.clear ();
+            uris.clear ();
+            mimes.clear ();
 
             return handle;
         }

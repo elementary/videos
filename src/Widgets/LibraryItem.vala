@@ -20,18 +20,20 @@
  */
 
 namespace Audience {
-
     public class LibraryItem : Gtk.FlowBoxChild  {
 
         Gtk.Grid grid;
-        public Audience.Objects.Video video { get; private set; }
+        public Audience.Objects.Video video { get; construct set; }
 
         Gtk.Image poster;
         Gtk.Label title;
 
         public LibraryItem (Audience.Objects.Video video) {
-            this.video = video;
-            this.video.poster_changed.connect (() => {
+            Object (video: video);
+        }
+        
+        construct {
+            video.poster_changed.connect (() => {
                 if (video.poster != null) {
                     poster = new Gtk.Image.from_pixbuf (video.poster);
                     poster.margin_top = poster.margin_left = poster.margin_right = 12;

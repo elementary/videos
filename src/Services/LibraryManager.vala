@@ -20,7 +20,6 @@
  */
 
 namespace Audience.Services {
-
     public const int POSTER_WIDTH = 170;
     public const int POSTER_HEIGHT = 240;
 
@@ -29,7 +28,7 @@ namespace Audience.Services {
         public signal void video_file_detected (Audience.Objects.Video video);
         public signal void finished ();
 
-        public DbusThumbnailer thumbler = null;
+        public DbusThumbnailer thumbler { get; construct set; }
 
         public bool has_items { get; private set; }
 
@@ -43,7 +42,10 @@ namespace Audience.Services {
         }
 
         private LibraryManager () {
-            this.thumbler = new DbusThumbnailer ();
+        }
+        
+        construct {
+            thumbler = new DbusThumbnailer ();
         }
 
         public void begin_scan () {

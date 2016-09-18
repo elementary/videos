@@ -19,36 +19,34 @@
  */
 
 namespace Audience.Objects {
-
     public class Video : Object {
         Audience.Services.LibraryManager manager;
 
         public signal void poster_changed ();
 
         public File video_file { get; private set; }
-        public string directory { get; private set; }
-        public string file { get; private set; }
+        public string directory { get; construct set; }
+        public string file { get; construct set; }
 
         public string title { get; private set; }
         public int year { get; private set; }
 
         public Gdk.Pixbuf? poster { get; private set; }
 
-        private string mime_type;
+        public string mime_type { get; construct set; }
         private string poster_cache_file;
 
         private uint dbus_handle = 0;
 
         public Video (string directory, string file, string mime_type) {
-            manager = Audience.Services.LibraryManager.get_instance ();
+            Object (directory: directory, file: file, mime_type: mime_type);
+        }
 
-            this.directory = directory;
-            this.file = file;
+        construct {
+            manager = Audience.Services.LibraryManager.get_instance ();
             this.title = Audience.get_title (file);
 
             this.extract_infos ();
-
-            this.mime_type = mime_type;
             video_file = File.new_for_path (this.get_path ());
 
             notify["poster"].connect (() => {

@@ -25,17 +25,20 @@ namespace Audience {
         private Gtk.Label text;
 
         public NavigationButton () {
-        can_focus = false;
-        valign = Gtk.Align.CENTER;
-        vexpand = false;
-        this.get_style_context ().add_class ("back-button");
+        }
+        
+        construct {
+            can_focus = false;
+            valign = Gtk.Align.CENTER;
+            vexpand = false;
+            this.get_style_context ().add_class ("back-button");
 
-        Gtk.Box button_b = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        text = new Gtk.Label ("");
+            Gtk.Box button_b = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            text = new Gtk.Label ("");
 
-        button_b.pack_start (text, true, true, 2);
+            button_b.pack_start (text, true, true, 2);
 
-        this.add (button_b);
+            this.add (button_b);
         }
 
         public string get_text () {
