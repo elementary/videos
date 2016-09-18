@@ -53,18 +53,17 @@ public class Audience.Window : Gtk.Window {
 
         navigation_button = new NavigationButton ();
         navigation_button.clicked.connect (() => {
-            if (navigation_button.get_text () == navigation_button_welcomescreen) {
+            player_page.playing = false;
+            title = App.get_instance ().program_name;
+            get_window ().set_cursor (null);
+            
+            if (navigation_button.get_text () == navigation_button_library) {
+                navigation_button.set_text (navigation_button_welcomescreen);
+                main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
+            } else {
                 navigation_button.hide ();
                 main_stack.set_visible_child (welcome_page);
             }
-            else if (navigation_button.get_text () == navigation_button_library) {
-                player_page.playing = false;
-                title = App.get_instance ().program_name;
-                navigation_button.set_text (navigation_button_welcomescreen);
-                main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
-            }
-            
-            get_window ().set_cursor (null);
         });
 
         header.pack_start (navigation_button);

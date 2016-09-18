@@ -54,7 +54,7 @@ namespace Audience.Objects {
             try {
                 string hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, this.get_path (), this.get_path ().length);
 
-                poster_cache_file = App.get_instance ().get_cache_directory () + "/" + hash + ".jpg";
+                poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash + ".jpg");
 
                 string poster_path = poster_cache_file;
                 set_poster_from_file(poster_path);
@@ -71,13 +71,13 @@ namespace Audience.Objects {
                 }
                 
                 if (this.poster == null) {
-                    poster_path = this.directory + "/" + Audience.get_title (file) + ".jpg";
+                    poster_path = Path.build_filename (this.directory, Audience.get_title (file) + ".jpg");
                     set_poster_from_file(poster_path);
                 }
 
                 foreach (string s in Audience.settings.poster_names) {
                     if (this.poster == null) {
-                        poster_path = this.directory + "/" + s;
+                        poster_path = Path.build_filename (this.directory, s);
                         set_poster_from_file(poster_path);
                     } else {
                         break;
@@ -119,7 +119,7 @@ namespace Audience.Objects {
         }
 
         public string get_path (){
-            return directory + "/" + file;
+            return Path.build_filename(directory, file);
         }
 
         public void set_poster_from_file (string poster_path) {

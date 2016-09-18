@@ -64,7 +64,7 @@ namespace Audience.Services {
                     string mime_type = file_info.get_content_type ();
 
                     if (mime_type.length >= 5 && mime_type.substring (0, 5) == "video") {
-                        Audience.Objects.Video video = new Audience.Objects.Video (source, file_info.get_name (), mime_type);
+                        var video = new Audience.Objects.Video (source, file_info.get_name (), mime_type);
                         this.video_file_detected (video);
                         video.initialize_poster.begin ();
                     }
