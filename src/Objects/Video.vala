@@ -33,7 +33,7 @@ namespace Audience.Objects {
 
         private string mime_type;
         private string poster_cache_file;
-        
+
         private uint dbus_handle = 0;
 
         public Video (string directory, string file, string mime_type) {
@@ -41,7 +41,7 @@ namespace Audience.Objects {
 
             this.directory = directory;
             this.file = file;
-            
+
             this.mime_type = mime_type;
             video_file = File.new_for_path (this.get_path ());
 
@@ -69,6 +69,11 @@ namespace Audience.Objects {
                     poster_path = this.get_path () + ".jpg";
                     set_poster_from_file(poster_path);
                 }
+                
+                if (this.poster == null) {
+                    poster_path = this.directory + "/" + Audience.get_title (file) + ".jpg";
+                    set_poster_from_file(poster_path);
+                }
 
                 foreach (string s in Audience.settings.poster_names) {
                     if (this.poster == null) {
@@ -77,6 +82,12 @@ namespace Audience.Objects {
                     } else {
                         break;
                     }
+                }
+
+                // POSTER found
+                if (this.poster != null) {
+                    this.poster.save (poster_cache_file, "jpeg");
+                    return;
                 }
 
                 // Check if THUMBNAIL exists
@@ -99,7 +110,7 @@ namespace Audience.Objects {
 
             if (dbus_handle == handle) {
                 manager.thumbler.finished.disconnect (thumbnail_created);
-                
+
                 string? thumbnail_path = manager.get_thumbnail_path (video_file);
                 if (thumbnail_path != null) {
                     set_poster_from_file (thumbnail_path);
@@ -115,13 +126,13 @@ namespace Audience.Objects {
 
             if (File.new_for_path (poster_path).query_exists ()) {
                 Gdk.Pixbuf pixbuf = null;
-                
+
                 try {
                     pixbuf = new Gdk.Pixbuf.from_file_at_scale (poster_path, -1, Audience.Services.POSTER_HEIGHT, true);
                 } catch (Error e) {
                     warning (e.message);
                 }
-                
+
                 if (pixbuf == null) {
                     return;
                 }
