@@ -28,7 +28,8 @@ namespace Audience.Objects {
         public File video_file { get; private set; }
         public string directory { get; private set; }
         public string file { get; private set; }
-
+        
+        public string tv_show_title { get; private set; }
         public string title { get; private set; }
         public int year { get; private set; }
 
@@ -39,7 +40,7 @@ namespace Audience.Objects {
 
         private uint dbus_handle = 0;
 
-        public Video (string directory, string file, string mime_type) {
+        public Video (string directory, string file, string mime_type) {        
             manager = Audience.Services.LibraryManager.get_instance ();
 
             this.directory = directory;
@@ -57,16 +58,24 @@ namespace Audience.Objects {
         }
 
         private void extract_infos () {
-        
             // exclude YEAR from Title
             MatchInfo info;
             Regex regex = new Regex("\\(\\d\\d\\d\\d(?=(\\)$))");
             
             if (regex.match (this.title, 0, out info)) {
                 this.year = int.parse (info.fetch (0).substring (1, 4));
-                debug (year.to_string ());
-                
                 this.title = this.title.replace (info.fetch (0) + ")", "");
+            }
+            
+            string tv_show_indicator = "TV Shows";
+            
+            // check if video is a TV SHOW
+            regex = new Regex ("(?=" + tv_show_indicator + "/)[\\w\\s]*/[\\s\\w]*");
+            
+            this.tv_show_title = "";
+            if (regex.match (this.directory, 0, out info)) {
+                this.tv_show_title = info.fetch (0).replace (tv_show_indicator + "/", "");
+                debug (tv_show_title);
             }
         }
 
