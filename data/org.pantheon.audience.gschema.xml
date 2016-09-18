@@ -59,5 +59,10 @@
             <summary>Poster file names</summary>
             <description></description>
         </key>
+        <key name="tv-shows-indicator" type="s">
+            <default>"TV Shows"</default>
+            <summary>TV Show indicator</summary>
+            <description></description>
+        </key>
     </schema>
 </schemalist>

@@ -67,14 +67,12 @@ namespace Audience.Objects {
                 this.title = this.title.replace (info.fetch (0) + ")", "");
             }
             
-            string tv_show_indicator = "TV Shows";
-            
             // check if video is a TV SHOW
-            regex = new Regex ("(?=" + tv_show_indicator + "/)[\\w\\s]*/[\\s\\w]*");
+            regex = new Regex ("(?=" + manager.tv_shows_indicator + "/)[\\w\\s]*/[\\s\\w]*");
             
             this.tv_show_title = "";
             if (regex.match (this.directory, 0, out info)) {
-                this.tv_show_title = info.fetch (0).replace (tv_show_indicator + "/", "");
+                this.tv_show_title = info.fetch (0).replace (manager.tv_shows_indicator + "/", "");
                 debug (tv_show_title);
             }
         }

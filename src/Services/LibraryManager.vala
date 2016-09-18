@@ -40,9 +40,12 @@ namespace Audience.Services {
 
             return instance;
         }
+        
+        public string tv_shows_indicator { get; set; }
 
         private LibraryManager () {
             this.thumbler = new DbusThumbnailer ();
+            tv_shows_indicator = Audience.settings.tv_shows_indicator;
         }
 
         public void begin_scan () {
