@@ -54,9 +54,7 @@ namespace Audience {
         }
 
         private void add_item (Audience.Objects.Video video) {
-            var child = new Audience.LibraryItem (video);
-            view.add (child);
-            view.unselect_child (child);
+            view.add (new Audience.LibraryItem (video));
         }
     }
 }
