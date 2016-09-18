@@ -45,7 +45,7 @@ namespace Audience {
             append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
             set_item_visible (2, disk_manager.has_media_volumes ());
 
-            append ("folder-videos", _("Open library"), _("Watch a movie from your library"));
+            append ("folder-videos", _("Browse Library"), _("Watch a movie from your library"));
             set_item_visible (3, library_manager.has_items);
             
             activated.connect ((index) => {
