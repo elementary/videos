@@ -27,10 +27,10 @@ namespace Audience {
 
         Gtk.FlowBox view_movies;
         Gtk.FlowBox view_tv_shows;
-        
+
         Gtk.Label label_movies;
         Gtk.Label label_tv_shows;
-        
+
         Audience.Services.LibraryManager manager;
 
         public LibraryPage () {
@@ -53,10 +53,11 @@ namespace Audience {
 
             view_tv_shows = new Gtk.FlowBox ();
             view_tv_shows.margin = 24;
+            view_tv_shows.max_children_per_line = 1;
             view_tv_shows.homogeneous = true;
-            view_tv_shows.child_activated.connect ((item) => {
+            /*view_tv_shows.child_activated.connect ((item) => {
                 App.get_instance ().mainwindow.play_file ((item as Audience.LibraryItem).video.video_file.get_uri ());
-            });
+            });*/
 
             view_tv_shows.set_sort_func ((child1, child2) => {
                 var item1 = child1 as LibraryItem;
@@ -67,18 +68,17 @@ namespace Audience {
                 return 0;
             });
 
-
             manager = Audience.Services.LibraryManager.get_instance ();
             manager.video_file_detected.connect (add_item);
             manager.begin_scan ();
 
             label_movies = new Gtk.Label (_("Movies"));
             label_movies.get_style_context ().add_class ("h1");
-            label_movies.margin = 24;
-            label_movies.margin_end = 12;
-            
+            label_movies.margin_top = 24;
+
             label_tv_shows = new Gtk.Label (_("TV Shows"));
             label_tv_shows.get_style_context ().add_class ("h1");
+            label_tv_shows.margin_top = 24;
 
             grid = new Gtk.Grid ();
             grid.orientation = Gtk.Orientation.VERTICAL;
@@ -94,10 +94,26 @@ namespace Audience {
 
         private void add_item (Audience.Objects.Video video) {
             if (video.tv_show_title != "") {
-                view_tv_shows.add (new Audience.LibraryItem (video));
+                LibraryTvShow tv_show = get_tv_show_container (video.tv_show_title);
+                tv_show.add_item (video);
             } else {
                 view_movies.add (new Audience.LibraryItem (video));
             }
+        }
+
+        private LibraryTvShow get_tv_show_container (string tv_show_title) {
+            foreach (var item in view_tv_shows.get_children ()) {
+                if ((item as LibraryTvShow).tv_show_title == tv_show_title) {
+                   return item as LibraryTvShow;
+                }
+            }
+            
+            LibraryTvShow item = new LibraryTvShow (tv_show_title);
+            item.child_activated.connect ((item) => {
+                App.get_instance ().mainwindow.play_file ((item as Audience.LibraryItem).video.video_file.get_uri ());
+            });
+            view_tv_shows.add (item);
+            return item;
         }
     }
 }
