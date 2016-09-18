@@ -41,8 +41,6 @@ namespace Audience.Services {
 
             return instance;
         }
-        
-        public string tv_shows_indicator { get; set; }
 
         private LibraryManager () {
             this.thumbler = new DbusThumbnailer ();
