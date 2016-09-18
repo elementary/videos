@@ -56,7 +56,7 @@ public class Audience.Window : Gtk.Window {
             player_page.playing = false;
             title = App.get_instance ().program_name;
             get_window ().set_cursor (null);
-            
+
             if (navigation_button.get_text () == navigation_button_library) {
                 navigation_button.set_text (navigation_button_welcomescreen);
                 main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
@@ -69,10 +69,8 @@ public class Audience.Window : Gtk.Window {
         header.pack_start (navigation_button);
         set_titlebar (header);
 
-
-        welcome_page = new WelcomePage ();
-
         library_page = new LibraryPage ();
+        welcome_page = new WelcomePage ();
 
         player_page = new PlayerPage ();
         player_page.ended.connect (on_player_ended);
@@ -85,10 +83,6 @@ public class Audience.Window : Gtk.Window {
         });
 
         main_stack = new Gtk.Stack ();
-        /*main_stack.add (welcome_page);
-        main_stack.add (player_page);
-        main_stack.add (library_page);*/
-        
         main_stack.expand = true;
         main_stack.add_named (welcome_page, "welcome");
         main_stack.add_named (player_page, "player");

@@ -30,6 +30,8 @@ namespace Audience.Services {
 
         public DbusThumbnailer thumbler = null;
 
+        public bool has_items { get; private set; }
+
         public static LibraryManager instance = null;
         public static LibraryManager get_instance () {
             if (instance == null) {
@@ -66,6 +68,7 @@ namespace Audience.Services {
                     if (mime_type.length >= 5 && mime_type.substring (0, 5) == "video") {
                         var video = new Audience.Objects.Video (source, file_info.get_name (), mime_type);
                         this.video_file_detected (video);
+                        has_items = true;
                         video.initialize_poster.begin ();
                     }
                 }
