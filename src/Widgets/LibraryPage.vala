@@ -54,7 +54,7 @@ namespace Audience {
             view_tv_shows = new Gtk.FlowBox ();
             view_tv_shows.margin = 24;
             view_tv_shows.max_children_per_line = 1;
-            view_tv_shows.homogeneous = true;
+            //view_tv_shows.homogeneous = true;
             /*view_tv_shows.child_activated.connect ((item) => {
                 App.get_instance ().mainwindow.play_file ((item as Audience.LibraryItem).video.video_file.get_uri ());
             });*/
