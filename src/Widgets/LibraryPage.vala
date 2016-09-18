@@ -32,6 +32,7 @@ namespace Audience {
             view_movies = new Gtk.FlowBox ();
             view_movies.margin = 24;
             view_movies.homogeneous = true;
+            view_movies.row_spacing = 12;
             view_movies.child_activated.connect ((item) => {
                 App.get_instance ().mainwindow.play_file ((item as Audience.LibraryItem).video.video_file.get_uri ());
             });

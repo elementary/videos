@@ -59,11 +59,15 @@ namespace Audience.Objects {
         private void extract_infos () {
             // exclude YEAR from Title
             MatchInfo info;
-            Regex regex = new Regex("\\(\\d\\d\\d\\d(?=(\\)$))");
-            
-            if (regex.match (this.title, 0, out info)) {
-                this.year = int.parse (info.fetch (0).substring (1, 4));
-                this.title = this.title.replace (info.fetch (0) + ")", "");
+            try {
+                Regex regex = new Regex("\\(\\d\\d\\d\\d(?=(\\)$))");
+                
+                if (regex.match (this.title, 0, out info)) {
+                    this.year = int.parse (info.fetch (0).substring (1, 4));
+                    this.title = this.title.replace (info.fetch (0) + ")", "");
+                }
+            } catch (Error e) {
+                warning (e.message);
             }
         }
 
