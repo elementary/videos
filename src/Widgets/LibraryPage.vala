@@ -25,7 +25,7 @@ namespace Audience {
 
         Gtk.FlowBox view;
 
-        LibraryManager manager;
+        Audience.Services.LibraryManager manager;
 
         public LibraryPage () {
 
@@ -34,29 +34,27 @@ namespace Audience {
             view.homogeneous = true;
             view.valign = Gtk.Align.START;
             view.child_activated.connect ((item) => {
-                Audience.LibraryItem video = item as Audience.LibraryItem;
-                App.get_instance ().mainwindow.play_file (video.Video.VideoFile.get_uri ());
+                App.get_instance ().mainwindow.play_file ((item as Audience.LibraryItem).video.video_file.get_uri ());
             });
-            
+
             view.set_sort_func ((child1, child2) => {
                 var item1 = child1 as LibraryItem;
                 var item2 = child2 as LibraryItem;
                 if (item1 != null && item2 != null) {
-                        return item1.Video.Title.collate (item2.Video.Title);
+                        return item1.video.file.collate (item2.video.file);
                     }
                 return 0;
             });
 
-            manager = new LibraryManager ();
+            manager = Audience.Services.LibraryManager.get_instance ();
             manager.video_file_detected.connect (add_item);
             manager.begin_scan ();
 
             this.add (view);
         }
 
-        private void add_item (Audience.Objects.Video video){
+        private void add_item (Audience.Objects.Video video) {
             view.add (new Audience.LibraryItem (video));
         }
-
     }
 }

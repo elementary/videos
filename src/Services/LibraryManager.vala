@@ -19,20 +19,33 @@
  *
  */
 
-namespace Audience {
+namespace Audience.Services {
+
+    public const int POSTER_WIDTH = 170;
+    public const int POSTER_HEIGHT = 240;
 
     public class LibraryManager : Object {
 
         public signal void video_file_detected (Audience.Objects.Video video);
 
-        string video_directory;
+        public DbusThumbnailer thumbler = null;
 
-        public LibraryManager () {
-            video_directory = GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS);
+        private static LibraryManager instance = null;
+
+        public static LibraryManager get_instance () {
+            if (instance == null) {
+                instance = new LibraryManager ();
+            }
+
+            return instance;
+        }
+
+        private LibraryManager () {
+            this.thumbler = new DbusThumbnailer ();
         }
 
         public void begin_scan () {
-            detect_video_files.begin (video_directory);
+            detect_video_files.begin (Audience.settings.library_folder);
         }
 
         public async void detect_video_files (string source) {
@@ -51,19 +64,30 @@ namespace Audience {
 
                     string mime_type = file_info.get_content_type ();
 
-                    if (mime_type.length >=5 && mime_type.substring (0, 5) == "video") {
-
-                        Audience.Objects.Video video = new Audience.Objects.Video (source, file_info.get_name ());
-
-                        video.poster_detected.connect ((path) => {
-                            video.Poster.save (video.Poster_Hash_Path, "jpeg");
-                        });
-
-                        video.extract_infos ();
-                        video_file_detected (video);
+                    if (mime_type.length >= 5 && mime_type.substring (0, 5) == "video") {
+                        Audience.Objects.Video video = new Audience.Objects.Video (source, file_info.get_name (), mime_type);
+                        this.video_file_detected (video);
+                        video.initialize_poster.begin ();
                     }
                 }
             }
+        }
+
+        public string? get_thumbnail_path (File file) {
+
+            if (!file.is_native ()) {
+                return null;
+            }
+
+            var info = file.query_info (FileAttribute.THUMBNAIL_PATH + "," + FileAttribute.THUMBNAILING_FAILED, FileQueryInfoFlags.NONE);
+            var path = info.get_attribute_as_string (FileAttribute.THUMBNAIL_PATH);
+            var failed = info.get_attribute_boolean (FileAttribute.THUMBNAILING_FAILED);
+
+            if (failed || path == null) {
+                return null;
+            }
+
+            return path;
         }
     }
 }

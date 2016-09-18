@@ -62,6 +62,7 @@ vala_precompile (VALA_C ${EXEC_NAME}
     Widgets/NavigationButton.vala
     Services/Inhibitor.vala
     Services/LibraryManager.vala
+    Services/Thubnailer.vala
     Objects/Video.vala
   PACKAGES
     ${VALA_DEPS}

@@ -24,24 +24,29 @@ namespace Audience {
     public class LibraryItem : Gtk.FlowBoxChild  {
 
         Gtk.Grid grid;
-        public Audience.Objects.Video Video { get; private set; }
+        public Audience.Objects.Video video { get; private set; }
 
         Gtk.Image poster;
         Gtk.Label title;
 
         public LibraryItem (Audience.Objects.Video video) {
-            this.Video = video;
+            this.video = video;
+            this.video.poster_changed.connect (() => {
+                if (video.poster != null) {
+                    poster = new Gtk.Image.from_pixbuf (video.poster);
+                    poster.margin_top = poster.margin_left = poster.margin_right = 12;
+                    grid.attach (poster, 0, 0, 1, 1);
+                    
+                    poster.show ();
+                }
+            });
+            
             grid = new Gtk.Grid ();
             grid.halign = Gtk.Align.CENTER;
             grid.valign = Gtk.Align.START;
             
-            poster = new Gtk.Image.from_pixbuf (video.Poster);
-            poster.margin_top = poster.margin_left = poster.margin_right = 12;
-            
-            title = new Gtk.Label (Audience.get_title (video.Title));
+            title = new Gtk.Label (Audience.get_title (video.file));
             title.get_style_context ().add_class ("h4");
-            
-            grid.attach (poster, 0, 0, 1, 1);
             grid.attach (title, 0, 1, 1 ,1);
             
             this.add (grid);

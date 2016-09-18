@@ -89,7 +89,9 @@ namespace Audience {
                 if (settings.last_folder == "-1") {
                     settings.last_folder = Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS);
                 }
-
+                if (settings.library_folder == "") {
+                    settings.library_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS);
+                }
                 mainwindow = new Window ();
                 mainwindow.application = this;
                 mainwindow.title = program_name;

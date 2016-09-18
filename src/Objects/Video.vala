@@ -1,4 +1,3 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
  * Copyright (c) 2016-2016 elementary LLC.
  *
@@ -22,78 +21,130 @@
 namespace Audience.Objects {
 
     public class Video : Object {
+        Audience.Services.LibraryManager manager;
 
-        public signal void poster_detected (string path);
+        public signal void poster_changed ();
 
-        public File VideoFile { get; private set; }
-        public string Directory { get; private set; }
-        public string Title { get; private set; }
-        public string Poster_Hash_Path { get; private set; }
-        public Gdk.Pixbuf? Poster { get; private set; }
+        public File video_file { get; private set; }
+        public string directory { get; private set; }
+        public string file { get; private set; }
 
-        public Video (string directory, string file) {
-            this.Directory = directory;
-            this.Title = file;
-            VideoFile = File.new_for_path (this.get_path ());
+        public Gdk.Pixbuf? poster { get; private set; }
+
+        private string mime_type;
+        private string poster_cache_file;
+        
+        private uint dbus_handle = 0;
+
+        public Video (string directory, string file, string mime_type) {
+            manager = Audience.Services.LibraryManager.get_instance ();
+
+            this.directory = directory;
+            this.file = file;
+            
+            this.mime_type = mime_type;
+            video_file = File.new_for_path (this.get_path ());
+
+            notify["poster"].connect (() => {
+                poster_changed ();
+            });
         }
 
-        public void extract_infos () {
-            // Check if Poster exists
+        public async void initialize_poster () {
             try {
-                Poster_Hash_Path = App.get_instance ().get_cache_directory () + "/" + this.get_path ().hash ().to_string () + ".jpg";
-                string poster_path = Poster_Hash_Path;
-                this.Poster = get_poster_pixbuf(poster_path);
+                string hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, this.get_path (), this.get_path ().length);
 
-                if (Poster != null) {
+                poster_cache_file = App.get_instance ().get_cache_directory () + "/" + hash + ".jpg";
+
+                string poster_path = poster_cache_file;
+                set_poster_from_file(poster_path);
+
+                // POSTER in Cache exists
+                if (this.poster != null) {
                     return;
                 }
 
-
-                if (this.Poster == null) {
+                // Try to find a POSTER in same folder of video file
+                if (this.poster == null) {
                     poster_path = this.get_path () + ".jpg";
-                    this.Poster = get_poster_pixbuf(poster_path);
+                    set_poster_from_file(poster_path);
                 }
 
-                if (this.Poster == null) {
-                    poster_path = this.Directory + "/Poster.jpg";
-                    this.Poster = get_poster_pixbuf(poster_path);
+                if (this.poster == null) {
+                    poster_path = this.directory + "/Poster.jpg";
+                    set_poster_from_file(poster_path);
                 }
 
-                if (this.Poster == null) {
-                    poster_path = this.Directory + "/poster.jpg";
-                    this.Poster = get_poster_pixbuf(poster_path);
+                if (this.poster == null) {
+                    poster_path = this.directory + "/poster.jpg";
+                    set_poster_from_file(poster_path);
                 }
 
-                if (this.Poster == null) {
-                    poster_path = this.Directory + "/Cover.jpg";
-                    this.Poster = get_poster_pixbuf(poster_path);
+                if (this.poster == null) {
+                    poster_path = this.directory + "/Cover.jpg";
+                    set_poster_from_file(poster_path);
                 }
 
-                if (this.Poster == null) {
-                    poster_path = this.Directory + "/cover.jpg";
-                    this.Poster = get_poster_pixbuf(poster_path);
+                if (this.poster == null) {
+                    poster_path = this.directory + "/cover.jpg";
+                    set_poster_from_file(poster_path);
                 }
 
-                if (this.Poster != null) {
-                    poster_detected (poster_path);
+                // POSTER found
+                if (this.poster != null) {
+                    this.poster.save (poster_cache_file, "jpeg");
+                    return;
                 }
+
+                // Check if THUMBNAIL exists
+                string? thumbnail_path = manager.get_thumbnail_path (video_file);
+                if (thumbnail_path != null) {
+                    set_poster_from_file (thumbnail_path);
+                    return;
+                }
+
+                // Call DBUS for create a new THUMBNAIL
+                manager.get_instance ().thumbler.finished.connect (thumbnail_created);
+                dbus_handle = manager.get_instance ().thumbler.Queue (video_file.get_uri (), mime_type);
 
             } catch (Error e) {
                 critical (e.message);
             }
         }
 
-        public string get_path (){
-            return Directory + "/" + Title;
+        private void thumbnail_created (uint handle) {
+
+            if (dbus_handle == handle) {
+                manager.get_instance ().thumbler.finished.disconnect (thumbnail_created);
+                
+                string? thumbnail_path = manager.get_thumbnail_path (video_file);
+                if (thumbnail_path != null) {
+                    set_poster_from_file (thumbnail_path);
+                }
+            }
         }
 
-        public Gdk.Pixbuf? get_poster_pixbuf (string poster_path) {
+        public string get_path (){
+            return directory + "/" + file;
+        }
+
+        public void set_poster_from_file (string poster_path) {
 
             if (File.new_for_path (poster_path).query_exists ()) {
-                return new Gdk.Pixbuf.from_file_at_scale (poster_path, -1, 240, true);
-            }
+                Gdk.Pixbuf pixbuf = new Gdk.Pixbuf.from_file_at_scale (poster_path, -1, Audience.Services.POSTER_HEIGHT, true);
 
-            return null;
+                // Cut THUMBNAIL images
+                int width = pixbuf.width;
+                if (width > Audience.Services.POSTER_WIDTH) {
+                    int x_offset = (width - Audience.Services.POSTER_WIDTH) / 2;
+                    this.poster = new Gdk.Pixbuf.subpixbuf (pixbuf, x_offset, 0, Audience.Services.POSTER_WIDTH, Audience.Services.POSTER_HEIGHT);
+                } else {
+                    this.poster = pixbuf;
+                }
+
+            } else {
+                this.poster = null;
+            }
         }
     }
 }

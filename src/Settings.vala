@@ -29,6 +29,7 @@ public class Audience.Settings : Granite.Services.Settings {
     public bool playback_wait {get; set;}
     public bool stay_on_top {get; set;}
     public string subtitle_font {get; set; }
+    public string library_folder {get; set; }
 
     public Settings () {
         base ("org.pantheon.audience");
