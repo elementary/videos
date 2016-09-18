@@ -52,9 +52,12 @@ namespace Audience.Services {
         public uint Queue (string uri, string mime) {
             this.uris.add (uri);
             this.mimes.add (mime);
-
-            uint handle = this.tumbler.Queue (this.uris.to_array (), this.mimes.to_array (), "normal", "default", 0);
-
+            uint handle = 0;
+            try {
+                handle = this.tumbler.Queue (this.uris.to_array (), this.mimes.to_array (), "normal", "default", 0);
+            } catch (Error e) {
+                warning (e.message);
+            }
             this.uris.clear ();
             this.mimes.clear ();
 

@@ -30,8 +30,7 @@ namespace Audience.Services {
 
         public DbusThumbnailer thumbler = null;
 
-        private static LibraryManager instance = null;
-
+        public static LibraryManager instance = null;
         public static LibraryManager get_instance () {
             if (instance == null) {
                 instance = new LibraryManager ();
@@ -48,7 +47,7 @@ namespace Audience.Services {
             detect_video_files.begin (Audience.settings.library_folder);
         }
 
-        public async void detect_video_files (string source) {
+        public async void detect_video_files (string source) throws GLib.Error {
             File directory = File.new_for_path (source);
 
             var children = directory.enumerate_children (FileAttribute.STANDARD_CONTENT_TYPE, 0);
@@ -78,12 +77,19 @@ namespace Audience.Services {
             if (!file.is_native ()) {
                 return null;
             }
+            
+            string? path = null;
+            
+            try {
+                var info = file.query_info (FileAttribute.THUMBNAIL_PATH + "," + FileAttribute.THUMBNAILING_FAILED, FileQueryInfoFlags.NONE);
+                path = info.get_attribute_as_string (FileAttribute.THUMBNAIL_PATH);
+                var failed = info.get_attribute_boolean (FileAttribute.THUMBNAILING_FAILED);
 
-            var info = file.query_info (FileAttribute.THUMBNAIL_PATH + "," + FileAttribute.THUMBNAILING_FAILED, FileQueryInfoFlags.NONE);
-            var path = info.get_attribute_as_string (FileAttribute.THUMBNAIL_PATH);
-            var failed = info.get_attribute_boolean (FileAttribute.THUMBNAILING_FAILED);
-
-            if (failed || path == null) {
+                if (failed || path == null) {
+                    return null;
+                }
+            } catch (Error e) {
+                warning (e.message);
                 return null;
             }
 

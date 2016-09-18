@@ -70,30 +70,13 @@ namespace Audience.Objects {
                     set_poster_from_file(poster_path);
                 }
 
-                if (this.poster == null) {
-                    poster_path = this.directory + "/Poster.jpg";
-                    set_poster_from_file(poster_path);
-                }
-
-                if (this.poster == null) {
-                    poster_path = this.directory + "/poster.jpg";
-                    set_poster_from_file(poster_path);
-                }
-
-                if (this.poster == null) {
-                    poster_path = this.directory + "/Cover.jpg";
-                    set_poster_from_file(poster_path);
-                }
-
-                if (this.poster == null) {
-                    poster_path = this.directory + "/cover.jpg";
-                    set_poster_from_file(poster_path);
-                }
-
-                // POSTER found
-                if (this.poster != null) {
-                    this.poster.save (poster_cache_file, "jpeg");
-                    return;
+                foreach (string s in Audience.settings.poster_names) {
+                    if (this.poster == null) {
+                        poster_path = this.directory + "/" + s;
+                        set_poster_from_file(poster_path);
+                    } else {
+                        break;
+                    }
                 }
 
                 // Check if THUMBNAIL exists
@@ -104,8 +87,8 @@ namespace Audience.Objects {
                 }
 
                 // Call DBUS for create a new THUMBNAIL
-                manager.get_instance ().thumbler.finished.connect (thumbnail_created);
-                dbus_handle = manager.get_instance ().thumbler.Queue (video_file.get_uri (), mime_type);
+                manager.thumbler.finished.connect (thumbnail_created);
+                dbus_handle = manager.thumbler.Queue (video_file.get_uri (), mime_type);
 
             } catch (Error e) {
                 critical (e.message);
@@ -115,7 +98,7 @@ namespace Audience.Objects {
         private void thumbnail_created (uint handle) {
 
             if (dbus_handle == handle) {
-                manager.get_instance ().thumbler.finished.disconnect (thumbnail_created);
+                manager.thumbler.finished.disconnect (thumbnail_created);
                 
                 string? thumbnail_path = manager.get_thumbnail_path (video_file);
                 if (thumbnail_path != null) {
@@ -131,8 +114,17 @@ namespace Audience.Objects {
         public void set_poster_from_file (string poster_path) {
 
             if (File.new_for_path (poster_path).query_exists ()) {
-                Gdk.Pixbuf pixbuf = new Gdk.Pixbuf.from_file_at_scale (poster_path, -1, Audience.Services.POSTER_HEIGHT, true);
-
+                Gdk.Pixbuf pixbuf = null;
+                
+                try {
+                    pixbuf = new Gdk.Pixbuf.from_file_at_scale (poster_path, -1, Audience.Services.POSTER_HEIGHT, true);
+                } catch (Error e) {
+                    warning (e.message);
+                }
+                
+                if (pixbuf == null) {
+                    return;
+                }
                 // Cut THUMBNAIL images
                 int width = pixbuf.width;
                 if (width > Audience.Services.POSTER_WIDTH) {

@@ -28,9 +28,9 @@ public class Audience.Settings : Granite.Services.Settings {
     public string last_folder {get; set;}
     public bool playback_wait {get; set;}
     public bool stay_on_top {get; set;}
-    public string subtitle_font {get; set; }
-    public string library_folder {get; set; }
-
+    public string subtitle_font {get; set;}
+    public string library_folder {get; set;}
+    public string[] poster_names {get; set;}
     public Settings () {
         base ("org.pantheon.audience");
     }
