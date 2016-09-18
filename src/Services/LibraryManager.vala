@@ -27,6 +27,7 @@ namespace Audience.Services {
     public class LibraryManager : Object {
 
         public signal void video_file_detected (Audience.Objects.Video video);
+        public signal void finished ();
 
         public DbusThumbnailer thumbler = null;
 
@@ -45,7 +46,6 @@ namespace Audience.Services {
 
         private LibraryManager () {
             this.thumbler = new DbusThumbnailer ();
-            tv_shows_indicator = Audience.settings.tv_shows_indicator;
         }
 
         public void begin_scan () {

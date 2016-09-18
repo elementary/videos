@@ -28,8 +28,7 @@ namespace Audience.Objects {
         public File video_file { get; private set; }
         public string directory { get; private set; }
         public string file { get; private set; }
-        
-        public string tv_show_title { get; private set; }
+
         public string title { get; private set; }
         public int year { get; private set; }
 
@@ -65,15 +64,6 @@ namespace Audience.Objects {
             if (regex.match (this.title, 0, out info)) {
                 this.year = int.parse (info.fetch (0).substring (1, 4));
                 this.title = this.title.replace (info.fetch (0) + ")", "");
-            }
-            
-            // check if video is a TV SHOW
-            regex = new Regex ("(?=" + manager.tv_shows_indicator + "/)[\\w\\s]*/[\\s\\w]*");
-            
-            this.tv_show_title = "";
-            if (regex.match (this.directory, 0, out info)) {
-                this.tv_show_title = info.fetch (0).replace (manager.tv_shows_indicator + "/", "");
-                debug (tv_show_title);
             }
         }
 
