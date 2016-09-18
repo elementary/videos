@@ -43,7 +43,7 @@ namespace Audience {
                     App.get_instance ().mainwindow.play_file (selected.video.video_file.get_uri ());
                 } else {
                     selected.hide ();
-                    selected.distroy ();
+                    selected.destroy ();
                 }
             });
             

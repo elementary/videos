@@ -92,6 +92,16 @@ namespace Audience {
                 if (settings.library_folder == "") {
                     settings.library_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS);
                 }
+                
+                try {
+                File cache = File.new_for_path (get_cache_directory ());
+                    if (!cache.query_exists ()) {
+                        cache.make_directory ();
+                    }
+                } catch (Error e) {
+                    error (e.message);
+                }
+                
                 mainwindow = new Window ();
                 mainwindow.application = this;
                 mainwindow.title = program_name;
