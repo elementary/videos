@@ -45,7 +45,10 @@ namespace Audience {
             grid.halign = Gtk.Align.CENTER;
             grid.valign = Gtk.Align.START;
             
-            title = new Gtk.Label (Audience.get_title (video.file));
+            title = new Gtk.Label (video.title);
+            title.justify = Gtk.Justification.CENTER;
+            title.set_line_wrap (true);
+            title.max_width_chars = 0;
             title.get_style_context ().add_class ("h4");
             grid.attach (title, 0, 1, 1 ,1);
             

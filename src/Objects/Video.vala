@@ -29,6 +29,9 @@ namespace Audience.Objects {
         public string directory { get; private set; }
         public string file { get; private set; }
 
+        public string title { get; private set; }
+        public int year { get; private set; }
+
         public Gdk.Pixbuf? poster { get; private set; }
 
         private string mime_type;
@@ -41,6 +44,9 @@ namespace Audience.Objects {
 
             this.directory = directory;
             this.file = file;
+            this.title = Audience.get_title (file);
+
+            this.extract_infos ();
 
             this.mime_type = mime_type;
             video_file = File.new_for_path (this.get_path ());
@@ -48,6 +54,20 @@ namespace Audience.Objects {
             notify["poster"].connect (() => {
                 poster_changed ();
             });
+        }
+
+        private void extract_infos () {
+        
+            // exclude YEAR from Title
+            MatchInfo info;
+            Regex regex = new Regex("\\(\\d\\d\\d\\d(?=(\\)$))");
+            
+            if (regex.match (this.title, 0, out info)) {
+                this.year = int.parse (info.fetch (0).substring (1, 4));
+                debug (year.to_string ());
+                
+                this.title = this.title.replace (info.fetch (0) + ")", "");
+            }
         }
 
         public async void initialize_poster () {
@@ -69,7 +89,7 @@ namespace Audience.Objects {
                     poster_path = this.get_path () + ".jpg";
                     set_poster_from_file(poster_path);
                 }
-                
+
                 if (this.poster == null) {
                     poster_path = Path.build_filename (this.directory, Audience.get_title (file) + ".jpg");
                     set_poster_from_file(poster_path);
