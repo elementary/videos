@@ -30,7 +30,6 @@ public class Audience.Window : Gtk.Window {
     private NavigationButton navigation_button;
     private ZeitgeistManager zeitgeist_manager;
 
-
     // For better translation
     string navigation_button_welcomescreen = _("Welcome Screen");
     string navigation_button_library = _("Library");
@@ -300,6 +299,7 @@ public class Audience.Window : Gtk.Window {
         navigation_button.set_text (navigation_button_welcomescreen);
         navigation_button.show ();
         main_stack.set_visible_child (library_page);
+        library_page.grab_focus ();
     }
 
     public void run_open_file (bool clear_playlist = false, bool force_play = true) {

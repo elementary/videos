@@ -36,10 +36,11 @@ namespace Audience {
             view_movies.row_spacing = 12;
             view_movies.column_spacing = 12;
             view_movies.valign = Gtk.Align.START;
+            view_movies.selection_mode = Gtk.SelectionMode.NONE;
             view_movies.child_activated.connect ((item) => {
                 App.get_instance ().mainwindow.play_file ((item as Audience.LibraryItem).video.video_file.get_uri ());
             });
-
+            
             view_movies.set_sort_func ((child1, child2) => {
                 var item1 = child1 as LibraryItem;
                 var item2 = child2 as LibraryItem;
