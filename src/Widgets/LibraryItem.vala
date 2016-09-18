@@ -36,7 +36,7 @@ namespace Audience {
                     poster = new Gtk.Image.from_pixbuf (video.poster);
                     poster.margin_top = poster.margin_left = poster.margin_right = 12;
                     grid.attach (poster, 0, 0, 1, 1);
-                    
+                    poster.get_style_context ().add_class ("card");
                     poster.show ();
                 }
             });
