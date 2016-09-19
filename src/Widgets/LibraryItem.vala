@@ -34,22 +34,34 @@ namespace Audience {
         }
 
         construct {
+            margin_bottom = 12;
 
             video.poster_changed.connect (() => {
                 if (video.poster != null) {
-                    spinner.destroy ();
-                    poster = new Gtk.Image.from_pixbuf (video.poster);
-                    poster.margin_top = poster.margin_left = poster.margin_right = 12;
-                    poster.get_style_context ().add_class ("card");
-                    grid.attach (poster, 0, 0, 1, 1);
+                    spinner.active = false;
+                    spinner.hide ();
+                    poster.set_from_pixbuf (video.poster);
                     poster.show ();
+                } else {
+                    spinner.active = true;
+                    spinner.show ();
+                    poster.hide ();
                 }
+            });
+
+            video.title_changed.connect (() => {
+                title.label = video.title;
+                title.show ();
             });
 
             spinner = new Gtk.Spinner ();
             spinner.active = true;
             spinner.height_request = Audience.Services.POSTER_HEIGHT;
             spinner.width_request = Audience.Services.POSTER_WIDTH;
+
+            poster = new Gtk.Image ();
+            poster.margin_top = poster.margin_left = poster.margin_right = 12;
+            poster.get_style_context ().add_class ("card");
 
             grid = new Gtk.Grid ();
             grid.halign = Gtk.Align.CENTER;
@@ -62,6 +74,7 @@ namespace Audience {
             title.max_width_chars = 0;
 
             grid.attach (spinner, 0, 0, 1, 1);
+            grid.attach (poster, 0, 0, 1, 1);
             grid.attach (title, 0, 1, 1 ,1);
 
             this.add (grid);

@@ -23,6 +23,9 @@ namespace Audience.Objects {
         Audience.Services.LibraryManager manager;
 
         public signal void poster_changed ();
+        public signal void title_changed ();
+
+        private FileMonitor monitor;
 
         public File video_file { get; private set; }
         public string directory { get; construct set; }
@@ -34,7 +37,7 @@ namespace Audience.Objects {
         public Gdk.Pixbuf? poster { get; private set; }
 
         public string mime_type { get; construct set; }
-        private string poster_cache_file;
+        public string poster_cache_file { get; private set; }
 
         public Video (string directory, string file, string mime_type) {
             Object (directory: directory, file: file, mime_type: mime_type);
@@ -47,9 +50,14 @@ namespace Audience.Objects {
 
             this.extract_metadata ();
             video_file = File.new_for_path (this.get_path ());
-
+            
+            monitoring_file (video_file);
+            
             notify["poster"].connect (() => {
                 poster_changed ();
+            });
+            notify["title"].connect (() => {
+                title_changed ();
             });
         }
 
@@ -125,7 +133,7 @@ namespace Audience.Objects {
                     Idle.add((owned) callback);
                     return null;
                 }
-                
+
                 // Call DBUS for create a new THUMBNAIL
                 manager.thumbler.finished.connect (thumbnail_created);
                 manager.thumbler.Queue (video_file.get_uri (), mime_type);
@@ -183,6 +191,28 @@ namespace Audience.Objects {
             }
 
             return pixbuf;
+        }
+        
+        private void monitoring_file (File file_for_monitoring) {
+            monitor = file_for_monitoring.monitor (FileMonitorFlags.WATCH_MOVES | FileMonitorFlags.SEND_MOVED, null);
+            monitor.changed.connect ((src, dest, event) => { 
+                if (event == GLib.FileMonitorEvent.DELETED) {
+                    debug ("DELETE");
+                }
+                
+                if(event == GLib.FileMonitorEvent.MOVED) {
+                    debug ("MOVED");
+                }
+                
+                if (event == GLib.FileMonitorEvent.RENAMED) {
+                    video_file = dest;
+                    monitoring_file (video_file);
+                    file = video_file.get_basename ();
+                    title = Audience.get_title (file);
+                    poster = null;
+                    initialize_poster.begin ();
+                }
+            });
         }
     }
 }
