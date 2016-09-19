@@ -31,6 +31,7 @@ public class Audience.Settings : Granite.Services.Settings {
     public string subtitle_font {get; set;}
     public string library_folder {get; set;}
     public string[] poster_names {get; set;}
+
     public Settings () {
         base ("org.pantheon.audience");
     }

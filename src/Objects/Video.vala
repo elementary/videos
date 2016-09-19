@@ -36,17 +36,16 @@ namespace Audience.Objects {
         public string mime_type { get; construct set; }
         private string poster_cache_file;
 
-        private uint dbus_handle = 0;
-
         public Video (string directory, string file, string mime_type) {
             Object (directory: directory, file: file, mime_type: mime_type);
         }
 
         construct {
             manager = Audience.Services.LibraryManager.get_instance ();
+
             this.title = Audience.get_title (file);
 
-            this.extract_infos ();
+            this.extract_metadata ();
             video_file = File.new_for_path (this.get_path ());
 
             notify["poster"].connect (() => {
@@ -54,98 +53,118 @@ namespace Audience.Objects {
             });
         }
 
-        private void extract_infos () {
+        private void extract_metadata () {
             // exclude YEAR from Title
             MatchInfo info;
-            try {
-                Regex regex = new Regex("\\(\\d\\d\\d\\d(?=(\\)$))");
-
-                if (regex.match (this.title, 0, out info)) {
-                    this.year = int.parse (info.fetch (0).substring (1, 4));
-                    this.title = this.title.replace (info.fetch (0) + ")", "");
-                }
-            } catch (Error e) {
-                warning (e.message);
+            if (manager.regex_year.match (this.title, 0, out info)) {
+                this.year = int.parse (info.fetch (0).substring (1, 4));
+                this.title = this.title.replace (info.fetch (0) + ")", "");
             }
         }
 
         public async void initialize_poster () {
-            try {
+            initialize_poster_thread.begin ((obj, res) => {
+                this.poster = initialize_poster_thread.end (res);
+            });
+        }
+
+        public async Gdk.Pixbuf? initialize_poster_thread () {
+            SourceFunc callback = initialize_poster_thread.callback;
+            Gdk.Pixbuf? pixbuf = null;
+
+            ThreadFunc<void*> run = () => {
+
                 string hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, this.get_path (), this.get_path ().length);
 
                 poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash + ".jpg");
 
                 string poster_path = poster_cache_file;
-                set_poster_from_file(poster_path);
+                pixbuf = get_poster_from_file(poster_path);
 
                 // POSTER in Cache exists
-                if (this.poster != null) {
-                    return;
+                if (pixbuf != null) {
+                    Idle.add((owned) callback);
+                    return null;
                 }
 
                 // Try to find a POSTER in same folder of video file
-                if (this.poster == null) {
+                if (pixbuf == null) {
                     poster_path = this.get_path () + ".jpg";
-                    set_poster_from_file(poster_path);
+                    pixbuf = get_poster_from_file(poster_path);
                 }
 
-                if (this.poster == null) {
+                if (pixbuf == null) {
                     poster_path = Path.build_filename (this.directory, Audience.get_title (file) + ".jpg");
-                    set_poster_from_file(poster_path);
+                    pixbuf = get_poster_from_file(poster_path);
                 }
 
                 foreach (string s in Audience.settings.poster_names) {
-                    if (this.poster == null) {
+                    if (pixbuf == null) {
                         poster_path = Path.build_filename (this.directory, s);
-                        set_poster_from_file(poster_path);
+                        pixbuf = get_poster_from_file(poster_path);
                     } else {
                         break;
                     }
                 }
 
                 // POSTER found
-                if (this.poster != null) {
-                    this.poster.save (poster_cache_file, "jpeg");
-                    return;
+                if (pixbuf != null) {
+                    try {
+                        pixbuf.save (poster_cache_file, "jpeg");
+                    } catch (Error e) {
+                        warning (e.message);
+                    }
+                    Idle.add((owned) callback);
+                    return null;
                 }
 
                 // Check if THUMBNAIL exists
                 string? thumbnail_path = manager.get_thumbnail_path (video_file);
                 if (thumbnail_path != null) {
-                    set_poster_from_file (thumbnail_path);
-                    return;
+                    pixbuf = get_poster_from_file (thumbnail_path);
+                    Idle.add((owned) callback);
+                    return null;
                 }
-
+                
                 // Call DBUS for create a new THUMBNAIL
                 manager.thumbler.finished.connect (thumbnail_created);
-                dbus_handle = manager.thumbler.Queue (video_file.get_uri (), mime_type);
+                manager.thumbler.Queue (video_file.get_uri (), mime_type);
+                while (poster == null) {
+                    Thread.usleep (100);
+                }
+                Idle.add((owned) callback);
+                return null;
+            };
 
+            try {
+                new Thread<void*>.try (null, run);
             } catch (Error e) {
-                critical (e.message);
+                error (e.message);
             }
+
+            yield;
+
+            return pixbuf;
         }
 
         private void thumbnail_created (uint handle) {
 
-            if (dbus_handle == handle) {
-                manager.thumbler.finished.disconnect (thumbnail_created);
-
+           if (poster == null) {
                 string? thumbnail_path = manager.get_thumbnail_path (video_file);
                 if (thumbnail_path != null) {
-                    set_poster_from_file (thumbnail_path);
+                    manager.thumbler.finished.disconnect (thumbnail_created);
+                    poster = get_poster_from_file (thumbnail_path);
                 }
             }
         }
 
-        public string get_path (){
-            return Path.build_filename(directory, file);
+        public string get_path () {
+            return Path.build_filename (directory, file);
         }
 
-        public void set_poster_from_file (string poster_path) {
-
+        public Gdk.Pixbuf? get_poster_from_file (string poster_path) {
+            Gdk.Pixbuf pixbuf = null;
             if (File.new_for_path (poster_path).query_exists ()) {
-                Gdk.Pixbuf pixbuf = null;
-
                 try {
                     pixbuf = new Gdk.Pixbuf.from_file_at_scale (poster_path, -1, Audience.Services.POSTER_HEIGHT, true);
                 } catch (Error e) {
@@ -153,20 +172,17 @@ namespace Audience.Objects {
                 }
 
                 if (pixbuf == null) {
-                    return;
+                    return null;
                 }
                 // Cut THUMBNAIL images
                 int width = pixbuf.width;
                 if (width > Audience.Services.POSTER_WIDTH) {
                     int x_offset = (width - Audience.Services.POSTER_WIDTH) / 2;
-                    this.poster = new Gdk.Pixbuf.subpixbuf (pixbuf, x_offset, 0, Audience.Services.POSTER_WIDTH, Audience.Services.POSTER_HEIGHT);
-                } else {
-                    this.poster = pixbuf;
+                    pixbuf = new Gdk.Pixbuf.subpixbuf (pixbuf, x_offset, 0, Audience.Services.POSTER_WIDTH, Audience.Services.POSTER_HEIGHT);
                 }
-
-            } else {
-                this.poster = null;
             }
+
+            return pixbuf;
         }
     }
 }

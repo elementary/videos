@@ -28,8 +28,9 @@ namespace Audience.Services {
         public signal void video_file_detected (Audience.Objects.Video video);
         public signal void finished ();
 
+        public Regex regex_year { get; construct set; }
         public DbusThumbnailer thumbler { get; construct set; }
-
+        
         public bool has_items { get; private set; }
 
         public static LibraryManager instance = null;
@@ -45,6 +46,11 @@ namespace Audience.Services {
         }
         
         construct {
+            try {
+                regex_year = new Regex("\\(\\d\\d\\d\\d(?=(\\)$))");
+            } catch (Error e) {
+                error (e.message);
+            }
             thumbler = new DbusThumbnailer ();
         }
 
@@ -60,7 +66,6 @@ namespace Audience.Services {
             if (children != null) {
                 FileInfo file_info;
                 while ((file_info = children.next_file ()) != null) {
-
                     if (file_info.get_file_type () == FileType.DIRECTORY) {
                         detect_video_files.begin (source + "/" + file_info.get_name ());
                         continue;
@@ -72,14 +77,12 @@ namespace Audience.Services {
                         var video = new Audience.Objects.Video (source, file_info.get_name (), mime_type);
                         this.video_file_detected (video);
                         has_items = true;
-                        video.initialize_poster.begin ();
                     }
                 }
             }
         }
 
         public string? get_thumbnail_path (File file) {
-
             if (!file.is_native ()) {
                 return null;
             }

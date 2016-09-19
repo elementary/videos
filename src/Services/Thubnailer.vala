@@ -22,7 +22,7 @@
 namespace Audience.Services {
     [DBus (name = "org.freedesktop.thumbnails.Thumbnailer1")]
     private interface Tumbler : GLib.Object {
-        public abstract uint Queue (string[] uris, string[] mime_types, string flavor, string sheduler, uint handle_to_dequeue) throws GLib.IOError, GLib.DBusError;
+        public abstract async uint Queue (string[] uris, string[] mime_types, string flavor, string sheduler, uint handle_to_dequeue) throws GLib.IOError, GLib.DBusError;
         public signal void Finished (uint handle);
     }
 
@@ -30,7 +30,7 @@ namespace Audience.Services {
         private Tumbler tumbler;
         private Gee.ArrayList<string> uris;
         private Gee.ArrayList<string> mimes;
-
+        private uint timeout_id;
 
         private const string THUMBNAILER_IFACE = "org.freedesktop.thumbnails.Thumbnailer1";
         private const string THUMBNAILER_SERVICE = "/org/freedesktop/thumbnails/Thumbnailer1";
@@ -39,11 +39,11 @@ namespace Audience.Services {
 
         public DbusThumbnailer () {
         }
-        
+
         construct {
             uris = new Gee.ArrayList<string> ();
             mimes = new Gee.ArrayList<string> ();
-
+            timeout_id = 0;
             try {
                 tumbler = Bus.get_proxy_sync (BusType.SESSION, THUMBNAILER_IFACE, THUMBNAILER_SERVICE);
                 tumbler.Finished.connect ((handle) => { finished (handle); });
@@ -52,19 +52,34 @@ namespace Audience.Services {
             }
         }
 
-        public uint Queue (string uri, string mime) {
+        public void Queue (string uri, string mime) {
             uris.add (uri);
             mimes.add (mime);
-            uint handle = 0;
+
+            if (timeout_id != 0) {
+                 Source.remove (timeout_id);
+                 timeout_id = 0;
+            }
+            
+            this.timeout_id = Timeout.add (100, create_thumbnails);
+        }
+
+        private bool create_thumbnails () {
+
+            if (this.tumbler == null || this.uris.size == 0) {
+                return true;
+            }
+
             try {
-                handle = tumbler.Queue (uris.to_array (), mimes.to_array (), "normal", "default", 0);
+                tumbler.Queue.begin (uris.to_array (), mimes.to_array (), "normal", "default", 0);
             } catch (Error e) {
                 warning (e.message);
             }
             uris.clear ();
             mimes.clear ();
+            timeout_id = 0;
 
-            return handle;
+            return false;
         }
     }
 }

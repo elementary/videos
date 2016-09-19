@@ -22,31 +22,14 @@
 namespace Audience {
     public class NavigationButton : Gtk.Button {
 
-        private Gtk.Label text;
-
         public NavigationButton () {
         }
-        
+
         construct {
             can_focus = false;
             valign = Gtk.Align.CENTER;
             vexpand = false;
             this.get_style_context ().add_class ("back-button");
-
-            Gtk.Box button_b = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-            text = new Gtk.Label ("");
-
-            button_b.pack_start (text, true, true, 2);
-
-            this.add (button_b);
-        }
-
-        public string get_text () {
-            return text.label;
-        }
-
-        public void set_text (string text) {
-            this.text.label = text;
         }
     }
 }

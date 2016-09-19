@@ -4,8 +4,6 @@ namespace Audience {
         private Services.LibraryManager library_manager;
         public WelcomePage () {
             base (_("No Videos Open"), _("Select a source to begin playing."));
-            
-           
         }
 
         construct {
@@ -36,18 +34,17 @@ namespace Audience {
                 set_item_visible (2, disk_manager.has_media_volumes ());
             });
 
-            library_manager = Services.LibraryManager.get_instance (); 
+            library_manager = Services.LibraryManager.get_instance ();
             library_manager.video_file_detected.connect ((vid) => {
                 set_item_visible (3, true);
             });
-
 
             append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
             set_item_visible (2, disk_manager.has_media_volumes ());
 
             append ("folder-videos", _("Browse Library"), _("Watch a movie from your library"));
             set_item_visible (3, library_manager.has_items);
-            
+
             activated.connect ((index) => {
                 var window = App.get_instance ().mainwindow;
                 switch (index) {

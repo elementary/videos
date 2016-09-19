@@ -25,6 +25,7 @@ namespace Audience {
         Gtk.FlowBox view_movies;
 
         Audience.Services.LibraryManager manager;
+        bool poster_initialized = false;
 
         public LibraryPage () {
         }
@@ -61,10 +62,23 @@ namespace Audience {
             manager.begin_scan ();
 
             this.add (view_movies);
+            
+            map.connect (() => { 
+                if (!poster_initialized) {
+                    poster_initialized = true;
+                    poster_initialisation.begin ();
+                }
+            });
         }
 
         private void add_item (Audience.Objects.Video video) {
             view_movies.add (new Audience.LibraryItem (video));
+        }
+        
+        private async void poster_initialisation () {
+            foreach (var child in view_movies.get_children ()) {
+                (child as LibraryItem).video.initialize_poster.begin ();
+            }
         }
     }
 }
