@@ -27,6 +27,7 @@ namespace Audience {
 
         Gtk.Image poster;
         Gtk.Label title;
+        Gtk.Spinner spinner;
 
         public LibraryItem (Audience.Objects.Video video) {
             Object (video: video);
@@ -36,13 +37,19 @@ namespace Audience {
 
             video.poster_changed.connect (() => {
                 if (video.poster != null) {
-                    poster.set_from_pixbuf (video.poster);
+                    spinner.destroy ();
+                    poster = new Gtk.Image.from_pixbuf (video.poster);
+                    poster.margin_top = poster.margin_left = poster.margin_right = 12;
+                    poster.get_style_context ().add_class ("card");
+                    grid.attach (poster, 0, 0, 1, 1);
+                    poster.show ();
                 }
             });
 
-            poster = new Gtk.Image.from_icon_name ("image-loading", Gtk.IconSize.DIALOG);
-            poster.margin_top = poster.margin_left = poster.margin_right = 12;
-            poster.get_style_context ().add_class ("card");
+            spinner = new Gtk.Spinner ();
+            spinner.active = true;
+            spinner.height_request = Audience.Services.POSTER_HEIGHT;
+            spinner.width_request = Audience.Services.POSTER_WIDTH;
 
             grid = new Gtk.Grid ();
             grid.halign = Gtk.Align.CENTER;
@@ -54,7 +61,7 @@ namespace Audience {
             title.set_line_wrap (true);
             title.max_width_chars = 0;
 
-            grid.attach (poster, 0, 0, 1, 1);
+            grid.attach (spinner, 0, 0, 1, 1);
             grid.attach (title, 0, 1, 1 ,1);
 
             this.add (grid);
