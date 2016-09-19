@@ -70,11 +70,8 @@ namespace Audience.Services {
                 return true;
             }
 
-            try {
-                tumbler.Queue.begin (uris.to_array (), mimes.to_array (), "normal", "default", 0);
-            } catch (Error e) {
-                warning (e.message);
-            }
+            tumbler.Queue.begin (uris.to_array (), mimes.to_array (), "normal", "default", 0);
+
             uris.clear ();
             mimes.clear ();
             timeout_id = 0;
