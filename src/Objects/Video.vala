@@ -209,6 +209,7 @@ namespace Audience.Objects {
                     monitoring_file (video_file);
                     file = video_file.get_basename ();
                     title = Audience.get_title (file);
+                    manager.clear_cache (this);
                     poster = null;
                     initialize_poster.begin ();
                 }

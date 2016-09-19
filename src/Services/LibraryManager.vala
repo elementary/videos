@@ -105,7 +105,7 @@ namespace Audience.Services {
             return path;
         }
         
-        public void clear_chache (Audience.Objects.Video video) {
+        public void clear_cache (Audience.Objects.Video video) {
             File file = File.new_for_path (video.poster_cache_file);
             if (file.query_exists ()) {
                 file.delete_async.begin (Priority.DEFAULT, null);

@@ -43,7 +43,7 @@ namespace Audience {
                 if (selected.video.video_file.query_exists ()) {
                     App.get_instance ().mainwindow.play_file (selected.video.video_file.get_uri ());
                 } else {
-                    manager.clear_chache (selected.video);
+                    manager.clear_cache (selected.video);
                     selected.hide ();
                     selected.destroy ();
                 }
