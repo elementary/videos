@@ -135,9 +135,16 @@ namespace Audience.Objects {
                 }
 
                 // Call DBUS for create a new THUMBNAIL
-                manager.thumbler.finished.connect (thumbnail_created);
+                manager.thumbler.finished.connect ((haendle) => {
+                   if (poster == null) {
+                        thumbnail_path = manager.get_thumbnail_path (video_file);
+                        if (thumbnail_path != null) {
+                            pixbuf = get_poster_from_file (thumbnail_path);
+                        }
+                    }
+                });
                 manager.thumbler.Queue (video_file.get_uri (), mime_type);
-                while (poster == null) {
+                while (pixbuf == null) {
                     Thread.usleep (100);
                 }
                 Idle.add((owned) callback);
@@ -153,17 +160,6 @@ namespace Audience.Objects {
             yield;
 
             return pixbuf;
-        }
-
-        private void thumbnail_created (uint handle) {
-
-           if (poster == null) {
-                string? thumbnail_path = manager.get_thumbnail_path (video_file);
-                if (thumbnail_path != null) {
-                    manager.thumbler.finished.disconnect (thumbnail_created);
-                    poster = get_poster_from_file (thumbnail_path);
-                }
-            }
         }
 
         public string get_path () {
