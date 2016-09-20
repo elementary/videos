@@ -43,7 +43,7 @@ namespace Audience {
                 if (selected.video.video_file.query_exists ()) {
                     App.get_instance ().mainwindow.play_file (selected.video.video_file.get_uri ());
                 } else {
-                    remove_item (selected);
+                    remove_item.begin (selected);
                 }
             });
 
@@ -58,6 +58,7 @@ namespace Audience {
 
             manager = Audience.Services.LibraryManager.get_instance ();
             manager.video_file_detected.connect (add_item);
+            manager.video_file_deleted.connect (remove_item_from_path);
             manager.begin_scan ();
 
             this.add (view_movies);
@@ -73,14 +74,27 @@ namespace Audience {
         private void add_item (Audience.Objects.Video video) {
             Audience.LibraryItem new_item = new Audience.LibraryItem (video);
             new_item.file_moved.connect (() => {
-                remove_item (new_item);
+                remove_item.begin (new_item);
             });
             view_movies.add (new_item);
+            if (poster_initialized) {
+                new_item.show_all ();
+                new_item.video.initialize_poster.begin ();
+            }
         }
 
-        private void remove_item (LibraryItem item) {
+        private async void remove_item (LibraryItem item) {
             manager.clear_cache (item.video);
             item.dispose ();
+        }
+
+        private async void remove_item_from_path (string path ) {
+            foreach (var child in view_movies.get_children ()) {
+                if ((child as LibraryItem).video.video_file.get_path () == path) {
+                    remove_item (child as LibraryItem);
+                    return;
+                }
+            }
         }
 
         private async void poster_initialisation () {

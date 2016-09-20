@@ -26,6 +26,7 @@ namespace Audience.Services {
     public class LibraryManager : Object {
 
         public signal void video_file_detected (Audience.Objects.Video video);
+        public signal void video_file_deleted (string path);
         public signal void finished ();
 
         public Regex regex_year { get; construct set; }
@@ -34,6 +35,7 @@ namespace Audience.Services {
         public bool has_items { get; private set; }
 
         private Gee.ArrayList<string> poster_hash;
+        private Gee.ArrayList<FileMonitor> monitoring_directories;
 
         public static LibraryManager instance = null;
         public static LibraryManager get_instance () {
@@ -49,13 +51,14 @@ namespace Audience.Services {
 
         construct {
             poster_hash = new Gee.ArrayList<string> ();
+            monitoring_directories = new Gee.ArrayList<FileMonitor> ();
             try {
                 regex_year = new Regex ("\\(\\d\\d\\d\\d(?=(\\)$))");
             } catch (Error e) {
                 error (e.message);
             }
             thumbler = new DbusThumbnailer ();
-            
+
             finished.connect (() => { clear_unused_cache_files.begin (); });
         }
 
@@ -65,6 +68,23 @@ namespace Audience.Services {
 
         public async void detect_video_files (string source) throws GLib.Error {
             File directory = File.new_for_path (source);
+
+            FileMonitor monitor = directory.monitor (FileMonitorFlags.NONE, null);
+            monitor.changed.connect ((src, dest, event) => {
+                if (event == GLib.FileMonitorEvent.DELETED) {
+                    video_file_deleted (src.get_path ());
+                }
+                else if (event == GLib.FileMonitorEvent.CHANGES_DONE_HINT) {
+                    FileInfo file_info = src.query_info (FileAttribute.STANDARD_CONTENT_TYPE + "," + FileAttribute.STANDARD_IS_HIDDEN, 0);
+                    if (file_info.get_file_type () == FileType.DIRECTORY) {
+                        detect_video_files.begin (src.get_path ());
+                    } else if (is_file_valid (file_info)) {
+                        string src_path = src.get_path ();
+                        crate_video_object (file_info, Path.get_dirname (src_path), Path.get_basename (src_path));
+                    }
+                }
+            });
+            monitoring_directories.add (monitor);
 
             var children = directory.enumerate_children (FileAttribute.STANDARD_CONTENT_TYPE + "," + FileAttribute.STANDARD_IS_HIDDEN, 0);
 
@@ -76,19 +96,29 @@ namespace Audience.Services {
                         continue;
                     }
 
-                    string mime_type = file_info.get_content_type ();
-
-                    if (!file_info.get_is_hidden () && mime_type.length >= 5 && mime_type.substring (0, 5) == "video") {
-                        var video = new Audience.Objects.Video (source, file_info.get_name (), mime_type);
-                        this.video_file_detected (video);
-                        poster_hash.add (video.hash + ".jpg");
-                        has_items = true;
+                    if (is_file_valid (file_info)) {
+                        crate_video_object (file_info, source);
                     }
                 }
             }
             if (directory.get_path () == Audience.settings.library_folder) {
                 finished ();
             }
+        }
+
+        private bool is_file_valid (FileInfo file_info) {
+            string mime_type = file_info.get_content_type ();
+            return !file_info.get_is_hidden () && mime_type.length >= 5 && mime_type.substring (0, 5) == "video";
+        }
+
+        private void crate_video_object (FileInfo file_info, string source, string name = "") {
+            if (name == "") {
+                name = file_info.get_name ();
+            }
+            var video = new Audience.Objects.Video (source, name, file_info.get_content_type ());
+            video_file_detected (video);
+            poster_hash.add (video.hash + ".jpg");
+            has_items = true;
         }
 
         public string? get_thumbnail_path (File file) {
@@ -104,9 +134,9 @@ namespace Audience.Services {
                 if (failed || path == null) {
                     return null;
                 }
-                
+
                 path = path.replace ("normal", "large");
-                
+
                 File large_thumbnail = File.new_for_path (path);
                 if (!large_thumbnail.query_exists ()) {
                     return null;

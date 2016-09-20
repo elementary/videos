@@ -26,8 +26,6 @@ namespace Audience.Objects {
         public signal void title_changed ();
         public signal void file_moved ();
 
-        private FileMonitor monitor;
-
         public File video_file { get; private set; }
         public string directory { get; construct set; }
         public string file { get; construct set; }
@@ -53,8 +51,6 @@ namespace Audience.Objects {
 
             this.extract_metadata ();
             video_file = File.new_for_path (this.get_path ());
-
-            monitoring_file (video_file);
 
             hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, this.get_path (), this.get_path ().length);
 
@@ -190,28 +186,6 @@ namespace Audience.Objects {
             }
 
             return pixbuf;
-        }
-
-        private void monitoring_file (File file_for_monitoring) {
-            try {
-                monitor = file_for_monitoring.monitor (FileMonitorFlags.WATCH_MOVES, null);
-                monitor.changed.connect ((src, dest, event) => {
-                    if (event == GLib.FileMonitorEvent.MOVED_OUT) {
-                        file_moved ();
-                    }
-                    if (event == GLib.FileMonitorEvent.RENAMED) {
-                        manager.clear_cache (this);
-                        video_file = dest;
-                        monitoring_file (video_file);
-                        file = video_file.get_basename ();
-                        title = Audience.get_title (file);
-                        poster = null;
-                        initialize_poster.begin ();
-                    }
-                });
-            } catch (Error e) {
-                error (e.message);
-            }
         }
     }
 }

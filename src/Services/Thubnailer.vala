@@ -57,8 +57,11 @@ namespace Audience.Services {
             mimes.add (mime);
 
             if (timeout_id != 0) {
-                 Source.remove (timeout_id);
-                 timeout_id = 0;
+                try {
+                    Source.remove (timeout_id);
+                } finally {
+                    timeout_id = 0;
+                }
             }
             
             this.timeout_id = Timeout.add (100, create_thumbnails);
