@@ -50,7 +50,7 @@ namespace Audience.Services {
         construct {
             poster_hash = new Gee.ArrayList<string> ();
             try {
-                regex_year = new Regex("\\(\\d\\d\\d\\d(?=(\\)$))");
+                regex_year = new Regex ("\\(\\d\\d\\d\\d(?=(\\)$))");
             } catch (Error e) {
                 error (e.message);
             }

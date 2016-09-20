@@ -90,29 +90,29 @@ namespace Audience.Objects {
             ThreadFunc<void*> run = () => {
 
                 string poster_path = poster_cache_file;
-                pixbuf = get_poster_from_file(poster_path);
+                pixbuf = get_poster_from_file (poster_path);
 
                 // POSTER in Cache exists
                 if (pixbuf != null) {
-                    Idle.add((owned) callback);
+                    Idle.add ((owned) callback);
                     return null;
                 }
 
                 // Try to find a POSTER in same folder of video file
                 if (pixbuf == null) {
                     poster_path = this.get_path () + ".jpg";
-                    pixbuf = get_poster_from_file(poster_path);
+                    pixbuf = get_poster_from_file (poster_path);
                 }
 
                 if (pixbuf == null) {
                     poster_path = Path.build_filename (this.directory, Audience.get_title (file) + ".jpg");
-                    pixbuf = get_poster_from_file(poster_path);
+                    pixbuf = get_poster_from_file (poster_path);
                 }
 
                 foreach (string s in Audience.settings.poster_names) {
                     if (pixbuf == null) {
                         poster_path = Path.build_filename (this.directory, s);
-                        pixbuf = get_poster_from_file(poster_path);
+                        pixbuf = get_poster_from_file (poster_path);
                     } else {
                         break;
                     }
@@ -125,7 +125,7 @@ namespace Audience.Objects {
                     } catch (Error e) {
                         warning (e.message);
                     }
-                    Idle.add((owned) callback);
+                    Idle.add ((owned) callback);
                     return null;
                 }
 
@@ -133,7 +133,7 @@ namespace Audience.Objects {
                 string? thumbnail_path = manager.get_thumbnail_path (video_file);
                 if (thumbnail_path != null) {
                     pixbuf = get_poster_from_file (thumbnail_path);
-                    Idle.add((owned) callback);
+                    Idle.add ((owned) callback);
                     return null;
                 }
 
@@ -150,7 +150,7 @@ namespace Audience.Objects {
                 while (pixbuf == null) {
                     Thread.usleep (100);
                 }
-                Idle.add((owned) callback);
+                Idle.add ((owned) callback);
                 return null;
             };
 
