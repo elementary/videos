@@ -22,6 +22,8 @@
 namespace Audience {
     public class LibraryItem : Gtk.FlowBoxChild  {
 
+        public signal void file_moved ();
+
         Gtk.Grid grid;
         public Audience.Objects.Video video { get; construct set; }
 
@@ -41,7 +43,6 @@ namespace Audience {
                 if (video.poster != null) {
                     spinner.active = false;
                     spinner_container.hide ();
-
                     if (poster == null) {
                         poster = new Gtk.Image ();
                         poster.margin_top = poster.margin_left = poster.margin_right = 12;
@@ -54,13 +55,19 @@ namespace Audience {
                 } else {
                     spinner.active = true;
                     spinner_container.show ();
-                    poster.hide ();
+                    if (poster != null) {
+                        poster.hide ();
+                    }
                 }
             });
 
             video.title_changed.connect (() => {
                 title.label = video.title;
                 title.show ();
+            });
+            
+            video.file_moved.connect (() => {
+                file_moved ();
             });
 
             spinner_container = new Gtk.Grid ();

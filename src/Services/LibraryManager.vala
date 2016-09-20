@@ -30,8 +30,10 @@ namespace Audience.Services {
 
         public Regex regex_year { get; construct set; }
         public DbusThumbnailer thumbler { get; construct set; }
-        
+
         public bool has_items { get; private set; }
+
+        private Gee.ArrayList<string> poster_hash;
 
         public static LibraryManager instance = null;
         public static LibraryManager get_instance () {
@@ -44,14 +46,17 @@ namespace Audience.Services {
 
         private LibraryManager () {
         }
-        
+
         construct {
+            poster_hash = new Gee.ArrayList<string> ();
             try {
                 regex_year = new Regex("\\(\\d\\d\\d\\d(?=(\\)$))");
             } catch (Error e) {
                 error (e.message);
             }
             thumbler = new DbusThumbnailer ();
+            
+            finished.connect (() => { clear_unused_cache_files.begin (); });
         }
 
         public void begin_scan () {
@@ -76,9 +81,13 @@ namespace Audience.Services {
                     if (!file_info.get_is_hidden () && mime_type.length >= 5 && mime_type.substring (0, 5) == "video") {
                         var video = new Audience.Objects.Video (source, file_info.get_name (), mime_type);
                         this.video_file_detected (video);
+                        poster_hash.add (video.hash + ".jpg");
                         has_items = true;
                     }
                 }
+            }
+            if (directory.get_path () == Audience.settings.library_folder) {
+                finished ();
             }
         }
 
@@ -86,9 +95,7 @@ namespace Audience.Services {
             if (!file.is_native ()) {
                 return null;
             }
-            
             string? path = null;
-            
             try {
                 var info = file.query_info (FileAttribute.THUMBNAIL_PATH + "," + FileAttribute.THUMBNAILING_FAILED, FileQueryInfoFlags.NONE);
                 path = info.get_attribute_as_string (FileAttribute.THUMBNAIL_PATH);
@@ -104,11 +111,29 @@ namespace Audience.Services {
 
             return path;
         }
-        
+
         public void clear_cache (Audience.Objects.Video video) {
             File file = File.new_for_path (video.poster_cache_file);
             if (file.query_exists ()) {
                 file.delete_async.begin (Priority.DEFAULT, null);
+            }
+        }
+
+        public async void clear_unused_cache_files () {
+            File directory = File.new_for_path (App.get_instance ().get_cache_directory ());
+            try {
+                var children = directory.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+
+                if (children != null) {
+                    FileInfo file_info;
+                    while ((file_info = children.next_file ()) != null) {
+                        if (!poster_hash.contains (file_info.get_name ())) {
+                            children.get_child (file_info).delete_async.begin ();
+                        }
+                    }
+                }
+            } catch (Error e) {
+                warning (e.message);
             }
         }
     }

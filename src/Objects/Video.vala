@@ -24,6 +24,7 @@ namespace Audience.Objects {
 
         public signal void poster_changed ();
         public signal void title_changed ();
+        public signal void file_moved ();
 
         private FileMonitor monitor;
 
@@ -39,6 +40,8 @@ namespace Audience.Objects {
         public string mime_type { get; construct set; }
         public string poster_cache_file { get; private set; }
 
+        public string hash { get; construct set; }
+
         public Video (string directory, string file, string mime_type) {
             Object (directory: directory, file: file, mime_type: mime_type);
         }
@@ -50,9 +53,13 @@ namespace Audience.Objects {
 
             this.extract_metadata ();
             video_file = File.new_for_path (this.get_path ());
-            
+
             monitoring_file (video_file);
-            
+
+            hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, this.get_path (), this.get_path ().length);
+
+            poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash + ".jpg");
+
             notify["poster"].connect (() => {
                 poster_changed ();
             });
@@ -81,10 +88,6 @@ namespace Audience.Objects {
             Gdk.Pixbuf? pixbuf = null;
 
             ThreadFunc<void*> run = () => {
-
-                string hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, this.get_path (), this.get_path ().length);
-
-                poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash + ".jpg");
 
                 string poster_path = poster_cache_file;
                 pixbuf = get_poster_from_file(poster_path);
@@ -188,28 +191,27 @@ namespace Audience.Objects {
 
             return pixbuf;
         }
-        
+
         private void monitoring_file (File file_for_monitoring) {
-            monitor = file_for_monitoring.monitor (FileMonitorFlags.WATCH_MOVES | FileMonitorFlags.SEND_MOVED, null);
-            monitor.changed.connect ((src, dest, event) => { 
-                if (event == GLib.FileMonitorEvent.DELETED) {
-                    debug ("DELETE");
-                }
-                
-                if(event == GLib.FileMonitorEvent.MOVED) {
-                    debug ("MOVED");
-                }
-                
-                if (event == GLib.FileMonitorEvent.RENAMED) {
-                    video_file = dest;
-                    monitoring_file (video_file);
-                    file = video_file.get_basename ();
-                    title = Audience.get_title (file);
-                    manager.clear_cache (this);
-                    poster = null;
-                    initialize_poster.begin ();
-                }
-            });
+            try {
+                monitor = file_for_monitoring.monitor (FileMonitorFlags.WATCH_MOVES, null);
+                monitor.changed.connect ((src, dest, event) => {
+                    if (event == GLib.FileMonitorEvent.MOVED_OUT) {
+                        file_moved ();
+                    }
+                    if (event == GLib.FileMonitorEvent.RENAMED) {
+                        manager.clear_cache (this);
+                        video_file = dest;
+                        monitoring_file (video_file);
+                        file = video_file.get_basename ();
+                        title = Audience.get_title (file);
+                        poster = null;
+                        initialize_poster.begin ();
+                    }
+                });
+            } catch (Error e) {
+                error (e.message);
+            }
         }
     }
 }

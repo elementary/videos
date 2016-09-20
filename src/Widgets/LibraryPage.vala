@@ -29,7 +29,7 @@ namespace Audience {
 
         public LibraryPage () {
         }
-        
+
         construct {
             view_movies = new Gtk.FlowBox ();
             view_movies.margin = 24;
@@ -43,12 +43,10 @@ namespace Audience {
                 if (selected.video.video_file.query_exists ()) {
                     App.get_instance ().mainwindow.play_file (selected.video.video_file.get_uri ());
                 } else {
-                    manager.clear_cache (selected.video);
-                    selected.hide ();
-                    selected.destroy ();
+                    remove_item (selected);
                 }
             });
-            
+
             view_movies.set_sort_func ((child1, child2) => {
                 var item1 = child1 as LibraryItem;
                 var item2 = child2 as LibraryItem;
@@ -63,8 +61,8 @@ namespace Audience {
             manager.begin_scan ();
 
             this.add (view_movies);
-            
-            map.connect (() => { 
+
+            map.connect (() => {
                 if (!poster_initialized) {
                     poster_initialized = true;
                     poster_initialisation.begin ();
@@ -73,9 +71,18 @@ namespace Audience {
         }
 
         private void add_item (Audience.Objects.Video video) {
-            view_movies.add (new Audience.LibraryItem (video));
+            Audience.LibraryItem new_item = new Audience.LibraryItem (video);
+            new_item.file_moved.connect (() => {
+                remove_item (new_item);
+            });
+            view_movies.add (new_item);
         }
-        
+
+        private void remove_item (LibraryItem item) {
+            manager.clear_cache (item.video);
+            item.dispose ();
+        }
+
         private async void poster_initialisation () {
             foreach (var child in view_movies.get_children ()) {
                 (child as LibraryItem).video.initialize_poster.begin ();
