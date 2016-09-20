@@ -65,7 +65,8 @@ namespace Audience {
             translate_url = "https://translations.launchpad.net/audience";
 
             about_authors = { "Cody Garver <cody@elementaryos.org>",
-                              "Tom Beckmann <tom@elementaryos.org>" };
+                              "Tom Beckmann <tom@elementaryos.org>",
+                              "Artem Anufrij <artem.anufrij@live.de>" };
             about_translators = _("translator-credits");
             about_license_type = Gtk.License.GPL_3_0;
         }
