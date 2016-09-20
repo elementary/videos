@@ -70,7 +70,7 @@ namespace Audience.Services {
                 return true;
             }
 
-            tumbler.Queue.begin (uris.to_array (), mimes.to_array (), "normal", "default", 0);
+            tumbler.Queue.begin (uris.to_array (), mimes.to_array (), "large", "default", 0);
 
             uris.clear ();
             mimes.clear ();

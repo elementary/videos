@@ -104,6 +104,13 @@ namespace Audience.Services {
                 if (failed || path == null) {
                     return null;
                 }
+                
+                path = path.replace ("normal", "large");
+                
+                File large_thumbnail = File.new_for_path (path);
+                if (!large_thumbnail.query_exists ()) {
+                    return null;
+                }
             } catch (Error e) {
                 warning (e.message);
                 return null;
