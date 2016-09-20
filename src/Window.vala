@@ -31,7 +31,7 @@ public class Audience.Window : Gtk.Window {
     private ZeitgeistManager zeitgeist_manager;
 
     // For better translation
-    string navigation_button_welcomescreen = _("Welcome Screen");
+    string navigation_button_welcomescreen = _("Back");
     string navigation_button_library = _("Library");
 
     public signal void media_volumes_changed ();
