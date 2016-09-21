@@ -27,7 +27,6 @@ namespace Audience.Services {
 
         public signal void video_file_detected (Audience.Objects.Video video);
         public signal void video_file_deleted (string path);
-        public signal void video_folder_deleted (string path);
         public signal void finished ();
 
         public Regex regex_year { get; construct set; }

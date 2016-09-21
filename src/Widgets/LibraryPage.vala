@@ -26,11 +26,23 @@ namespace Audience {
 
         Audience.Services.LibraryManager manager;
         bool poster_initialized = false;
+        int items_counter;
+        public bool has_items { get { return items_counter > 0; } }
 
-        public LibraryPage () {
+        public static LibraryPage instance = null;
+        public static LibraryPage get_instance () {
+            if (instance == null) {
+                instance = new LibraryPage ();
+            }
+
+            return instance;
+        }
+
+        private LibraryPage () {
         }
 
         construct {
+            items_counter = 0;
             view_movies = new Gtk.FlowBox ();
             view_movies.margin = 24;
             view_movies.homogeneous = true;
@@ -72,6 +84,7 @@ namespace Audience {
                 new_item.show_all ();
                 new_item.video.initialize_poster.begin ();
             }
+            items_counter++ ;
         }
         
         private void play_video (Gtk.FlowBoxChild item) {
@@ -87,6 +100,8 @@ namespace Audience {
         private async void remove_item (LibraryItem item) {
             manager.clear_cache (item.video);
             item.dispose ();
+            items_counter--;
+            debug (items_counter.to_string ());
         }
 
         private async void remove_item_from_path (string path ) {

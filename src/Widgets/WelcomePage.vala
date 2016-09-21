@@ -39,6 +39,10 @@ namespace Audience {
                 set_item_visible (3, true);
                 this.show_all ();
             });
+            
+            library_manager.video_file_deleted.connect ((vid) => {
+                set_item_visible (3, LibraryPage.get_instance ().has_items);
+            });
 
             append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
             set_item_visible (2, disk_manager.has_media_volumes ());

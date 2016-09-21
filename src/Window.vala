@@ -70,7 +70,7 @@ public class Audience.Window : Gtk.Window {
         header.pack_start (navigation_button);
         set_titlebar (header);
 
-        library_page = new LibraryPage ();
+        library_page = LibraryPage.get_instance ();
         welcome_page = new WelcomePage ();
 
         player_page = new PlayerPage ();
