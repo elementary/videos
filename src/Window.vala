@@ -53,6 +53,7 @@ public class Audience.Window : Gtk.Window {
         navigation_button = new NavigationButton ();
         navigation_button.clicked.connect (() => {
             player_page.playing = false;
+            player_page.reset_played_uri ();
             title = App.get_instance ().program_name;
             get_window ().set_cursor (null);
 

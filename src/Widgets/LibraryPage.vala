@@ -67,15 +67,13 @@ namespace Audience {
                 if (!poster_initialized) {
                     poster_initialized = true;
                     poster_initialisation.begin ();
+                    show_all ();
                 }
             });
         }
 
         private void add_item (Audience.Objects.Video video) {
             Audience.LibraryItem new_item = new Audience.LibraryItem (video);
-            new_item.file_moved.connect (() => {
-                remove_item.begin (new_item);
-            });
             view_movies.add (new_item);
             if (poster_initialized) {
                 new_item.show_all ();
@@ -90,9 +88,8 @@ namespace Audience {
 
         private async void remove_item_from_path (string path ) {
             foreach (var child in view_movies.get_children ()) {
-                if ((child as LibraryItem).video.video_file.get_path () == path) {
-                    remove_item (child as LibraryItem);
-                    return;
+                if ((child as LibraryItem).video.video_file.get_path ().has_prefix (path)) {
+                    remove_item.begin (child as LibraryItem);
                 }
             }
         }

@@ -22,8 +22,6 @@
 namespace Audience {
     public class LibraryItem : Gtk.FlowBoxChild  {
 
-        public signal void file_moved ();
-
         Gtk.Grid grid;
         public Audience.Objects.Video video { get; construct set; }
 
@@ -64,10 +62,6 @@ namespace Audience {
             video.title_changed.connect (() => {
                 title.label = video.title;
                 title.show ();
-            });
-            
-            video.file_moved.connect (() => {
-                file_moved ();
             });
 
             spinner_container = new Gtk.Grid ();

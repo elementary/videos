@@ -27,6 +27,7 @@ namespace Audience.Services {
 
         public signal void video_file_detected (Audience.Objects.Video video);
         public signal void video_file_deleted (string path);
+        public signal void video_folder_deleted (string path);
         public signal void finished ();
 
         public Regex regex_year { get; construct set; }
@@ -75,7 +76,13 @@ namespace Audience.Services {
                     video_file_deleted (src.get_path ());
                 }
                 else if (event == GLib.FileMonitorEvent.CHANGES_DONE_HINT) {
-                    FileInfo file_info = src.query_info (FileAttribute.STANDARD_CONTENT_TYPE + "," + FileAttribute.STANDARD_IS_HIDDEN, 0);
+                    FileInfo file_info;
+                    try {
+                        file_info = src.query_info (FileAttribute.STANDARD_CONTENT_TYPE + "," + FileAttribute.STANDARD_IS_HIDDEN + "," + FileAttribute.STANDARD_TYPE, 0);
+                    } catch (Error e) {
+                        warning (e.message);
+                        return;
+                    }
                     if (file_info.get_file_type () == FileType.DIRECTORY) {
                         detect_video_files.begin (src.get_path ());
                     } else if (is_file_valid (file_info)) {

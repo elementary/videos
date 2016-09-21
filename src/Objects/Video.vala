@@ -24,7 +24,6 @@ namespace Audience.Objects {
 
         public signal void poster_changed ();
         public signal void title_changed ();
-        public signal void file_moved ();
 
         public File video_file { get; private set; }
         public string directory { get; construct set; }
