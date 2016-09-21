@@ -267,6 +267,10 @@ namespace Audience {
         public string get_played_uri () {
             return playback.uri;
         }
+        
+        public void reset_played_uri () {
+            playback.uri = null;
+        }
 
         public void next () {
             get_playlist_widget ().next ();

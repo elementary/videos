@@ -37,6 +37,7 @@ namespace Audience {
             library_manager = Services.LibraryManager.get_instance ();
             library_manager.video_file_detected.connect ((vid) => {
                 set_item_visible (3, true);
+                this.show_all ();
             });
 
             append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
