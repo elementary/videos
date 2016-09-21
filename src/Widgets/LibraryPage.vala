@@ -38,14 +38,7 @@ namespace Audience {
             view_movies.column_spacing = 12;
             view_movies.valign = Gtk.Align.START;
             view_movies.selection_mode = Gtk.SelectionMode.NONE;
-            view_movies.child_activated.connect ((item) => {
-                var selected = (item as Audience.LibraryItem);
-                if (selected.video.video_file.query_exists ()) {
-                    App.get_instance ().mainwindow.play_file (selected.video.video_file.get_uri ());
-                } else {
-                    remove_item.begin (selected);
-                }
-            });
+            view_movies.child_activated.connect (play_video);
 
             view_movies.set_sort_func ((child1, child2) => {
                 var item1 = child1 as LibraryItem;
@@ -78,6 +71,16 @@ namespace Audience {
             if (poster_initialized) {
                 new_item.show_all ();
                 new_item.video.initialize_poster.begin ();
+            }
+        }
+        
+        private void play_video (Gtk.FlowBoxChild item) {
+            var selected = (item as Audience.LibraryItem);
+            if (selected.video.video_file.query_exists ()) {
+                bool from_beginning = selected.video.video_file.get_uri () != settings.current_video;
+                App.get_instance ().mainwindow.play_file (selected.video.video_file.get_uri (), from_beginning);
+            } else {
+                remove_item.begin (selected);
             }
         }
 

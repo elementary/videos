@@ -52,11 +52,12 @@ public class Audience.Window : Gtk.Window {
 
         navigation_button = new NavigationButton ();
         navigation_button.clicked.connect (() => {
+            settings.last_stopped = player_page.get_progress ();
             player_page.playing = false;
             player_page.reset_played_uri ();
             title = App.get_instance ().program_name;
             get_window ().set_cursor (null);
-
+            
             if (navigation_button.label == navigation_button_library) {
                 navigation_button.label = navigation_button_welcomescreen;
                 main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);

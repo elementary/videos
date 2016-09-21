@@ -264,6 +264,10 @@ namespace Audience {
             settings.current_video = uri;
         }
 
+        public double get_progress () {
+            return playback.progress;
+        }
+
         public string get_played_uri () {
             return playback.uri;
         }
