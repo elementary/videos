@@ -65,7 +65,8 @@ namespace Audience {
             translate_url = "https://translations.launchpad.net/audience";
 
             about_authors = { "Cody Garver <cody@elementaryos.org>",
-                              "Tom Beckmann <tom@elementaryos.org>" };
+                              "Tom Beckmann <tom@elementaryos.org>",
+                              "Artem Anufrij <artem.anufrij@live.de>" };
             about_translators = _("translator-credits");
             about_license_type = Gtk.License.GPL_3_0;
         }
@@ -89,11 +90,27 @@ namespace Audience {
                 if (settings.last_folder == "-1") {
                     settings.last_folder = Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS);
                 }
+                if (settings.library_folder == "") {
+                    settings.library_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS);
+                }
+
+                try {
+                    File cache = File.new_for_path (get_cache_directory ());
+                    if (!cache.query_exists ()) {
+                        cache.make_directory ();
+                    }
+                } catch (Error e) {
+                    error (e.message);
+                }
 
                 mainwindow = new Window ();
                 mainwindow.application = this;
                 mainwindow.title = program_name;
             }
+        }
+
+        public string get_cache_directory () {
+            return GLib.Path.build_filename(GLib.Environment.get_user_cache_dir (), exec_name);
         }
 
         //the application was requested to open some files

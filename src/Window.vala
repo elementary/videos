@@ -26,12 +26,18 @@ public class Audience.Window : Gtk.Window {
     private Gtk.HeaderBar header;
     private PlayerPage player_page;
     private WelcomePage welcome_page;
+    private LibraryPage library_page;
+    private NavigationButton navigation_button;
     private ZeitgeistManager zeitgeist_manager;
+
+    // For better translation
+    const string navigation_button_welcomescreen = N_("Back");
+    const string navigation_button_library = N_("Library");
 
     public signal void media_volumes_changed ();
 
     public Window () {
-        
+
     }
 
     construct {
@@ -43,8 +49,33 @@ public class Audience.Window : Gtk.Window {
         header = new Gtk.HeaderBar ();
         header.set_show_close_button (true);
         header.get_style_context ().add_class ("compact");
+
+        navigation_button = new NavigationButton ();
+        navigation_button.clicked.connect (() => {
+            double progress = player_page.get_progress ();
+            if (progress > 0) {
+                settings.last_stopped = progress;
+            }
+            player_page.playing = false;
+            player_page.reset_played_uri ();
+            title = App.get_instance ().program_name;
+            get_window ().set_cursor (null);
+            
+            if (navigation_button.label == navigation_button_library) {
+                navigation_button.label = navigation_button_welcomescreen;
+                main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
+            } else {
+                navigation_button.hide ();
+                main_stack.set_visible_child (welcome_page);
+            }
+            
+            welcome_page.refresh ();
+        });
+
+        header.pack_start (navigation_button);
         set_titlebar (header);
 
+        library_page = LibraryPage.get_instance ();
         welcome_page = new WelcomePage ();
 
         player_page = new PlayerPage ();
@@ -58,12 +89,17 @@ public class Audience.Window : Gtk.Window {
         });
 
         main_stack = new Gtk.Stack ();
-        main_stack.add (welcome_page);
-        main_stack.add (player_page);
+        main_stack.expand = true;
+        main_stack.add_named (welcome_page, "welcome");
+        main_stack.add_named (player_page, "player");
+        main_stack.add_named (library_page, "library");
+        main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
         add (main_stack);
         show_all ();
-        main_stack.set_visible_child (welcome_page);
+
+        navigation_button.hide ();
+        main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.NONE);
 
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
         Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
@@ -103,9 +139,9 @@ public class Audience.Window : Gtk.Window {
             /*/ FIXME: Remove comments once gala bug is fixed: https://bugs.launchpad.net/gala/+bug/1602722
             if (Gdk.WindowState.MAXIMIZED in e.changed_mask) {
                 bool currently_maximixed = Gdk.WindowState.MAXIMIZED in e.new_window_state;
-                
+
                 if (main_stack.get_visible_child () == player_page && currently_maximixed) {
-                   fullscreen (); 
+                   fullscreen ();
                 }
             }*/
 
@@ -130,6 +166,12 @@ public class Audience.Window : Gtk.Window {
 
     public override bool key_press_event (Gdk.EventKey e) {
         uint keycode = e.hardware_keycode;
+
+        if ((e.state & Gdk.ModifierType.MOD1_MASK) != 0 && e.keyval == Gdk.Key.Left) {
+            navigation_button.clicked ();
+            return true;
+        }
+
         if ((e.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
             if (match_keycode (Gdk.Key.o, keycode)) {
                 run_open_file ();
@@ -139,7 +181,7 @@ public class Audience.Window : Gtk.Window {
                 return true;
             }
         }
-
+       
         if (main_stack.get_visible_child () == player_page) {
             if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
                 player_page.playing = !player_page.playing;
@@ -225,7 +267,7 @@ public class Audience.Window : Gtk.Window {
         if (clear_playlist) {
             player_page.get_playlist_widget ().clear_items ();
         }
-        
+
         string[] videos = {};
         foreach (var file in files) {
             if (file.query_file_type (0) == FileType.DIRECTORY) {
@@ -242,7 +284,7 @@ public class Audience.Window : Gtk.Window {
         if (videos.length == 0) {
             return;
         }
-        
+
         if (force_play) {
             play_file (videos [0]);
         }
@@ -258,6 +300,13 @@ public class Audience.Window : Gtk.Window {
 
     public void run_open_dvd () {
         read_first_disk.begin ();
+    }
+
+    public void show_library () {
+        navigation_button.label = navigation_button_welcomescreen;
+        navigation_button.show ();
+        main_stack.set_visible_child (library_page);
+        library_page.grab_focus ();
     }
 
     public void run_open_file (bool clear_playlist = false, bool force_play = true) {
@@ -328,15 +377,24 @@ public class Audience.Window : Gtk.Window {
         unfullscreen ();
     }
 
-    private void play_file (string uri, bool from_beginning = true) {
-        main_stack.set_visible_child (player_page);
+    public void play_file (string uri, bool from_beginning = true) {
+        if (navigation_button.visible) {
+            navigation_button.label = navigation_button_library;
+        } else {
+            navigation_button.show ();
+            navigation_button.label = navigation_button_welcomescreen;
+        }
+
+        main_stack.set_visible_child_full ("player", Gtk.StackTransitionType.SLIDE_LEFT);
         player_page.play_file (uri, from_beginning);
         if (is_maximized) {
             fullscreen ();
         }
-        
+
         if (settings.stay_on_top && !settings.playback_wait) {
             set_keep_above (true);
         }
+        
+        welcome_page.refresh ();
     }
 }

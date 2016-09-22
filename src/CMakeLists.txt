@@ -57,7 +57,13 @@ vala_precompile (VALA_C ${EXEC_NAME}
     Widgets/PlaylistPopover.vala
     Widgets/WelcomePage.vala
     Widgets/PlayerPage.vala
+    Widgets/LibraryPage.vala
+    Widgets/LibraryItem.vala
+    Widgets/NavigationButton.vala
     Services/Inhibitor.vala
+    Services/LibraryManager.vala
+    Services/Thubnailer.vala
+    Objects/Video.vala
   PACKAGES
     ${VALA_DEPS}
   OPTIONS
