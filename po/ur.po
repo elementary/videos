@@ -1,0 +1,169 @@
+# Urdu translation for audience
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
+# This file is distributed under the same license as the audience package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: audience\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2016-08-23 23:15-0500\n"
+"PO-Revision-Date: 2016-09-21 19:02+0000\n"
+"Last-Translator: Waqar Ahmed <waqar.17a@gmail.com>\n"
+"Language-Team: Urdu <ur@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2016-09-22 08:32+0000\n"
+"X-Generator: Launchpad (build 18204)\n"
+
+#: ../src/Window.vala:264
+msgid "Open"
+msgstr "کھولیں"
+
+#: ../src/Window.vala:265
+msgid "_Cancel"
+msgstr "_منسوخ کریں"
+
+#: ../src/Window.vala:265
+msgid "_Open"
+msgstr "_کھولیں"
+
+#: ../src/Window.vala:270 ../src/Widgets/SettingsPopover.vala:37
+msgid "All files"
+msgstr "تمام فائلیں"
+
+#: ../src/Window.vala:274
+msgid "Video files"
+msgstr "ویڈیو فائلیں"
+
+#: ../src/Widgets/SettingsPopover.vala:41
+msgid "Subtitle files"
+msgstr "سب ٹاٗئٹل کی فائلیں"
+
+#. /pgp-encrypted"
+#: ../src/Widgets/SettingsPopover.vala:48
+msgid "External Subtitles"
+msgstr "بیرونی سب ٹائٹل"
+
+#: ../src/Widgets/SettingsPopover.vala:52
+msgid "Audio:"
+msgstr "آڈیو"
+
+#: ../src/Widgets/SettingsPopover.vala:55
+msgid "Subtitles:"
+msgstr "سب ٹائٹل"
+
+#: ../src/Widgets/SettingsPopover.vala:58
+msgid "External Subtitles:"
+msgstr "بیرونی سب ٹائٹل:"
+
+#. /
+#: ../src/Widgets/SettingsPopover.vala:118
+#: ../src/Widgets/SettingsPopover.vala:141
+msgid "Track %d"
+msgstr "ٹریک %d"
+
+#: ../src/Widgets/SettingsPopover.vala:121
+msgid "None"
+msgstr "کچھ نہیں"
+
+#: ../src/Widgets/SettingsPopover.vala:126
+#: ../src/Widgets/SettingsPopover.vala:147
+msgid "Default"
+msgstr "طے شدہ"
+
+#: ../src/Widgets/BottomBar.vala:57 ../src/Widgets/BottomBar.vala:119
+msgid "Play"
+msgstr "چلائیں"
+
+#: ../src/Widgets/BottomBar.vala:61
+msgid "Playlist"
+msgstr "پلے لسٹ"
+
+#: ../src/Widgets/BottomBar.vala:65
+msgid "Settings"
+msgstr "ترتیبات"
+
+#: ../src/Widgets/BottomBar.vala:115
+msgid "Pause"
+msgstr "موقوف"
+
+#: ../src/Widgets/BottomBar.vala:155
+msgid "Unfullscreen"
+msgstr "مکمل سکرین ختم"
+
+#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:9
+msgid "Open file"
+msgstr "فائل کھولیں"
+
+#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:36
+msgid "Play from Disc"
+msgstr "ڈسک سے چلائیں"
+
+#: ../src/Widgets/PlaylistPopover.vala:41
+#: ../src/Widgets/PlaylistPopover.vala:67
+msgid "Enable Repeat"
+msgstr "دہرانا فعال کریں"
+
+#: ../src/Widgets/PlaylistPopover.vala:64
+msgid "Disable Repeat"
+msgstr "دہرانا غیر فعال کریں"
+
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "No Videos Open"
+msgstr "کوئی ویڈیو نہیں چل رہی"
+
+#: ../src/Widgets/WelcomePage.vala:5
+msgid "Select a source to begin playing."
+msgstr "چلائے جانے کے لیے کوئی ماخذ چنیں"
+
+#: ../src/Widgets/WelcomePage.vala:9
+msgid "Open a saved file."
+msgstr "ایک محفوظ فائل کو کھولیں۔"
+
+#: ../src/Widgets/WelcomePage.vala:19 ../src/Widgets/WelcomePage.vala:63
+msgid "Replay last video"
+msgstr "آخری ویڈیو چلائیں"
+
+#: ../src/Widgets/WelcomePage.vala:21
+msgid "Resume last video"
+msgstr "آخری ویڈیو واپس شروع کریں"
+
+#: ../src/Widgets/WelcomePage.vala:36
+msgid "Watch a DVD or open a file from disc"
+msgstr "کوئی ڈی۔وی۔ڈی دیکھیں یا ڈسک سے فائل کھولیں"
+
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:32
+msgid "Videos"
+msgstr "ویڈیوز"
+
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:34
+msgid "Audience;Video;Player;Movies;"
+msgstr "آڈینس؛ ویڈیو؛ پلیر؛ فلم"
+
+#: ../src/Audience.vala:35
+msgid "Watch videos and movies"
+msgstr "ویڈیو اور فلمیں دیکھیں"
+
+#: ../src/Audience.vala:36
+msgid "Video Player"
+msgstr "ویڈیو پلیئر"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:38
+msgid "About Audience"
+msgstr "آڈینس کے بارے میں"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:40
+msgid "About Videos"
+msgstr "ویڈیوز کے بارے میں"
+
+#: ../src/Audience.vala:69
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Waqar Ahmed https://launchpad.net/~waqar-17a"
