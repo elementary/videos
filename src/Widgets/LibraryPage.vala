@@ -56,8 +56,8 @@ namespace Audience {
                 var item1 = child1 as LibraryItem;
                 var item2 = child2 as LibraryItem;
                 if (item1 != null && item2 != null) {
-                        return item1.video.file.collate (item2.video.file);
-                    }
+                    return item1.video.file.collate (item2.video.file);
+                }
                 return 0;
             });
 
@@ -84,7 +84,7 @@ namespace Audience {
                 new_item.show_all ();
                 new_item.video.initialize_poster.begin ();
             }
-            items_counter++ ;
+            items_counter++;
         }
         
         private void play_video (Gtk.FlowBoxChild item) {
@@ -101,7 +101,6 @@ namespace Audience {
             manager.clear_cache (item.video);
             item.dispose ();
             items_counter--;
-            debug (items_counter.to_string ());
         }
 
         private async void remove_item_from_path (string path ) {

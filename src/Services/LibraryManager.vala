@@ -114,7 +114,7 @@ namespace Audience.Services {
 
         private bool is_file_valid (FileInfo file_info) {
             string mime_type = file_info.get_content_type ();
-            return !file_info.get_is_hidden () && mime_type.length >= 5 && mime_type.substring (0, 5) == "video";
+            return !file_info.get_is_hidden () && mime_type.contains ("video");
         }
 
         private void crate_video_object (FileInfo file_info, string source, string name = "") {

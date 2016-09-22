@@ -68,7 +68,6 @@ namespace Audience.Services {
         }
 
         private bool create_thumbnails () {
-
             if (this.tumbler == null || this.uris.size == 0) {
                 return true;
             }

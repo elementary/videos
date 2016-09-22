@@ -93,24 +93,24 @@ namespace Audience {
                 if (settings.library_folder == "") {
                     settings.library_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS);
                 }
-                
+
                 try {
-                File cache = File.new_for_path (get_cache_directory ());
+                    File cache = File.new_for_path (get_cache_directory ());
                     if (!cache.query_exists ()) {
                         cache.make_directory ();
                     }
                 } catch (Error e) {
                     error (e.message);
                 }
-                
+
                 mainwindow = new Window ();
                 mainwindow.application = this;
                 mainwindow.title = program_name;
             }
         }
-        
+
         public string get_cache_directory () {
-            return GLib.Environment.get_user_cache_dir () + "/" + exec_name;
+            return GLib.Path.build_path(GLib.Environment.get_user_cache_dir (), exec_name);
         }
 
         //the application was requested to open some files
