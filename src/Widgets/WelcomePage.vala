@@ -76,9 +76,16 @@ namespace Audience {
             var filename = settings.current_video;
             var last_file = File.new_for_uri (filename);
 
-            replay_button.title = _("Replay last video");
+            if (settings.last_stopped == 0.0) {
+                replay_button.title = _("Replay last video");
+                replay_button.icon.icon_name = ("media-playlist-repeat");
+            } else {
+                replay_button.title = _("Resume last video");
+                replay_button.icon.icon_name = ("media-playback-start");
+            }
+            
             replay_button.description = get_title (last_file.get_basename ());
-            replay_button.icon.icon_name = ("media-playlist-repeat");
+            
 
             bool show_last_file = settings.current_video != "";
             if (last_file.query_exists () == false) {

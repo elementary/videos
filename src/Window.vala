@@ -52,7 +52,10 @@ public class Audience.Window : Gtk.Window {
 
         navigation_button = new NavigationButton ();
         navigation_button.clicked.connect (() => {
-            settings.last_stopped = player_page.get_progress ();
+            double progress = player_page.get_progress ();
+            if (progress > 0) {
+                settings.last_stopped = progress;
+            }
             player_page.playing = false;
             player_page.reset_played_uri ();
             title = App.get_instance ().program_name;
@@ -65,6 +68,8 @@ public class Audience.Window : Gtk.Window {
                 navigation_button.hide ();
                 main_stack.set_visible_child (welcome_page);
             }
+            
+            welcome_page.refresh ();
         });
 
         header.pack_start (navigation_button);
