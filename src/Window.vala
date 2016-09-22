@@ -389,5 +389,7 @@ public class Audience.Window : Gtk.Window {
         if (settings.stay_on_top && !settings.playback_wait) {
             set_keep_above (true);
         }
+        
+        welcome_page.refresh ();
     }
 }
