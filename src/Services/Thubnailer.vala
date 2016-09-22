@@ -28,10 +28,6 @@ namespace Audience.Services {
 
     public class DbusThumbnailer : GLib.Object {
         private Tumbler tumbler;
-        private Gee.ArrayList<string> uris;
-        private Gee.ArrayList<string> mimes;
-        private uint timeout_id;
-
         private const string THUMBNAILER_IFACE = "org.freedesktop.thumbnails.Thumbnailer1";
         private const string THUMBNAILER_SERVICE = "/org/freedesktop/thumbnails/Thumbnailer1";
 
@@ -41,9 +37,6 @@ namespace Audience.Services {
         }
 
         construct {
-            uris = new Gee.ArrayList<string> ();
-            mimes = new Gee.ArrayList<string> ();
-            timeout_id = 0;
             try {
                 tumbler = Bus.get_proxy_sync (BusType.SESSION, THUMBNAILER_IFACE, THUMBNAILER_SERVICE);
                 tumbler.Finished.connect ((handle) => { finished (handle); });
@@ -52,37 +45,8 @@ namespace Audience.Services {
             }
         }
 
-        public void Queue (string uri, string mime) {
-            uris.add (uri);
-            mimes.add (mime);
-
-            if (timeout_id != 0) {
-                try {
-                    Source.remove (timeout_id);
-                } finally {
-                    timeout_id = 0;
-                }
-            }
-            
-            this.timeout_id = Timeout.add (100, create_thumbnails);
-        }
-        
         public void Instand (Gee.ArrayList<string> uris, Gee.ArrayList<string> mimes ){
             tumbler.Queue.begin (uris.to_array (), mimes.to_array (), "large", "default", 0);
-        }
-
-        private bool create_thumbnails () {
-            if (this.tumbler == null || this.uris.size == 0) {
-                return true;
-            }
-
-            tumbler.Queue.begin (uris.to_array (), mimes.to_array (), "large", "default", 0);
-
-            uris.clear ();
-            mimes.clear ();
-            timeout_id = 0;
-
-            return false;
         }
     }
 }
