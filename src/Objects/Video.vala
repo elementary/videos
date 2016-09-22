@@ -45,6 +45,7 @@ namespace Audience.Objects {
 
         construct {
             manager = Audience.Services.LibraryManager.get_instance ();
+            manager.thumbler.finished.connect (dbus_finished);
 
             this.title = Audience.get_title (file);
 
@@ -133,18 +134,14 @@ namespace Audience.Objects {
                 }
 
                 // Call DBUS for create a new THUMBNAIL
-                manager.thumbler.finished.connect ((haendle) => {
-                   if (poster == null) {
-                        thumbnail_path = manager.get_thumbnail_path (video_file);
-                        if (thumbnail_path != null) {
-                            pixbuf = get_poster_from_file (thumbnail_path);
-                        }
-                    }
-                });
-                manager.thumbler.Queue (video_file.get_uri (), mime_type);
-                while (pixbuf == null) {
-                    Thread.usleep (100);
-                }
+                Gee.ArrayList<string> uris = new Gee.ArrayList<string> ();
+                Gee.ArrayList<string> mimes = new Gee.ArrayList<string> ();
+
+                uris.add (video_file.get_uri ());
+                mimes.add (mime_type);
+
+                manager.thumbler.Instand (uris, mimes);
+
                 Idle.add ((owned) callback);
                 return null;
             };
@@ -158,6 +155,15 @@ namespace Audience.Objects {
             yield;
 
             return pixbuf;
+        }
+
+        private void dbus_finished (uint heandle) {
+            if (poster == null) {
+                string? thumbnail_path = manager.get_thumbnail_path (video_file);
+                if (thumbnail_path != null) {
+                    poster = get_poster_from_file (thumbnail_path);
+                }
+            }
         }
 
         public string get_path () {

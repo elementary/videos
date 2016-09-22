@@ -66,6 +66,10 @@ namespace Audience.Services {
             
             this.timeout_id = Timeout.add (100, create_thumbnails);
         }
+        
+        public void Instand (Gee.ArrayList<string> uris, Gee.ArrayList<string> mimes ){
+            tumbler.Queue.begin (uris.to_array (), mimes.to_array (), "large", "default", 0);
+        }
 
         private bool create_thumbnails () {
             if (this.tumbler == null || this.uris.size == 0) {
