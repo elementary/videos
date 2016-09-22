@@ -110,7 +110,7 @@ namespace Audience {
         }
 
         public string get_cache_directory () {
-            return GLib.Path.build_path(GLib.Environment.get_user_cache_dir (), exec_name);
+            return GLib.Path.build_filename(GLib.Environment.get_user_cache_dir (), exec_name);
         }
 
         //the application was requested to open some files
