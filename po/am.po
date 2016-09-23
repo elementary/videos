@@ -7,35 +7,53 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-08-23 23:15-0500\n"
+"POT-Creation-Date: 2016-09-22 11:37-0700\n"
 "PO-Revision-Date: 2016-07-30 14:30+0000\n"
 "Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Amharic <am@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-08-25 05:35+0000\n"
-"X-Generator: Launchpad (build 18179)\n"
+"X-Launchpad-Export-Date: 2016-09-23 06:17+0000\n"
+"X-Generator: Launchpad (build 18204)\n"
 
-#: ../src/Window.vala:264
-msgid "Open"
-msgstr "መክፈቻ"
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:32
+msgid "Videos"
+msgstr "ቪዲዮዎች"
 
-#: ../src/Window.vala:265
-msgid "_Cancel"
-msgstr "_መሰረዣ"
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:34
+msgid "Audience;Video;Player;Movies;"
+msgstr ""
 
-#: ../src/Window.vala:265
-msgid "_Open"
-msgstr "_መክፈቻ"
+#: ../src/Audience.vala:35
+msgid "Watch videos and movies"
+msgstr "ቪዲዮዎች እና ሙቪዎች ይመልከቱ"
 
-#: ../src/Window.vala:270 ../src/Widgets/SettingsPopover.vala:37
+#: ../src/Audience.vala:36
+msgid "Video Player"
+msgstr "ቪዲዮ ማጫወቻ"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:38
+msgid "About Audience"
+msgstr ""
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:40
+msgid "About Videos"
+msgstr "ስለ ቪዲዮዎች"
+
+#: ../src/Audience.vala:70
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  samson https://launchpad.net/~sambelet"
+
+#: ../src/Widgets/SettingsPopover.vala:37 ../src/Window.vala:319
 msgid "All files"
 msgstr "ሁሉንም ፋይሎች"
-
-#: ../src/Window.vala:274
-msgid "Video files"
-msgstr "የ ቪዲዮ ፋይሎች"
 
 #: ../src/Widgets/SettingsPopover.vala:41
 msgid "Subtitle files"
@@ -73,6 +91,23 @@ msgstr "ምንም"
 msgid "Default"
 msgstr "ነባር"
 
+#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:10
+msgid "Open file"
+msgstr "ፋይል መክፈቻ"
+
+#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:47
+msgid "Play from Disc"
+msgstr "ከ ዲስክ ማጫወቻ"
+
+#: ../src/Widgets/PlaylistPopover.vala:41
+#: ../src/Widgets/PlaylistPopover.vala:67
+msgid "Enable Repeat"
+msgstr ""
+
+#: ../src/Widgets/PlaylistPopover.vala:64
+msgid "Disable Repeat"
+msgstr ""
+
 #: ../src/Widgets/BottomBar.vala:57 ../src/Widgets/BottomBar.vala:119
 msgid "Play"
 msgstr "ማጫወቻ"
@@ -93,77 +128,58 @@ msgstr "ማስቆሚያ"
 msgid "Unfullscreen"
 msgstr "ከ ሙሉ መመልከቻው መውጫ"
 
-#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:9
-msgid "Open file"
-msgstr "ፋይል መክፈቻ"
-
-#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:36
-msgid "Play from Disc"
-msgstr "ከ ዲስክ ማጫወቻ"
-
-#: ../src/Widgets/PlaylistPopover.vala:41
-#: ../src/Widgets/PlaylistPopover.vala:67
-msgid "Enable Repeat"
-msgstr ""
-
-#: ../src/Widgets/PlaylistPopover.vala:64
-msgid "Disable Repeat"
-msgstr ""
-
-#: ../src/Widgets/WelcomePage.vala:5
+#: ../src/Widgets/WelcomePage.vala:6
 msgid "No Videos Open"
 msgstr "የተከፈተ ቪዲዮ የለም"
 
-#: ../src/Widgets/WelcomePage.vala:5
+#: ../src/Widgets/WelcomePage.vala:6
 msgid "Select a source to begin playing."
 msgstr "ለማጫወት ምንጩን ይምረጡ"
 
-#: ../src/Widgets/WelcomePage.vala:9
+#: ../src/Widgets/WelcomePage.vala:10
 msgid "Open a saved file."
 msgstr "የተቀመጠ ፋይል መክፈቻ"
 
-#: ../src/Widgets/WelcomePage.vala:19 ../src/Widgets/WelcomePage.vala:63
+#: ../src/Widgets/WelcomePage.vala:20 ../src/Widgets/WelcomePage.vala:80
 msgid "Replay last video"
 msgstr "የ መጨረሻውን ቪዲዮ እንደገና ማጫወቻ"
 
-#: ../src/Widgets/WelcomePage.vala:21
+#: ../src/Widgets/WelcomePage.vala:22 ../src/Widgets/WelcomePage.vala:83
 msgid "Resume last video"
 msgstr "የመጨረሻውን ቪዲዮ መቀጠያ"
 
-#: ../src/Widgets/WelcomePage.vala:36
+#: ../src/Widgets/WelcomePage.vala:47
 msgid "Watch a DVD or open a file from disc"
 msgstr "ዲቪዲ መመልከቻ ወይንም ከ ዲስክ ላይ ፋይል መክፈቻ"
 
-#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-#: ../src/Audience.vala:32
-msgid "Videos"
-msgstr "ቪዲዮዎች"
-
-#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-#: ../src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
+#: ../src/Widgets/WelcomePage.vala:50
+msgid "Browse Library"
 msgstr ""
 
-#: ../src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "ቪዲዮዎች እና ሙቪዎች ይመልከቱ"
-
-#: ../src/Audience.vala:36
-msgid "Video Player"
-msgstr "ቪዲዮ ማጫወቻ"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-#: ../src/Audience.vala:38
-msgid "About Audience"
+#: ../src/Widgets/WelcomePage.vala:50
+msgid "Watch a movie from your library"
 msgstr ""
 
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-#: ../src/Audience.vala:40
-msgid "About Videos"
-msgstr "ስለ ቪዲዮዎች"
-
-#: ../src/Audience.vala:69
-msgid "translator-credits"
+#: ../src/Window.vala:34
+msgid "Back"
 msgstr ""
-"Launchpad Contributions:\n"
-"  samson https://launchpad.net/~sambelet"
+
+#: ../src/Window.vala:35
+msgid "Library"
+msgstr ""
+
+#: ../src/Window.vala:313
+msgid "Open"
+msgstr "መክፈቻ"
+
+#: ../src/Window.vala:314
+msgid "_Cancel"
+msgstr "_መሰረዣ"
+
+#: ../src/Window.vala:314
+msgid "_Open"
+msgstr "_መክፈቻ"
+
+#: ../src/Window.vala:323
+msgid "Video files"
+msgstr "የ ቪዲዮ ፋይሎች"
