@@ -27,6 +27,7 @@ public class Audience.Window : Gtk.Window {
     private PlayerPage player_page;
     private WelcomePage welcome_page;
     private LibraryPage library_page;
+    private Granite.Widgets.AlertView alert_view;
     private NavigationButton navigation_button;
     private ZeitgeistManager zeitgeist_manager;
     private Gtk.SearchEntry search_entry;
@@ -69,7 +70,18 @@ public class Audience.Window : Gtk.Window {
 
         library_page = LibraryPage.get_instance ();
         library_page.map.connect (() => { search_entry.visible = true; });
-        library_page.unmap.connect (() => { search_entry.visible = false; });
+        library_page.unmap.connect (() => {
+            if (main_stack.get_visible_child () != alert_view) {
+                search_entry.visible = false;
+            }
+        });
+        library_page.filter_result_changed.connect ((has_result) => {
+            if (!has_result) {
+                show_alert (_("No Results for “%s”".printf (search_entry.text)), _("Try changing search terms."), "edit-find-symbolic");
+            } else if (main_stack.get_visible_child () != library_page) {
+                hide_alert ();
+            }
+        });
         welcome_page = new WelcomePage ();
 
         player_page = new PlayerPage ();
@@ -82,11 +94,17 @@ public class Audience.Window : Gtk.Window {
             set_keep_above (player_page.playing && settings.stay_on_top);
         });
 
+        alert_view = new Granite.Widgets.AlertView ("", "", "");
+        alert_view.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
+        alert_view.set_vexpand (true);
+        alert_view.no_show_all = true;
+
         main_stack = new Gtk.Stack ();
         main_stack.expand = true;
         main_stack.add_named (welcome_page, "welcome");
         main_stack.add_named (player_page, "player");
         main_stack.add_named (library_page, "library");
+        main_stack.add_named (alert_view, "alert");
         main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
         add (main_stack);
@@ -255,9 +273,9 @@ public class Audience.Window : Gtk.Window {
         } else if (main_stack.get_visible_child () == library_page) {
             if (ctrl_pressed && match_keycode (Gdk.Key.f, keycode)) {
                 search_entry.grab_focus ();
-            } else if (match_keycode (Gdk.Key.Escape, keycode)) {
-               search_entry.text = "";
-           }
+            }
+        } if (search_entry.visible && match_keycode (Gdk.Key.Escape, keycode)) {
+            search_entry.text = "";
         }
 
         return base.key_press_event (e);
@@ -415,5 +433,20 @@ public class Audience.Window : Gtk.Window {
             main_stack.set_visible_child (welcome_page);
         }
         welcome_page.refresh ();
+    }
+
+    public void hide_alert () {
+        alert_view.no_show_all = true;
+        main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.NONE);
+        alert_view.hide ();
+    }
+
+    public void show_alert (string primary_text, string secondary_text, string icon_name) {
+        alert_view.no_show_all = false;
+        alert_view.show_all ();
+        alert_view.title = primary_text;
+        alert_view.description = secondary_text;
+        alert_view.icon_name = icon_name;
+        main_stack.set_visible_child_full ("alert", Gtk.StackTransitionType.NONE);
     }
 }
