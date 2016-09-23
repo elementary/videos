@@ -128,9 +128,10 @@ namespace Audience {
                 clear_cover.sensitive = file.query_exists ();
 
                 context_menu.popup (null, null, null, evt.button, evt.time);
+                return true;
             }
 
-            return true;
+            return false;
         }
 
         private void set_new_cover () {
