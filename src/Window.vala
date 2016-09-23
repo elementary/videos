@@ -370,10 +370,7 @@ public class Audience.Window : Gtk.Window {
     }
 
     private void on_player_ended () {
-        main_stack.set_visible_child (welcome_page);
-        welcome_page.refresh ();
-        title = App.get_instance ().program_name;
-        get_window ().set_cursor (null);
+        navigation_button.clicked ();
         unfullscreen ();
     }
 
