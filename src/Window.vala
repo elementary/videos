@@ -270,12 +270,12 @@ public class Audience.Window : Gtk.Window {
                 show_library ();
                 return true;
             }
-        } else if (main_stack.get_visible_child () == library_page) {
+        } else if (search_entry.visible) {
             if (ctrl_pressed && match_keycode (Gdk.Key.f, keycode)) {
                 search_entry.grab_focus ();
+            } else if (search_entry.visible && match_keycode (Gdk.Key.Escape, keycode)) {
+                search_entry.text = "";
             }
-        } if (search_entry.visible && match_keycode (Gdk.Key.Escape, keycode)) {
-            search_entry.text = "";
         }
 
         return base.key_press_event (e);
