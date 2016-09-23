@@ -249,7 +249,7 @@ public class Audience.Window : Gtk.Window {
                 destroy ();
                 return true;
             } else if (ctrl_pressed && match_keycode (Gdk.Key.b, keycode)) {
-                destroy ();
+                show_library ();
                 return true;
             }
         } else if (main_stack.get_visible_child () == library_page) {
