@@ -27,8 +27,10 @@ public class Audience.Window : Gtk.Window {
     private PlayerPage player_page;
     private WelcomePage welcome_page;
     private LibraryPage library_page;
+    private Granite.Widgets.AlertView alert_view;
     private NavigationButton navigation_button;
     private ZeitgeistManager zeitgeist_manager;
+    private Gtk.SearchEntry search_entry;
 
     // For better translation
     const string navigation_button_welcomescreen = N_("Back");
@@ -56,9 +58,35 @@ public class Audience.Window : Gtk.Window {
         });
 
         header.pack_start (navigation_button);
+
+        search_entry = new Gtk.SearchEntry ();
+        search_entry.placeholder_text = _("Search Videos");
+        search_entry.margin_right = 5;
+        search_entry.search_changed.connect (() => { library_page.filter (search_entry.text); });
+
+        header.pack_end (search_entry);
+
         set_titlebar (header);
 
         library_page = LibraryPage.get_instance ();
+        library_page.map.connect (() => {
+            search_entry.visible = true;
+            if (search_entry.text != "" && !library_page.has_child ()) {
+                search_entry.text = "";
+            }
+        });
+        library_page.unmap.connect (() => {
+            if (main_stack.get_visible_child () != alert_view) {
+                search_entry.visible = false;
+            }
+        });
+        library_page.filter_result_changed.connect ((has_result) => {
+            if (!has_result) {
+                show_alert (_("No Results for “%s”".printf (search_entry.text)), _("Try changing search terms."), "edit-find-symbolic");
+            } else if (main_stack.get_visible_child () != library_page) {
+                hide_alert ();
+            }
+        });
         welcome_page = new WelcomePage ();
 
         player_page = new PlayerPage ();
@@ -71,17 +99,24 @@ public class Audience.Window : Gtk.Window {
             set_keep_above (player_page.playing && settings.stay_on_top);
         });
 
+        alert_view = new Granite.Widgets.AlertView ("", "", "");
+        alert_view.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
+        alert_view.set_vexpand (true);
+        alert_view.no_show_all = true;
+
         main_stack = new Gtk.Stack ();
         main_stack.expand = true;
         main_stack.add_named (welcome_page, "welcome");
         main_stack.add_named (player_page, "player");
         main_stack.add_named (library_page, "library");
+        main_stack.add_named (alert_view, "alert");
         main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
         add (main_stack);
         show_all ();
 
         navigation_button.hide ();
+        search_entry.visible = false;
         main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.NONE);
 
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
@@ -149,22 +184,12 @@ public class Audience.Window : Gtk.Window {
 
     public override bool key_press_event (Gdk.EventKey e) {
         uint keycode = e.hardware_keycode;
-
+        bool ctrl_pressed = (e.state & Gdk.ModifierType.CONTROL_MASK) != 0;
         if ((e.state & Gdk.ModifierType.MOD1_MASK) != 0 && e.keyval == Gdk.Key.Left) {
             navigation_button.clicked ();
             return true;
         }
 
-        if ((e.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
-            if (match_keycode (Gdk.Key.o, keycode)) {
-                run_open_file ();
-                return true;
-            } else if (match_keycode (Gdk.Key.q, keycode)) {
-                destroy ();
-                return true;
-            }
-        }
-       
         if (main_stack.get_visible_child () == player_page) {
             if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
                 player_page.playing = !player_page.playing;
@@ -236,14 +261,31 @@ public class Audience.Window : Gtk.Window {
                 default:
                     break;
             }
-        } else {
+        } else if (main_stack.get_visible_child () == welcome_page) {
             if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
                 resume_last_videos ();
                 return true;
+            } else if (ctrl_pressed && match_keycode (Gdk.Key.o, keycode)) {
+                run_open_file ();
+                return true;
+            } else if (ctrl_pressed && match_keycode (Gdk.Key.q, keycode)) {
+                destroy ();
+                return true;
+            } else if (ctrl_pressed && match_keycode (Gdk.Key.b, keycode)) {
+                show_library ();
+                return true;
+            }
+        } else if (main_stack.get_visible_child () == library_page && !search_entry.is_focus && e.str.strip ().length > 0) {
+            search_entry.grab_focus ();
+        } else if (search_entry.visible) {
+            if (ctrl_pressed && match_keycode (Gdk.Key.f, keycode)) {
+                search_entry.grab_focus ();
+            } else if (match_keycode (Gdk.Key.Escape, keycode)) {
+                search_entry.text = "";
             }
         }
 
-        return false;
+        return base.key_press_event (e);
     }
 
     public void open_files (File[] files, bool clear_playlist = false, bool force_play = true) {
@@ -374,10 +416,10 @@ public class Audience.Window : Gtk.Window {
         if (settings.stay_on_top && !settings.playback_wait) {
             set_keep_above (true);
         }
-        
+
         welcome_page.refresh ();
     }
-    
+
     public void navigate_back () {
         double progress = player_page.get_progress ();
         if (progress > 0) {
@@ -389,15 +431,30 @@ public class Audience.Window : Gtk.Window {
         }
         title = App.get_instance ().program_name;
         get_window ().set_cursor (null);
-        
+
         if (navigation_button.label == navigation_button_library) {
             navigation_button.label = navigation_button_welcomescreen;
             main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
         } else {
             navigation_button.hide ();
             main_stack.set_visible_child (welcome_page);
+            search_entry.visible = false;
         }
-        
         welcome_page.refresh ();
+    }
+
+    public void hide_alert () {
+        alert_view.no_show_all = true;
+        main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.NONE);
+        alert_view.hide ();
+    }
+
+    public void show_alert (string primary_text, string secondary_text, string icon_name) {
+        alert_view.no_show_all = false;
+        alert_view.show_all ();
+        alert_view.title = primary_text;
+        alert_view.description = secondary_text;
+        alert_view.icon_name = icon_name;
+        main_stack.set_visible_child_full ("alert", Gtk.StackTransitionType.NONE);
     }
 }

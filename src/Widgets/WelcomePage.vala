@@ -39,7 +39,7 @@ namespace Audience {
                 set_item_visible (3, true);
                 this.show_all ();
             });
-            
+
             library_manager.video_file_deleted.connect ((vid) => {
                 set_item_visible (3, LibraryPage.get_instance ().has_items);
             });
@@ -83,9 +83,7 @@ namespace Audience {
                 replay_button.title = _("Resume last video");
                 replay_button.icon.icon_name = ("media-playback-start");
             }
-            
             replay_button.description = get_title (last_file.get_basename ());
-            
 
             bool show_last_file = settings.current_video != "";
             if (last_file.query_exists () == false) {
