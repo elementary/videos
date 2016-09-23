@@ -122,15 +122,23 @@ namespace Audience {
         }
 
         private bool video_filter_func (Gtk.FlowBoxChild child) {
-            var filter = search_bar.search_entry.text;
-            var video_title = (child as LibraryItem).video.title;
+            string filter = search_bar.search_entry.text.strip ();
 
-            if (filter.down () in video_title.down ()) {
+            if (filter.length == 0) {
                 return true;
             }
-            return false;
+
+            string[] filter_elements = filter.split (" ");
+            var video_title = (child as LibraryItem).video.title;
+
+            foreach (string filter_element in filter_elements) {
+                if (!video_title.down ().contains (filter_element.down ())) {
+                    return false;
+                }
+            }
+            return true;
         }
-        
+
         private int video_sort_func (Gtk.FlowBoxChild child1, Gtk.FlowBoxChild child2) {
             var item1 = child1 as LibraryItem;
             var item2 = child2 as LibraryItem;
