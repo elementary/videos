@@ -7,35 +7,57 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-08-23 23:15-0500\n"
+"POT-Creation-Date: 2016-09-22 11:37-0700\n"
 "PO-Revision-Date: 2016-09-05 01:59+0000\n"
 "Last-Translator: Paulo Galardi <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-09-06 06:17+0000\n"
-"X-Generator: Launchpad (build 18179)\n"
+"X-Launchpad-Export-Date: 2016-09-23 06:18+0000\n"
+"X-Generator: Launchpad (build 18204)\n"
 
-#: ../src/Window.vala:264
-msgid "Open"
-msgstr "Abrir"
+#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
+#: ../src/Audience.vala:32
+msgid "Videos"
+msgstr "Vídeos"
 
-#: ../src/Window.vala:265
-msgid "_Cancel"
-msgstr "_Cancelar"
+#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
+#: ../src/Audience.vala:34
+msgid "Audience;Video;Player;Movies;"
+msgstr "Audience;Vídeo;Tocar;Filmes;"
 
-#: ../src/Window.vala:265
-msgid "_Open"
-msgstr "_Abrir"
+#: ../src/Audience.vala:35
+msgid "Watch videos and movies"
+msgstr "Assista a vídeos e filmes"
 
-#: ../src/Window.vala:270 ../src/Widgets/SettingsPopover.vala:37
+#: ../src/Audience.vala:36
+msgid "Video Player"
+msgstr "Reprodutor de vídeo"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
+#: ../src/Audience.vala:38
+msgid "About Audience"
+msgstr "Sobre o Audience"
+
+#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
+#: ../src/Audience.vala:40
+msgid "About Videos"
+msgstr "Sobre Vídeos"
+
+#: ../src/Audience.vala:70
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Alex https://launchpad.net/~asw-ijuhy\n"
+"  Felipe G. Wozniak https://launchpad.net/~felipewozniak\n"
+"  Leonardo Lemos https://launchpad.net/~leonardolemos\n"
+"  Paulo Galardi https://launchpad.net/~lains\n"
+"  Rafael Belenos Govannon https://launchpad.net/~belenos"
+
+#: ../src/Widgets/SettingsPopover.vala:37 ../src/Window.vala:319
 msgid "All files"
 msgstr "Todos os arquivos"
-
-#: ../src/Window.vala:274
-msgid "Video files"
-msgstr "Arquivos de vídeo"
 
 #: ../src/Widgets/SettingsPopover.vala:41
 msgid "Subtitle files"
@@ -73,6 +95,23 @@ msgstr "Nenhum"
 msgid "Default"
 msgstr "Padrão"
 
+#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:10
+msgid "Open file"
+msgstr "Abrir arquivo"
+
+#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:47
+msgid "Play from Disc"
+msgstr "Reproduzir de um disco"
+
+#: ../src/Widgets/PlaylistPopover.vala:41
+#: ../src/Widgets/PlaylistPopover.vala:67
+msgid "Enable Repeat"
+msgstr "Ligar repetição"
+
+#: ../src/Widgets/PlaylistPopover.vala:64
+msgid "Disable Repeat"
+msgstr "Desligar repetição"
+
 #: ../src/Widgets/BottomBar.vala:57 ../src/Widgets/BottomBar.vala:119
 msgid "Play"
 msgstr "Reproduzir"
@@ -93,81 +132,58 @@ msgstr "Pausar"
 msgid "Unfullscreen"
 msgstr "Sair da tela cheia"
 
-#: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:9
-msgid "Open file"
-msgstr "Abrir arquivo"
-
-#: ../src/Widgets/PlaylistPopover.vala:37 ../src/Widgets/WelcomePage.vala:36
-msgid "Play from Disc"
-msgstr "Reproduzir de um disco"
-
-#: ../src/Widgets/PlaylistPopover.vala:41
-#: ../src/Widgets/PlaylistPopover.vala:67
-msgid "Enable Repeat"
-msgstr "Ligar repetição"
-
-#: ../src/Widgets/PlaylistPopover.vala:64
-msgid "Disable Repeat"
-msgstr "Desligar repetição"
-
-#: ../src/Widgets/WelcomePage.vala:5
+#: ../src/Widgets/WelcomePage.vala:6
 msgid "No Videos Open"
 msgstr "Nenhum vídeo aberto"
 
-#: ../src/Widgets/WelcomePage.vala:5
+#: ../src/Widgets/WelcomePage.vala:6
 msgid "Select a source to begin playing."
 msgstr "Selecione uma fonte para começar a reprodução."
 
-#: ../src/Widgets/WelcomePage.vala:9
+#: ../src/Widgets/WelcomePage.vala:10
 msgid "Open a saved file."
 msgstr "Abrir um arquivo salvo."
 
-#: ../src/Widgets/WelcomePage.vala:19 ../src/Widgets/WelcomePage.vala:63
+#: ../src/Widgets/WelcomePage.vala:20 ../src/Widgets/WelcomePage.vala:80
 msgid "Replay last video"
 msgstr "Reproduzir o último vídeo"
 
-#: ../src/Widgets/WelcomePage.vala:21
+#: ../src/Widgets/WelcomePage.vala:22 ../src/Widgets/WelcomePage.vala:83
 msgid "Resume last video"
 msgstr "Reproduzir último video"
 
-#: ../src/Widgets/WelcomePage.vala:36
+#: ../src/Widgets/WelcomePage.vala:47
 msgid "Watch a DVD or open a file from disc"
 msgstr "Assistir um DVD ou abrir um arquivo do disco"
 
-#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-#: ../src/Audience.vala:32
-msgid "Videos"
-msgstr "Vídeos"
-
-#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-#: ../src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Vídeo;Tocar;Filmes;"
-
-#: ../src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "Assista a vídeos e filmes"
-
-#: ../src/Audience.vala:36
-msgid "Video Player"
-msgstr "Reprodutor de vídeo"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-#: ../src/Audience.vala:38
-msgid "About Audience"
-msgstr "Sobre o Audience"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-#: ../src/Audience.vala:40
-msgid "About Videos"
-msgstr "Sobre Vídeos"
-
-#: ../src/Audience.vala:69
-msgid "translator-credits"
+#: ../src/Widgets/WelcomePage.vala:50
+msgid "Browse Library"
 msgstr ""
-"Launchpad Contributions:\n"
-"  Alex https://launchpad.net/~asw-ijuhy\n"
-"  Felipe G. Wozniak https://launchpad.net/~felipewozniak\n"
-"  Leonardo Lemos https://launchpad.net/~leonardolemos\n"
-"  Paulo Galardi https://launchpad.net/~lains\n"
-"  Rafael Belenos Govannon https://launchpad.net/~belenos"
+
+#: ../src/Widgets/WelcomePage.vala:50
+msgid "Watch a movie from your library"
+msgstr ""
+
+#: ../src/Window.vala:34
+msgid "Back"
+msgstr ""
+
+#: ../src/Window.vala:35
+msgid "Library"
+msgstr ""
+
+#: ../src/Window.vala:313
+msgid "Open"
+msgstr "Abrir"
+
+#: ../src/Window.vala:314
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+#: ../src/Window.vala:314
+msgid "_Open"
+msgstr "_Abrir"
+
+#: ../src/Window.vala:323
+msgid "Video files"
+msgstr "Arquivos de vídeo"
