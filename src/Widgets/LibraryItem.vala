@@ -120,13 +120,12 @@ namespace Audience {
 
         private bool show_context_menu (Gtk.Widget sender, Gdk.EventButton evt) {
             if (evt.type == Gdk.EventType.BUTTON_PRESS && evt.button == 3) {
-                if (video.get_native_poster_path () != null) {
-                    clear_cover.label = _("Restore Artwork");
+                if (video.get_native_poster_path () == null) {
+                    File file = File.new_for_path (video.poster_cache_file);
+                    clear_cover.sensitive = file.query_exists ();
+                } else {
+                    clear_cover.sensitive = false;
                 }
-
-                File file = File.new_for_path (video.poster_cache_file);
-                clear_cover.sensitive = file.query_exists ();
-
                 context_menu.popup (null, null, null, evt.button, evt.time);
                 return true;
             }
