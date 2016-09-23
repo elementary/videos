@@ -59,7 +59,6 @@ vala_precompile (VALA_C ${EXEC_NAME}
     Widgets/PlayerPage.vala
     Widgets/LibraryPage.vala
     Widgets/LibraryItem.vala
-    Widgets/LibrarySearchBar.vala
     Widgets/NavigationButton.vala
     Services/Inhibitor.vala
     Services/LibraryManager.vala

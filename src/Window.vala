@@ -28,8 +28,8 @@ public class Audience.Window : Gtk.Window {
     private WelcomePage welcome_page;
     private LibraryPage library_page;
     private NavigationButton navigation_button;
-    private Gtk.ToggleButton search_button;
     private ZeitgeistManager zeitgeist_manager;
+    private Gtk.SearchEntry search_entry;
 
     // For better translation
     const string navigation_button_welcomescreen = N_("Back");
@@ -57,11 +57,19 @@ public class Audience.Window : Gtk.Window {
         });
 
         header.pack_start (navigation_button);
+
+        search_entry = new Gtk.SearchEntry ();
+        search_entry.placeholder_text = _("Search Videos");
+        search_entry.margin_right = 5;
+        search_entry.search_changed.connect (() => { library_page.filter (search_entry.text); });
+
+        header.pack_end (search_entry);
+
         set_titlebar (header);
 
         library_page = LibraryPage.get_instance ();
-        library_page.map.connect (() => { search_button.visible = true; });
-        library_page.unmap.connect (() => { search_button.visible = false; });
+        library_page.map.connect (() => { search_entry.visible = true; });
+        library_page.unmap.connect (() => { search_entry.visible = false; });
         welcome_page = new WelcomePage ();
 
         player_page = new PlayerPage ();
@@ -74,15 +82,6 @@ public class Audience.Window : Gtk.Window {
             set_keep_above (player_page.playing && settings.stay_on_top);
         });
 
-        search_button = new Gtk.ToggleButton ();
-        search_button.set_image (new Gtk.Image.from_icon_name ("edit-find-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
-        search_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-        search_button.set_tooltip_text (_("Find…"));
-        search_button.valign = Gtk.Align.CENTER;
-        search_button.toggled.connect (on_toggle_search);
-
-        header.pack_end (search_button);
-
         main_stack = new Gtk.Stack ();
         main_stack.expand = true;
         main_stack.add_named (welcome_page, "welcome");
@@ -94,7 +93,7 @@ public class Audience.Window : Gtk.Window {
         show_all ();
 
         navigation_button.hide ();
-        search_button.visible = false;
+        search_entry.visible = false;
         main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.NONE);
 
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
@@ -255,10 +254,12 @@ public class Audience.Window : Gtk.Window {
             }
         } else if (main_stack.get_visible_child () == library_page) {
             if (ctrl_pressed && match_keycode (Gdk.Key.f, keycode)) {
-                 search_button.active = !search_button.active;
-             }
+                search_entry.grab_focus ();
+            } else if (match_keycode (Gdk.Key.Escape, keycode)) {
+               search_entry.text = "";
+           }
         }
-        
+
         return base.key_press_event (e);
     }
 
@@ -305,7 +306,7 @@ public class Audience.Window : Gtk.Window {
         navigation_button.label = navigation_button_welcomescreen;
         navigation_button.show ();
         main_stack.set_visible_child (library_page);
-        library_page.scrolled_window.grab_focus ();
+        library_page.grab_focus ();
     }
 
     public void run_open_file (bool clear_playlist = false, bool force_play = true) {
@@ -414,10 +415,5 @@ public class Audience.Window : Gtk.Window {
             main_stack.set_visible_child (welcome_page);
         }
         welcome_page.refresh ();
-    }
-
-    private void on_toggle_search () {
-        bool is_search = search_button.active;
-        library_page.show_search_bar (is_search);
     }
 }

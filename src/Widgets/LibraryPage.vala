@@ -20,16 +20,14 @@
  */
 
 namespace Audience {
-    public class LibraryPage : Gtk.Grid {
+    public class LibraryPage : Gtk.ScrolledWindow {
 
-        public Gtk.ScrolledWindow scrolled_window;
         public Gtk.FlowBox view_movies;
-        Gtk.Revealer search_revealer;
-        Audience.LibrarySearchBar search_bar;
         Audience.Services.LibraryManager manager;
 
         bool poster_initialized = false;
         int items_counter;
+        string query;
 
         public bool has_items { get { return items_counter > 0; } }
 
@@ -42,6 +40,7 @@ namespace Audience {
         }
 
         construct {
+            query = "";
             items_counter = 0;
 
             view_movies = new Gtk.FlowBox ();
@@ -66,19 +65,10 @@ namespace Audience {
                 }
             });
 
-            search_revealer = new Gtk.Revealer ();
-            search_bar = new Audience.LibrarySearchBar ();
-            search_revealer.add (search_bar);
-
-            scrolled_window = new Gtk.ScrolledWindow (null, null);
-            scrolled_window.add (view_movies);
-            scrolled_window.expand = true;
-
-            attach (search_revealer, 0, 0, 1, 1);
-            attach (scrolled_window, 0, 1, 1, 1);
-
             view_movies.set_sort_func (video_sort_func);
             view_movies.set_filter_func (video_filter_func);
+
+            add (view_movies);
         }
 
         private void add_item (Audience.Objects.Video video) {
@@ -122,13 +112,11 @@ namespace Audience {
         }
 
         private bool video_filter_func (Gtk.FlowBoxChild child) {
-            string filter = search_bar.search_entry.text.strip ();
-
-            if (filter.length == 0) {
+            if (query.length == 0) {
                 return true;
             }
 
-            string[] filter_elements = filter.split (" ");
+            string[] filter_elements = query.split (" ");
             var video_title = (child as LibraryItem).video.title;
 
             foreach (string filter_element in filter_elements) {
@@ -148,17 +136,9 @@ namespace Audience {
             return 0;
         }
 
-        public void filter () {
+        public void filter (string text) {
+            query = text.strip ();
             view_movies.invalidate_filter ();
-        }
-
-        public void show_search_bar (bool show) {
-            search_revealer.set_reveal_child (show);
-            if (show) {
-                search_bar.search_entry.grab_focus ();
-            } else {
-                view_movies.grab_focus ();
-            }
         }
     }
 }
