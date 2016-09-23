@@ -22,6 +22,7 @@
 namespace Audience {
     public class LibraryItem : Gtk.FlowBoxChild  {
 
+        Gtk.EventBox event_box;
         Gtk.Grid grid;
         public Audience.Objects.Video video { get; construct set; }
 
@@ -29,6 +30,11 @@ namespace Audience {
         Gtk.Label title;
         Gtk.Spinner spinner;
         Gtk.Grid spinner_container;
+
+        Gtk.Menu context_menu;
+        Gtk.MenuItem new_cover;
+        Gtk.MenuItem clear_cover;
+        Gtk.MenuItem new_title;
 
         public LibraryItem (Audience.Objects.Video video) {
             Object (video: video);
@@ -69,7 +75,7 @@ namespace Audience {
             spinner_container.width_request = Audience.Services.POSTER_WIDTH;
             spinner_container.margin_top = spinner_container.margin_left = spinner_container.margin_right = 12;
             spinner_container.get_style_context ().add_class ("card");
-            
+
             spinner = new Gtk.Spinner ();
             spinner.expand = true;
             spinner.active = true;
@@ -90,11 +96,74 @@ namespace Audience {
             title.set_line_wrap (true);
             title.max_width_chars = 0;
 
-
             grid.attach (spinner_container, 0, 0, 1, 1);
             grid.attach (title, 0, 1, 1 ,1);
 
-            this.add (grid);
+            context_menu = new Gtk.Menu ();
+            new_cover = new Gtk.MenuItem.with_label (_("Set new poster"));
+            new_cover.activate.connect (() => { set_new_cover(); });
+            clear_cover = new Gtk.MenuItem.with_label (_("Clear custom poster"));
+            clear_cover.activate.connect (() => { clear_cover_from_cache(); });
+            new_title = new Gtk.MenuItem.with_label (_("Rename video title"));
+
+            context_menu.append (new_cover);
+            context_menu.append (clear_cover);
+            context_menu.append (new_title);
+            context_menu.show_all ();
+
+            event_box = new Gtk.EventBox ();
+            event_box.button_press_event.connect (show_context_menu);
+            event_box.add (grid);
+
+            this.add (event_box);
+        }
+
+        private bool show_context_menu (Gtk.Widget sender, Gdk.EventButton evt) {
+            if (evt.type == Gdk.EventType.BUTTON_PRESS && evt.button == 3) {
+                if (video.get_native_poster_path () != null) {
+                    clear_cover.label = _("Restore original poster");
+                }
+
+                File file = File.new_for_path (video.poster_cache_file);
+                clear_cover.sensitive = file.query_exists ();
+
+                context_menu.popup (null, null, null, evt.button, evt.time);
+            }
+
+            return true;
+        }
+
+        private void set_new_cover () {
+            var file = new Gtk.FileChooserDialog (_("Open"), Audience.App.get_instance ().mainwindow, Gtk.FileChooserAction.OPEN,
+                _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
+
+            var image_filter = new Gtk.FileFilter ();
+            image_filter.set_filter_name (_("Image files"));
+            image_filter.add_mime_type ("image/*");
+
+            file.add_filter (image_filter);
+
+            if (file.run () == Gtk.ResponseType.ACCEPT) {
+                Gdk.Pixbuf? pixbuf = video.get_poster_from_file (file.get_file ().get_path ());
+                if (pixbuf != null) {
+                    try {
+                        pixbuf.save (video.poster_cache_file, "jpeg");
+                    } catch (Error e) {
+                        warning (e.message);
+                    }
+                    video.initialize_poster.begin ();
+                }
+            }
+
+            file.destroy ();
+        }
+
+        private void clear_cover_from_cache () {
+            File file = File.new_for_path (video.poster_cache_file);
+            if (file.query_exists ()){
+                file.delete_async.begin ();
+                video.initialize_poster.begin ();
+            }
         }
     }
 }

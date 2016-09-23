@@ -145,7 +145,8 @@ public class Audience.Window : Gtk.Window {
             if (event.button == Gdk.BUTTON_SECONDARY) {
                 player_page.playing = !player_page.playing;
             }
-            return false;
+
+            return base.button_press_event(event);
         });
 
         window_state_event.connect ((e) => {

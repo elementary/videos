@@ -85,7 +85,7 @@ namespace Audience.Objects {
 
             ThreadFunc<void*> run = () => {
 
-                string poster_path = poster_cache_file;
+                string? poster_path = poster_cache_file;
                 pixbuf = get_poster_from_file (poster_path);
 
                 // POSTER in Cache exists
@@ -94,24 +94,9 @@ namespace Audience.Objects {
                     return null;
                 }
 
-                // Try to find a POSTER in same folder of video file
-                if (pixbuf == null) {
-                    poster_path = this.get_path () + ".jpg";
+                poster_path = get_native_poster_path ();
+                if (poster_path != null) {
                     pixbuf = get_poster_from_file (poster_path);
-                }
-
-                if (pixbuf == null) {
-                    poster_path = Path.build_filename (this.directory, Audience.get_title (file) + ".jpg");
-                    pixbuf = get_poster_from_file (poster_path);
-                }
-
-                foreach (string s in Audience.settings.poster_names) {
-                    if (pixbuf == null) {
-                        poster_path = Path.build_filename (this.directory, s);
-                        pixbuf = get_poster_from_file (poster_path);
-                    } else {
-                        break;
-                    }
                 }
 
                 // POSTER found
@@ -191,6 +176,29 @@ namespace Audience.Objects {
             }
 
             return pixbuf;
+        }
+
+        public string? get_native_poster_path () {
+            string poster_path = this.get_path () + ".jpg";
+            File file_poster = File.new_for_path (poster_path);
+
+            if (file_poster.query_exists ())
+                return poster_path;
+
+            poster_path = Path.build_filename (this.directory, Audience.get_title (file) + ".jpg");
+            file_poster = File.new_for_path (poster_path);
+
+            if (file_poster.query_exists ())
+               return poster_path;
+
+            foreach (string s in Audience.settings.poster_names) {
+                poster_path = Path.build_filename (this.directory, s);
+                file_poster = File.new_for_path (poster_path);
+                if (file_poster.query_exists ())
+                   return poster_path;
+            }
+
+            return null;
         }
     }
 }
