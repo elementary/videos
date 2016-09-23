@@ -20,13 +20,17 @@
  */
 
 namespace Audience {
-    public class LibraryPage : Gtk.ScrolledWindow {
+    public class LibraryPage : Gtk.Grid {
 
-        Gtk.FlowBox view_movies;
-
+        public Gtk.ScrolledWindow scrolled_window;
+        public Gtk.FlowBox view_movies;
+        Gtk.Revealer search_revealer;
+        Audience.LibrarySearchBar search_bar;
         Audience.Services.LibraryManager manager;
+
         bool poster_initialized = false;
         int items_counter;
+
         public bool has_items { get { return items_counter > 0; } }
 
         public static LibraryPage instance = null;
@@ -34,15 +38,12 @@ namespace Audience {
             if (instance == null) {
                 instance = new LibraryPage ();
             }
-
             return instance;
-        }
-
-        private LibraryPage () {
         }
 
         construct {
             items_counter = 0;
+
             view_movies = new Gtk.FlowBox ();
             view_movies.margin = 24;
             view_movies.homogeneous = true;
@@ -52,21 +53,10 @@ namespace Audience {
             view_movies.selection_mode = Gtk.SelectionMode.NONE;
             view_movies.child_activated.connect (play_video);
 
-            view_movies.set_sort_func ((child1, child2) => {
-                var item1 = child1 as LibraryItem;
-                var item2 = child2 as LibraryItem;
-                if (item1 != null && item2 != null) {
-                    return item1.video.file.collate (item2.video.file);
-                }
-                return 0;
-            });
-
             manager = Audience.Services.LibraryManager.get_instance ();
             manager.video_file_detected.connect (add_item);
             manager.video_file_deleted.connect (remove_item_from_path);
             manager.begin_scan ();
-
-            this.add (view_movies);
 
             map.connect (() => {
                 if (!poster_initialized) {
@@ -75,6 +65,20 @@ namespace Audience {
                     show_all ();
                 }
             });
+
+            search_revealer = new Gtk.Revealer ();
+            search_bar = new Audience.LibrarySearchBar ();
+            search_revealer.add (search_bar);
+
+            scrolled_window = new Gtk.ScrolledWindow (null, null);
+            scrolled_window.add (view_movies);
+            scrolled_window.expand = true;
+
+            attach (search_revealer, 0, 0, 1, 1);
+            attach (scrolled_window, 0, 1, 1, 1);
+
+            view_movies.set_sort_func (video_sort_func);
+            view_movies.set_filter_func (video_filter_func);
         }
 
         private void add_item (Audience.Objects.Video video) {
@@ -86,7 +90,7 @@ namespace Audience {
             }
             items_counter++;
         }
-        
+
         private void play_video (Gtk.FlowBoxChild item) {
             var selected = (item as Audience.LibraryItem);
             if (selected.video.video_file.query_exists ()) {
@@ -114,6 +118,38 @@ namespace Audience {
         private async void poster_initialisation () {
             foreach (var child in view_movies.get_children ()) {
                 (child as LibraryItem).video.initialize_poster.begin ();
+            }
+        }
+
+        private bool video_filter_func (Gtk.FlowBoxChild child) {
+            var filter = search_bar.search_entry.text;
+            var video_title = (child as LibraryItem).video.title;
+
+            if (filter.down () in video_title.down ()) {
+                return true;
+            }
+            return false;
+        }
+        
+        private int video_sort_func (Gtk.FlowBoxChild child1, Gtk.FlowBoxChild child2) {
+            var item1 = child1 as LibraryItem;
+            var item2 = child2 as LibraryItem;
+            if (item1 != null && item2 != null) {
+                return item1.video.file.collate (item2.video.file);
+            }
+            return 0;
+        }
+
+        public void filter () {
+            view_movies.invalidate_filter ();
+        }
+
+        public void show_search_bar (bool show) {
+            search_revealer.set_reveal_child (show);
+            if (show) {
+                search_bar.search_entry.grab_focus ();
+            } else {
+                view_movies.grab_focus ();
             }
         }
     }
