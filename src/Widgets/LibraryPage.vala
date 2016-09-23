@@ -144,7 +144,7 @@ namespace Audience {
             filter_result_changed (has_child ());
         }
         
-        private bool has_child () {
+        public bool has_child () {
             if (view_movies.get_child_at_index (0) != null) {
                foreach (unowned Gtk.Widget child in view_movies.get_children ()) {
                    if (child.get_child_visible ()) {

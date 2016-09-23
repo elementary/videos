@@ -69,7 +69,12 @@ public class Audience.Window : Gtk.Window {
         set_titlebar (header);
 
         library_page = LibraryPage.get_instance ();
-        library_page.map.connect (() => { search_entry.visible = true; });
+        library_page.map.connect (() => {
+            search_entry.visible = true;
+            if (search_entry.text != "" && !library_page.has_child ()) {
+                search_entry.text = "";
+            }
+        });
         library_page.unmap.connect (() => {
             if (main_stack.get_visible_child () != alert_view) {
                 search_entry.visible = false;
@@ -270,7 +275,10 @@ public class Audience.Window : Gtk.Window {
                 show_library ();
                 return true;
             }
-        } else if (search_entry.visible) {
+        } else if (main_stack.get_visible_child () == library_page && !search_entry.is_focus) {
+            search_entry.grab_focus ();
+        }
+        else if (search_entry.visible) {
             if (ctrl_pressed && match_keycode (Gdk.Key.f, keycode)) {
                 search_entry.grab_focus ();
             } else if (match_keycode (Gdk.Key.Escape, keycode)) {
@@ -431,6 +439,7 @@ public class Audience.Window : Gtk.Window {
         } else {
             navigation_button.hide ();
             main_stack.set_visible_child (welcome_page);
+            search_entry.visible = false;
         }
         welcome_page.refresh ();
     }
