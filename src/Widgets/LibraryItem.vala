@@ -100,11 +100,11 @@ namespace Audience {
             grid.attach (title, 0, 1, 1 ,1);
 
             context_menu = new Gtk.Menu ();
-            new_cover = new Gtk.MenuItem.with_label (_("Set new poster"));
+            new_cover = new Gtk.MenuItem.with_label (_("Set Artwork"));
             new_cover.activate.connect (() => { set_new_cover(); });
-            clear_cover = new Gtk.MenuItem.with_label (_("Clear custom poster"));
+            clear_cover = new Gtk.MenuItem.with_label (_("Clear custom Artwork"));
             clear_cover.activate.connect (() => { clear_cover_from_cache(); });
-            new_title = new Gtk.MenuItem.with_label (_("Rename video title"));
+            new_title = new Gtk.MenuItem.with_label (_("Rename video Title"));
 
             context_menu.append (new_cover);
             context_menu.append (clear_cover);
@@ -121,7 +121,7 @@ namespace Audience {
         private bool show_context_menu (Gtk.Widget sender, Gdk.EventButton evt) {
             if (evt.type == Gdk.EventType.BUTTON_PRESS && evt.button == 3) {
                 if (video.get_native_poster_path () != null) {
-                    clear_cover.label = _("Restore original poster");
+                    clear_cover.label = _("Restore original Artwork");
                 }
 
                 File file = File.new_for_path (video.poster_cache_file);
