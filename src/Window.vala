@@ -52,24 +52,7 @@ public class Audience.Window : Gtk.Window {
 
         navigation_button = new NavigationButton ();
         navigation_button.clicked.connect (() => {
-            double progress = player_page.get_progress ();
-            if (progress > 0) {
-                settings.last_stopped = progress;
-            }
-            player_page.playing = false;
-            player_page.reset_played_uri ();
-            title = App.get_instance ().program_name;
-            get_window ().set_cursor (null);
-            
-            if (navigation_button.label == navigation_button_library) {
-                navigation_button.label = navigation_button_welcomescreen;
-                main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
-            } else {
-                navigation_button.hide ();
-                main_stack.set_visible_child (welcome_page);
-            }
-            
-            welcome_page.refresh ();
+            navigate_back ();
         });
 
         header.pack_start (navigation_button);
@@ -370,7 +353,7 @@ public class Audience.Window : Gtk.Window {
     }
 
     private void on_player_ended () {
-        navigation_button.clicked ();
+        navigate_back ();
         unfullscreen ();
     }
 
@@ -390,6 +373,27 @@ public class Audience.Window : Gtk.Window {
 
         if (settings.stay_on_top && !settings.playback_wait) {
             set_keep_above (true);
+        }
+        
+        welcome_page.refresh ();
+    }
+    
+    public void navigate_back () {
+        double progress = player_page.get_progress ();
+        if (progress > 0) {
+            settings.last_stopped = progress;
+        }
+        player_page.playing = false;
+        player_page.reset_played_uri ();
+        title = App.get_instance ().program_name;
+        get_window ().set_cursor (null);
+        
+        if (navigation_button.label == navigation_button_library) {
+            navigation_button.label = navigation_button_welcomescreen;
+            main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
+        } else {
+            navigation_button.hide ();
+            main_stack.set_visible_child (welcome_page);
         }
         
         welcome_page.refresh ();
