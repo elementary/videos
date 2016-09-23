@@ -275,7 +275,8 @@ public class Audience.Window : Gtk.Window {
                 show_library ();
                 return true;
             }
-        } else if (main_stack.get_visible_child () == library_page && !search_entry.is_focus) {
+        } else if (main_stack.get_visible_child () == library_page && !search_entry.is_focus && keycode != 113 && keycode != 116 && keycode != 114 && keycode != 111) {
+            // KEYCODE 111,113,114,116 for ARROW-Keys
             search_entry.grab_focus ();
         }
         else if (search_entry.visible) {
