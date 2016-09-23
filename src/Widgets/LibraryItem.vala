@@ -102,9 +102,9 @@ namespace Audience {
             context_menu = new Gtk.Menu ();
             new_cover = new Gtk.MenuItem.with_label (_("Set Artwork"));
             new_cover.activate.connect (() => { set_new_cover(); });
-            clear_cover = new Gtk.MenuItem.with_label (_("Clear custom Artwork"));
+            clear_cover = new Gtk.MenuItem.with_label (_("Clear Artwork"));
             clear_cover.activate.connect (() => { clear_cover_from_cache(); });
-            new_title = new Gtk.MenuItem.with_label (_("Rename video Title"));
+            new_title = new Gtk.MenuItem.with_label (_("Rename"));
 
             context_menu.append (new_cover);
             context_menu.append (clear_cover);
@@ -121,7 +121,7 @@ namespace Audience {
         private bool show_context_menu (Gtk.Widget sender, Gdk.EventButton evt) {
             if (evt.type == Gdk.EventType.BUTTON_PRESS && evt.button == 3) {
                 if (video.get_native_poster_path () != null) {
-                    clear_cover.label = _("Restore original Artwork");
+                    clear_cover.label = _("Restore Artwork");
                 }
 
                 File file = File.new_for_path (video.poster_cache_file);
