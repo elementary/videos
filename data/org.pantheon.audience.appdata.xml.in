@@ -25,6 +25,17 @@
   <provides>
     <binary>audience</binary>
   </provides>
+  <releases>
+    <release version="" date="" urgency="medium">
+      <description>
+        <ul>
+          <_li>Added a library view with search</_li>
+          <_li>Fixed a bug that prevents keyboard navigation</_li>
+          <_li>Translation updates</_li>
+        </ul>
+      </description>
+    </release>
+  </releases>
   <developer_name>elementary LLC.</developer_name>
   <url type="homepage">http://elementary.io/</url>
   <url type="bugtracker">https://bugs.launchpad.net/audience</url>
