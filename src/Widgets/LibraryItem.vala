@@ -27,7 +27,11 @@ namespace Audience {
         public Audience.Objects.Video video { get; construct set; }
 
         Gtk.Image poster;
-        Gtk.Label title;
+
+        Gtk.Stack title_stack;
+        Gtk.Label title_label;
+        Gtk.Entry title_entry;
+
         Gtk.Spinner spinner;
         Gtk.Grid spinner_container;
 
@@ -35,6 +39,8 @@ namespace Audience {
         Gtk.MenuItem new_cover;
         Gtk.MenuItem clear_cover;
         Gtk.MenuItem new_title;
+
+        public bool is_edit_mode_enabled { get { return title_stack.get_visible_child () == title_entry; } }
 
         public LibraryItem (Audience.Objects.Video video) {
             Object (video: video);
@@ -66,8 +72,8 @@ namespace Audience {
             });
 
             video.title_changed.connect (() => {
-                title.label = video.title;
-                title.show ();
+                title_label.label = video.title;
+                title_label.show ();
             });
 
             spinner_container = new Gtk.Grid ();
@@ -91,20 +97,32 @@ namespace Audience {
             grid.valign = Gtk.Align.START;
             grid.row_spacing = 12;
 
-            title = new Gtk.Label (video.title);
-            title.justify = Gtk.Justification.CENTER;
-            title.set_line_wrap (true);
-            title.max_width_chars = 0;
+            title_label = new Gtk.Label (video.title);
+            title_label.justify = Gtk.Justification.CENTER;
+            title_label.set_line_wrap (true);
+            title_label.max_width_chars = 0;
+
+            title_entry = new Gtk.Entry ();
+            title_entry.set_alignment (0.5f);
+            title_entry.key_press_event.connect ( renaming_title );
+            title_entry.focus_out_event.connect ((event) => { reset_renaming (); });
+
+            title_stack = new Gtk.Stack ();
+            title_stack.expand = true;
+            title_stack.add_named (title_label, "label");
+            title_stack.add_named (title_entry, "entry");
+            title_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
             grid.attach (spinner_container, 0, 0, 1, 1);
-            grid.attach (title, 0, 1, 1 ,1);
+            grid.attach (title_stack, 0, 1, 1 ,1);
 
             context_menu = new Gtk.Menu ();
             new_cover = new Gtk.MenuItem.with_label (_("Set Artwork"));
-            new_cover.activate.connect (() => { set_new_cover(); });
+            new_cover.activate.connect ( set_new_cover );
             clear_cover = new Gtk.MenuItem.with_label (_("Clear Artwork"));
-            clear_cover.activate.connect (() => { clear_cover_from_cache(); });
+            clear_cover.activate.connect ( clear_cover_from_cache );
             new_title = new Gtk.MenuItem.with_label (_("Rename"));
+            new_title.activate.connect ( rename_title );
 
             context_menu.append (new_cover);
             context_menu.append (clear_cover);
@@ -123,8 +141,10 @@ namespace Audience {
                 if (video.get_native_poster_path () == null) {
                     File file = File.new_for_path (video.poster_cache_file);
                     clear_cover.sensitive = file.query_exists ();
+                    clear_cover.visible = true;
                 } else {
-                    clear_cover.sensitive = false;
+                    new_cover.visible = false;
+                    clear_cover.visible = false;
                 }
                 context_menu.popup (null, null, null, evt.button, evt.time);
                 return true;
@@ -164,6 +184,33 @@ namespace Audience {
                 file.delete_async.begin ();
                 video.initialize_poster.begin ();
             }
+        }
+
+        private void rename_title () {
+            title_stack.set_visible_child (title_entry);
+            title_entry.text = video.title;
+            title_entry.grab_focus ();
+        }
+
+        private bool renaming_title (Gdk.EventKey key) {
+            if (match_keycode (Gdk.Key.Escape, key.hardware_keycode)) {
+                reset_renaming ();
+                return true;
+            } else if (match_keycode (Gdk.Key.Return, key.hardware_keycode)) {
+                video.rename_file (title_entry.text);
+                title_stack.set_visible_child (title_label);
+                return true;
+            }
+
+            return false;
+        }
+        
+        private void reset_renaming () {
+            title_stack.set_visible_child (title_label);
+        }
+
+        private bool match_keycode (int keyval, uint code) {
+            return Audience.App.get_instance ().mainwindow.match_keycode (keyval, code);
         }
     }
 }

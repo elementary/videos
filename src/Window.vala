@@ -170,7 +170,7 @@ public class Audience.Window : Gtk.Window {
 
     /** Returns true if the code parameter matches the keycode of the keyval parameter for
     * any keyboard group or level (in order to allow for non-QWERTY keyboards) **/
-    protected bool match_keycode (int keyval, uint code) {
+    public bool match_keycode (int keyval, uint code) {
         Gdk.KeymapKey [] keys;
         Gdk.Keymap keymap = Gdk.Keymap.get_default ();
         if (keymap.get_entries_for_keyval (keyval, out keys)) {
@@ -277,7 +277,9 @@ public class Audience.Window : Gtk.Window {
                 return true;
             }
         } else if (main_stack.get_visible_child () == library_page && !search_entry.is_focus && e.str.strip ().length > 0) {
-            search_entry.grab_focus ();
+            if (!library_page.has_child_in_edit_mode ()) {
+                search_entry.grab_focus ();
+            }
         } else if (search_entry.visible) {
             if (ctrl_pressed && match_keycode (Gdk.Key.f, keycode)) {
                 search_entry.grab_focus ();

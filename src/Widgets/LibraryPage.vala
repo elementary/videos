@@ -154,5 +154,16 @@ namespace Audience {
             }
             return false;
         }
+        
+        public bool has_child_in_edit_mode () {
+             if (view_movies.get_child_at_index (0) != null) {
+                foreach (unowned Gtk.Widget child in view_movies.get_children ()) {
+                    if ((child as Audience.LibraryItem).is_edit_mode_enabled) {
+                        return true;
+                    }
+                 }
+             }
+             return false;
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace Audience.Objects {
         public string file { get; construct set; }
 
         public string title { get; private set; }
-        public int year { get; private set; }
+        public int year { get; private set; default = -1;}
 
         public Gdk.Pixbuf? poster { get; private set; }
 
@@ -69,7 +69,7 @@ namespace Audience.Objects {
             MatchInfo info;
             if (manager.regex_year.match (this.title, 0, out info)) {
                 this.year = int.parse (info.fetch (0).substring (1, 4));
-                this.title = this.title.replace (info.fetch (0) + ")", "");
+                this.title = this.title.replace (info.fetch (0) + ")", "").strip ();
             }
         }
 
@@ -199,6 +199,18 @@ namespace Audience.Objects {
             }
 
             return null;
+        }
+
+        public void rename_file (string new_title) {
+            string new_file_name = new_title.strip ();
+
+            string src_path = this.video_file.get_path ();
+            string dest_path = Path.build_filename (Path.get_dirname (src_path), Path.get_basename (src_path).replace (title, new_file_name));
+
+            File dest = File.new_for_path (dest_path);
+            if (!dest.query_exists ()) {
+                video_file.move (dest, FileCopyFlags.NONE);
+            }
         }
     }
 }
