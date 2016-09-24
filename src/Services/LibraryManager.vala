@@ -37,6 +37,8 @@ namespace Audience.Services {
         private Gee.ArrayList<string> poster_hash;
         private Gee.ArrayList<FileMonitor> monitoring_directories;
 
+        private Gee.ArrayList<Audience.Objects.Video> trashed_files;
+
         public static LibraryManager instance = null;
         public static LibraryManager get_instance () {
             if (instance == null) {
@@ -50,6 +52,7 @@ namespace Audience.Services {
         }
 
         construct {
+            trashed_files = new Gee.ArrayList<Audience.Objects.Video> ();
             poster_hash = new Gee.ArrayList<string> ();
             monitoring_directories = new Gee.ArrayList<FileMonitor> ();
             try {
@@ -123,6 +126,7 @@ namespace Audience.Services {
             }
             var video = new Audience.Objects.Video (source, name, file_info.get_content_type ());
             video_file_detected (video);
+            video.trashed.connect (deleted_items);
             poster_hash.add (video.hash + ".jpg");
             has_items = true;
         }
@@ -177,6 +181,28 @@ namespace Audience.Services {
                 }
             } catch (Error e) {
                 warning (e.message);
+            }
+        }
+
+        private void deleted_items (Audience.Objects.Video video) {
+            trashed_files.add (video);
+        }
+
+        public void undo_delete_item () {
+            if (trashed_files.size > 0) {
+                Audience.Objects.Video restore = trashed_files.last ();
+                File trashed_file = File.new_for_uri ("trash:///");
+                var children = trashed_file.enumerate_children (FileAttribute.TRASH_ORIG_PATH, 0);
+                FileInfo file_info;
+                while ((file_info = children.next_file ()) != null) {
+                    string orinal_path = file_info.get_attribute_as_string (FileAttribute.TRASH_ORIG_PATH);
+                    if (orinal_path == restore.video_file.get_path ()) {
+                        File restore_file = File.new_for_uri ("trash:///" + restore.video_file.get_basename ());
+                        restore_file.move (restore.video_file, FileCopyFlags.NONE);
+                        trashed_files.remove (restore);
+                        return;
+                    }
+                }
             }
         }
     }

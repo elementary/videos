@@ -24,6 +24,7 @@ namespace Audience.Objects {
 
         public signal void poster_changed ();
         public signal void title_changed ();
+        public signal void trashed (Video video);
 
         public File video_file { get; private set; }
         public string directory { get; construct set; }
@@ -214,6 +215,15 @@ namespace Audience.Objects {
                 } catch (Error e) {
                     warning (e.message);
                 }
+            }
+        }
+        
+        public void trash () {
+            try {
+                video_file.trash ();
+                trashed (this);
+            } catch (Error e) {
+                warning (e.message);
             }
         }
     }

@@ -37,8 +37,6 @@ namespace Audience {
 
         Gtk.Menu context_menu;
         Gtk.MenuItem new_cover;
-        Gtk.MenuItem clear_cover;
-        Gtk.SeparatorMenuItem separator_cover;
         Gtk.MenuItem new_title;
         Gtk.MenuItem move_to_trash;
 
@@ -113,7 +111,7 @@ namespace Audience {
             title_stack.expand = true;
             title_stack.add_named (title_label, "label");
             title_stack.add_named (title_entry, "entry");
-            title_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
+            title_stack.transition_type = Gtk.StackTransitionType.NONE;
 
             grid.attach (spinner_container, 0, 0, 1, 1);
             grid.attach (title_stack, 0, 1, 1 ,1);
@@ -121,18 +119,13 @@ namespace Audience {
             context_menu = new Gtk.Menu ();
             new_cover = new Gtk.MenuItem.with_label (_("Set Artwork"));
             new_cover.activate.connect ( set_new_cover );
-            clear_cover = new Gtk.MenuItem.with_label (_("Clear Artwork"));
-            clear_cover.activate.connect ( clear_cover_from_cache );
             new_title = new Gtk.MenuItem.with_label (_("Rename"));
             new_title.activate.connect ( rename_title );
             move_to_trash = new Gtk.MenuItem.with_label (_("Move to Trash"));
             move_to_trash.activate.connect ( move_video_to_trash );
 
-            separator_cover = new Gtk.SeparatorMenuItem ();
-
             context_menu.append (new_cover);
-            context_menu.append (clear_cover);
-            context_menu.append (separator_cover);
+            context_menu.append (new Gtk.SeparatorMenuItem ());
             context_menu.append (new_title);
             context_menu.append (new Gtk.SeparatorMenuItem ());
             context_menu.append (move_to_trash);
@@ -147,15 +140,6 @@ namespace Audience {
 
         private bool show_context_menu (Gtk.Widget sender, Gdk.EventButton evt) {
             if (evt.type == Gdk.EventType.BUTTON_PRESS && evt.button == 3) {
-                if (video.get_native_poster_path () == null) {
-                    File file = File.new_for_path (video.poster_cache_file);
-                    clear_cover.sensitive = file.query_exists ();
-                    clear_cover.visible = true;
-                } else {
-                    new_cover.visible = false;
-                    clear_cover.visible = false;
-                    separator_cover.visible = false;
-                }
                 context_menu.popup (null, null, null, evt.button, evt.time);
                 return true;
             }
@@ -177,7 +161,7 @@ namespace Audience {
                 Gdk.Pixbuf? pixbuf = video.get_poster_from_file (file.get_file ().get_path ());
                 if (pixbuf != null) {
                     try {
-                        pixbuf.save (video.poster_cache_file, "jpeg");
+                        pixbuf.save (video.video_file.get_path() + ".jpg", "jpeg");
                     } catch (Error e) {
                         warning (e.message);
                     }
@@ -186,14 +170,6 @@ namespace Audience {
             }
 
             file.destroy ();
-        }
-
-        private void clear_cover_from_cache () {
-            File file = File.new_for_path (video.poster_cache_file);
-            if (file.query_exists ()){
-                file.delete_async.begin ();
-                video.initialize_poster.begin ();
-            }
         }
 
         private void rename_title () {
@@ -224,11 +200,7 @@ namespace Audience {
         }
         
         private void move_video_to_trash () {
-            try {
-                video.video_file.trash ();
-            } catch (Error e) {
-                warning (e.message);
-            }
+            video.trash ();
         }
 
         private bool match_keycode (int keyval, uint code) {

@@ -25,7 +25,7 @@ namespace Audience {
         public signal void filter_result_changed (bool has_results);
 
         public Gtk.FlowBox view_movies;
-        Audience.Services.LibraryManager manager;
+        public Audience.Services.LibraryManager manager;
 
         bool poster_initialized = false;
         int items_counter;

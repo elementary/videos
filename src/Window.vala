@@ -276,15 +276,17 @@ public class Audience.Window : Gtk.Window {
                 show_library ();
                 return true;
             }
-        } else if (main_stack.get_visible_child () == library_page && !search_entry.is_focus && e.str.strip ().length > 0) {
-            if (!library_page.has_child_in_edit_mode ()) {
-                search_entry.grab_focus ();
-            }
         } else if (search_entry.visible) {
             if (ctrl_pressed && match_keycode (Gdk.Key.f, keycode)) {
                 search_entry.grab_focus ();
+            } else if (ctrl_pressed && match_keycode (Gdk.Key.z, keycode)) {
+                library_page.manager.undo_delete_item ();
             } else if (match_keycode (Gdk.Key.Escape, keycode)) {
                 search_entry.text = "";
+            } else if (!search_entry.is_focus && e.str.strip ().length > 0) {
+                if (!library_page.has_child_in_edit_mode ()) {
+                    search_entry.grab_focus ();
+                }
             }
         }
 
