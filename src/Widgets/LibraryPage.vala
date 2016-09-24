@@ -91,7 +91,6 @@ namespace Audience {
             view_movies.set_sort_func (video_sort_func);
             view_movies.set_filter_func (video_filter_func);
 
-
             notification_label = new Gtk.Label ("");
             var restore_button = new Gtk.Button.with_label (_("Restore"));
             restore_button.clicked.connect (() => {
@@ -103,6 +102,9 @@ namespace Audience {
             close_button.get_style_context ().add_class ("close-button");
             close_button.clicked.connect (() => {
                 app_notification.reveal_child = false;
+                if (!has_child ()) {
+                    Audience.App.get_instance().mainwindow.navigate_back ();
+                }
             });
 
             var notification_box = new Gtk.Grid ();

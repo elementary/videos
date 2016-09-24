@@ -125,7 +125,6 @@ namespace Audience {
             move_to_trash.activate.connect ( move_video_to_trash );
 
             context_menu.append (new_cover);
-            context_menu.append (new Gtk.SeparatorMenuItem ());
             context_menu.append (new_title);
             context_menu.append (new Gtk.SeparatorMenuItem ());
             context_menu.append (move_to_trash);
