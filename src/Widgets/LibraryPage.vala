@@ -59,15 +59,6 @@ namespace Audience {
             view_movies.valign = Gtk.Align.START;
             view_movies.selection_mode = Gtk.SelectionMode.NONE;
             view_movies.child_activated.connect (play_video);
-            view_movies.button_press_event.connect((event) => {
-                if (has_child_in_edit_mode ()) {
-                    Audience.LibraryItem? selected = get_child_in_edit_mode ();
-                    if(selected != null) {
-                        selected.commit_new_title ();
-                        view_movies.grab_focus ();
-                    }
-                }
-            });
 
             scrolled_window.add (view_movies);
 
@@ -210,21 +201,6 @@ namespace Audience {
                 }
             }
             return false;
-        }
-
-        public bool has_child_in_edit_mode () {
-             return get_child_in_edit_mode != null;
-        }
-
-        public Audience.LibraryItem? get_child_in_edit_mode () {
-             if (view_movies.get_child_at_index (0) != null) {
-                foreach (unowned Gtk.Widget child in view_movies.get_children ()) {
-                    if ((child as Audience.LibraryItem).is_edit_mode_enabled) {
-                        return child as Audience.LibraryItem;
-                    }
-                 }
-             }
-             return null;
         }
     }
 }

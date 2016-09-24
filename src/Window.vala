@@ -284,9 +284,7 @@ public class Audience.Window : Gtk.Window {
             } else if (match_keycode (Gdk.Key.Escape, keycode)) {
                 search_entry.text = "";
             } else if (!search_entry.is_focus && e.str.strip ().length > 0) {
-                if (!library_page.has_child_in_edit_mode ()) {
-                    search_entry.grab_focus ();
-                }
+                search_entry.grab_focus ();
             }
         }
 

@@ -28,19 +28,14 @@ namespace Audience {
 
         Gtk.Image poster;
 
-        Gtk.Stack title_stack;
         Gtk.Label title_label;
-        Gtk.Entry title_entry;
 
         Gtk.Spinner spinner;
         Gtk.Grid spinner_container;
 
         Gtk.Menu context_menu;
         Gtk.MenuItem new_cover;
-        Gtk.MenuItem new_title;
         Gtk.MenuItem move_to_trash;
-
-        public bool is_edit_mode_enabled { get { return title_stack.get_visible_child () == title_entry; } }
 
         public LibraryItem (Audience.Objects.Video video) {
             Object (video: video);
@@ -102,30 +97,16 @@ namespace Audience {
             title_label.set_line_wrap (true);
             title_label.max_width_chars = 0;
 
-            title_entry = new Gtk.Entry ();
-            title_entry.set_alignment (0.5f);
-            title_entry.key_press_event.connect ( renaming_title );
-            title_entry.focus_out_event.connect ((event) => { reset_renaming (); });
-
-            title_stack = new Gtk.Stack ();
-            title_stack.expand = true;
-            title_stack.add_named (title_label, "label");
-            title_stack.add_named (title_entry, "entry");
-            title_stack.transition_type = Gtk.StackTransitionType.NONE;
-
             grid.attach (spinner_container, 0, 0, 1, 1);
-            grid.attach (title_stack, 0, 1, 1 ,1);
+            grid.attach (title_label, 0, 1, 1 ,1);
 
             context_menu = new Gtk.Menu ();
             new_cover = new Gtk.MenuItem.with_label (_("Set Artwork"));
             new_cover.activate.connect ( set_new_cover );
-            new_title = new Gtk.MenuItem.with_label (_("Rename"));
-            new_title.activate.connect ( rename_title );
             move_to_trash = new Gtk.MenuItem.with_label (_("Move to Trash"));
             move_to_trash.activate.connect ( move_video_to_trash );
 
             context_menu.append (new_cover);
-            context_menu.append (new_title);
             context_menu.append (new Gtk.SeparatorMenuItem ());
             context_menu.append (move_to_trash);
             context_menu.show_all ();
@@ -161,6 +142,7 @@ namespace Audience {
                 if (pixbuf != null) {
                     try {
                         pixbuf.save (video.video_file.get_path() + ".jpg", "jpeg");
+                        video.set_new_poster (pixbuf);
                     } catch (Error e) {
                         warning (e.message);
                     }
@@ -171,39 +153,8 @@ namespace Audience {
             file.destroy ();
         }
 
-        private void rename_title () {
-            title_stack.set_visible_child (title_entry);
-            title_entry.text = video.title;
-            title_entry.grab_focus ();
-        }
-
-        private bool renaming_title (Gdk.EventKey key) {
-            if (match_keycode (Gdk.Key.Escape, key.hardware_keycode)) {
-                reset_renaming ();
-                return true;
-            } else if (match_keycode (Gdk.Key.Return, key.hardware_keycode)) {
-                commit_new_title ();
-                return true;
-            }
-
-            return false;
-        }
-
-        public void commit_new_title () {
-            video.rename_file (title_entry.text);
-            title_stack.set_visible_child (title_label);
-        }
-
-        private void reset_renaming () {
-            title_stack.set_visible_child (title_label);
-        }
-
         private void move_video_to_trash () {
             video.trash ();
-        }
-
-        private bool match_keycode (int keyval, uint code) {
-            return Audience.App.get_instance ().mainwindow.match_keycode (keyval, code);
         }
     }
 }

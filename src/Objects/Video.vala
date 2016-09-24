@@ -199,21 +199,10 @@ namespace Audience.Objects {
 
             return null;
         }
-
-        public void rename_file (string new_title) {
-            string new_file_name = new_title.strip ();
-
-            string src_path = this.video_file.get_path ();
-            string dest_path = Path.build_filename (Path.get_dirname (src_path), Path.get_basename (src_path).replace (title, new_file_name));
-
-            File dest = File.new_for_path (dest_path);
-            if (!dest.query_exists ()) {
-                try {
-                    video_file.move (dest, FileCopyFlags.NONE);
-                } catch (Error e) {
-                    warning (e.message);
-                }
-            }
+        
+        public void set_new_poster (Gdk.Pixbuf? new_poster) {
+            manager.clear_cache (this);
+            poster = new_poster;
         }
 
         public void trash () {
