@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-23 13:59-0700\n"
+"POT-Creation-Date: 2016-09-24 13:27-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,4 +45,16 @@ msgid "Play queue"
 msgstr ""
 
 msgid "Thumbnail previews on the seek bar"
+msgstr ""
+
+msgid "Added a library view with search"
+msgstr ""
+
+msgid "Fixed a bug that prevents keyboard navigation"
+msgstr ""
+
+msgid "Translation updates"
+msgstr ""
+
+msgid "Minor bug fixes"
 msgstr ""
