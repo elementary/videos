@@ -207,12 +207,16 @@ namespace Audience {
                 reset_renaming ();
                 return true;
             } else if (match_keycode (Gdk.Key.Return, key.hardware_keycode)) {
-                video.rename_file (title_entry.text);
-                title_stack.set_visible_child (title_label);
+                commit_new_title ();
                 return true;
             }
 
             return false;
+        }
+        
+        public void commit_new_title () {
+            video.rename_file (title_entry.text);
+            title_stack.set_visible_child (title_label);
         }
         
         private void reset_renaming () {
