@@ -131,34 +131,6 @@ namespace Audience.Services {
             has_items = true;
         }
 
-        public string? get_thumbnail_path (File file) {
-            if (!file.is_native ()) {
-                return null;
-            }
-            string? path = null;
-            try {
-                var info = file.query_info (FileAttribute.THUMBNAIL_PATH + "," + FileAttribute.THUMBNAILING_FAILED, FileQueryInfoFlags.NONE);
-                path = info.get_attribute_as_string (FileAttribute.THUMBNAIL_PATH);
-                var failed = info.get_attribute_boolean (FileAttribute.THUMBNAILING_FAILED);
-
-                if (failed || path == null) {
-                    return null;
-                }
-
-                path = path.replace ("normal", "large");
-
-                File large_thumbnail = File.new_for_path (path);
-                if (!large_thumbnail.query_exists ()) {
-                    return null;
-                }
-            } catch (Error e) {
-                warning (e.message);
-                return null;
-            }
-
-            return path;
-        }
-
         public void clear_cache (Audience.Objects.Video video) {
             File file = File.new_for_path (video.poster_cache_file);
             if (file.query_exists ()) {
@@ -191,17 +163,21 @@ namespace Audience.Services {
         public void undo_delete_item () {
             if (trashed_files.size > 0) {
                 Audience.Objects.Video restore = trashed_files.last ();
-                File trashed_file = File.new_for_uri ("trash:///");
-                var children = trashed_file.enumerate_children (FileAttribute.TRASH_ORIG_PATH, 0);
-                FileInfo file_info;
-                while ((file_info = children.next_file ()) != null) {
-                    string orinal_path = file_info.get_attribute_as_string (FileAttribute.TRASH_ORIG_PATH);
-                    if (orinal_path == restore.video_file.get_path ()) {
-                        File restore_file = File.new_for_uri ("trash:///" + restore.video_file.get_basename ());
-                        restore_file.move (restore.video_file, FileCopyFlags.NONE);
-                        trashed_files.remove (restore);
-                        return;
+                File trash = File.new_for_uri ("trash:///");
+                try {
+                    var children = trash.enumerate_children (FileAttribute.TRASH_ORIG_PATH, 0);
+                    FileInfo file_info;
+                    while ((file_info = children.next_file ()) != null) {
+                        string orinal_path = file_info.get_attribute_as_string (FileAttribute.TRASH_ORIG_PATH);
+                        if (orinal_path == restore.video_file.get_path ()) {
+                            File restore_file = File.new_for_uri ("trash:///" + restore.video_file.get_basename ());
+                            restore_file.move (restore.video_file, 0);
+                            trashed_files.remove (restore);
+                            return;
+                        }
                     }
+                } catch (Error e) {
+                    error (e.message);
                 }
             }
         }

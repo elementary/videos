@@ -39,6 +39,7 @@ namespace Audience.Objects {
         public string poster_cache_file { get; private set; }
 
         public string hash { get; construct set; }
+        public string thumbnail_large_path { get; construct set;}
 
         public Video (string directory, string file, string mime_type) {
             Object (directory: directory, file: file, mime_type: mime_type);
@@ -53,8 +54,9 @@ namespace Audience.Objects {
             this.extract_metadata ();
             video_file = File.new_for_path (this.get_path ());
 
-            hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, this.get_path (), this.get_path ().length);
+            hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_uri (), video_file.get_uri ().length);
 
+            thumbnail_large_path = Path.build_filename (GLib.Environment.get_user_cache_dir (),"thumbnails", "large", hash + ".png");
             poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash + ".jpg");
 
             notify["poster"].connect (() => {
@@ -112,9 +114,8 @@ namespace Audience.Objects {
                 }
 
                 // Check if THUMBNAIL exists
-                string? thumbnail_path = manager.get_thumbnail_path (video_file);
-                if (thumbnail_path != null) {
-                    pixbuf = get_poster_from_file (thumbnail_path);
+                if (File.new_for_path (thumbnail_large_path).query_exists ()) {
+                    pixbuf = get_poster_from_file (thumbnail_large_path);
                     Idle.add ((owned) callback);
                     return null;
                 }
@@ -144,11 +145,8 @@ namespace Audience.Objects {
         }
 
         private void dbus_finished (uint heandle) {
-            if (poster == null) {
-                string? thumbnail_path = manager.get_thumbnail_path (video_file);
-                if (thumbnail_path != null) {
-                    poster = get_poster_from_file (thumbnail_path);
-                }
+            if (poster == null && File.new_for_path (thumbnail_large_path).query_exists ()) {
+                poster = get_poster_from_file (thumbnail_large_path);
             }
         }
 
@@ -217,7 +215,7 @@ namespace Audience.Objects {
                 }
             }
         }
-        
+
         public void trash () {
             try {
                 video_file.trash ();
