@@ -130,6 +130,7 @@ namespace Audience {
             context_menu.append (new_cover);
             context_menu.append (clear_cover);
             context_menu.append (new_title);
+            context_menu.append (new Gtk.SeparatorMenuItem ());
             context_menu.append (move_to_trash);
             context_menu.show_all ();
 
