@@ -189,16 +189,16 @@ namespace Audience {
 
             return false;
         }
-        
+
         public void commit_new_title () {
             video.rename_file (title_entry.text);
             title_stack.set_visible_child (title_label);
         }
-        
+
         private void reset_renaming () {
             title_stack.set_visible_child (title_label);
         }
-        
+
         private void move_video_to_trash () {
             video.trash ();
         }

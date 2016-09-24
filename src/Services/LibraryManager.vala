@@ -27,6 +27,7 @@ namespace Audience.Services {
 
         public signal void video_file_detected (Audience.Objects.Video video);
         public signal void video_file_deleted (string path);
+        public signal void video_moved_to_trash (Audience.Objects.Video video);
         public signal void finished ();
 
         public Regex regex_year { get; construct set; }
@@ -158,6 +159,7 @@ namespace Audience.Services {
 
         private void deleted_items (Audience.Objects.Video video) {
             trashed_files.add (video);
+            video_moved_to_trash (video);
         }
 
         public void undo_delete_item () {
