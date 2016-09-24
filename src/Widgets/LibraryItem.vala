@@ -38,6 +38,7 @@ namespace Audience {
         Gtk.Menu context_menu;
         Gtk.MenuItem new_cover;
         Gtk.MenuItem clear_cover;
+        Gtk.SeparatorMenuItem separator_cover;
         Gtk.MenuItem new_title;
         Gtk.MenuItem move_to_trash;
 
@@ -127,8 +128,11 @@ namespace Audience {
             move_to_trash = new Gtk.MenuItem.with_label (_("Move to Trash"));
             move_to_trash.activate.connect ( move_video_to_trash );
 
+            separator_cover = new Gtk.SeparatorMenuItem ();
+
             context_menu.append (new_cover);
             context_menu.append (clear_cover);
+            context_menu.append (separator_cover);
             context_menu.append (new_title);
             context_menu.append (new Gtk.SeparatorMenuItem ());
             context_menu.append (move_to_trash);
@@ -150,6 +154,7 @@ namespace Audience {
                 } else {
                     new_cover.visible = false;
                     clear_cover.visible = false;
+                    separator_cover.visible = false;
                 }
                 context_menu.popup (null, null, null, evt.button, evt.time);
                 return true;
