@@ -39,6 +39,7 @@ namespace Audience {
         Gtk.MenuItem new_cover;
         Gtk.MenuItem clear_cover;
         Gtk.MenuItem new_title;
+        Gtk.MenuItem move_to_trash;
 
         public bool is_edit_mode_enabled { get { return title_stack.get_visible_child () == title_entry; } }
 
@@ -123,10 +124,13 @@ namespace Audience {
             clear_cover.activate.connect ( clear_cover_from_cache );
             new_title = new Gtk.MenuItem.with_label (_("Rename"));
             new_title.activate.connect ( rename_title );
+            move_to_trash = new Gtk.MenuItem.with_label (_("Move to Trash"));
+            move_to_trash.activate.connect ( move_video_to_trash );
 
             context_menu.append (new_cover);
             context_menu.append (clear_cover);
             context_menu.append (new_title);
+            context_menu.append (move_to_trash);
             context_menu.show_all ();
 
             event_box = new Gtk.EventBox ();
@@ -207,6 +211,14 @@ namespace Audience {
         
         private void reset_renaming () {
             title_stack.set_visible_child (title_label);
+        }
+        
+        private void move_video_to_trash () {
+            try {
+                video.video_file.trash ();
+            } catch (Error e) {
+                warning (e.message);
+            }
         }
 
         private bool match_keycode (int keyval, uint code) {

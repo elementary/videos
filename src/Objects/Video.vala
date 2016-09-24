@@ -209,7 +209,11 @@ namespace Audience.Objects {
 
             File dest = File.new_for_path (dest_path);
             if (!dest.query_exists ()) {
-                video_file.move (dest, FileCopyFlags.NONE);
+                try {
+                    video_file.move (dest, FileCopyFlags.NONE);
+                } catch (Error e) {
+                    warning (e.message);
+                }
             }
         }
     }
