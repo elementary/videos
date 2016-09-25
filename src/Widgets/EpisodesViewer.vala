@@ -19,26 +19,20 @@
  *
  */
 
-namespace Audience.Dialogs {
-    public class EpisodesViewer : Gtk.Dialog {
-
-        public Gee.ArrayList<Audience.Objects.Video> episodes {get; construct set;}
+namespace Audience {
+    public class EpisodesViewer : Gtk.Grid {
 
         Gtk.Label container_label;
         Gtk.Image poster;
-        Gtk.Grid grid;
         Gtk.ScrolledWindow scrolled_window;
         Gtk.FlowBox view_episodes;
 
-        public EpisodesViewer (Gee.ArrayList<Audience.Objects.Video> episodes) {
-            Object (episodes: episodes);
-        }
 
         construct {
-            set_default_size (700, 720);
-            poster = new Gtk.Image.from_pixbuf (episodes.first ().poster);
+            poster = new Gtk.Image ();
             poster.margin = 24;
-            poster.margin_top = 12;
+            poster.margin_right = 0;
+            poster.valign = Gtk.Align.START;
             poster.get_style_context ().add_class ("card");
 
             view_episodes = new Gtk.FlowBox ();
@@ -57,27 +51,26 @@ namespace Audience.Dialogs {
             container_label.wrap = true;
             container_label.valign = Gtk.Align.CENTER;
             container_label.set_max_width_chars (30);
-            container_label.label = episodes.first ().container;
+
+            container_label.margin_right = 12;
 
             scrolled_window = new Gtk.ScrolledWindow (null, null);
             scrolled_window.expand = true;
             scrolled_window.add (view_episodes);
 
-            grid = new Gtk.Grid ();
-            grid.expand = true;
-            grid.attach (poster, 0, 0, 1, 1);
-            grid.attach (container_label, 1, 0, 1, 1);
-            grid.attach (scrolled_window, 0, 1, 2, 1);
-            crate_episods_items ();
-
-            Gtk.Box content = get_content_area () as Gtk.Box;
-            content.pack_start (grid);
+            expand = true;
+            attach (poster, 0, 1, 1, 1);
+            attach (container_label, 0, 0, 2, 1);
+            attach (scrolled_window, 1, 1, 1, 1);
         }
 
-        private void crate_episods_items () {
+        public void set_episodes_items (Gee.ArrayList<Audience.Objects.Video> episodes) {
             foreach (Audience.Objects.Video episode in episodes) {
                 view_episodes.add (new Audience.EpisodeItem (episode));
             }
+
+            poster.pixbuf = episodes.first ().poster;
+            container_label.label = episodes.first ().container;
         }
 
         private int episode_sort_func (Gtk.FlowBoxChild child1, Gtk.FlowBoxChild child2) {
@@ -95,7 +88,6 @@ namespace Audience.Dialogs {
             if (selected.video.video_file.query_exists ()) {
                 bool from_beginning = selected.video.video_file.get_uri () != settings.current_video;
                 App.get_instance ().mainwindow.play_file (selected.video.video_file.get_uri (), from_beginning);
-                close();
             }
         }
     }

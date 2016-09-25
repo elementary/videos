@@ -23,6 +23,7 @@ namespace Audience {
     public class LibraryPage : Gtk.Grid {
 
         public signal void filter_result_changed (bool has_results);
+        public signal void show_episodes (Gee.ArrayList<Audience.Objects.Video> episodes);
 
         public Gtk.FlowBox view_movies;
         public Audience.Services.LibraryManager manager;
@@ -102,8 +103,7 @@ namespace Audience {
                     remove_item.begin (selected);
                 }
             } else {
-                Audience.Dialogs.EpisodesViewer episodes = new Audience.Dialogs.EpisodesViewer (selected.episodes);
-                episodes.show_all ();
+                show_episodes (selected.episodes);
             }
         }
 

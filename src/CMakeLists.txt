@@ -60,8 +60,8 @@ vala_precompile (VALA_C ${EXEC_NAME}
     Widgets/LibraryPage.vala
     Widgets/LibraryItem.vala
     Widgets/NavigationButton.vala
-    Widgets/Dialogs/EpisodesViewer.vala
-    Widgets/Dialogs/EpisodeItem.vala
+    Widgets/EpisodesViewer.vala
+    Widgets/EpisodeItem.vala
     Services/Inhibitor.vala
     Services/LibraryManager.vala
     Services/Thubnailer.vala

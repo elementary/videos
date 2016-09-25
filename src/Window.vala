@@ -27,6 +27,7 @@ public class Audience.Window : Gtk.Window {
     private PlayerPage player_page;
     private WelcomePage welcome_page;
     private LibraryPage library_page;
+    private EpisodesViewer episodes_page;
     private Granite.Widgets.AlertView alert_view;
     private NavigationButton navigation_button;
     private ZeitgeistManager zeitgeist_manager;
@@ -89,6 +90,11 @@ public class Audience.Window : Gtk.Window {
                 hide_alert ();
             }
         });
+        library_page.show_episodes.connect ((episodes) => {
+            episodes_page.set_episodes_items (episodes);
+            main_stack.set_visible_child (episodes_page);
+        });
+        
         welcome_page = new WelcomePage ();
 
         player_page = new PlayerPage ();
@@ -113,12 +119,15 @@ public class Audience.Window : Gtk.Window {
         alert_view.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
         alert_view.set_vexpand (true);
         alert_view.no_show_all = true;
+        
+        episodes_page = new EpisodesViewer ();
 
         main_stack = new Gtk.Stack ();
         main_stack.expand = true;
         main_stack.add_named (welcome_page, "welcome");
         main_stack.add_named (player_page, "player");
         main_stack.add_named (library_page, "library");
+        main_stack.add_named (episodes_page, "episodes");
         main_stack.add_named (alert_view, "alert");
         main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
