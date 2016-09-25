@@ -63,7 +63,7 @@ namespace Audience.Services {
             }
             thumbler = new DbusThumbnailer ();
 
-            finished.connect (() => { clear_unused_cache_files.begin (); });
+            //finished.connect (() => { clear_unused_cache_files.begin (); });
         }
 
         public void begin_scan () {
