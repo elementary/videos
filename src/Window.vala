@@ -38,6 +38,7 @@ public class Audience.Window : Gtk.Window {
     // For better translation
     const string navigation_button_welcomescreen = N_("Back");
     const string navigation_button_library = N_("Library");
+    const string navigation_button_episodes = N_("Episodes");
 
     public signal void media_volumes_changed ();
 
@@ -91,6 +92,7 @@ public class Audience.Window : Gtk.Window {
             }
         });
         library_page.show_episodes.connect ((episodes) => {
+            navigation_button.label = navigation_button_library;
             episodes_page.set_episodes_items (episodes);
             main_stack.set_visible_child (episodes_page);
         });
@@ -457,7 +459,11 @@ public class Audience.Window : Gtk.Window {
 
     public void play_file (string uri, bool from_beginning = true) {
         if (navigation_button.visible) {
-            navigation_button.label = navigation_button_library;
+            if (navigation_button.label == navigation_button_library) {
+                navigation_button.label = navigation_button_episodes;
+            } else {
+                navigation_button.label = navigation_button_library;
+            }
         } else {
             navigation_button.show ();
             navigation_button.label = navigation_button_welcomescreen;
@@ -491,6 +497,9 @@ public class Audience.Window : Gtk.Window {
         if (navigation_button.label == navigation_button_library) {
             navigation_button.label = navigation_button_welcomescreen;
             main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
+        } else if (navigation_button.label == navigation_button_episodes) {
+            navigation_button.label = navigation_button_library;
+            main_stack.set_visible_child_full ("episodes", Gtk.StackTransitionType.SLIDE_RIGHT);
         } else {
             navigation_button.hide ();
             main_stack.set_visible_child (welcome_page);
