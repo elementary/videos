@@ -146,7 +146,7 @@ namespace Audience.Services {
                     FileEnumerator children = directory.enumerate_children_async.end (res);
                     FileInfo file_info;
 
-                    while ((file_info = children.next_file ()) != null && !cancel_async_clear) {
+                    while ((file_info = children.next_file ()) != null) {
                         if (!poster_hash.contains (file_info.get_name ())) {
                             File to_delete = children.get_child (file_info);
                             to_delete.delete_async.begin ();
