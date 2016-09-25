@@ -24,12 +24,9 @@ namespace Audience {
 
         public signal void filter_result_changed (bool has_results);
 
-        Gtk.Revealer app_notification;
-        Gtk.Label notification_label;
-        Gtk.ScrolledWindow scrolled_window;
         public Gtk.FlowBox view_movies;
         public Audience.Services.LibraryManager manager;
-
+        private Gtk.ScrolledWindow scrolled_window;
         bool poster_initialized = false;
         int items_counter;
         string query;
@@ -66,9 +63,9 @@ namespace Audience {
             manager.video_file_detected.connect (add_item);
             manager.video_file_deleted.connect (remove_item_from_path);
             manager.video_moved_to_trash.connect ((video) => {
-                notification_label.label = "Video '" + video.title + "' Removed.";
-                app_notification.reveal_child = true;
+                Audience.App.get_instance ().mainwindow.set_app_notification (_("Video '%s' Removed.").printf (video.title));
             });
+
             manager.begin_scan ();
 
             map.connect (() => {
@@ -82,43 +79,7 @@ namespace Audience {
             view_movies.set_sort_func (video_sort_func);
             view_movies.set_filter_func (video_filter_func);
 
-            notification_label = new Gtk.Label ("");
-            var restore_button = new Gtk.Button.with_label (_("Restore"));
-            restore_button.clicked.connect (() => {
-                manager.undo_delete_item ();
-                app_notification.reveal_child = false;
-            });
-
-            var close_button = new Gtk.Button.from_icon_name ("close-symbolic", Gtk.IconSize.MENU);
-            close_button.get_style_context ().add_class ("close-button");
-            close_button.clicked.connect (() => {
-                app_notification.reveal_child = false;
-                if (!has_child ()) {
-                    Audience.App.get_instance().mainwindow.navigate_back ();
-                }
-            });
-
-            var notification_box = new Gtk.Grid ();
-            notification_box.column_spacing = 12;
-            notification_box.add (close_button);
-            notification_box.add (notification_label);
-            notification_box.add (restore_button);
-
-            var notification_frame = new Gtk.Frame (null);
-            notification_frame.get_style_context ().add_class ("app-notification");
-            notification_frame.add (notification_box);
-
-            app_notification = new Gtk.Revealer ();
-            app_notification.margin = 3;
-            app_notification.halign = Gtk.Align.CENTER;
-            app_notification.valign = Gtk.Align.START;
-            app_notification.add (notification_frame);
-
-            var overlay = new Gtk.Overlay ();
-            overlay.add_overlay (scrolled_window);
-            overlay.add_overlay (app_notification);
-
-            add (overlay);
+            add (scrolled_window);
         }
 
         private void add_item (Audience.Objects.Video video) {
@@ -152,6 +113,10 @@ namespace Audience {
                 if ((child as LibraryItem).video.video_file.get_path ().has_prefix (path)) {
                     remove_item.begin (child as LibraryItem);
                 }
+            }
+            
+            if (!has_child ()) {
+                Audience.App.get_instance ().mainwindow.navigate_back ();
             }
         }
 
@@ -193,7 +158,7 @@ namespace Audience {
         }
 
         public bool has_child () {
-            if (view_movies.get_child_at_index (0) != null) {
+            if (view_movies.get_children ().length () > 0) {
                foreach (unowned Gtk.Widget child in view_movies.get_children ()) {
                    if (child.get_child_visible ()) {
                        return true;
