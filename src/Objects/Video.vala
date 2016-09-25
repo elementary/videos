@@ -44,7 +44,7 @@ namespace Audience.Objects {
         public string thumbnail_large_path { get; construct set;}
         public string thumbnail_normal_path { get; construct set;}
 
-        public string container { get; construct set; }
+        public string container { get; construct set; default = ""; }
 
         public Video (string directory, string file, string mime_type) {
             Object (directory: directory, file: file, mime_type: mime_type);
@@ -59,7 +59,9 @@ namespace Audience.Objects {
             extract_metadata ();
             video_file = File.new_for_path (this.get_path ());
 
-            container = Path.get_basename (directory);
+            if (directory != Audience.settings.library_folder) {
+                container = Path.get_basename (directory);
+            }
 
             hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_uri (), video_file.get_uri ().length);
 
@@ -160,13 +162,17 @@ namespace Audience.Objects {
         private void dbus_finished (uint heandle) {
             set_pixbufs ();
         }
-        
+
         public void set_pixbufs () {
             if (poster == null && File.new_for_path (thumbnail_large_path).query_exists ()) {
                 poster = get_poster_from_file (thumbnail_large_path);
             }
             if (thumbnail == null && File.new_for_path (thumbnail_normal_path).query_exists ()) {
-                thumbnail = new Gdk.Pixbuf.from_file (thumbnail_normal_path);
+                try {
+                    thumbnail = new Gdk.Pixbuf.from_file (thumbnail_normal_path);
+                } catch (Error e) {
+                    warning (e.message);
+                }
             }
         }
 

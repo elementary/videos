@@ -109,7 +109,7 @@ namespace Audience {
 
         public Audience.LibraryItem get_container (Audience.Objects.Video video) {
             foreach (var child in view_movies.get_children ()) {
-                if ((child as LibraryItem).video.container == video.container) {
+                if (video.container != null && (child as LibraryItem).video.container == video.container) {
                     return child as LibraryItem;
                 }
             }
@@ -153,7 +153,7 @@ namespace Audience {
             }
 
             string[] filter_elements = query.split (" ");
-            var video_title = (child as LibraryItem).video.title;
+            var video_title = (child as LibraryItem).get_title ();
 
             foreach (string filter_element in filter_elements) {
                 if (!video_title.down ().contains (filter_element.down ())) {
@@ -167,7 +167,7 @@ namespace Audience {
             var item1 = child1 as LibraryItem;
             var item2 = child2 as LibraryItem;
             if (item1 != null && item2 != null) {
-                return item1.video.file.collate (item2.video.file);
+                return item1.get_title ().collate (item2.get_title ());
             }
             return 0;
         }

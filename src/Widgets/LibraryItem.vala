@@ -176,5 +176,9 @@ namespace Audience {
                 title_label.label = video.container;
             }
         }
+        
+        public string get_title () {
+            return title_label.label;
+        }
     }
 }

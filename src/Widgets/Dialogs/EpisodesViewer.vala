@@ -37,9 +37,10 @@ namespace Audience.Dialogs {
         construct {
             set_default_size (700, 720);
             poster = new Gtk.Image.from_pixbuf (episodes.first ().poster);
-            poster.margin = 12;
+            poster.margin = 24;
+            poster.margin_top = 12;
             poster.get_style_context ().add_class ("card");
-             
+
             view_episodes = new Gtk.FlowBox ();
             view_episodes.margin = 24;
             view_episodes.homogeneous = true;
@@ -52,7 +53,7 @@ namespace Audience.Dialogs {
 
             container_label = new Gtk.Label (null);
             container_label.hexpand = true;
-            container_label.get_style_context ().add_class ("h1"); 
+            container_label.get_style_context ().add_class ("h1");
             container_label.wrap = true;
             container_label.valign = Gtk.Align.CENTER;
             container_label.set_max_width_chars (30);
@@ -87,7 +88,7 @@ namespace Audience.Dialogs {
             }
             return 0;
         }
-        
+
         private void play_video (Gtk.FlowBoxChild item) {
             var selected = (item as Audience.EpisodeItem);
 

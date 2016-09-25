@@ -58,14 +58,5 @@ namespace Audience {
             add (grid);
             show_all ();
         }
-
-        private int video_sort_func (Gtk.FlowBoxChild child1, Gtk.FlowBoxChild child2) {
-            var item1 = child1 as LibraryItem;
-            var item2 = child2 as LibraryItem;
-            if (item1 != null && item2 != null) {
-                return item1.video.file.collate (item2.video.file);
-            }
-            return 0;
-        }
     }
 }
