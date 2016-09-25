@@ -66,7 +66,13 @@ public class Audience.Window : Gtk.Window {
         search_entry = new Gtk.SearchEntry ();
         search_entry.placeholder_text = _("Search Videos");
         search_entry.margin_right = 5;
-        search_entry.search_changed.connect (() => { library_page.filter (search_entry.text); });
+        search_entry.search_changed.connect (() => {
+                if (main_stack.get_visible_child () == episodes_page ) {
+                    episodes_page.filter (search_entry.text);
+                } else {
+                    library_page.filter (search_entry.text);
+                }
+            });
 
         header.pack_end (search_entry);
 
@@ -78,16 +84,20 @@ public class Audience.Window : Gtk.Window {
             if (search_entry.text != "" && !library_page.has_child ()) {
                 search_entry.text = "";
             }
+            if (library_page.last_filter != "") {
+                search_entry.text = library_page.last_filter;
+                library_page.last_filter = "";
+            }
         });
         library_page.unmap.connect (() => {
-            if (main_stack.get_visible_child () != alert_view) {
+            if (main_stack.get_visible_child () != alert_view && main_stack.get_visible_child () != episodes_page) {
                 search_entry.visible = false;
             }
         });
         library_page.filter_result_changed.connect ((has_result) => {
             if (!has_result) {
                 show_alert (_("No Results for “%s”".printf (search_entry.text)), _("Try changing search terms."), "edit-find-symbolic");
-            } else if (main_stack.get_visible_child () != library_page) {
+            } else if (main_stack.get_visible_child () != library_page ) {
                 hide_alert ();
             }
         });
@@ -96,6 +106,7 @@ public class Audience.Window : Gtk.Window {
             episodes_page.set_episodes_items (episodes);
             main_stack.set_visible_child (episodes_page);
             this.title = title;
+            search_entry.text = "";
         });
 
         welcome_page = new WelcomePage ();

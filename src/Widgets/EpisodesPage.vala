@@ -26,8 +26,12 @@ namespace Audience {
         Gtk.ScrolledWindow scrolled_window;
         Gtk.FlowBox view_episodes;
 
+        string query;
+
 
         construct {
+            query = "";
+            
             poster = new Gtk.Image ();
             poster.margin = 24;
             poster.margin_right = 0;
@@ -42,6 +46,7 @@ namespace Audience {
             view_episodes.valign = Gtk.Align.START;
             view_episodes.selection_mode = Gtk.SelectionMode.NONE;
             view_episodes.set_sort_func (episode_sort_func);
+            view_episodes.set_filter_func (episodes_filter_func);
             view_episodes.child_activated.connect (play_video);
 
             scrolled_window = new Gtk.ScrolledWindow (null, null);
@@ -57,7 +62,7 @@ namespace Audience {
             view_episodes.forall ((item)=> {
                 item.dispose ();
             });
-        
+
             foreach (Audience.Objects.Video episode in episodes) {
                 view_episodes.add (new Audience.EpisodeItem (episode));
             }
@@ -81,6 +86,27 @@ namespace Audience {
                 bool from_beginning = selected.video.video_file.get_uri () != settings.current_video;
                 App.get_instance ().mainwindow.play_file (selected.video.video_file.get_uri (), from_beginning);
             }
+        }
+
+        public void filter (string text) {
+             query = text.strip ();
+             view_episodes.invalidate_filter ();
+        }
+        
+        private bool episodes_filter_func (Gtk.FlowBoxChild child) {
+            if (query.length == 0) {
+                return true;
+            }
+
+            string[] filter_elements = query.split (" ");
+            var video_title = (child as EpisodeItem).get_title ();
+
+            foreach (string filter_element in filter_elements) {
+                if (!video_title.down ().contains (filter_element.down ())) {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

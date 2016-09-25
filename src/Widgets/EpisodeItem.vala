@@ -58,5 +58,9 @@ namespace Audience {
             add (grid);
             show_all ();
         }
+        
+        public string get_title () {
+            return title_label.label;
+        }
     }
 }

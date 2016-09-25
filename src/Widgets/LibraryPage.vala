@@ -31,6 +31,8 @@ namespace Audience {
         bool poster_initialized = false;
         int items_counter;
         string query;
+        
+        public string last_filter { get; set; default = ""; }
 
         public bool has_items { get { return items_counter > 0; } }
 
@@ -103,6 +105,7 @@ namespace Audience {
                     remove_item.begin (selected);
                 }
             } else {
+                last_filter = query;
                 show_episodes (selected.get_title (), selected.episodes);
             }
         }
