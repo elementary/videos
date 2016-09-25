@@ -370,7 +370,7 @@ public class Audience.Window : Gtk.Window {
         navigation_button.label = navigation_button_welcomescreen;
         navigation_button.show ();
         main_stack.set_visible_child (library_page);
-        library_page.grab_focus ();
+        library_page.scrolled_window.grab_focus ();
     }
 
     public void run_open_file (bool clear_playlist = false, bool force_play = true) {

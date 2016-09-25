@@ -26,7 +26,7 @@ namespace Audience {
 
         public Gtk.FlowBox view_movies;
         public Audience.Services.LibraryManager manager;
-        private Gtk.ScrolledWindow scrolled_window;
+        public Gtk.ScrolledWindow scrolled_window;
         bool poster_initialized = false;
         int items_counter;
         string query;
