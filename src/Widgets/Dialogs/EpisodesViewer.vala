@@ -24,6 +24,7 @@ namespace Audience.Dialogs {
 
         public Gee.ArrayList<Audience.Objects.Video> episodes {get; construct set;}
 
+        Gtk.Label container_label;
         Gtk.Image poster;
         Gtk.Grid grid;
         Gtk.ScrolledWindow scrolled_window;
@@ -36,7 +37,9 @@ namespace Audience.Dialogs {
         construct {
             set_default_size (700, 720);
             poster = new Gtk.Image.from_pixbuf (episodes.first ().poster);
-
+            poster.margin = 12;
+            poster.get_style_context ().add_class ("card");
+             
             view_episodes = new Gtk.FlowBox ();
             view_episodes.margin = 24;
             view_episodes.homogeneous = true;
@@ -47,6 +50,14 @@ namespace Audience.Dialogs {
             view_episodes.set_sort_func (episode_sort_func);
             view_episodes.child_activated.connect (play_video);
 
+            container_label = new Gtk.Label (null);
+            container_label.hexpand = true;
+            container_label.get_style_context ().add_class ("h1"); 
+            container_label.wrap = true;
+            container_label.valign = Gtk.Align.CENTER;
+            container_label.set_max_width_chars (30);
+            container_label.label = episodes.first ().container;
+
             scrolled_window = new Gtk.ScrolledWindow (null, null);
             scrolled_window.expand = true;
             scrolled_window.add (view_episodes);
@@ -54,7 +65,8 @@ namespace Audience.Dialogs {
             grid = new Gtk.Grid ();
             grid.expand = true;
             grid.attach (poster, 0, 0, 1, 1);
-            grid.attach (scrolled_window, 0, 1, 1, 1);
+            grid.attach (container_label, 1, 0, 1, 1);
+            grid.attach (scrolled_window, 0, 1, 2, 1);
             crate_episods_items ();
 
             Gtk.Box content = get_content_area () as Gtk.Box;

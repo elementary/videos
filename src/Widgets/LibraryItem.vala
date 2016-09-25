@@ -70,7 +70,11 @@ namespace Audience {
             });
 
             video.title_changed.connect (() => {
-                title_label.label = video.title;
+                if (get_episodes_counter () == 1) {
+                    title_label.label = video.title;
+                } else {
+                    title_label.label = video.container;
+                }
                 title_label.show ();
             });
 
@@ -162,6 +166,15 @@ namespace Audience {
 
         private void move_video_to_trash () {
             video.trash ();
+        }
+        
+        public void add_episode (Audience.Objects.Video episode) {
+            episodes.add (episode);
+            if (get_episodes_counter () == 1) {
+                title_label.label = video.title;
+            } else {
+                title_label.label = video.container;
+            }
         }
     }
 }

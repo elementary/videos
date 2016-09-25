@@ -88,7 +88,7 @@ namespace Audience {
                 view_movies.add (new_item);
                 items_counter++;
             }
-            new_item.episodes.add (video);
+            new_item.add_episode (video);
         }
 
         private void play_video (Gtk.FlowBoxChild item) {
