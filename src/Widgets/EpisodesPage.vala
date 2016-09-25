@@ -65,6 +65,10 @@ namespace Audience {
         }
 
         public void set_episodes_items (Gee.ArrayList<Audience.Objects.Video> episodes) {
+            view_episodes.forall ((item)=> {
+                item.dispose ();
+            });
+        
             foreach (Audience.Objects.Video episode in episodes) {
                 view_episodes.add (new Audience.EpisodeItem (episode));
             }
