@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-09-23 13:59-0700\n"
+"POT-Creation-Date: 2016-09-24 18:24-0700\n"
 "PO-Revision-Date: 2016-09-02 08:25+0000\n"
 "Last-Translator: Indrit Bashkimi <indrit.bashkimi@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-09-24 06:52+0000\n"
+"X-Launchpad-Export-Date: 2016-09-25 06:17+0000\n"
 "X-Generator: Launchpad (build 18204)\n"
 
 msgid "Videos"
@@ -45,4 +45,16 @@ msgid "Play queue"
 msgstr ""
 
 msgid "Thumbnail previews on the seek bar"
+msgstr ""
+
+msgid "Added a library view with search"
+msgstr ""
+
+msgid "Fixed a bug that prevents keyboard navigation"
+msgstr ""
+
+msgid "Translation updates"
+msgstr ""
+
+msgid "Minor bug fixes"
 msgstr ""
