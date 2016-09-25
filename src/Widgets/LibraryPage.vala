@@ -20,13 +20,13 @@
  */
 
 namespace Audience {
-    public class LibraryPage : Gtk.ScrolledWindow {
+    public class LibraryPage : Gtk.Grid {
 
         public signal void filter_result_changed (bool has_results);
 
         public Gtk.FlowBox view_movies;
-        Audience.Services.LibraryManager manager;
-
+        public Audience.Services.LibraryManager manager;
+        public Gtk.ScrolledWindow scrolled_window;
         bool poster_initialized = false;
         int items_counter;
         string query;
@@ -45,6 +45,9 @@ namespace Audience {
             query = "";
             items_counter = 0;
 
+            scrolled_window = new Gtk.ScrolledWindow (null, null);
+            scrolled_window.expand = true;
+
             view_movies = new Gtk.FlowBox ();
             view_movies.margin = 24;
             view_movies.homogeneous = true;
@@ -54,9 +57,15 @@ namespace Audience {
             view_movies.selection_mode = Gtk.SelectionMode.NONE;
             view_movies.child_activated.connect (play_video);
 
+            scrolled_window.add (view_movies);
+
             manager = Audience.Services.LibraryManager.get_instance ();
             manager.video_file_detected.connect (add_item);
             manager.video_file_deleted.connect (remove_item_from_path);
+            manager.video_moved_to_trash.connect ((video) => {
+                Audience.App.get_instance ().mainwindow.set_app_notification (_("Video '%s' Removed.").printf (video.title));
+            });
+
             manager.begin_scan ();
 
             map.connect (() => {
@@ -70,7 +79,7 @@ namespace Audience {
             view_movies.set_sort_func (video_sort_func);
             view_movies.set_filter_func (video_filter_func);
 
-            add (view_movies);
+            add (scrolled_window);
         }
 
         private void add_item (Audience.Objects.Video video) {
@@ -104,6 +113,10 @@ namespace Audience {
                 if ((child as LibraryItem).video.video_file.get_path ().has_prefix (path)) {
                     remove_item.begin (child as LibraryItem);
                 }
+            }
+            
+            if (!has_child ()) {
+                Audience.App.get_instance ().mainwindow.navigate_back ();
             }
         }
 
@@ -143,9 +156,9 @@ namespace Audience {
             view_movies.invalidate_filter ();
             filter_result_changed (has_child ());
         }
-        
+
         public bool has_child () {
-            if (view_movies.get_child_at_index (0) != null) {
+            if (view_movies.get_children ().length () > 0) {
                foreach (unowned Gtk.Widget child in view_movies.get_children ()) {
                    if (child.get_child_visible ()) {
                        return true;

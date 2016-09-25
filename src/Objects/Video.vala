@@ -24,13 +24,14 @@ namespace Audience.Objects {
 
         public signal void poster_changed ();
         public signal void title_changed ();
+        public signal void trashed (Video video);
 
         public File video_file { get; private set; }
         public string directory { get; construct set; }
         public string file { get; construct set; }
 
         public string title { get; private set; }
-        public int year { get; private set; }
+        public int year { get; private set; default = -1;}
 
         public Gdk.Pixbuf? poster { get; private set; }
 
@@ -38,6 +39,7 @@ namespace Audience.Objects {
         public string poster_cache_file { get; private set; }
 
         public string hash { get; construct set; }
+        public string thumbnail_large_path { get; construct set;}
 
         public Video (string directory, string file, string mime_type) {
             Object (directory: directory, file: file, mime_type: mime_type);
@@ -52,8 +54,9 @@ namespace Audience.Objects {
             this.extract_metadata ();
             video_file = File.new_for_path (this.get_path ());
 
-            hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, this.get_path (), this.get_path ().length);
+            hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_uri (), video_file.get_uri ().length);
 
+            thumbnail_large_path = Path.build_filename (GLib.Environment.get_user_cache_dir (),"thumbnails", "large", hash + ".png");
             poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash + ".jpg");
 
             notify["poster"].connect (() => {
@@ -69,7 +72,7 @@ namespace Audience.Objects {
             MatchInfo info;
             if (manager.regex_year.match (this.title, 0, out info)) {
                 this.year = int.parse (info.fetch (0).substring (1, 4));
-                this.title = this.title.replace (info.fetch (0) + ")", "");
+                this.title = this.title.replace (info.fetch (0) + ")", "").strip ();
             }
         }
 
@@ -85,7 +88,7 @@ namespace Audience.Objects {
 
             ThreadFunc<void*> run = () => {
 
-                string poster_path = poster_cache_file;
+                string? poster_path = poster_cache_file;
                 pixbuf = get_poster_from_file (poster_path);
 
                 // POSTER in Cache exists
@@ -94,24 +97,9 @@ namespace Audience.Objects {
                     return null;
                 }
 
-                // Try to find a POSTER in same folder of video file
-                if (pixbuf == null) {
-                    poster_path = this.get_path () + ".jpg";
+                poster_path = get_native_poster_path ();
+                if (poster_path != null) {
                     pixbuf = get_poster_from_file (poster_path);
-                }
-
-                if (pixbuf == null) {
-                    poster_path = Path.build_filename (this.directory, Audience.get_title (file) + ".jpg");
-                    pixbuf = get_poster_from_file (poster_path);
-                }
-
-                foreach (string s in Audience.settings.poster_names) {
-                    if (pixbuf == null) {
-                        poster_path = Path.build_filename (this.directory, s);
-                        pixbuf = get_poster_from_file (poster_path);
-                    } else {
-                        break;
-                    }
                 }
 
                 // POSTER found
@@ -126,9 +114,8 @@ namespace Audience.Objects {
                 }
 
                 // Check if THUMBNAIL exists
-                string? thumbnail_path = manager.get_thumbnail_path (video_file);
-                if (thumbnail_path != null) {
-                    pixbuf = get_poster_from_file (thumbnail_path);
+                if (File.new_for_path (thumbnail_large_path).query_exists ()) {
+                    pixbuf = get_poster_from_file (thumbnail_large_path);
                     Idle.add ((owned) callback);
                     return null;
                 }
@@ -158,11 +145,8 @@ namespace Audience.Objects {
         }
 
         private void dbus_finished (uint heandle) {
-            if (poster == null) {
-                string? thumbnail_path = manager.get_thumbnail_path (video_file);
-                if (thumbnail_path != null) {
-                    poster = get_poster_from_file (thumbnail_path);
-                }
+            if (poster == null && File.new_for_path (thumbnail_large_path).query_exists ()) {
+                poster = get_poster_from_file (thumbnail_large_path);
             }
         }
 
@@ -191,6 +175,43 @@ namespace Audience.Objects {
             }
 
             return pixbuf;
+        }
+
+        public string? get_native_poster_path () {
+            string poster_path = this.get_path () + ".jpg";
+            File file_poster = File.new_for_path (poster_path);
+
+            if (file_poster.query_exists ())
+                return poster_path;
+
+            poster_path = Path.build_filename (this.directory, Audience.get_title (file) + ".jpg");
+            file_poster = File.new_for_path (poster_path);
+
+            if (file_poster.query_exists ())
+               return poster_path;
+
+            foreach (string s in Audience.settings.poster_names) {
+                poster_path = Path.build_filename (this.directory, s);
+                file_poster = File.new_for_path (poster_path);
+                if (file_poster.query_exists ())
+                   return poster_path;
+            }
+
+            return null;
+        }
+        
+        public void set_new_poster (Gdk.Pixbuf? new_poster) {
+            manager.clear_cache (this);
+            poster = new_poster;
+        }
+
+        public void trash () {
+            try {
+                video_file.trash ();
+                trashed (this);
+            } catch (Error e) {
+                warning (e.message);
+            }
         }
     }
 }

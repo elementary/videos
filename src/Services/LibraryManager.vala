@@ -27,6 +27,7 @@ namespace Audience.Services {
 
         public signal void video_file_detected (Audience.Objects.Video video);
         public signal void video_file_deleted (string path);
+        public signal void video_moved_to_trash (Audience.Objects.Video video);
         public signal void finished ();
 
         public Regex regex_year { get; construct set; }
@@ -36,6 +37,8 @@ namespace Audience.Services {
 
         private Gee.ArrayList<string> poster_hash;
         private Gee.ArrayList<FileMonitor> monitoring_directories;
+
+        private Gee.ArrayList<Audience.Objects.Video> trashed_files;
 
         public static LibraryManager instance = null;
         public static LibraryManager get_instance () {
@@ -50,6 +53,7 @@ namespace Audience.Services {
         }
 
         construct {
+            trashed_files = new Gee.ArrayList<Audience.Objects.Video> ();
             poster_hash = new Gee.ArrayList<string> ();
             monitoring_directories = new Gee.ArrayList<FileMonitor> ();
             try {
@@ -123,36 +127,9 @@ namespace Audience.Services {
             }
             var video = new Audience.Objects.Video (source, name, file_info.get_content_type ());
             video_file_detected (video);
+            video.trashed.connect (deleted_items);
             poster_hash.add (video.hash + ".jpg");
             has_items = true;
-        }
-
-        public string? get_thumbnail_path (File file) {
-            if (!file.is_native ()) {
-                return null;
-            }
-            string? path = null;
-            try {
-                var info = file.query_info (FileAttribute.THUMBNAIL_PATH + "," + FileAttribute.THUMBNAILING_FAILED, FileQueryInfoFlags.NONE);
-                path = info.get_attribute_as_string (FileAttribute.THUMBNAIL_PATH);
-                var failed = info.get_attribute_boolean (FileAttribute.THUMBNAILING_FAILED);
-
-                if (failed || path == null) {
-                    return null;
-                }
-
-                path = path.replace ("normal", "large");
-
-                File large_thumbnail = File.new_for_path (path);
-                if (!large_thumbnail.query_exists ()) {
-                    return null;
-                }
-            } catch (Error e) {
-                warning (e.message);
-                return null;
-            }
-
-            return path;
         }
 
         public void clear_cache (Audience.Objects.Video video) {
@@ -163,20 +140,61 @@ namespace Audience.Services {
         }
 
         public async void clear_unused_cache_files () {
-            File directory = File.new_for_path (App.get_instance ().get_cache_directory ());
-            try {
-                var children = directory.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+            string[] hash_items = poster_hash.to_array ();
+            ThreadFunc<void*> run = () => {
 
-                if (children != null) {
-                    FileInfo file_info;
-                    while ((file_info = children.next_file ()) != null) {
-                        if (!poster_hash.contains (file_info.get_name ())) {
-                            children.get_child (file_info).delete_async.begin ();
+                File directory = File.new_for_path (App.get_instance ().get_cache_directory ());
+                try {
+                    var children = directory.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+                    if (children != null) {
+                        FileInfo file_info;
+                        while ((file_info = children.next_file ()) != null) {
+                            foreach (unowned string hash_item in hash_items) {
+                                if (hash_item == file_info.get_name ()) {
+                                    continue;
+                                }
+                                children.get_child (file_info).delete_async.begin ();
+                            }
                         }
                     }
+                } catch (Error e) {
+                    warning (e.message);
                 }
+
+                return null;
+            };
+
+            try {
+                new Thread<void*>.try (null, run);
             } catch (Error e) {
-                warning (e.message);
+                error (e.message);
+            }
+        }
+
+        private void deleted_items (Audience.Objects.Video video) {
+            trashed_files.add (video);
+            video_moved_to_trash (video);
+        }
+
+        public void undo_delete_item () {
+            if (trashed_files.size > 0) {
+                Audience.Objects.Video restore = trashed_files.last ();
+                File trash = File.new_for_uri ("trash:///");
+                try {
+                    var children = trash.enumerate_children (FileAttribute.TRASH_ORIG_PATH, 0);
+                    FileInfo file_info;
+                    while ((file_info = children.next_file ()) != null) {
+                        string orinal_path = file_info.get_attribute_as_string (FileAttribute.TRASH_ORIG_PATH);
+                        if (orinal_path == restore.video_file.get_path ()) {
+                            File restore_file = File.new_for_uri ("trash:///" + restore.video_file.get_basename ());
+                            restore_file.move (restore.video_file, 0);
+                            trashed_files.remove (restore);
+                            return;
+                        }
+                    }
+                } catch (Error e) {
+                    error (e.message);
+                }
             }
         }
     }
