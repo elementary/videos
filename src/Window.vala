@@ -27,7 +27,7 @@ public class Audience.Window : Gtk.Window {
     private PlayerPage player_page;
     private WelcomePage welcome_page;
     private LibraryPage library_page;
-    private EpisodesViewer episodes_page;
+    private EpisodesPage episodes_page;
     private Granite.Widgets.AlertView alert_view;
     private NavigationButton navigation_button;
     private ZeitgeistManager zeitgeist_manager;
@@ -122,7 +122,7 @@ public class Audience.Window : Gtk.Window {
         alert_view.set_vexpand (true);
         alert_view.no_show_all = true;
         
-        episodes_page = new EpisodesViewer ();
+        episodes_page = new EpisodesPage ();
 
         main_stack = new Gtk.Stack ();
         main_stack.expand = true;

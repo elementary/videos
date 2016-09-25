@@ -20,7 +20,7 @@
  */
 
 namespace Audience {
-    public class EpisodesViewer : Gtk.Grid {
+    public class EpisodesPage : Gtk.Grid {
 
         Gtk.Label container_label;
         Gtk.Image poster;
