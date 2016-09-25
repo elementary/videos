@@ -45,6 +45,7 @@ namespace Audience.Dialogs {
             view_episodes.valign = Gtk.Align.START;
             view_episodes.selection_mode = Gtk.SelectionMode.NONE;
             view_episodes.set_sort_func (episode_sort_func);
+            view_episodes.child_activated.connect (play_video);
 
             scrolled_window = new Gtk.ScrolledWindow (null, null);
             scrolled_window.expand = true;
@@ -65,7 +66,7 @@ namespace Audience.Dialogs {
                 view_episodes.add (new Audience.EpisodeItem (episode));
             }
         }
-        
+
         private int episode_sort_func (Gtk.FlowBoxChild child1, Gtk.FlowBoxChild child2) {
             var item1 = child1 as EpisodeItem;
             var item2 = child2 as EpisodeItem;
@@ -73,6 +74,16 @@ namespace Audience.Dialogs {
                 return item1.video.file.collate (item2.video.file);
             }
             return 0;
+        }
+        
+        private void play_video (Gtk.FlowBoxChild item) {
+            var selected = (item as Audience.EpisodeItem);
+
+            if (selected.video.video_file.query_exists ()) {
+                bool from_beginning = selected.video.video_file.get_uri () != settings.current_video;
+                App.get_instance ().mainwindow.play_file (selected.video.video_file.get_uri (), from_beginning);
+                close();
+            }
         }
     }
 }
