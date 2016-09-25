@@ -91,10 +91,11 @@ public class Audience.Window : Gtk.Window {
                 hide_alert ();
             }
         });
-        library_page.show_episodes.connect ((episodes) => {
+        library_page.show_episodes.connect ((title, episodes) => {
             navigation_button.label = navigation_button_library;
             episodes_page.set_episodes_items (episodes);
             main_stack.set_visible_child (episodes_page);
+            this.title = title;
         });
 
         welcome_page = new WelcomePage ();

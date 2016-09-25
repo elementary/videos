@@ -22,7 +22,6 @@
 namespace Audience {
     public class EpisodesPage : Gtk.Grid {
 
-        Gtk.Label container_label;
         Gtk.Image poster;
         Gtk.ScrolledWindow scrolled_window;
         Gtk.FlowBox view_episodes;
@@ -45,22 +44,12 @@ namespace Audience {
             view_episodes.set_sort_func (episode_sort_func);
             view_episodes.child_activated.connect (play_video);
 
-            container_label = new Gtk.Label (null);
-            container_label.hexpand = true;
-            container_label.get_style_context ().add_class ("h1");
-            container_label.wrap = true;
-            container_label.valign = Gtk.Align.CENTER;
-            container_label.set_max_width_chars (30);
-            container_label.margin = 24;
-            container_label.margin_bottom = 0;
-
             scrolled_window = new Gtk.ScrolledWindow (null, null);
             scrolled_window.expand = true;
             scrolled_window.add (view_episodes);
 
             expand = true;
             attach (poster, 0, 1, 1, 1);
-            attach (container_label, 0, 0, 2, 1);
             attach (scrolled_window, 1, 1, 1, 1);
         }
 
@@ -74,7 +63,6 @@ namespace Audience {
             }
 
             poster.pixbuf = episodes.first ().poster;
-            container_label.label = episodes.first ().container;
         }
 
         private int episode_sort_func (Gtk.FlowBoxChild child1, Gtk.FlowBoxChild child2) {
