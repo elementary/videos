@@ -24,6 +24,7 @@ namespace Audience.Objects {
 
         public signal void poster_changed ();
         public signal void title_changed ();
+        public signal void thumbnail_changed ();
         public signal void trashed (Video video);
 
         public File video_file { get; private set; }
@@ -34,12 +35,16 @@ namespace Audience.Objects {
         public int year { get; private set; default = -1;}
 
         public Gdk.Pixbuf? poster { get; private set; }
+        public Gdk.Pixbuf? thumbnail { get; private set; }
 
         public string mime_type { get; construct set; }
         public string poster_cache_file { get; private set; }
 
         public string hash { get; construct set; }
         public string thumbnail_large_path { get; construct set;}
+        public string thumbnail_normal_path { get; construct set;}
+
+        public string container { get; construct set; }
 
         public Video (string directory, string file, string mime_type) {
             Object (directory: directory, file: file, mime_type: mime_type);
@@ -49,14 +54,17 @@ namespace Audience.Objects {
             manager = Audience.Services.LibraryManager.get_instance ();
             manager.thumbler.finished.connect (dbus_finished);
 
-            this.title = Audience.get_title (file);
+            title = Audience.get_title (file);
 
-            this.extract_metadata ();
+            extract_metadata ();
             video_file = File.new_for_path (this.get_path ());
+
+            container = Path.get_basename (directory);
 
             hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_uri (), video_file.get_uri ().length);
 
             thumbnail_large_path = Path.build_filename (GLib.Environment.get_user_cache_dir (),"thumbnails", "large", hash + ".png");
+            thumbnail_normal_path = Path.build_filename (GLib.Environment.get_user_cache_dir (),"thumbnails", "normal", hash + ".png");
             poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash + ".jpg");
 
             notify["poster"].connect (() => {
@@ -65,20 +73,24 @@ namespace Audience.Objects {
             notify["title"].connect (() => {
                 title_changed ();
             });
+            notify["thumbnail"].connect (() => {
+                thumbnail_changed ();
+            });
         }
 
         private void extract_metadata () {
             // exclude YEAR from Title
             MatchInfo info;
             if (manager.regex_year.match (this.title, 0, out info)) {
-                this.year = int.parse (info.fetch (0).substring (1, 4));
-                this.title = this.title.replace (info.fetch (0) + ")", "").strip ();
+                year = int.parse (info.fetch (0).substring (1, 4));
+                title = this.title.replace (info.fetch (0) + ")", "").strip ();
             }
         }
 
         public async void initialize_poster () {
             initialize_poster_thread.begin ((obj, res) => {
-                this.poster = initialize_poster_thread.end (res);
+                poster = initialize_poster_thread.end (res);
+                set_pixbufs ();
             });
         }
 
@@ -87,6 +99,17 @@ namespace Audience.Objects {
             Gdk.Pixbuf? pixbuf = null;
 
             ThreadFunc<void*> run = () => {
+                if (!File.new_for_path (thumbnail_large_path).query_exists () || !File.new_for_path (thumbnail_normal_path).query_exists ()) {
+                    // Call DBUS for create a new THUMBNAIL
+                    Gee.ArrayList<string> uris = new Gee.ArrayList<string> ();
+                    Gee.ArrayList<string> mimes = new Gee.ArrayList<string> ();
+
+                    uris.add (video_file.get_uri ());
+                    mimes.add (mime_type);
+
+                    manager.thumbler.Instand (uris, mimes, "large");
+                    manager.thumbler.Instand (uris, mimes, "normal");
+                }
 
                 string? poster_path = poster_cache_file;
                 pixbuf = get_poster_from_file (poster_path);
@@ -113,21 +136,11 @@ namespace Audience.Objects {
                     return null;
                 }
 
-                // Check if THUMBNAIL exists
                 if (File.new_for_path (thumbnail_large_path).query_exists ()) {
                     pixbuf = get_poster_from_file (thumbnail_large_path);
                     Idle.add ((owned) callback);
                     return null;
                 }
-
-                // Call DBUS for create a new THUMBNAIL
-                Gee.ArrayList<string> uris = new Gee.ArrayList<string> ();
-                Gee.ArrayList<string> mimes = new Gee.ArrayList<string> ();
-
-                uris.add (video_file.get_uri ());
-                mimes.add (mime_type);
-
-                manager.thumbler.Instand (uris, mimes);
 
                 Idle.add ((owned) callback);
                 return null;
@@ -145,8 +158,15 @@ namespace Audience.Objects {
         }
 
         private void dbus_finished (uint heandle) {
+            set_pixbufs ();
+        }
+        
+        public void set_pixbufs () {
             if (poster == null && File.new_for_path (thumbnail_large_path).query_exists ()) {
                 poster = get_poster_from_file (thumbnail_large_path);
+            }
+            if (thumbnail == null && File.new_for_path (thumbnail_normal_path).query_exists ()) {
+                thumbnail = new Gdk.Pixbuf.from_file (thumbnail_normal_path);
             }
         }
 
@@ -199,7 +219,7 @@ namespace Audience.Objects {
 
             return null;
         }
-        
+
         public void set_new_poster (Gdk.Pixbuf? new_poster) {
             manager.clear_cache (this);
             poster = new_poster;

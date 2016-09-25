@@ -140,35 +140,22 @@ namespace Audience.Services {
         }
 
         public async void clear_unused_cache_files () {
-            string[] hash_items = poster_hash.to_array ();
-            ThreadFunc<void*> run = () => {
-
-                File directory = File.new_for_path (App.get_instance ().get_cache_directory ());
+            File directory = File.new_for_path (App.get_instance ().get_cache_directory ());
+            directory.enumerate_children_async.begin (FileAttribute.STANDARD_NAME, 0, Priority.DEFAULT, null, (obj, res) => {
                 try {
-                    var children = directory.enumerate_children (FileAttribute.STANDARD_NAME, 0);
-                    if (children != null) {
-                        FileInfo file_info;
-                        while ((file_info = children.next_file ()) != null) {
-                            foreach (unowned string hash_item in hash_items) {
-                                if (hash_item == file_info.get_name ()) {
-                                    continue;
-                                }
-                                children.get_child (file_info).delete_async.begin ();
-                            }
+                    FileEnumerator children = directory.enumerate_children_async.end (res);
+                    FileInfo file_info;
+
+                    while ((file_info = children.next_file ()) != null) {
+                        if (!poster_hash.contains (file_info.get_name ())) {
+                            File to_delete = children.get_child (file_info);
+                            to_delete.delete_async.begin ();
                         }
                     }
                 } catch (Error e) {
                     warning (e.message);
                 }
-
-                return null;
-            };
-
-            try {
-                new Thread<void*>.try (null, run);
-            } catch (Error e) {
-                error (e.message);
-            }
+            });
         }
 
         private void deleted_items (Audience.Objects.Video video) {

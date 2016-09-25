@@ -26,6 +26,8 @@ namespace Audience {
         Gtk.Grid grid;
         public Audience.Objects.Video video { get; construct set; }
 
+        public Gee.ArrayList<Audience.Objects.Video> episodes { get; construct set; }
+
         Gtk.Image poster;
 
         Gtk.Label title_label;
@@ -42,6 +44,7 @@ namespace Audience {
         }
 
         construct {
+            episodes = new Gee.ArrayList<Audience.Objects.Video> ();
             margin_bottom = 12;
 
             video.poster_changed.connect (() => {
@@ -151,6 +154,10 @@ namespace Audience {
             }
 
             file.destroy ();
+        }
+
+        public int get_episodes_counter () {
+            return episodes.size;
         }
 
         private void move_video_to_trash () {

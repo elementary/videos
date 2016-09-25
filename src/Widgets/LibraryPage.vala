@@ -83,23 +83,41 @@ namespace Audience {
         }
 
         private void add_item (Audience.Objects.Video video) {
-            Audience.LibraryItem new_item = new Audience.LibraryItem (video);
-            view_movies.add (new_item);
-            if (poster_initialized) {
-                new_item.show_all ();
-                new_item.video.initialize_poster.begin ();
+            Audience.LibraryItem new_item = get_container (video);
+            if (new_item.video.video_file.get_path () == video.video_file.get_path ()) {
+                view_movies.add (new_item);
+                items_counter++;
             }
-            items_counter++;
+            new_item.episodes.add (video);
         }
 
         private void play_video (Gtk.FlowBoxChild item) {
             var selected = (item as Audience.LibraryItem);
-            if (selected.video.video_file.query_exists ()) {
-                bool from_beginning = selected.video.video_file.get_uri () != settings.current_video;
-                App.get_instance ().mainwindow.play_file (selected.video.video_file.get_uri (), from_beginning);
+
+            if (selected.get_episodes_counter() == 1) {
+                if (selected.video.video_file.query_exists ()) {
+                    bool from_beginning = selected.video.video_file.get_uri () != settings.current_video;
+                    App.get_instance ().mainwindow.play_file (selected.video.video_file.get_uri (), from_beginning);
+                } else {
+                    remove_item.begin (selected);
+                }
             } else {
-                remove_item.begin (selected);
+                Audience.Dialogs.EpisodesViewer episodes = new Audience.Dialogs.EpisodesViewer (selected.episodes);
+                episodes.show_all ();
             }
+        }
+
+        public Audience.LibraryItem get_container (Audience.Objects.Video video) {
+            foreach (var child in view_movies.get_children ()) {
+                if ((child as LibraryItem).video.container == video.container) {
+                    return child as LibraryItem;
+                }
+            }
+            Audience.LibraryItem new_container = new Audience.LibraryItem (video);
+            if (poster_initialized) {
+                new_container.show_all ();
+            }
+            return new_container;
         }
 
         private async void remove_item (LibraryItem item) {
@@ -114,7 +132,7 @@ namespace Audience {
                     remove_item.begin (child as LibraryItem);
                 }
             }
-            
+
             if (!has_child ()) {
                 Audience.App.get_instance ().mainwindow.navigate_back ();
             }
@@ -122,7 +140,10 @@ namespace Audience {
 
         private async void poster_initialisation () {
             foreach (var child in view_movies.get_children ()) {
-                (child as LibraryItem).video.initialize_poster.begin ();
+                var item = (child as LibraryItem);
+                foreach (var video in item.episodes) {
+                    video.initialize_poster.begin ();
+                }
             }
         }
 
