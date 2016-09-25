@@ -51,8 +51,8 @@ namespace Audience {
             container_label.wrap = true;
             container_label.valign = Gtk.Align.CENTER;
             container_label.set_max_width_chars (30);
-
-            container_label.margin_right = 12;
+            container_label.margin = 24;
+            container_label.margin_bottom = 0;
 
             scrolled_window = new Gtk.ScrolledWindow (null, null);
             scrolled_window.expand = true;

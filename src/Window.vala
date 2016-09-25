@@ -96,7 +96,7 @@ public class Audience.Window : Gtk.Window {
             episodes_page.set_episodes_items (episodes);
             main_stack.set_visible_child (episodes_page);
         });
-        
+
         welcome_page = new WelcomePage ();
 
         player_page = new PlayerPage ();
@@ -108,11 +108,11 @@ public class Audience.Window : Gtk.Window {
         player_page.notify["playing"].connect (() => {
             set_keep_above (player_page.playing && settings.stay_on_top);
         });
-        
+
         player_page.map.connect (() => {
             app_notification.visible = false;
         });
-        
+
         player_page.unmap.connect (() => {
             app_notification.visible = true;
         });
@@ -121,7 +121,7 @@ public class Audience.Window : Gtk.Window {
         alert_view.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
         alert_view.set_vexpand (true);
         alert_view.no_show_all = true;
-        
+
         episodes_page = new EpisodesPage ();
 
         main_stack = new Gtk.Stack ();
@@ -522,7 +522,7 @@ public class Audience.Window : Gtk.Window {
         alert_view.icon_name = icon_name;
         main_stack.set_visible_child_full ("alert", Gtk.StackTransitionType.NONE);
     }
-    
+
     public void set_app_notification (string text) {
         notification_label.label = text;
         app_notification.reveal_child = true;
