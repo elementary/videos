@@ -100,6 +100,14 @@ public class Audience.Window : Gtk.Window {
         player_page.notify["playing"].connect (() => {
             set_keep_above (player_page.playing && settings.stay_on_top);
         });
+        
+        player_page.map.connect (() => {
+            app_notification.visible = false;
+        });
+        
+        player_page.unmap.connect (() => {
+            app_notification.visible = true;
+        });
 
         alert_view = new Granite.Widgets.AlertView ("", "", "");
         alert_view.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);

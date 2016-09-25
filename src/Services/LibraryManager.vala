@@ -140,20 +140,34 @@ namespace Audience.Services {
         }
 
         public async void clear_unused_cache_files () {
-            File directory = File.new_for_path (App.get_instance ().get_cache_directory ());
-            try {
-                var children = directory.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+            string[] hash_items = poster_hash.to_array ();
+            ThreadFunc<void*> run = () => {
 
-                if (children != null) {
-                    FileInfo file_info;
-                    while ((file_info = children.next_file ()) != null) {
-                        if (!poster_hash.contains (file_info.get_name ())) {
-                            children.get_child (file_info).delete_async.begin ();
+                File directory = File.new_for_path (App.get_instance ().get_cache_directory ());
+                try {
+                    var children = directory.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+                    if (children != null) {
+                        FileInfo file_info;
+                        while ((file_info = children.next_file ()) != null) {
+                            foreach (unowned string hash_item in hash_items) {
+                                if (hash_item == file_info.get_name ()) {
+                                    continue;
+                                }
+                                children.get_child (file_info).delete_async.begin ();
+                            }
                         }
                     }
+                } catch (Error e) {
+                    warning (e.message);
                 }
+
+                return null;
+            };
+
+            try {
+                new Thread<void*>.try (null, run);
             } catch (Error e) {
-                warning (e.message);
+                error (e.message);
             }
         }
 
