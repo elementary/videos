@@ -32,8 +32,7 @@ public class Audience.Window : Gtk.Window {
     private NavigationButton navigation_button;
     private ZeitgeistManager zeitgeist_manager;
     private Gtk.SearchEntry search_entry;
-    private Gtk.Revealer app_notification;
-    private Gtk.Label notification_label;
+    private Granite.Widgets.InAppNontification app_notification;
 
     // For better translation
     const string navigation_button_welcomescreen = N_("Back");
@@ -145,37 +144,14 @@ public class Audience.Window : Gtk.Window {
         main_stack.add_named (alert_view, "alert");
         main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
-        notification_label = new Gtk.Label ("");
-        var restore_button = new Gtk.Button.with_label (_("Restore"));
-        restore_button.clicked.connect (() => {
+        app_notification = new Granite.Widgets.InAppNontification ();
+        app_notification.set_button_label (_("Restore"));
+        app_notification.accept.connect (() => {
             library_page.manager.undo_delete_item ();
-            app_notification.reveal_child = false;
             if (main_stack.visible_child != episodes_page) {
                 main_stack.set_visible_child (library_page);
             }
         });
-
-        var close_button = new Gtk.Button.from_icon_name ("close-symbolic", Gtk.IconSize.MENU);
-        close_button.get_style_context ().add_class ("close-button");
-        close_button.clicked.connect (() => {
-            app_notification.reveal_child = false;
-        });
-
-        var notification_box = new Gtk.Grid ();
-        notification_box.column_spacing = 12;
-        notification_box.add (close_button);
-        notification_box.add (notification_label);
-        notification_box.add (restore_button);
-
-        var notification_frame = new Gtk.Frame (null);
-        notification_frame.get_style_context ().add_class ("app-notification");
-        notification_frame.add (notification_box);
-
-        app_notification = new Gtk.Revealer ();
-        app_notification.margin = 3;
-        app_notification.halign = Gtk.Align.CENTER;
-        app_notification.valign = Gtk.Align.START;
-        app_notification.add (notification_frame);
 
         var overlay = new Gtk.Overlay ();
         overlay.add_overlay (main_stack);
@@ -539,8 +515,7 @@ public class Audience.Window : Gtk.Window {
     }
 
     public void set_app_notification (string text) {
-        notification_label.label = text;
-        app_notification.reveal_child = true;
+        app_notification.set_notification (text);
     }
     
     public Gtk.Widget get_visible_child () {

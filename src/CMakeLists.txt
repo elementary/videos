@@ -61,6 +61,7 @@ vala_precompile (VALA_C ${EXEC_NAME}
     Widgets/LibraryItem.vala
     Widgets/NavigationButton.vala
     Widgets/EpisodesPage.vala
+    Widgets/InAppNotification.vala
     Services/Inhibitor.vala
     Services/DirictoryMonitoring.vala
     Services/LibraryManager.vala
