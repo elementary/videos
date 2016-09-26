@@ -29,10 +29,11 @@ public class Audience.Window : Gtk.Window {
     private LibraryPage library_page;
     private EpisodesPage episodes_page;
     private Granite.Widgets.AlertView alert_view;
+    private Granite.Widgets.Toast app_notification;
     private NavigationButton navigation_button;
     private ZeitgeistManager zeitgeist_manager;
     private Gtk.SearchEntry search_entry;
-    private Granite.Widgets.InAppNontification app_notification;
+
 
     // For better translation
     const string navigation_button_welcomescreen = N_("Back");
@@ -517,7 +518,7 @@ public class Audience.Window : Gtk.Window {
     public void set_app_notification (string text) {
         app_notification.set_notification (text);
     }
-    
+
     public Gtk.Widget get_visible_child () {
         return main_stack.visible_child;
     }
