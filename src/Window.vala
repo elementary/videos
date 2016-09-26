@@ -350,6 +350,7 @@ public class Audience.Window : Gtk.Window {
                 search_entry.grab_focus ();
             } else if (ctrl_pressed && match_keycode (Gdk.Key.z, keycode)) {
                 library_page.manager.undo_delete_item ();
+                app_notification.reveal_child = false;
             } else if (match_keycode (Gdk.Key.Escape, keycode)) {
                 search_entry.text = "";
             } else if (!search_entry.is_focus && e.str.strip ().length > 0) {
