@@ -145,7 +145,7 @@ public class Audience.Window : Gtk.Window {
         main_stack.add_named (alert_view, "alert");
         main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
-        app_notification = new Granite.Widgets.InAppNontification ();
+        app_notification = new Granite.Widgets.Toast ();
         app_notification.set_button_label (_("Restore"));
         app_notification.accept.connect (() => {
             library_page.manager.undo_delete_item ();
