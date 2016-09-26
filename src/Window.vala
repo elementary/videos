@@ -67,7 +67,7 @@ public class Audience.Window : Gtk.Window {
         search_entry.placeholder_text = _("Search Videos");
         search_entry.margin_right = 5;
         search_entry.search_changed.connect (() => {
-                if (main_stack.get_visible_child () == episodes_page ) {
+                if (main_stack.visible_child == episodes_page ) {
                     episodes_page.filter (search_entry.text);
                 } else {
                     library_page.filter (search_entry.text);
@@ -90,14 +90,14 @@ public class Audience.Window : Gtk.Window {
             }
         });
         library_page.unmap.connect (() => {
-            if (main_stack.get_visible_child () != alert_view && main_stack.get_visible_child () != episodes_page) {
+            if (main_stack.visible_child != alert_view && main_stack.visible_child != episodes_page) {
                 search_entry.visible = false;
             }
         });
         library_page.filter_result_changed.connect ((has_result) => {
             if (!has_result) {
                 show_alert (_("No Results for “%s”".printf (search_entry.text)), _("Try changing search terms."), "edit-find-symbolic");
-            } else if (main_stack.get_visible_child () != library_page ) {
+            } else if (main_stack.visible_child != library_page ) {
                 hide_alert ();
             }
         });
@@ -150,7 +150,9 @@ public class Audience.Window : Gtk.Window {
         restore_button.clicked.connect (() => {
             library_page.manager.undo_delete_item ();
             app_notification.reveal_child = false;
-            main_stack.set_visible_child (library_page);
+            if (main_stack.visible_child != episodes_page) {
+                main_stack.set_visible_child (library_page);
+            }
         });
 
         var close_button = new Gtk.Button.from_icon_name ("close-symbolic", Gtk.IconSize.MENU);
@@ -258,7 +260,7 @@ public class Audience.Window : Gtk.Window {
             return true;
         }
 
-        if (main_stack.get_visible_child () == player_page) {
+        if (main_stack.visible_child == player_page) {
             if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
                 player_page.playing = !player_page.playing;
             } else if (match_keycode (Gdk.Key.a, keycode)) {
@@ -329,7 +331,7 @@ public class Audience.Window : Gtk.Window {
                 default:
                     break;
             }
-        } else if (main_stack.get_visible_child () == welcome_page) {
+        } else if (main_stack.visible_child == welcome_page) {
             if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
                 resume_last_videos ();
                 return true;
@@ -400,7 +402,7 @@ public class Audience.Window : Gtk.Window {
     public void show_library () {
         navigation_button.label = navigation_button_welcomescreen;
         navigation_button.show ();
-        main_stack.set_visible_child (library_page);
+        main_stack.visible_child = library_page;
         library_page.scrolled_window.grab_focus ();
     }
 
@@ -538,5 +540,9 @@ public class Audience.Window : Gtk.Window {
     public void set_app_notification (string text) {
         notification_label.label = text;
         app_notification.reveal_child = true;
+    }
+    
+    public Gtk.Widget get_visible_child () {
+        return main_stack.visible_child;
     }
 }

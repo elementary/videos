@@ -25,7 +25,7 @@ namespace Audience.Objects {
         public signal void poster_changed ();
         public signal void title_changed ();
         public signal void thumbnail_changed ();
-        public signal void trashed (Video video);
+        public signal void trashed ();
 
         public File video_file { get; private set; }
         public string directory { get; construct set; }
@@ -34,8 +34,8 @@ namespace Audience.Objects {
         public string title { get; private set; }
         public int year { get; private set; default = -1;}
 
-        public Gdk.Pixbuf? poster { get; private set; }
-        public Gdk.Pixbuf? thumbnail { get; private set; }
+        public Gdk.Pixbuf? poster { get; private set; default = null; }
+        public Gdk.Pixbuf? thumbnail { get; private set; default = null; }
 
         public string mime_type { get; construct set; }
         public string poster_cache_file { get; private set; }
@@ -229,15 +229,6 @@ namespace Audience.Objects {
         public void set_new_poster (Gdk.Pixbuf? new_poster) {
             manager.clear_cache (this);
             poster = new_poster;
-        }
-
-        public void trash () {
-            try {
-                video_file.trash ();
-                trashed (this);
-            } catch (Error e) {
-                warning (e.message);
-            }
         }
     }
 }

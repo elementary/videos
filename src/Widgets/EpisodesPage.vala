@@ -26,12 +26,13 @@ namespace Audience {
         Gtk.ScrolledWindow scrolled_window;
         Gtk.FlowBox view_episodes;
 
-        string query;
+        public Audience.Services.LibraryManager manager;
 
+        string query;
 
         construct {
             query = "";
-            
+
             poster = new Gtk.Image ();
             poster.margin = 24;
             poster.margin_right = 0;
@@ -41,13 +42,12 @@ namespace Audience {
             view_episodes = new Gtk.FlowBox ();
             view_episodes.margin = 24;
             view_episodes.homogeneous = true;
-            view_episodes.row_spacing = 12;
-            view_episodes.column_spacing = 12;
             view_episodes.valign = Gtk.Align.START;
             view_episodes.selection_mode = Gtk.SelectionMode.NONE;
             view_episodes.set_sort_func (episode_sort_func);
             view_episodes.set_filter_func (episodes_filter_func);
             view_episodes.child_activated.connect (play_video);
+            view_episodes.max_children_per_line = 1;
 
             scrolled_window = new Gtk.ScrolledWindow (null, null);
             scrolled_window.expand = true;
@@ -56,6 +56,10 @@ namespace Audience {
             expand = true;
             attach (poster, 0, 1, 1, 1);
             attach (scrolled_window, 1, 1, 1, 1);
+
+            manager = Audience.Services.LibraryManager.get_instance ();
+            manager.video_file_deleted.connect (remove_item_from_path);
+            manager.video_file_detected.connect (add_item);
         }
 
         public void set_episodes_items (Gee.ArrayList<Audience.Objects.Video> episodes) {
@@ -64,15 +68,15 @@ namespace Audience {
             });
 
             foreach (Audience.Objects.Video episode in episodes) {
-                view_episodes.add (new Audience.EpisodeItem (episode));
+                view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
             }
 
             poster.pixbuf = episodes.first ().poster;
         }
 
         private int episode_sort_func (Gtk.FlowBoxChild child1, Gtk.FlowBoxChild child2) {
-            var item1 = child1 as EpisodeItem;
-            var item2 = child2 as EpisodeItem;
+            var item1 = child1 as LibraryItem;
+            var item2 = child2 as LibraryItem;
             if (item1 != null && item2 != null) {
                 return item1.video.file.collate (item2.video.file);
             }
@@ -80,7 +84,7 @@ namespace Audience {
         }
 
         private void play_video (Gtk.FlowBoxChild item) {
-            var selected = (item as Audience.EpisodeItem);
+            var selected = (item as Audience.LibraryItem);
 
             if (selected.video.video_file.query_exists ()) {
                 bool from_beginning = selected.video.video_file.get_uri () != settings.current_video;
@@ -92,14 +96,14 @@ namespace Audience {
              query = text.strip ();
              view_episodes.invalidate_filter ();
         }
-        
+
         private bool episodes_filter_func (Gtk.FlowBoxChild child) {
             if (query.length == 0) {
                 return true;
             }
 
             string[] filter_elements = query.split (" ");
-            var video_title = (child as EpisodeItem).get_title ();
+            var video_title = (child as LibraryItem).get_title ();
 
             foreach (string filter_element in filter_elements) {
                 if (!video_title.down ().contains (filter_element.down ())) {
@@ -107,6 +111,27 @@ namespace Audience {
                 }
             }
             return true;
+        }
+
+        private void add_item (Audience.Objects.Video episode) { 
+            if (view_episodes.get_children ().length () > 0 ) {
+                var first = (view_episodes.get_children ().first ().data as Audience.LibraryItem);
+                if (first != null && first.video.video_file.get_parent ().get_path () == episode.video_file.get_parent ().get_path ()) {
+                    view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
+                }
+            }
+        }
+
+        private async void remove_item_from_path (string path ) {
+            foreach (var child in view_episodes.get_children ()) {
+                if ((child as LibraryItem).video.video_file.get_path ().has_prefix (path)) {
+                    child.dispose ();
+                }
+            }
+
+            if (Audience.App.get_instance ().mainwindow.get_visible_child () == this && view_episodes.get_children ().length () == 0) {
+                Audience.App.get_instance ().mainwindow.navigate_back ();
+            }
         }
     }
 }

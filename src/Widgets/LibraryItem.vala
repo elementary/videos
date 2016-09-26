@@ -20,6 +20,9 @@
  */
 
 namespace Audience {
+
+    public enum LibraryItemStyle { THUMBNAIL, ROW }
+
     public class LibraryItem : Gtk.FlowBoxChild  {
 
         Gtk.EventBox event_box;
@@ -27,6 +30,8 @@ namespace Audience {
         public Audience.Objects.Video video { get; construct set; }
 
         public Gee.ArrayList<Audience.Objects.Video> episodes { get; construct set; }
+
+        public LibraryItemStyle item_style { get; construct set; }
 
         Gtk.Image poster;
 
@@ -39,35 +44,86 @@ namespace Audience {
         Gtk.MenuItem new_cover;
         Gtk.MenuItem move_to_trash;
 
-        public LibraryItem (Audience.Objects.Video video) {
-            Object (video: video);
+        public LibraryItem (Audience.Objects.Video video, LibraryItemStyle item_style) {
+            Object (video: video, item_style: item_style);
         }
 
         construct {
             episodes = new Gee.ArrayList<Audience.Objects.Video> ();
-            margin_bottom = 12;
 
-            video.poster_changed.connect (() => {
-                if (video.poster != null) {
-                    spinner.active = false;
-                    spinner_container.hide ();
-                    if (poster == null) {
-                        poster = new Gtk.Image ();
-                        poster.margin_top = poster.margin_left = poster.margin_right = 12;
-                        poster.get_style_context ().add_class ("card");
-                        grid.attach (poster, 0, 0, 1, 1);
-                    }
+            grid = new Gtk.Grid ();
+            grid.valign = Gtk.Align.START;
 
-                    poster.pixbuf = video.poster;
-                    poster.show ();
-                } else {
-                    spinner.active = true;
-                    spinner_container.show ();
-                    if (poster != null) {
-                        poster.hide ();
+            grid.expand = true;
+            title_label = new Gtk.Label (video.title);
+
+            context_menu = new Gtk.Menu ();
+
+            move_to_trash = new Gtk.MenuItem.with_label (_("Move to Trash"));
+            move_to_trash.activate.connect ( move_video_to_trash );
+
+            if (item_style == LibraryItemStyle.THUMBNAIL) {
+                margin_bottom = 12;
+
+                title_label.set_line_wrap (true);
+                title_label.max_width_chars = 0;
+                title_label.justify = Gtk.Justification.CENTER;
+
+                grid.halign = Gtk.Align.CENTER;
+                grid.row_spacing = 12;
+
+                new_cover = new Gtk.MenuItem.with_label (_("Set Artwork"));
+                new_cover.activate.connect ( set_new_cover );
+                context_menu.append (new_cover);
+                context_menu.append (new Gtk.SeparatorMenuItem ());
+
+                video.poster_changed.connect (() => {
+                    if (video.poster != null) {
+                        spinner.active = false;
+                        spinner_container.hide ();
+                        if (poster == null) {
+                            poster = new Gtk.Image ();
+                            poster.margin_top = poster.margin_left = poster.margin_right = 12;
+                            poster.get_style_context ().add_class ("card");
+                            grid.attach (poster, 0, 0, 1, 1);
+                        }
+
+                        poster.pixbuf = video.poster;
+                        poster.show ();
+                    } else {
+                        spinner.active = true;
+                        spinner_container.show ();
+                        if (poster != null) {
+                            poster.hide ();
+                        }
                     }
-                }
-            });
+                });
+
+                spinner_container = new Gtk.Grid ();
+                spinner_container.height_request = Audience.Services.POSTER_HEIGHT;
+                spinner_container.width_request = Audience.Services.POSTER_WIDTH;
+                spinner_container.margin_top = spinner_container.margin_left = spinner_container.margin_right = 12;
+                spinner_container.get_style_context ().add_class ("card");
+
+                spinner = new Gtk.Spinner ();
+                spinner.expand = true;
+                spinner.active = true;
+                spinner.valign = Gtk.Align.CENTER;
+                spinner.halign = Gtk.Align.CENTER;
+                spinner.height_request = 32;
+                spinner.width_request = 32;
+
+                spinner_container.add (spinner);
+                grid.attach (spinner_container, 0, 0, 1, 1);
+                grid.attach (title_label, 0, 1, 1 ,1);
+            } else {
+                grid.halign = Gtk.Align.FILL;
+                grid.attach (title_label, 0, 0, 1 ,1);
+                grid.margin = 12;
+            }
+
+            context_menu.append (move_to_trash);
+            context_menu.show_all ();
 
             video.title_changed.connect (() => {
                 if (get_episodes_counter () == 1) {
@@ -78,51 +134,13 @@ namespace Audience {
                 title_label.show ();
             });
 
-            spinner_container = new Gtk.Grid ();
-            spinner_container.height_request = Audience.Services.POSTER_HEIGHT;
-            spinner_container.width_request = Audience.Services.POSTER_WIDTH;
-            spinner_container.margin_top = spinner_container.margin_left = spinner_container.margin_right = 12;
-            spinner_container.get_style_context ().add_class ("card");
-
-            spinner = new Gtk.Spinner ();
-            spinner.expand = true;
-            spinner.active = true;
-            spinner.valign = Gtk.Align.CENTER;
-            spinner.halign = Gtk.Align.CENTER;
-            spinner.height_request = 32;
-            spinner.width_request = 32;
-
-            spinner_container.add (spinner);
-
-            grid = new Gtk.Grid ();
-            grid.halign = Gtk.Align.CENTER;
-            grid.valign = Gtk.Align.START;
-            grid.row_spacing = 12;
-
-            title_label = new Gtk.Label (video.title);
-            title_label.justify = Gtk.Justification.CENTER;
-            title_label.set_line_wrap (true);
-            title_label.max_width_chars = 0;
-
-            grid.attach (spinner_container, 0, 0, 1, 1);
-            grid.attach (title_label, 0, 1, 1 ,1);
-
-            context_menu = new Gtk.Menu ();
-            new_cover = new Gtk.MenuItem.with_label (_("Set Artwork"));
-            new_cover.activate.connect ( set_new_cover );
-            move_to_trash = new Gtk.MenuItem.with_label (_("Move to Trash"));
-            move_to_trash.activate.connect ( move_video_to_trash );
-
-            context_menu.append (new_cover);
-            context_menu.append (new Gtk.SeparatorMenuItem ());
-            context_menu.append (move_to_trash);
-            context_menu.show_all ();
-
             event_box = new Gtk.EventBox ();
             event_box.button_press_event.connect (show_context_menu);
             event_box.add (grid);
 
-            this.add (event_box);
+            add (event_box);
+
+            show_all ();
         }
 
         private bool show_context_menu (Gtk.Widget sender, Gdk.EventButton evt) {
@@ -165,10 +183,13 @@ namespace Audience {
         }
 
         private void move_video_to_trash () {
-            video.trash ();
+            Audience.Services.LibraryManager.get_instance ().trash (this);
         }
-        
+
         public void add_episode (Audience.Objects.Video episode) {
+            episode.trashed.connect (() => {
+                episodes.remove (episode);
+            });
             episodes.add (episode);
             if (get_episodes_counter () == 1) {
                 title_label.label = video.title;
@@ -176,7 +197,7 @@ namespace Audience {
                 title_label.label = video.container;
             }
         }
-        
+
         public string get_title () {
             return title_label.label;
         }

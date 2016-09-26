@@ -27,7 +27,7 @@ namespace Audience.Services {
 
         public signal void video_file_detected (Audience.Objects.Video video);
         public signal void video_file_deleted (string path);
-        public signal void video_moved_to_trash (Audience.Objects.Video video);
+        public signal void video_moved_to_trash (string path);
         public signal void finished ();
 
         public Regex regex_year { get; construct set; }
@@ -36,9 +36,9 @@ namespace Audience.Services {
         public bool has_items { get; private set; }
 
         private Gee.ArrayList<string> poster_hash;
-        private Gee.ArrayList<FileMonitor> monitoring_directories;
+        private Gee.ArrayList<DirectoryMonitoring> monitoring_directories;
 
-        private Gee.ArrayList<Audience.Objects.Video> trashed_files;
+        private Gee.ArrayList<string> trashed_files;
 
         public static LibraryManager instance = null;
         public static LibraryManager get_instance () {
@@ -53,9 +53,9 @@ namespace Audience.Services {
         }
 
         construct {
-            trashed_files = new Gee.ArrayList<Audience.Objects.Video> ();
+            trashed_files = new Gee.ArrayList<string> ();
             poster_hash = new Gee.ArrayList<string> ();
-            monitoring_directories = new Gee.ArrayList<FileMonitor> ();
+            monitoring_directories = new Gee.ArrayList<DirectoryMonitoring> ();
             try {
                 regex_year = new Regex ("\\(\\d\\d\\d\\d(?=(\\)$))");
             } catch (Error e) {
@@ -73,10 +73,15 @@ namespace Audience.Services {
         public async void detect_video_files (string source) throws GLib.Error {
             File directory = File.new_for_path (source);
 
-            FileMonitor monitor = directory.monitor (FileMonitorFlags.NONE, null);
-            monitor.changed.connect ((src, dest, event) => {
+            DirectoryMonitoring dir_monitor = new DirectoryMonitoring (source, directory.monitor (FileMonitorFlags.NONE, null));
+            dir_monitor.monitor.changed.connect ((src, dest, event) => {
                 if (event == GLib.FileMonitorEvent.DELETED) {
                     video_file_deleted (src.get_path ());
+                    foreach (DirectoryMonitoring item in monitoring_directories) {
+                        if (item.path == src.get_path ()) {
+                            item.monitor.cancel ();
+                        }
+                    }
                 }
                 else if (event == GLib.FileMonitorEvent.CHANGES_DONE_HINT) {
                     FileInfo file_info;
@@ -94,23 +99,22 @@ namespace Audience.Services {
                     }
                 }
             });
-            monitoring_directories.add (monitor);
+            monitoring_directories.add (dir_monitor);
 
             var children = directory.enumerate_children (FileAttribute.STANDARD_CONTENT_TYPE + "," + FileAttribute.STANDARD_IS_HIDDEN, 0);
 
-            if (children != null) {
-                FileInfo file_info;
-                while ((file_info = children.next_file ()) != null) {
-                    if (file_info.get_file_type () == FileType.DIRECTORY) {
-                        detect_video_files.begin (source + "/" + file_info.get_name ());
-                        continue;
-                    }
+            FileInfo file_info;
+            while ((file_info = children.next_file ()) != null) {
+                if (file_info.get_file_type () == FileType.DIRECTORY) {
+                    detect_video_files.begin (source + "/" + file_info.get_name ());
+                    continue;
+                }
 
-                    if (is_file_valid (file_info)) {
-                        crate_video_object (file_info, source);
-                    }
+                if (is_file_valid (file_info)) {
+                    crate_video_object (file_info, source);
                 }
             }
+            
             if (directory.get_path () == Audience.settings.library_folder) {
                 finished ();
             }
@@ -127,7 +131,6 @@ namespace Audience.Services {
             }
             var video = new Audience.Objects.Video (source, name, file_info.get_content_type ());
             video_file_detected (video);
-            video.trashed.connect (deleted_items);
             poster_hash.add (video.hash + ".jpg");
             has_items = true;
         }
@@ -158,29 +161,48 @@ namespace Audience.Services {
             });
         }
 
-        private void deleted_items (Audience.Objects.Video video) {
-            trashed_files.add (video);
-            video_moved_to_trash (video);
+        private void deleted_items (string path) {
+            trashed_files.add (path);
+            video_moved_to_trash (path);
         }
 
         public void undo_delete_item () {
             if (trashed_files.size > 0) {
-                Audience.Objects.Video restore = trashed_files.last ();
+                string restore = trashed_files.last ();
                 File trash = File.new_for_uri ("trash:///");
                 try {
-                    var children = trash.enumerate_children (FileAttribute.TRASH_ORIG_PATH, 0);
+                    var children = trash.enumerate_children (FileAttribute.TRASH_ORIG_PATH + "," + FileAttribute.STANDARD_NAME, 0);
                     FileInfo file_info;
                     while ((file_info = children.next_file ()) != null) {
                         string orinal_path = file_info.get_attribute_as_string (FileAttribute.TRASH_ORIG_PATH);
-                        if (orinal_path == restore.video_file.get_path ()) {
-                            File restore_file = File.new_for_uri ("trash:///" + restore.video_file.get_basename ());
-                            restore_file.move (restore.video_file, 0);
+                        if (orinal_path == restore) {
+                            File restore_file = children.get_child (file_info);
+                            restore_file.move (File.new_for_path (restore), 0);
                             trashed_files.remove (restore);
                             return;
                         }
                     }
                 } catch (Error e) {
                     error (e.message);
+                }
+            }
+        }
+
+        public void trash (Audience.LibraryItem item) {
+            if (item.get_episodes_counter () > 1) {
+                try {
+                    item.video.video_file.get_parent ().trash ();
+                    deleted_items (item.video.video_file.get_parent ().get_path ());
+                } catch (Error e) {
+                    warning (e.message);
+                }
+            } else {
+                try {
+                    item.video.trashed ();
+                    item.video.video_file.trash ();
+                    deleted_items (item.video.video_file.get_path ());
+                } catch (Error e) {
+                    warning (e.message);
                 }
             }
         }

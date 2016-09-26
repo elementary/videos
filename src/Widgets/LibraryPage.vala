@@ -29,12 +29,11 @@ namespace Audience {
         public Audience.Services.LibraryManager manager;
         public Gtk.ScrolledWindow scrolled_window;
         bool poster_initialized = false;
-        int items_counter;
         string query;
         
         public string last_filter { get; set; default = ""; }
 
-        public bool has_items { get { return items_counter > 0; } }
+        public bool has_items { get { return view_movies.get_children ().length () > 0; } }
 
         public static LibraryPage instance = null;
         public static LibraryPage get_instance () {
@@ -46,7 +45,6 @@ namespace Audience {
 
         construct {
             query = "";
-            items_counter = 0;
 
             scrolled_window = new Gtk.ScrolledWindow (null, null);
             scrolled_window.expand = true;
@@ -66,7 +64,7 @@ namespace Audience {
             manager.video_file_detected.connect (add_item);
             manager.video_file_deleted.connect (remove_item_from_path);
             manager.video_moved_to_trash.connect ((video) => {
-                Audience.App.get_instance ().mainwindow.set_app_notification (_("Video '%s' Removed.").printf (video.title));
+                Audience.App.get_instance ().mainwindow.set_app_notification (_("Video '%s' Removed.").printf (Path.get_basename (video)));
             });
 
             manager.begin_scan ();
@@ -89,7 +87,6 @@ namespace Audience {
             Audience.LibraryItem new_item = get_container (video);
             if (new_item.video.video_file.get_path () == video.video_file.get_path ()) {
                 view_movies.add (new_item);
-                items_counter++;
             }
             new_item.add_episode (video);
         }
@@ -116,8 +113,9 @@ namespace Audience {
                     return child as LibraryItem;
                 }
             }
-            Audience.LibraryItem new_container = new Audience.LibraryItem (video);
+            Audience.LibraryItem new_container = new Audience.LibraryItem (video, LibraryItemStyle.THUMBNAIL);
             if (poster_initialized) {
+                video.initialize_poster.begin ();
                 new_container.show_all ();
             }
             return new_container;
@@ -126,7 +124,6 @@ namespace Audience {
         private async void remove_item (LibraryItem item) {
             manager.clear_cache (item.video);
             item.dispose ();
-            items_counter--;
         }
 
         private async void remove_item_from_path (string path ) {
@@ -136,7 +133,7 @@ namespace Audience {
                 }
             }
 
-            if (!has_child ()) {
+            if (view_movies.get_children ().length () == 0) {
                 Audience.App.get_instance ().mainwindow.navigate_back ();
             }
         }
