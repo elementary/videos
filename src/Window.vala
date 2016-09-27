@@ -155,7 +155,7 @@ public class Audience.Window : Gtk.Window {
         });
 
         var overlay = new Gtk.Overlay ();
-        overlay.add_overlay (main_stack);
+        overlay.add (main_stack);
         overlay.add_overlay (app_notification);
 
         add (overlay);

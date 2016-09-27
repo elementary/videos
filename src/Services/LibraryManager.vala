@@ -131,7 +131,8 @@ namespace Audience.Services {
             }
             var video = new Audience.Objects.Video (source, name, file_info.get_content_type ());
             video_file_detected (video);
-            poster_hash.add (video.hash + ".jpg");
+            poster_hash.add (video.hash_file_poster + ".jpg");
+            poster_hash.add (video.hash_episode_poster + ".jpg");
             has_items = true;
         }
 

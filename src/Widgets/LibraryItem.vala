@@ -26,7 +26,6 @@ namespace Audience {
     public class LibraryItem : Gtk.FlowBoxChild  {
         Audience.Services.LibraryManager manager;
 
-        //public Audience.Objects.Video video { get; construct set; }
         public Gee.ArrayList<Audience.Objects.Video> episodes { get; private set; }
         public LibraryItemStyle item_style { get; construct set; }
 
@@ -89,17 +88,7 @@ namespace Audience {
                 poster.margin_top = poster.margin_left = poster.margin_right = 12;
                 poster.get_style_context ().add_class ("card");
                 poster.pixbuf = null;
-                poster.notify ["pixbuf"].connect (() => {
-                    if (poster.pixbuf != null) {
-                        spinner.active = false;
-                        spinner_container.hide ();
-                        poster.show_all ();
-                    } else {
-                        spinner.active = true;
-                        spinner_container.show ();
-                        poster.hide ();
-                    }
-                });
+                poster.notify ["pixbuf"].connect (poster_visibility);
 
                 spinner_container = new Gtk.Grid ();
                 spinner_container.height_request = Audience.Services.POSTER_HEIGHT;
@@ -116,9 +105,12 @@ namespace Audience {
                 spinner.width_request = 32;
 
                 spinner_container.add (spinner);
+
                 grid.attach (spinner_container, 0, 0, 1, 1);
                 grid.attach (poster, 0, 0, 1, 1);
                 grid.attach (title_label, 0, 1, 1 ,1);
+
+                map.connect (poster_visibility);
             } else {
                 grid.halign = Gtk.Align.FILL;
                 grid.attach (title_label, 0, 0, 1 ,1);
@@ -134,6 +126,18 @@ namespace Audience {
 
             add (event_box);
             show_all ();
+        }
+
+        private void poster_visibility () {
+            if (poster.pixbuf != null) {
+                spinner.active = false;
+                spinner_container.hide ();
+                poster.show_all ();
+            } else {
+                spinner.active = true;
+                spinner_container.show ();
+                poster.hide ();
+            }
         }
 
         private bool show_context_menu (Gtk.Widget sender, Gdk.EventButton evt) {
@@ -221,10 +225,8 @@ namespace Audience {
 
         public void create_episode_poster () {
             if (File.new_for_path (poster_cache_file).query_exists ()) {
-                debug ("CACHE EXISTS" + poster_cache_file);
                 poster.pixbuf = new Gdk.Pixbuf.from_file (poster_cache_file);
             } else if (File.new_for_path (episode_poster_path).query_exists ()) {
-                debug ("PATH EXISTS" + episode_poster_path);
                 poster.pixbuf = manager.get_poster_from_file (episode_poster_path);
                 poster.pixbuf.save (poster_cache_file, "jpeg");
             }

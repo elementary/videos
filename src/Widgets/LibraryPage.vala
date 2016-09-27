@@ -75,7 +75,6 @@ namespace Audience {
                 if (!poster_initialized) {
                     poster_initialized = true;
                     poster_initialisation.begin ();
-                    show_all ();
                 }
             });
 

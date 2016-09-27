@@ -40,7 +40,8 @@ namespace Audience.Objects {
         public string mime_type { get; construct set; }
         public string poster_cache_file { get; private set; }
 
-        public string hash { get; construct set; }
+        public string hash_file_poster { get; construct set; }
+        public string hash_episode_poster { get; construct set; }
         public string thumbnail_large_path { get; construct set;}
         public string thumbnail_normal_path { get; construct set;}
 
@@ -63,11 +64,12 @@ namespace Audience.Objects {
                 container = Path.get_basename (directory);
             }
 
-            hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_uri (), video_file.get_uri ().length);
+            hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_uri (), video_file.get_uri ().length);
+            hash_episode_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_parent ().get_uri (), video_file.get_parent ().get_uri ().length);
 
-            thumbnail_large_path = Path.build_filename (GLib.Environment.get_user_cache_dir (),"thumbnails", "large", hash + ".png");
-            thumbnail_normal_path = Path.build_filename (GLib.Environment.get_user_cache_dir (),"thumbnails", "normal", hash + ".png");
-            poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash + ".jpg");
+            thumbnail_large_path = Path.build_filename (GLib.Environment.get_user_cache_dir (),"thumbnails", "large", hash_file_poster + ".png");
+            thumbnail_normal_path = Path.build_filename (GLib.Environment.get_user_cache_dir (),"thumbnails", "normal", hash_file_poster + ".png");
+            poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash_file_poster + ".jpg");
 
             notify["poster"].connect (() => {
                 poster_changed (this);
