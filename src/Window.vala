@@ -136,6 +136,9 @@ public class Audience.Window : Gtk.Window {
         alert_view.no_show_all = true;
 
         episodes_page = new EpisodesPage ();
+        episodes_page.map.connect (() => {
+            search_entry.visible = true;
+        });
 
         main_stack = new Gtk.Stack ();
         main_stack.expand = true;
@@ -451,6 +454,7 @@ public class Audience.Window : Gtk.Window {
     }
 
     public void play_file (string uri, bool from_beginning = true) {
+        search_entry.visible = false;
         if (navigation_button.visible) {
             if (navigation_button.label == navigation_button_library) {
                 navigation_button.label = navigation_button_episodes;
