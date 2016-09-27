@@ -31,7 +31,7 @@ namespace Audience {
 
         Gtk.EventBox event_box;
         Gtk.Grid grid;
-        Gtk.Image poster;
+        public Gtk.Image poster { get; set; }
         Gtk.Label title_label;
         Gtk.Spinner spinner;
         Gtk.Grid spinner_container;

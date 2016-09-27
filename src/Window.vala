@@ -101,11 +101,12 @@ public class Audience.Window : Gtk.Window {
                 hide_alert ();
             }
         });
-        library_page.show_episodes.connect ((title, episodes) => {
+        library_page.show_episodes.connect ((item) => {
             navigation_button.label = navigation_button_library;
-            episodes_page.set_episodes_items (episodes);
+            episodes_page.set_episodes_items (item.episodes);
+            episodes_page.poster.pixbuf = item.poster.pixbuf;
             main_stack.set_visible_child (episodes_page);
-            this.title = title;
+            this.title = item.get_title ();
             search_entry.text = "";
         });
 

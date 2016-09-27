@@ -23,7 +23,7 @@ namespace Audience {
     public class LibraryPage : Gtk.Grid {
 
         public signal void filter_result_changed (bool has_results);
-        public signal void show_episodes (string title, Gee.ArrayList<Audience.Objects.Video> episodes);
+        public signal void show_episodes (Audience.LibraryItem item);
 
         public Gtk.FlowBox view_movies;
         public Audience.Services.LibraryManager manager;
@@ -96,7 +96,7 @@ namespace Audience {
                 }
             } else {
                 last_filter = query;
-                show_episodes (selected.get_title (), selected.episodes);
+                show_episodes (selected);
             }
         }
 

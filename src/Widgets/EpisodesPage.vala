@@ -22,7 +22,7 @@
 namespace Audience {
     public class EpisodesPage : Gtk.Grid {
 
-        Gtk.Image poster;
+        public Gtk.Image poster { get; set; }
         Gtk.ScrolledWindow scrolled_window;
         Gtk.FlowBox view_episodes;
         Granite.Widgets.AlertView alert_view;
