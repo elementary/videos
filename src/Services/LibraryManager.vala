@@ -149,11 +149,10 @@ namespace Audience.Services {
                 try {
                     FileEnumerator children = directory.enumerate_children_async.end (res);
                     FileInfo file_info;
-
                     while ((file_info = children.next_file ()) != null) {
                         if (!poster_hash.contains (file_info.get_name ())) {
                             File to_delete = children.get_child (file_info);
-                            to_delete.delete_async.begin ();
+                            Process.spawn_command_line_async ("rm " + to_delete.get_path ());
                         }
                     }
                 } catch (Error e) {
