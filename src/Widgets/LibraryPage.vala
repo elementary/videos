@@ -136,10 +136,7 @@ namespace Audience {
 
         private async void poster_initialisation () {
             foreach (var child in view_movies.get_children ()) {
-                var item = (child as LibraryItem);
-                foreach (var video in item.episodes) {
-                    video.initialize_poster.begin ();
-                }
+                (child as LibraryItem).episodes.first ().initialize_poster.begin ();
             }
         }
 
