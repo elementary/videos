@@ -88,12 +88,8 @@ namespace Audience {
             var selected = (item as Audience.LibraryItem);
 
             if (selected.episodes.size == 1) {
-                if (selected.episodes.first ().video_file.query_exists ()) {
-                    bool from_beginning = selected.episodes.first ().video_file.get_uri () != settings.current_video;
-                    App.get_instance ().mainwindow.play_file (selected.episodes.first ().video_file.get_uri (), from_beginning);
-                } else {
-                    remove_item.begin (selected);
-                }
+                bool from_beginning = selected.episodes.first ().video_file.get_uri () != settings.current_video;
+                App.get_instance ().mainwindow.play_file (selected.episodes.first ().video_file.get_uri (), from_beginning);
             } else {
                 last_filter = query;
                 show_episodes (selected);
@@ -117,7 +113,7 @@ namespace Audience {
 
         private async void remove_item (LibraryItem item) {
             foreach (var video in item.episodes) {
-                manager.clear_cache (video.poster_cache_file);
+                manager.clear_cache.begin (video.poster_cache_file);
             }
             item.dispose ();
         }
@@ -157,8 +153,8 @@ namespace Audience {
         }
 
         private int video_sort_func (Gtk.FlowBoxChild child1, Gtk.FlowBoxChild child2) {
-            var item1 = child1 as LibraryItem;
-            var item2 = child2 as LibraryItem;
+            var item1 = (LibraryItem)child1;
+            var item2 = (LibraryItem)child2;
             if (item1 != null && item2 != null) {
                 return item1.get_title ().collate (item2.get_title ());
             }

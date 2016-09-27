@@ -103,7 +103,7 @@ namespace Audience.Objects {
             Gdk.Pixbuf? pixbuf = null;
 
             ThreadFunc<void*> run = () => {
-                if (!File.new_for_path (thumbnail_large_path).query_exists () || !File.new_for_path (thumbnail_normal_path).query_exists ()) {
+                if (!FileUtils.test (thumbnail_large_path, FileTest.EXISTS) || !FileUtils.test (thumbnail_normal_path, FileTest.EXISTS)) {
                     // Call DBUS for create a new THUMBNAIL
                     Gee.ArrayList<string> uris = new Gee.ArrayList<string> ();
                     Gee.ArrayList<string> mimes = new Gee.ArrayList<string> ();
@@ -140,7 +140,7 @@ namespace Audience.Objects {
                     return null;
                 }
 
-                if (File.new_for_path (thumbnail_large_path).query_exists ()) {
+                if (FileUtils.test (thumbnail_large_path, FileTest.EXISTS)) {
                     pixbuf = manager.get_poster_from_file (thumbnail_large_path);
                     Idle.add ((owned) callback);
                     return null;
@@ -166,10 +166,10 @@ namespace Audience.Objects {
         }
 
         public void set_pixbufs () {
-            if (poster == null && File.new_for_path (thumbnail_large_path).query_exists ()) {
+            if (poster == null && FileUtils.test (thumbnail_large_path, FileTest.EXISTS)) {
                 poster = manager.get_poster_from_file (thumbnail_large_path);
             }
-            if (thumbnail == null && File.new_for_path (thumbnail_normal_path).query_exists ()) {
+            if (thumbnail == null && FileUtils.test (thumbnail_normal_path, FileTest.EXISTS)) {
                 try {
                     thumbnail = new Gdk.Pixbuf.from_file (thumbnail_normal_path);
                 } catch (Error e) {
@@ -206,7 +206,7 @@ namespace Audience.Objects {
         }
 
         public void set_new_poster (Gdk.Pixbuf? new_poster) {
-            manager.clear_cache (this.poster_cache_file);
+            manager.clear_cache.begin (this.poster_cache_file);
             poster = new_poster;
         }
     }

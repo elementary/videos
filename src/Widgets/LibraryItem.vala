@@ -181,7 +181,7 @@ namespace Audience {
                             episodes.first ().set_new_poster (pixbuf);
                             episodes.first ().initialize_poster.begin ();
                         } else {
-                            manager.clear_cache (poster_cache_file);
+                            manager.clear_cache.begin (poster_cache_file);
                             pixbuf.save (episode_poster_path, "jpeg");
                             create_episode_poster ();
                         }
@@ -232,13 +232,13 @@ namespace Audience {
         }
 
         public void create_episode_poster () {
-            if (File.new_for_path (poster_cache_file).query_exists ()) {
+            if (FileUtils.test (poster_cache_file, FileTest.EXISTS)) {
                 try {
                     poster.pixbuf = new Gdk.Pixbuf.from_file (poster_cache_file);
                 } catch (Error e) {
                     warning (e.message);
                 }
-            } else if (File.new_for_path (episode_poster_path).query_exists ()) {
+            } else if (FileUtils.test (episode_poster_path, FileTest.EXISTS)) {
                 poster.pixbuf = manager.get_poster_from_file (episode_poster_path);
                 try {
                     poster.pixbuf.save (poster_cache_file, "jpeg");

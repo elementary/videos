@@ -136,10 +136,14 @@ namespace Audience.Services {
             has_items = true;
         }
 
-        public void clear_cache (string cache_file) {
+        public async void clear_cache (string cache_file) {
             File file = File.new_for_path (cache_file);
             if (file.query_exists ()) {
-                file.delete_async.begin (Priority.DEFAULT, null);
+                try {
+                    yield file.delete_async (Priority.DEFAULT, null);
+                } catch (Error e) {
+                    warning (e.message);
+                }
             }
         }
 
@@ -190,7 +194,7 @@ namespace Audience.Services {
 
         public Gdk.Pixbuf? get_poster_from_file (string poster_path) {
             Gdk.Pixbuf? pixbuf = null;
-            if (File.new_for_path (poster_path).query_exists ()) {
+            if (FileUtils.test (poster_path, FileTest.EXISTS)) {
                 try {
                     pixbuf = new Gdk.Pixbuf.from_file_at_scale (poster_path, -1, Audience.Services.POSTER_HEIGHT, true);
                 } catch (Error e) {

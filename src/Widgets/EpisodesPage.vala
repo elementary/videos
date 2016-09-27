@@ -21,7 +21,6 @@
 
 namespace Audience {
     public class EpisodesPage : Gtk.Grid {
-
         public Gtk.Image poster { get; set; }
         Gtk.ScrolledWindow scrolled_window;
         Gtk.FlowBox view_episodes;
@@ -114,8 +113,8 @@ namespace Audience {
         }
 
         private int episode_sort_func (Gtk.FlowBoxChild child1, Gtk.FlowBoxChild child2) {
-            var item1 = child1 as LibraryItem;
-            var item2 = child2 as LibraryItem;
+            var item1 = (LibraryItem)child1;
+            var item2 = (LibraryItem)child2;
             if (item1 != null && item2 != null) {
                 return item1.episodes.first ().file.collate (item2.episodes.first ().file);
             }
