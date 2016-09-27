@@ -45,8 +45,8 @@ namespace Audience.Services {
             }
         }
 
-        public void Instand (Gee.ArrayList<string> uris, Gee.ArrayList<string> mimes ){
-            tumbler.Queue.begin (uris.to_array (), mimes.to_array (), "large", "default", 0);
+        public void Instand (Gee.ArrayList<string> uris, Gee.ArrayList<string> mimes, string size){
+            tumbler.Queue.begin (uris.to_array (), mimes.to_array (), size, "default", 0);
         }
     }
 }

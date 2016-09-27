@@ -23,15 +23,17 @@ namespace Audience {
     public class LibraryPage : Gtk.Grid {
 
         public signal void filter_result_changed (bool has_results);
+        public signal void show_episodes (Audience.LibraryItem item);
 
         public Gtk.FlowBox view_movies;
         public Audience.Services.LibraryManager manager;
         public Gtk.ScrolledWindow scrolled_window;
         bool poster_initialized = false;
-        int items_counter;
         string query;
 
-        public bool has_items { get { return items_counter > 0; } }
+        public string last_filter { get; set; default = ""; }
+
+        public bool has_items { get { return view_movies.get_children ().length () > 0; } }
 
         public static LibraryPage instance = null;
         public static LibraryPage get_instance () {
@@ -42,8 +44,9 @@ namespace Audience {
         }
 
         construct {
+            manager = Audience.Services.LibraryManager.get_instance ();
+
             query = "";
-            items_counter = 0;
 
             scrolled_window = new Gtk.ScrolledWindow (null, null);
             scrolled_window.expand = true;
@@ -63,7 +66,7 @@ namespace Audience {
             manager.video_file_detected.connect (add_item);
             manager.video_file_deleted.connect (remove_item_from_path);
             manager.video_moved_to_trash.connect ((video) => {
-                Audience.App.get_instance ().mainwindow.set_app_notification (_("Video '%s' Removed.").printf (video.title));
+                Audience.App.get_instance ().mainwindow.set_app_notification (_("Video '%s' Removed.").printf (Path.get_basename (video)));
             });
 
             manager.begin_scan ();
@@ -72,7 +75,6 @@ namespace Audience {
                 if (!poster_initialized) {
                     poster_initialized = true;
                     poster_initialisation.begin ();
-                    show_all ();
                 }
             });
 
@@ -82,47 +84,55 @@ namespace Audience {
             add (scrolled_window);
         }
 
-        private void add_item (Audience.Objects.Video video) {
-            Audience.LibraryItem new_item = new Audience.LibraryItem (video);
-            view_movies.add (new_item);
-            if (poster_initialized) {
-                new_item.show_all ();
-                new_item.video.initialize_poster.begin ();
-            }
-            items_counter++;
-        }
-
         private void play_video (Gtk.FlowBoxChild item) {
             var selected = (item as Audience.LibraryItem);
-            if (selected.video.video_file.query_exists ()) {
-                bool from_beginning = selected.video.video_file.get_uri () != settings.current_video;
-                App.get_instance ().mainwindow.play_file (selected.video.video_file.get_uri (), from_beginning);
+
+            if (selected.episodes.size == 1) {
+                bool from_beginning = selected.episodes.first ().video_file.get_uri () != settings.current_video;
+                App.get_instance ().mainwindow.play_file (selected.episodes.first ().video_file.get_uri (), from_beginning);
             } else {
-                remove_item.begin (selected);
+                last_filter = query;
+                show_episodes (selected);
+            }
+        }
+
+        public void add_item (Audience.Objects.Video video) {
+            foreach (var child in view_movies.get_children ()) {
+                if (video.container != null && (child as LibraryItem).episodes.first ().container == video.container) {
+                    (child as LibraryItem).add_episode (video);
+                    return;
+                }
+            }
+            Audience.LibraryItem new_container = new Audience.LibraryItem (video, LibraryItemStyle.THUMBNAIL);
+            view_movies.add (new_container);
+            if (poster_initialized) {
+                video.initialize_poster.begin ();
+                new_container.show_all ();
             }
         }
 
         private async void remove_item (LibraryItem item) {
-            manager.clear_cache (item.video);
+            foreach (var video in item.episodes) {
+                manager.clear_cache.begin (video.poster_cache_file);
+            }
             item.dispose ();
-            items_counter--;
         }
 
         private async void remove_item_from_path (string path ) {
             foreach (var child in view_movies.get_children ()) {
-                if ((child as LibraryItem).video.video_file.get_path ().has_prefix (path)) {
+                if ((child as LibraryItem).episodes.size == 0 || (child as LibraryItem).episodes.first ().video_file.get_path ().has_prefix (path)) {
                     remove_item.begin (child as LibraryItem);
                 }
             }
-            
-            if (!has_child ()) {
+
+            if (view_movies.get_children ().length () == 0) {
                 Audience.App.get_instance ().mainwindow.navigate_back ();
             }
         }
 
         private async void poster_initialisation () {
             foreach (var child in view_movies.get_children ()) {
-                (child as LibraryItem).video.initialize_poster.begin ();
+                (child as LibraryItem).episodes.first ().initialize_poster.begin ();
             }
         }
 
@@ -132,7 +142,7 @@ namespace Audience {
             }
 
             string[] filter_elements = query.split (" ");
-            var video_title = (child as LibraryItem).video.title;
+            var video_title = (child as LibraryItem).get_title ();
 
             foreach (string filter_element in filter_elements) {
                 if (!video_title.down ().contains (filter_element.down ())) {
@@ -143,10 +153,10 @@ namespace Audience {
         }
 
         private int video_sort_func (Gtk.FlowBoxChild child1, Gtk.FlowBoxChild child2) {
-            var item1 = child1 as LibraryItem;
-            var item2 = child2 as LibraryItem;
+            var item1 = (LibraryItem)child1;
+            var item2 = (LibraryItem)child2;
             if (item1 != null && item2 != null) {
-                return item1.video.file.collate (item2.video.file);
+                return item1.get_title ().collate (item2.get_title ());
             }
             return 0;
         }

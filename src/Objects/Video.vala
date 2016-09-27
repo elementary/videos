@@ -22,9 +22,10 @@ namespace Audience.Objects {
     public class Video : Object {
         Audience.Services.LibraryManager manager;
 
-        public signal void poster_changed ();
-        public signal void title_changed ();
-        public signal void trashed (Video video);
+        public signal void poster_changed (Video sender);
+        public signal void title_changed (Video sender);
+        public signal void thumbnail_changed ();
+        public signal void trashed ();
 
         public File video_file { get; private set; }
         public string directory { get; construct set; }
@@ -33,13 +34,18 @@ namespace Audience.Objects {
         public string title { get; private set; }
         public int year { get; private set; default = -1;}
 
-        public Gdk.Pixbuf? poster { get; private set; }
+        public Gdk.Pixbuf? poster { get; private set; default = null; }
+        public Gdk.Pixbuf? thumbnail { get; private set; default = null; }
 
         public string mime_type { get; construct set; }
         public string poster_cache_file { get; private set; }
 
-        public string hash { get; construct set; }
+        public string hash_file_poster { get; construct set; }
+        public string hash_episode_poster { get; construct set; }
         public string thumbnail_large_path { get; construct set;}
+        public string thumbnail_normal_path { get; construct set;}
+
+        public string container { get; construct set; default = ""; }
 
         public Video (string directory, string file, string mime_type) {
             Object (directory: directory, file: file, mime_type: mime_type);
@@ -49,21 +55,30 @@ namespace Audience.Objects {
             manager = Audience.Services.LibraryManager.get_instance ();
             manager.thumbler.finished.connect (dbus_finished);
 
-            this.title = Audience.get_title (file);
+            title = Audience.get_title (file);
 
-            this.extract_metadata ();
+            extract_metadata ();
             video_file = File.new_for_path (this.get_path ());
 
-            hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_uri (), video_file.get_uri ().length);
+            if (directory != Audience.settings.library_folder) {
+                container = Path.get_basename (directory);
+            }
 
-            thumbnail_large_path = Path.build_filename (GLib.Environment.get_user_cache_dir (),"thumbnails", "large", hash + ".png");
-            poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash + ".jpg");
+            hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_uri (), video_file.get_uri ().length);
+            hash_episode_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_parent ().get_uri (), video_file.get_parent ().get_uri ().length);
+
+            thumbnail_large_path = Path.build_filename (GLib.Environment.get_user_cache_dir (),"thumbnails", "large", hash_file_poster + ".png");
+            thumbnail_normal_path = Path.build_filename (GLib.Environment.get_user_cache_dir (),"thumbnails", "normal", hash_file_poster + ".png");
+            poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash_file_poster + ".jpg");
 
             notify["poster"].connect (() => {
-                poster_changed ();
+                poster_changed (this);
             });
             notify["title"].connect (() => {
-                title_changed ();
+                title_changed (this);
+            });
+            notify["thumbnail"].connect (() => {
+                thumbnail_changed ();
             });
         }
 
@@ -71,14 +86,15 @@ namespace Audience.Objects {
             // exclude YEAR from Title
             MatchInfo info;
             if (manager.regex_year.match (this.title, 0, out info)) {
-                this.year = int.parse (info.fetch (0).substring (1, 4));
-                this.title = this.title.replace (info.fetch (0) + ")", "").strip ();
+                year = int.parse (info.fetch (0).substring (1, 4));
+                title = this.title.replace (info.fetch (0) + ")", "").strip ();
             }
         }
 
         public async void initialize_poster () {
             initialize_poster_thread.begin ((obj, res) => {
-                this.poster = initialize_poster_thread.end (res);
+                poster = initialize_poster_thread.end (res);
+                set_pixbufs ();
             });
         }
 
@@ -87,9 +103,20 @@ namespace Audience.Objects {
             Gdk.Pixbuf? pixbuf = null;
 
             ThreadFunc<void*> run = () => {
+                if (!FileUtils.test (thumbnail_large_path, FileTest.EXISTS) || !FileUtils.test (thumbnail_normal_path, FileTest.EXISTS)) {
+                    // Call DBUS for create a new THUMBNAIL
+                    Gee.ArrayList<string> uris = new Gee.ArrayList<string> ();
+                    Gee.ArrayList<string> mimes = new Gee.ArrayList<string> ();
+
+                    uris.add (video_file.get_uri ());
+                    mimes.add (mime_type);
+
+                    manager.thumbler.Instand (uris, mimes, "large");
+                    manager.thumbler.Instand (uris, mimes, "normal");
+                }
 
                 string? poster_path = poster_cache_file;
-                pixbuf = get_poster_from_file (poster_path);
+                pixbuf = manager.get_poster_from_file (poster_path);
 
                 // POSTER in Cache exists
                 if (pixbuf != null) {
@@ -99,7 +126,7 @@ namespace Audience.Objects {
 
                 poster_path = get_native_poster_path ();
                 if (poster_path != null) {
-                    pixbuf = get_poster_from_file (poster_path);
+                    pixbuf = manager.get_poster_from_file (poster_path);
                 }
 
                 // POSTER found
@@ -113,21 +140,11 @@ namespace Audience.Objects {
                     return null;
                 }
 
-                // Check if THUMBNAIL exists
-                if (File.new_for_path (thumbnail_large_path).query_exists ()) {
-                    pixbuf = get_poster_from_file (thumbnail_large_path);
+                if (FileUtils.test (thumbnail_large_path, FileTest.EXISTS)) {
+                    pixbuf = manager.get_poster_from_file (thumbnail_large_path);
                     Idle.add ((owned) callback);
                     return null;
                 }
-
-                // Call DBUS for create a new THUMBNAIL
-                Gee.ArrayList<string> uris = new Gee.ArrayList<string> ();
-                Gee.ArrayList<string> mimes = new Gee.ArrayList<string> ();
-
-                uris.add (video_file.get_uri ());
-                mimes.add (mime_type);
-
-                manager.thumbler.Instand (uris, mimes);
 
                 Idle.add ((owned) callback);
                 return null;
@@ -145,36 +162,24 @@ namespace Audience.Objects {
         }
 
         private void dbus_finished (uint heandle) {
-            if (poster == null && File.new_for_path (thumbnail_large_path).query_exists ()) {
-                poster = get_poster_from_file (thumbnail_large_path);
+            set_pixbufs ();
+        }
+
+        public void set_pixbufs () {
+            if (poster == null && FileUtils.test (thumbnail_large_path, FileTest.EXISTS)) {
+                poster = manager.get_poster_from_file (thumbnail_large_path);
+            }
+            if (thumbnail == null && FileUtils.test (thumbnail_normal_path, FileTest.EXISTS)) {
+                try {
+                    thumbnail = new Gdk.Pixbuf.from_file (thumbnail_normal_path);
+                } catch (Error e) {
+                    warning (e.message);
+                }
             }
         }
 
         public string get_path () {
             return Path.build_filename (directory, file);
-        }
-
-        public Gdk.Pixbuf? get_poster_from_file (string poster_path) {
-            Gdk.Pixbuf pixbuf = null;
-            if (File.new_for_path (poster_path).query_exists ()) {
-                try {
-                    pixbuf = new Gdk.Pixbuf.from_file_at_scale (poster_path, -1, Audience.Services.POSTER_HEIGHT, true);
-                } catch (Error e) {
-                    warning (e.message);
-                }
-
-                if (pixbuf == null) {
-                    return null;
-                }
-                // Cut THUMBNAIL images
-                int width = pixbuf.width;
-                if (width > Audience.Services.POSTER_WIDTH) {
-                    int x_offset = (width - Audience.Services.POSTER_WIDTH) / 2;
-                    pixbuf = new Gdk.Pixbuf.subpixbuf (pixbuf, x_offset, 0, Audience.Services.POSTER_WIDTH, Audience.Services.POSTER_HEIGHT);
-                }
-            }
-
-            return pixbuf;
         }
 
         public string? get_native_poster_path () {
@@ -199,19 +204,10 @@ namespace Audience.Objects {
 
             return null;
         }
-        
-        public void set_new_poster (Gdk.Pixbuf? new_poster) {
-            manager.clear_cache (this);
-            poster = new_poster;
-        }
 
-        public void trash () {
-            try {
-                video_file.trash ();
-                trashed (this);
-            } catch (Error e) {
-                warning (e.message);
-            }
+        public void set_new_poster (Gdk.Pixbuf? new_poster) {
+            manager.clear_cache.begin (this.poster_cache_file);
+            poster = new_poster;
         }
     }
 }
