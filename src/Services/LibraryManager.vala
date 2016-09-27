@@ -114,7 +114,7 @@ namespace Audience.Services {
                     crate_video_object (file_info, source);
                 }
             }
-            
+
             if (directory.get_path () == Audience.settings.library_folder) {
                 finished ();
             }
@@ -135,8 +135,8 @@ namespace Audience.Services {
             has_items = true;
         }
 
-        public void clear_cache (Audience.Objects.Video video) {
-            File file = File.new_for_path (video.poster_cache_file);
+        public void clear_cache (string cache_file) {
+            File file = File.new_for_path (cache_file);
             if (file.query_exists ()) {
                 file.delete_async.begin (Priority.DEFAULT, null);
             }
@@ -161,7 +161,7 @@ namespace Audience.Services {
             });
         }
 
-        private void deleted_items (string path) {
+        public void deleted_items (string path) {
             trashed_files.add (path);
             video_moved_to_trash (path);
         }
@@ -188,23 +188,25 @@ namespace Audience.Services {
             }
         }
 
-        public void trash (Audience.LibraryItem item) {
-            if (item.get_episodes_counter () > 1) {
+        public Gdk.Pixbuf? get_poster_from_file (string poster_path) {
+            Gdk.Pixbuf? pixbuf = null;
+            if (File.new_for_path (poster_path).query_exists ()) {
                 try {
-                    item.video.video_file.get_parent ().trash ();
-                    deleted_items (item.video.video_file.get_parent ().get_path ());
+                    pixbuf = new Gdk.Pixbuf.from_file_at_scale (poster_path, -1, Audience.Services.POSTER_HEIGHT, true);
                 } catch (Error e) {
                     warning (e.message);
                 }
-            } else {
-                try {
-                    item.video.trashed ();
-                    item.video.video_file.trash ();
-                    deleted_items (item.video.video_file.get_path ());
-                } catch (Error e) {
-                    warning (e.message);
+                if (pixbuf == null) {
+                    return null;
+                }
+                // Cut THUMBNAIL images
+                int width = pixbuf.width;
+                if (width > Audience.Services.POSTER_WIDTH) {
+                    int x_offset = (width - Audience.Services.POSTER_WIDTH) / 2;
+                    pixbuf = new Gdk.Pixbuf.subpixbuf (pixbuf, x_offset, 0, Audience.Services.POSTER_WIDTH, Audience.Services.POSTER_HEIGHT);
                 }
             }
+            return pixbuf;
         }
     }
 }

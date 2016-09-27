@@ -22,8 +22,8 @@ namespace Audience.Objects {
     public class Video : Object {
         Audience.Services.LibraryManager manager;
 
-        public signal void poster_changed ();
-        public signal void title_changed ();
+        public signal void poster_changed (Video sender);
+        public signal void title_changed (Video sender);
         public signal void thumbnail_changed ();
         public signal void trashed ();
 
@@ -70,10 +70,10 @@ namespace Audience.Objects {
             poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash + ".jpg");
 
             notify["poster"].connect (() => {
-                poster_changed ();
+                poster_changed (this);
             });
             notify["title"].connect (() => {
-                title_changed ();
+                title_changed (this);
             });
             notify["thumbnail"].connect (() => {
                 thumbnail_changed ();
@@ -114,7 +114,7 @@ namespace Audience.Objects {
                 }
 
                 string? poster_path = poster_cache_file;
-                pixbuf = get_poster_from_file (poster_path);
+                pixbuf = manager.get_poster_from_file (poster_path);
 
                 // POSTER in Cache exists
                 if (pixbuf != null) {
@@ -124,7 +124,7 @@ namespace Audience.Objects {
 
                 poster_path = get_native_poster_path ();
                 if (poster_path != null) {
-                    pixbuf = get_poster_from_file (poster_path);
+                    pixbuf = manager.get_poster_from_file (poster_path);
                 }
 
                 // POSTER found
@@ -139,7 +139,7 @@ namespace Audience.Objects {
                 }
 
                 if (File.new_for_path (thumbnail_large_path).query_exists ()) {
-                    pixbuf = get_poster_from_file (thumbnail_large_path);
+                    pixbuf = manager.get_poster_from_file (thumbnail_large_path);
                     Idle.add ((owned) callback);
                     return null;
                 }
@@ -165,7 +165,7 @@ namespace Audience.Objects {
 
         public void set_pixbufs () {
             if (poster == null && File.new_for_path (thumbnail_large_path).query_exists ()) {
-                poster = get_poster_from_file (thumbnail_large_path);
+                poster = manager.get_poster_from_file (thumbnail_large_path);
             }
             if (thumbnail == null && File.new_for_path (thumbnail_normal_path).query_exists ()) {
                 try {
@@ -178,29 +178,6 @@ namespace Audience.Objects {
 
         public string get_path () {
             return Path.build_filename (directory, file);
-        }
-
-        public Gdk.Pixbuf? get_poster_from_file (string poster_path) {
-            Gdk.Pixbuf pixbuf = null;
-            if (File.new_for_path (poster_path).query_exists ()) {
-                try {
-                    pixbuf = new Gdk.Pixbuf.from_file_at_scale (poster_path, -1, Audience.Services.POSTER_HEIGHT, true);
-                } catch (Error e) {
-                    warning (e.message);
-                }
-
-                if (pixbuf == null) {
-                    return null;
-                }
-                // Cut THUMBNAIL images
-                int width = pixbuf.width;
-                if (width > Audience.Services.POSTER_WIDTH) {
-                    int x_offset = (width - Audience.Services.POSTER_WIDTH) / 2;
-                    pixbuf = new Gdk.Pixbuf.subpixbuf (pixbuf, x_offset, 0, Audience.Services.POSTER_WIDTH, Audience.Services.POSTER_HEIGHT);
-                }
-            }
-
-            return pixbuf;
         }
 
         public string? get_native_poster_path () {
@@ -227,7 +204,7 @@ namespace Audience.Objects {
         }
 
         public void set_new_poster (Gdk.Pixbuf? new_poster) {
-            manager.clear_cache (this);
+            manager.clear_cache (this.poster_cache_file);
             poster = new_poster;
         }
     }

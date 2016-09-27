@@ -24,38 +24,46 @@ namespace Audience {
     public enum LibraryItemStyle { THUMBNAIL, ROW }
 
     public class LibraryItem : Gtk.FlowBoxChild  {
+        Audience.Services.LibraryManager manager;
+
+        //public Audience.Objects.Video video { get; construct set; }
+        public Gee.ArrayList<Audience.Objects.Video> episodes { get; private set; }
+        public LibraryItemStyle item_style { get; construct set; }
 
         Gtk.EventBox event_box;
         Gtk.Grid grid;
-        public Audience.Objects.Video video { get; construct set; }
-
-        public Gee.ArrayList<Audience.Objects.Video> episodes { get; construct set; }
-
-        public LibraryItemStyle item_style { get; construct set; }
-
         Gtk.Image poster;
-
         Gtk.Label title_label;
-
         Gtk.Spinner spinner;
         Gtk.Grid spinner_container;
-
         Gtk.Menu context_menu;
         Gtk.MenuItem new_cover;
         Gtk.MenuItem move_to_trash;
 
+        public string episode_poster_path { get; construct set; }
+        public string poster_cache_file { get; construct set; }
+        public string hash { get; construct set; }
+
         public LibraryItem (Audience.Objects.Video video, LibraryItemStyle item_style) {
-            Object (video: video, item_style: item_style);
+            Object (item_style: item_style);
+            episodes = new Gee.ArrayList<Audience.Objects.Video> ();
+            add_episode (video);
+            video.title_changed.connect (video_title_changed);
+            video.poster_changed.connect (video_poster_changed);
+
+            hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, video.video_file.get_parent ().get_uri (), video.video_file.get_parent ().get_uri ().length);
+            episode_poster_path = Path.build_filename (video.video_file.get_parent ().get_path (), video.video_file.get_parent ().get_basename () + ".jpg");
+            poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash + ".jpg");
         }
 
         construct {
-            episodes = new Gee.ArrayList<Audience.Objects.Video> ();
+            manager = Audience.Services.LibraryManager.get_instance ();
 
             grid = new Gtk.Grid ();
             grid.valign = Gtk.Align.START;
-
             grid.expand = true;
-            title_label = new Gtk.Label (video.title);
+
+            title_label = new Gtk.Label ("");
 
             context_menu = new Gtk.Menu ();
 
@@ -77,25 +85,19 @@ namespace Audience {
                 context_menu.append (new_cover);
                 context_menu.append (new Gtk.SeparatorMenuItem ());
 
-                video.poster_changed.connect (() => {
-                    if (video.poster != null) {
+                poster = new Gtk.Image ();
+                poster.margin_top = poster.margin_left = poster.margin_right = 12;
+                poster.get_style_context ().add_class ("card");
+                poster.pixbuf = null;
+                poster.notify ["pixbuf"].connect (() => {
+                    if (poster.pixbuf != null) {
                         spinner.active = false;
                         spinner_container.hide ();
-                        if (poster == null) {
-                            poster = new Gtk.Image ();
-                            poster.margin_top = poster.margin_left = poster.margin_right = 12;
-                            poster.get_style_context ().add_class ("card");
-                            grid.attach (poster, 0, 0, 1, 1);
-                        }
-
-                        poster.pixbuf = video.poster;
-                        poster.show ();
+                        poster.show_all ();
                     } else {
                         spinner.active = true;
                         spinner_container.show ();
-                        if (poster != null) {
-                            poster.hide ();
-                        }
+                        poster.hide ();
                     }
                 });
 
@@ -115,6 +117,7 @@ namespace Audience {
 
                 spinner_container.add (spinner);
                 grid.attach (spinner_container, 0, 0, 1, 1);
+                grid.attach (poster, 0, 0, 1, 1);
                 grid.attach (title_label, 0, 1, 1 ,1);
             } else {
                 grid.halign = Gtk.Align.FILL;
@@ -125,21 +128,11 @@ namespace Audience {
             context_menu.append (move_to_trash);
             context_menu.show_all ();
 
-            video.title_changed.connect (() => {
-                if (get_episodes_counter () == 1) {
-                    title_label.label = video.title;
-                } else {
-                    title_label.label = video.container;
-                }
-                title_label.show ();
-            });
-
             event_box = new Gtk.EventBox ();
             event_box.button_press_event.connect (show_context_menu);
             event_box.add (grid);
 
             add (event_box);
-
             show_all ();
         }
 
@@ -148,13 +141,26 @@ namespace Audience {
                 context_menu.popup (null, null, null, evt.button, evt.time);
                 return true;
             }
-
             return false;
         }
 
+        private void video_poster_changed (Audience.Objects.Video video) {
+            if (item_style == LibraryItemStyle.THUMBNAIL && (episodes.size == 1 || poster.pixbuf == null)) {
+                poster.pixbuf = video.poster;
+            }
+        }
+
+        private void video_title_changed (Audience.Objects.Video video) {
+             if (episodes.size == 1) {
+                 title_label.label = video.title;
+             } else {
+                 title_label.label = video.container;
+             }
+             title_label.show ();
+        }
+
         private void set_new_cover () {
-            var file = new Gtk.FileChooserDialog (_("Open"), Audience.App.get_instance ().mainwindow, Gtk.FileChooserAction.OPEN,
-                _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
+            var file = new Gtk.FileChooserDialog (_("Open"), Audience.App.get_instance ().mainwindow, Gtk.FileChooserAction.OPEN, _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
 
             var image_filter = new Gtk.FileFilter ();
             image_filter.set_filter_name (_("Image files"));
@@ -163,27 +169,37 @@ namespace Audience {
             file.add_filter (image_filter);
 
             if (file.run () == Gtk.ResponseType.ACCEPT) {
-                Gdk.Pixbuf? pixbuf = video.get_poster_from_file (file.get_file ().get_path ());
+                Gdk.Pixbuf? pixbuf = manager.get_poster_from_file (file.get_file ().get_path ());
                 if (pixbuf != null) {
                     try {
-                        pixbuf.save (video.video_file.get_path() + ".jpg", "jpeg");
-                        video.set_new_poster (pixbuf);
+                        if (episodes.size == 1) {
+                            pixbuf.save (episodes.first ().video_file.get_path() + ".jpg", "jpeg");
+                            episodes.first ().set_new_poster (pixbuf);
+                            episodes.first ().initialize_poster.begin ();
+                        } else {
+                            pixbuf.save (episode_poster_path, "jpeg");
+                            manager.clear_cache (poster_cache_file);
+                            create_episode_poster ();
+                        }
                     } catch (Error e) {
                         warning (e.message);
                     }
-                    video.initialize_poster.begin ();
                 }
             }
-
             file.destroy ();
         }
 
-        public int get_episodes_counter () {
-            return episodes.size;
-        }
-
         private void move_video_to_trash () {
-            Audience.Services.LibraryManager.get_instance ().trash (this);
+            debug (episodes.size.to_string ());
+            if (episodes.size == 1) {
+                var video = episodes.first ();
+                video.trashed ();
+                video.video_file.trash ();
+                manager.deleted_items (video.video_file.get_path ());
+            } else {
+                episodes.first ().video_file.get_parent ().trash ();
+                manager.deleted_items (episodes.first ().video_file.get_parent ().get_path ());
+            }
         }
 
         public void add_episode (Audience.Objects.Video episode) {
@@ -191,15 +207,27 @@ namespace Audience {
                 episodes.remove (episode);
             });
             episodes.add (episode);
-            if (get_episodes_counter () == 1) {
-                title_label.label = video.title;
-            } else {
-                title_label.label = video.container;
+            if (episodes.size == 1) {
+                title_label.label = episode.title;
+            } else if (episodes.size == 2) {
+                title_label.label = episode.container;
+                create_episode_poster ();
             }
         }
 
         public string get_title () {
             return title_label.label;
+        }
+
+        public void create_episode_poster () {
+            if (File.new_for_path (poster_cache_file).query_exists ()) {
+                debug ("CACHE EXISTS" + poster_cache_file);
+                poster.pixbuf = new Gdk.Pixbuf.from_file (poster_cache_file);
+            } else if (File.new_for_path (episode_poster_path).query_exists ()) {
+                debug ("PATH EXISTS" + episode_poster_path);
+                poster.pixbuf = manager.get_poster_from_file (episode_poster_path);
+                poster.pixbuf.save (poster_cache_file, "jpeg");
+            }
         }
     }
 }
