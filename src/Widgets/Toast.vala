@@ -18,7 +18,7 @@
  *
  */
 
-public class Granite.Widgets.Toast : Gtk.Revealer {
+public class Audience.Toast : Gtk.Revealer {
     Gtk.Label notification_label;
     Gtk.Button restore_button;
 

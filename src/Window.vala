@@ -29,7 +29,7 @@ public class Audience.Window : Gtk.Window {
     private LibraryPage library_page;
     private EpisodesPage episodes_page;
     private Granite.Widgets.AlertView alert_view;
-    private Granite.Widgets.Toast app_notification;
+    private Toast app_notification;
     private NavigationButton navigation_button;
     private ZeitgeistManager zeitgeist_manager;
     private Gtk.SearchEntry search_entry;
@@ -149,7 +149,7 @@ public class Audience.Window : Gtk.Window {
         main_stack.add_named (alert_view, "alert");
         main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
-        app_notification = new Granite.Widgets.Toast ();
+        app_notification = new Toast ();
         app_notification.set_button_label (_("Restore"));
         app_notification.accept.connect (() => {
             library_page.manager.undo_delete_item ();
