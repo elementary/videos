@@ -25,6 +25,7 @@ namespace Audience {
         Gtk.Image poster;
         Gtk.ScrolledWindow scrolled_window;
         Gtk.FlowBox view_episodes;
+        Granite.Widgets.AlertView alert_view;
 
         public Audience.Services.LibraryManager manager;
 
@@ -53,9 +54,14 @@ namespace Audience {
             scrolled_window.expand = true;
             scrolled_window.add (view_episodes);
 
+            alert_view = new Granite.Widgets.AlertView ("", "", "");
+            alert_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
+            alert_view.hide ();
+
             expand = true;
             attach (poster, 0, 1, 1, 1);
             attach (scrolled_window, 1, 1, 1, 1);
+            attach (alert_view, 1, 1, 1, 1);
 
             manager = Audience.Services.LibraryManager.get_instance ();
             manager.video_file_deleted.connect (remove_item_from_path);
@@ -66,11 +72,9 @@ namespace Audience {
             view_episodes.forall ((item)=> {
                 item.dispose ();
             });
-
             foreach (Audience.Objects.Video episode in episodes) {
                 view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
             }
-
             poster.pixbuf = episodes.first ().poster;
         }
 
@@ -86,6 +90,11 @@ namespace Audience {
         public void filter (string text) {
              query = text.strip ();
              view_episodes.invalidate_filter ();
+             if (!has_child ()) {
+                show_alert (_("No Results for “%s”".printf(text)), _("Try changing search terms."), "edit-find-symbolic");
+             } else {
+                alert_view.hide ();
+             }
         }
 
         private bool episodes_filter_func (Gtk.FlowBoxChild child) {
@@ -132,6 +141,26 @@ namespace Audience {
             if (Audience.App.get_instance ().mainwindow.get_visible_child () == this && view_episodes.get_children ().length () == 0) {
                 Audience.App.get_instance ().mainwindow.navigate_back ();
             }
+        }
+
+        public bool has_child () {
+            if (view_episodes.get_children ().length () > 0) {
+               foreach (unowned Gtk.Widget child in view_episodes.get_children ()) {
+                   if (child.get_child_visible ()) {
+                       return true;
+                   }
+                }
+            }
+            return false;
+        }
+
+        public void show_alert (string primary_text, string secondary_text, string icon_name) {
+            alert_view.no_show_all = false;
+            alert_view.show_all ();
+            alert_view.title = primary_text;
+            alert_view.description = secondary_text;
+            alert_view.icon_name = icon_name;
+            alert_view.show ();
         }
     }
 }

@@ -198,11 +198,19 @@ namespace Audience {
             if (episodes.size == 1) {
                 var video = episodes.first ();
                 video.trashed ();
-                video.video_file.trash ();
-                manager.deleted_items (video.video_file.get_path ());
+                try {
+                    video.video_file.trash ();
+                    manager.deleted_items (video.video_file.get_path ());
+                } catch (Error e) {
+                    warning (e.message);
+                }
             } else {
-                episodes.first ().video_file.get_parent ().trash ();
-                manager.deleted_items (episodes.first ().video_file.get_parent ().get_path ());
+                try {
+                    episodes.first ().video_file.get_parent ().trash ();
+                    manager.deleted_items (episodes.first ().video_file.get_parent ().get_path ());
+                } catch (Error e) {
+                    warning (e.message);
+                }
             }
         }
 
@@ -225,10 +233,18 @@ namespace Audience {
 
         public void create_episode_poster () {
             if (File.new_for_path (poster_cache_file).query_exists ()) {
-                poster.pixbuf = new Gdk.Pixbuf.from_file (poster_cache_file);
+                try {
+                    poster.pixbuf = new Gdk.Pixbuf.from_file (poster_cache_file);
+                } catch (Error e) {
+                    warning (e.message);
+                }
             } else if (File.new_for_path (episode_poster_path).query_exists ()) {
                 poster.pixbuf = manager.get_poster_from_file (episode_poster_path);
-                poster.pixbuf.save (poster_cache_file, "jpeg");
+                try {
+                    poster.pixbuf.save (poster_cache_file, "jpeg");
+                } catch (Error e) {
+                    warning (e.message);
+                }
             }
         }
     }
