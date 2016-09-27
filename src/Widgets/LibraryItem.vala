@@ -181,8 +181,8 @@ namespace Audience {
                             episodes.first ().set_new_poster (pixbuf);
                             episodes.first ().initialize_poster.begin ();
                         } else {
-                            pixbuf.save (episode_poster_path, "jpeg");
                             manager.clear_cache (poster_cache_file);
+                            pixbuf.save (episode_poster_path, "jpeg");
                             create_episode_poster ();
                         }
                     } catch (Error e) {
