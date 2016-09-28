@@ -71,7 +71,6 @@ namespace Audience {
 
         public void refresh () {
             var replay_button = get_button_from_index (1);
-            var disk_button = get_button_from_index (2);
 
             var filename = settings.current_video;
             var last_file = File.new_for_uri (filename);
