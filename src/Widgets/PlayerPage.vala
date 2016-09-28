@@ -26,11 +26,11 @@ namespace Audience {
 
         public bool repeat {
             get{
-                return bottom_bar.get_repeat ();
+                return bottom_bar.repeat;
             }
 
             set{
-                bottom_bar.set_repeat (value);
+                bottom_bar.repeat = value;
             }
         }
 

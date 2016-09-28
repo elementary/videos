@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2013-2014 Audience Developers (http://launchpad.net/pantheon-chat)
+ * Copyright (c) 2013-2016 elementary LLC (http://launchpad.net/audience)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,6 +40,15 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     private Gtk.Revealer unfullscreen_revealer;
     private uint hiding_timer = 0;
     private bool playlist_glowing = false;
+
+    public bool repeat {
+        get {
+            return playlist_popover.rep.active;
+        }
+        set {
+            playlist_popover.rep.active = value;
+        }
+    }
 
     public BottomBar (ClutterGst.Playback playback) {
         this.events |= Gdk.EventMask.POINTER_MOTION_MASK;
@@ -137,14 +146,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
                 return false;
             });
         }
-    }
-
-    public bool get_repeat () {
-        return playlist_popover.rep.active;
-    }
-
-    public void set_repeat (bool repeat) {
-        playlist_popover.rep.active = repeat;
     }
 
     public Gtk.Revealer get_unfullscreen_button () {
