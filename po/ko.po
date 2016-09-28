@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-09-24 18:24-0700\n"
-"PO-Revision-Date: 2016-08-24 14:41+0000\n"
+"POT-Creation-Date: 2016-09-27 14:45-0700\n"
+"PO-Revision-Date: 2016-09-27 22:16+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-09-26 06:08+0000\n"
+"X-Launchpad-Export-Date: 2016-09-28 06:49+0000\n"
 "X-Generator: Launchpad (build 18204)\n"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
@@ -55,11 +55,11 @@ msgstr ""
 "  MinSik CHO https://launchpad.net/~mscho527\n"
 "  강창건(Chang-geon Kang) https://launchpad.net/~kangha02"
 
-#: ../src/Widgets/LibraryPage.vala:66
+#: ../src/Widgets/LibraryPage.vala:69
 msgid "Video '%s' Removed."
-msgstr ""
+msgstr "비디오 '%s'를 지웠습니다."
 
-#: ../src/Widgets/SettingsPopover.vala:37 ../src/Window.vala:391
+#: ../src/Widgets/SettingsPopover.vala:37 ../src/Window.vala:398
 msgid "All files"
 msgstr "모든 파일"
 
@@ -99,29 +99,37 @@ msgstr "없음"
 msgid "Default"
 msgstr "기본값"
 
-#: ../src/Widgets/LibraryItem.vala:104
-msgid "Set Artwork"
-msgstr ""
+#: ../src/Widgets/EpisodesPage.vala:93 ../src/Window.vala:99
+msgid "No Results for “%s”"
+msgstr "“%s”에 대한 검색 결과가 없습니다"
 
-#: ../src/Widgets/LibraryItem.vala:106
+#: ../src/Widgets/EpisodesPage.vala:93 ../src/Window.vala:99
+msgid "Try changing search terms."
+msgstr "검색어를 바꿔보세요."
+
+#: ../src/Widgets/LibraryItem.vala:69
 msgid "Move to Trash"
-msgstr ""
+msgstr "휴지통으로"
 
-#: ../src/Widgets/LibraryItem.vala:131 ../src/Window.vala:385
+#: ../src/Widgets/LibraryItem.vala:82
+msgid "Set Artwork"
+msgstr "표지 설정"
+
+#: ../src/Widgets/LibraryItem.vala:167 ../src/Window.vala:392
 msgid "Open"
 msgstr "열기"
 
-#: ../src/Widgets/LibraryItem.vala:132 ../src/Window.vala:386
+#: ../src/Widgets/LibraryItem.vala:167 ../src/Window.vala:393
 msgid "_Cancel"
 msgstr "_취소"
 
-#: ../src/Widgets/LibraryItem.vala:132 ../src/Window.vala:386
+#: ../src/Widgets/LibraryItem.vala:167 ../src/Window.vala:393
 msgid "_Open"
 msgstr "_열기"
 
-#: ../src/Widgets/LibraryItem.vala:135
+#: ../src/Widgets/LibraryItem.vala:170
 msgid "Image files"
-msgstr ""
+msgstr "이미지 파일"
 
 #: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:10
 msgid "Open file"
@@ -186,36 +194,32 @@ msgstr "DVD를 재생하거나, 디스크 롬에서 파일 재생하기"
 
 #: ../src/Widgets/WelcomePage.vala:50
 msgid "Browse Library"
-msgstr ""
+msgstr "라이브러리 탐색"
 
 #: ../src/Widgets/WelcomePage.vala:50
 msgid "Watch a movie from your library"
-msgstr ""
-
-#: ../src/Window.vala:38
-msgid "Back"
-msgstr ""
+msgstr "라이브러리에 있는 영화 보기"
 
 #: ../src/Window.vala:39
+msgid "Back"
+msgstr "뒤로"
+
+#: ../src/Window.vala:40
 msgid "Library"
-msgstr ""
+msgstr "라이브러리"
 
-#: ../src/Window.vala:65
+#: ../src/Window.vala:41
+msgid "Episodes"
+msgstr "에피소드"
+
+#: ../src/Window.vala:67
 msgid "Search Videos"
-msgstr ""
+msgstr "비디오 검색"
 
-#: ../src/Window.vala:87
-msgid "No Results for “%s”"
-msgstr ""
-
-#: ../src/Window.vala:87
-msgid "Try changing search terms."
-msgstr ""
-
-#: ../src/Window.vala:126
+#: ../src/Window.vala:153
 msgid "Restore"
-msgstr ""
+msgstr "복원하기"
 
-#: ../src/Window.vala:395
+#: ../src/Window.vala:402
 msgid "Video files"
 msgstr "비디오 파일"

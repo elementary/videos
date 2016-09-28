@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-09-24 18:24-0700\n"
-"PO-Revision-Date: 2016-09-24 20:33+0000\n"
+"POT-Creation-Date: 2016-09-27 14:45-0700\n"
+"PO-Revision-Date: 2016-09-27 21:47+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-09-26 06:08+0000\n"
+"X-Launchpad-Export-Date: 2016-09-28 06:50+0000\n"
 "X-Generator: Launchpad (build 18204)\n"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
@@ -62,11 +62,11 @@ msgstr ""
 "  Roberto Serrano Diaz-Grande https://launchpad.net/~robertoserrano83\n"
 "  Rodolfo Jara https://launchpad.net/~rodolfoa-jara"
 
-#: ../src/Widgets/LibraryPage.vala:66
+#: ../src/Widgets/LibraryPage.vala:69
 msgid "Video '%s' Removed."
 msgstr ""
 
-#: ../src/Widgets/SettingsPopover.vala:37 ../src/Window.vala:391
+#: ../src/Widgets/SettingsPopover.vala:37 ../src/Window.vala:398
 msgid "All files"
 msgstr "Todos los archivos"
 
@@ -106,29 +106,37 @@ msgstr "Ninguno"
 msgid "Default"
 msgstr "Predeterminado"
 
-#: ../src/Widgets/LibraryItem.vala:104
-msgid "Set Artwork"
-msgstr ""
+#: ../src/Widgets/EpisodesPage.vala:93 ../src/Window.vala:99
+msgid "No Results for “%s”"
+msgstr "No Hay Resultados para \"%s\""
 
-#: ../src/Widgets/LibraryItem.vala:106
+#: ../src/Widgets/EpisodesPage.vala:93 ../src/Window.vala:99
+msgid "Try changing search terms."
+msgstr "Intente cambiando los términos de búsqueda."
+
+#: ../src/Widgets/LibraryItem.vala:69
 msgid "Move to Trash"
 msgstr ""
 
-#: ../src/Widgets/LibraryItem.vala:131 ../src/Window.vala:385
+#: ../src/Widgets/LibraryItem.vala:82
+msgid "Set Artwork"
+msgstr ""
+
+#: ../src/Widgets/LibraryItem.vala:167 ../src/Window.vala:392
 msgid "Open"
 msgstr "Abrir"
 
-#: ../src/Widgets/LibraryItem.vala:132 ../src/Window.vala:386
+#: ../src/Widgets/LibraryItem.vala:167 ../src/Window.vala:393
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: ../src/Widgets/LibraryItem.vala:132 ../src/Window.vala:386
+#: ../src/Widgets/LibraryItem.vala:167 ../src/Window.vala:393
 msgid "_Open"
 msgstr "_Abrir"
 
-#: ../src/Widgets/LibraryItem.vala:135
+#: ../src/Widgets/LibraryItem.vala:170
 msgid "Image files"
-msgstr ""
+msgstr "Archivo de imágenes"
 
 #: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:10
 msgid "Open file"
@@ -199,30 +207,26 @@ msgstr "Explorar Biblioteca"
 msgid "Watch a movie from your library"
 msgstr ""
 
-#: ../src/Window.vala:38
+#: ../src/Window.vala:39
 msgid "Back"
 msgstr "Regresar"
 
-#: ../src/Window.vala:39
+#: ../src/Window.vala:40
 msgid "Library"
 msgstr "Biblioteca"
 
-#: ../src/Window.vala:65
+#: ../src/Window.vala:41
+msgid "Episodes"
+msgstr ""
+
+#: ../src/Window.vala:67
 msgid "Search Videos"
 msgstr "Buscar Vídeos"
 
-#: ../src/Window.vala:87
-msgid "No Results for “%s”"
-msgstr "No Hay Resultados para \"%s\""
-
-#: ../src/Window.vala:87
-msgid "Try changing search terms."
-msgstr "Intente cambiando los términos de búsqueda."
-
-#: ../src/Window.vala:126
+#: ../src/Window.vala:153
 msgid "Restore"
 msgstr ""
 
-#: ../src/Window.vala:395
+#: ../src/Window.vala:402
 msgid "Video files"
 msgstr "Archivos de vídeo"
