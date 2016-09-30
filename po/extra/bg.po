@@ -1,4 +1,4 @@
-# Chinese (Simplified) translation for audience
+# Bulgarian translation for audience
 # Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
 # This file is distributed under the same license as the audience package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-09-27 14:45-0700\n"
-"PO-Revision-Date: 2016-09-29 07:00+0000\n"
-"Last-Translator: colindemian <colindemian@outlook.com>\n"
-"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"PO-Revision-Date: 2016-09-29 11:56+0000\n"
+"Last-Translator: Адмирал АнимЕ <Unknown>\n"
+"Language-Team: Bulgarian <bg@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,43 +18,46 @@ msgstr ""
 "X-Generator: Launchpad (build 18204)\n"
 
 msgid "Videos"
-msgstr "视频"
+msgstr "Видеоклипове"
 
 msgid "Video Player"
-msgstr "视频播放器"
+msgstr "Възпроизвеждане на видеоклипове"
 
 msgid "Watch videos and movies"
-msgstr "观看影片和视频"
+msgstr "Гледане на видеоклипове и филми"
 
 msgid "Audience"
-msgstr "Audience"
+msgstr "Видеоклипове"
 
 msgid ""
 "A modern video player that focuses on displaying video content instead of "
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
-msgstr "一款专注于播放内容而非繁琐控制的播放器，记忆播放功能让你不再丢失播放进度。"
+msgstr ""
+"Съвременен възпроизвеждач на видеоклипове, който показва съдържанието вместо "
+"копчетата за управление. Запомнят се името и времето на последния файл, за "
+"да можете да продължите да гледате без проблеми."
 
 msgid "Additional features include:"
-msgstr "特色功能："
+msgstr ""
 
 msgid "Subtitle support"
-msgstr "字幕支持"
+msgstr "Поддръжка на субтитри"
 
 msgid "Play queue"
-msgstr "播放队列"
+msgstr ""
 
 msgid "Thumbnail previews on the seek bar"
-msgstr "进度条快速预览"
+msgstr ""
 
 msgid "Added a library view with search"
-msgstr "新增带搜索功能的媒体库视图"
+msgstr ""
 
 msgid "Fixed a bug that prevents keyboard navigation"
-msgstr "修复一个影响键盘控制的BUG"
+msgstr "Поправка на грешка, възпрепятстваща навигация с клавиатурата"
 
 msgid "Translation updates"
-msgstr "翻译更新"
+msgstr "Обновяване на превода"
 
 msgid "Minor bug fixes"
-msgstr "细节修复"
+msgstr "Поправки на дребни грешки"
