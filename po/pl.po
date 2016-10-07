@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-09-27 14:45-0700\n"
-"PO-Revision-Date: 2016-09-08 15:54+0000\n"
-"Last-Translator: Damian Woźniak <fiszet@gmail.com>\n"
+"PO-Revision-Date: 2016-10-06 07:54+0000\n"
+"Last-Translator: Piotr Strębski <strebski@o2.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-09-28 06:49+0000\n"
-"X-Generator: Launchpad (build 18204)\n"
+"X-Launchpad-Export-Date: 2016-10-07 06:41+0000\n"
+"X-Generator: Launchpad (build 18217)\n"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:32
@@ -63,7 +63,7 @@ msgstr ""
 
 #: ../src/Widgets/LibraryPage.vala:69
 msgid "Video '%s' Removed."
-msgstr ""
+msgstr "Wideo '%s' zostało usunięte."
 
 #: ../src/Widgets/SettingsPopover.vala:37 ../src/Window.vala:398
 msgid "All files"
@@ -107,19 +107,19 @@ msgstr "Domyślne"
 
 #: ../src/Widgets/EpisodesPage.vala:93 ../src/Window.vala:99
 msgid "No Results for “%s”"
-msgstr ""
+msgstr "Brak wyników dla zapytania “%s”"
 
 #: ../src/Widgets/EpisodesPage.vala:93 ../src/Window.vala:99
 msgid "Try changing search terms."
-msgstr ""
+msgstr "Spróbuj zmienić kryteria wyszukiwania."
 
 #: ../src/Widgets/LibraryItem.vala:69
 msgid "Move to Trash"
-msgstr ""
+msgstr "Przenieś do kosza"
 
 #: ../src/Widgets/LibraryItem.vala:82
 msgid "Set Artwork"
-msgstr ""
+msgstr "Ustaw okładkę"
 
 #: ../src/Widgets/LibraryItem.vala:167 ../src/Window.vala:392
 msgid "Open"
@@ -135,7 +135,7 @@ msgstr "_Otwórz"
 
 #: ../src/Widgets/LibraryItem.vala:170
 msgid "Image files"
-msgstr ""
+msgstr "Pliki graficzne"
 
 #: ../src/Widgets/PlaylistPopover.vala:35 ../src/Widgets/WelcomePage.vala:10
 msgid "Open file"
@@ -200,31 +200,31 @@ msgstr "Oglądaj DVD lub otwórz plik z dysku"
 
 #: ../src/Widgets/WelcomePage.vala:50
 msgid "Browse Library"
-msgstr ""
+msgstr "Przeglądaj bibliotekę"
 
 #: ../src/Widgets/WelcomePage.vala:50
 msgid "Watch a movie from your library"
-msgstr ""
+msgstr "Oglądaj film ze swojej biblioteki"
 
 #: ../src/Window.vala:39
 msgid "Back"
-msgstr ""
+msgstr "Powrót"
 
 #: ../src/Window.vala:40
 msgid "Library"
-msgstr ""
+msgstr "Biblioteka"
 
 #: ../src/Window.vala:41
 msgid "Episodes"
-msgstr ""
+msgstr "Odcinki"
 
 #: ../src/Window.vala:67
 msgid "Search Videos"
-msgstr ""
+msgstr "Wyszukiwanie nagrań wideo"
 
 #: ../src/Window.vala:153
 msgid "Restore"
-msgstr ""
+msgstr "Przywróć"
 
 #: ../src/Window.vala:402
 msgid "Video files"
