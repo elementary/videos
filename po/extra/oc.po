@@ -1,0 +1,60 @@
+# Occitan (post 1500) translation for audience
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
+# This file is distributed under the same license as the audience package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: audience\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2016-09-27 14:45-0700\n"
+"PO-Revision-Date: 2016-10-08 08:49+0000\n"
+"Last-Translator: Cédric VALMARY (Tot en òc) <cvalmary@yahoo.fr>\n"
+"Language-Team: Occitan (post 1500) <oc@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2016-10-09 07:22+0000\n"
+"X-Generator: Launchpad (build 18227)\n"
+
+msgid "Videos"
+msgstr "Vidèos"
+
+msgid "Video Player"
+msgstr "Lector Vidèo"
+
+msgid "Watch videos and movies"
+msgstr ""
+
+msgid "Audience"
+msgstr "Audience"
+
+msgid ""
+"A modern video player that focuses on displaying video content instead of "
+"player controls. It remembers your last played video and playback position "
+"so you can pick up from where you left off."
+msgstr ""
+
+msgid "Additional features include:"
+msgstr ""
+
+msgid "Subtitle support"
+msgstr ""
+
+msgid "Play queue"
+msgstr ""
+
+msgid "Thumbnail previews on the seek bar"
+msgstr ""
+
+msgid "Added a library view with search"
+msgstr ""
+
+msgid "Fixed a bug that prevents keyboard navigation"
+msgstr ""
+
+msgid "Translation updates"
+msgstr ""
+
+msgid "Minor bug fixes"
+msgstr ""
