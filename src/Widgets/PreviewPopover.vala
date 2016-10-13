@@ -65,7 +65,11 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         stage.background_color = {0, 0, 0, 0};
 
         var video_actor = new Clutter.Actor ();
+#if VALA_0_34
+        var aspect_ratio = new ClutterGst.Aspectratio ();
+#else
         var aspect_ratio = ClutterGst.Aspectratio.@new ();
+#endif
         ((ClutterGst.Aspectratio) aspect_ratio).paint_borders = false;
         ((ClutterGst.Content) aspect_ratio).player = playback;
         video_actor.content = aspect_ratio;
