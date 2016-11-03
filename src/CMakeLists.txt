@@ -49,23 +49,28 @@ vala_precompile (VALA_C ${EXEC_NAME}
     Utils.vala
     DiskManager.vala
     Window.vala
-    Widgets/BottomBar.vala
-    Widgets/SettingsPopover.vala
-    Widgets/PreviewPopover.vala
-    Widgets/TimeWidget.vala
-    Widgets/Playlist.vala
-    Widgets/PlaylistPopover.vala
+
     Widgets/WelcomePage.vala
-    Widgets/PlayerPage.vala
-    Widgets/LibraryPage.vala
-    Widgets/LibraryItem.vala
     Widgets/NavigationButton.vala
-    Widgets/EpisodesPage.vala
     Widgets/Toast.vala
+
+    Widgets/Player/BottomBar.vala
+    Widgets/Player/SettingsPopover.vala
+    Widgets/Player/PreviewPopover.vala
+    Widgets/Player/TimeWidget.vala
+    Widgets/Player/Playlist.vala
+    Widgets/Player/PlaylistPopover.vala
+    Widgets/Player/PlayerPage.vala
+
+    Widgets/Library/LibraryPage.vala
+    Widgets/Library/LibraryItem.vala
+    Widgets/Library/EpisodesPage.vala
+
     Services/Inhibitor.vala
     Services/DirictoryMonitoring.vala
     Services/LibraryManager.vala
     Services/Thubnailer.vala
+
     Objects/Video.vala
   PACKAGES
     ${VALA_DEPS}
