@@ -1,0 +1,64 @@
+# Slovak translation for audience
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
+# This file is distributed under the same license as the audience package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+# Martin Korpala <korpyk@gmail.com>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: audience\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2016-09-27 14:45-0700\n"
+"PO-Revision-Date: 2016-12-12 20:18+0000\n"
+"Last-Translator: Martin Korpala <Unknown>\n"
+"Language-Team: Slovak <>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2016-12-13 05:22+0000\n"
+"X-Generator: Launchpad (build 18293)\n"
+
+msgid "Videos"
+msgstr "Videá"
+
+msgid "Video Player"
+msgstr "Video prehrávač"
+
+msgid "Watch videos and movies"
+msgstr "Pozeraj videá a filmy"
+
+msgid "Audience"
+msgstr "Audience"
+
+msgid ""
+"A modern video player that focuses on displaying video content instead of "
+"player controls. It remembers your last played video and playback position "
+"so you can pick up from where you left off."
+msgstr ""
+"Moderný prehrávač videa, ktorý sa sústreďuje na zobrazovanie obsahu namiesto "
+"ovládania prehrávača. Pamätá si Tvoje posledné video a pozíciu prehrávania, "
+"takže môžeš pokračovať tam kde si prestal."
+
+msgid "Additional features include:"
+msgstr "Doplnkové funkcie zahŕňajú:"
+
+msgid "Subtitle support"
+msgstr "Podpora titulkov"
+
+msgid "Play queue"
+msgstr "Hraj rad"
+
+msgid "Thumbnail previews on the seek bar"
+msgstr "Náhľady na vyhľadávacom páse"
+
+msgid "Added a library view with search"
+msgstr "Pridaný prehľad knižnice s vyhľadávaním"
+
+msgid "Fixed a bug that prevents keyboard navigation"
+msgstr "Opravená chyba, ktorá bránila v navigácii klávesnicou"
+
+msgid "Translation updates"
+msgstr "Aktualizácie prekladu."
+
+msgid "Minor bug fixes"
+msgstr "Menšie opravy chýb"
