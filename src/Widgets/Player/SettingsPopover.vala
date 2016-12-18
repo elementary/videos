@@ -115,7 +115,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         uint track = 1;
         playback.get_subtitle_tracks ().foreach ((lang) => {
             // FIXME: Using Track since lang is actually a bad pointer :/
-            subtitles.append (lang, _("Track %d").printf (track++));
+            subtitles.append (lang, _("Track %u").printf (track++));
         });
 
         subtitles.append ("none", _("None"));
@@ -138,7 +138,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
         uint track = 1;
         playback.get_audio_streams ().foreach ((lang) => {
-            languages.append (lang, _("Track %d").printf (track++));
+            languages.append (lang, _("Track %u").printf (track++));
         });
 
         languages.sensitive = languages.model.iter_n_children (null) > 1;
