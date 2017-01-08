@@ -102,7 +102,7 @@ public class Audience.Window : Gtk.Window {
             }
         });
         library_page.show_episodes.connect ((item) => {
-            navigation_button.label = navigation_button_library;
+            navigation_button.label = _(navigation_button_library);
             episodes_page.set_episodes_items (item.episodes);
             episodes_page.poster.pixbuf = item.poster.pixbuf;
             main_stack.set_visible_child (episodes_page);
@@ -382,7 +382,7 @@ public class Audience.Window : Gtk.Window {
     }
 
     public void show_library () {
-        navigation_button.label = navigation_button_welcomescreen;
+        navigation_button.label = _(navigation_button_welcomescreen);
         navigation_button.show ();
         main_stack.visible_child = library_page;
         library_page.scrolled_window.grab_focus ();
@@ -456,14 +456,14 @@ public class Audience.Window : Gtk.Window {
     public void play_file (string uri, bool from_beginning = true) {
         search_entry.visible = false;
         if (navigation_button.visible) {
-            if (navigation_button.label == navigation_button_library) {
-                navigation_button.label = navigation_button_episodes;
+            if (navigation_button.label == _(navigation_button_library)) {
+                navigation_button.label = _(navigation_button_episodes);
             } else {
-                navigation_button.label = navigation_button_library;
+                navigation_button.label = _(navigation_button_library);
             }
         } else {
             navigation_button.show ();
-            navigation_button.label = navigation_button_welcomescreen;
+            navigation_button.label = _(navigation_button_welcomescreen);
         }
 
         main_stack.set_visible_child_full ("player", Gtk.StackTransitionType.SLIDE_LEFT);
@@ -491,11 +491,11 @@ public class Audience.Window : Gtk.Window {
         title = App.get_instance ().program_name;
         get_window ().set_cursor (null);
 
-        if (navigation_button.label == navigation_button_library) {
-            navigation_button.label = navigation_button_welcomescreen;
+        if (navigation_button.label == _(navigation_button_library)) {
+            navigation_button.label = _(navigation_button_welcomescreen);
             main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
-        } else if (navigation_button.label == navigation_button_episodes) {
-            navigation_button.label = navigation_button_library;
+        } else if (navigation_button.label == _(navigation_button_episodes)) {
+            navigation_button.label = _(navigation_button_library);
             main_stack.set_visible_child_full ("episodes", Gtk.StackTransitionType.SLIDE_RIGHT);
         } else {
             navigation_button.hide ();
