@@ -26,6 +26,13 @@
     <binary>audience</binary>
   </provides>
   <releases>
+    <release version="0.2.1.2" date="2017-01-19" urgency="medium">
+      <description>
+        <ul>
+          <_li>Translation updates</_li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.1.1" date="2016-10-31" urgency="medium">
       <description>
         <ul>
