@@ -1,3 +1,9 @@
+audience (0.2.1.2) xenial; urgency=medium
+
+  * New upstream release.
+
+ -- Cody Garver <cody@elementary.io>  Thu, 19 Jan 2017 16:23:14 -0600
+
 audience (0.2.1.1) xenial; urgency=medium
 
   * New upstream release.
