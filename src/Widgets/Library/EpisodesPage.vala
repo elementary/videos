@@ -90,7 +90,7 @@ namespace Audience {
              query = text.strip ();
              view_episodes.invalidate_filter ();
              if (!has_child ()) {
-                show_alert (_("No Results for “%s”".printf(text)), _("Try changing search terms."), "edit-find-symbolic");
+                show_alert (_("No Results for “%s”").printf (text), _("Try changing search terms."), "edit-find-symbolic");
              } else {
                 alert_view.hide ();
              }
