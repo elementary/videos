@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-12-18 14:48+0100\n"
+"POT-Creation-Date: 2017-01-25 23:39+0100\n"
 "PO-Revision-Date: 2016-12-19 22:54+0000\n"
 "Last-Translator: Lulucmy <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-12-21 05:20+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
+"X-Launchpad-Export-Date: 2017-01-26 06:06+0000\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 msgid "Videos"
 msgstr "Vidéos"
@@ -50,6 +50,9 @@ msgstr "Liste de lecture"
 msgid "Thumbnail previews on the seek bar"
 msgstr "Minaitures sur la barre de navigation"
 
+msgid "Translation updates"
+msgstr "Mise à jour des traductions"
+
 msgid "Fix appstream date format"
 msgstr "Correction du format de la date d'appstream"
 
@@ -58,9 +61,6 @@ msgstr "Ajout d'une vue bibliothèque avec une fonction recherche"
 
 msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "Correction d'un bug empêchant la navigation avec le clavier"
-
-msgid "Translation updates"
-msgstr "Mise à jour des traductions"
 
 msgid "Minor bug fixes"
 msgstr "Corrections d'anomalies mineures"

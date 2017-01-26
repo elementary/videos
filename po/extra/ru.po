@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-12-18 14:48+0100\n"
+"POT-Creation-Date: 2017-01-25 23:39+0100\n"
 "PO-Revision-Date: 2016-12-19 21:05+0000\n"
 "Last-Translator: Maxim Taranov <png2378@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-12-20 04:51+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
+"X-Launchpad-Export-Date: 2017-01-26 06:06+0000\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 msgid "Videos"
 msgstr "Видео"
@@ -50,6 +50,9 @@ msgstr "Очереди воспроизведения"
 msgid "Thumbnail previews on the seek bar"
 msgstr "Вывод превью на панели навигации"
 
+msgid "Translation updates"
+msgstr "Обновления перевода"
+
 msgid "Fix appstream date format"
 msgstr "Исправление формата даты appstream"
 
@@ -59,9 +62,6 @@ msgstr "Добавлен просмотр библиотеки с поиском
 msgid "Fixed a bug that prevents keyboard navigation"
 msgstr ""
 "Исправлена ошибка, не позволяющая использовать навигацию с клавиатуры."
-
-msgid "Translation updates"
-msgstr "Обновления перевода"
 
 msgid "Minor bug fixes"
 msgstr "Исправления небольших ошибок"

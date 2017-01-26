@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-12-18 14:48+0100\n"
+"POT-Creation-Date: 2017-01-25 23:39+0100\n"
 "PO-Revision-Date: 2016-12-14 12:36+0000\n"
 "Last-Translator: ablimet <Unknown>\n"
 "Language-Team: Uyghur <ug@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-12-19 05:20+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
+"X-Launchpad-Export-Date: 2017-01-26 06:06+0000\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 msgid "Videos"
 msgstr "ۋىدىئولار"
@@ -51,6 +51,9 @@ msgstr "قويۇش سىپى"
 msgid "Thumbnail previews on the seek bar"
 msgstr "سۈرئەت كۆرسەتكۈچنى كۆرۈش"
 
+msgid "Translation updates"
+msgstr "تەرجىمىسىنى يىڭىلاش"
+
 msgid "Fix appstream date format"
 msgstr ""
 
@@ -59,9 +62,6 @@ msgstr "ئىزدەش ئىقتىدارى بار مېدىئا ئامبىرى كۆ�
 
 msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "كونۇپكا تاختىسى كونترولىغا دەخلى قىلغان بىر خاتالىقنى تۈزىتىش"
-
-msgid "Translation updates"
-msgstr "تەرجىمىسىنى يىڭىلاش"
 
 msgid "Minor bug fixes"
 msgstr "ئىنچىكە خاتالىقلارنى تۈزىتىش"

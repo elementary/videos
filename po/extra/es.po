@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-12-18 14:48+0100\n"
+"POT-Creation-Date: 2017-01-25 23:39+0100\n"
 "PO-Revision-Date: 2017-01-05 18:58+0000\n"
 "Last-Translator: abelinux <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2017-01-06 06:07+0000\n"
-"X-Generator: Launchpad (build 18302)\n"
+"X-Launchpad-Export-Date: 2017-01-26 06:06+0000\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 msgid "Videos"
 msgstr "Vídeos"
@@ -50,6 +50,9 @@ msgstr "Cola de reproducción"
 msgid "Thumbnail previews on the seek bar"
 msgstr "Previsualizar miniaturas en la barra de búsqueda"
 
+msgid "Translation updates"
+msgstr "Actualización de traducciones"
+
 msgid "Fix appstream date format"
 msgstr "Corregido el formato de fecha de appstream"
 
@@ -58,9 +61,6 @@ msgstr "Agregada una vista de biblioteca con función de búsqueda"
 
 msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "Arreglado un error que impedía la navegación mediante el teclado"
-
-msgid "Translation updates"
-msgstr "Actualización de traducciones"
 
 msgid "Minor bug fixes"
 msgstr "Solventados errores menores"
