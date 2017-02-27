@@ -140,7 +140,11 @@ namespace Audience.Widgets {
                 playlist.get_value (iter, Columns.FILENAME, out filename);
                 string name = filename.get_string ();
                 if (name == file_name)
+#if VALA_0_36
+                    playlist.remove (ref iter);
+#else
                     playlist.remove (iter);
+#endif
                 return false;
             });
         }
