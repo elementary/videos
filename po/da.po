@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2017-01-25 23:39+0100\n"
-"PO-Revision-Date: 2016-07-30 14:30+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"PO-Revision-Date: 2017-03-15 08:29+0000\n"
+"Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: Danish <da@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2017-01-26 06:06+0000\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Launchpad-Export-Date: 2017-03-19 06:28+0000\n"
+"X-Generator: Launchpad (build 18332)\n"
 
 #: ../src/Widgets/Library/LibraryItem.vala:69
 msgid "Move to Trash"
-msgstr ""
+msgstr "Flyt til papirkurv"
 
 #: ../src/Widgets/Library/LibraryItem.vala:82
 msgid "Set Artwork"
-msgstr ""
+msgstr "Indstil billede"
 
 #: ../src/Widgets/Library/LibraryItem.vala:167 ../src/Window.vala:392
 msgid "Open"
@@ -31,35 +31,35 @@ msgstr "Åbn"
 
 #: ../src/Widgets/Library/LibraryItem.vala:167 ../src/Window.vala:393
 msgid "_Cancel"
-msgstr ""
+msgstr "_Annullér"
 
 #: ../src/Widgets/Library/LibraryItem.vala:167 ../src/Window.vala:393
 msgid "_Open"
-msgstr ""
+msgstr "_Åbn"
 
 #: ../src/Widgets/Library/LibraryItem.vala:170
 msgid "Image files"
-msgstr ""
+msgstr "Billedfiler"
 
 #: ../src/Widgets/Library/EpisodesPage.vala:93 ../src/Window.vala:99
 msgid "No Results for “%s”"
-msgstr ""
+msgstr "Ingen resultater for \"%s\""
 
 #: ../src/Widgets/Library/EpisodesPage.vala:93 ../src/Window.vala:99
 msgid "Try changing search terms."
-msgstr ""
+msgstr "Prøv at ændre søgetermer."
 
 #: ../src/Widgets/Library/LibraryPage.vala:69
 msgid "Video '%s' Removed."
-msgstr ""
+msgstr "Video '%s' fjernet."
 
 #: ../src/Widgets/WelcomePage.vala:6
 msgid "No Videos Open"
-msgstr ""
+msgstr "Ingen åbne videoer"
 
 #: ../src/Widgets/WelcomePage.vala:6
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "Vælg en kilde for at starte afspilningen."
 
 #: ../src/Widgets/WelcomePage.vala:10
 #: ../src/Widgets/Player/PlaylistPopover.vala:35
@@ -72,7 +72,7 @@ msgstr "Åben en gemt fil."
 
 #: ../src/Widgets/WelcomePage.vala:20 ../src/Widgets/WelcomePage.vala:79
 msgid "Replay last video"
-msgstr ""
+msgstr "Genafspil sidste video"
 
 #: ../src/Widgets/WelcomePage.vala:22 ../src/Widgets/WelcomePage.vala:82
 msgid "Resume last video"
@@ -89,41 +89,41 @@ msgstr "Se en DVD eller åben en fil fra disk"
 
 #: ../src/Widgets/WelcomePage.vala:50
 msgid "Browse Library"
-msgstr ""
+msgstr "Gennemse bibliotek"
 
 #: ../src/Widgets/WelcomePage.vala:50
 msgid "Watch a movie from your library"
-msgstr ""
+msgstr "Se en film fra dit biliotek"
 
 #: ../src/Widgets/Player/BottomBar.vala:66
 #: ../src/Widgets/Player/BottomBar.vala:128
 msgid "Play"
-msgstr ""
+msgstr "Afspil"
 
 #: ../src/Widgets/Player/BottomBar.vala:70
 msgid "Playlist"
-msgstr ""
+msgstr "Afspilningsliste"
 
 #: ../src/Widgets/Player/BottomBar.vala:74
 msgid "Settings"
-msgstr ""
+msgstr "Indstillinger"
 
 #: ../src/Widgets/Player/BottomBar.vala:124
 msgid "Pause"
-msgstr ""
+msgstr "Pause"
 
 #: ../src/Widgets/Player/BottomBar.vala:156
 msgid "Unfullscreen"
-msgstr ""
+msgstr "Afslut fuldskærm"
 
 #: ../src/Widgets/Player/PlaylistPopover.vala:41
 #: ../src/Widgets/Player/PlaylistPopover.vala:67
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Aktivér gentag"
 
 #: ../src/Widgets/Player/PlaylistPopover.vala:64
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Deaktivér gentag"
 
 #: ../src/Widgets/Player/SettingsPopover.vala:37 ../src/Window.vala:398
 msgid "All files"
@@ -131,67 +131,67 @@ msgstr "Alle filer"
 
 #: ../src/Widgets/Player/SettingsPopover.vala:41
 msgid "Subtitle files"
-msgstr ""
+msgstr "Undertekstfiler"
 
 #. /pgp-encrypted"
 #: ../src/Widgets/Player/SettingsPopover.vala:48
 msgid "External Subtitles"
-msgstr ""
+msgstr "Eksterne undertekster"
 
 #: ../src/Widgets/Player/SettingsPopover.vala:52
 msgid "Audio:"
-msgstr ""
+msgstr "Lyd:"
 
 #: ../src/Widgets/Player/SettingsPopover.vala:55
 msgid "Subtitles:"
-msgstr ""
+msgstr "Undertekster:"
 
 #: ../src/Widgets/Player/SettingsPopover.vala:58
 msgid "External Subtitles:"
-msgstr ""
+msgstr "Eksterne undertekster:"
 
 #. /
 #: ../src/Widgets/Player/SettingsPopover.vala:118
 #: ../src/Widgets/Player/SettingsPopover.vala:141
 msgid "Track %u"
-msgstr ""
+msgstr "Spor %u"
 
 #: ../src/Widgets/Player/SettingsPopover.vala:121
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 #: ../src/Widgets/Player/SettingsPopover.vala:126
 #: ../src/Widgets/Player/SettingsPopover.vala:147
 msgid "Default"
-msgstr ""
+msgstr "Standard"
 
 #. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
 #: ../src/Audience.vala:32
 msgid "Videos"
-msgstr ""
+msgstr "Videoer"
 
 #. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
 #: ../src/Audience.vala:34
 msgid "Audience;Video;Player;Movies;"
-msgstr ""
+msgstr "Audience;Publikum;Video;Player;Afspiller;Movies;Film"
 
 #: ../src/Audience.vala:35
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Se videoer og film"
 
 #: ../src/Audience.vala:36
 msgid "Video Player"
-msgstr ""
+msgstr "Videoafspiller"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:38
 msgid "About Audience"
-msgstr ""
+msgstr "Om Publikum"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
 #: ../src/Audience.vala:40
 msgid "About Videos"
-msgstr ""
+msgstr "Om Videoer"
 
 #: ../src/Audience.vala:70
 msgid "translator-credits"
@@ -202,27 +202,28 @@ msgstr ""
 "  Iason DeRulou https://launchpad.net/~iasonasmg\n"
 "  Silas Riisager Dahl https://launchpad.net/~dahl-silas\n"
 "  js https://launchpad.net/~jonas-stisen-mb\n"
-"  mjjzf https://launchpad.net/~mjjzf"
+"  mjjzf https://launchpad.net/~mjjzf\n"
+"  scootergrisen https://launchpad.net/~scootergrisen"
 
 #: ../src/Window.vala:39
 msgid "Back"
-msgstr ""
+msgstr "Tilbage"
 
 #: ../src/Window.vala:40
 msgid "Library"
-msgstr ""
+msgstr "Bibliotek"
 
 #: ../src/Window.vala:41
 msgid "Episodes"
-msgstr ""
+msgstr "Afsnit"
 
 #: ../src/Window.vala:67
 msgid "Search Videos"
-msgstr ""
+msgstr "Søg efter videoer"
 
 #: ../src/Window.vala:153
 msgid "Restore"
-msgstr ""
+msgstr "Gendan"
 
 #: ../src/Window.vala:402
 msgid "Video files"
