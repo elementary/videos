@@ -39,6 +39,8 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     uint show_timer_id = 0;
     uint hide_timer_id = 0;
     uint idle_id = 0;
+    double next_progress = -1;
+    bool next_loop = false;
 
     public PreviewPopover (ClutterGst.Playback main_playback) {
         opacity = GLOBAL_OPACITY;
@@ -102,6 +104,12 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     }
 
     public void set_preview_progress (double progress, bool loop = false, bool force = false) {
+        if (!visible) {
+            next_progress = progress;
+            next_loop = loop;
+            return;
+        }
+
         if (idle_id > 0) {
             return;
         }
@@ -133,10 +141,13 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         cancel_timer (ref hide_timer_id);
 
         show_timer_id = Timeout.add (300, () => {
-                show_all ();
-                show_timer_id = 0;
-                return false;
-            });
+            show_all ();
+            if (next_progress >= 0) {
+                set_preview_progress(next_progress, next_loop);
+            }
+            show_timer_id = 0;
+            return false;
+        });
     }
 
     public void schedule_hide () {

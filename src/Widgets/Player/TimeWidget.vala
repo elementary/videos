@@ -95,13 +95,12 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
             if (original == 0)
                 original = event.window.get_width ();
 
-            if (preview_popover.visible) {
-                var pointing = preview_popover.pointing_to;
-                var distance = original - event.window.get_width ();
-                pointing.x = (int)(event.x) - event.window.get_width ()/2 - distance/2;
-                preview_popover.set_pointing_to ((Gdk.Rectangle)pointing);
-                preview_popover.set_preview_progress (((double)event.x)/((double)event.window.get_width ()), !main_playback.playing);
-            }
+            var pointing = preview_popover.pointing_to;
+            var distance = original - event.window.get_width ();
+            pointing.x = (int)(event.x) - event.window.get_width ()/2 - distance/2;
+            preview_popover.set_pointing_to ((Gdk.Rectangle)pointing);
+            preview_popover.set_preview_progress (((double)event.x)/((double)event.window.get_width ()), !main_playback.playing);
+
             return false;
         });
 
