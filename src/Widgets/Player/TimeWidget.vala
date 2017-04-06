@@ -27,7 +27,6 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
     private Audience.Widgets.PreviewPopover preview_popover;
     private bool released = true;
     private uint timeout_id = 0;
-    private int original = 0;
 
     public TimeWidget (ClutterGst.Playback main_playback) {
         this.main_playback = main_playback;
@@ -36,6 +35,7 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
         halign = Gtk.Align.CENTER;
         progression_label = new Gtk.Label ("");
         time_label = new Gtk.Label ("");
+        scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 0.1);
 
         main_playback.notify["progress"].connect (progress_callback);
 
@@ -49,11 +49,10 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
             sensitive = (main_playback.duration != 0);
             if (sensitive) {
                 preview_popover = new Audience.Widgets.PreviewPopover (main_playback);
-                preview_popover.relative_to = this;
+                preview_popover.relative_to = scale;
             }
         });
 
-        scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 0.1);
         scale.expand = true;
         scale.draw_value = false;
         scale.can_focus = false;
@@ -90,14 +89,10 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
             return false;
         });
 
-        // XXX: Store the original size because the popover doesn't update his x=0 position when resizing.
         scale.motion_notify_event.connect ((event) => {
-            if (original == 0)
-                original = event.window.get_width ();
-
             var pointing = preview_popover.pointing_to;
-            var distance = original - event.window.get_width ();
-            pointing.x = (int)(event.x) - event.window.get_width ()/2 - distance/2;
+            pointing.x = (int)event.x;
+            pointing.width = 0;
             preview_popover.set_pointing_to ((Gdk.Rectangle)pointing);
             preview_popover.set_preview_progress (((double)event.x)/((double)event.window.get_width ()), !main_playback.playing);
 
