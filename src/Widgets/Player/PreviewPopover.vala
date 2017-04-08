@@ -103,10 +103,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         cancel_loop_timer ();
     }
 
-    public void set_preview_progress (double progress, bool loop = false, bool force = false) {
-        if (progress == req_progress && loop == req_loop) {
-            return;
-        }
+    public void set_preview_progress (double progress, bool loop = false) {
         req_progress = progress;
         req_loop = loop;
         
@@ -124,7 +121,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
             playback.playing = loop;
             if (loop) {
                 loop_timer_id = Timeout.add_seconds (5, () => {
-                    set_preview_progress (progress, true, true);
+                    set_preview_progress (progress, true);
                     loop_timer_id = 0;
                     return false;
                 });
