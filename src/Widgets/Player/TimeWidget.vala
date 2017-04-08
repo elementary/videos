@@ -105,6 +105,11 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
             return false;
         });
 
+        scale.size_allocate.connect ((alloc_rect) => {
+            if (preview_popover != null)
+                preview_popover.update_pointing (alloc_rect.width);
+        });
+
         add (progression_label);
         add (scale);
         add (time_label);
