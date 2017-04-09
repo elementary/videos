@@ -131,11 +131,11 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         });
     }
 
-    public void update_pointing(int parent_width) {
+    public void update_pointing (int parent_width) {
         if (visible) {
             var pointing = pointing_to;
             pointing.x = (int)(req_progress * parent_width);
-            set_pointing_to ((Gdk.Rectangle)pointing);
+            set_pointing_to (pointing);
         }
     }
 

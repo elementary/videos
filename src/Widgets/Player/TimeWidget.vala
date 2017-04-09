@@ -93,8 +93,8 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
             var pointing = preview_popover.pointing_to;
             pointing.x = (int)event.x;
             pointing.width = 0;
-            preview_popover.set_pointing_to ((Gdk.Rectangle)pointing);
-            preview_popover.set_preview_progress (((double)event.x)/((double)event.window.get_width ()), !main_playback.playing);
+            preview_popover.set_pointing_to (pointing);
+            preview_popover.set_preview_progress (event.x / ((double) event.window.get_width ()), !main_playback.playing);
 
             return false;
         });
