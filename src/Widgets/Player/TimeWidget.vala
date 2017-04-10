@@ -90,12 +90,8 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
         });
 
         scale.motion_notify_event.connect ((event) => {
-            var pointing = preview_popover.pointing_to;
-            pointing.x = (int)event.x;
-            pointing.width = 0;
-            preview_popover.set_pointing_to (pointing);
+            preview_popover.update_pointing ((int) event.x);
             preview_popover.set_preview_progress (event.x / ((double) event.window.get_width ()), !main_playback.playing);
-
             return false;
         });
 
@@ -107,7 +103,7 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
 
         scale.size_allocate.connect ((alloc_rect) => {
             if (preview_popover != null)
-                preview_popover.update_pointing (alloc_rect.width);
+                preview_popover.realign_pointing (alloc_rect.width);
         });
 
         add (progression_label);
