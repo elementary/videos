@@ -39,6 +39,8 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     uint show_timer_id = 0;
     uint hide_timer_id = 0;
     uint idle_id = 0;
+    double req_progress = -1;
+    bool req_loop = false;
 
     public PreviewPopover (ClutterGst.Playback main_playback) {
         opacity = GLOBAL_OPACITY;
@@ -101,8 +103,11 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         cancel_loop_timer ();
     }
 
-    public void set_preview_progress (double progress, bool loop = false, bool force = false) {
-        if (idle_id > 0) {
+    public void set_preview_progress (double progress, bool loop = false) {
+        req_progress = progress;
+        req_loop = loop;
+        
+        if (!visible || idle_id > 0) {
             return;
         }
 
@@ -116,7 +121,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
             playback.playing = loop;
             if (loop) {
                 loop_timer_id = Timeout.add_seconds (5, () => {
-                    set_preview_progress (progress, true, true);
+                    set_preview_progress (progress, true);
                     loop_timer_id = 0;
                     return false;
                 });
@@ -126,6 +131,27 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         });
     }
 
+    public void update_pointing (int x) {
+        var pointing = pointing_to;
+        pointing.x = x;
+
+        // changing the width properly updates arrow position when popover hits the edge
+        if (pointing.width == 0) {
+            pointing.width = 2;
+            pointing.x -= 1;
+        } else {
+            pointing.width = 0;
+        }
+
+        set_pointing_to (pointing);
+    }
+
+    public void realign_pointing (int parent_width) {
+        if (visible) {
+            update_pointing ((int)(req_progress * parent_width));
+        }
+    }
+
     public void schedule_show () {
         if (show_timer_id > 0) {
             return;
@@ -133,10 +159,13 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         cancel_timer (ref hide_timer_id);
 
         show_timer_id = Timeout.add (300, () => {
-                show_all ();
-                show_timer_id = 0;
-                return false;
-            });
+            show_all ();
+            if (req_progress >= 0) {
+                set_preview_progress (req_progress, req_loop);
+            }
+            show_timer_id = 0;
+            return false;
+        });
     }
 
     public void schedule_hide () {
