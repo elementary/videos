@@ -63,4 +63,5 @@
   <url type="donation">https://elementary.io/get-involved#funding</url>
   <url type="help">https://elementaryos.stackexchange.com/questions/tagged/videos</url>
   <update_contact>contact_AT_elementary.io</update_contact>
+  <x-appcenter-color-primary>#2b63a0</x-appcenter-color-primary>
 </component>
