@@ -26,6 +26,14 @@
     <binary>audience</binary>
   </provides>
   <releases>
+    <release version="0.2.2" date="2017-04-13" urgency="medium">
+      <description>
+        <ul>
+          <_li>Preview popover now closely follows cursor position</_li>
+          <_li>Translation updates</_li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.1.2" date="2017-01-19" urgency="medium">
       <description>
         <ul>
