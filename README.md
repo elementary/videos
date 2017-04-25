@@ -1,4 +1,4 @@
-# Photos
+# Videos
 [![Translation status](https://l10n.elementary.io/widgets/videos/-/svg-badge.svg)](https://l10n.elementary.io/projects/videos/?utm_source=widget)
 
 ## Building, Testing, and Installation
