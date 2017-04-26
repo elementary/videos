@@ -6,16 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-25 23:39+0100\n"
-"PO-Revision-Date: 2016-12-20 13:17+0000\n"
-"Last-Translator: Jun Takeda <takeda.jun@gmail.com>\n"
-"Language-Team: Japanese <ja@li.org>\n"
+"PO-Revision-Date: 2017-04-26 12:35+0000\n"
+"Last-Translator: Ryo Nakano <nscnskichiro0911@gmail.com>\n"
+"Language-Team: Japanese "
+"<https://l10n.elementary.io/projects/videos/videos/ja/>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-"X-Generator: Launchpad (build 18354)\n"
 
 #: ../src/Widgets/Library/LibraryItem.vala:69
 msgid "Move to Trash"
@@ -43,7 +46,7 @@ msgstr "画像ファイル"
 
 #: ../src/Widgets/Library/EpisodesPage.vala:93 ../src/Window.vala:99
 msgid "No Results for “%s”"
-msgstr "\"%s\" は結果がありません。"
+msgstr "\"%s\" は結果がありません"
 
 #: ../src/Widgets/Library/EpisodesPage.vala:93 ../src/Window.vala:99
 msgid "Try changing search terms."
@@ -177,11 +180,11 @@ msgstr "Audience;Video;Player;Movies;"
 
 #: ../src/Audience.vala:35
 msgid "Watch videos and movies"
-msgstr "ビデオや映画を見る"
+msgstr "ビデオや映画を見ます"
 
 #: ../src/Audience.vala:36
 msgid "Video Player"
-msgstr "ビデオプレイヤー"
+msgstr "ビデオプレーヤー"
 
 #. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
 #: ../src/Audience.vala:38
