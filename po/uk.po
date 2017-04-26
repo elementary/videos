@@ -6,24 +6,29 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-25 23:39+0100\n"
-"PO-Revision-Date: 2016-07-30 14:30+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
-"Language-Team: Ukrainian <uk@li.org>\n"
+"PO-Revision-Date: 2017-04-26 16:26+0000\n"
+"Last-Translator: Володимир Білошицький <volbilnexus@gmail.com>\n"
+"Language-Team: Ukrainian "
+"<https://l10n.elementary.io/projects/videos/videos/uk/>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-"X-Generator: Launchpad (build 18354)\n"
 
 #: ../src/Widgets/Library/LibraryItem.vala:69
 msgid "Move to Trash"
-msgstr ""
+msgstr "Перемістити в смітник"
 
 #: ../src/Widgets/Library/LibraryItem.vala:82
+#, fuzzy
 msgid "Set Artwork"
-msgstr ""
+msgstr "Встановити зображення"
 
 #: ../src/Widgets/Library/LibraryItem.vala:167 ../src/Window.vala:392
 msgid "Open"
@@ -39,19 +44,19 @@ msgstr "_Відкрити"
 
 #: ../src/Widgets/Library/LibraryItem.vala:170
 msgid "Image files"
-msgstr ""
+msgstr "Файли зображень"
 
 #: ../src/Widgets/Library/EpisodesPage.vala:93 ../src/Window.vala:99
 msgid "No Results for “%s”"
-msgstr ""
+msgstr "За запитом “%s” нічого не знайдено"
 
 #: ../src/Widgets/Library/EpisodesPage.vala:93 ../src/Window.vala:99
 msgid "Try changing search terms."
-msgstr ""
+msgstr "Спробуйте змінити правила пошуку."
 
 #: ../src/Widgets/Library/LibraryPage.vala:69
 msgid "Video '%s' Removed."
-msgstr ""
+msgstr "Відео '%s' вилучене."
 
 #: ../src/Widgets/WelcomePage.vala:6
 msgid "No Videos Open"
@@ -89,11 +94,11 @@ msgstr "Дивитися DVD або відкрити файл з диску"
 
 #: ../src/Widgets/WelcomePage.vala:50
 msgid "Browse Library"
-msgstr ""
+msgstr "Переглянути бібліотеку"
 
 #: ../src/Widgets/WelcomePage.vala:50
 msgid "Watch a movie from your library"
-msgstr ""
+msgstr "Дивитись фільм з вашої бібліотеки"
 
 #: ../src/Widgets/Player/BottomBar.vala:66
 #: ../src/Widgets/Player/BottomBar.vala:128
@@ -154,7 +159,7 @@ msgstr "Зовнішні субтитри:"
 #: ../src/Widgets/Player/SettingsPopover.vala:118
 #: ../src/Widgets/Player/SettingsPopover.vala:141
 msgid "Track %u"
-msgstr ""
+msgstr "Доріжка %u"
 
 #: ../src/Widgets/Player/SettingsPopover.vala:121
 msgid "None"
@@ -208,23 +213,23 @@ msgstr ""
 
 #: ../src/Window.vala:39
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: ../src/Window.vala:40
 msgid "Library"
-msgstr ""
+msgstr "Бібліотека"
 
 #: ../src/Window.vala:41
 msgid "Episodes"
-msgstr ""
+msgstr "Епізоди"
 
 #: ../src/Window.vala:67
 msgid "Search Videos"
-msgstr ""
+msgstr "Шукати відео"
 
 #: ../src/Window.vala:153
 msgid "Restore"
-msgstr ""
+msgstr "Відновити"
 
 #: ../src/Window.vala:402
 msgid "Video files"
