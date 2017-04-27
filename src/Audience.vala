@@ -59,10 +59,10 @@ namespace Audience {
             app_launcher = "org.pantheon.audience.desktop";
             application_id = "org.pantheon.audience";
 
-            main_url = "https://code.launchpad.net/audience";
-            bug_url = "https://bugs.launchpad.net/audience";
+            main_url = "https://github.com/elementary/videos";
+            bug_url = "https://github.com/elementary/videos/issues";
             help_url = "https://elementary.io/help/audience";
-            translate_url = "https://translations.launchpad.net/audience";
+            translate_url = "https://l10n.elementary.io/projects/videos";
 
             about_authors = { "Cody Garver <cody@elementaryos.org>",
                               "Tom Beckmann <tom@elementaryos.org>",
