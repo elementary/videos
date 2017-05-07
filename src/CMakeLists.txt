@@ -12,7 +12,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Config.vala.cmake ${CONFIG_FILE})
 find_package (PkgConfig)
 
 set (PKG_DEPS
-    granite>=0.3.0
+    granite>=0.4.1
     clutter-gtk-1.0
     gstreamer-1.0
     gstreamer-pbutils-1.0
@@ -22,7 +22,7 @@ set (PKG_DEPS
 )
 
 set (VALA_DEPS
-    granite>=0.3.0
+    granite>=0.4.1
     clutter-gtk-1.0
     gdk-x11-3.0
     gstreamer-1.0
@@ -52,7 +52,6 @@ vala_precompile (VALA_C ${EXEC_NAME}
 
     Widgets/WelcomePage.vala
     Widgets/NavigationButton.vala
-    Widgets/Toast.vala
 
     Widgets/Player/BottomBar.vala
     Widgets/Player/SettingsPopover.vala
