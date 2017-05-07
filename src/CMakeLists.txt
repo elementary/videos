@@ -52,7 +52,6 @@ vala_precompile (VALA_C ${EXEC_NAME}
 
     Widgets/WelcomePage.vala
     Widgets/NavigationButton.vala
-    Widgets/Toast.vala
 
     Widgets/Player/BottomBar.vala
     Widgets/Player/SettingsPopover.vala
