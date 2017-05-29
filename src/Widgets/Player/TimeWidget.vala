@@ -26,6 +26,7 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
     public Gtk.Scale scale;
     private Audience.Widgets.PreviewPopover preview_popover;
     private bool released = true;
+    private bool release_timeout = true;
     private uint timeout_id = 0;
 
     public TimeWidget (ClutterGst.Playback main_playback) {
@@ -62,6 +63,7 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
         scale.button_press_event.connect ((event) => {
             released = false;
             main_playback.notify["progress"].disconnect (progress_callback);
+            release_timeout = false;
 
             if (timeout_id != 0)
                 Source.remove (timeout_id);
@@ -72,6 +74,7 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
 
                 main_playback.progress = scale.get_value ();
                 timeout_id = 0;
+                release_timeout = true;
 
                 return false;
             });
@@ -123,7 +126,9 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
     }
 
     private void progress_callback () {
-        scale.set_value (main_playback.progress);
-        progression_label.label = seconds_to_time ((int) (main_playback.duration * main_playback.progress));
+        if (release_timeout) {
+          scale.set_value (main_playback.progress);
+          progression_label.label = seconds_to_time ((int) (main_playback.duration * main_playback.progress));
+        }
     }
 }
