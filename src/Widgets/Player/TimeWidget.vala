@@ -26,8 +26,6 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
     public Gtk.Scale scale;
     private Audience.Widgets.PreviewPopover preview_popover;
     private bool released = true;
-    private bool release_timeout = true;
-    private uint timeout_id = 0;
 
     public TimeWidget (ClutterGst.Playback main_playback) {
         this.main_playback = main_playback;
@@ -60,47 +58,28 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
         scale.events |= Gdk.EventMask.POINTER_MOTION_MASK;
         scale.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
         scale.events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
-        scale.button_press_event.connect ((event) => {
-            released = false;
-            main_playback.notify["progress"].disconnect (progress_callback);
-            release_timeout = false;
-
-            if (timeout_id != 0)
-                Source.remove (timeout_id);
-
-            timeout_id = Timeout.add (300, () => {
-                if (released == false)
-                    return true;
-
-                main_playback.progress = scale.get_value ();
-                timeout_id = 0;
-                release_timeout = true;
-
-                return false;
-            });
-
-            return false;
-        });
 
         scale.enter_notify_event.connect ((event) => {
             preview_popover.schedule_show ();
             return false;
         });
-
         scale.leave_notify_event.connect ((event) => {
             preview_popover.schedule_hide ();
             return false;
         });
-
         scale.motion_notify_event.connect ((event) => {
             preview_popover.update_pointing ((int) event.x);
             preview_popover.set_preview_progress (event.x / ((double) event.window.get_width ()), !main_playback.playing);
             return false;
         });
 
+        scale.button_press_event.connect ((event) => {
+            released = false;
+            return false;
+        });
         scale.button_release_event.connect ((event) => {
+            main_playback.progress = scale.get_value ();
             released = true;
-            main_playback.notify["progress"].connect (progress_callback);
             return false;
         });
 
@@ -126,7 +105,7 @@ public class Audience.Widgets.TimeWidget : Gtk.Grid {
     }
 
     private void progress_callback () {
-        if (release_timeout) {
+        if (released) {
           scale.set_value (main_playback.progress);
           progression_label.label = seconds_to_time ((int) (main_playback.duration * main_playback.progress));
         }
