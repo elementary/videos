@@ -5,7 +5,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_group>elementary</project_group>
   <project_license>GPL-3.0+</project_license>
-  <_name>Audience</_name>
+  <_name>Videos</_name>
   <_summary>Watch videos and movies</_summary>
   <description>
     <_p>
@@ -66,10 +66,11 @@
     </release>
   </releases>
   <developer_name>elementary LLC.</developer_name>
-  <url type="homepage">http://elementary.io/</url>
-  <url type="bugtracker">https://bugs.launchpad.net/audience</url>
+  <url type="homepage">https://elementary.io/</url>
+  <url type="bugtracker">https://github.com/elementary/videos/issues</url>
   <url type="donation">https://elementary.io/get-involved#funding</url>
   <url type="help">https://elementaryos.stackexchange.com/questions/tagged/videos</url>
+  <url type="translate">https://l10n.elementary.io/projects/videos</url>
   <update_contact>contact_AT_elementary.io</update_contact>
   <x-appcenter-color-primary>#2b63a0</x-appcenter-color-primary>
 </component>
