@@ -34,10 +34,6 @@ namespace Audience {
         public const string KEYWORDS = N_("Audience;Video;Player;Movies;");
         public const string COMMENT = N_("Watch videos and movies");
         public const string GENERIC_NAME = N_("Video Player");
-        /// TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-        public const string ABOUT_STOCK = N_("About Audience");
-        /// TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-        public const string ABOUT_GENERIC = N_("About Videos");
 
         public Window mainwindow;
         public GLib.VolumeMonitor monitor;
@@ -54,21 +50,9 @@ namespace Audience {
 
             Intl.setlocale (LocaleCategory.ALL, "");
 
-            app_years = "2011-2016";
             app_icon = "multimedia-video-player";
             app_launcher = "org.pantheon.audience.desktop";
             application_id = "org.pantheon.audience";
-
-            main_url = "https://github.com/elementary/videos";
-            bug_url = "https://github.com/elementary/videos/issues";
-            help_url = "https://elementary.io/help/audience";
-            translate_url = "https://l10n.elementary.io/projects/videos";
-
-            about_authors = { "Cody Garver <cody@elementaryos.org>",
-                              "Tom Beckmann <tom@elementaryos.org>",
-                              "Artem Anufrij <artem.anufrij@live.de>" };
-            about_translators = _("translator-credits");
-            about_license_type = Gtk.License.GPL_3_0;
         }
 
         public App () {
