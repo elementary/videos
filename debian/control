@@ -20,6 +20,7 @@ Vcs-Browser: https://code.launchpad.net/~audience-team/audience/trunk
 Package: audience
 Architecture: any
 Depends: xdg-utils, ${misc:Depends}, ${shlibs:Depends}
+Recommends: sessioninstaller
 Description: A modern media player
  Audience is a simple, modern media player that makes greater use of
  hardware acceleration than most players out there.
