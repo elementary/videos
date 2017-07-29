@@ -187,7 +187,7 @@ namespace Audience.Services {
                         }
                     }
                 } catch (Error e) {
-                    error (e.message);
+                    warning (e.message);
                 }
             }
         }

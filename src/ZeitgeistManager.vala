@@ -48,7 +48,7 @@ namespace Audience {
                     }
                 }
             } catch (Error e) {
-                error (e.message);
+                warning (e.message);
             }
 
             return false;
