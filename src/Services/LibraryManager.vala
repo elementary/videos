@@ -59,7 +59,7 @@ namespace Audience.Services {
             try {
                 regex_year = new Regex ("\\(\\d\\d\\d\\d(?=(\\)$))");
             } catch (Error e) {
-                error (e.message);
+                warning (e.message);
             }
             thumbler = new DbusThumbnailer ();
 
