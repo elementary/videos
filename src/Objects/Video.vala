@@ -153,7 +153,7 @@ namespace Audience.Objects {
             try {
                 new Thread<void*>.try (null, run);
             } catch (Error e) {
-                error (e.message);
+                warning (e.message);
             }
 
             yield;
