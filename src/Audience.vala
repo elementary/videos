@@ -84,7 +84,7 @@ namespace Audience {
                         cache.make_directory ();
                     }
                 } catch (Error e) {
-                    error (e.message);
+                    warning (e.message);
                 }
 
                 mainwindow = new Window ();
