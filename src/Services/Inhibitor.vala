@@ -39,7 +39,7 @@ public class Audience.Services.Inhibitor :  Object {
         try {
             screensaver_iface = Bus.get_proxy_sync (BusType.SESSION, IFACE, IFACE_PATH, DBusProxyFlags.NONE);
         } catch (Error e) {
-            error ("Could not start screensaver interface: %s", e.message);
+            warning ("Could not start screensaver interface: %s", e.message);
         }
     }
 
@@ -59,7 +59,7 @@ public class Audience.Services.Inhibitor :  Object {
                 simulate_activity ();
                 debug ("Inhibiting screen");
             } catch (Error e) {
-                error ("Could not inhibit screen: %s", e.message);
+                warning ("Could not inhibit screen: %s", e.message);
             }
         }
     }
@@ -71,7 +71,7 @@ public class Audience.Services.Inhibitor :  Object {
                 screensaver_iface.UnInhibit (inhibit_cookie);
                 debug ("Uninhibiting screen");
             } catch (Error e) {
-                error ("Could not uninhibit screen: %s", e.message);
+                warning ("Could not uninhibit screen: %s", e.message);
             }
         }
     }
@@ -90,7 +90,7 @@ public class Audience.Services.Inhibitor :  Object {
                     debug ("Simulating activity");
                     screensaver_iface.SimulateUserActivity ();
                 } catch (Error e) {
-                    error ("Could not simulate user activity: %s", e.message);
+                    warning ("Could not simulate user activity: %s", e.message);
                 }
             } else {
                 simulator_started = false;
