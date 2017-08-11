@@ -242,7 +242,10 @@ public class Audience.Window : Gtk.Window {
         }
 
         if (main_stack.visible_child == player_page) {
-            if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
+            if (match_keycode (Gdk.Key.space, keycode)) {
+                player_page.playing = !player_page.playing;
+                return true;
+            } else if (match_keycode (Gdk.Key.p, keycode)) {
                 player_page.playing = !player_page.playing;
             } else if (match_keycode (Gdk.Key.a, keycode)) {
                 player_page.next_audio ();
