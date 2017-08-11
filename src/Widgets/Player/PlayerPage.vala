@@ -329,7 +329,7 @@ namespace Audience {
             var duration = playback.duration;
             var progress = playback.progress;
             var new_progress = ((duration * progress) + (double)seconds)/duration;
-            playback.progress = double.min (new_progress, 1.0);
+            playback.progress = new_progress.clamp (0.0, 1.0);
         }
 
         public Widgets.Playlist get_playlist_widget () {
