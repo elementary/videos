@@ -23,7 +23,7 @@
     </ul>
   </description>
   <provides>
-    <binary>audience</binary>
+    <binary>io.elementary.videos</binary>
   </provides>
   <releases>
     <release version="0.2.3" date="2017-08-02" urgency="medium">

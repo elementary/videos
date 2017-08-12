@@ -4,7 +4,7 @@ cmake_policy (VERSION 2.8)
 enable_testing ()
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
-project (audience C)
+project (io.elementary.videos C)
 
 set (DATADIR ${CMAKE_INSTALL_PREFIX}/share)
 set (PKGDATADIR ${DATADIR}/${CMAKE_PROJECT_NAME})
