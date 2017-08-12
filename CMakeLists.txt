@@ -10,7 +10,7 @@ set (DATADIR ${CMAKE_INSTALL_PREFIX}/share)
 set (PKGDATADIR ${DATADIR}/${CMAKE_PROJECT_NAME})
 set (GETTEXT_PACKAGE ${CMAKE_PROJECT_NAME})
 set (RELEASE_NAME "A modern media player.")
-set (VERSION "0.2.3")
+set (VERSION "0.2.4")
 set (VERSION_INFO "The Red Comet")
 
 add_definitions (-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
