@@ -7,5 +7,5 @@ add_translations_catalog (${GETTEXT_PACKAGE}
         ${CMAKE_BINARY_DIR}/data/org.pantheon.audience.desktop.in
         ${CMAKE_BINARY_DIR}/data/audience-original.desktop.in
     APPDATA_FILES
-        ../data/org.pantheon.audience.appdata.xml.in
+        ../data/io.elementary.videos.appdata.xml.in
 )
