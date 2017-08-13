@@ -46,9 +46,9 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         set {
             _fullscreen = value;
             if (value && child_revealed) {
-                unfullscreen_revealer.set_reveal_child (true);
+                unfullscreen_revealer.reveal_child = true;
             } else if (!value && child_revealed) {
-                unfullscreen_revealer.set_reveal_child (false);
+                unfullscreen_revealer.reveal_child = false;
             }
         }
     }
@@ -193,9 +193,9 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     private new void set_reveal_child (bool reveal) {
         base.set_reveal_child (reveal);
         if (reveal == true && fullscreen == true) {
-            unfullscreen_revealer.set_reveal_child (reveal);
+            unfullscreen_revealer.reveal_child = reveal;
         } else if (reveal == false) {
-            unfullscreen_revealer.set_reveal_child (reveal);
+            unfullscreen_revealer.reveal_child = reveal;
         }
     }
 
@@ -226,7 +226,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
                 return false;
             }
             set_reveal_child (false);
-            unfullscreen_revealer.set_reveal_child (false);
+            unfullscreen_revealer.reveal_child = false;
             hiding_timer = 0;
             return false;
         });
