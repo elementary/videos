@@ -40,7 +40,7 @@ namespace Audience {
 
         construct {
             program_name = _(Constants.APP_NAME);
-            exec_name = "audience";
+            exec_name = "io.elementary.videos";
 
             build_data_dir = Constants.DATADIR;
             build_pkg_data_dir = Constants.PKGDATADIR;
@@ -52,7 +52,7 @@ namespace Audience {
 
             app_icon = "multimedia-video-player";
             app_launcher = "org.pantheon.audience.desktop";
-            application_id = "org.pantheon.audience";
+            application_id = "io.elementary.videos";
         }
 
         public App () {

@@ -14,10 +14,10 @@ else ()
     configure_file_translation(${CMAKE_CURRENT_BINARY_DIR}/audience-original.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/org.pantheon.audience.desktop ${CMAKE_SOURCE_DIR}/po/)
 endif ()
 
-configure_file_translation (org.pantheon.audience.appdata.xml.in ${CMAKE_CURRENT_BINARY_DIR}/org.pantheon.audience.appdata.xml ${CMAKE_SOURCE_DIR}/po/)
+configure_file_translation (io.elementary.videos.appdata.xml.in ${CMAKE_CURRENT_BINARY_DIR}/io.elementary.videos.appdata.xml ${CMAKE_SOURCE_DIR}/po/)
 
 install (FILES ${CMAKE_CURRENT_BINARY_DIR}/org.pantheon.audience.desktop DESTINATION ${DATADIR}/applications/)
-install (FILES ${CMAKE_CURRENT_BINARY_DIR}/org.pantheon.audience.appdata.xml DESTINATION ${DATADIR}/appdata/)
+install (FILES ${CMAKE_CURRENT_BINARY_DIR}/io.elementary.videos.appdata.xml DESTINATION ${DATADIR}/appdata/)
 
 include (GSettings)
 
