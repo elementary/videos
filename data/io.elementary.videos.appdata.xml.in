@@ -26,6 +26,13 @@
     <binary>io.elementary.videos</binary>
   </provides>
   <releases>
+    <release version="0.2.4" date="2017-08-11" urgency="medium">
+      <description>
+        <ul>
+          <_li>Limit consecutive spacebar pauses</_li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.3" date="2017-08-02" urgency="medium">
       <description>
         <ul>
