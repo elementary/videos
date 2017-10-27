@@ -77,7 +77,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             is_setup = false;
         });
 
-        playback.notify["subtitle_uri"].connect (() => {
+        playback.notify["subtitle-uri"].connect (() => {
             external_subtitle_file.select_uri (playback.subtitle_uri);
         });
 
