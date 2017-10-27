@@ -152,24 +152,16 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     }
 
     public void next_audio () {
-        int current = languages.active;
-        if (current < languages.model.iter_n_children (null) - 1) {
-            current++;
-        } else {
-            current = 0;
+        int count = languages.model.iter_n_children (null);
+        if (count > 0) {
+            languages.active = (languages.active + 1) % count;
         }
-
-        languages.active = current;
     }
 
     public void next_text () {
-        int current = subtitles.active;
-        if (current < subtitles.model.iter_n_children (null)) {
-            current++;
-        } else {
-            current = 0;
+        int count = subtitles.model.iter_n_children (null);
+        if (count > 0) {
+            subtitles.active = (subtitles.active + 1) % count;
         }
-
-        subtitles.active = current;
     }
 }
