@@ -73,6 +73,10 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             playback.set_subtitle_uri (external_subtitle_file.get_uri ());
         });
 
+        playback.notify["uri"].connect (() => {
+            is_setup = false;
+        });
+
         playback.notify["subtitle_uri"].connect (() => {
             external_subtitle_file.select_uri (playback.subtitle_uri);
         });
@@ -152,6 +156,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     }
 
     public void next_audio () {
+        setup ();
         int count = languages.model.iter_n_children (null);
         if (count > 0) {
             languages.active = (languages.active + 1) % count;
@@ -159,6 +164,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     }
 
     public void next_text () {
+        setup ();
         int count = subtitles.model.iter_n_children (null);
         if (count > 0) {
             subtitles.active = (subtitles.active + 1) % count;
