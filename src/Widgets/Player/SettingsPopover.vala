@@ -81,24 +81,9 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             external_subtitle_file.select_uri (playback.subtitle_uri);
         });
 
-        subtitles.changed.connect (() => {
-            if (subtitles.active <= -1)
-                return;
+        subtitles.changed.connect (on_subtitles_changed);
 
-            if (subtitles.active_id == "none") {
-                playback.subtitle_track = -1;
-                return;
-            }
-
-            playback.subtitle_track = subtitles.active;
-        });
-
-        languages.changed.connect ( () => { //place it here to not get problems
-            if (languages.active <= -1 || languages.active_id == "def")
-                return;
-
-            playback.audio_stream = languages.active;
-        });
+        languages.changed.connect (on_languages_changed);
 
         add (setupgrid);
     }
@@ -111,8 +96,26 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         }
     }
 
+    private void on_subtitles_changed () {
+        if (subtitles.active < 0)
+            return;
+
+        if (subtitles.active_id == "none")
+            playback.subtitle_track = -1;
+        else
+            playback.subtitle_track = subtitles.active;
+    }
+
+    private void on_languages_changed () {
+        if (languages.active < 0 || languages.active_id == "def")
+            return;
+
+        playback.audio_stream = languages.active;
+    }
+
     private void setup_text () {
-        int previous_track = playback.subtitle_track;
+        subtitles.changed.disconnect (on_subtitles_changed);
+
         if (subtitles.model.iter_n_children (null) > 0)
             subtitles.remove_all ();
 
@@ -121,21 +124,20 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             // FIXME: Using Track since lang is actually a bad pointer :/
             subtitles.append (lang, _("Track %u").printf (track++));
         });
-
         subtitles.append ("none", _("None"));
-        subtitles.active = previous_track;
-        subtitles.sensitive = subtitles.model.iter_n_children (null) > 1;
 
-        if (!subtitles.sensitive) {
-            subtitles.append ("def", _("Default"));
-            subtitles.active = 0;
-        } else {
-            subtitles.active = previous_track;
-        }
+        int count = subtitles.model.iter_n_children (null); 
+        subtitles.sensitive = count > 1;
+        if (subtitles.sensitive && (playback.subtitle_track >= 0))
+            subtitles.active = playback.subtitle_track;
+        else
+            subtitles.active = count - 1;
+
+        subtitles.changed.connect (on_subtitles_changed);
     }
-
+    
     private void setup_audio () {
-        int previous_track = playback.subtitle_track;
+        languages.changed.disconnect (on_languages_changed);
 
         if (languages.model.iter_n_children (null) > 0)
             languages.remove_all ();
@@ -145,14 +147,18 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             languages.append (lang, _("Track %u").printf (track++));
         });
 
-        languages.sensitive = languages.model.iter_n_children (null) > 1;
-
-        if (!languages.sensitive) {
-            languages.append ("def", _("Default"));
-            languages.active = 1;
+        int count = languages.model.iter_n_children (null); 
+        languages.sensitive = count > 1;
+        if (languages.sensitive) {
+            languages.active = playback.audio_stream;
         } else {
-            languages.active = previous_track;
+            if (count != 0)
+                languages.remove_all ();
+            languages.append ("def", _("Default"));
+            languages.active = 0;
         }
+
+        languages.changed.connect (on_languages_changed);
     }
 
     public void next_audio () {
