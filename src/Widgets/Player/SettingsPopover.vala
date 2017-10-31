@@ -93,18 +93,21 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     }
 
     private void on_subtitles_changed () {
-        if (subtitles.active < 0)
+        if (subtitles.active < 0) {
             return;
+        }
 
-        if (subtitles.active_id == "none")
+        if (subtitles.active_id == "none") {
             playback.subtitle_track = -1;
-        else
+        } else {
             playback.subtitle_track = subtitles.active;
+        }
     }
 
     private void on_languages_changed () {
-        if (languages.active < 0 || languages.active_id == "def")
+        if (languages.active < 0 || languages.active_id == "def") {
             return;
+        }
 
         playback.audio_stream = languages.active;
     }
@@ -112,8 +115,9 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     private void setup_text () {
         subtitles.changed.disconnect (on_subtitles_changed);
 
-        if (subtitles.model.iter_n_children (null) > 0)
+        if (subtitles.model.iter_n_children (null) > 0) {
             subtitles.remove_all ();
+        }
 
         uint track = 1;
         playback.get_subtitle_tracks ().foreach ((lang) => {
@@ -124,10 +128,11 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
         int count = subtitles.model.iter_n_children (null); 
         subtitles.sensitive = count > 1;
-        if (subtitles.sensitive && (playback.subtitle_track >= 0))
+        if (subtitles.sensitive && (playback.subtitle_track >= 0)) {
             subtitles.active = playback.subtitle_track;
-        else
+        } else {
             subtitles.active = count - 1;
+        }
 
         subtitles.changed.connect (on_subtitles_changed);
     }
@@ -135,8 +140,9 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     private void setup_audio () {
         languages.changed.disconnect (on_languages_changed);
 
-        if (languages.model.iter_n_children (null) > 0)
+        if (languages.model.iter_n_children (null) > 0) {
             languages.remove_all ();
+        }
 
         uint track = 1;
         playback.get_audio_streams ().foreach ((lang) => {
@@ -148,8 +154,9 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         if (languages.sensitive) {
             languages.active = playback.audio_stream;
         } else {
-            if (count != 0)
+            if (count != 0) {
                 languages.remove_all ();
+            }
             languages.append ("def", _("Default"));
             languages.active = 0;
         }
