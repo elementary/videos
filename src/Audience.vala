@@ -59,7 +59,6 @@ namespace Audience {
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
             settings = new Settings ();
-            set_default ();
         }
 
         private static App app; // global App instance
