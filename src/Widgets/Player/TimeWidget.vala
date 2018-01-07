@@ -24,7 +24,7 @@ public class Audience.Widgets.TimeWidget : Granite.SeekBar {
     private Audience.Widgets.PreviewPopover preview_popover;
 
     public TimeWidget (ClutterGst.Playback main_playback) {
-        base(0.0);
+        Object (playback_duration: 0.0);
         
         this.main_playback = main_playback;
         main_playback.notify["progress"].connect (progress_callback);
