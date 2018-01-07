@@ -53,7 +53,7 @@ public class Audience.Window : Gtk.Window {
         set_default_geometry (1000, 680);
 
         header = new Gtk.HeaderBar ();
-        header.set_show_close_button (true);
+        header.show_close_button = true;
         header.get_style_context ().add_class ("compact");
 
         navigation_button = new NavigationButton ();
@@ -67,7 +67,7 @@ public class Audience.Window : Gtk.Window {
         search_entry.placeholder_text = _("Search Videos");
         search_entry.margin_right = 5;
         search_entry.search_changed.connect (() => {
-                if (main_stack.visible_child == episodes_page ) {
+                if (main_stack.visible_child == episodes_page) {
                     episodes_page.filter (search_entry.text);
                 } else {
                     library_page.filter (search_entry.text);
@@ -132,7 +132,7 @@ public class Audience.Window : Gtk.Window {
 
         alert_view = new Granite.Widgets.AlertView ("", "", "");
         alert_view.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
-        alert_view.set_vexpand (true);
+        alert_view.vexpand = true;
         alert_view.no_show_all = true;
 
         episodes_page = new EpisodesPage ();

@@ -25,11 +25,11 @@ namespace Audience {
         private bool mouse_primary_down = false;
 
         public bool repeat {
-            get{
+            get {
                 return bottom_bar.repeat;
             }
 
-            set{
+            set {
                 bottom_bar.repeat = value;
             }
         }
@@ -219,7 +219,7 @@ namespace Audience {
             });
 
             bottom_bar.notify["child-revealed"].connect (() => {
-                if (bottom_bar.child_revealed == true) {
+                if (bottom_bar.child_revealed) {
                     App.get_instance ().mainwindow.get_window ().set_cursor (null);
                 } else {
                     var window = App.get_instance ().mainwindow.get_window ();
@@ -275,7 +275,7 @@ namespace Audience {
         public string get_played_uri () {
             return playback.uri;
         }
-        
+
         public void reset_played_uri () {
             playback.uri = null;
         }
