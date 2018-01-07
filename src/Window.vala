@@ -487,10 +487,8 @@ public class Audience.Window : Gtk.Window {
         if (progress > 0) {
             settings.last_stopped = progress;
         }
-        if (player_page.playing) {
-            player_page.playing = false;
-            player_page.reset_played_uri ();
-        }
+        player_page.playing = false;
+        player_page.reset_played_uri ();
         title = App.get_instance ().program_name;
         get_window ().set_cursor (null);
 

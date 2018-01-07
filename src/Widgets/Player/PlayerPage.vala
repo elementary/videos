@@ -277,7 +277,7 @@ namespace Audience {
         }
         
         public void reset_played_uri () {
-            playback.uri = "";
+            playback.uri = null;
         }
 
         public void next () {
