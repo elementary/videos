@@ -89,7 +89,7 @@ namespace Audience {
 
             if (selected.episodes.size == 1) {
                 string uri = selected.episodes.first ().video_file.get_uri ();
-                bool from_beginning = selected.episodes.first ().video_file.get_uri () != settings.current_video;
+                bool from_beginning = uri != settings.current_video;
                 App.get_instance ().mainwindow.play_file (uri, Window.NavigationPage.LIBRARY, from_beginning);
             } else {
                 last_filter = query;
