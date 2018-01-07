@@ -203,6 +203,10 @@ public class Audience.Window : Gtk.Window {
             if (Gdk.WindowState.FULLSCREEN in e.changed_mask) {
                 player_page.fullscreened = Gdk.WindowState.FULLSCREEN in e.new_window_state;
                 header.visible = !player_page.fullscreened;
+
+                if (!player_page.fullscreened) {
+                    unmaximize ();
+                }
             }
 
             if (Gdk.WindowState.MAXIMIZED in e.changed_mask) {
