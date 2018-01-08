@@ -26,6 +26,13 @@
     <binary>io.elementary.videos</binary>
   </provides>
   <releases>
+    <release version="0.2.5" date="2018-01-08" urgency="medium">
+      <description>
+        <ul>
+          <_li>Disallow setting playback before start</_li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.4" date="2017-08-11" urgency="medium">
       <description>
         <ul>
