@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-25 23:39+0100\n"
+"POT-Creation-Date: 2018-01-08 14:10-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,7 +47,25 @@ msgstr ""
 msgid "Thumbnail previews on the seek bar"
 msgstr ""
 
+msgid "Disallow setting playback before start"
+msgstr ""
+
+msgid "Limit consecutive spacebar pauses"
+msgstr ""
+
+msgid "Crash fixes"
+msgstr ""
+
+msgid "Remove About dialog"
+msgstr ""
+
+msgid "Minor bug fixes"
+msgstr ""
+
 msgid "Translation updates"
+msgstr ""
+
+msgid "Preview popover now closely follows cursor position"
 msgstr ""
 
 msgid "Fix appstream date format"
@@ -57,7 +75,4 @@ msgid "Added a library view with search"
 msgstr ""
 
 msgid "Fixed a bug that prevents keyboard navigation"
-msgstr ""
-
-msgid "Minor bug fixes"
 msgstr ""
