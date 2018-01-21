@@ -11,6 +11,7 @@ namespace Audience {
     public class PlayerPage : Gtk.EventBox {
         public signal void unfullscreen_clicked ();
         public signal void ended ();
+        public signal void play_requested (string filename);
 
         public GtkClutter.Embed clutter;
         private Clutter.Actor video_actor;
@@ -201,8 +202,7 @@ namespace Audience {
                     playback.progress = 0;
                     if (!get_playlist_widget ().next ()) {
                         if (repeat) {
-                            play_file (get_playlist_widget ().get_first_item ().get_uri ());
-                            playback.playing = true;
+                            play_requested (get_playlist_widget ().get_first_item ().get_uri ());
                         } else {
                             playback.playing = false;
                             settings.last_stopped = 0;
@@ -215,7 +215,7 @@ namespace Audience {
 
             //playlist wants us to open a file
             get_playlist_widget ().play.connect ((file) => {
-                this.play_file (file.get_uri ());
+                play_requested (file.get_uri ());
             });
 
             bottom_bar.notify["child-revealed"].connect (() => {

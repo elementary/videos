@@ -23,7 +23,7 @@ namespace Audience {
     public class LibraryPage : Gtk.Grid {
 
         public signal void filter_result_changed (bool has_results);
-        public signal void show_episodes (Audience.LibraryItem item);
+        public signal void show_episodes (Audience.LibraryItem item, bool setup_only = false);
 
         public Gtk.FlowBox view_movies;
         public Audience.Services.LibraryManager manager;
@@ -183,6 +183,10 @@ namespace Audience {
         }
 
         public Audience.Window.NavigationPage prepare_to_play (string file) {
+            if (!File.new_for_uri (file).has_prefix (File.new_for_path (settings.library_folder))) {
+                return Window.NavigationPage.WELCOME;
+            }
+
             foreach (var child in view_movies.get_children ()) {
                 var item = child as LibraryItem;
                 var episodes = item.episodes;
@@ -194,7 +198,7 @@ namespace Audience {
                             if (!first_episode.poster_initialized) {
                                 first_episode.initialize_poster.begin ();
                             }
-                            show_episodes (item);
+                            show_episodes (item, true);
                             return Window.NavigationPage.EPISODES;
                         } else {
                             return Window.NavigationPage.LIBRARY;

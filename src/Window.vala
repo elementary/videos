@@ -102,13 +102,15 @@ public class Audience.Window : Gtk.Window {
                 hide_alert ();
             }
         });
-        library_page.show_episodes.connect ((item) => {
-            navigation_button.label = _(navigation_button_library);
+        library_page.show_episodes.connect ((item, setup_only) => {
             episodes_page.set_episodes_items (item.episodes);
             episodes_page.poster.pixbuf = item.poster.pixbuf;
-            main_stack.set_visible_child (episodes_page);
-            this.title = item.get_title ();
-            search_entry.text = "";
+            if (!setup_only) {
+                navigation_button.label = _(navigation_button_library);
+                main_stack.set_visible_child (episodes_page);
+                this.title = item.get_title ();
+                search_entry.text = "";
+            }
         });
 
         welcome_page = new WelcomePage ();
@@ -126,9 +128,12 @@ public class Audience.Window : Gtk.Window {
         player_page.map.connect (() => {
             app_notification.visible = false;
         });
-
         player_page.unmap.connect (() => {
             app_notification.visible = true;
+        });
+
+        player_page.play_requested.connect ((file) => {
+            open_files ({ File.new_for_uri (file) });
         });
 
         alert_view = new Granite.Widgets.AlertView ("", "", "");
