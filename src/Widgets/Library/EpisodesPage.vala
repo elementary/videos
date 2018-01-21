@@ -29,9 +29,11 @@ namespace Audience {
         public Audience.Services.LibraryManager manager;
 
         string query;
+        Objects.Video poster_source;
 
         construct {
             query = "";
+            poster_source = null;
 
             poster = new Gtk.Image ();
             poster.margin = 24;
@@ -68,13 +70,23 @@ namespace Audience {
         }
 
         public void set_episodes_items (Gee.ArrayList<Audience.Objects.Video> episodes) {
-            view_episodes.forall ((item)=> {
+            view_episodes.forall ((item) => {
                 item.dispose ();
             });
             foreach (Audience.Objects.Video episode in episodes) {
                 view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
             }
-            poster.pixbuf = episodes.first ().poster;
+
+            if (poster_source != null) {
+                poster_source.poster_changed.disconnect (update_poster);
+            }
+            poster_source = episodes.first ();
+            update_poster (poster_source);
+            poster_source.poster_changed.connect (update_poster);
+        }
+        
+        private void update_poster (Objects.Video episode) {
+            poster.pixbuf = episode.poster;
         }
 
         private void play_video (Gtk.FlowBoxChild item) {

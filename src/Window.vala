@@ -365,7 +365,9 @@ public class Audience.Window : Gtk.Window {
         }
 
         if (force_play && videos.length > 0) {
-            play_file (videos [0], NavigationPage.WELCOME);
+            string videofile = videos [0]; 
+            NavigationPage page = library_page.prepare_to_play (videofile);
+            play_file (videofile, page);
         }
     }
 

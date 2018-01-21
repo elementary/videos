@@ -36,6 +36,7 @@ namespace Audience.Objects {
 
         public Gdk.Pixbuf? poster { get; private set; default = null; }
         public Gdk.Pixbuf? thumbnail { get; private set; default = null; }
+        public bool poster_initialized { get; private set; default = false; }
 
         public string mime_type { get; construct set; }
         public string poster_cache_file { get; private set; }
@@ -67,8 +68,8 @@ namespace Audience.Objects {
             hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_uri (), video_file.get_uri ().length);
             hash_episode_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_parent ().get_uri (), video_file.get_parent ().get_uri ().length);
 
-            thumbnail_large_path = Path.build_filename (GLib.Environment.get_user_cache_dir (),"thumbnails", "large", hash_file_poster + ".png");
-            thumbnail_normal_path = Path.build_filename (GLib.Environment.get_user_cache_dir (),"thumbnails", "normal", hash_file_poster + ".png");
+            thumbnail_large_path = Path.build_filename (GLib.Environment.get_user_cache_dir (), "thumbnails", "large", hash_file_poster + ".png");
+            thumbnail_normal_path = Path.build_filename (GLib.Environment.get_user_cache_dir (), "thumbnails", "normal", hash_file_poster + ".png");
             poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash_file_poster + ".jpg");
 
             notify["poster"].connect (() => {
@@ -92,13 +93,14 @@ namespace Audience.Objects {
         }
 
         public async void initialize_poster () {
+            poster_initialized = true;
             initialize_poster_thread.begin ((obj, res) => {
                 poster = initialize_poster_thread.end (res);
                 set_pixbufs ();
             });
         }
 
-        public async Gdk.Pixbuf? initialize_poster_thread () {
+        private async Gdk.Pixbuf? initialize_poster_thread () {
             SourceFunc callback = initialize_poster_thread.callback;
             Gdk.Pixbuf? pixbuf = null;
 
