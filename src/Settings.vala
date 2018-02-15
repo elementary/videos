@@ -33,7 +33,7 @@ public class Audience.Settings : Granite.Services.Settings {
     public string[] poster_names {get; set;}
 
     public Settings () {
-        base ("org.pantheon.audience");
+        base ("io.elementary.videos");
     }
 
 }

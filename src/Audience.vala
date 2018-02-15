@@ -50,7 +50,7 @@ namespace Audience {
 
             Intl.setlocale (LocaleCategory.ALL, "");
 
-            app_launcher = "org.pantheon.audience.desktop";
+            app_launcher = "io.elementary.videos.desktop";
             application_id = "io.elementary.videos";
         }
 
