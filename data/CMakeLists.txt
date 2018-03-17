@@ -17,7 +17,7 @@ endif ()
 configure_file_translation (io.elementary.videos.appdata.xml.in ${CMAKE_CURRENT_BINARY_DIR}/io.elementary.videos.appdata.xml ${CMAKE_SOURCE_DIR}/po/)
 
 install (FILES ${CMAKE_CURRENT_BINARY_DIR}/io.elementary.videos.desktop DESTINATION ${DATADIR}/applications/)
-install (FILES ${CMAKE_CURRENT_BINARY_DIR}/io.elementary.videos.appdata.xml DESTINATION ${DATADIR}/appdata/)
+install (FILES ${CMAKE_CURRENT_BINARY_DIR}/io.elementary.videos.appdata.xml DESTINATION ${DATADIR}/metainfo/)
 
 include (GSettings)
 
