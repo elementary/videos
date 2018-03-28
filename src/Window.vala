@@ -132,10 +132,6 @@ public class Audience.Window : Gtk.Window {
             app_notification.visible = true;
         });
 
-        player_page.play_requested.connect ((file) => {
-            open_files ({ File.new_for_uri (file) });
-        });
-
         alert_view = new Granite.Widgets.AlertView ("", "", "");
         alert_view.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
         alert_view.set_vexpand (true);
