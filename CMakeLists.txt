@@ -6,23 +6,18 @@ list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 project (io.elementary.videos C)
 
+set (APP_NAME "Videos")
 set (DATADIR ${CMAKE_INSTALL_PREFIX}/share)
 set (PKGDATADIR ${DATADIR}/${CMAKE_PROJECT_NAME})
 set (GETTEXT_PACKAGE ${CMAKE_PROJECT_NAME})
 set (RELEASE_NAME "A modern media player.")
-set (VERSION "0.2.4")
+set (VERSION "0.2.5")
 set (VERSION_INFO "The Red Comet")
 
 add_definitions (-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 
 # Comment this out to enable C compiler warnings
 add_definitions (-w)
-
-option (BUILD_FOR_ELEMENTARY "Audience name will be replaced by Videos" ON)
-set (APP_NAME "Audience")
-if (BUILD_FOR_ELEMENTARY)
-    set (APP_NAME "Videos")
-endif ()
 
 add_subdirectory (src)
 add_subdirectory (data)

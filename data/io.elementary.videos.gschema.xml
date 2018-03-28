@@ -1,5 +1,5 @@
 <schemalist>
-  <schema path="/org/pantheon/audience/" id="org.pantheon.audience" gettext-domain="audience">
+  <schema path="/io/elementary/videos/" id="io.elementary.videos" gettext-domain="audience">
         <key name="subtitle-font" type="s">
             <default>"Open Sans Bold"</default>
             <summary>Set the default font of video subtitles</summary>

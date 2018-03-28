@@ -37,7 +37,7 @@ namespace Audience {
 
             poster = new Gtk.Image ();
             poster.margin = 24;
-            poster.margin_right = 0;
+            poster.margin_end = 0;
             poster.valign = Gtk.Align.START;
             poster.get_style_context ().add_class ("card");
 

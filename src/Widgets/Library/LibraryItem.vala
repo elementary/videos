@@ -85,7 +85,7 @@ namespace Audience {
                 context_menu.append (new Gtk.SeparatorMenuItem ());
 
                 poster = new Gtk.Image ();
-                poster.margin_top = poster.margin_left = poster.margin_right = 12;
+                poster.margin_top = poster.margin_start = poster.margin_end = 12;
                 poster.get_style_context ().add_class ("card");
                 poster.pixbuf = null;
                 poster.notify ["pixbuf"].connect (poster_visibility);
@@ -93,7 +93,7 @@ namespace Audience {
                 spinner_container = new Gtk.Grid ();
                 spinner_container.height_request = Audience.Services.POSTER_HEIGHT;
                 spinner_container.width_request = Audience.Services.POSTER_WIDTH;
-                spinner_container.margin_top = spinner_container.margin_left = spinner_container.margin_right = 12;
+                spinner_container.margin_top = spinner_container.margin_start = spinner_container.margin_end = 12;
                 spinner_container.get_style_context ().add_class ("card");
 
                 spinner = new Gtk.Spinner ();

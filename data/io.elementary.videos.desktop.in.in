@@ -1,6 +1,6 @@
 [Desktop Entry]
 Version=1.0
-_Name=@APP_NAME@
+_Name=Videos
 _GenericName=Video Player
 _Comment=Watch videos and movies
 Exec=io.elementary.videos %U
