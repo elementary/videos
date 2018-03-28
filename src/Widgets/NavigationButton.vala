@@ -27,6 +27,7 @@ namespace Audience {
 
         construct {
             can_focus = false;
+            label = "";
             valign = Gtk.Align.CENTER;
             vexpand = false;
             this.get_style_context ().add_class ("back-button");
