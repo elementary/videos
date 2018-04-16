@@ -66,7 +66,7 @@ public class Audience.Window : Gtk.Window {
 
         search_entry = new Gtk.SearchEntry ();
         search_entry.placeholder_text = _("Search Videos");
-        search_entry.margin_end = 5;
+        search_entry.valign = Gtk.Align.CENTER;
         search_entry.search_changed.connect (() => {
                 if (main_stack.visible_child == episodes_page ) {
                     episodes_page.filter (search_entry.text);
