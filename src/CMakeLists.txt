@@ -66,9 +66,9 @@ vala_precompile (VALA_C ${EXEC_NAME}
     Widgets/Library/EpisodesPage.vala
 
     Services/Inhibitor.vala
-    Services/DirictoryMonitoring.vala
+    Services/DirectoryMonitoring.vala
     Services/LibraryManager.vala
-    Services/Thubnailer.vala
+    Services/Thumbnailer.vala
 
     Objects/Video.vala
   PACKAGES

@@ -34,6 +34,7 @@ public class Audience.Window : Gtk.Window {
     private ZeitgeistManager zeitgeist_manager;
     private Gtk.SearchEntry search_entry;
 
+    public enum NavigationPage { WELCOME, LIBRARY, EPISODES }
 
     // For better translation
     const string navigation_button_welcomescreen = N_("Back");
@@ -101,13 +102,15 @@ public class Audience.Window : Gtk.Window {
                 hide_alert ();
             }
         });
-        library_page.show_episodes.connect ((item) => {
-            navigation_button.label = _(navigation_button_library);
+        library_page.show_episodes.connect ((item, setup_only) => {
             episodes_page.set_episodes_items (item.episodes);
             episodes_page.poster.pixbuf = item.poster.pixbuf;
-            main_stack.set_visible_child (episodes_page);
-            this.title = item.get_title ();
-            search_entry.text = "";
+            if (!setup_only) {
+                navigation_button.label = _(navigation_button_library);
+                main_stack.set_visible_child (episodes_page);
+                this.title = item.get_title ();
+                search_entry.text = "";
+            }
         });
 
         welcome_page = new WelcomePage ();
@@ -125,7 +128,6 @@ public class Audience.Window : Gtk.Window {
         player_page.map.connect (() => {
             app_notification.visible = false;
         });
-
         player_page.unmap.connect (() => {
             app_notification.visible = true;
         });
@@ -366,18 +368,16 @@ public class Audience.Window : Gtk.Window {
             }
         }
 
-        if (videos.length == 0) {
-            return;
-        }
-
-        if (force_play) {
-            play_file (videos [0]);
+        if (force_play && videos.length > 0) {
+            string videofile = videos [0]; 
+            NavigationPage page = library_page.prepare_to_play (videofile);
+            play_file (videofile, page);
         }
     }
 
     public void resume_last_videos () {
         if (settings.current_video != "") {
-            play_file (settings.current_video, false);
+            play_file (settings.current_video, NavigationPage.WELCOME, false);
         } else {
             run_open_file ();
         }
@@ -451,7 +451,7 @@ public class Audience.Window : Gtk.Window {
         }
 
         var root = volume.get_mount ().get_default_location ();
-        play_file (root.get_uri ().replace ("file:///", "dvd:///"));
+        play_file (root.get_uri ().replace ("file:///", "dvd:///"), NavigationPage.WELCOME);
     }
 
     private void on_player_ended () {
@@ -459,17 +459,20 @@ public class Audience.Window : Gtk.Window {
         unfullscreen ();
     }
 
-    public void play_file (string uri, bool from_beginning = true) {
+    public void play_file (string uri, NavigationPage origin, bool from_beginning = true) {
         search_entry.visible = false;
-        if (navigation_button.visible) {
-            if (navigation_button.label == _(navigation_button_library)) {
-                navigation_button.label = _(navigation_button_episodes);
-            } else {
+        navigation_button.visible = true;
+        switch (origin) {
+            default:
+            case NavigationPage.WELCOME:
+                navigation_button.label = _(navigation_button_welcomescreen);
+                break;
+            case NavigationPage.LIBRARY:
                 navigation_button.label = _(navigation_button_library);
-            }
-        } else {
-            navigation_button.show ();
-            navigation_button.label = _(navigation_button_welcomescreen);
+                break;
+            case NavigationPage.EPISODES:
+                navigation_button.label = _(navigation_button_episodes);
+                break;
         }
 
         main_stack.set_visible_child_full ("player", Gtk.StackTransitionType.SLIDE_LEFT);
