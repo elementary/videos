@@ -73,28 +73,13 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             playback.set_subtitle_uri (external_subtitle_file.get_uri ());
         });
 
-        playback.notify["subtitle_uri"].connect (() => {
+        playback.notify["subtitle-uri"].connect (() => {
             external_subtitle_file.select_uri (playback.subtitle_uri);
         });
 
-        subtitles.changed.connect (() => {
-            if (subtitles.active <= -1)
-                return;
+        subtitles.changed.connect (on_subtitles_changed);
 
-            if (subtitles.active_id == "none") {
-                playback.subtitle_track = -1;
-                return;
-            }
-
-            playback.subtitle_track = subtitles.active;
-        });
-
-        languages.changed.connect ( () => { //place it here to not get problems
-            if (languages.active <= -1 || languages.active_id == "def")
-                return;
-
-            playback.audio_stream = languages.active;
-        });
+        languages.changed.connect (on_languages_changed);
 
         add (setupgrid);
     }
@@ -107,69 +92,91 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         }
     }
 
+    private void on_subtitles_changed () {
+        if (subtitles.active < 0) {
+            return;
+        }
+
+        if (subtitles.active_id == "none") {
+            playback.subtitle_track = -1;
+        } else {
+            playback.subtitle_track = subtitles.active;
+        }
+    }
+
+    private void on_languages_changed () {
+        if (languages.active < 0 || languages.active_id == "def") {
+            return;
+        }
+
+        playback.audio_stream = languages.active;
+    }
+
     private void setup_text () {
-        int previous_track = playback.subtitle_track;
-        if (subtitles.model.iter_n_children (null) > 0)
+        subtitles.changed.disconnect (on_subtitles_changed);
+
+        if (subtitles.model.iter_n_children (null) > 0) {
             subtitles.remove_all ();
+        }
 
         uint track = 1;
         playback.get_subtitle_tracks ().foreach ((lang) => {
             // FIXME: Using Track since lang is actually a bad pointer :/
             subtitles.append (lang, _("Track %u").printf (track++));
         });
-
         subtitles.append ("none", _("None"));
-        subtitles.active = previous_track;
-        subtitles.sensitive = subtitles.model.iter_n_children (null) > 1;
 
-        if (!subtitles.sensitive) {
-            subtitles.append ("def", _("Default"));
-            subtitles.active = 0;
+        int count = subtitles.model.iter_n_children (null); 
+        subtitles.sensitive = count > 1;
+        if (subtitles.sensitive && (playback.subtitle_track >= 0)) {
+            subtitles.active = playback.subtitle_track;
         } else {
-            subtitles.active = previous_track;
+            subtitles.active = count - 1;
         }
+
+        subtitles.changed.connect (on_subtitles_changed);
     }
-
+    
     private void setup_audio () {
-        int previous_track = playback.subtitle_track;
+        languages.changed.disconnect (on_languages_changed);
 
-        if (languages.model.iter_n_children (null) > 0)
+        if (languages.model.iter_n_children (null) > 0) {
             languages.remove_all ();
+        }
 
         uint track = 1;
         playback.get_audio_streams ().foreach ((lang) => {
             languages.append (lang, _("Track %u").printf (track++));
         });
 
-        languages.sensitive = languages.model.iter_n_children (null) > 1;
-
-        if (!languages.sensitive) {
-            languages.append ("def", _("Default"));
-            languages.active = 1;
+        int count = languages.model.iter_n_children (null); 
+        languages.sensitive = count > 1;
+        if (languages.sensitive) {
+            languages.active = playback.audio_stream;
         } else {
-            languages.active = previous_track;
+            if (count != 0) {
+                languages.remove_all ();
+            }
+            languages.append ("def", _("Default"));
+            languages.active = 0;
         }
+
+        languages.changed.connect (on_languages_changed);
     }
 
     public void next_audio () {
-        int current = languages.active;
-        if (current < languages.model.iter_n_children (null) - 1) {
-            current++;
-        } else {
-            current = 0;
+        setup ();
+        int count = languages.model.iter_n_children (null);
+        if (count > 0) {
+            languages.active = (languages.active + 1) % count;
         }
-
-        languages.active = current;
     }
 
     public void next_text () {
-        int current = subtitles.active;
-        if (current < subtitles.model.iter_n_children (null)) {
-            current++;
-        } else {
-            current = 0;
+        setup ();
+        int count = subtitles.model.iter_n_children (null);
+        if (count > 0) {
+            subtitles.active = (subtitles.active + 1) % count;
         }
-
-        subtitles.active = current;
     }
 }
