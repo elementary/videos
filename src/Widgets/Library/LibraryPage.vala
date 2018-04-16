@@ -23,12 +23,12 @@ namespace Audience {
     public class LibraryPage : Gtk.Grid {
 
         public signal void filter_result_changed (bool has_results);
-        public signal void show_episodes (Audience.LibraryItem item);
+        public signal void show_episodes (Audience.LibraryItem item, bool setup_only = false);
 
         public Gtk.FlowBox view_movies;
         public Audience.Services.LibraryManager manager;
         public Gtk.ScrolledWindow scrolled_window;
-        bool poster_initialized = false;
+        bool posters_initialized = false;
         string query;
 
         public string last_filter { get; set; default = ""; }
@@ -72,8 +72,8 @@ namespace Audience {
             manager.begin_scan ();
 
             map.connect (() => {
-                if (!poster_initialized) {
-                    poster_initialized = true;
+                if (!posters_initialized) {
+                    posters_initialized = true;
                     poster_initialisation.begin ();
                 }
             });
@@ -88,8 +88,9 @@ namespace Audience {
             var selected = (item as Audience.LibraryItem);
 
             if (selected.episodes.size == 1) {
-                bool from_beginning = selected.episodes.first ().video_file.get_uri () != settings.current_video;
-                App.get_instance ().mainwindow.play_file (selected.episodes.first ().video_file.get_uri (), from_beginning);
+                string uri = selected.episodes.first ().video_file.get_uri ();
+                bool from_beginning = uri != settings.current_video;
+                App.get_instance ().mainwindow.play_file (uri, Window.NavigationPage.LIBRARY, from_beginning);
             } else {
                 last_filter = query;
                 show_episodes (selected);
@@ -105,7 +106,7 @@ namespace Audience {
             }
             Audience.LibraryItem new_container = new Audience.LibraryItem (video, LibraryItemStyle.THUMBNAIL);
             view_movies.add (new_container);
-            if (poster_initialized) {
+            if (posters_initialized) {
                 video.initialize_poster.begin ();
                 new_container.show_all ();
             }
@@ -132,7 +133,10 @@ namespace Audience {
 
         private async void poster_initialisation () {
             foreach (var child in view_movies.get_children ()) {
-                (child as LibraryItem).episodes.first ().initialize_poster.begin ();
+                var first_episode = (child as LibraryItem).episodes.first ();
+                if (!first_episode.poster_initialized) {
+                    first_episode.initialize_poster.begin ();
+                }
             }
         }
 
@@ -176,6 +180,33 @@ namespace Audience {
                 }
             }
             return false;
+        }
+
+        public Audience.Window.NavigationPage prepare_to_play (string file) {
+            if (!File.new_for_uri (file).has_prefix (File.new_for_path (settings.library_folder))) {
+                return Window.NavigationPage.WELCOME;
+            }
+
+            foreach (var child in view_movies.get_children ()) {
+                var item = child as LibraryItem;
+                var episodes = item.episodes;
+                foreach (var episode in episodes) {
+                    string ep_file = episode.video_file.get_uri ();
+                    if (ep_file == file) {
+                        if (episodes.size > 1) {
+                            var first_episode = episodes.first ();
+                            if (!first_episode.poster_initialized) {
+                                first_episode.initialize_poster.begin ();
+                            }
+                            show_episodes (item, true);
+                            return Window.NavigationPage.EPISODES;
+                        } else {
+                            return Window.NavigationPage.LIBRARY;
+                        }
+                    }
+                }
+            }
+            return Window.NavigationPage.WELCOME;
         }
     }
 }

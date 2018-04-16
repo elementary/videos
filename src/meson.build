@@ -1,6 +1,6 @@
 conf_data = configuration_data()
 conf_data.set('APP_NAME', 'Videos')
-conf_data.set('DATADIR', get_option('datadir')) 
+conf_data.set('DATADIR', get_option('datadir'))
 conf_data.set('PKGDATADIR', get_option('datadir') + '/' + meson.project_name())
 conf_data.set('GETTEXT_PACKAGE', meson.project_name())
 conf_data.set('RELEASE_NAME', 'A modern media player.')
@@ -22,10 +22,10 @@ executable(
     'Window.vala',
     'ZeitgeistManager.vala',
     'Objects/Video.vala',
-    'Services/DirictoryMonitoring.vala',
+    'Services/DirectoryMonitoring.vala',
     'Services/Inhibitor.vala',
     'Services/LibraryManager.vala',
-    'Services/Thubnailer.vala',
+    'Services/Thumbnailer.vala',
     'Widgets/NavigationButton.vala',
     'Widgets/WelcomePage.vala',
     'Widgets/Library/EpisodesPage.vala',
@@ -39,7 +39,7 @@ executable(
     'Widgets/Player/SettingsPopover.vala',
     'Widgets/Player/TimeWidget.vala',
     config_header,
-    
+
     vala_args: [
         '--enable-experimental',
         '--target-glib=2.32',
@@ -57,7 +57,7 @@ executable(
         dependency('gstreamer-video-1.0'),
         dependency('gstreamer-tag-1.0'),
         dependency('gtk+-3.0'),
-        
+
         meson.get_compiler('vala').find_library('posix'),
         meson.get_compiler('c').find_library('m', required : false)
     ],
