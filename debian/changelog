@@ -1,3 +1,9 @@
+audience (0.2.6) UNRELEASED; urgency=medium
+
+  * Pre-release version bump.
+
+ -- Daniel Foré <daniel@elementary.io>  Mon, 16 Apr 2018 09:44:39 -0700
+
 audience (0.2.5) xenial; urgency=medium
 
   * New upstream release.
