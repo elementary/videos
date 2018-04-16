@@ -18,7 +18,6 @@ export DEB_BUILD_MAINT_OPTIONS=hardening=+all
 
 override_dh_strip:
 	dh_strip -p audience --dbgsym-migration='audience-dbg (<< 0.2.5)'
-	dh_strip --dbg-package=audience-dbg
 
 override_dh_auto_install:
 	dh_auto_install --destdir=debian/audience
