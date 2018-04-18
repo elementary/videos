@@ -1,7 +1,7 @@
 Source: audience
 Section: video
 Priority: optional
-Maintainer: elementary LLC <builds@elementary.io>
+Maintainer: Cody Garver <cody@elementary.io>
 Build-Depends: cmake (>= 2.8),
                debhelper (>= 10.5.1),
                intltool,
