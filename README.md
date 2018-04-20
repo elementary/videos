@@ -1,6 +1,8 @@
 # Videos
 [![Translation status](https://l10n.elementary.io/widgets/videos/-/svg-badge.svg)](https://l10n.elementary.io/projects/videos/?utm_source=widget)
 
+![Videos Screenshot](data/screenshot.png?raw=true)
+
 ## Building, Testing, and Installation
 
 You'll need the following dependencies:

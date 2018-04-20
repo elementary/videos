@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2016-2016 elementary LLC.
+ * Copyright (c) 2016-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,16 +29,12 @@ namespace Audience {
         public Gee.ArrayList<Audience.Objects.Video> episodes { get; private set; }
         public LibraryItemStyle item_style { get; construct set; }
 
-        Gtk.EventBox event_box;
-        Gtk.Grid grid;
-        public Gtk.Image poster { get; set; }
-        Gtk.Label title_label;
-        Gtk.Spinner spinner;
-        Gtk.Grid spinner_container;
-        Gtk.Menu context_menu;
-        Gtk.MenuItem new_cover;
-        Gtk.MenuItem move_to_trash;
+        private Gtk.Label title_label;
+        private Gtk.Spinner spinner;
+        private Gtk.Grid spinner_container;
+        private Gtk.Menu context_menu;
 
+        public Gtk.Image poster { get; set; }
         public string episode_poster_path { get; construct set; }
         public string poster_cache_file { get; construct set; }
         public string hash { get; construct set; }
@@ -58,7 +54,7 @@ namespace Audience {
         construct {
             manager = Audience.Services.LibraryManager.get_instance ();
 
-            grid = new Gtk.Grid ();
+            var grid = new Gtk.Grid ();
             grid.valign = Gtk.Align.START;
             grid.expand = true;
 
@@ -66,7 +62,7 @@ namespace Audience {
 
             context_menu = new Gtk.Menu ();
 
-            move_to_trash = new Gtk.MenuItem.with_label (_("Move to Trash"));
+            var move_to_trash = new Gtk.MenuItem.with_label (_("Move to Trash"));
             move_to_trash.activate.connect ( move_video_to_trash );
 
             if (item_style == LibraryItemStyle.THUMBNAIL) {
@@ -79,7 +75,7 @@ namespace Audience {
                 grid.halign = Gtk.Align.CENTER;
                 grid.row_spacing = 12;
 
-                new_cover = new Gtk.MenuItem.with_label (_("Set Artwork"));
+                var new_cover = new Gtk.MenuItem.with_label (_("Set Artwork"));
                 new_cover.activate.connect ( set_new_cover );
                 context_menu.append (new_cover);
                 context_menu.append (new Gtk.SeparatorMenuItem ());
@@ -120,7 +116,7 @@ namespace Audience {
             context_menu.append (move_to_trash);
             context_menu.show_all ();
 
-            event_box = new Gtk.EventBox ();
+            var event_box = new Gtk.EventBox ();
             event_box.button_press_event.connect (show_context_menu);
             event_box.add (grid);
 
