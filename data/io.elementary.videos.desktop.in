@@ -1,8 +1,8 @@
 [Desktop Entry]
 Version=1.0
-_Name=Videos
-_GenericName=Video Player
-_Comment=Watch videos and movies
+Name=Videos
+GenericName=Video Player
+Comment=Watch videos and movies
 Exec=io.elementary.videos %U
 Icon=multimedia-video-player
 StartupNotify=true
