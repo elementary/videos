@@ -14,7 +14,7 @@
 export DEB_BUILD_MAINT_OPTIONS=hardening=+all
 
 %:
-	dh $@ 
+	dh $@ --buildsystem=meson
 
 override_dh_strip:
 	dh_strip -p audience --dbgsym-migration='audience-dbg (<< 0.2.5)'
