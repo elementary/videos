@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-25 23:39+0100\n"
+"POT-Creation-Date: 2018-05-04 16:36-0700\n"
 "PO-Revision-Date: 2016-10-14 15:41+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
@@ -18,18 +18,17 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
+#: data/io.elementary.videos.appdata.xml.in:8
+#: data/io.elementary.videos.desktop.in:4
 msgid "Videos"
 msgstr "影片"
 
-msgid "Video Player"
-msgstr "影片播放器"
-
+#: data/io.elementary.videos.appdata.xml.in:9
+#: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
 msgstr "觀賞影片和電影"
 
-msgid "Audience"
-msgstr "Audience"
-
+#: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
 "A modern video player that focuses on displaying video content instead of "
 "player controls. It remembers your last played video and playback position "
@@ -38,29 +37,45 @@ msgstr ""
 "專注在影片內容本身，而非播放器控制項目的現代化影片播放器。它能記住您上次觀賞"
 "的影片和時間點，所以您可以接續上次離開的地方開始觀賞。"
 
+#: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
 msgstr "其他功能還包括："
 
+#: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
 msgstr "字幕支援"
 
+#: data/io.elementary.videos.appdata.xml.in:21
 msgid "Play queue"
 msgstr "播放佇列"
 
+#: data/io.elementary.videos.appdata.xml.in:22
 msgid "Thumbnail previews on the seek bar"
 msgstr "時間查找軸會有縮圖預覽"
 
-msgid "Translation updates"
-msgstr "翻譯更新"
-
-msgid "Fix appstream date format"
+#: data/io.elementary.videos.appdata.xml.in:126
+msgid "elementary LLC."
 msgstr ""
 
-msgid "Added a library view with search"
-msgstr "新增可搜尋的珍藏館檢視"
+#: data/io.elementary.videos.desktop.in:5
+msgid "Video Player"
+msgstr "影片播放器"
 
-msgid "Fixed a bug that prevents keyboard navigation"
-msgstr "已修正擋下鍵盤導覽的臭蟲"
+#: data/io.elementary.videos.desktop.in:8
+msgid "multimedia-video-player"
+msgstr ""
 
-msgid "Minor bug fixes"
-msgstr "小臭蟲修正"
+#~ msgid "Audience"
+#~ msgstr "Audience"
+
+#~ msgid "Translation updates"
+#~ msgstr "翻譯更新"
+
+#~ msgid "Added a library view with search"
+#~ msgstr "新增可搜尋的珍藏館檢視"
+
+#~ msgid "Fixed a bug that prevents keyboard navigation"
+#~ msgstr "已修正擋下鍵盤導覽的臭蟲"
+
+#~ msgid "Minor bug fixes"
+#~ msgstr "小臭蟲修正"

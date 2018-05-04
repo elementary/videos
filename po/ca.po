@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-25 23:39+0100\n"
+"POT-Creation-Date: 2018-05-04 16:35-0700\n"
 "PO-Revision-Date: 2016-12-19 16:20+0000\n"
 "Last-Translator: Davidmp <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
@@ -18,213 +18,203 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
-#: ../src/Widgets/Library/LibraryItem.vala:69
-msgid "Move to Trash"
-msgstr "Mou a la paperera"
-
-#: ../src/Widgets/Library/LibraryItem.vala:82
-msgid "Set Artwork"
-msgstr "Estableix-ne l'art"
-
-#: ../src/Widgets/Library/LibraryItem.vala:167 ../src/Window.vala:392
-msgid "Open"
-msgstr "Obre"
-
-#: ../src/Widgets/Library/LibraryItem.vala:167 ../src/Window.vala:393
-msgid "_Cancel"
-msgstr "_Cancel·la"
-
-#: ../src/Widgets/Library/LibraryItem.vala:167 ../src/Window.vala:393
-msgid "_Open"
-msgstr "_Obre"
-
-#: ../src/Widgets/Library/LibraryItem.vala:170
-msgid "Image files"
-msgstr "Fitxers d’imatges"
-
-#: ../src/Widgets/Library/EpisodesPage.vala:93 ../src/Window.vala:99
-msgid "No Results for “%s”"
-msgstr "Cap resultat per a “%s”"
-
-#: ../src/Widgets/Library/EpisodesPage.vala:93 ../src/Window.vala:99
-msgid "Try changing search terms."
-msgstr "Proveu de canviar els termes de la cerca."
-
-#: ../src/Widgets/Library/LibraryPage.vala:69
-msgid "Video '%s' Removed."
-msgstr "Vídeo \"%s\" eliminat."
-
-#: ../src/Widgets/WelcomePage.vala:6
-msgid "No Videos Open"
-msgstr "No hi ha cap vídeo obert"
-
-#: ../src/Widgets/WelcomePage.vala:6
-msgid "Select a source to begin playing."
-msgstr "Seleccioneu una font per començar la reproducció."
-
-#: ../src/Widgets/WelcomePage.vala:10
-#: ../src/Widgets/Player/PlaylistPopover.vala:35
-msgid "Open file"
-msgstr "Obre un fitxer"
-
-#: ../src/Widgets/WelcomePage.vala:10
-msgid "Open a saved file."
-msgstr "Obre un fitxer desat."
-
-#: ../src/Widgets/WelcomePage.vala:20 ../src/Widgets/WelcomePage.vala:79
-msgid "Replay last video"
-msgstr "Torna a reproduir el darrer vídeo"
-
-#: ../src/Widgets/WelcomePage.vala:22 ../src/Widgets/WelcomePage.vala:82
-msgid "Resume last video"
-msgstr "Reprèn el darrer vídeo"
-
-#: ../src/Widgets/WelcomePage.vala:47
-#: ../src/Widgets/Player/PlaylistPopover.vala:37
-msgid "Play from Disc"
-msgstr "Reprodueix des d'un disc"
-
-#: ../src/Widgets/WelcomePage.vala:47
-msgid "Watch a DVD or open a file from disc"
-msgstr "Ves un DVD o obre un fitxer des d'un disc"
-
-#: ../src/Widgets/WelcomePage.vala:50
-msgid "Browse Library"
-msgstr "Navegueu per la biblioteca"
-
-#: ../src/Widgets/WelcomePage.vala:50
-msgid "Watch a movie from your library"
-msgstr "Vegeu una pel·lícula de la biblioteca"
-
-#: ../src/Widgets/Player/BottomBar.vala:66
-#: ../src/Widgets/Player/BottomBar.vala:128
-msgid "Play"
-msgstr "Reprodueix"
-
-#: ../src/Widgets/Player/BottomBar.vala:70
-msgid "Playlist"
-msgstr "Llista de reproducció"
-
-#: ../src/Widgets/Player/BottomBar.vala:74
-msgid "Settings"
-msgstr "Configuració"
-
-#: ../src/Widgets/Player/BottomBar.vala:124
-msgid "Pause"
-msgstr "Atura"
-
-#: ../src/Widgets/Player/BottomBar.vala:156
-msgid "Unfullscreen"
-msgstr "Surt del mode de pantalla sencera"
-
-#: ../src/Widgets/Player/PlaylistPopover.vala:41
-#: ../src/Widgets/Player/PlaylistPopover.vala:67
-msgid "Enable Repeat"
-msgstr "Habilita la repetició"
-
-#: ../src/Widgets/Player/PlaylistPopover.vala:64
-msgid "Disable Repeat"
-msgstr "Inhabilita la repetició"
-
-#: ../src/Widgets/Player/SettingsPopover.vala:37 ../src/Window.vala:398
-msgid "All files"
-msgstr "Tots els fitxers"
-
-#: ../src/Widgets/Player/SettingsPopover.vala:41
-msgid "Subtitle files"
-msgstr "Fitxers de subtítols"
-
-#. /pgp-encrypted"
-#: ../src/Widgets/Player/SettingsPopover.vala:48
-msgid "External Subtitles"
-msgstr "Subtítols externs"
-
-#: ../src/Widgets/Player/SettingsPopover.vala:52
-msgid "Audio:"
-msgstr "Àudio:"
-
-#: ../src/Widgets/Player/SettingsPopover.vala:55
-msgid "Subtitles:"
-msgstr "Subtítols:"
-
-#: ../src/Widgets/Player/SettingsPopover.vala:58
-msgid "External Subtitles:"
-msgstr "Subtítols externs:"
-
-#. /
-#: ../src/Widgets/Player/SettingsPopover.vala:118
-#: ../src/Widgets/Player/SettingsPopover.vala:141
-msgid "Track %u"
-msgstr "Pista %u"
-
-#: ../src/Widgets/Player/SettingsPopover.vala:121
-msgid "None"
-msgstr "Cap"
-
-#: ../src/Widgets/Player/SettingsPopover.vala:126
-#: ../src/Widgets/Player/SettingsPopover.vala:147
-msgid "Default"
-msgstr "Predeterminat"
-
-#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-#: ../src/Audience.vala:32
+#: src/Audience.vala:32
 msgid "Videos"
 msgstr "Vídeos"
 
-#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-#: ../src/Audience.vala:34
+#: src/Audience.vala:34
 msgid "Audience;Video;Player;Movies;"
 msgstr "Audience;Vídeo;Reproductor;Pel·lícules;"
 
-#: ../src/Audience.vala:35
+#: src/Audience.vala:35
 msgid "Watch videos and movies"
 msgstr "Vegeu videos i pel·lícules"
 
-#: ../src/Audience.vala:36
+#: src/Audience.vala:36
 msgid "Video Player"
 msgstr "Reproductor de vídeo"
 
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-#: ../src/Audience.vala:38
-msgid "About Audience"
-msgstr "Quant a l’Audience"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-#: ../src/Audience.vala:40
-msgid "About Videos"
-msgstr "Quant al Vídeos"
-
-#: ../src/Audience.vala:70
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  Adolfo Jayme https://launchpad.net/~fitojb\n"
-"  Alfredo Hernández https://launchpad.net/~aldomann\n"
-"  David https://launchpad.net/~dlh80\n"
-"  Davidmp https://launchpad.net/~davidmp\n"
-"  Vakjorsan https://launchpad.net/~vakjorsan\n"
-"  devaleitzer https://launchpad.net/~devaleitzer-aim"
-
-#: ../src/Window.vala:39
+#: src/Window.vala:40
 msgid "Back"
 msgstr "Enrere"
 
-#: ../src/Window.vala:40
+#: src/Window.vala:41
 msgid "Library"
 msgstr "Biblioteca"
 
-#: ../src/Window.vala:41
+#: src/Window.vala:42
 msgid "Episodes"
 msgstr "Episodis"
 
-#: ../src/Window.vala:67
+#: src/Window.vala:68
 msgid "Search Videos"
 msgstr "Cerca vídeos"
 
-#: ../src/Window.vala:153
+#: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
+#, c-format
+msgid "No Results for “%s”"
+msgstr "Cap resultat per a “%s”"
+
+#: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
+msgid "Try changing search terms."
+msgstr "Proveu de canviar els termes de la cerca."
+
+#: src/Window.vala:155
 msgid "Restore"
 msgstr "Restaura"
 
-#: ../src/Window.vala:402
+#: src/Window.vala:398 src/Widgets/Library/LibraryItem.vala:163
+msgid "Open"
+msgstr "Obre"
+
+#: src/Window.vala:399 src/Widgets/Library/LibraryItem.vala:163
+msgid "_Cancel"
+msgstr "_Cancel·la"
+
+#: src/Window.vala:399 src/Widgets/Library/LibraryItem.vala:163
+msgid "_Open"
+msgstr "_Obre"
+
+#: src/Window.vala:404 src/Widgets/Player/SettingsPopover.vala:37
+msgid "All files"
+msgstr "Tots els fitxers"
+
+#: src/Window.vala:408
 msgid "Video files"
 msgstr "Fitxers de vídeo"
+
+#: src/Widgets/WelcomePage.vala:6
+msgid "No Videos Open"
+msgstr "No hi ha cap vídeo obert"
+
+#: src/Widgets/WelcomePage.vala:6
+msgid "Select a source to begin playing."
+msgstr "Seleccioneu una font per començar la reproducció."
+
+#: src/Widgets/WelcomePage.vala:10 src/Widgets/Player/PlaylistPopover.vala:35
+msgid "Open file"
+msgstr "Obre un fitxer"
+
+#: src/Widgets/WelcomePage.vala:10
+msgid "Open a saved file."
+msgstr "Obre un fitxer desat."
+
+#: src/Widgets/WelcomePage.vala:20 src/Widgets/WelcomePage.vala:79
+msgid "Replay last video"
+msgstr "Torna a reproduir el darrer vídeo"
+
+#: src/Widgets/WelcomePage.vala:22 src/Widgets/WelcomePage.vala:82
+msgid "Resume last video"
+msgstr "Reprèn el darrer vídeo"
+
+#: src/Widgets/WelcomePage.vala:47 src/Widgets/Player/PlaylistPopover.vala:37
+msgid "Play from Disc"
+msgstr "Reprodueix des d'un disc"
+
+#: src/Widgets/WelcomePage.vala:47
+msgid "Watch a DVD or open a file from disc"
+msgstr "Ves un DVD o obre un fitxer des d'un disc"
+
+#: src/Widgets/WelcomePage.vala:50
+msgid "Browse Library"
+msgstr "Navegueu per la biblioteca"
+
+#: src/Widgets/WelcomePage.vala:50
+msgid "Watch a movie from your library"
+msgstr "Vegeu una pel·lícula de la biblioteca"
+
+#: src/Widgets/Library/LibraryItem.vala:65
+msgid "Move to Trash"
+msgstr "Mou a la paperera"
+
+#: src/Widgets/Library/LibraryItem.vala:78
+msgid "Set Artwork"
+msgstr "Estableix-ne l'art"
+
+#: src/Widgets/Library/LibraryItem.vala:166
+msgid "Image files"
+msgstr "Fitxers d’imatges"
+
+#: src/Widgets/Library/LibraryPage.vala:69
+#, c-format
+msgid "Video '%s' Removed."
+msgstr "Vídeo \"%s\" eliminat."
+
+#: src/Widgets/Player/BottomBar.vala:83
+msgid "Pause"
+msgstr "Atura"
+
+#: src/Widgets/Player/BottomBar.vala:87 src/Widgets/Player/BottomBar.vala:122
+msgid "Play"
+msgstr "Reprodueix"
+
+#: src/Widgets/Player/BottomBar.vala:129
+msgid "Playlist"
+msgstr "Llista de reproducció"
+
+#: src/Widgets/Player/BottomBar.vala:136
+msgid "Settings"
+msgstr "Configuració"
+
+#: src/Widgets/Player/BottomBar.vala:161
+msgid "Unfullscreen"
+msgstr "Surt del mode de pantalla sencera"
+
+#: src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/Player/PlaylistPopover.vala:67
+msgid "Enable Repeat"
+msgstr "Habilita la repetició"
+
+#: src/Widgets/Player/PlaylistPopover.vala:64
+msgid "Disable Repeat"
+msgstr "Inhabilita la repetició"
+
+#: src/Widgets/Player/SettingsPopover.vala:41
+msgid "Subtitle files"
+msgstr "Fitxers de subtítols"
+
+#: src/Widgets/Player/SettingsPopover.vala:48
+msgid "External Subtitles"
+msgstr "Subtítols externs"
+
+#: src/Widgets/Player/SettingsPopover.vala:52
+msgid "Audio:"
+msgstr "Àudio:"
+
+#: src/Widgets/Player/SettingsPopover.vala:55
+msgid "Subtitles:"
+msgstr "Subtítols:"
+
+#: src/Widgets/Player/SettingsPopover.vala:58
+msgid "External Subtitles:"
+msgstr "Subtítols externs:"
+
+#: src/Widgets/Player/SettingsPopover.vala:125
+#: src/Widgets/Player/SettingsPopover.vala:149
+#, c-format
+msgid "Track %u"
+msgstr "Pista %u"
+
+#: src/Widgets/Player/SettingsPopover.vala:127
+msgid "None"
+msgstr "Cap"
+
+#: src/Widgets/Player/SettingsPopover.vala:160
+msgid "Default"
+msgstr "Predeterminat"
+
+#~ msgid "About Audience"
+#~ msgstr "Quant a l’Audience"
+
+#~ msgid "About Videos"
+#~ msgstr "Quant al Vídeos"
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Launchpad Contributions:\n"
+#~ "  Adolfo Jayme https://launchpad.net/~fitojb\n"
+#~ "  Alfredo Hernández https://launchpad.net/~aldomann\n"
+#~ "  David https://launchpad.net/~dlh80\n"
+#~ "  Davidmp https://launchpad.net/~davidmp\n"
+#~ "  Vakjorsan https://launchpad.net/~vakjorsan\n"
+#~ "  devaleitzer https://launchpad.net/~devaleitzer-aim"

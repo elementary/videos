@@ -7,230 +7,220 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-25 23:39+0100\n"
+"POT-Creation-Date: 2018-05-04 16:35-0700\n"
 "PO-Revision-Date: 2017-04-26 16:26+0000\n"
 "Last-Translator: Володимир Білошицький <volbilnexus@gmail.com>\n"
-"Language-Team: Ukrainian "
-"<https://l10n.elementary.io/projects/videos/videos/uk/>\n"
+"Language-Team: Ukrainian <https://l10n.elementary.io/projects/videos/videos/"
+"uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: ../src/Widgets/Library/LibraryItem.vala:69
+#: src/Audience.vala:32
+msgid "Videos"
+msgstr "Відео"
+
+#: src/Audience.vala:34
+msgid "Audience;Video;Player;Movies;"
+msgstr "Audience;Video;Player;Movies;відео;фільми;програвач;"
+
+#: src/Audience.vala:35
+msgid "Watch videos and movies"
+msgstr "Переглядайте відео та фільми"
+
+#: src/Audience.vala:36
+msgid "Video Player"
+msgstr "Програвач відео"
+
+#: src/Window.vala:40
+msgid "Back"
+msgstr "Назад"
+
+#: src/Window.vala:41
+msgid "Library"
+msgstr "Бібліотека"
+
+#: src/Window.vala:42
+msgid "Episodes"
+msgstr "Епізоди"
+
+#: src/Window.vala:68
+msgid "Search Videos"
+msgstr "Шукати відео"
+
+#: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
+#, c-format
+msgid "No Results for “%s”"
+msgstr "За запитом “%s” нічого не знайдено"
+
+#: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
+msgid "Try changing search terms."
+msgstr "Спробуйте змінити правила пошуку."
+
+#: src/Window.vala:155
+msgid "Restore"
+msgstr "Відновити"
+
+#: src/Window.vala:398 src/Widgets/Library/LibraryItem.vala:163
+msgid "Open"
+msgstr "Відкрити"
+
+#: src/Window.vala:399 src/Widgets/Library/LibraryItem.vala:163
+msgid "_Cancel"
+msgstr "_Скасувати"
+
+#: src/Window.vala:399 src/Widgets/Library/LibraryItem.vala:163
+msgid "_Open"
+msgstr "_Відкрити"
+
+#: src/Window.vala:404 src/Widgets/Player/SettingsPopover.vala:37
+msgid "All files"
+msgstr "Усі файли"
+
+#: src/Window.vala:408
+msgid "Video files"
+msgstr "Відеофайли"
+
+#: src/Widgets/WelcomePage.vala:6
+msgid "No Videos Open"
+msgstr "Немає відкритих відео"
+
+#: src/Widgets/WelcomePage.vala:6
+msgid "Select a source to begin playing."
+msgstr "Виберіть джерело для початку програвання."
+
+#: src/Widgets/WelcomePage.vala:10 src/Widgets/Player/PlaylistPopover.vala:35
+msgid "Open file"
+msgstr "Відкрити файл"
+
+#: src/Widgets/WelcomePage.vala:10
+msgid "Open a saved file."
+msgstr "Відкрити збережений файл."
+
+#: src/Widgets/WelcomePage.vala:20 src/Widgets/WelcomePage.vala:79
+msgid "Replay last video"
+msgstr "Повторити останнє відео"
+
+#: src/Widgets/WelcomePage.vala:22 src/Widgets/WelcomePage.vala:82
+msgid "Resume last video"
+msgstr "Відновити попереднє відео"
+
+#: src/Widgets/WelcomePage.vala:47 src/Widgets/Player/PlaylistPopover.vala:37
+msgid "Play from Disc"
+msgstr "Відтворити з диску"
+
+#: src/Widgets/WelcomePage.vala:47
+msgid "Watch a DVD or open a file from disc"
+msgstr "Дивитися DVD або відкрити файл з диску"
+
+#: src/Widgets/WelcomePage.vala:50
+msgid "Browse Library"
+msgstr "Переглянути бібліотеку"
+
+#: src/Widgets/WelcomePage.vala:50
+msgid "Watch a movie from your library"
+msgstr "Дивитись фільм з вашої бібліотеки"
+
+#: src/Widgets/Library/LibraryItem.vala:65
 msgid "Move to Trash"
 msgstr "Перемістити в смітник"
 
-#: ../src/Widgets/Library/LibraryItem.vala:82
+#: src/Widgets/Library/LibraryItem.vala:78
 #, fuzzy
 msgid "Set Artwork"
 msgstr "Встановити зображення"
 
-#: ../src/Widgets/Library/LibraryItem.vala:167 ../src/Window.vala:392
-msgid "Open"
-msgstr "Відкрити"
-
-#: ../src/Widgets/Library/LibraryItem.vala:167 ../src/Window.vala:393
-msgid "_Cancel"
-msgstr "_Скасувати"
-
-#: ../src/Widgets/Library/LibraryItem.vala:167 ../src/Window.vala:393
-msgid "_Open"
-msgstr "_Відкрити"
-
-#: ../src/Widgets/Library/LibraryItem.vala:170
+#: src/Widgets/Library/LibraryItem.vala:166
 msgid "Image files"
 msgstr "Файли зображень"
 
-#: ../src/Widgets/Library/EpisodesPage.vala:93 ../src/Window.vala:99
-msgid "No Results for “%s”"
-msgstr "За запитом “%s” нічого не знайдено"
-
-#: ../src/Widgets/Library/EpisodesPage.vala:93 ../src/Window.vala:99
-msgid "Try changing search terms."
-msgstr "Спробуйте змінити правила пошуку."
-
-#: ../src/Widgets/Library/LibraryPage.vala:69
+#: src/Widgets/Library/LibraryPage.vala:69
+#, c-format
 msgid "Video '%s' Removed."
 msgstr "Відео '%s' вилучене."
 
-#: ../src/Widgets/WelcomePage.vala:6
-msgid "No Videos Open"
-msgstr "Немає відкритих відео"
-
-#: ../src/Widgets/WelcomePage.vala:6
-msgid "Select a source to begin playing."
-msgstr "Виберіть джерело для початку програвання."
-
-#: ../src/Widgets/WelcomePage.vala:10
-#: ../src/Widgets/Player/PlaylistPopover.vala:35
-msgid "Open file"
-msgstr "Відкрити файл"
-
-#: ../src/Widgets/WelcomePage.vala:10
-msgid "Open a saved file."
-msgstr "Відкрити збережений файл."
-
-#: ../src/Widgets/WelcomePage.vala:20 ../src/Widgets/WelcomePage.vala:79
-msgid "Replay last video"
-msgstr "Повторити останнє відео"
-
-#: ../src/Widgets/WelcomePage.vala:22 ../src/Widgets/WelcomePage.vala:82
-msgid "Resume last video"
-msgstr "Відновити попереднє відео"
-
-#: ../src/Widgets/WelcomePage.vala:47
-#: ../src/Widgets/Player/PlaylistPopover.vala:37
-msgid "Play from Disc"
-msgstr "Відтворити з диску"
-
-#: ../src/Widgets/WelcomePage.vala:47
-msgid "Watch a DVD or open a file from disc"
-msgstr "Дивитися DVD або відкрити файл з диску"
-
-#: ../src/Widgets/WelcomePage.vala:50
-msgid "Browse Library"
-msgstr "Переглянути бібліотеку"
-
-#: ../src/Widgets/WelcomePage.vala:50
-msgid "Watch a movie from your library"
-msgstr "Дивитись фільм з вашої бібліотеки"
-
-#: ../src/Widgets/Player/BottomBar.vala:66
-#: ../src/Widgets/Player/BottomBar.vala:128
-msgid "Play"
-msgstr "Відтворити"
-
-#: ../src/Widgets/Player/BottomBar.vala:70
-msgid "Playlist"
-msgstr "Список відтворення"
-
-#: ../src/Widgets/Player/BottomBar.vala:74
-msgid "Settings"
-msgstr "Параметри"
-
-#: ../src/Widgets/Player/BottomBar.vala:124
+#: src/Widgets/Player/BottomBar.vala:83
 msgid "Pause"
 msgstr "Пауза"
 
-#: ../src/Widgets/Player/BottomBar.vala:156
+#: src/Widgets/Player/BottomBar.vala:87 src/Widgets/Player/BottomBar.vala:122
+msgid "Play"
+msgstr "Відтворити"
+
+#: src/Widgets/Player/BottomBar.vala:129
+msgid "Playlist"
+msgstr "Список відтворення"
+
+#: src/Widgets/Player/BottomBar.vala:136
+msgid "Settings"
+msgstr "Параметри"
+
+#: src/Widgets/Player/BottomBar.vala:161
 msgid "Unfullscreen"
 msgstr "Вийти з повноекранного режиму"
 
-#: ../src/Widgets/Player/PlaylistPopover.vala:41
-#: ../src/Widgets/Player/PlaylistPopover.vala:67
+#: src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/Player/PlaylistPopover.vala:67
 msgid "Enable Repeat"
 msgstr "Ввімкнути повторення"
 
-#: ../src/Widgets/Player/PlaylistPopover.vala:64
+#: src/Widgets/Player/PlaylistPopover.vala:64
 msgid "Disable Repeat"
 msgstr "Вимкнути повторення"
 
-#: ../src/Widgets/Player/SettingsPopover.vala:37 ../src/Window.vala:398
-msgid "All files"
-msgstr "Усі файли"
-
-#: ../src/Widgets/Player/SettingsPopover.vala:41
+#: src/Widgets/Player/SettingsPopover.vala:41
 msgid "Subtitle files"
 msgstr "Файли субтитрів"
 
-#. /pgp-encrypted"
-#: ../src/Widgets/Player/SettingsPopover.vala:48
+#: src/Widgets/Player/SettingsPopover.vala:48
 msgid "External Subtitles"
 msgstr "Зовнішні субтитри"
 
-#: ../src/Widgets/Player/SettingsPopover.vala:52
+#: src/Widgets/Player/SettingsPopover.vala:52
 msgid "Audio:"
 msgstr "Звук:"
 
-#: ../src/Widgets/Player/SettingsPopover.vala:55
+#: src/Widgets/Player/SettingsPopover.vala:55
 msgid "Subtitles:"
 msgstr "Субтитри:"
 
-#: ../src/Widgets/Player/SettingsPopover.vala:58
+#: src/Widgets/Player/SettingsPopover.vala:58
 msgid "External Subtitles:"
 msgstr "Зовнішні субтитри:"
 
-#. /
-#: ../src/Widgets/Player/SettingsPopover.vala:118
-#: ../src/Widgets/Player/SettingsPopover.vala:141
+#: src/Widgets/Player/SettingsPopover.vala:125
+#: src/Widgets/Player/SettingsPopover.vala:149
+#, c-format
 msgid "Track %u"
 msgstr "Доріжка %u"
 
-#: ../src/Widgets/Player/SettingsPopover.vala:121
+#: src/Widgets/Player/SettingsPopover.vala:127
 msgid "None"
 msgstr "Немає"
 
-#: ../src/Widgets/Player/SettingsPopover.vala:126
-#: ../src/Widgets/Player/SettingsPopover.vala:147
+#: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "Типово"
 
-#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-#: ../src/Audience.vala:32
-msgid "Videos"
-msgstr "Відео"
+#~ msgid "About Audience"
+#~ msgstr "Про Audience"
 
-#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-#: ../src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Video;Player;Movies;відео;фільми;програвач;"
+#~ msgid "About Videos"
+#~ msgstr "Про Відео"
 
-#: ../src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "Переглядайте відео та фільми"
-
-#: ../src/Audience.vala:36
-msgid "Video Player"
-msgstr "Програвач відео"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-#: ../src/Audience.vala:38
-msgid "About Audience"
-msgstr "Про Audience"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-#: ../src/Audience.vala:40
-msgid "About Videos"
-msgstr "Про Відео"
-
-#: ../src/Audience.vala:70
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  Andre https://launchpad.net/~chipqq1\n"
-"  Andrew Shelestov https://launchpad.net/~streamx3\n"
-"  Bogdan Lisnenko https://launchpad.net/~lem8r\n"
-"  Leo Milano https://launchpad.net/~leonardomilano13\n"
-"  Max_ym https://launchpad.net/~kontact-cat\n"
-"  Ostap https://launchpad.net/~ostapp\n"
-"  Sergey Kornienko https://launchpad.net/~b0nzo-deb\n"
-"  Serhiy Filatov https://launchpad.net/~sf-pfil"
-
-#: ../src/Window.vala:39
-msgid "Back"
-msgstr "Назад"
-
-#: ../src/Window.vala:40
-msgid "Library"
-msgstr "Бібліотека"
-
-#: ../src/Window.vala:41
-msgid "Episodes"
-msgstr "Епізоди"
-
-#: ../src/Window.vala:67
-msgid "Search Videos"
-msgstr "Шукати відео"
-
-#: ../src/Window.vala:153
-msgid "Restore"
-msgstr "Відновити"
-
-#: ../src/Window.vala:402
-msgid "Video files"
-msgstr "Відеофайли"
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Launchpad Contributions:\n"
+#~ "  Andre https://launchpad.net/~chipqq1\n"
+#~ "  Andrew Shelestov https://launchpad.net/~streamx3\n"
+#~ "  Bogdan Lisnenko https://launchpad.net/~lem8r\n"
+#~ "  Leo Milano https://launchpad.net/~leonardomilano13\n"
+#~ "  Max_ym https://launchpad.net/~kontact-cat\n"
+#~ "  Ostap https://launchpad.net/~ostapp\n"
+#~ "  Sergey Kornienko https://launchpad.net/~b0nzo-deb\n"
+#~ "  Serhiy Filatov https://launchpad.net/~sf-pfil"

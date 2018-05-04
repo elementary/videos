@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the extra package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-08 14:10-0600\n"
+"POT-Creation-Date: 2018-05-04 16:36-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,62 +17,47 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: data/io.elementary.videos.appdata.xml.in:8
+#: data/io.elementary.videos.desktop.in:4
 msgid "Videos"
 msgstr ""
 
-msgid "Video Player"
-msgstr ""
-
+#: data/io.elementary.videos.appdata.xml.in:9
+#: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
 msgstr ""
 
-msgid "Audience"
-msgstr ""
-
+#: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
 "A modern video player that focuses on displaying video content instead of "
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
 
+#: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
 msgstr ""
 
+#: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
 msgstr ""
 
+#: data/io.elementary.videos.appdata.xml.in:21
 msgid "Play queue"
 msgstr ""
 
+#: data/io.elementary.videos.appdata.xml.in:22
 msgid "Thumbnail previews on the seek bar"
 msgstr ""
 
-msgid "Disallow setting playback before start"
+#: data/io.elementary.videos.appdata.xml.in:126
+msgid "elementary LLC."
 msgstr ""
 
-msgid "Limit consecutive spacebar pauses"
+#: data/io.elementary.videos.desktop.in:5
+msgid "Video Player"
 msgstr ""
 
-msgid "Crash fixes"
-msgstr ""
-
-msgid "Remove About dialog"
-msgstr ""
-
-msgid "Minor bug fixes"
-msgstr ""
-
-msgid "Translation updates"
-msgstr ""
-
-msgid "Preview popover now closely follows cursor position"
-msgstr ""
-
-msgid "Fix appstream date format"
-msgstr ""
-
-msgid "Added a library view with search"
-msgstr ""
-
-msgid "Fixed a bug that prevents keyboard navigation"
+#: data/io.elementary.videos.desktop.in:8
+msgid "multimedia-video-player"
 msgstr ""

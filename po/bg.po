@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-25 23:39+0100\n"
+"POT-Creation-Date: 2018-05-04 16:35-0700\n"
 "PO-Revision-Date: 2016-09-29 11:50+0000\n"
 "Last-Translator: Адмирал АнимЕ <Unknown>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
@@ -18,211 +18,201 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
-#: ../src/Widgets/Library/LibraryItem.vala:69
-msgid "Move to Trash"
-msgstr "Преместване в кошчето"
-
-#: ../src/Widgets/Library/LibraryItem.vala:82
-msgid "Set Artwork"
-msgstr ""
-
-#: ../src/Widgets/Library/LibraryItem.vala:167 ../src/Window.vala:392
-msgid "Open"
-msgstr "Отваряне"
-
-#: ../src/Widgets/Library/LibraryItem.vala:167 ../src/Window.vala:393
-msgid "_Cancel"
-msgstr "_Отказ"
-
-#: ../src/Widgets/Library/LibraryItem.vala:167 ../src/Window.vala:393
-msgid "_Open"
-msgstr "_Отваряне"
-
-#: ../src/Widgets/Library/LibraryItem.vala:170
-msgid "Image files"
-msgstr "Изображения"
-
-#: ../src/Widgets/Library/EpisodesPage.vala:93 ../src/Window.vala:99
-msgid "No Results for “%s”"
-msgstr "Няма намерени резултати за “%s”"
-
-#: ../src/Widgets/Library/EpisodesPage.vala:93 ../src/Window.vala:99
-msgid "Try changing search terms."
-msgstr "Опитайте да търсите с други критерии"
-
-#: ../src/Widgets/Library/LibraryPage.vala:69
-msgid "Video '%s' Removed."
-msgstr "Видеоклипът '%s' е премахнат."
-
-#: ../src/Widgets/WelcomePage.vala:6
-msgid "No Videos Open"
-msgstr "Няма отворено видео"
-
-#: ../src/Widgets/WelcomePage.vala:6
-msgid "Select a source to begin playing."
-msgstr "Избиране на източник за изпълнение"
-
-#: ../src/Widgets/WelcomePage.vala:10
-#: ../src/Widgets/Player/PlaylistPopover.vala:35
-msgid "Open file"
-msgstr "Отваряне на файл"
-
-#: ../src/Widgets/WelcomePage.vala:10
-msgid "Open a saved file."
-msgstr "Отваряне на запазен файл."
-
-#: ../src/Widgets/WelcomePage.vala:20 ../src/Widgets/WelcomePage.vala:79
-msgid "Replay last video"
-msgstr "Повтаряне на последното видео"
-
-#: ../src/Widgets/WelcomePage.vala:22 ../src/Widgets/WelcomePage.vala:82
-msgid "Resume last video"
-msgstr "Продължаване на последното видео"
-
-#: ../src/Widgets/WelcomePage.vala:47
-#: ../src/Widgets/Player/PlaylistPopover.vala:37
-msgid "Play from Disc"
-msgstr "Изпълнение от диск"
-
-#: ../src/Widgets/WelcomePage.vala:47
-msgid "Watch a DVD or open a file from disc"
-msgstr "Гледане  на DVD или отваряне на файл от диск"
-
-#: ../src/Widgets/WelcomePage.vala:50
-msgid "Browse Library"
-msgstr "Разглеждане на видеотеката"
-
-#: ../src/Widgets/WelcomePage.vala:50
-msgid "Watch a movie from your library"
-msgstr "Гледайте филм от вашата видеотека"
-
-#: ../src/Widgets/Player/BottomBar.vala:66
-#: ../src/Widgets/Player/BottomBar.vala:128
-msgid "Play"
-msgstr "Пускане"
-
-#: ../src/Widgets/Player/BottomBar.vala:70
-msgid "Playlist"
-msgstr "Списък за изпълнение"
-
-#: ../src/Widgets/Player/BottomBar.vala:74
-msgid "Settings"
-msgstr "Настройки"
-
-#: ../src/Widgets/Player/BottomBar.vala:124
-msgid "Pause"
-msgstr "Пауза"
-
-#: ../src/Widgets/Player/BottomBar.vala:156
-msgid "Unfullscreen"
-msgstr "Излизане от цял екран"
-
-#: ../src/Widgets/Player/PlaylistPopover.vala:41
-#: ../src/Widgets/Player/PlaylistPopover.vala:67
-msgid "Enable Repeat"
-msgstr "Включване на повтаряне"
-
-#: ../src/Widgets/Player/PlaylistPopover.vala:64
-msgid "Disable Repeat"
-msgstr "Изключване на повтаряне"
-
-#: ../src/Widgets/Player/SettingsPopover.vala:37 ../src/Window.vala:398
-msgid "All files"
-msgstr "Всички файлове"
-
-#: ../src/Widgets/Player/SettingsPopover.vala:41
-msgid "Subtitle files"
-msgstr "Файлове със субтитри"
-
-#. /pgp-encrypted"
-#: ../src/Widgets/Player/SettingsPopover.vala:48
-msgid "External Subtitles"
-msgstr "Външни субтитри"
-
-#: ../src/Widgets/Player/SettingsPopover.vala:52
-msgid "Audio:"
-msgstr "Звук:"
-
-#: ../src/Widgets/Player/SettingsPopover.vala:55
-msgid "Subtitles:"
-msgstr "Субтитри:"
-
-#: ../src/Widgets/Player/SettingsPopover.vala:58
-msgid "External Subtitles:"
-msgstr "Външни субтитри:"
-
-#. /
-#: ../src/Widgets/Player/SettingsPopover.vala:118
-#: ../src/Widgets/Player/SettingsPopover.vala:141
-msgid "Track %u"
-msgstr ""
-
-#: ../src/Widgets/Player/SettingsPopover.vala:121
-msgid "None"
-msgstr "Няма"
-
-#: ../src/Widgets/Player/SettingsPopover.vala:126
-#: ../src/Widgets/Player/SettingsPopover.vala:147
-msgid "Default"
-msgstr "По подразбиране"
-
-#. / TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-#: ../src/Audience.vala:32
+#: src/Audience.vala:32
 msgid "Videos"
 msgstr "Видеоклипове"
 
-#. / TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-#: ../src/Audience.vala:34
+#: src/Audience.vala:34
 msgid "Audience;Video;Player;Movies;"
 msgstr "Audience;Видео;Плеър;Филми"
 
-#: ../src/Audience.vala:35
+#: src/Audience.vala:35
 msgid "Watch videos and movies"
 msgstr "Гледане на видеоклипове и филми"
 
-#: ../src/Audience.vala:36
+#: src/Audience.vala:36
 msgid "Video Player"
 msgstr "Възпроизвеждане на видеоклипове"
 
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is branded "Audience".
-#: ../src/Audience.vala:38
-msgid "About Audience"
-msgstr "Относно програмата"
-
-#. / TRANSLATORS: This is the shortcut used to view information about the application itself when its displayed name is the localized equivalent of "Videos".
-#: ../src/Audience.vala:40
-msgid "About Videos"
-msgstr "Относно програмата"
-
-#: ../src/Audience.vala:70
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  Ivan Dokov https://launchpad.net/~ivandokov\n"
-"  Yennefer of Vengerberg https://launchpad.net/~yennefer1251\n"
-"  spacy01 https://launchpad.net/~spacy00001\n"
-"  Адмирал АнимЕ https://launchpad.net/~aeternus-arcis"
-
-#: ../src/Window.vala:39
+#: src/Window.vala:40
 msgid "Back"
 msgstr "Назад"
 
-#: ../src/Window.vala:40
+#: src/Window.vala:41
 msgid "Library"
 msgstr "Видеотека"
 
-#: ../src/Window.vala:41
+#: src/Window.vala:42
 msgid "Episodes"
 msgstr "Епизоди"
 
-#: ../src/Window.vala:67
+#: src/Window.vala:68
 msgid "Search Videos"
 msgstr "Търсене"
 
-#: ../src/Window.vala:153
+#: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
+#, c-format
+msgid "No Results for “%s”"
+msgstr "Няма намерени резултати за “%s”"
+
+#: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
+msgid "Try changing search terms."
+msgstr "Опитайте да търсите с други критерии"
+
+#: src/Window.vala:155
 msgid "Restore"
 msgstr "Възстановяване"
 
-#: ../src/Window.vala:402
+#: src/Window.vala:398 src/Widgets/Library/LibraryItem.vala:163
+msgid "Open"
+msgstr "Отваряне"
+
+#: src/Window.vala:399 src/Widgets/Library/LibraryItem.vala:163
+msgid "_Cancel"
+msgstr "_Отказ"
+
+#: src/Window.vala:399 src/Widgets/Library/LibraryItem.vala:163
+msgid "_Open"
+msgstr "_Отваряне"
+
+#: src/Window.vala:404 src/Widgets/Player/SettingsPopover.vala:37
+msgid "All files"
+msgstr "Всички файлове"
+
+#: src/Window.vala:408
 msgid "Video files"
 msgstr "Видео файлове"
+
+#: src/Widgets/WelcomePage.vala:6
+msgid "No Videos Open"
+msgstr "Няма отворено видео"
+
+#: src/Widgets/WelcomePage.vala:6
+msgid "Select a source to begin playing."
+msgstr "Избиране на източник за изпълнение"
+
+#: src/Widgets/WelcomePage.vala:10 src/Widgets/Player/PlaylistPopover.vala:35
+msgid "Open file"
+msgstr "Отваряне на файл"
+
+#: src/Widgets/WelcomePage.vala:10
+msgid "Open a saved file."
+msgstr "Отваряне на запазен файл."
+
+#: src/Widgets/WelcomePage.vala:20 src/Widgets/WelcomePage.vala:79
+msgid "Replay last video"
+msgstr "Повтаряне на последното видео"
+
+#: src/Widgets/WelcomePage.vala:22 src/Widgets/WelcomePage.vala:82
+msgid "Resume last video"
+msgstr "Продължаване на последното видео"
+
+#: src/Widgets/WelcomePage.vala:47 src/Widgets/Player/PlaylistPopover.vala:37
+msgid "Play from Disc"
+msgstr "Изпълнение от диск"
+
+#: src/Widgets/WelcomePage.vala:47
+msgid "Watch a DVD or open a file from disc"
+msgstr "Гледане  на DVD или отваряне на файл от диск"
+
+#: src/Widgets/WelcomePage.vala:50
+msgid "Browse Library"
+msgstr "Разглеждане на видеотеката"
+
+#: src/Widgets/WelcomePage.vala:50
+msgid "Watch a movie from your library"
+msgstr "Гледайте филм от вашата видеотека"
+
+#: src/Widgets/Library/LibraryItem.vala:65
+msgid "Move to Trash"
+msgstr "Преместване в кошчето"
+
+#: src/Widgets/Library/LibraryItem.vala:78
+msgid "Set Artwork"
+msgstr ""
+
+#: src/Widgets/Library/LibraryItem.vala:166
+msgid "Image files"
+msgstr "Изображения"
+
+#: src/Widgets/Library/LibraryPage.vala:69
+#, c-format
+msgid "Video '%s' Removed."
+msgstr "Видеоклипът '%s' е премахнат."
+
+#: src/Widgets/Player/BottomBar.vala:83
+msgid "Pause"
+msgstr "Пауза"
+
+#: src/Widgets/Player/BottomBar.vala:87 src/Widgets/Player/BottomBar.vala:122
+msgid "Play"
+msgstr "Пускане"
+
+#: src/Widgets/Player/BottomBar.vala:129
+msgid "Playlist"
+msgstr "Списък за изпълнение"
+
+#: src/Widgets/Player/BottomBar.vala:136
+msgid "Settings"
+msgstr "Настройки"
+
+#: src/Widgets/Player/BottomBar.vala:161
+msgid "Unfullscreen"
+msgstr "Излизане от цял екран"
+
+#: src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/Player/PlaylistPopover.vala:67
+msgid "Enable Repeat"
+msgstr "Включване на повтаряне"
+
+#: src/Widgets/Player/PlaylistPopover.vala:64
+msgid "Disable Repeat"
+msgstr "Изключване на повтаряне"
+
+#: src/Widgets/Player/SettingsPopover.vala:41
+msgid "Subtitle files"
+msgstr "Файлове със субтитри"
+
+#: src/Widgets/Player/SettingsPopover.vala:48
+msgid "External Subtitles"
+msgstr "Външни субтитри"
+
+#: src/Widgets/Player/SettingsPopover.vala:52
+msgid "Audio:"
+msgstr "Звук:"
+
+#: src/Widgets/Player/SettingsPopover.vala:55
+msgid "Subtitles:"
+msgstr "Субтитри:"
+
+#: src/Widgets/Player/SettingsPopover.vala:58
+msgid "External Subtitles:"
+msgstr "Външни субтитри:"
+
+#: src/Widgets/Player/SettingsPopover.vala:125
+#: src/Widgets/Player/SettingsPopover.vala:149
+#, c-format
+msgid "Track %u"
+msgstr ""
+
+#: src/Widgets/Player/SettingsPopover.vala:127
+msgid "None"
+msgstr "Няма"
+
+#: src/Widgets/Player/SettingsPopover.vala:160
+msgid "Default"
+msgstr "По подразбиране"
+
+#~ msgid "About Audience"
+#~ msgstr "Относно програмата"
+
+#~ msgid "About Videos"
+#~ msgstr "Относно програмата"
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Launchpad Contributions:\n"
+#~ "  Ivan Dokov https://launchpad.net/~ivandokov\n"
+#~ "  Yennefer of Vengerberg https://launchpad.net/~yennefer1251\n"
+#~ "  spacy01 https://launchpad.net/~spacy00001\n"
+#~ "  Адмирал АнимЕ https://launchpad.net/~aeternus-arcis"

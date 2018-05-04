@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-25 23:39+0100\n"
+"POT-Creation-Date: 2018-05-04 16:36-0700\n"
 "PO-Revision-Date: 2016-12-20 09:31+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
@@ -18,18 +18,17 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
+#: data/io.elementary.videos.appdata.xml.in:8
+#: data/io.elementary.videos.desktop.in:4
 msgid "Videos"
 msgstr "视频"
 
-msgid "Video Player"
-msgstr "视频播放器"
-
+#: data/io.elementary.videos.appdata.xml.in:9
+#: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
 msgstr "观看影片和视频"
 
-msgid "Audience"
-msgstr "Audience"
-
+#: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
 "A modern video player that focuses on displaying video content instead of "
 "player controls. It remembers your last played video and playback position "
@@ -37,29 +36,48 @@ msgid ""
 msgstr ""
 "一款专注于播放内容而非繁琐控制的播放器，记忆播放功能让你不再丢失播放进度。"
 
+#: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
 msgstr "特色功能："
 
+#: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
 msgstr "字幕支持"
 
+#: data/io.elementary.videos.appdata.xml.in:21
 msgid "Play queue"
 msgstr "播放队列"
 
+#: data/io.elementary.videos.appdata.xml.in:22
 msgid "Thumbnail previews on the seek bar"
 msgstr "进度条快速预览"
 
-msgid "Translation updates"
-msgstr "翻译更新"
+#: data/io.elementary.videos.appdata.xml.in:126
+msgid "elementary LLC."
+msgstr ""
 
-msgid "Fix appstream date format"
-msgstr "修正 AppStream 日期格式"
+#: data/io.elementary.videos.desktop.in:5
+msgid "Video Player"
+msgstr "视频播放器"
 
-msgid "Added a library view with search"
-msgstr "新增带搜索功能的媒体库视图"
+#: data/io.elementary.videos.desktop.in:8
+msgid "multimedia-video-player"
+msgstr ""
 
-msgid "Fixed a bug that prevents keyboard navigation"
-msgstr "修复一个影响键盘控制的BUG"
+#~ msgid "Audience"
+#~ msgstr "Audience"
 
-msgid "Minor bug fixes"
-msgstr "细节修复"
+#~ msgid "Translation updates"
+#~ msgstr "翻译更新"
+
+#~ msgid "Fix appstream date format"
+#~ msgstr "修正 AppStream 日期格式"
+
+#~ msgid "Added a library view with search"
+#~ msgstr "新增带搜索功能的媒体库视图"
+
+#~ msgid "Fixed a bug that prevents keyboard navigation"
+#~ msgstr "修复一个影响键盘控制的BUG"
+
+#~ msgid "Minor bug fixes"
+#~ msgstr "细节修复"

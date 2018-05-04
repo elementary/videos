@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-25 23:39+0100\n"
+"POT-Creation-Date: 2018-05-04 16:36-0700\n"
 "PO-Revision-Date: 2016-12-12 20:18+0000\n"
 "Last-Translator: Martin Korpala <Unknown>\n"
 "Language-Team: Slovak <>\n"
@@ -19,18 +19,17 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
+#: data/io.elementary.videos.appdata.xml.in:8
+#: data/io.elementary.videos.desktop.in:4
 msgid "Videos"
 msgstr "Videá"
 
-msgid "Video Player"
-msgstr "Video prehrávač"
-
+#: data/io.elementary.videos.appdata.xml.in:9
+#: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
 msgstr "Pozeraj videá a filmy"
 
-msgid "Audience"
-msgstr "Audience"
-
+#: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
 "A modern video player that focuses on displaying video content instead of "
 "player controls. It remembers your last played video and playback position "
@@ -40,29 +39,45 @@ msgstr ""
 "ovládania prehrávača. Pamätá si Tvoje posledné video a pozíciu prehrávania, "
 "takže môžeš pokračovať tam kde si prestal."
 
+#: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
 msgstr "Doplnkové funkcie zahŕňajú:"
 
+#: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
 msgstr "Podpora titulkov"
 
+#: data/io.elementary.videos.appdata.xml.in:21
 msgid "Play queue"
 msgstr "Hraj rad"
 
+#: data/io.elementary.videos.appdata.xml.in:22
 msgid "Thumbnail previews on the seek bar"
 msgstr "Náhľady na vyhľadávacom páse"
 
-msgid "Translation updates"
-msgstr "Aktualizácie prekladu."
-
-msgid "Fix appstream date format"
+#: data/io.elementary.videos.appdata.xml.in:126
+msgid "elementary LLC."
 msgstr ""
 
-msgid "Added a library view with search"
-msgstr "Pridaný prehľad knižnice s vyhľadávaním"
+#: data/io.elementary.videos.desktop.in:5
+msgid "Video Player"
+msgstr "Video prehrávač"
 
-msgid "Fixed a bug that prevents keyboard navigation"
-msgstr "Opravená chyba, ktorá bránila v navigácii klávesnicou"
+#: data/io.elementary.videos.desktop.in:8
+msgid "multimedia-video-player"
+msgstr ""
 
-msgid "Minor bug fixes"
-msgstr "Menšie opravy chýb"
+#~ msgid "Audience"
+#~ msgstr "Audience"
+
+#~ msgid "Translation updates"
+#~ msgstr "Aktualizácie prekladu."
+
+#~ msgid "Added a library view with search"
+#~ msgstr "Pridaný prehľad knižnice s vyhľadávaním"
+
+#~ msgid "Fixed a bug that prevents keyboard navigation"
+#~ msgstr "Opravená chyba, ktorá bránila v navigácii klávesnicou"
+
+#~ msgid "Minor bug fixes"
+#~ msgstr "Menšie opravy chýb"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-25 23:39+0100\n"
+"POT-Creation-Date: 2018-05-04 16:36-0700\n"
 "PO-Revision-Date: 2016-12-19 22:54+0000\n"
 "Last-Translator: Lulucmy <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
@@ -18,18 +18,17 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
+#: data/io.elementary.videos.appdata.xml.in:8
+#: data/io.elementary.videos.desktop.in:4
 msgid "Videos"
 msgstr "Vidéos"
 
-msgid "Video Player"
-msgstr "Lecteur vidéo"
-
+#: data/io.elementary.videos.appdata.xml.in:9
+#: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
 msgstr "Regarder des vidéos et des films"
 
-msgid "Audience"
-msgstr "Vidéos"
-
+#: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
 "A modern video player that focuses on displaying video content instead of "
 "player controls. It remembers your last played video and playback position "
@@ -39,29 +38,48 @@ msgstr ""
 "lieu des controles. Il se souvient de la dernière vidéo lue ainsi que de la "
 "position, ainsi vous pouvez reprendre où vous en étiez la fois précédente."
 
+#: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
 msgstr "Les dispositifs additionnels incluent :"
 
+#: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
 msgstr "Support des sous-titres"
 
+#: data/io.elementary.videos.appdata.xml.in:21
 msgid "Play queue"
 msgstr "Liste de lecture"
 
+#: data/io.elementary.videos.appdata.xml.in:22
 msgid "Thumbnail previews on the seek bar"
 msgstr "Minaitures sur la barre de navigation"
 
-msgid "Translation updates"
-msgstr "Mise à jour des traductions"
+#: data/io.elementary.videos.appdata.xml.in:126
+msgid "elementary LLC."
+msgstr ""
 
-msgid "Fix appstream date format"
-msgstr "Correction du format de la date d'appstream"
+#: data/io.elementary.videos.desktop.in:5
+msgid "Video Player"
+msgstr "Lecteur vidéo"
 
-msgid "Added a library view with search"
-msgstr "Ajout d'une vue bibliothèque avec une fonction recherche"
+#: data/io.elementary.videos.desktop.in:8
+msgid "multimedia-video-player"
+msgstr ""
 
-msgid "Fixed a bug that prevents keyboard navigation"
-msgstr "Correction d'un bug empêchant la navigation avec le clavier"
+#~ msgid "Audience"
+#~ msgstr "Vidéos"
 
-msgid "Minor bug fixes"
-msgstr "Corrections d'anomalies mineures"
+#~ msgid "Translation updates"
+#~ msgstr "Mise à jour des traductions"
+
+#~ msgid "Fix appstream date format"
+#~ msgstr "Correction du format de la date d'appstream"
+
+#~ msgid "Added a library view with search"
+#~ msgstr "Ajout d'une vue bibliothèque avec une fonction recherche"
+
+#~ msgid "Fixed a bug that prevents keyboard navigation"
+#~ msgstr "Correction d'un bug empêchant la navigation avec le clavier"
+
+#~ msgid "Minor bug fixes"
+#~ msgstr "Corrections d'anomalies mineures"
