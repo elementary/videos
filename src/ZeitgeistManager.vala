@@ -23,7 +23,7 @@ namespace Audience {
     [DBus (name = "org.gnome.zeitgeist.Blacklist")]
     interface BlacklistInterface : Object {
         [DBus (signature = "a{s(asaasay)}")]
-        public abstract Variant get_templates () throws IOError;
+        public abstract Variant get_templates () throws Error;
     }
 
     public class ZeitgeistManager : Object {
