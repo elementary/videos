@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 16:35-0700\n"
+"POT-Creation-Date: 2018-05-04 22:46-0700\n"
 "PO-Revision-Date: 2016-09-29 11:50+0000\n"
 "Last-Translator: Адмирал АнимЕ <Unknown>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
@@ -17,22 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
-
-#: src/Audience.vala:32
-msgid "Videos"
-msgstr "Видеоклипове"
-
-#: src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Видео;Плеър;Филми"
-
-#: src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "Гледане на видеоклипове и филми"
-
-#: src/Audience.vala:36
-msgid "Video Player"
-msgstr "Възпроизвеждане на видеоклипове"
 
 #: src/Window.vala:40
 msgid "Back"
@@ -202,6 +186,18 @@ msgstr "Няма"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "По подразбиране"
+
+#~ msgid "Videos"
+#~ msgstr "Видеоклипове"
+
+#~ msgid "Audience;Video;Player;Movies;"
+#~ msgstr "Audience;Видео;Плеър;Филми"
+
+#~ msgid "Watch videos and movies"
+#~ msgstr "Гледане на видеоклипове и филми"
+
+#~ msgid "Video Player"
+#~ msgstr "Възпроизвеждане на видеоклипове"
 
 #~ msgid "About Audience"
 #~ msgstr "Относно програмата"

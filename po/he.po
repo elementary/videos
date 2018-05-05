@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 16:35-0700\n"
+"POT-Creation-Date: 2018-05-04 22:46-0700\n"
 "PO-Revision-Date: 2017-05-23 07:20+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/videos/videos/he/"
@@ -19,22 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-
-#: src/Audience.vala:32
-msgid "Videos"
-msgstr "סרטונים"
-
-#: src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "קהל;וידאו;סרט;סרטון;סרטים;סרטונים;נגן;נגינה;"
-
-#: src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "צפייה בסרטונים ובסרטים"
-
-#: src/Audience.vala:36
-msgid "Video Player"
-msgstr "נגן סרטונים"
 
 #: src/Window.vala:40
 msgid "Back"
@@ -204,6 +188,18 @@ msgstr "אין"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "בררת מחדל"
+
+#~ msgid "Videos"
+#~ msgstr "סרטונים"
+
+#~ msgid "Audience;Video;Player;Movies;"
+#~ msgstr "קהל;וידאו;סרט;סרטון;סרטים;סרטונים;נגן;נגינה;"
+
+#~ msgid "Watch videos and movies"
+#~ msgstr "צפייה בסרטונים ובסרטים"
+
+#~ msgid "Video Player"
+#~ msgstr "נגן סרטונים"
 
 #~ msgid "About Audience"
 #~ msgstr "על אודות קהל"

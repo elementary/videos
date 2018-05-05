@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 16:35-0700\n"
+"POT-Creation-Date: 2018-05-04 22:46-0700\n"
 "PO-Revision-Date: 2017-05-23 10:04+0000\n"
 "Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
 "Language-Team: Estonian <https://l10n.elementary.io/projects/videos/videos/"
@@ -19,22 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
-
-#: src/Audience.vala:32
-msgid "Videos"
-msgstr "Videod"
-
-#: src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Video;Player;Movies;Esitaja;Filmid;Videod"
-
-#: src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "Videote ja filmide vaatamine"
-
-#: src/Audience.vala:36
-msgid "Video Player"
-msgstr "Videoesitaja"
 
 #: src/Window.vala:40
 msgid "Back"
@@ -204,6 +188,18 @@ msgstr "Puuduvad"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "Vaikimisi"
+
+#~ msgid "Videos"
+#~ msgstr "Videod"
+
+#~ msgid "Audience;Video;Player;Movies;"
+#~ msgstr "Audience;Video;Player;Movies;Esitaja;Filmid;Videod"
+
+#~ msgid "Watch videos and movies"
+#~ msgstr "Videote ja filmide vaatamine"
+
+#~ msgid "Video Player"
+#~ msgstr "Videoesitaja"
 
 #~ msgid "About Audience"
 #~ msgstr "Rakendusest..."

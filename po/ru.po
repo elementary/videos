@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 16:35-0700\n"
+"POT-Creation-Date: 2018-05-04 22:46-0700\n"
 "PO-Revision-Date: 2017-07-15 08:28+0000\n"
 "Last-Translator: Kirill Romanov <djaler1@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/videos/videos/ru/"
@@ -20,22 +20,6 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-
-#: src/Audience.vala:32
-msgid "Videos"
-msgstr "Видео"
-
-#: src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Video;Player;Movies;Аудиенс;Видео;Плеер;Кино;"
-
-#: src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "Просмотр видео и фильмов"
-
-#: src/Audience.vala:36
-msgid "Video Player"
-msgstr "Видеопроигрыватель"
 
 #: src/Window.vala:40
 msgid "Back"
@@ -205,6 +189,18 @@ msgstr "Нет"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "По умолчанию"
+
+#~ msgid "Videos"
+#~ msgstr "Видео"
+
+#~ msgid "Audience;Video;Player;Movies;"
+#~ msgstr "Audience;Video;Player;Movies;Аудиенс;Видео;Плеер;Кино;"
+
+#~ msgid "Watch videos and movies"
+#~ msgstr "Просмотр видео и фильмов"
+
+#~ msgid "Video Player"
+#~ msgstr "Видеопроигрыватель"
 
 #~ msgid "About Audience"
 #~ msgstr "О программе"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 16:35-0700\n"
+"POT-Creation-Date: 2018-05-04 22:46-0700\n"
 "PO-Revision-Date: 2017-07-11 11:42+0000\n"
 "Last-Translator: Mattias Ezequiel Mignone <memignone@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/videos/videos/es/"
@@ -19,22 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-
-#: src/Audience.vala:32
-msgid "Videos"
-msgstr "Vídeos"
-
-#: src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Vídeo;Reproductor;Películas;"
-
-#: src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "Vea videos y películas"
-
-#: src/Audience.vala:36
-msgid "Video Player"
-msgstr "Reproductor de video"
 
 #: src/Window.vala:40
 msgid "Back"
@@ -204,6 +188,18 @@ msgstr "Ninguno"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "Predeterminado"
+
+#~ msgid "Videos"
+#~ msgstr "Vídeos"
+
+#~ msgid "Audience;Video;Player;Movies;"
+#~ msgstr "Audience;Vídeo;Reproductor;Películas;"
+
+#~ msgid "Watch videos and movies"
+#~ msgstr "Vea videos y películas"
+
+#~ msgid "Video Player"
+#~ msgstr "Reproductor de video"
 
 #~ msgid "About Audience"
 #~ msgstr "Acerca de Audience"

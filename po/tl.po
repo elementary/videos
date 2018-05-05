@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 16:35-0700\n"
+"POT-Creation-Date: 2018-05-04 22:46-0700\n"
 "PO-Revision-Date: 2016-07-30 14:30+0000\n"
 "Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Tagalog <tl@li.org>\n"
@@ -17,22 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
-
-#: src/Audience.vala:32
-msgid "Videos"
-msgstr "Mga Video"
-
-#: src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Video;Player;Movies;Pelikula"
-
-#: src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "Manood ng mga video at mga pelikula"
-
-#: src/Audience.vala:36
-msgid "Video Player"
-msgstr ""
 
 #: src/Window.vala:40
 msgid "Back"
@@ -202,6 +186,15 @@ msgstr "Wala"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr ""
+
+#~ msgid "Videos"
+#~ msgstr "Mga Video"
+
+#~ msgid "Audience;Video;Player;Movies;"
+#~ msgstr "Audience;Video;Player;Movies;Pelikula"
+
+#~ msgid "Watch videos and movies"
+#~ msgstr "Manood ng mga video at mga pelikula"
 
 #~ msgid "About Audience"
 #~ msgstr "Tungkol sa Audience"

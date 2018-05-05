@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 16:35-0700\n"
+"POT-Creation-Date: 2018-05-04 22:46-0700\n"
 "PO-Revision-Date: 2017-05-04 09:25+0000\n"
 "Last-Translator: Seyit Ali Doğan <seyit822@yandex.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/videos/videos/tr/"
@@ -19,22 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-
-#: src/Audience.vala:32
-msgid "Videos"
-msgstr "Videolar"
-
-#: src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Video;Oynatıcı;Filmler;"
-
-#: src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "Video ve Film izle"
-
-#: src/Audience.vala:36
-msgid "Video Player"
-msgstr "Video Oynatıcı"
 
 #: src/Window.vala:40
 msgid "Back"
@@ -204,6 +188,18 @@ msgstr "Hiçbiri"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "Öntanımlı"
+
+#~ msgid "Videos"
+#~ msgstr "Videolar"
+
+#~ msgid "Audience;Video;Player;Movies;"
+#~ msgstr "Audience;Video;Oynatıcı;Filmler;"
+
+#~ msgid "Watch videos and movies"
+#~ msgstr "Video ve Film izle"
+
+#~ msgid "Video Player"
+#~ msgstr "Video Oynatıcı"
 
 #~ msgid "About Audience"
 #~ msgstr "Audience Hakkında"

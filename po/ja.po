@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 16:35-0700\n"
+"POT-Creation-Date: 2018-05-04 22:46-0700\n"
 "PO-Revision-Date: 2017-04-26 12:35+0000\n"
 "Last-Translator: Ryo Nakano <nscnskichiro0911@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/videos/"
@@ -19,22 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-
-#: src/Audience.vala:32
-msgid "Videos"
-msgstr "ビデオ"
-
-#: src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Video;Player;Movies;"
-
-#: src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "ビデオや映画を見ます"
-
-#: src/Audience.vala:36
-msgid "Video Player"
-msgstr "ビデオプレーヤー"
 
 #: src/Window.vala:40
 msgid "Back"
@@ -204,6 +188,18 @@ msgstr "なし"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "デフォルト"
+
+#~ msgid "Videos"
+#~ msgstr "ビデオ"
+
+#~ msgid "Audience;Video;Player;Movies;"
+#~ msgstr "Audience;Video;Player;Movies;"
+
+#~ msgid "Watch videos and movies"
+#~ msgstr "ビデオや映画を見ます"
+
+#~ msgid "Video Player"
+#~ msgstr "ビデオプレーヤー"
 
 #~ msgid "About Audience"
 #~ msgstr "Audience について"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 16:35-0700\n"
+"POT-Creation-Date: 2018-05-04 22:46-0700\n"
 "PO-Revision-Date: 2017-06-01 01:07+0000\n"
 "Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/videos/videos/cs/"
@@ -19,22 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
-
-#: src/Audience.vala:32
-msgid "Videos"
-msgstr "Videa"
-
-#: src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Video;Přehrávač;Filmy;"
-
-#: src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "Sledovat videa a filmy"
-
-#: src/Audience.vala:36
-msgid "Video Player"
-msgstr "Přehrávač videa"
 
 #: src/Window.vala:40
 msgid "Back"
@@ -204,6 +188,18 @@ msgstr "Žádný"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "Výchozí"
+
+#~ msgid "Videos"
+#~ msgstr "Videa"
+
+#~ msgid "Audience;Video;Player;Movies;"
+#~ msgstr "Audience;Video;Přehrávač;Filmy;"
+
+#~ msgid "Watch videos and movies"
+#~ msgstr "Sledovat videa a filmy"
+
+#~ msgid "Video Player"
+#~ msgstr "Přehrávač videa"
 
 #~ msgid "About Audience"
 #~ msgstr "O programu Audience"

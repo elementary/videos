@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 16:35-0700\n"
+"POT-Creation-Date: 2018-05-04 22:46-0700\n"
 "PO-Revision-Date: 2016-12-19 12:40+0000\n"
 "Last-Translator: Lulucmy <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
@@ -17,22 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
-
-#: src/Audience.vala:32
-msgid "Videos"
-msgstr "Vidéos"
-
-#: src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Vidéo;Lecteur;Film;"
-
-#: src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "Regarder des vidéos et des films"
-
-#: src/Audience.vala:36
-msgid "Video Player"
-msgstr "Lecteur vidéo"
 
 #: src/Window.vala:40
 msgid "Back"
@@ -202,6 +186,18 @@ msgstr "Aucun"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "Par défaut"
+
+#~ msgid "Videos"
+#~ msgstr "Vidéos"
+
+#~ msgid "Audience;Video;Player;Movies;"
+#~ msgstr "Audience;Vidéo;Lecteur;Film;"
+
+#~ msgid "Watch videos and movies"
+#~ msgstr "Regarder des vidéos et des films"
+
+#~ msgid "Video Player"
+#~ msgstr "Lecteur vidéo"
 
 #~ msgid "About Audience"
 #~ msgstr "À propos d'Audience"

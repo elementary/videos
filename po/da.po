@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 16:35-0700\n"
+"POT-Creation-Date: 2018-05-04 22:46-0700\n"
 "PO-Revision-Date: 2017-07-01 22:11+0000\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: Danish <https://l10n.elementary.io/projects/videos/videos/da/"
@@ -19,22 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
-
-#: src/Audience.vala:32
-msgid "Videos"
-msgstr "Videoer"
-
-#: src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;Publikum;Video;Player;Afspiller;Movies;Film"
-
-#: src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "Se videoer og film"
-
-#: src/Audience.vala:36
-msgid "Video Player"
-msgstr "Videoafspiller"
 
 #: src/Window.vala:40
 msgid "Back"
@@ -204,6 +188,18 @@ msgstr "Ingen"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "Standard"
+
+#~ msgid "Videos"
+#~ msgstr "Videoer"
+
+#~ msgid "Audience;Video;Player;Movies;"
+#~ msgstr "Audience;Publikum;Video;Player;Afspiller;Movies;Film"
+
+#~ msgid "Watch videos and movies"
+#~ msgstr "Se videoer og film"
+
+#~ msgid "Video Player"
+#~ msgstr "Videoafspiller"
 
 #~ msgid "About Audience"
 #~ msgstr "Om Publikum"

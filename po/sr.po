@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 16:35-0700\n"
+"POT-Creation-Date: 2018-05-04 22:46-0700\n"
 "PO-Revision-Date: 2017-01-07 13:03+0000\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <(nothing)>\n"
@@ -17,22 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
-
-#: src/Audience.vala:32
-msgid "Videos"
-msgstr "Снимци"
-
-#: src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "аудијенс;снимак;видео;пусти;филм;"
-
-#: src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "Гледајте снимке и филмове"
-
-#: src/Audience.vala:36
-msgid "Video Player"
-msgstr "Програм за пуштање снимака"
 
 #: src/Window.vala:40
 msgid "Back"
@@ -202,6 +186,18 @@ msgstr "Ништа"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "Подразумевано"
+
+#~ msgid "Videos"
+#~ msgstr "Снимци"
+
+#~ msgid "Audience;Video;Player;Movies;"
+#~ msgstr "аудијенс;снимак;видео;пусти;филм;"
+
+#~ msgid "Watch videos and movies"
+#~ msgstr "Гледајте снимке и филмове"
+
+#~ msgid "Video Player"
+#~ msgstr "Програм за пуштање снимака"
 
 #~ msgid "About Audience"
 #~ msgstr "О Аудијенсу"

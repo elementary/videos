@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 16:35-0700\n"
+"POT-Creation-Date: 2018-05-04 22:46-0700\n"
 "PO-Revision-Date: 2016-07-30 14:30+0000\n"
 "Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Burmese <my@li.org>\n"
@@ -17,22 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
-
-#: src/Audience.vala:32
-msgid "Videos"
-msgstr "ဗီဒီယိုများ"
-
-#: src/Audience.vala:34
-msgid "Audience;Video;Player;Movies;"
-msgstr "Audience;ဗီဒီယို;Player;ရုပ်ရှင်များ;"
-
-#: src/Audience.vala:35
-msgid "Watch videos and movies"
-msgstr "ဗီဒီယိုနှင့် ရုပ်ရှင်များ ကြည့်ရန်"
-
-#: src/Audience.vala:36
-msgid "Video Player"
-msgstr "ဗီဒီယိုဖွင့်စက်"
 
 #: src/Window.vala:40
 msgid "Back"
@@ -202,6 +186,18 @@ msgstr "ဘာမှမရှိပါ။"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "မူလအတိုင်း"
+
+#~ msgid "Videos"
+#~ msgstr "ဗီဒီယိုများ"
+
+#~ msgid "Audience;Video;Player;Movies;"
+#~ msgstr "Audience;ဗီဒီယို;Player;ရုပ်ရှင်များ;"
+
+#~ msgid "Watch videos and movies"
+#~ msgstr "ဗီဒီယိုနှင့် ရုပ်ရှင်များ ကြည့်ရန်"
+
+#~ msgid "Video Player"
+#~ msgstr "ဗီဒီယိုဖွင့်စက်"
 
 #~ msgid "About Audience"
 #~ msgstr "Audience အကြောင်း"
