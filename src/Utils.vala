@@ -20,16 +20,16 @@
 
 [DBus (name = "org.gnome.SettingsDaemon.MediaKeys")]
 public interface GnomeMediaKeys : GLib.Object {
-    public abstract void GrabMediaPlayerKeys (string application, uint32 time) throws GLib.IOError;
-    public abstract void ReleaseMediaPlayerKeys (string application) throws GLib.IOError;
+    public abstract void GrabMediaPlayerKeys (string application, uint32 time) throws GLib.Error;
+    public abstract void ReleaseMediaPlayerKeys (string application) throws GLib.Error;
     public signal void MediaPlayerKeyPressed (string application, string key);
 }
 
 [DBus (name = "org.gnome.SessionManager")]
 public interface GnomeSessionManager : GLib.Object {
-    public abstract bool isSessionRunning() throws GLib.IOError;
-    public abstract uint32 Inhibit (string app_id, uint32 toplevel_xid, string reason, uint32 flags) throws GLib.IOError;
-    public abstract void Uninhibit (uint32 inhibit_cookie) throws GLib.IOError;
+    public abstract bool isSessionRunning() throws GLib.Error;
+    public abstract uint32 Inhibit (string app_id, uint32 toplevel_xid, string reason, uint32 flags) throws GLib.Error;
+    public abstract void Uninhibit (uint32 inhibit_cookie) throws GLib.Error;
 }
 
 namespace Audience {
