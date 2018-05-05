@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2013-2014 Audience Developers (http://launchpad.net/pantheon-chat)
+ * Copyright (c) 2013-2018 elementary LLC (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,17 +23,6 @@ namespace Audience {
 
     public Audience.Settings settings; //global space for easier access...
     public class App : Granite.Application {
-
-        /**
-         * Translatable launcher (.desktop) strings to be added to template (.pot) file.
-         * These strings should reflect any changes in these launcher keys in .desktop file
-         */
-        /// TRANSLATORS: This is the name of the application shown in the application launcher. Some distributors (e.g. elementary OS) choose to display it instead of the brand name "Audience".
-        public const string VIDEOS = N_("Videos");
-        /// TRANSLATORS: These are the keywords used when searching for this application in an application store or launcher.
-        public const string KEYWORDS = N_("Audience;Video;Player;Movies;");
-        public const string COMMENT = N_("Watch videos and movies");
-        public const string GENERIC_NAME = N_("Video Player");
 
         public Window mainwindow;
         public GLib.VolumeMonitor monitor;
