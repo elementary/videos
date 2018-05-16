@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 16:36-0700\n"
-"PO-Revision-Date: 2017-03-03 14:06+0000\n"
-"Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
-"Language-Team: Czech <cs@li.org>\n"
+"PO-Revision-Date: 2018-05-17 00:04+0000\n"
+"Last-Translator: Daniel Zvir <zvir.daniel@seznam.cz>\n"
+"Language-Team: Czech "
+"<https://weblate.elementary.io/projects/videos/extra/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-"X-Generator: Launchpad (build 18354)\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
 #: data/io.elementary.videos.desktop.in:4
@@ -52,11 +54,11 @@ msgstr "Přehrávací fronta"
 
 #: data/io.elementary.videos.appdata.xml.in:22
 msgid "Thumbnail previews on the seek bar"
-msgstr ""
+msgstr "Náhledy videa na vyhledávací liště"
 
 #: data/io.elementary.videos.appdata.xml.in:126
 msgid "elementary LLC."
-msgstr ""
+msgstr "elementary LLC."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
@@ -64,7 +66,7 @@ msgstr "Přehrávač videa"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "multimedia-video-player"
-msgstr ""
+msgstr "multimedia-video-player"
 
 #~ msgid "Audience"
 #~ msgstr "Audience"
