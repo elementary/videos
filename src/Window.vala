@@ -271,7 +271,6 @@ public class Audience.Window : Gtk.Window {
                     } else {
                         destroy ();
                     }
-
                     return true;
                 case Gdk.Key.Down:
                     if (Gdk.ModifierType.SHIFT_MASK in e.state) {
@@ -279,8 +278,6 @@ public class Audience.Window : Gtk.Window {
                     } else {
                         player_page.seek_jump_seconds (-60); // 1 min
                     }
-
-                    player_page.reveal_control ();
                     break;
                 case Gdk.Key.Left:
                     if (Gdk.ModifierType.SHIFT_MASK in e.state) {
@@ -288,8 +285,6 @@ public class Audience.Window : Gtk.Window {
                     } else {
                         player_page.seek_jump_seconds (-10); // 10 secs
                     }
-
-                    player_page.reveal_control ();
                     break;
                 case Gdk.Key.Right:
                     if (Gdk.ModifierType.SHIFT_MASK in e.state) {
@@ -297,8 +292,6 @@ public class Audience.Window : Gtk.Window {
                     } else {
                         player_page.seek_jump_seconds (10); // 10 secs
                     }
-
-                    player_page.reveal_control ();
                     break;
                 case Gdk.Key.Up:
                     if (Gdk.ModifierType.SHIFT_MASK in e.state) {
@@ -306,16 +299,12 @@ public class Audience.Window : Gtk.Window {
                     } else {
                         player_page.seek_jump_seconds (60); // 1 min
                     }
-
-                    player_page.reveal_control ();
                     break;
                 case Gdk.Key.Page_Down:
                     player_page.seek_jump_seconds (-600); // 10 mins
-                    player_page.reveal_control ();
                     break;
                 case Gdk.Key.Page_Up:
                     player_page.seek_jump_seconds (600); // 10 mins
-                    player_page.reveal_control ();
                     break;
                 default:
                     break;

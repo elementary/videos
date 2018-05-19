@@ -313,10 +313,6 @@ namespace Audience {
             play_file (file.get_uri ());
         }
 
-        public void reveal_control () {
-            bottom_bar.reveal_control ();
-        }
-
         public void next_audio () {
             bottom_bar.preferences_popover.next_audio ();
         }
@@ -330,6 +326,7 @@ namespace Audience {
             var progress = playback.progress;
             var new_progress = ((duration * progress) + (double)seconds)/duration;
             playback.progress = new_progress.clamp (0.0, 1.0);
+            bottom_bar.reveal_control ();
         }
 
         public Widgets.Playlist get_playlist_widget () {
