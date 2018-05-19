@@ -232,8 +232,8 @@ public class Audience.Window : Gtk.Window {
             foreach (var key in keys) {
                 if (code == key.keycode)
                     return true;
-                }
             }
+        }
 
         return false;
     }
