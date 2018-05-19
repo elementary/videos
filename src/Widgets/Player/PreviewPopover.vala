@@ -76,7 +76,11 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         ((ClutterGst.Content) aspect_ratio).player = playback;
         video_actor.content = aspect_ratio;
         ((ClutterGst.Content) aspect_ratio).size_change.connect ((width, height) => {
-            clutter.set_size_request (200, (int)(((double) (height*200))/((double) width)));
+            if (width > 0 && height > 0) {
+                double diagonal = Math.sqrt((width * width) + (height * height));
+                double k = 230 / diagonal; // for 16:9 ratio it produces width of ~200px
+                clutter.set_size_request ((int)(width * k), (int)(height * k));
+            }
         });
 
         video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
