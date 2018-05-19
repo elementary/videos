@@ -138,7 +138,7 @@ namespace Audience {
 
         private bool show_context_menu (Gtk.Widget sender, Gdk.EventButton evt) {
             if (evt.type == Gdk.EventType.BUTTON_PRESS && evt.button == 3) {
-                context_menu.popup (null, null, null, evt.button, evt.time);
+                context_menu.popup_at_pointer (evt);
                 return true;
             }
             return false;
