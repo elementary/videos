@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 16:36-0700\n"
-"PO-Revision-Date: 2018-05-21 00:09+0000\n"
+"PO-Revision-Date: 2018-05-23 03:32+0000\n"
 "Last-Translator: haggen svastian <h2gn@openmailbox.org>\n"
 "Language-Team: Spanish "
 "<https://weblate.elementary.io/projects/videos/extra/es/>\n"
@@ -66,7 +66,7 @@ msgstr "Reproductor de vídeo"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "multimedia-video-player"
-msgstr ""
+msgstr "reproductor-multimedia-video"
 
 #~ msgid "Audience"
 #~ msgstr "Audience"
