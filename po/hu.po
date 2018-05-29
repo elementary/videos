@@ -8,44 +8,46 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 22:46-0700\n"
-"PO-Revision-Date: 2016-07-30 14:30+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
-"Language-Team: Hungarian <hu@li.org>\n"
+"PO-Revision-Date: 2018-05-30 00:05+0000\n"
+"Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
+"Language-Team: Hungarian "
+"<https://weblate.elementary.io/projects/videos/videos/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-"X-Generator: Launchpad (build 18354)\n"
 
 #: src/Window.vala:40
 msgid "Back"
-msgstr ""
+msgstr "Vissza"
 
 #: src/Window.vala:41
 msgid "Library"
-msgstr ""
+msgstr "Gyűjtemény"
 
 #: src/Window.vala:42
 msgid "Episodes"
-msgstr ""
+msgstr "Jelenetek"
 
 #: src/Window.vala:68
 msgid "Search Videos"
-msgstr ""
+msgstr "Videók keresése"
 
 #: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
 #, c-format
 msgid "No Results for “%s”"
-msgstr ""
+msgstr "Nincs találat erre \"%s\""
 
 #: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
 msgid "Try changing search terms."
-msgstr ""
+msgstr "Próbálja megváltoztatni a keresési kifejezéseket."
 
 #: src/Window.vala:155
 msgid "Restore"
-msgstr ""
+msgstr "Visszaállítás"
 
 #: src/Window.vala:398 src/Widgets/Library/LibraryItem.vala:163
 msgid "Open"
@@ -101,28 +103,28 @@ msgstr "DVD vagy egy fájl lejátszása lemezről"
 
 #: src/Widgets/WelcomePage.vala:50
 msgid "Browse Library"
-msgstr ""
+msgstr "Tallózás a gyűjteményben"
 
 #: src/Widgets/WelcomePage.vala:50
 msgid "Watch a movie from your library"
-msgstr ""
+msgstr "Nézzen meg egy filmet a gyűjteményéből"
 
 #: src/Widgets/Library/LibraryItem.vala:65
 msgid "Move to Trash"
-msgstr ""
+msgstr "Áthelyezés a Kukába"
 
 #: src/Widgets/Library/LibraryItem.vala:78
 msgid "Set Artwork"
-msgstr ""
+msgstr "Kép beállítása"
 
 #: src/Widgets/Library/LibraryItem.vala:166
 msgid "Image files"
-msgstr ""
+msgstr "Képfájlok"
 
 #: src/Widgets/Library/LibraryPage.vala:69
 #, c-format
 msgid "Video '%s' Removed."
-msgstr ""
+msgstr "'%s' törölve."
 
 #: src/Widgets/Player/BottomBar.vala:83
 msgid "Pause"
