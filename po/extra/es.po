@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 16:36-0700\n"
-"PO-Revision-Date: 2017-01-05 18:58+0000\n"
-"Last-Translator: abelinux <Unknown>\n"
-"Language-Team: Spanish <es@li.org>\n"
+"PO-Revision-Date: 2018-05-23 03:32+0000\n"
+"Last-Translator: haggen svastian <h2gn@openmailbox.org>\n"
+"Language-Team: Spanish "
+"<https://weblate.elementary.io/projects/videos/extra/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-"X-Generator: Launchpad (build 18354)\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
 #: data/io.elementary.videos.desktop.in:4
@@ -26,7 +28,7 @@ msgstr "Vídeos"
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr "Ver vídeos y películas"
+msgstr "Ver videos y películas"
 
 #: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
@@ -56,7 +58,7 @@ msgstr "Previsualizar miniaturas en la barra de búsqueda"
 
 #: data/io.elementary.videos.appdata.xml.in:126
 msgid "elementary LLC."
-msgstr ""
+msgstr "elementary LLC."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
@@ -64,7 +66,7 @@ msgstr "Reproductor de vídeo"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "multimedia-video-player"
-msgstr ""
+msgstr "reproductor-multimedia-video"
 
 #~ msgid "Audience"
 #~ msgstr "Audience"
