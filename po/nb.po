@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 22:46-0700\n"
-"PO-Revision-Date: 2017-07-02 05:36+0000\n"
+"PO-Revision-Date: 2018-05-30 03:55+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
-"Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/videos/"
-"videos/nb/>\n"
+"Language-Team: Norwegian Bokmål "
+"<https://weblate.elementary.io/projects/videos/videos/nb/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.14\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: src/Window.vala:40
@@ -43,7 +43,7 @@ msgstr "Ingen resultater for \"%s\""
 
 #: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
 msgid "Try changing search terms."
-msgstr ""
+msgstr "Prøv å endre søket ditt."
 
 #: src/Window.vala:155
 msgid "Restore"
@@ -107,7 +107,7 @@ msgstr "Utforsk bibliotek"
 
 #: src/Widgets/WelcomePage.vala:50
 msgid "Watch a movie from your library"
-msgstr ""
+msgstr "Se en film fra biblioteket ditt"
 
 #: src/Widgets/Library/LibraryItem.vala:65
 msgid "Move to Trash"
@@ -115,7 +115,7 @@ msgstr "Flytt til papirkurv"
 
 #: src/Widgets/Library/LibraryItem.vala:78
 msgid "Set Artwork"
-msgstr ""
+msgstr "Sett omslag"
 
 #: src/Widgets/Library/LibraryItem.vala:166
 msgid "Image files"
@@ -124,7 +124,7 @@ msgstr "Bildefiler"
 #: src/Widgets/Library/LibraryPage.vala:69
 #, c-format
 msgid "Video '%s' Removed."
-msgstr ""
+msgstr "Fjernet videoen \"%s\"."
 
 #: src/Widgets/Player/BottomBar.vala:83
 msgid "Pause"
@@ -179,7 +179,7 @@ msgstr "Eksterne undertekster:"
 #: src/Widgets/Player/SettingsPopover.vala:149
 #, c-format
 msgid "Track %u"
-msgstr ""
+msgstr "Spor %u"
 
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "None"
