@@ -264,6 +264,7 @@ public class Audience.Window : Gtk.Window {
                 }
             }
 
+            bool shift_pressed = Gdk.ModifierType.SHIFT_MASK in e.state;
             switch (e.keyval) {
                 case Gdk.Key.Escape:
                     if (player_page.fullscreened) {
@@ -271,51 +272,24 @@ public class Audience.Window : Gtk.Window {
                     } else {
                         destroy ();
                     }
-
                     return true;
                 case Gdk.Key.Down:
-                    if (Gdk.ModifierType.SHIFT_MASK in e.state) {
-                        player_page.seek_jump_seconds (-5); // 5 secs
-                    } else {
-                        player_page.seek_jump_seconds (-60); // 1 min
-                    }
-
-                    player_page.reveal_control ();
+                    player_page.seek_jump_seconds (shift_pressed ? -5 : -60);
                     break;
                 case Gdk.Key.Left:
-                    if (Gdk.ModifierType.SHIFT_MASK in e.state) {
-                        player_page.seek_jump_seconds (-1); // 1 sec
-                    } else {
-                        player_page.seek_jump_seconds (-10); // 10 secs
-                    }
-
-                    player_page.reveal_control ();
+                    player_page.seek_jump_seconds (shift_pressed ? -1 : -10);
                     break;
                 case Gdk.Key.Right:
-                    if (Gdk.ModifierType.SHIFT_MASK in e.state) {
-                        player_page.seek_jump_seconds (1); // 1 sec
-                    } else {
-                        player_page.seek_jump_seconds (10); // 10 secs
-                    }
-
-                    player_page.reveal_control ();
+                    player_page.seek_jump_seconds (shift_pressed ? 1 : 10);
                     break;
                 case Gdk.Key.Up:
-                    if (Gdk.ModifierType.SHIFT_MASK in e.state) {
-                        player_page.seek_jump_seconds (5); // 5 secs
-                    } else {
-                        player_page.seek_jump_seconds (60); // 1 min
-                    }
-
-                    player_page.reveal_control ();
+                    player_page.seek_jump_seconds (shift_pressed ? 5 : 60);
                     break;
                 case Gdk.Key.Page_Down:
                     player_page.seek_jump_seconds (-600); // 10 mins
-                    player_page.reveal_control ();
                     break;
                 case Gdk.Key.Page_Up:
                     player_page.seek_jump_seconds (600); // 10 mins
-                    player_page.reveal_control ();
                     break;
                 default:
                     break;

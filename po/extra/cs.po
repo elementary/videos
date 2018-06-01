@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 16:36-0700\n"
-"PO-Revision-Date: 2018-05-17 00:04+0000\n"
-"Last-Translator: Daniel Zvir <zvir.daniel@seznam.cz>\n"
+"PO-Revision-Date: 2018-06-01 00:02+0000\n"
+"Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: Czech "
 "<https://weblate.elementary.io/projects/videos/extra/cs/>\n"
 "Language: cs\n"
@@ -28,7 +28,7 @@ msgstr "Videa"
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr "Sledovat videa a filmy"
+msgstr "Sledujte videa a filmy"
 
 #: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
