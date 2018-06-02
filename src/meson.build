@@ -56,7 +56,7 @@ executable(
         dependency('gstreamer-pbutils-1.0'),
         dependency('gstreamer-video-1.0'),
         dependency('gstreamer-tag-1.0'),
-        dependency('gtk+-3.0'),
+        dependency('gtk+-3.0', version: '>=3.22'),
 
         meson.get_compiler('vala').find_library('posix'),
         meson.get_compiler('c').find_library('m', required : false)
