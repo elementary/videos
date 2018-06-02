@@ -230,8 +230,9 @@ public class Audience.Window : Gtk.Window {
         Gdk.Keymap keymap = Gdk.Keymap.get_for_display (Gdk.Display.get_default ());
         if (keymap.get_entries_for_keyval (keyval, out keys)) {
             foreach (var key in keys) {
-                if (code == key.keycode)
+                if (code == key.keycode) {
                     return true;
+                }
             }
         }
 
