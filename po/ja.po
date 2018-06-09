@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 22:46-0700\n"
-"PO-Revision-Date: 2018-06-05 00:06+0000\n"
+"PO-Revision-Date: 2018-06-10 00:12+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
 "Language-Team: Japanese "
 "<https://weblate.elementary.io/projects/videos/videos/ja/>\n"
@@ -39,7 +39,7 @@ msgstr "ビデオの検索"
 #: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
 #, c-format
 msgid "No Results for “%s”"
-msgstr "\"%s\" は結果がありません"
+msgstr "\"%s\" という検索結果はありません"
 
 #: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
 msgid "Try changing search terms."
@@ -75,7 +75,7 @@ msgstr "開いているビデオはありません"
 
 #: src/Widgets/WelcomePage.vala:6
 msgid "Select a source to begin playing."
-msgstr "再生をはじめるにはソースを選択してください。"
+msgstr "再生を開始するにはソースを選択してください。"
 
 #: src/Widgets/WelcomePage.vala:10 src/Widgets/Player/PlaylistPopover.vala:35
 msgid "Open file"
@@ -91,7 +91,7 @@ msgstr "最後のビデオをリプレイ"
 
 #: src/Widgets/WelcomePage.vala:22 src/Widgets/WelcomePage.vala:82
 msgid "Resume last video"
-msgstr "最後のビデオの再開"
+msgstr "最後のビデオを再開します"
 
 #: src/Widgets/WelcomePage.vala:47 src/Widgets/Player/PlaylistPopover.vala:37
 msgid "Play from Disc"
@@ -99,7 +99,7 @@ msgstr "ディスクを再生"
 
 #: src/Widgets/WelcomePage.vala:47
 msgid "Watch a DVD or open a file from disc"
-msgstr "DVD を見る または ディスクからファイルを開く"
+msgstr "DVD を見たり、ディスクからファイルを開いたりします"
 
 #: src/Widgets/WelcomePage.vala:50
 msgid "Browse Library"
@@ -107,7 +107,7 @@ msgstr "ライブラリをブラウズ"
 
 #: src/Widgets/WelcomePage.vala:50
 msgid "Watch a movie from your library"
-msgstr "ライブラリからムービーを見る"
+msgstr "ライブラリのムービーを見ます"
 
 #: src/Widgets/Library/LibraryItem.vala:65
 msgid "Move to Trash"
@@ -115,7 +115,7 @@ msgstr "ゴミ箱へ移動"
 
 #: src/Widgets/Library/LibraryItem.vala:78
 msgid "Set Artwork"
-msgstr "芸術作品に設定"
+msgstr "アートワークに設定"
 
 #: src/Widgets/Library/LibraryItem.vala:166
 msgid "Image files"
@@ -165,15 +165,15 @@ msgstr "外部字幕"
 
 #: src/Widgets/Player/SettingsPopover.vala:52
 msgid "Audio:"
-msgstr "オーディオ："
+msgstr "オーディオ:"
 
 #: src/Widgets/Player/SettingsPopover.vala:55
 msgid "Subtitles:"
-msgstr "字幕："
+msgstr "字幕:"
 
 #: src/Widgets/Player/SettingsPopover.vala:58
 msgid "External Subtitles:"
-msgstr "外部字幕："
+msgstr "外部字幕:"
 
 #: src/Widgets/Player/SettingsPopover.vala:125
 #: src/Widgets/Player/SettingsPopover.vala:149
