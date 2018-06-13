@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 22:46-0700\n"
-"PO-Revision-Date: 2017-02-10 20:42+0000\n"
-"Last-Translator: Rokar ✌ <Unknown>\n"
-"Language-Team: Kurdish <ku@li.org>\n"
+"PO-Revision-Date: 2018-06-13 00:08+0000\n"
+"Last-Translator: Tom Ward <tomward1234567@gmail.com>\n"
+"Language-Team: Kurdish "
+"<https://weblate.elementary.io/projects/videos/videos/ku/>\n"
 "Language: ku\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-"X-Generator: Launchpad (build 18354)\n"
 
 #: src/Window.vala:40
 msgid "Back"
@@ -48,6 +50,7 @@ msgid "Restore"
 msgstr "Şûnde bîne"
 
 #: src/Window.vala:398 src/Widgets/Library/LibraryItem.vala:163
+#, fuzzy
 msgid "Open"
 msgstr "Veke"
 
@@ -56,6 +59,7 @@ msgid "_Cancel"
 msgstr "_Betalbike"
 
 #: src/Window.vala:399 src/Widgets/Library/LibraryItem.vala:163
+#, fuzzy
 msgid "_Open"
 msgstr "_Veke"
 
@@ -65,7 +69,7 @@ msgstr "Hemû pelan"
 
 #: src/Window.vala:408
 msgid "Video files"
-msgstr ""
+msgstr "Pelên vîdyo"
 
 #: src/Widgets/WelcomePage.vala:6
 msgid "No Videos Open"
@@ -77,7 +81,7 @@ msgstr ""
 
 #: src/Widgets/WelcomePage.vala:10 src/Widgets/Player/PlaylistPopover.vala:35
 msgid "Open file"
-msgstr "Pelgeh veke"
+msgstr "Dosî veke"
 
 #: src/Widgets/WelcomePage.vala:10
 msgid "Open a saved file."
