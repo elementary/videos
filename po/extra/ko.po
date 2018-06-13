@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 16:36-0700\n"
-"PO-Revision-Date: 2018-06-04 00:10+0000\n"
+"PO-Revision-Date: 2018-06-14 00:07+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean "
 "<https://weblate.elementary.io/projects/videos/extra/ko/>\n"
@@ -66,7 +66,7 @@ msgstr "비디오 플레이어"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "multimedia-video-player"
-msgstr "멀티미디어-비디오-플레이어"
+msgstr "multimedia-video-player"
 
 #~ msgid "Audience"
 #~ msgstr "오디언스"
