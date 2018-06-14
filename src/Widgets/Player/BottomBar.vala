@@ -105,12 +105,16 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         this.events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
 
         this.enter_notify_event.connect ((event) => {
-            this.hovered = true;
+            if (event.window == this.get_window ()) {
+                this.hovered = true;
+            }
             return false;
         });
 
         this.leave_notify_event.connect ((event) => {
-            this.hovered = false;
+            if (event.window == this.get_window ()) {
+                this.hovered = false;
+            }
             return false;
         });
 
