@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 22:46-0700\n"
-"PO-Revision-Date: 2018-06-14 08:52+0000\n"
+"PO-Revision-Date: 2018-06-15 00:01+0000\n"
 "Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
 "Language-Team: Hungarian "
 "<https://weblate.elementary.io/projects/videos/videos/hu/>\n"
@@ -75,7 +75,7 @@ msgstr "Nincs megnyitott video"
 
 #: src/Widgets/WelcomePage.vala:6
 msgid "Select a source to begin playing."
-msgstr "Válasszon egy forrást a lejátszás elindításához"
+msgstr "Válasszon egy forrást a lejátszáshoz."
 
 #: src/Widgets/WelcomePage.vala:10 src/Widgets/Player/PlaylistPopover.vala:35
 msgid "Open file"
