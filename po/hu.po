@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 22:46-0700\n"
-"PO-Revision-Date: 2018-05-30 00:05+0000\n"
+"PO-Revision-Date: 2018-06-14 08:52+0000\n"
 "Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
 "Language-Team: Hungarian "
 "<https://weblate.elementary.io/projects/videos/videos/hu/>\n"
@@ -179,7 +179,7 @@ msgstr "Külső feliratok:"
 #: src/Widgets/Player/SettingsPopover.vala:149
 #, c-format
 msgid "Track %u"
-msgstr ""
+msgstr "Szám %u"
 
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "None"
