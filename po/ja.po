@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 22:46-0700\n"
-"PO-Revision-Date: 2018-06-10 00:12+0000\n"
+"PO-Revision-Date: 2018-06-18 00:06+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
 "Language-Team: Japanese "
 "<https://weblate.elementary.io/projects/videos/videos/ja/>\n"
@@ -34,7 +34,7 @@ msgstr "エピソード"
 
 #: src/Window.vala:68
 msgid "Search Videos"
-msgstr "ビデオの検索"
+msgstr "ビデオを検索"
 
 #: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
 #, c-format
