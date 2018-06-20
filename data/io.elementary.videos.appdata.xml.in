@@ -60,6 +60,14 @@
     <content_attribute id="money-gambling">none</content_attribute>
   </content_rating>
   <releases>
+    <release version="0.2.6" date="2018-06-20" urgency="medium">
+      <description>
+        <ul>
+          <li>Window behavior improvements</li>
+          <li>Fix disappearing subtitle tracks</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.5" date="2018-01-08" urgency="medium">
       <description>
         <ul>
