@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 22:46-0700\n"
+"POT-Creation-Date: 2018-06-27 10:04-0700\n"
 "PO-Revision-Date: 2017-01-27 19:25+0000\n"
 "Last-Translator: Christos Iatropoulos <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -47,23 +47,23 @@ msgstr "Δοκιμάστε να αλλάξετε τους όρους αναζή�
 msgid "Restore"
 msgstr "Επαναφορά"
 
-#: src/Window.vala:398 src/Widgets/Library/LibraryItem.vala:163
+#: src/Window.vala:373 src/Widgets/Library/LibraryItem.vala:163
 msgid "Open"
 msgstr "Άνοιγμα"
 
-#: src/Window.vala:399 src/Widgets/Library/LibraryItem.vala:163
+#: src/Window.vala:374 src/Widgets/Library/LibraryItem.vala:163
 msgid "_Cancel"
 msgstr "_Ακύρωση"
 
-#: src/Window.vala:399 src/Widgets/Library/LibraryItem.vala:163
+#: src/Window.vala:374 src/Widgets/Library/LibraryItem.vala:163
 msgid "_Open"
 msgstr "_Άνοιγμα"
 
-#: src/Window.vala:404 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:379 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Όλα τα αρχεία"
 
-#: src/Window.vala:408
+#: src/Window.vala:383
 msgid "Video files"
 msgstr "Αρχεία βίντεο"
 
@@ -128,19 +128,19 @@ msgstr "Το βίντεο '%s' αφαιρέθηκε."
 msgid "Pause"
 msgstr "Παύση"
 
-#: src/Widgets/Player/BottomBar.vala:87 src/Widgets/Player/BottomBar.vala:122
+#: src/Widgets/Player/BottomBar.vala:87 src/Widgets/Player/BottomBar.vala:126
 msgid "Play"
 msgstr "Αναπαραγωγή"
 
-#: src/Widgets/Player/BottomBar.vala:129
+#: src/Widgets/Player/BottomBar.vala:133
 msgid "Playlist"
 msgstr "Λίστα αναπαραγωγής"
 
-#: src/Widgets/Player/BottomBar.vala:136
+#: src/Widgets/Player/BottomBar.vala:140
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: src/Widgets/Player/BottomBar.vala:161
+#: src/Widgets/Player/BottomBar.vala:165
 msgid "Unfullscreen"
 msgstr "Έξοδος από την πλήρη οθόνη"
 

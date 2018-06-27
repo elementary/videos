@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 22:46-0700\n"
+"POT-Creation-Date: 2018-06-27 10:04-0700\n"
 "PO-Revision-Date: 2017-01-07 13:03+0000\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <(nothing)>\n"
@@ -47,23 +47,23 @@ msgstr "Пробајте да измените услове претраге."
 msgid "Restore"
 msgstr "Поврати"
 
-#: src/Window.vala:398 src/Widgets/Library/LibraryItem.vala:163
+#: src/Window.vala:373 src/Widgets/Library/LibraryItem.vala:163
 msgid "Open"
 msgstr "Отвори"
 
-#: src/Window.vala:399 src/Widgets/Library/LibraryItem.vala:163
+#: src/Window.vala:374 src/Widgets/Library/LibraryItem.vala:163
 msgid "_Cancel"
 msgstr "Оду_стани"
 
-#: src/Window.vala:399 src/Widgets/Library/LibraryItem.vala:163
+#: src/Window.vala:374 src/Widgets/Library/LibraryItem.vala:163
 msgid "_Open"
 msgstr "_Отвори"
 
-#: src/Window.vala:404 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:379 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Све датотеке"
 
-#: src/Window.vala:408
+#: src/Window.vala:383
 msgid "Video files"
 msgstr "Датотеке снимака"
 
@@ -128,19 +128,19 @@ msgstr "Снимак „%s“ је уклоњен."
 msgid "Pause"
 msgstr "Паузирајте"
 
-#: src/Widgets/Player/BottomBar.vala:87 src/Widgets/Player/BottomBar.vala:122
+#: src/Widgets/Player/BottomBar.vala:87 src/Widgets/Player/BottomBar.vala:126
 msgid "Play"
 msgstr "Пустите"
 
-#: src/Widgets/Player/BottomBar.vala:129
+#: src/Widgets/Player/BottomBar.vala:133
 msgid "Playlist"
 msgstr "Списак за пуштање"
 
-#: src/Widgets/Player/BottomBar.vala:136
+#: src/Widgets/Player/BottomBar.vala:140
 msgid "Settings"
 msgstr "Подешавања"
 
-#: src/Widgets/Player/BottomBar.vala:161
+#: src/Widgets/Player/BottomBar.vala:165
 msgid "Unfullscreen"
 msgstr "Поништите пуни екран"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 16:36-0700\n"
+"POT-Creation-Date: 2018-06-27 10:04-0700\n"
 "PO-Revision-Date: 2016-09-29 11:56+0000\n"
 "Last-Translator: Адмирал АнимЕ <Unknown>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
@@ -54,7 +54,7 @@ msgstr ""
 msgid "Thumbnail previews on the seek bar"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:126
+#: data/io.elementary.videos.appdata.xml.in:134
 msgid "elementary LLC."
 msgstr ""
 
