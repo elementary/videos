@@ -408,7 +408,7 @@ public class Audience.Window : Gtk.Window {
             return true;
         }
 
-        return zeitgeist_manager.app_into_blacklist (Audience.App.get_instance ().exec_name);
+        return zeitgeist_manager.app_into_blacklist (GLib.Application.get_default ().application_id);
     }
 
     private async void read_first_disk () {
@@ -472,7 +472,7 @@ public class Audience.Window : Gtk.Window {
             player_page.playing = false;
             player_page.reset_played_uri ();
         }
-        title = App.get_instance ().program_name;
+        title = _("Videos");
         get_window ().set_cursor (null);
 
         if (navigation_button.label == _(navigation_button_library)) {

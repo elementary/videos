@@ -22,24 +22,13 @@
 namespace Audience {
 
     public Audience.Settings settings; //global space for easier access...
-    public class App : Granite.Application {
+    public class App : Gtk.Application {
 
         public Window mainwindow;
         public GLib.VolumeMonitor monitor;
 
         construct {
-            program_name = _(Constants.APP_NAME);
-            exec_name = "io.elementary.videos";
-
-            build_data_dir = Constants.DATADIR;
-            build_pkg_data_dir = Constants.PKGDATADIR;
-            build_release_name = Constants.RELEASE_NAME;
-            build_version = Constants.VERSION;
-            build_version_info = Constants.VERSION_INFO;
-
             Intl.setlocale (LocaleCategory.ALL, "");
-
-            app_launcher = "io.elementary.videos.desktop";
             application_id = "io.elementary.videos";
         }
 
@@ -76,12 +65,12 @@ namespace Audience {
 
                 mainwindow = new Window ();
                 mainwindow.application = this;
-                mainwindow.title = program_name;
+                mainwindow.title = _("Videos");
             }
         }
 
         public string get_cache_directory () {
-            return GLib.Path.build_filename(GLib.Environment.get_user_cache_dir (), exec_name);
+            return GLib.Path.build_filename(GLib.Environment.get_user_cache_dir (), application_id);
         }
 
         //the application was requested to open some files

@@ -1,17 +1,3 @@
-conf_data = configuration_data()
-conf_data.set('APP_NAME', 'Videos')
-conf_data.set('DATADIR', get_option('datadir'))
-conf_data.set('PKGDATADIR', get_option('datadir') + '/' + meson.project_name())
-conf_data.set('GETTEXT_PACKAGE', meson.project_name())
-conf_data.set('RELEASE_NAME', 'A modern media player.')
-conf_data.set('VERSION', '0.2.5')
-conf_data.set('VERSION_INFO', 'The Red Comet')
-config_header = configure_file(
-    input: 'Config.vala.in',
-    output: 'Config.vala',
-    configuration: conf_data
-)
-
 executable(
     meson.project_name(),
     'Audience.vala',
@@ -38,7 +24,6 @@ executable(
     'Widgets/Player/PreviewPopover.vala',
     'Widgets/Player/SettingsPopover.vala',
     'Widgets/Player/TimeWidget.vala',
-    config_header,
 
     vala_args: [
         '--enable-experimental',
