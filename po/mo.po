@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 10:04-0700\n"
+"POT-Creation-Date: 2018-07-16 20:52+0100\n"
 "PO-Revision-Date: 2018-05-31 08:00+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/videos/"
@@ -13,6 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.18\n"
 
+#. For better translation
 #: src/Window.vala:40
 msgid "Back"
 msgstr "Înapoi"
@@ -152,6 +153,11 @@ msgstr "Dezactivați repetarea"
 msgid "Subtitle files"
 msgstr "Fișiere cu subtitrări"
 
+#. .smi
+#. .srt
+#. .sub
+#. .ssa & .ass
+#. exclude .asc, mimetype is generic "application/pgp-encrypted"
 #: src/Widgets/Player/SettingsPopover.vala:48
 msgid "External Subtitles"
 msgstr "Subtitrări externe"
@@ -168,6 +174,7 @@ msgstr "Subtitrări:"
 msgid "External Subtitles:"
 msgstr "Subtitrări externe:"
 
+#. FIXME: Using Track since lang is actually a bad pointer :/
 #: src/Widgets/Player/SettingsPopover.vala:125
 #: src/Widgets/Player/SettingsPopover.vala:149
 #, c-format

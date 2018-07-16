@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 10:04-0700\n"
+"POT-Creation-Date: 2018-07-16 20:52+0100\n"
 "PO-Revision-Date: 2017-04-25 16:20+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/videos/videos/ko/"
@@ -20,6 +20,7 @@ msgstr ""
 "X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
+#. For better translation
 #: src/Window.vala:40
 msgid "Back"
 msgstr "뒤로"
@@ -159,6 +160,11 @@ msgstr "반복 해제"
 msgid "Subtitle files"
 msgstr "자막 파일"
 
+#. .smi
+#. .srt
+#. .sub
+#. .ssa & .ass
+#. exclude .asc, mimetype is generic "application/pgp-encrypted"
 #: src/Widgets/Player/SettingsPopover.vala:48
 msgid "External Subtitles"
 msgstr "외부 자막들"
@@ -175,6 +181,7 @@ msgstr "자막:"
 msgid "External Subtitles:"
 msgstr "외부 자막:"
 
+#. FIXME: Using Track since lang is actually a bad pointer :/
 #: src/Widgets/Player/SettingsPopover.vala:125
 #: src/Widgets/Player/SettingsPopover.vala:149
 #, c-format

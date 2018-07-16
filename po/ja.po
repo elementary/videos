@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 10:04-0700\n"
+"POT-Creation-Date: 2018-07-16 20:52+0100\n"
 "PO-Revision-Date: 2018-07-13 00:04+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/videos/"
@@ -20,6 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
+#. For better translation
 #: src/Window.vala:40
 msgid "Back"
 msgstr "戻る"
@@ -159,6 +160,11 @@ msgstr "リピートを無効にする"
 msgid "Subtitle files"
 msgstr "字幕ファイル"
 
+#. .smi
+#. .srt
+#. .sub
+#. .ssa & .ass
+#. exclude .asc, mimetype is generic "application/pgp-encrypted"
 #: src/Widgets/Player/SettingsPopover.vala:48
 msgid "External Subtitles"
 msgstr "外部字幕"
@@ -175,6 +181,7 @@ msgstr "字幕:"
 msgid "External Subtitles:"
 msgstr "外部字幕:"
 
+#. FIXME: Using Track since lang is actually a bad pointer :/
 #: src/Widgets/Player/SettingsPopover.vala:125
 #: src/Widgets/Player/SettingsPopover.vala:149
 #, c-format

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.videos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 10:04-0700\n"
+"POT-Creation-Date: 2018-07-16 20:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. For better translation
 #: src/Window.vala:40
 msgid "Back"
 msgstr ""
@@ -156,6 +157,11 @@ msgstr ""
 msgid "Subtitle files"
 msgstr ""
 
+#. .smi
+#. .srt
+#. .sub
+#. .ssa & .ass
+#. exclude .asc, mimetype is generic "application/pgp-encrypted"
 #: src/Widgets/Player/SettingsPopover.vala:48
 msgid "External Subtitles"
 msgstr ""
@@ -172,6 +178,7 @@ msgstr ""
 msgid "External Subtitles:"
 msgstr ""
 
+#. FIXME: Using Track since lang is actually a bad pointer :/
 #: src/Widgets/Player/SettingsPopover.vala:125
 #: src/Widgets/Player/SettingsPopover.vala:149
 #, c-format

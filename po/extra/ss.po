@@ -1,0 +1,62 @@
+# Siswati translations for extra package.
+# Copyright (C) 2018 THE extra'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# Automatically generated, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-16 20:55+0100\n"
+"PO-Revision-Date: 2018-07-16 20:55+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ss\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/io.elementary.videos.appdata.xml.in:8
+#: data/io.elementary.videos.desktop.in:4
+msgid "Videos"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:9
+#: data/io.elementary.videos.desktop.in:6
+msgid "Watch videos and movies"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:11
+msgid ""
+"A modern video player that focuses on displaying video content instead of "
+"player controls. It remembers your last played video and playback position "
+"so you can pick up from where you left off."
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:16
+msgid "Additional features include:"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:20
+msgid "Subtitle support"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:21
+msgid "Play queue"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:22
+msgid "Thumbnail previews on the seek bar"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:134
+msgid "elementary LLC."
+msgstr ""
+
+#: data/io.elementary.videos.desktop.in:5
+msgid "Video Player"
+msgstr ""
+
+#: data/io.elementary.videos.desktop.in:8
+msgid "multimedia-video-player"
+msgstr ""

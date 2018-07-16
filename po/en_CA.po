@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 10:04-0700\n"
+"POT-Creation-Date: 2018-07-16 20:52+0100\n"
 "PO-Revision-Date: 2018-05-18 16:07+0000\n"
 "Last-Translator: Shawn <syst3mfailur3@gmail.com>\n"
 "Language-Team: English (Canada) <https://weblate.elementary.io/projects/"
@@ -20,6 +20,7 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
+#. For better translation
 #: src/Window.vala:40
 msgid "Back"
 msgstr "Back"
@@ -159,6 +160,11 @@ msgstr "Disable Repeat"
 msgid "Subtitle files"
 msgstr "Subtitle files"
 
+#. .smi
+#. .srt
+#. .sub
+#. .ssa & .ass
+#. exclude .asc, mimetype is generic "application/pgp-encrypted"
 #: src/Widgets/Player/SettingsPopover.vala:48
 msgid "External Subtitles"
 msgstr "External Subtitles"
@@ -175,6 +181,7 @@ msgstr "Subtitles:"
 msgid "External Subtitles:"
 msgstr "External Subtitles:"
 
+#. FIXME: Using Track since lang is actually a bad pointer :/
 #: src/Widgets/Player/SettingsPopover.vala:125
 #: src/Widgets/Player/SettingsPopover.vala:149
 #, c-format
