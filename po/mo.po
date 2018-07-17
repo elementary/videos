@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 18:28-0700\n"
+"POT-Creation-Date: 2018-07-17 08:20-0700\n"
 "PO-Revision-Date: 2018-05-31 08:00+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/videos/"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.18\n"
 
-#: src/Audience.vala:68 src/Window.vala:475
+#: src/Application.vala:68 src/Window.vala:475
 #, fuzzy
 msgid "Videos"
 msgstr "Fișiere video"

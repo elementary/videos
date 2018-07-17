@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 18:28-0700\n"
+"POT-Creation-Date: 2018-07-17 08:20-0700\n"
 "PO-Revision-Date: 2016-10-14 15:44+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
-#: src/Audience.vala:68 src/Window.vala:475
+#: src/Application.vala:68 src/Window.vala:475
 msgid "Videos"
 msgstr "影片"
 
