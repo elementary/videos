@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 20:52+0100\n"
+"POT-Creation-Date: 2018-07-16 18:28-0700\n"
 "PO-Revision-Date: 2016-12-20 09:26+0000\n"
 "Last-Translator: Ho Zheng Xuan <hozhengxuan@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
+
+#: src/Audience.vala:68 src/Window.vala:475
+msgid "Videos"
+msgstr "视频"
 
 #. For better translation
 #: src/Window.vala:40
@@ -193,9 +197,6 @@ msgstr "无"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "默认"
-
-#~ msgid "Videos"
-#~ msgstr "视频"
 
 #~ msgid "Audience;Video;Player;Movies;"
 #~ msgstr "视频;视频;播放器;影片;"

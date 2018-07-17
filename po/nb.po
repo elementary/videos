@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 20:52+0100\n"
+"POT-Creation-Date: 2018-07-16 18:28-0700\n"
 "PO-Revision-Date: 2018-05-30 03:55+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
@@ -19,6 +19,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
+
+#: src/Audience.vala:68 src/Window.vala:475
+msgid "Videos"
+msgstr "Videoer"
 
 #. For better translation
 #: src/Window.vala:40
@@ -195,9 +199,6 @@ msgstr "Ingen"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "Standardvalg"
-
-#~ msgid "Videos"
-#~ msgstr "Videoer"
 
 #~ msgid "Audience;Video;Player;Movies;"
 #~ msgstr "Audience;Video;Avspiller;Filmer;"

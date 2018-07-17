@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 20:52+0100\n"
+"POT-Creation-Date: 2018-07-16 18:28-0700\n"
 "PO-Revision-Date: 2017-01-07 13:03+0000\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <(nothing)>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
+
+#: src/Audience.vala:68 src/Window.vala:475
+msgid "Videos"
+msgstr "Снимци"
 
 #. For better translation
 #: src/Window.vala:40
@@ -193,9 +197,6 @@ msgstr "Ништа"
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
 msgstr "Подразумевано"
-
-#~ msgid "Videos"
-#~ msgstr "Снимци"
 
 #~ msgid "Audience;Video;Player;Movies;"
 #~ msgstr "аудијенс;снимак;видео;пусти;филм;"
