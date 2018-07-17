@@ -8,24 +8,26 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-16 18:28-0700\n"
-"PO-Revision-Date: 2018-07-16 20:55+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2018-07-18 00:05+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
+"videos/extra/nb/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
 #: data/io.elementary.videos.desktop.in:4
 msgid "Videos"
-msgstr ""
+msgstr "Videoer"
 
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Se videoer og filmer"
 
 #: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
@@ -33,31 +35,34 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
+"En moderne videospiller som fokuserer på visning av videoinnhold istedenfor "
+"avspillerkontroller. Den husker din siste spilte video og "
+"avspillingsposisjon, slik at du kan fortsette der du slapp."
 
 #: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
-msgstr ""
+msgstr "Ytterligere funksjoner inkluderer:"
 
 #: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
-msgstr ""
+msgstr "Undertekststøtte"
 
 #: data/io.elementary.videos.appdata.xml.in:21
 msgid "Play queue"
-msgstr ""
+msgstr "Avspillingskø"
 
 #: data/io.elementary.videos.appdata.xml.in:22
 msgid "Thumbnail previews on the seek bar"
-msgstr ""
+msgstr "Miniatyrbildevisning i søkefelt"
 
 #: data/io.elementary.videos.appdata.xml.in:134
 msgid "elementary LLC."
-msgstr ""
+msgstr "elementary LLC. (selskap med begrenset ansvar)"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
-msgstr ""
+msgstr "Videospiller"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "multimedia-video-player"
-msgstr ""
+msgstr "miltimedia-video-spiller"
