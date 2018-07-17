@@ -1,4 +1,4 @@
-src/Audience.vala
+src/Application.vala
 src/Consts.vala
 src/DiskManager.vala
 src/Settings.vala

@@ -1,6 +1,6 @@
 executable(
     meson.project_name(),
-    'Audience.vala',
+    'Application.vala',
     'Consts.vala',
     'DiskManager.vala',
     'Settings.vala',
