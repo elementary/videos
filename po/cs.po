@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:20-0700\n"
-"PO-Revision-Date: 2018-07-22 00:04+0000\n"
+"PO-Revision-Date: 2018-07-24 00:05+0000\n"
 "Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: Czech <https://weblate.elementary.io/projects/videos/videos/"
 "cs/>\n"
@@ -39,7 +39,7 @@ msgstr "Epizody"
 
 #: src/Window.vala:68
 msgid "Search Videos"
-msgstr "Prohledat videa"
+msgstr "Hledat videa"
 
 #: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
 #, c-format
