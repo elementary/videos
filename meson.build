@@ -1,7 +1,7 @@
 project(
     'io.elementary.videos',
     'vala', 'c',
-    version: '0.2.6'
+    version: '2.6.1'
 )
 
 i18n = import('i18n')

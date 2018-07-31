@@ -60,6 +60,13 @@
     <content_attribute id="money-gambling">none</content_attribute>
   </content_rating>
   <releases>
+    <release version="2.6.1" date="2018-07-31" urgency="medium">
+      <description>
+        <ul>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.6" date="2018-06-20" urgency="medium">
       <description>
         <ul>
