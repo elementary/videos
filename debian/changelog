@@ -1,3 +1,9 @@
+audience (2.6.1) bionic; urgency=medium
+
+  * New upstream release.
+
+ -- Cody Garver <cody@elementary.io>  Tue, 31 Jul 2018 04:16:34 -0500
+
 audience (0.2.6) bionic; urgency=medium
 
   * New upstream release.
