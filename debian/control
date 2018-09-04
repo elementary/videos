@@ -17,7 +17,7 @@ Homepage: https://github.com/elementary/videos
 
 Package: audience
 Architecture: any
-Depends: sessioninstaller, xdg-utils, ${misc:Depends}, ${shlibs:Depends}
+Depends: xdg-utils, ${misc:Depends}, ${shlibs:Depends}
 Description: A modern media player
  Audience is a simple, modern media player that makes greater use of
  hardware acceleration than most players out there.
