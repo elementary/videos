@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-16 18:28-0700\n"
-"PO-Revision-Date: 2018-10-07 02:40+0000\n"
+"PO-Revision-Date: 2018-10-08 00:05+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/videos/extra/"
 "ja/>\n"
@@ -28,7 +28,7 @@ msgstr "ビデオ"
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr "ビデオや映画を見ます"
+msgstr "動画や映画を見ます"
 
 #: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
@@ -36,9 +36,8 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
-"プレイヤーコントロールではなくビデオコンテンツの表示にフォーカスしたモダンな"
-"ビデオプレイヤーです。最後に再生した動画と再生位置を記憶しているので前回中断"
-"したところから再生を再開することができます。"
+"プレイヤーコントロールではなく動画内容の表示に重点を置いた、モダンなビデオプレイヤーです。最後に再生した動画と再生位置を記憶しているので前回中断したところ"
+"から再生を再開することができます。"
 
 #: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
