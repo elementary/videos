@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:20-0700\n"
-"PO-Revision-Date: 2018-10-08 00:06+0000\n"
+"PO-Revision-Date: 2018-10-09 00:01+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/videos/"
 "videos/ja/>\n"
@@ -108,11 +108,11 @@ msgstr "DVD を見たり、ディスクからファイルを開いたりしま�
 
 #: src/Widgets/WelcomePage.vala:50
 msgid "Browse Library"
-msgstr "ライブラリをブラウズ"
+msgstr "ライブラリを探す"
 
 #: src/Widgets/WelcomePage.vala:50
 msgid "Watch a movie from your library"
-msgstr "ライブラリのムービーを見ます"
+msgstr "ライブラリにある映画を見ます"
 
 #: src/Widgets/Library/LibraryItem.vala:65
 msgid "Move to Trash"
