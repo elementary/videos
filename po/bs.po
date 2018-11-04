@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:20-0700\n"
-"PO-Revision-Date: 2018-11-04 18:28+0000\n"
+"PO-Revision-Date: 2018-11-08 19:01+0000\n"
 "Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/videos/videos/"
 "bs/>\n"
@@ -195,11 +195,11 @@ msgstr "Zvučni zapis %u"
 
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "None"
-msgstr "Nijedan"
+msgstr "Isključeno"
 
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
-msgstr "Podrazumijevano"
+msgstr "Zadano"
 
 #~ msgid "Audience;Video;Player;Movies;"
 #~ msgstr "Audience;Video;Player;Movies;"
