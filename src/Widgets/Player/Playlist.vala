@@ -199,7 +199,7 @@ namespace Audience.Widgets {
                 list.append (name);
                 return false;
             });
-            return list.copy ();
+            return (owned) list;
         }
 
         public void save_playlist () {
