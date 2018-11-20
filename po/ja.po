@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:20-0700\n"
-"PO-Revision-Date: 2018-10-09 00:01+0000\n"
+"PO-Revision-Date: 2018-11-24 12:10+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/videos/"
 "videos/ja/>\n"
@@ -175,15 +175,15 @@ msgstr "外部字幕"
 
 #: src/Widgets/Player/SettingsPopover.vala:52
 msgid "Audio:"
-msgstr "オーディオ:"
+msgstr "オーディオ："
 
 #: src/Widgets/Player/SettingsPopover.vala:55
 msgid "Subtitles:"
-msgstr "字幕:"
+msgstr "字幕："
 
 #: src/Widgets/Player/SettingsPopover.vala:58
 msgid "External Subtitles:"
-msgstr "外部字幕:"
+msgstr "外部字幕："
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
 #: src/Widgets/Player/SettingsPopover.vala:125
