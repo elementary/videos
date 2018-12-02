@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-16 18:28-0700\n"
-"PO-Revision-Date: 2018-11-29 12:06+0000\n"
+"PO-Revision-Date: 2018-12-06 08:05+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/videos/extra/"
 "ja/>\n"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
-msgstr "その他の含まれる機能："
+msgstr "その他の含まれる機能:"
 
 #: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
