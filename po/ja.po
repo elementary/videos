@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:20-0700\n"
-"PO-Revision-Date: 2018-12-06 08:05+0000\n"
+"PO-Revision-Date: 2018-12-12 06:06+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/videos/"
 "videos/ja/>\n"
@@ -44,7 +44,7 @@ msgstr "動画を検索"
 #: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
 #, c-format
 msgid "No Results for “%s”"
-msgstr "\"%s\" という検索結果はありません"
+msgstr "“%s” という検索結果はありません"
 
 #: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
 msgid "Try changing search terms."
