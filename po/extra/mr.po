@@ -2,13 +2,12 @@
 # Copyright (C) 2018 THE extra'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the extra package.
 # Automatically generated, 2018.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-16 18:28-0700\n"
-"PO-Revision-Date: 2018-12-14 21:08+0000\n"
+"PO-Revision-Date: 2018-12-15 14:53+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://weblate.elementary.io/projects/videos/extra/"
 "mr/>\n"
@@ -27,7 +26,7 @@ msgstr "व्हिडीओ"
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "व्हिडिओ आणि चित्रपट पहा"
 
 #: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
@@ -38,28 +37,28 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
-msgstr ""
+msgstr "समाविष्ट असलेली अतिरिक्त वैशिष्ट्ये :"
 
 #: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
-msgstr ""
+msgstr "उपशीर्षक समर्थन"
 
 #: data/io.elementary.videos.appdata.xml.in:21
 msgid "Play queue"
-msgstr ""
+msgstr "ओळीने चालवा"
 
 #: data/io.elementary.videos.appdata.xml.in:22
 msgid "Thumbnail previews on the seek bar"
-msgstr ""
+msgstr "शोध बारवर लघुप्रतिमा पूर्वावलोकने"
 
 #: data/io.elementary.videos.appdata.xml.in:134
 msgid "elementary LLC."
-msgstr ""
+msgstr "एलिमेंटरी LLC."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
-msgstr ""
+msgstr "व्हिडिओ प्लेयर"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "multimedia-video-player"
-msgstr ""
+msgstr "मल्टीमीडिया-व्हिडिओ-प्लेअर"
