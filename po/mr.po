@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:20-0700\n"
-"PO-Revision-Date: 2018-12-15 14:30+0000\n"
+"PO-Revision-Date: 2018-12-18 00:01+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://weblate.elementary.io/projects/videos/videos/"
 "mr/>\n"
@@ -73,7 +73,7 @@ msgstr "कोणतेही व्हिडिओ उघडलेले ना
 
 #: src/Widgets/WelcomePage.vala:6
 msgid "Select a source to begin playing."
-msgstr "व्हिडीओ सुरू करण्यासाठी स्त्रोत निवडा. "
+msgstr "व्हिडीओ सुरू करण्यासाठी स्त्रोत निवडा."
 
 #: src/Widgets/WelcomePage.vala:10 src/Widgets/Player/PlaylistPopover.vala:35
 msgid "Open file"
