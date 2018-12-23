@@ -8,23 +8,26 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-16 18:28-0700\n"
-"PO-Revision-Date: 2018-07-16 20:55+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2018-12-23 06:02+0000\n"
+"Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
+"Language-Team: Hindi <https://weblate.elementary.io/projects/videos/extra/hi/"
+">\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
 #: data/io.elementary.videos.desktop.in:4
 msgid "Videos"
-msgstr ""
+msgstr "वीडियो"
 
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "वीडियो और फिल्में देखें"
 
 #: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
@@ -32,31 +35,34 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
+"एक आधुनिक वीडियो प्लेयर जो खिलाड़ी नियंत्रण के बजाय वीडियो सामग्री प्रदर्शित "
+"करने पर केंद्रित है। यह आपके पिछले खेले गए वीडियो और प्लेबैक पोजीशन को याद "
+"रखता है ताकि आप उस जगह से उठा सकें जहां आपने छोड़ा था।"
 
 #: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
-msgstr ""
+msgstr "अतिरिक्त सुविधाओं में शामिल हैं:"
 
 #: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
-msgstr ""
+msgstr "उपशीर्षक समर्थन करते हैं"
 
 #: data/io.elementary.videos.appdata.xml.in:21
 msgid "Play queue"
-msgstr ""
+msgstr "लाइन में चलाएं"
 
 #: data/io.elementary.videos.appdata.xml.in:22
 msgid "Thumbnail previews on the seek bar"
-msgstr ""
+msgstr "खोज बार पर थंबनेल का पूर्वावलोकन करें"
 
 #: data/io.elementary.videos.appdata.xml.in:134
 msgid "elementary LLC."
-msgstr ""
+msgstr "एलिमेंटरी LLC."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
-msgstr ""
+msgstr "व्हिडिओ प्लेयर"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "multimedia-video-player"
-msgstr ""
+msgstr "मल्टीमीडिया-वीडियो-प्लेअर"
