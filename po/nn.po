@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:20-0700\n"
-"PO-Revision-Date: 2019-01-06 11:50+0000\n"
+"PO-Revision-Date: 2019-01-07 00:03+0000\n"
 "Last-Translator: Simon Dagfinrud <semonje@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk <https://weblate.elementary.io/projects/"
 "videos/videos/nn/>\n"
@@ -129,7 +129,7 @@ msgstr "Biletfiler"
 #: src/Widgets/Library/LibraryPage.vala:69
 #, c-format
 msgid "Video '%s' Removed."
-msgstr "Fjerna videoen «%s»"
+msgstr "Fjerna videoen «%s»."
 
 #: src/Widgets/Player/BottomBar.vala:83
 msgid "Pause"
@@ -198,7 +198,7 @@ msgstr "Ingen"
 
 #: src/Widgets/Player/SettingsPopover.vala:160
 msgid "Default"
-msgstr "Standard"
+msgstr "Standardval"
 
 #~ msgid "Audience;Video;Player;Movies;"
 #~ msgstr "Audience;Video;Spelar;Filmar;"
