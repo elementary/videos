@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2016 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2019 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Library General Public License as published by
@@ -19,7 +19,6 @@
 public interface ScreenSaverIface : Object {
     public abstract uint32 Inhibit (string app_name, string reason) throws Error;
     public abstract void UnInhibit (uint32 cookie) throws Error;
-    public abstract void SimulateUserActivity () throws Error;
 }
 
 public class Audience.Services.Inhibitor :  Object {
@@ -28,14 +27,17 @@ public class Audience.Services.Inhibitor :  Object {
 
     private static Inhibitor? instance = null;
 
-    private uint32? inhibit_cookie = null;
+    private uint32? screensaver_inhibit_cookie = null;
+    private uint32? suspend_inhibit_cookie = null;
+    private bool inhibited = false;
 
     private ScreenSaverIface? screensaver_iface = null;
 
-    private bool inhibited = false;
-    private bool simulator_started = false;
+    public unowned Gtk.Application application;
 
-    private Inhibitor () {
+    private Inhibitor (Gtk.Application _application) {
+        this.application = _application;
+
         try {
             screensaver_iface = Bus.get_proxy_sync (BusType.SESSION, IFACE, IFACE_PATH, DBusProxyFlags.NONE);
         } catch (Error e) {
@@ -43,11 +45,13 @@ public class Audience.Services.Inhibitor :  Object {
         }
     }
 
-    public static Inhibitor get_instance () {
+    public static void initialize (Gtk.Application _application) {
         if (instance == null) {
-            instance = new Audience.Services.Inhibitor ();
+            instance = new Audience.Services.Inhibitor (_application);
         }
+    }
 
+    public static Inhibitor get_instance () {
         return instance;
     }
 
@@ -55,8 +59,8 @@ public class Audience.Services.Inhibitor :  Object {
         if (screensaver_iface != null && !inhibited) {
             try {
                 inhibited = true;
-                inhibit_cookie = screensaver_iface.Inhibit ("Audience", "Playing movie");
-                simulate_activity ();
+                screensaver_inhibit_cookie = screensaver_iface.Inhibit ("io.elementary.videos", "Playing movie");
+                suspend_inhibit_cookie = application.inhibit (application.get_active_window (), Gtk.ApplicationInhibitFlags.SUSPEND, "Playing Movie");
                 debug ("Inhibiting screen");
             } catch (Error e) {
                 warning ("Could not inhibit screen: %s", e.message);
@@ -65,38 +69,18 @@ public class Audience.Services.Inhibitor :  Object {
     }
 
     public void uninhibit () {
-        if (screensaver_iface != null && inhibited) {//&& inhibit_cookie != null) {
+        inhibited = false;
+
+        if (screensaver_iface != null && screensaver_inhibit_cookie != null) {
             try {
-                inhibited = false;
-                screensaver_iface.UnInhibit (inhibit_cookie);
+                screensaver_iface.UnInhibit (screensaver_inhibit_cookie);
+                application.uninhibit (suspend_inhibit_cookie);
+                screensaver_inhibit_cookie = null;
+                suspend_inhibit_cookie = null;
                 debug ("Uninhibiting screen");
             } catch (Error e) {
                 warning ("Could not uninhibit screen: %s", e.message);
             }
         }
-    }
-
-   /* 
-    * Inhibit currently does not block a suspend from ocurring,
-    * so we simulate user activity every 2 mins to prevent it
-    */
-    private void simulate_activity () {
-        if (simulator_started) return;
-        
-        simulator_started = true;
-        Timeout.add_full (Priority.DEFAULT, 120000, ()=> {
-            if (inhibited) {
-                try {
-                    debug ("Simulating activity");
-                    screensaver_iface.SimulateUserActivity ();
-                } catch (Error e) {
-                    warning ("Could not simulate user activity: %s", e.message);
-                }
-            } else {
-                simulator_started = false;
-            }
-            
-            return inhibited;
-        });
     }
 }
