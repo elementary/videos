@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2019 elementary LLC. (https://elementary.io)
+ * Copyright 2019 elementary, Inc. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Library General Public License as published by
@@ -51,7 +51,7 @@ public class Audience.Services.Inhibitor :  Object {
         }
     }
 
-    public static Inhibitor get_instance () {
+    public static unowned Inhibitor get_instance () {
         return instance;
     }
 
@@ -59,7 +59,7 @@ public class Audience.Services.Inhibitor :  Object {
         if (screensaver_iface != null && !inhibited) {
             try {
                 inhibited = true;
-                screensaver_inhibit_cookie = screensaver_iface.Inhibit ("io.elementary.videos", "Playing movie");
+                screensaver_inhibit_cookie = screensaver_iface.Inhibit (application.application_id, "Playing movie");
                 suspend_inhibit_cookie = application.inhibit (application.get_active_window (), Gtk.ApplicationInhibitFlags.SUSPEND, "Playing Movie");
                 debug ("Inhibiting screen");
             } catch (Error e) {
