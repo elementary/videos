@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-16 18:28-0700\n"
-"PO-Revision-Date: 2016-12-20 09:31+0000\n"
+"PO-Revision-Date: 2019-01-15 13:39+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
-"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
-"Language: \n"
+"Language-Team: Chinese (Simplified) <https://weblate.elementary.io/projects/"
+"videos/extra/zh_Hans/>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-"X-Generator: Launchpad (build 18354)\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
 #: data/io.elementary.videos.desktop.in:4
@@ -54,7 +56,7 @@ msgstr "进度条快速预览"
 
 #: data/io.elementary.videos.appdata.xml.in:134
 msgid "elementary LLC."
-msgstr ""
+msgstr "elementary LLC."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
@@ -62,7 +64,7 @@ msgstr "视频播放器"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "multimedia-video-player"
-msgstr ""
+msgstr "多媒体-视频-播放器"
 
 #~ msgid "Audience"
 #~ msgstr "Audience"
