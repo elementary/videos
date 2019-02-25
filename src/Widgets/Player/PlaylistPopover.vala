@@ -21,6 +21,7 @@
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     public Playlist playlist;
     public Gtk.ToggleButton rep;
+    public Gtk.ToggleButton autoplay_next;
     private Gtk.ScrolledWindow playlist_scrolled;
     private Gtk.Button dvd;
 
@@ -39,6 +40,10 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         rep = new Gtk.ToggleButton ();
         rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON));
         rep.set_tooltip_text (_("Enable Repeat"));
+
+        autoplay_next = new Gtk.ToggleButton ();
+        autoplay_next.set_image (new Gtk.Image.from_icon_name ("media-playback-stop-symbolic", Gtk.IconSize.BUTTON));
+        autoplay_next.set_tooltip_text (_("Enable Autoplay Next File"));
 
         playlist_scrolled = new Gtk.ScrolledWindow (null, null);
         playlist_scrolled.set_min_content_height (100);
@@ -68,10 +73,22 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             }
         });
 
+        autoplay_next.toggled.connect ( () => {
+            /* app.autoplay_next = autoplay_next.active; */
+            if (autoplay_next.active) {
+                autoplay_next.set_image (new Gtk.Image.from_icon_name ("media-playlist-consecutive-symbolic", Gtk.IconSize.BUTTON));
+                autoplay_next.set_tooltip_text (_("Disable Autoplay Next File"));
+            } else {
+                autoplay_next.set_image (new Gtk.Image.from_icon_name ("media-playback-stop-symbolic", Gtk.IconSize.BUTTON));
+                autoplay_next.set_tooltip_text (_("Enable Autoplay Next File"));
+            }
+        });
+
         grid.attach (playlist_scrolled, 0, 0, 7, 1);
         grid.attach (fil, 0, 1, 1, 1);
         grid.attach (dvd, 1, 1, 1, 1);
         grid.attach (rep, 6, 1, 1, 1);
+        grid.attach (autoplay_next, 5, 1, 1, 1);
 
         add (grid);
 

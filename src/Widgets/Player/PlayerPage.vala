@@ -34,6 +34,16 @@ namespace Audience {
             }
         }
 
+        public bool autoplay_next {
+            get{
+                return bottom_bar.autoplay_next;
+            }
+
+            set{
+                bottom_bar.autoplay_next = value;
+            }
+        }
+
         public bool playing {
             get {
                 return playback.playing;
@@ -203,6 +213,12 @@ namespace Audience {
                         if (repeat) {
                             string file = get_playlist_widget ().get_first_item ().get_uri ();
                             App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file) });
+                        } else if (autoplay_next) {
+                            if (!get_playlist_widget ().autoplay_next()) {
+                                playback.playing = false;
+                                settings.last_stopped = 0;
+                                ended ();
+                            }
                         } else {
                             playback.playing = false;
                             settings.last_stopped = 0;
