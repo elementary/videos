@@ -374,11 +374,6 @@ public class Audience.Window : Gtk.Window {
     }
 
     public void run_open_file (bool clear_playlist = false, bool force_play = true) {
-        var file = new Gtk.FileChooserDialog (_("Open"), this, Gtk.FileChooserAction.OPEN,
-            _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
-        file.set_transient_for (this);
-        file.select_multiple = true;
-
         var all_files_filter = new Gtk.FileFilter ();
         all_files_filter.set_filter_name (_("All files"));
         all_files_filter.add_pattern ("*");
@@ -387,10 +382,18 @@ public class Audience.Window : Gtk.Window {
         video_filter.set_filter_name (_("Video files"));
         video_filter.add_mime_type ("video/*");
 
+        var file = new Gtk.FileChooserNative (
+            _("Open"),
+            this,
+            Gtk.FileChooserAction.OPEN,
+            _("_Open"),
+            _("_Cancel")
+        );
+        file.select_multiple = true;
+        file.set_current_folder (settings.last_folder);
         file.add_filter (video_filter);
         file.add_filter (all_files_filter);
 
-        file.set_current_folder (settings.last_folder);
         if (file.run () == Gtk.ResponseType.ACCEPT) {
             File[] files = {};
             foreach (File item in file.get_files ()) {
