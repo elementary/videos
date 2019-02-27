@@ -99,12 +99,12 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         }
     }
 
-    public bool autoplay_next {
+    public bool autoqueque_next {
         get {
-            return playlist_popover.autoplay_next.active;
+            return playlist_popover.autoqueque_next.active;
         }
         set {
-            playlist_popover.autoplay_next.active = value;
+            playlist_popover.autoqueque_next.active = value;
         }
     }
 
