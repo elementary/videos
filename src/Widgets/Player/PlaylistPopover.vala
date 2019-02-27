@@ -21,7 +21,7 @@
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     public Playlist playlist;
     public Gtk.ToggleButton rep;
-    public Gtk.ToggleButton autoqueque_next;
+    public Gtk.Switch autoqueque_next;
     private Gtk.ScrolledWindow playlist_scrolled;
     private Gtk.Button dvd;
 
@@ -41,10 +41,8 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON));
         rep.set_tooltip_text (_("Enable Repeat"));
 
-        autoqueque_next = new Gtk.ToggleButton ();
-        autoqueque_next.set_image (new Gtk.Image.from_icon_name ("media-playlist-consecutive-symbolic", Gtk.IconSize.BUTTON));
-        autoqueque_next.set_tooltip_text (_("Enable auto queque next videos"));
-        autoqueque_next.active = false;
+        Gtk.Label autoqueque_next_label = new Gtk.Label (_("Auto queque aviable videos:"));
+        autoqueque_next = new Gtk.Switch ();
 
         playlist_scrolled = new Gtk.ScrolledWindow (null, null);
         playlist_scrolled.set_min_content_height (100);
@@ -74,24 +72,21 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             }
         });
 
-        autoqueque_next.toggled.connect ( () => {
+        autoqueque_next.notify["active"].connect ( () => {
             /* app.autoqueque_next = autoqueque_next.active; */
             if (autoqueque_next.active) {
-                autoqueque_next.set_image (new Gtk.Image.from_icon_name ("media-playlist-consecutive-symbolic", Gtk.IconSize.BUTTON));
-                autoqueque_next.set_tooltip_text (_("Disable auto queque next videos"));
                 if (playlist.get_current () >= playlist.get_all_items ().length () - 1) {
                     playlist.queque_n_next_aviable_videos (1);
                 }
-            } else {
-                autoqueque_next.set_tooltip_text (_("Enable auto queque next videos"));
             }
         });
 
         grid.attach (playlist_scrolled, 0, 0, 7, 1);
         grid.attach (fil, 0, 1, 1, 1);
         grid.attach (dvd, 1, 1, 1, 1);
-        grid.attach (rep, 6, 1, 1, 1);
+        grid.attach (autoqueque_next_label, 4, 1, 1, 1);
         grid.attach (autoqueque_next, 5, 1, 1, 1);
+        grid.attach (rep, 6, 1, 1, 1);
 
         add (grid);
 
