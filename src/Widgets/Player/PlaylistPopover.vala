@@ -41,7 +41,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON));
         rep.set_tooltip_text (_("Enable Repeat"));
 
-        Gtk.Label autoqueque_next_label = new Gtk.Label (_("Auto queque aviable videos:"));
+        Gtk.Label autoqueque_next_label = new Gtk.Label (_("Auto queue available videos:"));
         autoqueque_next = new Gtk.Switch ();
 
         playlist_scrolled = new Gtk.ScrolledWindow (null, null);
