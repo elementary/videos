@@ -160,16 +160,21 @@ namespace Audience {
         }
 
         private void set_new_cover () {
-            var file = new Gtk.FileChooserDialog (_("Open"), Audience.App.get_instance ().mainwindow, Gtk.FileChooserAction.OPEN, _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
-
             var image_filter = new Gtk.FileFilter ();
             image_filter.set_filter_name (_("Image files"));
             image_filter.add_mime_type ("image/*");
 
-            file.add_filter (image_filter);
+            var filechooser = new Gtk.FileChooserNative (
+                _("Open"),
+                Audience.App.get_instance ().mainwindow,
+                Gtk.FileChooserAction.OPEN,
+                _("_Open"),
+                _("_Cancel")
+            );
+            filechooser.add_filter (image_filter);
 
-            if (file.run () == Gtk.ResponseType.ACCEPT) {
-                Gdk.Pixbuf? pixbuf = manager.get_poster_from_file (file.get_file ().get_path ());
+            if (filechooser.run () == Gtk.ResponseType.ACCEPT) {
+                Gdk.Pixbuf? pixbuf = manager.get_poster_from_file (filechooser.get_filename ());
                 if (pixbuf != null) {
                     try {
                         if (episodes.size == 1) {
@@ -186,7 +191,7 @@ namespace Audience {
                     }
                 }
             }
-            file.destroy ();
+            filechooser.destroy ();
         }
 
         private void move_video_to_trash () {
