@@ -25,6 +25,7 @@ namespace Audience {
         Gtk.ScrolledWindow scrolled_window;
         Gtk.FlowBox view_episodes;
         Granite.Widgets.AlertView alert_view;
+        Gee.ArrayList<Audience.Objects.Video> shown_episodes;
 
         public Audience.Services.LibraryManager manager;
 
@@ -73,10 +74,19 @@ namespace Audience {
             view_episodes.forall ((item) => {
                 item.dispose ();
             });
+            shown_episodes = new Gee.ArrayList<Audience.Objects.Video> ();
             foreach (Audience.Objects.Video episode in episodes) {
                 view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
+                shown_episodes.add(episode);
             }
-
+            shown_episodes.sort((a, b) => {
+                var item1 = (Audience.Objects.Video)a;
+                var item2 = (Audience.Objects.Video)b;
+                if (item1 != null && item2 != null) {
+                    return item1.file.collate (item2.file);
+                }
+                return 0;
+            });
             if (poster_source != null) {
                 poster_source.poster_changed.disconnect (update_poster);
             }
@@ -93,9 +103,18 @@ namespace Audience {
             var selected = (item as Audience.LibraryItem);
             var video = selected.episodes.first ();
             if (video.video_file.query_exists ()) {
+                var mainwindow = App.get_instance ().mainwindow;
                 string uri = video.video_file.get_uri ();
                 bool from_beginning = uri != settings.current_video;
-                App.get_instance ().mainwindow.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
+                // Clean playlist
+                mainwindow.clear_playlist();
+                // Play selected file
+                mainwindow.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
+                // Add next from the current view to the queque
+                int played_index = shown_episodes.index_of(video);
+                foreach (Audience.Objects.Video episode in shown_episodes.slice(played_index, shown_episodes.size)) {
+                    mainwindow.append_to_playlist(episode.video_file);
+                }
             }
         }
 

@@ -34,15 +34,6 @@ namespace Audience {
             }
         }
 
-        public bool autoqueque_next {
-            get{
-                return bottom_bar.autoqueque_next;
-            }
-
-            set{
-                bottom_bar.autoqueque_next = value;
-            }
-        }
 
         public bool playing {
             get {
@@ -217,11 +208,6 @@ namespace Audience {
                             playback.playing = false;
                             settings.last_stopped = 0;
                             ended ();
-                        }
-                    } else if (autoqueque_next) {
-                        var playlist_widget = get_playlist_widget ();
-                        if (playlist_widget.get_current () >= playlist_widget.get_all_items ().length () - 1) {
-                            playlist_widget.queque_n_next_aviable_videos (1);
                         }
                     }
                     return false;

@@ -89,36 +89,6 @@ namespace Audience.Widgets {
             return false;
         }
 
-        public int queque_n_next_aviable_videos(int nfiles) {
-            // We get the path of the last file we played.
-            // From this path we will extract the folder where it's placed and then we will look for the next file of the folder.
-            File original_file = File.new_for_uri (this.get_all_items ().last ().data);
-            string original_filename = original_file.get_path ();
-            File original_dir = original_file.get_parent ();
-            string original_dirname = original_dir.get_path ();
-            int quequed_files = 0;
-            try {
-                FileEnumerator enumerator = original_dir.enumerate_children ("standard::*", FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null);
-                FileInfo info = null;
-                File newfile;
-                bool original_found = false;
-                while ((info = enumerator.next_file (null)) != null && quequed_files < nfiles) {
-                    if (original_dirname + "/" + info.get_name () == original_filename) {
-                        original_found = true;
-                    } else if (original_found) {
-                        newfile = File.new_for_path(original_dirname + "/" + info.get_name ());
-                        if (newfile.query_info ("*", 0).get_content_type ().split ("/")[0] == "video") {
-                            this.add_item(newfile);
-                            quequed_files++;
-                        }
-                    }
-                }
-            } catch (Error e) {
-	            print ("Error: %s\n", e.message);
-                return 0;
-            }
-            return quequed_files;
-        }
 
         public void previous () {
             Gtk.TreeIter iter;

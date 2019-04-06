@@ -99,14 +99,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         }
     }
 
-    public bool autoqueque_next {
-        get {
-            return playlist_popover.autoqueque_next.active;
-        }
-        set {
-            playlist_popover.autoqueque_next.active = value;
-        }
-    }
 
     public BottomBar (ClutterGst.Playback playback) {
         this.events |= Gdk.EventMask.POINTER_MOTION_MASK;
