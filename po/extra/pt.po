@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 18:28-0700\n"
+"POT-Creation-Date: 2019-06-26 22:46+0200\n"
 "PO-Revision-Date: 2018-08-24 00:02+0000\n"
 "Last-Translator: Daniel Foré <daniel@elementary.io>\n"
 "Language-Team: Portuguese <https://weblate.elementary.io/projects/videos/"
@@ -56,7 +56,67 @@ msgstr "Fila de reprodução"
 msgid "Thumbnail previews on the seek bar"
 msgstr "Miniaturas na barra de pesquisa"
 
-#: data/io.elementary.videos.appdata.xml.in:134
+#: data/io.elementary.videos.appdata.xml.in:66
+#: data/io.elementary.videos.appdata.xml.in:74
+msgid "Build fixes"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:67
+#: data/io.elementary.videos.appdata.xml.in:75
+#: data/io.elementary.videos.appdata.xml.in:82
+#: data/io.elementary.videos.appdata.xml.in:114
+#: data/io.elementary.videos.appdata.xml.in:122
+#: data/io.elementary.videos.appdata.xml.in:129
+#: data/io.elementary.videos.appdata.xml.in:145
+msgid "Translation updates"
+msgstr "Atualização de traduções"
+
+#: data/io.elementary.videos.appdata.xml.in:89
+msgid "Window behavior improvements"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:90
+msgid "Fix disappearing subtitle tracks"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:97
+msgid "Disallow setting playback before start"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:104
+msgid "Limit consecutive spacebar pauses"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:111
+msgid "Crash fixes"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:112
+msgid "Remove About dialog"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:113
+#: data/io.elementary.videos.appdata.xml.in:152
+msgid "Minor bug fixes"
+msgstr "Pequenas correções de erros"
+
+#: data/io.elementary.videos.appdata.xml.in:121
+msgid "Preview popover now closely follows cursor position"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:136
+msgid "Fix appstream date format"
+msgstr "Corrigir formato da data appstream"
+
+#: data/io.elementary.videos.appdata.xml.in:143
+msgid "Added a library view with search"
+msgstr "Adicionada vista de biblioteca e pesquisa"
+
+#: data/io.elementary.videos.appdata.xml.in:144
+msgid "Fixed a bug that prevents keyboard navigation"
+msgstr "Corrigido problema que impedia a navegação por teclado"
+
+#: data/io.elementary.videos.appdata.xml.in:157
 msgid "elementary LLC."
 msgstr "elementary LLC."
 
@@ -70,18 +130,3 @@ msgstr "multimedia-video-player"
 
 #~ msgid "Audience"
 #~ msgstr "Audience"
-
-#~ msgid "Translation updates"
-#~ msgstr "Atualização de traduções"
-
-#~ msgid "Fix appstream date format"
-#~ msgstr "Corrigir formato da data appstream"
-
-#~ msgid "Added a library view with search"
-#~ msgstr "Adicionada vista de biblioteca e pesquisa"
-
-#~ msgid "Fixed a bug that prevents keyboard navigation"
-#~ msgstr "Corrigido problema que impedia a navegação por teclado"
-
-#~ msgid "Minor bug fixes"
-#~ msgstr "Pequenas correções de erros"

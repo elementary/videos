@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 18:28-0700\n"
+"POT-Creation-Date: 2019-06-26 22:46+0200\n"
 "PO-Revision-Date: 2019-01-09 10:13+0000\n"
 "Last-Translator: Cody Garver <cody@elementary.io>\n"
 "Language-Team: Hindi <https://weblate.elementary.io/projects/videos/extra/hi/"
@@ -35,9 +35,9 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
-"एक आधुनिक वीडियो प्लेयर जो खिलाड़ी नियंत्रण के बजाय वीडियो सामग्री प्रदर्शित "
-"करने पर केंद्रित है। यह आपके पिछले खेले गए वीडियो और प्लेबैक पोजीशन को याद "
-"रखता है ताकि आप उस जगह से उठा सकें जहां आपने छोड़ा था।"
+"एक आधुनिक वीडियो प्लेयर जो खिलाड़ी नियंत्रण के बजाय वीडियो सामग्री प्रदर्शित करने पर "
+"केंद्रित है। यह आपके पिछले खेले गए वीडियो और प्लेबैक पोजीशन को याद रखता है ताकि आप उस "
+"जगह से उठा सकें जहां आपने छोड़ा था।"
 
 #: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
@@ -55,7 +55,67 @@ msgstr "लाइन में चलाएं"
 msgid "Thumbnail previews on the seek bar"
 msgstr "खोज बार पर थंबनेल का पूर्वावलोकन करें"
 
-#: data/io.elementary.videos.appdata.xml.in:134
+#: data/io.elementary.videos.appdata.xml.in:66
+#: data/io.elementary.videos.appdata.xml.in:74
+msgid "Build fixes"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:67
+#: data/io.elementary.videos.appdata.xml.in:75
+#: data/io.elementary.videos.appdata.xml.in:82
+#: data/io.elementary.videos.appdata.xml.in:114
+#: data/io.elementary.videos.appdata.xml.in:122
+#: data/io.elementary.videos.appdata.xml.in:129
+#: data/io.elementary.videos.appdata.xml.in:145
+msgid "Translation updates"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:89
+msgid "Window behavior improvements"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:90
+msgid "Fix disappearing subtitle tracks"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:97
+msgid "Disallow setting playback before start"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:104
+msgid "Limit consecutive spacebar pauses"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:111
+msgid "Crash fixes"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:112
+msgid "Remove About dialog"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:113
+#: data/io.elementary.videos.appdata.xml.in:152
+msgid "Minor bug fixes"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:121
+msgid "Preview popover now closely follows cursor position"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:136
+msgid "Fix appstream date format"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:143
+msgid "Added a library view with search"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:144
+msgid "Fixed a bug that prevents keyboard navigation"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:157
 msgid "elementary LLC."
 msgstr "एलिमेंटरी LLC."
 
