@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-16 18:28-0700\n"
-"PO-Revision-Date: 2018-11-01 20:01+0000\n"
-"Last-Translator: Jesse ALTER <jesse@jessealter.com>\n"
-"Language-Team: Esperanto <https://weblate.elementary.io/projects/videos/"
-"extra/eo/>\n"
+"PO-Revision-Date: 2019-07-03 10:28+0000\n"
+"Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
+"Language-Team: Esperanto <https://l10n.elementary.io/projects/videos/extra/"
+"eo/>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.6.1\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
 #: data/io.elementary.videos.desktop.in:4
@@ -27,7 +27,7 @@ msgstr "Videoj"
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Spekti videojn kaj filmojn"
 
 #: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
@@ -35,31 +35,34 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
+"Moderna videoludilo kiu fokusiĝas je afiŝo de videaj enhavoj anstataŭ de "
+"ludaj regiloj. Ĝi memoras la laste luditan videon kaj la lastan pozicion de "
+"kie vi rekomencos spektadi."
 
 #: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
-msgstr ""
+msgstr "Pliaj funkcioj inkluzivas:"
 
 #: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
-msgstr ""
+msgstr "Subteksta subteno"
 
 #: data/io.elementary.videos.appdata.xml.in:21
 msgid "Play queue"
-msgstr ""
+msgstr "Ludi la atendovicon"
 
 #: data/io.elementary.videos.appdata.xml.in:22
 msgid "Thumbnail previews on the seek bar"
-msgstr ""
+msgstr "Miniaturoj ĉe naviga breto"
 
 #: data/io.elementary.videos.appdata.xml.in:134
 msgid "elementary LLC."
-msgstr ""
+msgstr "elementary LLC."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
-msgstr ""
+msgstr "Videoludilo"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "multimedia-video-player"
-msgstr ""
+msgstr "multimedia-video-player"
