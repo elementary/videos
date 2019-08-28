@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-26 22:46+0200\n"
-"PO-Revision-Date: 2018-08-24 00:02+0000\n"
-"Last-Translator: Daniel Foré <daniel@elementary.io>\n"
-"Language-Team: Catalan <https://weblate.elementary.io/projects/videos/extra/"
-"ca/>\n"
+"PO-Revision-Date: 2019-08-29 17:22+0000\n"
+"Last-Translator: David M <rbndavid@gmail.com>\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/videos/extra/ca/>"
+"\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.7.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
@@ -60,7 +60,7 @@ msgstr "Previsualització de miniatures a la barra de cerca"
 #: data/io.elementary.videos.appdata.xml.in:66
 #: data/io.elementary.videos.appdata.xml.in:74
 msgid "Build fixes"
-msgstr ""
+msgstr "Correccions de construcció"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 #: data/io.elementary.videos.appdata.xml.in:75
@@ -74,27 +74,27 @@ msgstr "Actualitzacions de la traducció"
 
 #: data/io.elementary.videos.appdata.xml.in:89
 msgid "Window behavior improvements"
-msgstr ""
+msgstr "Millores del comportament de les finestres"
 
 #: data/io.elementary.videos.appdata.xml.in:90
 msgid "Fix disappearing subtitle tracks"
-msgstr ""
+msgstr "Correcció de la desaparició de subtítols"
 
 #: data/io.elementary.videos.appdata.xml.in:97
 msgid "Disallow setting playback before start"
-msgstr ""
+msgstr "No permetre l'establiment de la reproducció abans de l'inici"
 
 #: data/io.elementary.videos.appdata.xml.in:104
 msgid "Limit consecutive spacebar pauses"
-msgstr ""
+msgstr "Limitació de les pauses consecutives de la barra espaiadora"
 
 #: data/io.elementary.videos.appdata.xml.in:111
 msgid "Crash fixes"
-msgstr ""
+msgstr "Correccions de fallades"
 
 #: data/io.elementary.videos.appdata.xml.in:112
 msgid "Remove About dialog"
-msgstr ""
+msgstr "Supressió del diàleg de Quant a"
 
 #: data/io.elementary.videos.appdata.xml.in:113
 #: data/io.elementary.videos.appdata.xml.in:152
@@ -104,6 +104,7 @@ msgstr "Correccions d'errors menors"
 #: data/io.elementary.videos.appdata.xml.in:121
 msgid "Preview popover now closely follows cursor position"
 msgstr ""
+"Previsualització de la finestra emergent a prop de la posició del cursor"
 
 #: data/io.elementary.videos.appdata.xml.in:136
 msgid "Fix appstream date format"
