@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-16 18:28-0700\n"
-"PO-Revision-Date: 2019-07-03 10:28+0000\n"
+"PO-Revision-Date: 2019-08-30 21:22+0000\n"
 "Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/videos/extra/"
 "eo/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
 #: data/io.elementary.videos.desktop.in:4
@@ -58,7 +58,7 @@ msgstr "Miniaturoj ĉe naviga breto"
 #: data/io.elementary.videos.appdata.xml.in:66
 #: data/io.elementary.videos.appdata.xml.in:74
 msgid "Build fixes"
-msgstr ""
+msgstr "Sistemversiaj riparoj"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 #: data/io.elementary.videos.appdata.xml.in:75
@@ -68,52 +68,52 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:129
 #: data/io.elementary.videos.appdata.xml.in:145
 msgid "Translation updates"
-msgstr ""
+msgstr "Tradukaj ĝisdatigoj"
 
 #: data/io.elementary.videos.appdata.xml.in:89
 msgid "Window behavior improvements"
-msgstr ""
+msgstr "Fenestraj kondutaj plibonigoj"
 
 #: data/io.elementary.videos.appdata.xml.in:90
 msgid "Fix disappearing subtitle tracks"
-msgstr ""
+msgstr "Ripari malaperantajn subtekstojn"
 
 #: data/io.elementary.videos.appdata.xml.in:97
 msgid "Disallow setting playback before start"
-msgstr ""
+msgstr "Malpermesi ludigon antaŭ komenco"
 
 #: data/io.elementary.videos.appdata.xml.in:104
 msgid "Limit consecutive spacebar pauses"
-msgstr ""
+msgstr "Limigi sinsekvajn paŭzojn per spacostango"
 
 #: data/io.elementary.videos.appdata.xml.in:111
 msgid "Crash fixes"
-msgstr ""
+msgstr "Kraŝaj riparoj"
 
 #: data/io.elementary.videos.appdata.xml.in:112
 msgid "Remove About dialog"
-msgstr ""
+msgstr "Forigi dialogon Pri"
 
 #: data/io.elementary.videos.appdata.xml.in:113
 #: data/io.elementary.videos.appdata.xml.in:152
 msgid "Minor bug fixes"
-msgstr ""
+msgstr "Malgravaj sencimigoj"
 
 #: data/io.elementary.videos.appdata.xml.in:121
 msgid "Preview popover now closely follows cursor position"
-msgstr ""
+msgstr "Ŝpruca antaŭvidilo nun strikte sekvas la musmontrilon"
 
 #: data/io.elementary.videos.appdata.xml.in:136
 msgid "Fix appstream date format"
-msgstr ""
+msgstr "Ripari la datformaton de appstream"
 
 #: data/io.elementary.videos.appdata.xml.in:143
 msgid "Added a library view with search"
-msgstr ""
+msgstr "Aldono de videoteka vidilo kun serĉilo"
 
 #: data/io.elementary.videos.appdata.xml.in:144
 msgid "Fixed a bug that prevents keyboard navigation"
-msgstr ""
+msgstr "Riparo de cimo malhelpanta klavaran navigadon"
 
 #: data/io.elementary.videos.appdata.xml.in:157
 msgid "elementary LLC."
