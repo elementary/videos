@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-26 22:46+0200\n"
-"PO-Revision-Date: 2019-01-09 10:13+0000\n"
-"Last-Translator: Cody Garver <cody@elementary.io>\n"
-"Language-Team: Marathi <https://weblate.elementary.io/projects/videos/extra/"
-"mr/>\n"
+"PO-Revision-Date: 2019-09-15 15:22+0000\n"
+"Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/videos/extra/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
 #: data/io.elementary.videos.desktop.in:4
@@ -57,7 +57,7 @@ msgstr "शोध बारवर लघुप्रतिमा पूर्व
 #: data/io.elementary.videos.appdata.xml.in:66
 #: data/io.elementary.videos.appdata.xml.in:74
 msgid "Build fixes"
-msgstr ""
+msgstr "निराकारणे बिल्ड करा"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 #: data/io.elementary.videos.appdata.xml.in:75
@@ -67,52 +67,52 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:129
 #: data/io.elementary.videos.appdata.xml.in:145
 msgid "Translation updates"
-msgstr ""
+msgstr "भाषांतर अपडेट्स"
 
 #: data/io.elementary.videos.appdata.xml.in:89
 msgid "Window behavior improvements"
-msgstr ""
+msgstr "विंडो वर्तन सुधारणा"
 
 #: data/io.elementary.videos.appdata.xml.in:90
 msgid "Fix disappearing subtitle tracks"
-msgstr ""
+msgstr "अदृश्य होणाऱ्या उपशीर्षक ट्रॅकचे निराकरण करा"
 
 #: data/io.elementary.videos.appdata.xml.in:97
 msgid "Disallow setting playback before start"
-msgstr ""
+msgstr "प्रारंभ करण्यापूर्वी प्लेबॅक सेट करण्याची अनुमती काढा"
 
 #: data/io.elementary.videos.appdata.xml.in:104
 msgid "Limit consecutive spacebar pauses"
-msgstr ""
+msgstr "स्पेसबार विराम मर्यादित करा"
 
 #: data/io.elementary.videos.appdata.xml.in:111
 msgid "Crash fixes"
-msgstr ""
+msgstr "क्रॅश फिक्स"
 
 #: data/io.elementary.videos.appdata.xml.in:112
 msgid "Remove About dialog"
-msgstr ""
+msgstr "बद्दल संवाद काढा"
 
 #: data/io.elementary.videos.appdata.xml.in:113
 #: data/io.elementary.videos.appdata.xml.in:152
 msgid "Minor bug fixes"
-msgstr ""
+msgstr "किरकोळ दोष निराकरणे"
 
 #: data/io.elementary.videos.appdata.xml.in:121
 msgid "Preview popover now closely follows cursor position"
-msgstr ""
+msgstr "पूर्वावलोकन पॉपओव्हर आता कर्सर स्थानाचे बारकाईने अनुसरण करतो"
 
 #: data/io.elementary.videos.appdata.xml.in:136
 msgid "Fix appstream date format"
-msgstr ""
+msgstr "अ‍ॅपस्ट्रीम तारीख स्वरूप निश्चित करा"
 
 #: data/io.elementary.videos.appdata.xml.in:143
 msgid "Added a library view with search"
-msgstr ""
+msgstr "शोधामध्ये लायब्ररी दृश्य जोडले"
 
 #: data/io.elementary.videos.appdata.xml.in:144
 msgid "Fixed a bug that prevents keyboard navigation"
-msgstr ""
+msgstr "कीबोर्ड नेव्हिगेशनला प्रतिबंधित करणाऱ्या दोषाचे निराकरण केले"
 
 #: data/io.elementary.videos.appdata.xml.in:157
 msgid "elementary LLC."
