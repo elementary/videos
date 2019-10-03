@@ -113,8 +113,8 @@ namespace Audience.Objects {
                     uris.add (video_file.get_uri ());
                     mimes.add (mime_type);
 
-                    manager.thumbler.Instand (uris, mimes, "large");
-                    manager.thumbler.Instand (uris, mimes, "normal");
+                    manager.thumbler.instand (uris, mimes, "large");
+                    manager.thumbler.instand (uris, mimes, "normal");
                 }
 
                 string? poster_path = poster_cache_file;

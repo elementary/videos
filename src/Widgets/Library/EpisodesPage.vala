@@ -84,7 +84,7 @@ namespace Audience {
             update_poster (poster_source);
             poster_source.poster_changed.connect (update_poster);
         }
-        
+
         private void update_poster (Objects.Video episode) {
             poster.pixbuf = episode.poster;
         }

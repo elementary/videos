@@ -20,10 +20,9 @@
  */
 
 namespace Audience {
-
     public enum LibraryItemStyle { THUMBNAIL, ROW }
 
-    public class LibraryItem : Gtk.FlowBoxChild  {
+    public class LibraryItem : Gtk.FlowBoxChild {
         Audience.Services.LibraryManager manager;
 
         public Gee.ArrayList<Audience.Objects.Video> episodes { get; private set; }
@@ -104,12 +103,12 @@ namespace Audience {
 
                 grid.attach (spinner_container, 0, 0, 1, 1);
                 grid.attach (poster, 0, 0, 1, 1);
-                grid.attach (title_label, 0, 1, 1 ,1);
+                grid.attach (title_label, 0, 1);
 
                 map.connect (poster_visibility);
             } else {
                 grid.halign = Gtk.Align.FILL;
-                grid.attach (title_label, 0, 0, 1 ,1);
+                grid.attach (title_label, 0, 0);
                 grid.margin = 12;
             }
 
@@ -173,7 +172,7 @@ namespace Audience {
                 if (pixbuf != null) {
                     try {
                         if (episodes.size == 1) {
-                            pixbuf.save (episodes.first ().video_file.get_path() + ".jpg", "jpeg");
+                            pixbuf.save (episodes.first ().video_file.get_path () + ".jpg", "jpeg");
                             episodes.first ().set_new_poster (pixbuf);
                             episodes.first ().initialize_poster.begin ();
                         } else {

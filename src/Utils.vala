@@ -20,16 +20,16 @@
 
 [DBus (name = "org.gnome.SettingsDaemon.MediaKeys")]
 public interface GnomeMediaKeys : GLib.Object {
-    public abstract void GrabMediaPlayerKeys (string application, uint32 time) throws GLib.Error;
-    public abstract void ReleaseMediaPlayerKeys (string application) throws GLib.Error;
-    public signal void MediaPlayerKeyPressed (string application, string key);
+    public abstract void grab_media_player_keys (string application, uint32 time) throws GLib.Error;
+    public abstract void release_media_player_keys (string application) throws GLib.Error;
+    public signal void media_player_key_pressed (string application, string key);
 }
 
 [DBus (name = "org.gnome.SessionManager")]
 public interface GnomeSessionManager : GLib.Object {
-    public abstract bool isSessionRunning() throws GLib.Error;
-    public abstract uint32 Inhibit (string app_id, uint32 toplevel_xid, string reason, uint32 flags) throws GLib.Error;
-    public abstract void Uninhibit (uint32 inhibit_cookie) throws GLib.Error;
+    public abstract bool isSessionRunning () throws GLib.Error; //vala-lint=naming-convention
+    public abstract uint32 inhibit (string app_id, uint32 toplevel_xid, string reason, uint32 flags) throws GLib.Error;
+    public abstract void uninhibit (uint32 inhibit_cookie) throws GLib.Error;
 }
 
 namespace Audience {
@@ -59,9 +59,9 @@ namespace Audience {
     }
 
     public static string get_extension (string filename) {
-        for (uint i=filename.length; i!=0; i--) {
+        for (uint i = filename.length; i != 0; i--) {
             if (filename[i] == '.')
-                return filename.substring (i+1);
+                return filename.substring (i + 1);
         }
 
         return filename;

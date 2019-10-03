@@ -1,5 +1,5 @@
 namespace Audience {
-    private  const string[] SUBTITLE_EXTENSIONS = {
+    private const string[] SUBTITLE_EXTENSIONS = {
         "sub",
         "srt",
         "smi",
@@ -25,11 +25,10 @@ namespace Audience {
         private bool mouse_primary_down = false;
 
         public bool repeat {
-            get{
+            get {
                 return bottom_bar.repeat;
             }
-
-            set{
+            set {
                 bottom_bar.repeat = value;
             }
         }
@@ -123,7 +122,7 @@ namespace Audience {
             try {
                 mediakeys = Bus.get_proxy_sync (BusType.SESSION,
                     "org.gnome.SettingsDaemon", "/org/gnome/SettingsDaemon/MediaKeys");
-                mediakeys.MediaPlayerKeyPressed.connect ((bus, app, key) => {
+                mediakeys.media_player_key_pressed.connect ((bus, app, key) => {
                     if (app != "audience")
                        return;
                     switch (key) {
@@ -141,7 +140,7 @@ namespace Audience {
                     }
                 });
 
-                mediakeys.GrabMediaPlayerKeys("audience", 0);
+                mediakeys.grab_media_player_keys ("audience", 0);
             } catch (Error e) {
                 warning (e.message);
             }
@@ -275,7 +274,7 @@ namespace Audience {
         public string get_played_uri () {
             return playback.uri;
         }
-        
+
         public void reset_played_uri () {
             playback.uri = "";
         }
@@ -324,7 +323,7 @@ namespace Audience {
         public void seek_jump_seconds (int seconds) {
             var duration = playback.duration;
             var progress = playback.progress;
-            var new_progress = ((duration * progress) + (double)seconds)/duration;
+            var new_progress = ((duration * progress) + (double)seconds) / duration;
             playback.progress = new_progress.clamp (0.0, 1.0);
             bottom_bar.reveal_control ();
         }
@@ -343,7 +342,7 @@ namespace Audience {
             else
                 without_ext = uri.slice (0, last_dot);
 
-            foreach (string ext in SUBTITLE_EXTENSIONS){
+            foreach (string ext in SUBTITLE_EXTENSIONS) {
                 string sub_uri = without_ext + "." + ext;
                 if (File.new_for_uri (sub_uri).query_exists ())
                     return sub_uri;
@@ -352,7 +351,7 @@ namespace Audience {
         }
 
         private bool is_subtitle (string uri) {
-            if (uri.length < 4 || uri.get_char (uri.length-4) != '.')
+            if (uri.length < 4 || uri.get_char (uri.length - 4) != '.')
                 return false;
 
             foreach (string ext in SUBTITLE_EXTENSIONS) {

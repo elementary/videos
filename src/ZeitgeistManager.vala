@@ -40,7 +40,7 @@ namespace Audience {
 
         public bool app_into_blacklist (string app_name) {
             try {
-                foreach(Variant key in apps.get_templates ()) {
+                foreach (Variant key in apps.get_templates ()) {
                     VariantIter iter = key.iterator ();
                     string template_id = iter.next_value ().get_string ();
                     if (template_id == "app-" + app_name + ".desktop") {

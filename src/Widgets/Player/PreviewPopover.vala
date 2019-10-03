@@ -20,16 +20,16 @@
 
 public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     private enum PlayFlags {
-        VIDEO         = (1 << 0),
-        AUDIO         = (1 << 1),
-        TEXT          = (1 << 2),
-        VIS           = (1 << 3),
-        SOFT_VOLUME   = (1 << 4),
-        NATIVE_AUDIO  = (1 << 5),
-        NATIVE_VIDEO  = (1 << 6),
-        DOWNLOAD      = (1 << 7),
-        BUFFERING     = (1 << 8),
-        DEINTERLACE   = (1 << 9),
+        VIDEO = (1 << 0),
+        AUDIO = (1 << 1),
+        TEXT = (1 << 2),
+        VIS = (1 << 3),
+        SOFT_VOLUME = (1 << 4),
+        NATIVE_AUDIO = (1 << 5),
+        NATIVE_VIDEO = (1 << 6),
+        DOWNLOAD = (1 << 7),
+        BUFFERING = (1 << 8),
+        DEINTERLACE = (1 << 9),
         SOFT_COLORBALANCE = (1 << 10)
     }
 
@@ -77,7 +77,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         video_actor.content = aspect_ratio;
         ((ClutterGst.Content) aspect_ratio).size_change.connect ((width, height) => {
             if (width > 0 && height > 0) {
-                double diagonal = Math.sqrt((width * width) + (height * height));
+                double diagonal = Math.sqrt ((width * width) + (height * height));
                 double k = 230 / diagonal; // for 16:9 ratio it produces width of ~200px
                 clutter.set_size_request ((int)(width * k), (int)(height * k));
             }
@@ -110,7 +110,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     public void set_preview_progress (double progress, bool loop = false) {
         req_progress = progress;
         req_loop = loop;
-        
+
         if (!visible || idle_id > 0) {
             return;
         }
