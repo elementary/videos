@@ -7,24 +7,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 18:28-0700\n"
-"PO-Revision-Date: 2018-07-16 20:55+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2019-06-26 22:46+0200\n"
+"PO-Revision-Date: 2019-03-13 16:27+0000\n"
+"Last-Translator: nasserbinlaboun <nasser1990com@gmail.com>\n"
+"Language-Team: Arabic <https://l10n.elementary.io/projects/videos/extra/ar/"
+">\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 3.4\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
 #: data/io.elementary.videos.desktop.in:4
 msgid "Videos"
-msgstr ""
+msgstr "فيديوهات"
 
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "شاهد مقاطع الفيديو و الأفلام"
 
 #: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
@@ -35,27 +39,87 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
-msgstr ""
+msgstr "تشمل الميزات الإضافية:"
 
 #: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
-msgstr ""
+msgstr "يدعم الترجمة"
 
 #: data/io.elementary.videos.appdata.xml.in:21
 msgid "Play queue"
-msgstr ""
+msgstr "شغل القائمة"
 
 #: data/io.elementary.videos.appdata.xml.in:22
 msgid "Thumbnail previews on the seek bar"
+msgstr "معاينة الصور المصغرة في شريط البحث"
+
+#: data/io.elementary.videos.appdata.xml.in:66
+#: data/io.elementary.videos.appdata.xml.in:74
+msgid "Build fixes"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:134
-msgid "elementary LLC."
+#: data/io.elementary.videos.appdata.xml.in:67
+#: data/io.elementary.videos.appdata.xml.in:75
+#: data/io.elementary.videos.appdata.xml.in:82
+#: data/io.elementary.videos.appdata.xml.in:114
+#: data/io.elementary.videos.appdata.xml.in:122
+#: data/io.elementary.videos.appdata.xml.in:129
+#: data/io.elementary.videos.appdata.xml.in:145
+msgid "Translation updates"
 msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:89
+msgid "Window behavior improvements"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:90
+msgid "Fix disappearing subtitle tracks"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:97
+msgid "Disallow setting playback before start"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:104
+msgid "Limit consecutive spacebar pauses"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:111
+msgid "Crash fixes"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:112
+msgid "Remove About dialog"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:113
+#: data/io.elementary.videos.appdata.xml.in:152
+msgid "Minor bug fixes"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:121
+msgid "Preview popover now closely follows cursor position"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:136
+msgid "Fix appstream date format"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:143
+msgid "Added a library view with search"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:144
+msgid "Fixed a bug that prevents keyboard navigation"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:157
+msgid "elementary LLC."
+msgstr "elementary LLC."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
-msgstr ""
+msgstr "مشغل الفيديو"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "multimedia-video-player"

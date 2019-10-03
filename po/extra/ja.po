@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 18:28-0700\n"
-"PO-Revision-Date: 2018-12-06 08:05+0000\n"
+"POT-Creation-Date: 2019-06-26 22:46+0200\n"
+"PO-Revision-Date: 2019-09-14 12:22+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://weblate.elementary.io/projects/videos/extra/"
-"ja/>\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
+">\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.7.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
@@ -36,8 +36,9 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
-"プレイヤーコントロールではなく動画内容の表示に重点を置いた、モダンなビデオプレイヤーです。最後に再生した動画と再生位置を記憶するので、前回中断したところか"
-"ら再生を再開できます。"
+"プレイヤーコントロールではなく動画内容の表示に重点を置いた、モダンなビデオプ"
+"レイヤーです。最後に再生した動画と再生位置を記憶するので、前回中断したところ"
+"から再生を再開できます。"
 
 #: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
@@ -55,7 +56,67 @@ msgstr "再生キュー"
 msgid "Thumbnail previews on the seek bar"
 msgstr "シークバー上のサムネイルプレビュー"
 
-#: data/io.elementary.videos.appdata.xml.in:134
+#: data/io.elementary.videos.appdata.xml.in:66
+#: data/io.elementary.videos.appdata.xml.in:74
+msgid "Build fixes"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:67
+#: data/io.elementary.videos.appdata.xml.in:75
+#: data/io.elementary.videos.appdata.xml.in:82
+#: data/io.elementary.videos.appdata.xml.in:114
+#: data/io.elementary.videos.appdata.xml.in:122
+#: data/io.elementary.videos.appdata.xml.in:129
+#: data/io.elementary.videos.appdata.xml.in:145
+msgid "Translation updates"
+msgstr "翻訳の更新"
+
+#: data/io.elementary.videos.appdata.xml.in:89
+msgid "Window behavior improvements"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:90
+msgid "Fix disappearing subtitle tracks"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:97
+msgid "Disallow setting playback before start"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:104
+msgid "Limit consecutive spacebar pauses"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:111
+msgid "Crash fixes"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:112
+msgid "Remove About dialog"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:113
+#: data/io.elementary.videos.appdata.xml.in:152
+msgid "Minor bug fixes"
+msgstr "軽微なバグの修正"
+
+#: data/io.elementary.videos.appdata.xml.in:121
+msgid "Preview popover now closely follows cursor position"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:136
+msgid "Fix appstream date format"
+msgstr "appstream の日付形式を修正"
+
+#: data/io.elementary.videos.appdata.xml.in:143
+msgid "Added a library view with search"
+msgstr "検索でライブラリービューを追加する"
+
+#: data/io.elementary.videos.appdata.xml.in:144
+msgid "Fixed a bug that prevents keyboard navigation"
+msgstr "キーボードナビゲーションを妨害するバグを修正"
+
+#: data/io.elementary.videos.appdata.xml.in:157
 msgid "elementary LLC."
 msgstr "elementary LLC."
 
@@ -69,18 +130,3 @@ msgstr "multimedia-video-player"
 
 #~ msgid "Audience"
 #~ msgstr "Audience"
-
-#~ msgid "Translation updates"
-#~ msgstr "翻訳のアップデート"
-
-#~ msgid "Fix appstream date format"
-#~ msgstr "appstream の日付形式を修正"
-
-#~ msgid "Added a library view with search"
-#~ msgstr "検索でライブラリービューを追加する"
-
-#~ msgid "Fixed a bug that prevents keyboard navigation"
-#~ msgstr "キーボードナビゲーションを妨害するバグを修正"
-
-#~ msgid "Minor bug fixes"
-#~ msgstr "マイナーなバグ修正"

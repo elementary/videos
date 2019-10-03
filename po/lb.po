@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 08:20-0700\n"
+"POT-Creation-Date: 2019-06-26 22:46+0200\n"
 "PO-Revision-Date: 2016-07-30 14:30+0000\n"
 "Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Luxembourgish <lb@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
-#: src/Application.vala:68 src/Window.vala:475
+#: src/Application.vala:70 src/Window.vala:482
 msgid "Videos"
 msgstr "Videoen"
 
@@ -52,25 +52,25 @@ msgstr ""
 msgid "Restore"
 msgstr ""
 
-#: src/Window.vala:373 src/Widgets/Library/LibraryItem.vala:163
-msgid "Open"
-msgstr "Opmaachen"
-
-#: src/Window.vala:374 src/Widgets/Library/LibraryItem.vala:163
-msgid "_Cancel"
-msgstr "Ofbriechen"
-
-#: src/Window.vala:374 src/Widgets/Library/LibraryItem.vala:163
-msgid "_Open"
-msgstr "_Opmaachen"
-
-#: src/Window.vala:379 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:378 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "All Dateien"
 
-#: src/Window.vala:383
+#: src/Window.vala:382
 msgid "Video files"
 msgstr "Video Dateien"
+
+#: src/Window.vala:386 src/Widgets/Library/LibraryItem.vala:168
+msgid "Open"
+msgstr "Opmaachen"
+
+#: src/Window.vala:389 src/Widgets/Library/LibraryItem.vala:171
+msgid "_Open"
+msgstr "_Opmaachen"
+
+#: src/Window.vala:390 src/Widgets/Library/LibraryItem.vala:172
+msgid "_Cancel"
+msgstr "Ofbriechen"
 
 #: src/Widgets/WelcomePage.vala:6
 msgid "No Videos Open"
@@ -120,7 +120,7 @@ msgstr ""
 msgid "Set Artwork"
 msgstr ""
 
-#: src/Widgets/Library/LibraryItem.vala:166
+#: src/Widgets/Library/LibraryItem.vala:164
 msgid "Image files"
 msgstr ""
 

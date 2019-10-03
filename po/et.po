@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 08:20-0700\n"
+"POT-Creation-Date: 2019-06-26 22:46+0200\n"
 "PO-Revision-Date: 2017-05-23 10:04+0000\n"
 "Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
 "Language-Team: Estonian <https://l10n.elementary.io/projects/videos/videos/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 
-#: src/Application.vala:68 src/Window.vala:475
+#: src/Application.vala:70 src/Window.vala:482
 msgid "Videos"
 msgstr "Videod"
 
@@ -54,25 +54,25 @@ msgstr ""
 msgid "Restore"
 msgstr ""
 
-#: src/Window.vala:373 src/Widgets/Library/LibraryItem.vala:163
-msgid "Open"
-msgstr "Ava"
-
-#: src/Window.vala:374 src/Widgets/Library/LibraryItem.vala:163
-msgid "_Cancel"
-msgstr "_Loobu"
-
-#: src/Window.vala:374 src/Widgets/Library/LibraryItem.vala:163
-msgid "_Open"
-msgstr "_Ava"
-
-#: src/Window.vala:379 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:378 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Kõik Failid"
 
-#: src/Window.vala:383
+#: src/Window.vala:382
 msgid "Video files"
 msgstr "Videofailid"
+
+#: src/Window.vala:386 src/Widgets/Library/LibraryItem.vala:168
+msgid "Open"
+msgstr "Ava"
+
+#: src/Window.vala:389 src/Widgets/Library/LibraryItem.vala:171
+msgid "_Open"
+msgstr "_Ava"
+
+#: src/Window.vala:390 src/Widgets/Library/LibraryItem.vala:172
+msgid "_Cancel"
+msgstr "_Loobu"
 
 #: src/Widgets/WelcomePage.vala:6
 msgid "No Videos Open"
@@ -122,7 +122,7 @@ msgstr "Kustuta"
 msgid "Set Artwork"
 msgstr ""
 
-#: src/Widgets/Library/LibraryItem.vala:166
+#: src/Widgets/Library/LibraryItem.vala:164
 msgid "Image files"
 msgstr ""
 
