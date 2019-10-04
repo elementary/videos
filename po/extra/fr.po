@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-26 22:46+0200\n"
-"PO-Revision-Date: 2019-01-14 00:11+0000\n"
+"PO-Revision-Date: 2019-10-05 10:23+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
-"Language-Team: French <https://weblate.elementary.io/projects/videos/extra/"
-"fr/>\n"
+"Language-Team: French <https://l10n.elementary.io/projects/videos/extra/fr/>"
+"\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.7.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
@@ -59,7 +59,7 @@ msgstr "Miniatures sur la barre de navigation"
 #: data/io.elementary.videos.appdata.xml.in:66
 #: data/io.elementary.videos.appdata.xml.in:74
 msgid "Build fixes"
-msgstr ""
+msgstr "Corrections de compilation"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 #: data/io.elementary.videos.appdata.xml.in:75
@@ -73,27 +73,27 @@ msgstr "Mise à jour des traductions"
 
 #: data/io.elementary.videos.appdata.xml.in:89
 msgid "Window behavior improvements"
-msgstr ""
+msgstr "Améliorations du comportement des fenêtres"
 
 #: data/io.elementary.videos.appdata.xml.in:90
 msgid "Fix disappearing subtitle tracks"
-msgstr ""
+msgstr "Correction de la disparition de la piste des sous-titres"
 
 #: data/io.elementary.videos.appdata.xml.in:97
 msgid "Disallow setting playback before start"
-msgstr ""
+msgstr "Désactivation du réglage de la lecture avant le lancement"
 
 #: data/io.elementary.videos.appdata.xml.in:104
 msgid "Limit consecutive spacebar pauses"
-msgstr ""
+msgstr "Limiter la mise en pause lors de l'appui consécutif sur la barre espace"
 
 #: data/io.elementary.videos.appdata.xml.in:111
 msgid "Crash fixes"
-msgstr ""
+msgstr "Corrections de plantage"
 
 #: data/io.elementary.videos.appdata.xml.in:112
 msgid "Remove About dialog"
-msgstr ""
+msgstr "Suppression de la boîte de dialogue « À propos »"
 
 #: data/io.elementary.videos.appdata.xml.in:113
 #: data/io.elementary.videos.appdata.xml.in:152
@@ -102,7 +102,7 @@ msgstr "Corrections d'anomalies mineures"
 
 #: data/io.elementary.videos.appdata.xml.in:121
 msgid "Preview popover now closely follows cursor position"
-msgstr ""
+msgstr "L'infobulle d'aperçu suit désormais correctement la position du curseur"
 
 #: data/io.elementary.videos.appdata.xml.in:136
 msgid "Fix appstream date format"
