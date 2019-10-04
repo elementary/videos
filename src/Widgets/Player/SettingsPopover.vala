@@ -58,7 +58,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         var sub_ext_label = new Gtk.Label (_("External Subtitles:"));
         sub_ext_label.halign = Gtk.Align.END;
 
-        var setupgrid  = new Gtk.Grid ();
+        var setupgrid = new Gtk.Grid ();
         setupgrid.row_spacing = 6;
         setupgrid.margin = 6;
         setupgrid.attach (lang_label, 0, 1, 1, 1);
@@ -126,7 +126,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         });
         subtitles.append ("none", _("None"));
 
-        int count = subtitles.model.iter_n_children (null); 
+        int count = subtitles.model.iter_n_children (null);
         subtitles.sensitive = count > 1;
         if (subtitles.sensitive && (playback.subtitle_track >= 0)) {
             subtitles.active = playback.subtitle_track;
@@ -136,7 +136,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
         subtitles.changed.connect (on_subtitles_changed);
     }
-    
+
     private void setup_audio () {
         languages.changed.disconnect (on_languages_changed);
 
@@ -149,7 +149,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             languages.append (lang, _("Track %u").printf (track++));
         });
 
-        int count = languages.model.iter_n_children (null); 
+        int count = languages.model.iter_n_children (null);
         languages.sensitive = count > 1;
         if (languages.sensitive) {
             languages.active = playback.audio_stream;

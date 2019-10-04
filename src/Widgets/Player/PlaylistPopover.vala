@@ -102,14 +102,14 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         int r_minimum_height;
         int r_natural_height;
         relative_to.get_preferred_height (out r_minimum_height, out r_natural_height);
-        if (temp_minimum_height < app.mainwindow.get_window ().get_height () - r_minimum_height*2) {
+        if (temp_minimum_height < app.mainwindow.get_window ().get_height () - r_minimum_height * 2) {
             minimum_height = temp_minimum_height;
         } else {
-            minimum_height = app.mainwindow.get_window ().get_height () - r_minimum_height*2;
+            minimum_height = app.mainwindow.get_window ().get_height () - r_minimum_height * 2;
         }
 
         int temp_natural_height = natural_height + p_natural_height;
-        if (temp_natural_height < app.mainwindow.get_window ().get_height () - r_natural_height*2) {
+        if (temp_natural_height < app.mainwindow.get_window ().get_height () - r_natural_height * 2) {
             natural_height = temp_natural_height;
         } else {
             natural_height = minimum_height;
