@@ -27,7 +27,8 @@ public interface GnomeMediaKeys : GLib.Object {
 
 [DBus (name = "org.gnome.SessionManager")]
 public interface GnomeSessionManager : GLib.Object {
-    public abstract bool isSessionRunning () throws GLib.Error; //vala-lint=naming-convention
+    [DBus (name = "isSessionRunning")]
+    public abstract bool is_session_running () throws GLib.Error;
     public abstract uint32 inhibit (string app_id, uint32 toplevel_xid, string reason, uint32 flags) throws GLib.Error;
     public abstract void uninhibit (uint32 inhibit_cookie) throws GLib.Error;
 }
