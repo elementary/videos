@@ -35,7 +35,6 @@ public class Audience.DiskManager : GLib.Object {
     private Gee.TreeSet<Volume> volumes;
 
     private DiskManager () {
-        
     }
 
     construct {

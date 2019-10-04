@@ -50,7 +50,7 @@ namespace Audience.Widgets {
             this.insert_column_with_attributes (-1, "Title", text_render, "text", Columns.TITLE);
             this.set_tooltip_column (1);
 
-            this.row_activated.connect ((path ,col) => {
+            this.row_activated.connect ((path, col) => {
                 Gtk.TreeIter iter;
                 playlist.get_iter (out iter, path);
                 string filename;
@@ -78,7 +78,7 @@ namespace Audience.Widgets {
 
         public bool next () {
             Gtk.TreeIter iter;
-            if (playlist.get_iter_from_string (out iter, (this.current + 1).to_string ())){
+            if (playlist.get_iter_from_string (out iter, (this.current + 1).to_string ())) {
                 string filename;
                 playlist.get (iter, Columns.FILENAME, out filename);
                 current++;
@@ -91,7 +91,7 @@ namespace Audience.Widgets {
 
         public void previous () {
             Gtk.TreeIter iter;
-            if (playlist.get_iter_from_string (out iter, (this.current - 1).to_string ())){
+            if (playlist.get_iter_from_string (out iter, (this.current - 1).to_string ())) {
                 string filename;
                 playlist.get (iter, Columns.FILENAME, out filename);
                 current--;
@@ -119,7 +119,7 @@ namespace Audience.Widgets {
 
             Icon? playing = null;
             Gtk.TreeIter dummy;
-            if (!playlist.get_iter_first (out dummy)){
+            if (!playlist.get_iter_first (out dummy)) {
                 playing = new ThemedIcon ("media-playback-start-symbolic");
             } else {
                 playing = null;
@@ -156,7 +156,7 @@ namespace Audience.Widgets {
 
         public File? get_first_item () {
             Gtk.TreeIter iter;
-            if (playlist.get_iter_first (out iter)){
+            if (playlist.get_iter_first (out iter)) {
                 string filename;
                 playlist.get (iter, Columns.FILENAME, out filename);
                 return File.new_for_commandline_arg (filename);
@@ -229,7 +229,7 @@ namespace Audience.Widgets {
         private void restore_playlist () {
             this.current = 0;
             /* foreach (var filename in settings.last_played_videos) { */
-            for (int i = 0;i<settings.last_played_videos.length;i++) {
+            for (int i = 0; i < settings.last_played_videos.length; i++) {
                 if (settings.last_played_videos[i] == settings.current_video)
                     this.current = i;
                 add_item (File.new_for_uri (settings.last_played_videos[i]));

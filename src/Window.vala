@@ -37,9 +37,9 @@ public class Audience.Window : Gtk.Window {
     public enum NavigationPage { WELCOME, LIBRARY, EPISODES }
 
     // For better translation
-    const string navigation_button_welcomescreen = N_("Back");
-    const string navigation_button_library = N_("Library");
-    const string navigation_button_episodes = N_("Episodes");
+    const string NAVIGATION_BUTTON_WELCOMESCREEN = N_("Back");
+    const string NAVIGATION_BUTTON_LIBRARY = N_("Library");
+    const string NAVIGATION_BUTTON_EPISODES = N_("Episodes");
 
     public signal void media_volumes_changed ();
 
@@ -106,7 +106,7 @@ public class Audience.Window : Gtk.Window {
             episodes_page.set_episodes_items (item.episodes);
             episodes_page.poster.pixbuf = item.poster.pixbuf;
             if (!setup_only) {
-                navigation_button.label = _(navigation_button_library);
+                navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
                 main_stack.set_visible_child (episodes_page);
                 this.title = item.get_title ();
                 search_entry.text = "";
@@ -174,7 +174,7 @@ public class Audience.Window : Gtk.Window {
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
         Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
         drag_data_received.connect ((ctx, x, y, sel, info, time) => {
-            var files = new Array<File>();
+            var files = new Array<File> ();
             foreach (var uri in sel.get_uris ()) {
                 var file = File.new_for_uri (uri);
                 files.append_val (file);
@@ -198,7 +198,7 @@ public class Audience.Window : Gtk.Window {
                 player_page.playing = !player_page.playing;
             }
 
-            return base.button_press_event(event);
+            return base.button_press_event (event);
         });
 
         window_state_event.connect ((e) => {
@@ -348,7 +348,7 @@ public class Audience.Window : Gtk.Window {
         }
 
         if (force_play && videos.length > 0) {
-            string videofile = videos [0]; 
+            string videofile = videos [0];
             NavigationPage page = library_page.prepare_to_play (videofile);
             play_file (videofile, page);
         }
@@ -367,7 +367,7 @@ public class Audience.Window : Gtk.Window {
     }
 
     public void show_library () {
-        navigation_button.label = _(navigation_button_welcomescreen);
+        navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
         navigation_button.show ();
         main_stack.visible_child = library_page;
         library_page.scrolled_window.grab_focus ();
@@ -447,13 +447,13 @@ public class Audience.Window : Gtk.Window {
         switch (origin) {
             default:
             case NavigationPage.WELCOME:
-                navigation_button.label = _(navigation_button_welcomescreen);
+                navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
                 break;
             case NavigationPage.LIBRARY:
-                navigation_button.label = _(navigation_button_library);
+                navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
                 break;
             case NavigationPage.EPISODES:
-                navigation_button.label = _(navigation_button_episodes);
+                navigation_button.label = _(NAVIGATION_BUTTON_EPISODES);
                 break;
         }
 
@@ -482,11 +482,11 @@ public class Audience.Window : Gtk.Window {
         title = _("Videos");
         get_window ().set_cursor (null);
 
-        if (navigation_button.label == _(navigation_button_library)) {
-            navigation_button.label = _(navigation_button_welcomescreen);
+        if (navigation_button.label == _(NAVIGATION_BUTTON_LIBRARY)) {
+            navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
             main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
-        } else if (navigation_button.label == _(navigation_button_episodes)) {
-            navigation_button.label = _(navigation_button_library);
+        } else if (navigation_button.label == _(NAVIGATION_BUTTON_EPISODES)) {
+            navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
             main_stack.set_visible_child_full ("episodes", Gtk.StackTransitionType.SLIDE_RIGHT);
         } else {
             navigation_button.hide ();

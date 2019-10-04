@@ -20,7 +20,6 @@
  */
 
 namespace Audience {
-
     public Audience.Settings settings; //global space for easier access...
     public class App : Gtk.Application {
 
@@ -72,7 +71,7 @@ namespace Audience {
         }
 
         public string get_cache_directory () {
-            return GLib.Path.build_filename(GLib.Environment.get_user_cache_dir (), application_id);
+            return GLib.Path.build_filename (GLib.Environment.get_user_cache_dir (), application_id);
         }
 
         //the application was requested to open some files
@@ -88,7 +87,7 @@ public static void main (string [] args) {
 
     var err = GtkClutter.init (ref args);
     if (err != Clutter.InitError.SUCCESS) {
-        error ("Could not initalize clutter! "+err.to_string ());
+        error ("Could not initialize clutter! %s", err.to_string ());
     }
 
     Gst.init (ref args);

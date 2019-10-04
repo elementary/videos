@@ -22,8 +22,8 @@
 namespace Audience.Services {
     [DBus (name = "org.freedesktop.thumbnails.Thumbnailer1")]
     private interface Tumbler : GLib.Object {
-        public abstract async uint Queue (string[] uris, string[] mime_types, string flavor, string sheduler, uint handle_to_dequeue) throws GLib.IOError, GLib.DBusError;
-        public signal void Finished (uint handle);
+        public abstract async uint queue (string[] uris, string[] mime_types, string flavor, string sheduler, uint handle_to_dequeue) throws GLib.IOError, GLib.DBusError;
+        public signal void finished (uint handle);
     }
 
     public class DbusThumbnailer : GLib.Object {
@@ -39,14 +39,14 @@ namespace Audience.Services {
         construct {
             try {
                 tumbler = Bus.get_proxy_sync (BusType.SESSION, THUMBNAILER_IFACE, THUMBNAILER_SERVICE);
-                tumbler.Finished.connect ((handle) => { finished (handle); });
+                tumbler.finished.connect ((handle) => { finished (handle); });
             } catch (Error e) {
                 warning (e.message);
             }
         }
 
-        public void Instand (Gee.ArrayList<string> uris, Gee.ArrayList<string> mimes, string size){
-            tumbler.Queue.begin (uris.to_array (), mimes.to_array (), size, "default", 0);
+        public void instand (Gee.ArrayList<string> uris, Gee.ArrayList<string> mimes, string size) {
+            tumbler.queue.begin (uris.to_array (), mimes.to_array (), size, "default", 0);
         }
     }
 }
