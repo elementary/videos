@@ -67,7 +67,7 @@ namespace Audience.Services {
         }
 
         public void begin_scan () {
-            detect_video_files.begin (Audience.settings.library_folder);
+            detect_video_files.begin (Audience.settings.get_string ("library-folder"));
         }
 
         public async void detect_video_files (string source) throws GLib.Error {
@@ -115,7 +115,7 @@ namespace Audience.Services {
                 }
             }
 
-            if (directory.get_path () == Audience.settings.library_folder) {
+            if (directory.get_path () == Audience.settings.get_string ("library-folder")) {
                 finished ();
             }
         }

@@ -20,7 +20,10 @@
  */
 
 namespace Audience {
-    public Audience.Settings settings; //global space for easier access...
+    private const string SCHEMA = "io.elementary.videos";
+
+    public GLib.Settings settings; //global space for easier access...
+
     public class App : Gtk.Application {
 
         public Window mainwindow;
@@ -34,7 +37,14 @@ namespace Audience {
         public App () {
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
-            settings = new Settings ();
+            var schema_source = GLib.SettingsSchemaSource.get_default ();
+            var schema = schema_source.lookup (SCHEMA, true);
+            if (schema == null) {
+                warning ("Schema \"%s\" is not installed on your system.", SCHEMA);
+                return;
+            }
+
+            settings = new GLib.Settings.full (schema, null, null);
 
             Services.Inhibitor.initialize (this);
         }
@@ -48,11 +58,11 @@ namespace Audience {
 
         public override void activate () {
             if (mainwindow == null) {
-                if (settings.last_folder == "-1") {
-                    settings.last_folder = Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS);
+                if (settings.get_string ("last-folder") == "-1") {
+                    settings.set_string ("last-folder", GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS));
                 }
-                if (settings.library_folder == "") {
-                    settings.library_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS);
+                if (settings.get_string ("library-folder") == "") {
+                    settings.set_string ("library-folder", GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS));
                 }
 
                 try {

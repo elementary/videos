@@ -89,7 +89,7 @@ namespace Audience {
 
             if (selected.episodes.size == 1) {
                 string uri = selected.episodes.first ().video_file.get_uri ();
-                bool from_beginning = uri != settings.current_video;
+                bool from_beginning = uri != settings.get_string ("current-video");
                 App.get_instance ().mainwindow.play_file (uri, Window.NavigationPage.LIBRARY, from_beginning);
             } else {
                 last_filter = query;
@@ -183,7 +183,7 @@ namespace Audience {
         }
 
         public Audience.Window.NavigationPage prepare_to_play (string file) {
-            if (!File.new_for_uri (file).has_prefix (File.new_for_path (settings.library_folder))) {
+            if (!File.new_for_uri (file).has_prefix (File.new_for_path (settings.get_string ("library-folder")))) {
                 return Window.NavigationPage.WELCOME;
             }
 
