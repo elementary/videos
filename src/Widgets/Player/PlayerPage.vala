@@ -31,13 +31,13 @@ namespace Audience {
 
         public GtkClutter.Embed clutter;
         private Clutter.Actor video_actor;
-        private Audience.Widgets.BottomBar bottom_bar;
         private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_bar;
         private GtkClutter.Actor unfullscreen_actor;
         private GtkClutter.Actor bottom_actor;
         private GnomeMediaKeys mediakeys;
         private ClutterGst.Playback playback;
+        private Audience.Widgets.BottomBar bottom_bar;
 
         private bool mouse_primary_down = false;
 
@@ -347,6 +347,13 @@ namespace Audience {
 
         public Widgets.Playlist get_playlist_widget () {
             return bottom_bar.playlist_popover.playlist;
+        }
+
+        public void hide_preview_popover () {
+            var popover = bottom_bar.time_widget.preview_popover;
+            if (popover != null) {
+                popover.schedule_hide ();
+            }
         }
 
         private string? get_subtitle_for_uri (string uri) {

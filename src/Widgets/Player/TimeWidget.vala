@@ -21,7 +21,7 @@
 
 public class Audience.Widgets.TimeWidget : Granite.SeekBar {
     unowned ClutterGst.Playback main_playback;
-    private Audience.Widgets.PreviewPopover preview_popover;
+    public Audience.Widgets.PreviewPopover preview_popover {get; private set;}
 
     public TimeWidget (ClutterGst.Playback main_playback) {
         Object (playback_duration: 0.0);

@@ -221,6 +221,11 @@ public class Audience.Window : Gtk.Window {
 
             return false;
         });
+
+        configure_event.connect (event => {
+            player_page.hide_preview_popover ();
+            return Gdk.EVENT_PROPAGATE;
+        });
     }
 
     /** Returns true if the code parameter matches the keycode of the keyval parameter for
