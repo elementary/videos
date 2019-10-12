@@ -221,6 +221,11 @@ public class Audience.Window : Gtk.Window {
 
             return false;
         });
+
+        configure_event.connect (event => {
+            player_page.bottom_bar.playlist_popover.popdown ();
+            return Gdk.EVENT_PROPAGATE;
+        });
     }
 
     /** Returns true if the code parameter matches the keycode of the keyval parameter for
