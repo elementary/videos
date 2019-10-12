@@ -526,7 +526,7 @@ public class Audience.Window : Gtk.Window {
     }
 
     public void hide_mouse_cursor () {
-        var cursor = new Gdk.Cursor.for_display (display, Gdk.CursorType.BLANK_CURSOR);
+        var cursor = new Gdk.Cursor.for_display (get_window ().get_display (), Gdk.CursorType.BLANK_CURSOR);
         get_window ().set_cursor (cursor);
     }
 
