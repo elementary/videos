@@ -40,8 +40,8 @@ namespace Audience.Widgets {
             this.expand = true;
             this.headers_visible = false;
             this.activate_on_single_click = true;
-            this.can_focus = false;
-            get_selection ().mode = Gtk.SelectionMode.NONE;
+            this.can_focus = true;
+            get_selection ().mode = Gtk.SelectionMode.BROWSE;
 
             var text_render = new Gtk.CellRendererText ();
             text_render.ellipsize = Pango.EllipsizeMode.MIDDLE;
