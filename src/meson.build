@@ -18,6 +18,7 @@ executable(
     'Widgets/Library/LibraryItem.vala',
     'Widgets/Library/LibraryPage.vala',
     'Widgets/Player/BottomBar.vala',
+    'Widgets/Player/EmptyPlaylist.vala',
     'Widgets/Player/PlayerPage.vala',
     'Widgets/Player/Playlist.vala',
     'Widgets/Player/PlaylistPopover.vala',

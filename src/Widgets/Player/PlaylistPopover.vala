@@ -36,6 +36,9 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         dvd = new Gtk.Button.from_icon_name ("media-optical-symbolic", Gtk.IconSize.BUTTON);
         dvd.set_tooltip_text (_("Play from Disc"));
 
+        var clear_playlist_button = new Gtk.Button.from_icon_name ("edit-clear", Gtk.IconSize.BUTTON);
+        clear_playlist_button.set_tooltip_text (_("Clear Playlist"));
+
         rep = new Gtk.ToggleButton ();
         rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON));
         rep.set_tooltip_text (_("Enable Repeat"));
@@ -47,14 +50,18 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         playlist = new Playlist ();
         playlist_scrolled.add (playlist);
 
-        fil.clicked.connect ( () => {
+        fil.clicked.connect (() => {
             hide ();
             App.get_instance ().mainwindow.run_open_file (false, false);
         });
 
-        dvd.clicked.connect ( () => {
+        dvd.clicked.connect (() => {
             hide ();
             App.get_instance ().mainwindow.run_open_dvd ();
+        });
+
+        clear_playlist_button.clicked.connect (() => {
+            playlist.clear_items ();
         });
 
         rep.toggled.connect ( () => {
@@ -70,7 +77,8 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
 
         grid.attach (playlist_scrolled, 0, 0, 7, 1);
         grid.attach (fil, 0, 1, 1, 1);
-        grid.attach (dvd, 1, 1, 1, 1);
+        grid.attach (clear_playlist_button, 1, 1, 1, 1);
+        grid.attach (dvd, 2, 1, 1, 1);
         grid.attach (rep, 6, 1, 1, 1);
 
         add (grid);

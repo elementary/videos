@@ -23,6 +23,7 @@ namespace Audience.Widgets {
         // the player is requested to play path
         public signal void play (File path);
         public signal void item_added ();
+        public signal void stop_video ();
 
         private enum Columns {
             PLAYING,
@@ -152,6 +153,7 @@ namespace Audience.Widgets {
         public void clear_items () {
             current = 0;
             playlist.clear ();
+            stop_video ();
         }
 
         public File? get_first_item () {
