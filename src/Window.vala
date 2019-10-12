@@ -222,7 +222,7 @@ public class Audience.Window : Gtk.Window {
             return false;
         });
 
-        motion_notify_event.connect ((event) => {
+        motion_notify_event.connect (event => {
             show_mouse_cursor ();
             return Gdk.EVENT_PROPAGATE;
         });
