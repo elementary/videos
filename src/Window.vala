@@ -24,6 +24,7 @@
 public class Audience.Window : Gtk.Window {
     private Gtk.Stack main_stack;
     private Gtk.HeaderBar header;
+    private PlayerPage player_page;
     private WelcomePage welcome_page;
     private LibraryPage library_page;
     private EpisodesPage episodes_page;
@@ -32,7 +33,6 @@ public class Audience.Window : Gtk.Window {
     private NavigationButton navigation_button;
     private ZeitgeistManager zeitgeist_manager;
     private Gtk.SearchEntry search_entry;
-    public PlayerPage player_page {get; private set;}
 
     public enum NavigationPage { WELCOME, LIBRARY, EPISODES }
 
