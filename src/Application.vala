@@ -37,14 +37,8 @@ namespace Audience {
         public App () {
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
-            var schema_source = GLib.SettingsSchemaSource.get_default ();
-            var schema = schema_source.lookup (SCHEMA, true);
-            if (schema == null) {
-                warning ("Schema \"%s\" is not installed on your system.", SCHEMA);
-                return;
-            }
 
-            settings = new GLib.Settings.full (schema, null, null);
+            settings = new GLib.Settings (SCHEMA);
 
             Services.Inhibitor.initialize (this);
         }
