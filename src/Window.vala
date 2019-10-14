@@ -122,7 +122,7 @@ public class Audience.Window : Gtk.Window {
         });
 
         player_page.notify["playing"].connect (() => {
-            set_keep_above (player_page.playing && settings.stay_on_top);
+            set_keep_above (player_page.playing && settings.get_boolean ("stay-on-top"));
         });
 
         player_page.map.connect (() => {
@@ -224,6 +224,7 @@ public class Audience.Window : Gtk.Window {
 
         configure_event.connect (event => {
             player_page.hide_preview_popover ();
+            player_page.bottom_bar.playlist_popover.popdown ();
             return Gdk.EVENT_PROPAGATE;
         });
 
@@ -365,8 +366,8 @@ public class Audience.Window : Gtk.Window {
     }
 
     public void resume_last_videos () {
-        if (settings.current_video != "") {
-            play_file (settings.current_video, NavigationPage.WELCOME, false);
+        if (settings.get_string ("current-video") != "") {
+            play_file (settings.get_string ("current-video"), NavigationPage.WELCOME, false);
         } else {
             run_open_file ();
         }
@@ -400,7 +401,7 @@ public class Audience.Window : Gtk.Window {
             _("_Cancel")
         );
         file.select_multiple = true;
-        file.set_current_folder (settings.last_folder);
+        file.set_current_folder (settings.get_string ("last-folder"));
         file.add_filter (video_filter);
         file.add_filter (all_files_filter);
 
@@ -411,7 +412,7 @@ public class Audience.Window : Gtk.Window {
             }
 
             open_files (files, clear_playlist, force_play);
-            settings.last_folder = file.get_current_folder ();
+            settings.set_string ("last-folder", file.get_current_folder ());
         }
 
         file.destroy ();
@@ -473,7 +474,7 @@ public class Audience.Window : Gtk.Window {
             fullscreen ();
         }
 
-        if (settings.stay_on_top && !settings.playback_wait) {
+        if (settings.get_boolean ("stay-on-top") && !settings.get_boolean ("playback-wait")) {
             set_keep_above (true);
         }
 
@@ -483,7 +484,7 @@ public class Audience.Window : Gtk.Window {
     public void navigate_back () {
         double progress = player_page.get_progress ();
         if (progress > 0) {
-            settings.last_stopped = progress;
+            settings.set_double ("last-stopped", progress);
         }
         if (player_page.playing) {
             player_page.playing = false;

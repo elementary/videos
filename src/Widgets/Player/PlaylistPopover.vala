@@ -23,6 +23,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     public Gtk.ToggleButton rep;
     private Gtk.ScrolledWindow playlist_scrolled;
     private Gtk.Button dvd;
+    private const int HEIGHT_OFFSET = 300;
 
     public PlaylistPopover () {
         opacity = GLOBAL_OPACITY;
@@ -41,8 +42,9 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         rep.set_tooltip_text (_("Enable Repeat"));
 
         playlist_scrolled = new Gtk.ScrolledWindow (null, null);
-        playlist_scrolled.set_min_content_height (100);
-        playlist_scrolled.set_min_content_width (260);
+        playlist_scrolled.min_content_height = 100;
+        playlist_scrolled.min_content_width = 260;
+        playlist_scrolled.propagate_natural_height = true;
 
         playlist = new Playlist ();
         playlist_scrolled.add (playlist);
@@ -84,35 +86,15 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         disk_manager.volume_removed.connect ((vol) => {
             set_dvd_visibility (disk_manager.has_media_volumes ());
         });
+
+        map.connect (() => {
+            var window_height = App.get_instance ().mainwindow.get_window ().get_height ();
+            playlist_scrolled.set_max_content_height (window_height - HEIGHT_OFFSET);
+        });
     }
 
     private void set_dvd_visibility (bool visible) {
         dvd.no_show_all = !visible;
         dvd.visible = visible;
-    }
-
-    //Override because the Popover doesn't auto-rejust his size.
-    public override void get_preferred_height (out int minimum_height, out int natural_height) {
-        base.get_preferred_height (out minimum_height, out natural_height);
-        int p_minimum_height;
-        int p_natural_height;
-        var app = ((Audience.App) GLib.Application.get_default ());
-        playlist.get_preferred_height (out p_minimum_height, out p_natural_height);
-        int temp_minimum_height = minimum_height + p_minimum_height;
-        int r_minimum_height;
-        int r_natural_height;
-        relative_to.get_preferred_height (out r_minimum_height, out r_natural_height);
-        if (temp_minimum_height < app.mainwindow.get_window ().get_height () - r_minimum_height * 2) {
-            minimum_height = temp_minimum_height;
-        } else {
-            minimum_height = app.mainwindow.get_window ().get_height () - r_minimum_height * 2;
-        }
-
-        int temp_natural_height = natural_height + p_natural_height;
-        if (temp_natural_height < app.mainwindow.get_window ().get_height () - r_natural_height * 2) {
-            natural_height = temp_natural_height;
-        } else {
-            natural_height = minimum_height;
-        }
     }
 }
