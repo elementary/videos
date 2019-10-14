@@ -223,6 +223,7 @@ public class Audience.Window : Gtk.Window {
         });
 
         configure_event.connect (event => {
+            player_page.hide_preview_popover ();
             player_page.bottom_bar.playlist_popover.popdown ();
             return Gdk.EVENT_PROPAGATE;
         });

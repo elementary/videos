@@ -346,6 +346,13 @@ namespace Audience {
             return bottom_bar.playlist_popover.playlist;
         }
 
+        public void hide_preview_popover () {
+            var popover = bottom_bar.time_widget.preview_popover;
+            if (popover != null) {
+                popover.schedule_hide ();
+            }
+        }
+
         private string? get_subtitle_for_uri (string uri) {
             string without_ext;
             int last_dot = uri.last_index_of (".", 0);
