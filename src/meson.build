@@ -3,7 +3,6 @@ executable(
     'Application.vala',
     'Consts.vala',
     'DiskManager.vala',
-    'Settings.vala',
     'Utils.vala',
     'Window.vala',
     'ZeitgeistManager.vala',

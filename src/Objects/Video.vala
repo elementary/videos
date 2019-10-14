@@ -61,7 +61,7 @@ namespace Audience.Objects {
             extract_metadata ();
             video_file = File.new_for_path (this.get_path ());
 
-            if (directory != Audience.settings.library_folder) {
+            if (directory != Audience.settings.get_string ("library-folder")) {
                 container = Path.get_basename (directory);
             }
 
@@ -197,7 +197,7 @@ namespace Audience.Objects {
             if (file_poster.query_exists ())
                return poster_path;
 
-            foreach (string s in Audience.settings.poster_names) {
+            foreach (string s in Audience.settings.get_strv ("poster-names")) {
                 poster_path = Path.build_filename (this.directory, s);
                 file_poster = File.new_for_path (poster_path);
                 if (file_poster.query_exists ())
