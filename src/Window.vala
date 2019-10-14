@@ -226,6 +226,11 @@ public class Audience.Window : Gtk.Window {
             player_page.bottom_bar.playlist_popover.popdown ();
             return Gdk.EVENT_PROPAGATE;
         });
+
+        motion_notify_event.connect (event => {
+            show_mouse_cursor ();
+            return Gdk.EVENT_PROPAGATE;
+        });
     }
 
     /** Returns true if the code parameter matches the keycode of the keyval parameter for
@@ -523,5 +528,14 @@ public class Audience.Window : Gtk.Window {
 
     public Gtk.Widget get_visible_child () {
         return main_stack.visible_child;
+    }
+
+    public void hide_mouse_cursor () {
+        var cursor = new Gdk.Cursor.for_display (get_window ().get_display (), Gdk.CursorType.BLANK_CURSOR);
+        get_window ().set_cursor (cursor);
+    }
+
+    public void show_mouse_cursor () {
+        get_window ().set_cursor (null);
     }
 }
