@@ -236,12 +236,9 @@ namespace Audience {
 
             bottom_bar.notify["child-revealed"].connect (() => {
                 if (bottom_bar.child_revealed == true) {
-                    App.get_instance ().mainwindow.get_window ().set_cursor (null);
+                    App.get_instance ().mainwindow.show_mouse_cursor ();
                 } else {
-                    var window = App.get_instance ().mainwindow.get_window ();
-                    var display = window.get_display ();
-                    var cursor = new Gdk.Cursor.for_display (display, Gdk.CursorType.BLANK_CURSOR);
-                    window.set_cursor (cursor);
+                    App.get_instance ().mainwindow.hide_mouse_cursor ();
                 }
             });
 
