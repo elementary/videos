@@ -31,13 +31,13 @@ namespace Audience {
 
         public GtkClutter.Embed clutter;
         private Clutter.Actor video_actor;
-        private Audience.Widgets.BottomBar bottom_bar;
         private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_bar;
         private GtkClutter.Actor unfullscreen_actor;
         private GtkClutter.Actor bottom_actor;
         private GnomeMediaKeys mediakeys;
         private ClutterGst.Playback playback;
+        public Audience.Widgets.BottomBar bottom_bar {get; private set;}
 
         private bool mouse_primary_down = false;
 

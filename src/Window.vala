@@ -222,6 +222,11 @@ public class Audience.Window : Gtk.Window {
             return false;
         });
 
+        configure_event.connect (event => {
+            player_page.bottom_bar.playlist_popover.popdown ();
+            return Gdk.EVENT_PROPAGATE;
+        });
+
         motion_notify_event.connect (event => {
             show_mouse_cursor ();
             return Gdk.EVENT_PROPAGATE;
