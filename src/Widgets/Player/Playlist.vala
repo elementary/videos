@@ -31,6 +31,11 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
             selection_mode: Gtk.SelectionMode.BROWSE
         );
 
+        row_activated.connect ((item) => {
+            string filename = (item as PlaylistItem).filename;
+            play (File.new_for_commandline_arg (filename));
+        });
+
         // Automatically load from gsettings last_played_videos
         restore_playlist ();
     }
@@ -95,13 +100,25 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
     }
 
     public int get_current () {
-
-        return 0;
+        return current;
     }
 
     public void set_current (string current_file) {
+        int count = 0;
+        int current_played = 0;
 
+        foreach (Gtk.Widget item in get_children ()) {
+            var row = item as PlaylistItem;
+            string name = row.filename;
+            if (name == current_file) {
+                current_played = count;
+                row.play_icon.icon_name = "media-playback-start-symbolic";
+                row.is_playing = true;
+            }
+            count++;
+        }
 
+        this.current = current_played;
     }
 
     public List<string> get_all_items () {

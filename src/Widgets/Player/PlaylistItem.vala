@@ -19,11 +19,11 @@
 */
 
 public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
-    private bool is_playing {get; set;}
+    public bool is_playing {get; set;}
     public string title {get; set;}
     public string filename {get; set;}
 
-    private Gtk.Image play_icon;
+    public Gtk.Image play_icon {get; set;}
     private Gtk.Label track_name_label;
     private Gtk.Grid grid;
 
