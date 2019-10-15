@@ -47,7 +47,6 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
     public bool next () {
         var children = get_children ();
         current++;
-        debug (current.to_string () + children.length ().to_string ());
         if (current >= children.length ()) {
             current = 0;
             return false;
@@ -59,7 +58,16 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
     }
 
     public void previous () {
+        var children = get_children ();
+        current--;
+        if (current < 0) {
+            var first_item = children.first ().data as PlaylistItem;
+            play (File.new_for_commandline_arg (first_item.filename));
+            return;
+        }
 
+        var next_item = (children.nth_data (current) as PlaylistItem);
+        play (File.new_for_commandline_arg (next_item.filename));
     }
 
     public void add_item (File path) {
@@ -101,7 +109,6 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         var children = get_children ();
         if (children.length () > 0) {
             var first_item = children.first ().data as PlaylistItem;
-            debug (first_item.filename);
             return File.new_for_commandline_arg (first_item.filename);
         }
 
