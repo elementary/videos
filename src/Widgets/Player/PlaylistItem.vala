@@ -27,7 +27,7 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
     private Gtk.Label track_name_label;
     private Gtk.Grid grid;
 
-    public PlaylistItem(bool is_playing, string title, string filename) {
+    public PlaylistItem (bool is_playing, string title, string filename) {
         this.is_playing = is_playing;
         this.title = title;
         this.filename = filename;
@@ -51,7 +51,7 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         grid.row_spacing = 3;
         add (grid);
 
-        play_icon  = new Gtk.Image ();
+        play_icon = new Gtk.Image ();
 
         track_name_label = new Gtk.Label ("");
         track_name_label.ellipsize = Pango.EllipsizeMode.MIDDLE;

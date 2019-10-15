@@ -45,8 +45,17 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
     }
 
     public bool next () {
+        var children = get_children ();
+        current++;
+        debug (current.to_string () + children.length ().to_string ());
+        if (current >= children.length ()) {
+            current = 0;
+            return false;
+        }
 
-        return false;
+        var next_item = (children.nth_data (current) as PlaylistItem);
+        play (File.new_for_commandline_arg (next_item.filename));
+        return true;
     }
 
     public void previous () {
