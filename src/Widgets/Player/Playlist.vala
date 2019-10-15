@@ -22,81 +22,114 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
     public signal void play (File path);
     public signal void item_added ();
 
-        public Playlist () {
-            Object (
-                can_focus: true,
-                expand: true,
-                selection_mode: Gtk.SelectionMode.BROWSE
-            );
+    private int current = 0;
+
+    public Playlist () {
+        Object (
+            can_focus: true,
+            expand: true,
+            selection_mode: Gtk.SelectionMode.BROWSE
+        );
+
+        // Automatically load from gsettings last_played_videos
+        restore_playlist ();
+    }
+
+    ~Playlist () {
+        save_playlist ();
+    }
+
+    public bool next () {
+
+        return false;
+    }
+
+    public void previous () {
+
+    }
+
+    public void add_item (File path) {
+        if (!path.query_exists ()) {
+            return;
         }
 
-        public bool next () {
+        var file_name = path.get_uri ();
+        bool exist = false;
 
-            return false;
-        }
-
-        public void previous () {
-
-        }
-
-        public void add_item (File path) {
-            if (!path.query_exists ()) {
-                return;
+        foreach (Gtk.Widget item in get_children ()) {
+            string name = (item as PlaylistItem).filename;
+            if (name == file_name) {
+                exist = true;
             }
-
-            var file_name = path.get_uri ();
-            bool exist = false;
-
-            foreach (Gtk.Widget item in get_children ()) {
-                string name = (item as PlaylistItem).filename;
-                if (name == file_name) {
-                    exist = true;
-                }
-            }
-
-            if (exist) {
-                return;
-            }
-
-            var row = new PlaylistItem (false, Audience.get_title (path.get_basename ()), path.get_uri ());
-            add (row);
-            item_added ();
         }
 
-        public void remove_item (File path) {
-
+        if (exist) {
+            return;
         }
 
-        public void clear_items () {
+        var row = new PlaylistItem (false, Audience.get_title (path.get_basename ()), path.get_uri ());
+        add (row);
+        item_added ();
+    }
 
+    public void remove_item (File path) {
+
+    }
+
+    public void clear_items () {
+
+    }
+
+    public File? get_first_item () {
+
+        return null;
+    }
+
+    public int get_current () {
+
+        return 0;
+    }
+
+    public void set_current (string current_file) {
+
+
+    }
+
+    public List<string> get_all_items () {
+        var list = new List<string> ();
+        foreach (Gtk.Widget item in get_children ()) {
+            string name = (item as PlaylistItem).filename;
+            list.append (name);
         }
 
-        public File? get_first_item () {
+        return (owned) list;
+    }
 
-            return null;
+    public void save_playlist () {
+        if (Audience.App.get_instance ().mainwindow.is_privacy_mode_enabled ()) {
+            return;
         }
 
-        public int get_current () {
+        var list = get_all_items ();
 
-            return 0;
+        uint i = 0;
+        var videos = new string[list.length ()];
+        foreach (var filename in list) {
+            videos[i] = filename;
+            i++;
         }
 
-        public void set_current (string current_file) {
+        settings.set_strv ("last-played-videos", videos);
 
+    }
 
+    private void restore_playlist () {
+        this.current = 0;
+
+        for (int i = 0; i < settings.get_strv ("last-played-videos").length; i++) {
+            if (settings.get_strv ("last-played-videos")[i] == settings.get_string ("current-video"))
+                this.current = i;
+            add_item (File.new_for_uri (settings.get_strv ("last-played-videos")[i]));
         }
-
-        public List<string> get_all_items () {
-            var list = new List<string> ();
-
-            return list;
-        }
-
-        public void save_playlist () {
-
-        }
-
-        private void restore_playlist () {
-
-        }
+    }
 }
