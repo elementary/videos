@@ -19,6 +19,7 @@ executable(
     'Widgets/Player/BottomBar.vala',
     'Widgets/Player/PlayerPage.vala',
     'Widgets/Player/Playlist.vala',
+    'Widgets/Player/PlaylistItem.vala',
     'Widgets/Player/PlaylistPopover.vala',
     'Widgets/Player/PreviewPopover.vala',
     'Widgets/Player/SettingsPopover.vala',
