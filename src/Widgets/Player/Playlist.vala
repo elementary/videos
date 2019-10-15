@@ -77,10 +77,19 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
     }
 
     public void clear_items () {
-
+        current = 0;
+        foreach (Gtk.Widget item in get_children ()) {
+            remove (item);
+        }
     }
 
     public File? get_first_item () {
+        var children = get_children ();
+        if (children.length () > 0) {
+            var first_item = children.first ().data as PlaylistItem;
+            debug (first_item.filename);
+            return File.new_for_commandline_arg (first_item.filename);
+        }
 
         return null;
     }
