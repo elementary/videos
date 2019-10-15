@@ -196,21 +196,21 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         PlaylistItem target;
         Gtk.Widget row;
         PlaylistItem source;
-        int newPos;
-        int oldPos;
+        int new_position;
+        int old_position;
 
         target = (PlaylistItem) get_row_at_y (y);
 
-        newPos = target.get_index ();
+        new_position = target.get_index ();
         row = ((Gtk.Widget[]) selection_data.get_data ())[0];
         source = (PlaylistItem) row.get_ancestor (typeof (PlaylistItem));
-        oldPos = source.get_index ();
+        old_position = source.get_index ();
 
         if (source == target) {
             return;
         }
 
         remove (source);
-        insert (source, newPos);
+        insert (source, new_position);
     }
 }
