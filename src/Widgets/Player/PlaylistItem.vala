@@ -42,9 +42,9 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
 
     construct {
         grid = new Gtk.Grid ();
-        grid.margin = 12;
+        grid.margin = 3;
         grid.margin_bottom = grid.margin_top = 6;
-        grid.column_spacing = 12;
+        grid.column_spacing = 6;
         grid.row_spacing = 3;
         add (grid);
 
