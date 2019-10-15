@@ -19,20 +19,19 @@
 */
 
 public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
-    public bool is_playing {get; set;}
-    public string title {get; set;}
+    private bool is_playing;
+    private string title;
     public string filename {get; set;}
 
-    public Gtk.Image play_icon {get; set;}
+    private Gtk.Image play_icon;
     private Gtk.EventBox dnd_event_box;
     private Gtk.Label track_name_label;
     private Gtk.Grid grid;
 
+    private const string PLAY_ICON = "media-playback-start-symbolic";
     private const Gtk.TargetEntry[] TARGET_ENTRIES = {
         {"PLAYLIST_ITEM", Gtk.TargetFlags.SAME_APP, 0}
     };
-
-    private const string PLAY_ICON = "media-playback-start-symbolic";
 
     public PlaylistItem (bool is_playing, string title, string filename) {
         this.is_playing = is_playing;
