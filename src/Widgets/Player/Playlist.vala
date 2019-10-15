@@ -95,7 +95,15 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
     }
 
     public void remove_item (File path) {
+        var file_name = path.get_uri ();
 
+        foreach (Gtk.Widget item in get_children ()) {
+            string name = (item as PlaylistItem).filename;
+            if (name == file_name) {
+                remove (item);
+                return;
+            }
+        }
     }
 
     public void clear_items () {
