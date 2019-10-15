@@ -27,15 +27,12 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
     private Gtk.Label track_name_label;
     private Gtk.Grid grid;
 
+    private const string PLAY_ICON = "media-playback-start-symbolic";
+
     public PlaylistItem (bool is_playing, string title, string filename) {
         this.is_playing = is_playing;
         this.title = title;
         this.filename = filename;
-
-        if (is_playing == true) {
-            play_icon.icon_name = "media-playback-start-symbolic";
-            grid.attach (play_icon, 0, 0, 1, 1);
-        }
 
         track_name_label.label = title;
         grid.attach (track_name_label, 1, 0, 2, 1);
@@ -52,8 +49,19 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         add (grid);
 
         play_icon = new Gtk.Image ();
+        grid.attach (play_icon, 0, 0, 1, 1);
 
         track_name_label = new Gtk.Label ("");
         track_name_label.ellipsize = Pango.EllipsizeMode.MIDDLE;
+    }
+
+    public void set_play_state () {
+        is_playing = true;
+        play_icon.icon_name = PLAY_ICON;
+    }
+
+    public void set_unplay_state () {
+        play_icon.icon_name = "";
+        is_playing = true;
     }
 }

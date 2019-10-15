@@ -136,8 +136,9 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
             string name = row.filename;
             if (name == current_file) {
                 current_played = count;
-                row.play_icon.icon_name = "media-playback-start-symbolic";
-                row.is_playing = true;
+                row.set_play_state ();
+            } else {
+                row.set_unplay_state ();
             }
             count++;
         }
