@@ -24,6 +24,10 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
 
     private int current = 0;
 
+    private const Gtk.TargetEntry[] TARGET_ENTRIES = {
+        {"PLAYLIST_ITEM", Gtk.TargetFlags.SAME_APP, 0}
+    };
+
     public Playlist () {
         Object (
             can_focus: true,
@@ -35,6 +39,9 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
             string filename = (item as PlaylistItem).filename;
             play (File.new_for_commandline_arg (filename));
         });
+
+        Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, TARGET_ENTRIES, Gdk.DragAction.MOVE);
+        drag_data_received.connect (on_drag_data_received);
 
         // Automatically load from gsettings last_played_videos
         restore_playlist ();
@@ -182,5 +189,28 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
                 this.current = i;
             add_item (File.new_for_uri (settings.get_strv ("last-played-videos")[i]));
         }
+    }
+
+    private void on_drag_data_received (Gdk.DragContext context, int x, int y,
+        Gtk.SelectionData selection_data, uint target_type, uint time) {
+        PlaylistItem target;
+        Gtk.Widget row;
+        PlaylistItem source;
+        int newPos;
+        int oldPos;
+
+        target = (PlaylistItem) get_row_at_y (y);
+
+        newPos = target.get_index ();
+        row = ((Gtk.Widget[]) selection_data.get_data ())[0];
+        source = (PlaylistItem) row.get_ancestor (typeof (PlaylistItem));
+        oldPos = source.get_index ();
+
+        if (source == target) {
+            return;
+        }
+
+        remove (source);
+        insert (source, newPos);
     }
 }
