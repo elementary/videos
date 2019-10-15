@@ -21,7 +21,7 @@
 public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
     private bool is_playing;
     private string title;
-    public string filename {get; set;}
+    public string filename {get; private set;}
 
     private Gtk.Image play_icon;
     private Gtk.EventBox dnd_event_box;
