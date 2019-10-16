@@ -237,9 +237,10 @@ namespace Audience {
             get_playlist_widget ().stop_video.connect (() => {
                 playback.playing = false;
                 playback.progress = 1.0;
-                settings.last_stopped = 0;
-                settings.last_played_videos = {};
-                settings.current_video = "";
+
+                settings.set_double ("last-stopped", 0);
+                settings.set_strv ("last-played-videos", {});
+                settings.set_string ("current-video", "");
 
                 ended ();
             });
