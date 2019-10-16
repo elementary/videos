@@ -41,8 +41,8 @@ namespace Audience.Widgets {
             this.expand = true;
             this.headers_visible = false;
             this.activate_on_single_click = true;
-            this.can_focus = false;
-            get_selection ().mode = Gtk.SelectionMode.NONE;
+            this.can_focus = true;
+            get_selection ().mode = Gtk.SelectionMode.BROWSE;
 
             var text_render = new Gtk.CellRendererText ();
             text_render.ellipsize = Pango.EllipsizeMode.MIDDLE;
@@ -225,16 +225,16 @@ namespace Audience.Widgets {
                 i++;
             }
 
-            settings.last_played_videos = videos;
+            settings.set_strv ("last-played-videos", videos);
         }
 
         private void restore_playlist () {
             this.current = 0;
             /* foreach (var filename in settings.last_played_videos) { */
-            for (int i = 0; i < settings.last_played_videos.length; i++) {
-                if (settings.last_played_videos[i] == settings.current_video)
+            for (int i = 0; i < settings.get_strv ("last-played-videos").length; i++) {
+                if (settings.get_strv ("last-played-videos")[i] == settings.get_string ("current-video"))
                     this.current = i;
-                add_item (File.new_for_uri (settings.last_played_videos[i]));
+                add_item (File.new_for_uri (settings.get_strv ("last-played-videos")[i]));
             }
         }
     }

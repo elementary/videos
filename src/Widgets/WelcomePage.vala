@@ -26,14 +26,14 @@ namespace Audience {
         construct {
             append ("document-open", _("Open file"), _("Open a saved file."));
 
-            var filename = settings.current_video;
+            var filename = settings.get_string ("current-video");
             var last_file = File.new_for_uri (filename);
-            bool show_last_file = settings.current_video != "";
+            bool show_last_file = settings.get_string ("current-video") != "";
             if (last_file.query_exists () == false) {
                 show_last_file = false;
             }
 
-            if (settings.last_stopped == 0.0 || !settings.resume_videos) {
+            if (settings.get_double ("last-stopped") == 0.0 || !settings.get_boolean ("resume-videos")) {
                 append ("media-playlist-repeat", _("Replay last video"), get_title (last_file.get_basename ()));
             } else {
                 append ("media-playback-start", _("Resume last video"), get_title (last_file.get_basename ()));
@@ -89,10 +89,10 @@ namespace Audience {
         public void refresh () {
             var replay_button = get_button_from_index (1);
 
-            var filename = settings.current_video;
+            var filename = settings.get_string ("current-video");
             var last_file = File.new_for_uri (filename);
 
-            if (settings.last_stopped == 0.0) {
+            if (settings.get_double ("last-stopped") == 0.0) {
                 replay_button.title = _("Replay last video");
                 replay_button.icon.icon_name = ("media-playlist-repeat");
             } else {
@@ -101,7 +101,7 @@ namespace Audience {
             }
             replay_button.description = get_title (last_file.get_basename ());
 
-            bool show_last_file = settings.current_video != "";
+            bool show_last_file = settings.get_string ("current-video") != "";
             if (last_file.query_exists () == false) {
                 show_last_file = false;
             }

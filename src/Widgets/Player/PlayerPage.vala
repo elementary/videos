@@ -31,13 +31,13 @@ namespace Audience {
 
         public GtkClutter.Embed clutter;
         private Clutter.Actor video_actor;
-        private Audience.Widgets.BottomBar bottom_bar;
         private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_bar;
         private GtkClutter.Actor unfullscreen_actor;
         private GtkClutter.Actor bottom_actor;
         private GnomeMediaKeys mediakeys;
         private ClutterGst.Playback playback;
+        public Audience.Widgets.BottomBar bottom_bar {get; private set;}
 
         private bool mouse_primary_down = false;
 
@@ -163,7 +163,7 @@ namespace Audience {
             }
 
             this.motion_notify_event.connect ((event) => {
-                if (mouse_primary_down && settings.move_window) {
+                if (mouse_primary_down && settings.get_boolean ("move-window")) {
                     mouse_primary_down = false;
                     App.get_instance ().mainwindow.begin_move_drag (Gdk.BUTTON_PRIMARY,
                         (int)event.x_root, (int)event.y_root, event.time);
@@ -203,9 +203,9 @@ namespace Audience {
             this.destroy.connect (() => {
                 // FIXME:should find better way to decide if its end of playlist
                 if (playback.progress > 0.99)
-                    settings.last_stopped = 0;
+                    settings.set_double ("last-stopped", 0);
                 else
-                    settings.last_stopped = playback.progress;
+                    settings.set_double ("last-stopped", playback.progress);
 
                 get_playlist_widget ().save_playlist ();
                 Audience.Services.Inhibitor.get_instance ().uninhibit ();
@@ -221,7 +221,7 @@ namespace Audience {
                             App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file) });
                         } else {
                             playback.playing = false;
-                            settings.last_stopped = 0;
+                            settings.set_double ("last-stopped", 0);
                             ended ();
                         }
                     }
@@ -246,12 +246,9 @@ namespace Audience {
 
             bottom_bar.notify["child-revealed"].connect (() => {
                 if (bottom_bar.child_revealed == true) {
-                    App.get_instance ().mainwindow.get_window ().set_cursor (null);
+                    App.get_instance ().mainwindow.show_mouse_cursor ();
                 } else {
-                    var window = App.get_instance ().mainwindow.get_window ();
-                    var display = window.get_display ();
-                    var cursor = new Gdk.Cursor.for_display (display, Gdk.CursorType.BLANK_CURSOR);
-                    window.set_cursor (cursor);
+                    App.get_instance ().mainwindow.hide_mouse_cursor ();
                 }
             });
 
@@ -281,17 +278,17 @@ namespace Audience {
             if (from_beginning) {
                 playback.progress = 0.0;
             } else {
-                playback.progress = settings.last_stopped;
+                playback.progress = settings.get_double ("last-stopped");
             }
 
-            playback.playing = !settings.playback_wait;
+            playback.playing = !settings.get_boolean ("playback-wait");
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
 
             bottom_bar.preferences_popover.is_setup = false;
 
             Audience.Services.Inhibitor.get_instance ().inhibit ();
-            settings.current_video = uri;
+            settings.set_string ("current-video", uri);
         }
 
         public double get_progress () {
@@ -315,15 +312,15 @@ namespace Audience {
         }
 
         public void resume_last_videos () {
-            play_file (settings.current_video);
+            play_file (settings.get_string ("current-video"));
             playback.playing = false;
-            if (settings.resume_videos) {
-                playback.progress = settings.last_stopped;
+            if (settings.get_boolean ("resume-videos")) {
+                playback.progress = settings.get_double ("last-stopped");
             } else {
                 playback.progress = 0.0;
             }
 
-            playback.playing = !settings.playback_wait;
+            playback.playing = !settings.get_boolean ("playback-wait");
         }
 
         public void append_to_playlist (File file) {
@@ -357,6 +354,13 @@ namespace Audience {
 
         public Widgets.Playlist get_playlist_widget () {
             return bottom_bar.playlist_popover.playlist;
+        }
+
+        public void hide_preview_popover () {
+            var popover = bottom_bar.time_widget.preview_popover;
+            if (popover != null) {
+                popover.schedule_hide ();
+            }
         }
 
         private string? get_subtitle_for_uri (string uri) {
