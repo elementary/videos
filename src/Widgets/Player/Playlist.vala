@@ -200,6 +200,9 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         int old_position;
 
         target = (PlaylistItem) get_row_at_y (y);
+        if (target == null) {
+            return;
+        }
 
         new_position = target.get_index ();
         row = ((Gtk.Widget[]) selection_data.get_data ())[0];
