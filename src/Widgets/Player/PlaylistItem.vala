@@ -19,9 +19,9 @@
 */
 
 public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
-    private bool is_playing;
-    private string title;
-    public string filename {get; private set;}
+    public bool is_playing {get; set;}
+    public string title {get; construct;}
+    public string filename {get; construct;}
 
     private Gtk.Image play_icon;
     private Gtk.EventBox dnd_event_box;
@@ -34,9 +34,11 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
     };
 
     public PlaylistItem (bool is_playing, string title, string filename) {
-        this.is_playing = is_playing;
-        this.title = title;
-        this.filename = filename;
+        Object (
+            is_playing: is_playing,
+            title: title,
+            filename: filename
+        );
 
         track_name_label.label = title;
         grid.attach (track_name_label, 1, 0, 2, 1);
@@ -55,6 +57,7 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         grid.column_spacing = 6;
         grid.row_spacing = 3;
 
+        // Drag source must have a GdkWindow. GTK4 will remove the limitation.
         dnd_event_box = new Gtk.EventBox ();
         dnd_event_box.add (grid);
         add (dnd_event_box);
