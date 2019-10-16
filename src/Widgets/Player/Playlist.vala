@@ -96,7 +96,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
             return;
         }
 
-        var row = new PlaylistItem (false, Audience.get_title (path.get_basename ()), path.get_uri ());
+        var row = new PlaylistItem (Audience.get_title (path.get_basename ()), path.get_uri ());
         add (row);
         item_added ();
     }

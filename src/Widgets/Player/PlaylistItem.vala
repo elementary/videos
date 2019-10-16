@@ -19,7 +19,6 @@
 */
 
 public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
-    public bool is_playing {get; set;}
     public string title {get; construct;}
     public string filename {get; construct;}
 
@@ -33,21 +32,13 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         {"PLAYLIST_ITEM", Gtk.TargetFlags.SAME_APP, 0}
     };
 
-    public PlaylistItem (bool is_playing, string title, string filename) {
+    public PlaylistItem (string title, string filename) {
         Object (
-            is_playing: is_playing,
             title: title,
             filename: filename
         );
 
-        track_name_label.label = title;
-        grid.attach (track_name_label, 1, 0, 2, 1);
         show_all ();
-
-        Gtk.drag_source_set (dnd_event_box, Gdk.ModifierType.BUTTON1_MASK, TARGET_ENTRIES, Gdk.DragAction.MOVE);
-        dnd_event_box.drag_begin.connect (on_drag_begin);
-        dnd_event_box.drag_data_get.connect (on_drag_data_get);
-
     }
 
     construct {
@@ -65,18 +56,22 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         play_icon = new Gtk.Image ();
         grid.attach (play_icon, 0, 0, 1, 1);
 
-        track_name_label = new Gtk.Label ("");
+        track_name_label = new Gtk.Label (title);
         track_name_label.ellipsize = Pango.EllipsizeMode.MIDDLE;
+        grid.attach (track_name_label, 1, 0, 2, 1);
+
+        Gtk.drag_source_set (dnd_event_box, Gdk.ModifierType.BUTTON1_MASK, TARGET_ENTRIES, Gdk.DragAction.MOVE);
+        dnd_event_box.drag_begin.connect (on_drag_begin);
+        dnd_event_box.drag_data_get.connect (on_drag_data_get);
+
     }
 
     public void set_play_state () {
-        is_playing = true;
         play_icon.icon_name = PLAY_ICON;
     }
 
     public void set_unplay_state () {
         play_icon.icon_name = "";
-        is_playing = true;
     }
 
     private void on_drag_begin (Gtk.Widget widget, Gdk.DragContext context) {
