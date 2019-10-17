@@ -384,8 +384,11 @@ public class Audience.Window : Gtk.Window {
         library_page.scrolled_window.grab_focus ();
     }
 
-    public void add_to_playlist (string uri) {
-        player_page.get_playlist_widget ().clear_items ();
+    public void add_to_playlist (string uri, bool preserve_playlist) {
+        if (!preserve_playlist) {
+            player_page.get_playlist_widget ().clear_items ();
+        }
+
         player_page.append_to_playlist (File.new_for_uri (uri));
         settings.set_string ("current-video", uri);
     }
