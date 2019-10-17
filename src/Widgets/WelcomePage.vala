@@ -75,6 +75,7 @@ namespace Audience {
                         window.run_open_file (true);
                         break;
                     case 1:
+                        window.add_to_playlist (filename, true);
                         window.resume_last_videos ();
                         break;
                     case 2:
