@@ -143,7 +143,7 @@ public class Audience.Window : Gtk.Window {
 
             debug (w_r.to_string () +  "  " + new_height.to_string ());
 
-            if (current_width <= 0 || new_height <=0) {
+            if (current_width <= 0 || new_height <= 0) {
                 return;
             }
 
