@@ -26,6 +26,7 @@ namespace Audience {
     };
 
     public class PlayerPage : Gtk.EventBox {
+        public signal void player_frame_resized (int width, int height);
         public signal void unfullscreen_clicked ();
         public signal void ended ();
 
@@ -40,6 +41,8 @@ namespace Audience {
         public Audience.Widgets.BottomBar bottom_bar {get; private set;}
 
         private bool mouse_primary_down = false;
+        private int last_width = 0;
+        private int last_height = 0;
 
         public bool repeat {
             get {
@@ -209,6 +212,17 @@ namespace Audience {
 
                 get_playlist_widget ().save_playlist ();
                 Audience.Services.Inhibitor.get_instance ().uninhibit ();
+            });
+
+            playback.new_frame.connect (frame => {
+                var current_width = frame.resolution.width;
+                var current_height = frame.resolution.height;
+                var current_dur = playback.duration;
+                if (last_width != current_width || last_height != current_height) {
+                    last_width = current_width;
+                    last_height = current_height;
+                    player_frame_resized (last_width, last_height);
+                }
             });
 
             //end

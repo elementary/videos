@@ -132,6 +132,24 @@ public class Audience.Window : Gtk.Window {
             app_notification.visible = true;
         });
 
+        player_page.player_frame_resized.connect ((width, height) => {
+            if (width < 0 || height < 0) {
+                return;
+            }
+            var current_width = this.get_allocated_width ();
+            debug (width.to_string () +  "  " + height.to_string ());
+            double w_r = (double)(current_width - 156) / width;
+            int new_height = (int)(height * w_r) + 193;
+
+            debug (w_r.to_string () +  "  " + new_height.to_string ());
+
+            if (current_width <= 0 || new_height <=0) {
+                return;
+            }
+
+            get_window ().resize (current_width, new_height);
+        });
+
         alert_view = new Granite.Widgets.AlertView ("", "", "");
         alert_view.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
         alert_view.set_vexpand (true);
