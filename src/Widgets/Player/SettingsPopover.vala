@@ -19,6 +19,20 @@
  */
 
 public class Audience.Widgets.SettingsPopover : Gtk.Popover {
+     private enum PlayFlags {
+        VIDEO = (1 << 0),
+        AUDIO = (1 << 1),
+        TEXT = (1 << 2),
+        VIS = (1 << 3),
+        SOFT_VOLUME = (1 << 4),
+        NATIVE_AUDIO = (1 << 5),
+        NATIVE_VIDEO = (1 << 6),
+        DOWNLOAD = (1 << 7),
+        BUFFERING = (1 << 8),
+        DEINTERLACE = (1 << 9),
+        SOFT_COLORBALANCE = (1 << 10)
+    }
+
     public bool is_setup = false;
 
     private Gtk.ComboBoxText languages;
@@ -70,7 +84,26 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.column_spacing = 12;
 
         external_subtitle_file.file_set.connect (() => {
-            playback.set_subtitle_uri (external_subtitle_file.get_uri ());
+            int flags;
+            unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
+                        pipeline.set_state (Gst.State.READY);
+
+                                    pipeline.get ("flags", out flags);
+            flags &= PlayFlags.TEXT;
+            flags &= PlayFlags.AUDIO;
+            flags &= PlayFlags.VIDEO;
+            pipeline.set ("flags", flags);
+
+
+            Gst.Element sub = Gst.ElementFactory.make ("suburi", external_subtitle_file.get_uri ());
+            if (sub != null) {
+                pipeline.add_element (sub);
+            }
+
+                        pipeline.set_state (Gst.State.PLAYING);
+
+
+
         });
 
         playback.notify["subtitle-uri"].connect (() => {
