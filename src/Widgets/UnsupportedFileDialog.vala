@@ -16,7 +16,7 @@
  */
 
 public class Audience.UnsupportedFileDialog : Granite.MessageDialog {
-    public string content_type {get; construct;}
+    public string content_type { get; construct; }
     public string filename {get; construct;}
     public string uri {get; construct;}
 
