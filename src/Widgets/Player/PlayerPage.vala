@@ -263,7 +263,7 @@ namespace Audience {
                 unowned string content_type = info.get_content_type ();
 
                 if (!GLib.ContentType.is_a (content_type, "video")) {
-                    debug ("Unrecognized file format : " + content_type);
+                    debug ("Unrecognized file format: %s", content_type);
                     var unsupported_file_dialog = new UnsupportedFileDialog (uri, info.get_name (), content_type);
                     unsupported_file_dialog.present ();
 
