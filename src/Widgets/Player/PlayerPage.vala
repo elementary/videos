@@ -256,6 +256,35 @@ namespace Audience {
 
         public void play_file (string uri, bool from_beginning = true) {
             debug ("Opening %s", uri);
+
+            var file = File.new_for_uri (uri);
+            try {
+                FileInfo info = file.query_info ("standard::*", 0);
+                var content_type = info.get_content_type ();
+
+                if (!content_type.has_prefix ("video")) {
+                    var unsupported_file_dialog = new UnsupportedFileDialog (uri, info.get_name (), content_type);
+                    unsupported_file_dialog.present ();
+
+                    unsupported_file_dialog.response.connect (type => {
+                        if (type == Gtk.ResponseType.ACCEPT) {
+                            unsupported_file_dialog.destroy ();
+                        } else if (type == Gtk.ResponseType.CANCEL) {
+                            unsupported_file_dialog.destroy ();
+                            // Play next video if available or else go to welcome page
+                            if (!get_playlist_widget ().next ()) {
+                                ended ();
+                            }
+                        } else {
+                            unsupported_file_dialog.destroy ();
+                            return;
+                        }
+                    });
+                }
+            } catch (Error e) {
+                debug (e.message);
+            }
+
             get_playlist_widget ().set_current (uri);
             playback.uri = uri;
 
