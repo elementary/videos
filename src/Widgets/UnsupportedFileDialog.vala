@@ -38,7 +38,7 @@ public class Audience.UnsupportedFileDialog : Granite.MessageDialog {
         var play_anyway_button = add_button (_("Play Anyway"), Gtk.ResponseType.ACCEPT);
         play_anyway_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
 
-        var error_text = _("Unable to play file at: %s\nThe file is not a video (\"%s\").", uri, GLib.ContentType.get_description (content_type));
+        var error_text = _("Unable to play file at: %s\nThe file is not a video (\"%s\").".printf (uri, GLib.ContentType.get_description (content_type)));
         show_error_details (error_text);
     }
 }

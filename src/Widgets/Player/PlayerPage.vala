@@ -261,25 +261,19 @@ namespace Audience {
             try {
                 FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
                 unowned string content_type = info.get_content_type ();
-
-                if (!GLib.ContentType.is_a (content_type, "video")) {
+                if (!content_type.has_prefix ("video")) {
                     debug ("Unrecognized file format: %s", content_type);
                     var unsupported_file_dialog = new UnsupportedFileDialog (uri, info.get_name (), content_type);
                     unsupported_file_dialog.present ();
 
                     unsupported_file_dialog.response.connect (type => {
-                        if (type == Gtk.ResponseType.ACCEPT) {
-                            unsupported_file_dialog.destroy ();
-                        } else if (type == Gtk.ResponseType.CANCEL) {
-                            unsupported_file_dialog.destroy ();
+                        if (type == Gtk.ResponseType.CANCEL) {
                             // Play next video if available or else go to welcome page
                             if (!get_playlist_widget ().next ()) {
                                 ended ();
                             }
-                        } else {
-                            unsupported_file_dialog.destroy ();
-                            return;
                         }
+                        unsupported_file_dialog.destroy ();
                     });
                 }
             } catch (Error e) {
