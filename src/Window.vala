@@ -490,12 +490,12 @@ public class Audience.Window : Gtk.Window {
         welcome_page.refresh ();
     }
 
-    public void clear_playlist() {
-        player_page.get_playlist_widget().clear_items();
+    public void clear_playlist () {
+        player_page.get_playlist_widget ().clear_items ();
     }
 
-    public void append_to_playlist(File file) {
-        player_page.append_to_playlist(file);
+    public void append_to_playlist (File file) {
+        player_page.append_to_playlist (file);
     }
 
     public void navigate_back () {

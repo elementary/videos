@@ -77,9 +77,9 @@ namespace Audience {
             shown_episodes = new Gee.ArrayList<Audience.Objects.Video> ();
             foreach (Audience.Objects.Video episode in episodes) {
                 view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
-                shown_episodes.add(episode);
+                shown_episodes.add (episode);
             }
-            shown_episodes.sort((a, b) => {
+            shown_episodes.sort ((a, b) => {
                 var item1 = (Audience.Objects.Video)a;
                 var item2 = (Audience.Objects.Video)b;
                 if (item1 != null && item2 != null) {
@@ -106,13 +106,13 @@ namespace Audience {
                 string uri = video.video_file.get_uri ();
                 bool from_beginning = uri != settings.get_string ("current-video");
                 var window = App.get_instance ().mainwindow;// Clean playlist
-                window.clear_playlist();
+                window.clear_playlist ();
                 window.add_to_playlist (uri, false);
                 window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
                 // Add next from the current view to the queque
-                int played_index = shown_episodes.index_of(video);
-                foreach (Audience.Objects.Video episode in shown_episodes.slice(played_index, shown_episodes.size)) {
-                    window.append_to_playlist(episode.video_file);
+                int played_index = shown_episodes.index_of (video);
+                foreach (Audience.Objects.Video episode in shown_episodes.slice (played_index, shown_episodes.size)) {
+                    window.append_to_playlist (episode.video_file);
                 }
             }
         }
