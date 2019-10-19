@@ -260,7 +260,7 @@ namespace Audience {
             var file = File.new_for_uri (uri);
             try {
                 FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
-                var content_type = info.get_content_type ();
+                unowned string content_type = info.get_content_type ();
 
                 if (!content_type.has_prefix ("video")) {
                     debug ("Unrecognized file format : " + content_type);
