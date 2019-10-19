@@ -103,17 +103,15 @@ namespace Audience {
             var selected = (item as Audience.LibraryItem);
             var video = selected.episodes.first ();
             if (video.video_file.query_exists ()) {
-                var mainwindow = App.get_instance ().mainwindow;
                 string uri = video.video_file.get_uri ();
                 bool from_beginning = uri != settings.get_string ("current-video");
-                // Clean playlist
-                mainwindow.clear_playlist();
-                // Play selected file
-                mainwindow.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
+                var window = App.get_instance ().mainwindow;
+                window.add_to_playlist (uri, false);
+                window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
                 // Add next from the current view to the queque
                 int played_index = shown_episodes.index_of(video);
                 foreach (Audience.Objects.Video episode in shown_episodes.slice(played_index, shown_episodes.size)) {
-                    mainwindow.append_to_playlist(episode.video_file);
+                    window.append_to_playlist(episode.video_file);
                 }
             }
         }
