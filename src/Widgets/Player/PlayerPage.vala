@@ -259,7 +259,7 @@ namespace Audience {
 
             var file = File.new_for_uri (uri);
             try {
-                FileInfo info = file.query_info ("standard::*", 0);
+                FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
                 var content_type = info.get_content_type ();
 
                 if (!content_type.has_prefix ("video")) {
