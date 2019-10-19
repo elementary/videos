@@ -31,7 +31,6 @@ public class Audience.UnsupportedFileDialog : Granite.MessageDialog {
             content_type: content_type,
             filename: filename,
             uri: uri
-
         );
     }
 
