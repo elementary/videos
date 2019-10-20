@@ -98,6 +98,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
 
         var row = new PlaylistItem (Audience.get_title (path.get_basename ()), path.get_uri ());
         add (row);
+        connect_row_signals (row);
         item_added ();
     }
 
@@ -215,5 +216,11 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
 
         remove (source);
         insert (source, new_position);
+    }
+
+    private void connect_row_signals (PlaylistItem playlist_item) {
+        playlist_item.remove_playlist_item.connect (() => {
+            remove_item (File.new_for_uri (playlist_item.filename));
+        });
     }
 }
