@@ -261,7 +261,7 @@ namespace Audience {
 
             string? sub_uri = get_subtitle_for_uri (uri);
             if (sub_uri != null && sub_uri != uri)
-                playback.set_subtitle_uri (sub_uri);
+                set_subtitle (sub_uri);
 
             App.get_instance ().mainwindow.title = get_title (uri);
 
@@ -315,7 +315,7 @@ namespace Audience {
 
         public void append_to_playlist (File file) {
             if (playback.playing && is_subtitle (file.get_uri ())) {
-                playback.set_subtitle_uri (file.get_uri ());
+                set_subtitle (file.get_uri ());
             } else {
                 get_playlist_widget ().add_item (file);
             }
