@@ -384,6 +384,15 @@ public class Audience.Window : Gtk.Window {
         library_page.scrolled_window.grab_focus ();
     }
 
+    public void add_to_playlist (string uri, bool preserve_playlist) {
+        if (!preserve_playlist) {
+            player_page.get_playlist_widget ().clear_items ();
+        }
+
+        player_page.append_to_playlist (File.new_for_uri (uri));
+        settings.set_string ("current-video", uri);
+    }
+
     public void run_open_file (bool clear_playlist = false, bool force_play = true) {
         var all_files_filter = new Gtk.FileFilter ();
         all_files_filter.set_filter_name (_("All files"));
