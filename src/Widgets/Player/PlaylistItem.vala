@@ -26,6 +26,9 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
     private Gtk.EventBox dnd_event_box;
     private Gtk.Label track_name_label;
     private Gtk.Grid grid;
+    private Gtk.Button delete_button;
+    private Gtk.Revealer action_revealer;
+    private Gtk.Box action_box;
 
     private const string PLAY_ICON = "media-playback-start-symbolic";
     private const Gtk.TargetEntry[] TARGET_ENTRIES = {
@@ -59,6 +62,48 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         track_name_label = new Gtk.Label (title);
         track_name_label.ellipsize = Pango.EllipsizeMode.MIDDLE;
         grid.attach (track_name_label, 1, 0, 2, 1);
+
+        //  delete_button = new Gtk.Button.from_icon_name ("edit-delete-symbolic", Gtk.IconSize.BUTTON);
+        var delete_button = new Gtk.Image ();
+        delete_button.icon_name = "edit-delete-symbolic";
+        delete_button.halign = Gtk.Align.END;
+        delete_button.tooltip_text = _("Remove video from playlist");
+
+        action_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        action_box.expand = true;
+        action_box.halign = Gtk.Align.END;
+        action_box.visible = false;
+
+        action_box.pack_start (delete_button, false, false, 0);
+
+        action_revealer = new Gtk.Revealer ();
+        action_revealer.transition_type = Gtk.RevealerTransitionType.CROSSFADE;
+        action_revealer.add (action_box);
+        action_revealer.transition_duration = 1000;
+        action_revealer.show_all ();
+        action_revealer.set_reveal_child (false);
+        grid.attach (action_revealer, 3, 0, 1, 1);
+
+        dnd_event_box.add_events (Gdk.EventMask.ENTER_NOTIFY_MASK | Gdk.EventMask.LEAVE_NOTIFY_MASK);
+
+        dnd_event_box.enter_notify_event.connect ( (event) => {
+            debug ("Enter");
+            action_revealer.set_reveal_child (true);
+            action_box.visible = true;
+            return false;
+        });
+
+        dnd_event_box.leave_notify_event.connect ((event) => {
+            debug ("Exit");
+
+            if (event.detail == Gdk.NotifyType.INFERIOR) {
+                return false;
+            }
+
+            action_revealer.set_reveal_child (false);
+            action_box.visible = false;
+            return false;
+        });
 
         Gtk.drag_source_set (dnd_event_box, Gdk.ModifierType.BUTTON1_MASK, TARGET_ENTRIES, Gdk.DragAction.MOVE);
         dnd_event_box.drag_begin.connect (on_drag_begin);
