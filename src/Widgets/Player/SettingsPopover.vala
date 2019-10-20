@@ -19,20 +19,6 @@
  */
 
 public class Audience.Widgets.SettingsPopover : Gtk.Popover {
-     private enum PlayFlags {
-        VIDEO = (1 << 0),
-        AUDIO = (1 << 1),
-        TEXT = (1 << 2),
-        VIS = (1 << 3),
-        SOFT_VOLUME = (1 << 4),
-        NATIVE_AUDIO = (1 << 5),
-        NATIVE_VIDEO = (1 << 6),
-        DOWNLOAD = (1 << 7),
-        BUFFERING = (1 << 8),
-        DEINTERLACE = (1 << 9),
-        SOFT_COLORBALANCE = (1 << 10)
-    }
-
     public bool is_setup = false;
 
     private Gtk.ComboBoxText languages;
