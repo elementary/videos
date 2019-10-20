@@ -17,8 +17,7 @@
 
 public class Audience.UnsupportedFileDialog : Granite.MessageDialog {
     public string content_type { get; construct; }
-    public string filename {get; construct;}
-    public string uri {get; construct;}
+    public string uri { get; construct; }
 
     public UnsupportedFileDialog (string uri, string filename, string content_type) {
         Object (
@@ -27,9 +26,9 @@ public class Audience.UnsupportedFileDialog : Granite.MessageDialog {
             secondary_text: _("Videos might not be able to play the file '%s'.".printf (filename)),
             buttons: Gtk.ButtonsType.CANCEL,
             image_icon: new ThemedIcon ("dialog-error"),
+            transient_for: App.get_instance ().mainwindow,
             window_position: Gtk.WindowPosition.CENTER,
             content_type: content_type,
-            filename: filename,
             uri: uri
         );
     }

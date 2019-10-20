@@ -273,6 +273,7 @@ namespace Audience {
                             if (!get_playlist_widget ().next ()) {
                                 ended ();
                             }
+
                         }
                         unsupported_file_dialog.destroy ();
                     });
