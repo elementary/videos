@@ -84,7 +84,6 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.column_spacing = 12;
 
         external_subtitle_file.file_set.connect (() => {
-            var progress = playback.progress;
             unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
             pipeline.set_state (Gst.State.NULL);
             playback.set_subtitle_uri (external_subtitle_file.get_uri ());
