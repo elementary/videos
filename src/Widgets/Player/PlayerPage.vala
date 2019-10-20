@@ -261,7 +261,7 @@ namespace Audience {
 
             string? sub_uri = get_subtitle_for_uri (uri);
             if (sub_uri != null && sub_uri != uri)
-                set_subtitle (sub_uri);
+                playback.set_subtitle_uri (sub_uri);
 
             App.get_instance ().mainwindow.title = get_title (uri);
 
@@ -387,9 +387,7 @@ namespace Audience {
             var progress = playback.progress;
             unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
             pipeline.set_state (Gst.State.NULL);
-            playback.set_subtitle_uri (uri);
             pipeline.set ("suburi", uri, null);
-            pipeline.set ("uri", playback.uri, null);
             pipeline.set_state (Gst.State.PLAYING);
             Timeout.add (500, () => {
                 playback.set_progress (progress);
