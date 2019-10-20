@@ -63,10 +63,9 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         track_name_label.ellipsize = Pango.EllipsizeMode.MIDDLE;
         grid.attach (track_name_label, 1, 0, 2, 1);
 
-        var delete_button = new Gtk.Button.from_icon_name ("edit-delete-symbolic",  Gtk.IconSize.MENU);
+        var delete_button = new Gtk.Button.from_icon_name ("edit-delete-symbolic", Gtk.IconSize.MENU);
         delete_button.valign = Gtk.Align.CENTER;
         delete_button.halign = Gtk.Align.END;
-        delete_button.margin_end = 3; // Give a subtle space between image and scrollbar
         delete_button.tooltip_text = _("Remove video from playlist");
         delete_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
