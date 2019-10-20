@@ -383,6 +383,20 @@ namespace Audience {
             return false;
         }
 
+        public void set_subtitle (string uri) {
+            var progress = playback.progress;
+            unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
+            pipeline.set_state (Gst.State.NULL);
+            playback.set_subtitle_uri (uri);
+            pipeline.set ("suburi", uri, null);
+            pipeline.set ("uri", playback.uri, null);
+            pipeline.set_state (Gst.State.PLAYING);
+            Timeout.add (500, () => {
+                playback.set_progress (progress);
+                return false;
+            });
+        }
+
         public bool update_pointer_position (double y, int window_height) {
             App.get_instance ().mainwindow.get_window ().set_cursor (null);
 
