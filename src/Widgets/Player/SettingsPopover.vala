@@ -84,26 +84,13 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.column_spacing = 12;
 
         external_subtitle_file.file_set.connect (() => {
-            int flags;
+            var progress = playback.progress;
             unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
-                        pipeline.set_state (Gst.State.READY);
-
-                                    pipeline.get ("flags", out flags);
-            flags &= PlayFlags.TEXT;
-            flags &= PlayFlags.AUDIO;
-            flags &= PlayFlags.VIDEO;
-            pipeline.set ("flags", flags);
-
-
-            Gst.Element sub = Gst.ElementFactory.make ("suburi", external_subtitle_file.get_uri ());
-            if (sub != null) {
-                pipeline.add_element (sub);
-            }
-
-                        pipeline.set_state (Gst.State.PLAYING);
-
-
-
+            pipeline.set_state (Gst.State.NULL);
+            playback.set_subtitle_uri (external_subtitle_file.get_uri ());
+            pipeline.set ("suburi", external_subtitle_file.get_uri (), null);
+            debug (progress.to_string ());
+            pipeline.set_state (Gst.State.PLAYING);
         });
 
         playback.notify["subtitle-uri"].connect (() => {
