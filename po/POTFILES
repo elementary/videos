@@ -12,6 +12,7 @@ src/Services/LibraryManager.vala
 src/Services/Thumbnailer.vala
 src/Widgets/NavigationButton.vala
 src/Widgets/WelcomePage.vala
+src/Widgets/UnsupportedFileDialog.vala
 src/Widgets/Library/EpisodesPage.vala
 src/Widgets/Library/LibraryItem.vala
 src/Widgets/Library/LibraryPage.vala
