@@ -33,7 +33,7 @@ public class Audience.Window : Gtk.Window {
     private ZeitgeistManager zeitgeist_manager;
     private Gtk.SearchEntry search_entry;
 
-    public PlayerPage player_page { get; set; }
+    public PlayerPage player_page { get; private set; }
 
     public enum NavigationPage { WELCOME, LIBRARY, EPISODES }
 
