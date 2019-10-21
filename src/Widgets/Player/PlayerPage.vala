@@ -392,7 +392,7 @@ namespace Audience {
             pipeline.set ("suburi", uri, null);
             pipeline.set_state (Gst.State.PLAYING);
             Timeout.add (200, () => {
-                playback.set_progress (progress);
+                playback.progress = progress;
                 return false;
             });
 
