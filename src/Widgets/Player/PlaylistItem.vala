@@ -48,7 +48,6 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         grid.margin = 3;
         grid.margin_bottom = grid.margin_top = 6;
         grid.column_spacing = 6;
-        grid.row_spacing = 3;
         grid.add (play_revealer);
         grid.add (track_name_label);
 
