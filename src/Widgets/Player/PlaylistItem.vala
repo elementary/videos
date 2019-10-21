@@ -19,15 +19,10 @@
 */
 
 public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
-    public string title {get; construct;}
-    public string filename {get; construct;}
+    public bool is_playing { get; set; }
+    public string title { get; construct; }
+    public string filename { get; construct; }
 
-    private Gtk.Image play_icon;
-    private Gtk.EventBox dnd_event_box;
-    private Gtk.Label track_name_label;
-    private Gtk.Grid grid;
-
-    private const string PLAY_ICON = "media-playback-start-symbolic";
     private const Gtk.TargetEntry[] TARGET_ENTRIES = {
         {"PLAYLIST_ITEM", Gtk.TargetFlags.SAME_APP, 0}
     };
@@ -37,41 +32,38 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
             title: title,
             filename: filename
         );
-
-        show_all ();
     }
 
     construct {
-        grid = new Gtk.Grid ();
+        var play_icon = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON);
+
+        var play_revealer = new Gtk.Revealer ();
+        play_revealer.transition_type = Gtk.RevealerTransitionType.CROSSFADE;
+        play_revealer.add (play_icon);
+
+        var track_name_label = new Gtk.Label (title);
+        track_name_label.ellipsize = Pango.EllipsizeMode.MIDDLE;
+
+        var grid = new Gtk.Grid ();
         grid.margin = 3;
         grid.margin_bottom = grid.margin_top = 6;
         grid.column_spacing = 6;
         grid.row_spacing = 3;
+        grid.add (play_revealer);
+        grid.add (track_name_label);
 
         // Drag source must have a GdkWindow. GTK4 will remove the limitation.
-        dnd_event_box = new Gtk.EventBox ();
-        dnd_event_box.add (grid);
-        add (dnd_event_box);
-
-        play_icon = new Gtk.Image ();
-        grid.attach (play_icon, 0, 0, 1, 1);
-
-        track_name_label = new Gtk.Label (title);
-        track_name_label.ellipsize = Pango.EllipsizeMode.MIDDLE;
-        grid.attach (track_name_label, 1, 0, 2, 1);
-
-        Gtk.drag_source_set (dnd_event_box, Gdk.ModifierType.BUTTON1_MASK, TARGET_ENTRIES, Gdk.DragAction.MOVE);
+        var dnd_event_box = new Gtk.EventBox ();
         dnd_event_box.drag_begin.connect (on_drag_begin);
         dnd_event_box.drag_data_get.connect (on_drag_data_get);
+        dnd_event_box.add (grid);
 
-    }
+        Gtk.drag_source_set (dnd_event_box, Gdk.ModifierType.BUTTON1_MASK, TARGET_ENTRIES, Gdk.DragAction.MOVE);
 
-    public void set_play_state () {
-        play_icon.icon_name = PLAY_ICON;
-    }
+        add (dnd_event_box);
+        show_all ();
 
-    public void set_unplay_state () {
-        play_icon.icon_name = "";
+        bind_property ("is-playing", play_revealer, "reveal-child");
     }
 
     private void on_drag_begin (Gtk.Widget widget, Gdk.DragContext context) {
