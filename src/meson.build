@@ -12,6 +12,7 @@ executable(
     'Services/LibraryManager.vala',
     'Services/Thumbnailer.vala',
     'Widgets/NavigationButton.vala',
+    'Widgets/UnsupportedFileDialog.vala',
     'Widgets/WelcomePage.vala',
     'Widgets/Library/EpisodesPage.vala',
     'Widgets/Library/LibraryItem.vala',
