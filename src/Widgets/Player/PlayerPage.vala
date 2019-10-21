@@ -314,7 +314,7 @@ namespace Audience {
         }
 
         public void append_to_playlist (File file) {
-            if (playback.playing && is_subtitle (file.get_uri ())) {
+            if (is_subtitle (file.get_uri ())) {
                 set_subtitle (file.get_uri ());
             } else {
                 get_playlist_widget ().add_item (file);
@@ -385,14 +385,19 @@ namespace Audience {
 
         public void set_subtitle (string uri) {
             var progress = playback.progress;
+            var is_playing = playback.playing;
             unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
             pipeline.set_state (Gst.State.NULL);
             pipeline.set ("suburi", uri, null);
             pipeline.set_state (Gst.State.PLAYING);
-            Timeout.add (500, () => {
+            Timeout.add (200, () => {
                 playback.set_progress (progress);
                 return false;
             });
+
+            if (!is_playing) {
+                pipeline.set_state (Gst.State.PAUSED);
+            }
         }
 
         public bool update_pointer_position (double y, int window_height) {
