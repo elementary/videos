@@ -386,6 +386,7 @@ namespace Audience {
         public void set_subtitle (string uri) {
             var progress = playback.progress;
             var is_playing = playback.playing;
+
             unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
             pipeline.set_state (Gst.State.NULL);
             pipeline.set ("suburi", uri, null);
@@ -395,6 +396,7 @@ namespace Audience {
                 return false;
             });
 
+            // Pause video if it was in Paused state before adding the subtitle
             if (!is_playing) {
                 pipeline.set_state (Gst.State.PAUSED);
             }
