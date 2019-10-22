@@ -296,16 +296,10 @@ namespace Audience {
             }
 
              if (!check_if_plugin_available (uri)) {
-                playback.playing = false;
                 var missing_plugin_dialog = new MissingPluginDialog (uri, info.get_name ());
                 missing_plugin_dialog.present ();
                 missing_plugin_dialog.response.connect (type => {
-                    if (type == Gtk.ResponseType.CANCEL) {
-                        // Play next video if available or else go to welcome page
-                        if (!get_playlist_widget ().next ()) {
-                            ended ();
-                        }
-                    } else if (type == Gtk.ResponseType.ACCEPT) {
+                    if (type == Gtk.ResponseType.ACCEPT) {
                         play_video (uri, from_beginning);
                     }
 
