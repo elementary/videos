@@ -492,7 +492,6 @@ namespace Audience {
             }
 
             Gst.PbUtils.DiscovererInfo info = null;
-
             try {
                 info = discoverer.discover_uri (playback.uri);
             } catch (Error e) {
