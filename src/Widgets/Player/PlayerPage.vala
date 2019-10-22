@@ -295,6 +295,28 @@ namespace Audience {
                 debug (e.message);
             }
 
+             if (!check_if_plugin_available (uri)) {
+                playback.playing = false;
+                var missing_plugin_dialog = new MissingPluginDialog (uri, info.get_name ());
+                missing_plugin_dialog.present ();
+                missing_plugin_dialog.response.connect (type => {
+                    if (type == Gtk.ResponseType.CANCEL) {
+                        // Play next video if available or else go to welcome page
+                        if (!get_playlist_widget ().next ()) {
+                            ended ();
+                        }
+                    } else if (type == Gtk.ResponseType.ACCEPT) {
+                        play_video (uri, from_beginning);
+                    }
+
+                    missing_plugin_dialog.destroy ();
+                });
+            } else {
+                play_video (uri, from_beginning);
+            }
+        }
+
+        private void play_video (string uri, bool from_beginning) {
             get_playlist_widget ().set_current (uri);
             playback.uri = uri;
 
@@ -319,25 +341,6 @@ namespace Audience {
 
             Audience.Services.Inhibitor.get_instance ().inhibit ();
             settings.set_string ("current-video", uri);
-
-            if (!check_if_plugin_available (uri)) {
-                playback.playing = false;
-                var missing_plugin_dialog = new MissingPluginDialog (uri, info.get_name ());
-                missing_plugin_dialog.present ();
-                missing_plugin_dialog.response.connect (type => {
-                    if (type == Gtk.ResponseType.CANCEL) {
-                        // Play next video if available or else go to welcome page
-                        if (!get_playlist_widget ().next ()) {
-                            ended ();
-                        }
-                    }
-                    else if (type == Gtk.ResponseType.ACCEPT) {
-                        playback.playing = true;
-                    }
-
-                    missing_plugin_dialog.destroy ();
-                });
-            }
         }
 
         public double get_progress () {
