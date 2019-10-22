@@ -248,6 +248,17 @@ namespace Audience {
                 App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file.get_uri ()) });
             });
 
+            get_playlist_widget ().stop_video.connect (() => {
+                playback.playing = false;
+                playback.progress = 1.0;
+
+                settings.set_double ("last-stopped", 0);
+                settings.set_strv ("last-played-videos", {});
+                settings.set_string ("current-video", "");
+
+                ended ();
+            });
+
             bottom_bar.notify["child-revealed"].connect (() => {
                 if (bottom_bar.child_revealed == true) {
                     App.get_instance ().mainwindow.show_mouse_cursor ();
@@ -270,6 +281,32 @@ namespace Audience {
 
         public void play_file (string uri, bool from_beginning = true) {
             debug ("Opening %s", uri);
+
+            var file = File.new_for_uri (uri);
+            try {
+                FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
+                unowned string content_type = info.get_content_type ();
+
+                if (!GLib.ContentType.is_a (content_type, "video/*")) {
+                    debug ("Unrecognized file format: %s", content_type);
+                    var unsupported_file_dialog = new UnsupportedFileDialog (uri, info.get_name (), content_type);
+                    unsupported_file_dialog.present ();
+
+                    unsupported_file_dialog.response.connect (type => {
+                        if (type == Gtk.ResponseType.CANCEL) {
+                            // Play next video if available or else go to welcome page
+                            if (!get_playlist_widget ().next ()) {
+                                ended ();
+                            }
+                        }
+
+                        unsupported_file_dialog.destroy ();
+                    });
+                }
+            } catch (Error e) {
+                debug (e.message);
+            }
+
             get_playlist_widget ().set_current (uri);
             playback.uri = uri;
 
