@@ -234,6 +234,17 @@ namespace Audience {
                 App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file.get_uri ()) });
             });
 
+            get_playlist_widget ().stop_video.connect (() => {
+                playback.playing = false;
+                playback.progress = 1.0;
+
+                settings.set_double ("last-stopped", 0);
+                settings.set_strv ("last-played-videos", {});
+                settings.set_string ("current-video", "");
+
+                ended ();
+            });
+
             bottom_bar.notify["child-revealed"].connect (() => {
                 if (bottom_bar.child_revealed == true) {
                     App.get_instance ().mainwindow.show_mouse_cursor ();

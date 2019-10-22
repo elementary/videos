@@ -21,6 +21,7 @@
 public class Audience.Widgets.Playlist : Gtk.ListBox {
     public signal void play (File path);
     public signal void item_added ();
+    public signal void stop_video ();
 
     private int current = 0;
 
@@ -118,6 +119,8 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         foreach (Gtk.Widget item in get_children ()) {
             remove (item);
         }
+
+        stop_video ();
     }
 
     public File? get_first_item () {
