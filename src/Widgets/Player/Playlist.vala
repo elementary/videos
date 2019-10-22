@@ -146,9 +146,9 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
             string name = row.filename;
             if (name == current_file) {
                 current_played = count;
-                row.set_play_state ();
+                row.is_playing = true;
             } else {
-                row.set_unplay_state ();
+                row.is_playing = false;
             }
             count++;
         }
