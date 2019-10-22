@@ -11,6 +11,7 @@ executable(
     'Services/Inhibitor.vala',
     'Services/LibraryManager.vala',
     'Services/Thumbnailer.vala',
+    'Widgets/MissingPluginDialog.vala',
     'Widgets/NavigationButton.vala',
     'Widgets/UnsupportedFileDialog.vala',
     'Widgets/WelcomePage.vala',

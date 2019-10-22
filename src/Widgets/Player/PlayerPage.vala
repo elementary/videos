@@ -16,6 +16,7 @@
  */
 
 namespace Audience {
+    private const int DISCOVERER_TIMEOUT = 5;
     private const string[] SUBTITLE_EXTENSIONS = {
         "sub",
         "srt",
@@ -269,8 +270,9 @@ namespace Audience {
             debug ("Opening %s", uri);
 
             var file = File.new_for_uri (uri);
+            FileInfo info = new FileInfo ();
             try {
-                FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
+                info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
                 unowned string content_type = info.get_content_type ();
 
                 if (!GLib.ContentType.is_a (content_type, "video/*")) {
@@ -297,8 +299,9 @@ namespace Audience {
             playback.uri = uri;
 
             string? sub_uri = get_subtitle_for_uri (uri);
-            if (sub_uri != null && sub_uri != uri)
+            if (sub_uri != null && sub_uri != uri) {
                 playback.set_subtitle_uri (sub_uri);
+            }
 
             App.get_instance ().mainwindow.title = get_title (uri);
 
@@ -316,6 +319,20 @@ namespace Audience {
 
             Audience.Services.Inhibitor.get_instance ().inhibit ();
             settings.set_string ("current-video", uri);
+
+            if (!check_if_plugin_available (uri)) {
+                playback.playing = false;
+                var missing_plugin_dialog = new MissingPluginDialog (uri, info.get_name ());
+                missing_plugin_dialog.present ();
+                missing_plugin_dialog.response.connect (type => {
+                    if (type == Gtk.ResponseType.ACCEPT) {
+                        debug ("Playing");
+                        playback.playing = true;
+                    }
+
+                    missing_plugin_dialog.destroy ();
+                });
+            }
         }
 
         public double get_progress () {
@@ -464,6 +481,32 @@ namespace Audience {
             }
 
             return false;
+        }
+
+        private bool check_if_plugin_available (string uri) {
+            Gst.PbUtils.Discoverer discoverer = null;
+            try {
+                discoverer = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (DISCOVERER_TIMEOUT * Gst.SECOND));
+            } catch (Error e) {
+                debug ("Could not create Gst discoverer object: %s", e.message);
+                return true;
+            }
+
+            Gst.PbUtils.DiscovererInfo info = null;
+
+            try {
+                info = discoverer.discover_uri (playback.uri);
+            } catch (Error e) {
+                debug ("Discoverer Error %d: %s\n", e.code, e.message);
+                return true;
+            }
+
+            if (info.get_result () == Gst.PbUtils.DiscovererResult.MISSING_PLUGINS) {
+                warning ("GStreamer could not play '%s': Missing plugins.", uri);
+                return false;
+            }
+
+            return true;
         }
     }
 }
