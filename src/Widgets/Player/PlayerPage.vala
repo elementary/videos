@@ -326,7 +326,6 @@ namespace Audience {
                 missing_plugin_dialog.present ();
                 missing_plugin_dialog.response.connect (type => {
                     if (type == Gtk.ResponseType.ACCEPT) {
-                        debug ("Playing");
                         playback.playing = true;
                     }
 
