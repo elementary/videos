@@ -430,6 +430,9 @@ namespace Audience {
             pipeline.set_state (Gst.State.PLAYING);
             Timeout.add (200, () => {
                 playback.progress = progress;
+                // Doesn't do anything but set value for FileChooserButton
+                // without need for passing another property around.
+                playback.subtitle_uri = uri;
                 return false;
             });
 
