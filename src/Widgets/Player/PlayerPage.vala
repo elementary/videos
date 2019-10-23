@@ -297,25 +297,23 @@ namespace Audience {
             }
 
              if (!check_if_plugin_available (uri)) {
-                var missing_plugin_dialog = new MissingPluginDialog (uri, info.get_name ());
+                unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
+                var caps = discovererInfo.get_stream_info ().get_caps ();
+                var message = Gst.PbUtils.missing_decoder_message_new (pipeline, caps);
+                var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail (message);
+                var plugin_name = Gst.PbUtils.missing_plugin_message_get_description (message);
+                var context = new Gst.PbUtils.InstallPluginsContext ();
+
+                var missing_plugin_dialog = new MissingPluginDialog (uri, info.get_name (), plugin_name);
                 missing_plugin_dialog.present ();
                 missing_plugin_dialog.response.connect (type => {
                     if (type == Gtk.ResponseType.ACCEPT) {
-                        unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
-                        var caps = discovererInfo.get_stream_info ().get_caps ();
-                        var message = Gst.PbUtils.missing_decoder_message_new (pipeline, caps);
-                        var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail (message);
-                        debug (installer);
-                        var context = new Gst.PbUtils.InstallPluginsContext ();
-
                         Gst.PbUtils.InstallPluginsReturn ret = Gst.PbUtils.install_plugins_sync ({ installer }, context);
                         if (ret == Gst.PbUtils.InstallPluginsReturn.SUCCESS) {
                             debug ("Plugin Installed");
                         } else {
                             debug ("Error");
                         }
-
-
                     }
 
                     missing_plugin_dialog.destroy ();

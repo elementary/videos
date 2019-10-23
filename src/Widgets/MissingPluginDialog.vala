@@ -16,17 +16,19 @@
  */
 
 public class Audience.MissingPluginDialog : Granite.MessageDialog {
+    public string plugin_name { get; construct; }
     public string uri { get; construct; }
 
-    public MissingPluginDialog (string uri, string filename) {
+    public MissingPluginDialog (string uri, string filename, string plugin_name) {
         Object (
             title: "",
             primary_text: _("Missing plugin"),
-            secondary_text: _("Videos might not be able to play the file '%s'.").printf (filename),
+            secondary_text: _("Videos is unable to play the file '%s'.").printf (filename),
             buttons: Gtk.ButtonsType.CANCEL,
             image_icon: new ThemedIcon ("dialog-error"),
             transient_for: App.get_instance ().mainwindow,
             window_position: Gtk.WindowPosition.CENTER,
+            plugin_name: plugin_name,
             uri: uri
         );
     }
@@ -35,7 +37,7 @@ public class Audience.MissingPluginDialog : Granite.MessageDialog {
         var play_anyway_button = add_button (_("Install Plugin"), Gtk.ResponseType.ACCEPT);
         play_anyway_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
-        var error_text = _("GStreamer could not play file at at: %s\nMissing plugins.").printf (uri);
+        var error_text = _("'%s' plugin should be installed to play the file at '%s'").printf (plugin_name, uri);
         show_error_details (error_text);
 
     }
