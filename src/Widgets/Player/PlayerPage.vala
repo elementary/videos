@@ -38,6 +38,7 @@ namespace Audience {
         private GtkClutter.Actor bottom_actor;
         private GnomeMediaKeys mediakeys;
         private ClutterGst.Playback playback;
+        Gst.PbUtils.DiscovererInfo discovererInfo;
         public Audience.Widgets.BottomBar bottom_bar {get; private set;}
 
         private bool mouse_primary_down = false;
@@ -300,7 +301,21 @@ namespace Audience {
                 missing_plugin_dialog.present ();
                 missing_plugin_dialog.response.connect (type => {
                     if (type == Gtk.ResponseType.ACCEPT) {
-                        play_video (uri, from_beginning);
+                        unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
+                        var caps = discovererInfo.get_stream_info ().get_caps ();
+                        var message = Gst.PbUtils.missing_decoder_message_new (pipeline, caps);
+                        var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail (message);
+                        debug (installer);
+                        var context = new Gst.PbUtils.InstallPluginsContext ();
+
+                        Gst.PbUtils.InstallPluginsReturn ret = Gst.PbUtils.install_plugins_sync ({ installer }, context);
+                        if (ret == Gst.PbUtils.InstallPluginsReturn.SUCCESS) {
+                            debug ("Plugin Installed");
+                        } else {
+                            debug ("Error");
+                        }
+
+
                     }
 
                     missing_plugin_dialog.destroy ();
@@ -494,18 +509,15 @@ namespace Audience {
                 return true;
             }
 
-            Gst.PbUtils.DiscovererInfo info = null;
             try {
-                info = discoverer.discover_uri (uri);
+                discovererInfo = discoverer.discover_uri (uri);
             } catch (Error e) {
                 debug ("Discoverer Error %d: %s\n", e.code, e.message);
                 return true;
             }
 
-            if (info.get_result () == Gst.PbUtils.DiscovererResult.MISSING_PLUGINS) {
+            if (discovererInfo.get_result () == Gst.PbUtils.DiscovererResult.MISSING_PLUGINS) {
                 warning ("GStreamer could not play '%s': Missing plugins.", uri);
-                debug (info.get_stream_info ().get_caps ().to_string ());
-                debug (Gst.PbUtils.missing_plugin_message_get_installer_detail (Gst.PbUtils.missing_decoder_message_new (playback.get_pipeline () as Gst.Pipeline,info.get_stream_info ().get_caps ())));
                 return false;
             }
 

@@ -32,8 +32,8 @@ public class Audience.MissingPluginDialog : Granite.MessageDialog {
     }
 
     construct {
-        var play_anyway_button = add_button (_("Play Anyway"), Gtk.ResponseType.ACCEPT);
-        play_anyway_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+        var play_anyway_button = add_button (_("Install Plugin"), Gtk.ResponseType.ACCEPT);
+        play_anyway_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
         var error_text = _("GStreamer could not play file at at: %s\nMissing plugins.").printf (uri);
         show_error_details (error_text);
