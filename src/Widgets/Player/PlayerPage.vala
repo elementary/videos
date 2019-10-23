@@ -504,6 +504,8 @@ namespace Audience {
 
             if (info.get_result () == Gst.PbUtils.DiscovererResult.MISSING_PLUGINS) {
                 warning ("GStreamer could not play '%s': Missing plugins.", uri);
+                debug (info.get_stream_info ().get_caps ().to_string ());
+                debug (Gst.PbUtils.missing_plugin_message_get_installer_detail (Gst.PbUtils.missing_decoder_message_new (playback.get_pipeline () as Gst.Pipeline,info.get_stream_info ().get_caps ())));
                 return false;
             }
 
