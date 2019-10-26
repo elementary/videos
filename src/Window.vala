@@ -33,7 +33,7 @@ public class Audience.Window : Gtk.Window {
     private NavigationButton navigation_button;
     private ZeitgeistManager zeitgeist_manager;
     private Gtk.SearchEntry search_entry;
-    private Granite.ModeSwitch autoqueque_next;
+    private Granite.ModeSwitch autoqueue_next;
 
     public enum NavigationPage { WELCOME, LIBRARY, EPISODES }
 
@@ -78,11 +78,11 @@ public class Audience.Window : Gtk.Window {
 
         header.pack_end (search_entry);
 
-        autoqueque_next = new Granite.ModeSwitch.from_icon_name ("media-playback-pause-symbolic", "media-playback-skip-forward");
-        autoqueque_next.primary_icon_tooltip_text = _("Standard mode: play single video");
-        autoqueque_next.secondary_icon_tooltip_text = _("Binge mode: queque next files from library");
-        autoqueque_next.valign = Gtk.Align.CENTER;
-        header.pack_end (autoqueque_next);
+        autoqueue_next = new Granite.ModeSwitch.from_icon_name ("media-playback-pause-symbolic", "media-playback-skip-forward");
+        autoqueue_next.primary_icon_tooltip_text = _("Play one video");
+        autoqueue_next.secondary_icon_tooltip_text = _("Automatically play next videos");
+        autoqueue_next.valign = Gtk.Align.CENTER;
+        header.pack_end (autoqueue_next);
 
         set_titlebar (header);
 
@@ -117,7 +117,7 @@ public class Audience.Window : Gtk.Window {
                 main_stack.set_visible_child (episodes_page);
                 this.title = item.get_title ();
                 search_entry.text = "";
-                autoqueque_next.visible = true;
+                autoqueue_next.visible = true;
             }
         });
 
@@ -177,7 +177,7 @@ public class Audience.Window : Gtk.Window {
 
         navigation_button.hide ();
         search_entry.visible = false;
-        autoqueque_next.visible = false;
+        autoqueue_next.visible = false;
         main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.NONE);
 
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
@@ -483,7 +483,7 @@ public class Audience.Window : Gtk.Window {
                 break;
             case NavigationPage.EPISODES:
                 navigation_button.label = _(NAVIGATION_BUTTON_EPISODES);
-                autoqueque_next.visible = true;
+                autoqueue_next.visible = true;
                 break;
         }
 
@@ -523,16 +523,16 @@ public class Audience.Window : Gtk.Window {
         if (navigation_button.label == _(NAVIGATION_BUTTON_LIBRARY)) {
             navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
             main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
-            autoqueque_next.visible = false;
+            autoqueue_next.visible = false;
         } else if (navigation_button.label == _(NAVIGATION_BUTTON_EPISODES)) {
             navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
             main_stack.set_visible_child_full ("episodes", Gtk.StackTransitionType.SLIDE_RIGHT);
-            autoqueque_next.visible = true;
+            autoqueue_next.visible = true;
         } else {
             navigation_button.hide ();
             main_stack.set_visible_child (welcome_page);
             search_entry.visible = false;
-            autoqueque_next.visible = false;
+            autoqueue_next.visible = false;
         }
         welcome_page.refresh ();
     }
@@ -570,7 +570,7 @@ public class Audience.Window : Gtk.Window {
         get_window ().set_cursor (null);
     }
 
-    public bool autoqueque_next_active () {
-        return this.autoqueque_next.active;
+    public bool autoqueue_next_active () {
+        return this.autoqueue_next.active;
     }
 }

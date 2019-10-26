@@ -109,8 +109,8 @@ namespace Audience {
                 window.clear_playlist ();
                 window.add_to_playlist (uri, false);
                 window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
-                if (window.autoqueque_next_active ()) {
-                    // Add next from the current view to the queque
+                if (window.autoqueue_next_active ()) {
+                    // Add next from the current view to the queue
                     int played_index = shown_episodes.index_of (video);
                     foreach (Audience.Objects.Video episode in shown_episodes.slice (played_index, shown_episodes.size)) {
                         window.append_to_playlist (episode.video_file);
