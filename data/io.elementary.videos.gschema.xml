@@ -59,5 +59,10 @@
             <summary>Poster file names</summary>
             <description></description>
         </key>
+        <key name="autoqueue-next" type="b">
+            <default>true</default>
+            <summary>Don't queque next videos when playing a file from library.</summary>
+            <description>This option allows user to activate the autoqueque videos when playing a video from library. Deactivated by default.</description>
+        </key>
     </schema>
 </schemalist>

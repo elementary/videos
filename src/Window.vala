@@ -82,6 +82,12 @@ public class Audience.Window : Gtk.Window {
         autoqueue_next.primary_icon_tooltip_text = _("Play one video");
         autoqueue_next.secondary_icon_tooltip_text = _("Automatically play next videos");
         autoqueue_next.valign = Gtk.Align.CENTER;
+        autoqueue_next.active = settings.get_boolean ("autoqueue-next");
+        this.delete_event.connect(() => {
+            settings.set_boolean ("autoqueue-next", autoqueue_next.active);
+            return false;
+        });
+
         header.pack_end (autoqueue_next);
 
         set_titlebar (header);
