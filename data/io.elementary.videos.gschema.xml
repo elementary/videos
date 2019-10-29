@@ -59,5 +59,10 @@
             <summary>Poster file names</summary>
             <description></description>
         </key>
+        <key name="autoqueue-next" type="b">
+            <default>true</default>
+            <summary>Automatically play next videos</summary>
+            <description>Automatically queue up next videos by adding them to the playlist when playing from the library.</description>
+        </key>
     </schema>
 </schemalist>

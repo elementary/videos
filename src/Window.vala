@@ -33,6 +33,7 @@ public class Audience.Window : Gtk.Window {
     private NavigationButton navigation_button;
     private ZeitgeistManager zeitgeist_manager;
     private Gtk.SearchEntry search_entry;
+    private Granite.ModeSwitch autoqueue_next;
 
     public enum NavigationPage { WELCOME, LIBRARY, EPISODES }
 
@@ -77,6 +78,14 @@ public class Audience.Window : Gtk.Window {
 
         header.pack_end (search_entry);
 
+        autoqueue_next = new Granite.ModeSwitch.from_icon_name ("media-playback-pause-symbolic", "media-playback-skip-forward");
+        autoqueue_next.primary_icon_tooltip_text = _("Play one video");
+        autoqueue_next.secondary_icon_tooltip_text = _("Automatically play next videos");
+        autoqueue_next.valign = Gtk.Align.CENTER;
+        settings.bind ("autoqueue-next", autoqueue_next, "active", SettingsBindFlags.DEFAULT);
+
+        header.pack_end (autoqueue_next);
+
         set_titlebar (header);
 
         library_page = LibraryPage.get_instance ();
@@ -110,6 +119,7 @@ public class Audience.Window : Gtk.Window {
                 main_stack.set_visible_child (episodes_page);
                 this.title = item.get_title ();
                 search_entry.text = "";
+                autoqueue_next.visible = true;
             }
         });
 
@@ -169,6 +179,7 @@ public class Audience.Window : Gtk.Window {
 
         navigation_button.hide ();
         search_entry.visible = false;
+        autoqueue_next.visible = false;
         main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.NONE);
 
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
@@ -474,6 +485,7 @@ public class Audience.Window : Gtk.Window {
                 break;
             case NavigationPage.EPISODES:
                 navigation_button.label = _(NAVIGATION_BUTTON_EPISODES);
+                autoqueue_next.visible = true;
                 break;
         }
 
@@ -488,6 +500,14 @@ public class Audience.Window : Gtk.Window {
         }
 
         welcome_page.refresh ();
+    }
+
+    public void clear_playlist () {
+        player_page.get_playlist_widget ().clear_items ();
+    }
+
+    public void append_to_playlist (File file) {
+        player_page.append_to_playlist (file);
     }
 
     public void navigate_back () {
@@ -505,13 +525,16 @@ public class Audience.Window : Gtk.Window {
         if (navigation_button.label == _(NAVIGATION_BUTTON_LIBRARY)) {
             navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
             main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
+            autoqueue_next.visible = false;
         } else if (navigation_button.label == _(NAVIGATION_BUTTON_EPISODES)) {
             navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
             main_stack.set_visible_child_full ("episodes", Gtk.StackTransitionType.SLIDE_RIGHT);
+            autoqueue_next.visible = true;
         } else {
             navigation_button.hide ();
             main_stack.set_visible_child (welcome_page);
             search_entry.visible = false;
+            autoqueue_next.visible = false;
         }
         welcome_page.refresh ();
     }
@@ -547,5 +570,9 @@ public class Audience.Window : Gtk.Window {
 
     public void show_mouse_cursor () {
         get_window ().set_cursor (null);
+    }
+
+    public bool autoqueue_next_active () {
+        return this.autoqueue_next.active;
     }
 }
