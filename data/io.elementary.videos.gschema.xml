@@ -61,8 +61,8 @@
         </key>
         <key name="autoqueue-next" type="b">
             <default>true</default>
-            <summary>Don't queque next videos when playing a file from library.</summary>
-            <description>This option allows user to activate the autoqueque videos when playing a video from library. Deactivated by default.</description>
+            <summary>Automatically play next videos</summary>
+            <description>Automatically queue up next videos by adding them to the playlist when playing from the library.</description>
         </key>
     </schema>
 </schemalist>
