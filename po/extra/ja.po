@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-26 22:46+0200\n"
-"PO-Revision-Date: 2019-09-14 12:22+0000\n"
+"PO-Revision-Date: 2019-11-04 13:24+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -59,7 +59,7 @@ msgstr "シークバー上のサムネイルプレビュー"
 #: data/io.elementary.videos.appdata.xml.in:66
 #: data/io.elementary.videos.appdata.xml.in:74
 msgid "Build fixes"
-msgstr ""
+msgstr "ビルドの修正"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 #: data/io.elementary.videos.appdata.xml.in:75
@@ -73,27 +73,27 @@ msgstr "翻訳の更新"
 
 #: data/io.elementary.videos.appdata.xml.in:89
 msgid "Window behavior improvements"
-msgstr ""
+msgstr "ウィンドウの動作の改善"
 
 #: data/io.elementary.videos.appdata.xml.in:90
 msgid "Fix disappearing subtitle tracks"
-msgstr ""
+msgstr "字幕が消える問題を修正"
 
 #: data/io.elementary.videos.appdata.xml.in:97
 msgid "Disallow setting playback before start"
-msgstr ""
+msgstr "開始前に再生の設定をできないように修正"
 
 #: data/io.elementary.videos.appdata.xml.in:104
 msgid "Limit consecutive spacebar pauses"
-msgstr ""
+msgstr "スペースキー連打時の一時停止を制限"
 
 #: data/io.elementary.videos.appdata.xml.in:111
 msgid "Crash fixes"
-msgstr ""
+msgstr "クラッシュの修正"
 
 #: data/io.elementary.videos.appdata.xml.in:112
 msgid "Remove About dialog"
-msgstr ""
+msgstr "情報ダイアログを削除"
 
 #: data/io.elementary.videos.appdata.xml.in:113
 #: data/io.elementary.videos.appdata.xml.in:152
@@ -102,7 +102,7 @@ msgstr "軽微なバグの修正"
 
 #: data/io.elementary.videos.appdata.xml.in:121
 msgid "Preview popover now closely follows cursor position"
-msgstr ""
+msgstr "プレビュー表示のポップオーバーがカーソルの位置に近くなるように修正"
 
 #: data/io.elementary.videos.appdata.xml.in:136
 msgid "Fix appstream date format"
