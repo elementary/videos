@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:46+0200\n"
+"POT-Creation-Date: 2019-11-06 17:03+0000\n"
 "PO-Revision-Date: 2019-10-05 10:23+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
-"Language-Team: French <https://l10n.elementary.io/projects/videos/extra/fr/>"
-"\n"
+"Language-Team: French <https://l10n.elementary.io/projects/videos/extra/fr/"
+">\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,7 +85,8 @@ msgstr "Désactivation du réglage de la lecture avant le lancement"
 
 #: data/io.elementary.videos.appdata.xml.in:104
 msgid "Limit consecutive spacebar pauses"
-msgstr "Limiter la mise en pause lors de l'appui consécutif sur la barre espace"
+msgstr ""
+"Limiter la mise en pause lors de l'appui consécutif sur la barre espace"
 
 #: data/io.elementary.videos.appdata.xml.in:111
 msgid "Crash fixes"
@@ -102,7 +103,8 @@ msgstr "Corrections d'anomalies mineures"
 
 #: data/io.elementary.videos.appdata.xml.in:121
 msgid "Preview popover now closely follows cursor position"
-msgstr "L'infobulle d'aperçu suit désormais correctement la position du curseur"
+msgstr ""
+"L'infobulle d'aperçu suit désormais correctement la position du curseur"
 
 #: data/io.elementary.videos.appdata.xml.in:136
 msgid "Fix appstream date format"
