@@ -60,6 +60,17 @@
     <content_attribute id="money-gambling">none</content_attribute>
   </content_rating>
   <releases>
+    <release version="2.7.0" date="2019-11-05" urgency="medium">
+      <description>
+        <ul>
+          <li>Fix disappearing cursor on headerbar</li>
+          <li>Navigate the playlist with the keyboard</li>
+          <li>Hide seekbar preview when switching windows with Alt + Tab</li>
+          <li>Add a button to clear the playlist</li>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.6.3" date="2019-01-08" urgency="medium">
       <description>
         <ul>
@@ -154,7 +165,7 @@
       </description>
     </release>
   </releases>
-  <developer_name>elementary LLC.</developer_name>
+  <developer_name>elementary, Inc.</developer_name>
   <url type="homepage">https://elementary.io/</url>
   <url type="bugtracker">https://github.com/elementary/videos/issues</url>
   <url type="donation">https://elementary.io/get-involved#funding</url>
