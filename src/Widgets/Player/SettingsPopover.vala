@@ -191,8 +191,8 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
         GLib.List<string> audio_languages = null;
         foreach (var audio_stream in audio_streams) {
-            unowned string audio_language = (audio_stream as Gst.PbUtils.DiscovererAudioInfo).get_language ();
-            var language_name = Gst.Tag.get_language_name (audio_language);
+            unowned string language_code = (audio_stream as Gst.PbUtils.DiscovererAudioInfo).get_language ();
+            var language_name = Gst.Tag.get_language_name (language_code);
             audio_languages.append (language_name);
         }
 
