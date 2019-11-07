@@ -113,14 +113,14 @@ public class Audience.Window : Gtk.Window {
                 hide_alert ();
             }
         });
-        
+
         library_page.show_episodes.connect ((item, setup_only) => {
             episodes_page.set_episodes_items (item.episodes);
             episodes_page.poster.pixbuf = item.poster.pixbuf;
             if (!setup_only) {
                 navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
                 main_stack.set_visible_child (episodes_page);
-                this.title = item.get_title ();
+                title = item.get_title ();
                 search_entry.text = "";
                 autoqueue_next.visible = true;
             }
@@ -577,6 +577,6 @@ public class Audience.Window : Gtk.Window {
     }
 
     public bool autoqueue_next_active () {
-        return this.autoqueue_next.active;
+        return autoqueue_next.active;
     }
 }
