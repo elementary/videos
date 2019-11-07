@@ -22,18 +22,18 @@
  */
 
 public class Audience.Window : Gtk.Window {
-    private Gtk.Stack main_stack;
-    private Gtk.HeaderBar header;
-    private PlayerPage player_page;
-    private WelcomePage welcome_page;
-    private LibraryPage library_page;
-    private EpisodesPage episodes_page;
     private Granite.Widgets.AlertView alert_view;
     private Granite.Widgets.Toast app_notification;
-    private NavigationButton navigation_button;
-    private ZeitgeistManager zeitgeist_manager;
-    private Gtk.SearchEntry search_entry;
     private Granite.ModeSwitch autoqueue_next;
+    private EpisodesPage episodes_page;
+    private Gtk.HeaderBar header;
+    private LibraryPage library_page;
+    private Gtk.Stack main_stack;
+    private NavigationButton navigation_button;
+    private PlayerPage player_page;
+    private Gtk.SearchEntry search_entry;
+    private WelcomePage welcome_page;
+    private ZeitgeistManager zeitgeist_manager;
 
     public enum NavigationPage { WELCOME, LIBRARY, EPISODES }
 
@@ -69,12 +69,12 @@ public class Audience.Window : Gtk.Window {
         search_entry.placeholder_text = _("Search Videos");
         search_entry.valign = Gtk.Align.CENTER;
         search_entry.search_changed.connect (() => {
-                if (main_stack.visible_child == episodes_page ) {
-                    episodes_page.filter (search_entry.text);
-                } else {
-                    library_page.filter (search_entry.text);
-                }
-            });
+            if (main_stack.visible_child == episodes_page ) {
+                episodes_page.filter (search_entry.text);
+            } else {
+                library_page.filter (search_entry.text);
+            }
+        });
 
         header.pack_end (search_entry);
 
@@ -99,11 +99,13 @@ public class Audience.Window : Gtk.Window {
                 library_page.last_filter = "";
             }
         });
+
         library_page.unmap.connect (() => {
             if (main_stack.visible_child != alert_view && main_stack.visible_child != episodes_page) {
                 search_entry.visible = false;
             }
         });
+
         library_page.filter_result_changed.connect (has_result => {
             if (!has_result) {
                 show_alert (_("No Results for “%s”").printf (search_entry.text), _("Try changing search terms."), "edit-find-symbolic");
@@ -111,6 +113,7 @@ public class Audience.Window : Gtk.Window {
                 hide_alert ();
             }
         });
+        
         library_page.show_episodes.connect ((item, setup_only) => {
             episodes_page.set_episodes_items (item.episodes);
             episodes_page.poster.pixbuf = item.poster.pixbuf;
