@@ -27,7 +27,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     private Gtk.ComboBoxText subtitles;
     private Gtk.FileChooserButton external_subtitle_file;
     private ClutterGst.Playback playback;
-    private Gst.PbUtils.DiscovererInfo discovererInfo;
+    private Gst.PbUtils.DiscovererInfo discoverer_info;
 
     public SettingsPopover (ClutterGst.Playback playback) {
         this.playback = playback;
@@ -188,7 +188,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     private GLib.List<string> get_audio_track_names () {
         get_discoverer_info ();
 
-        var audio_streams = discovererInfo.get_audio_streams ();
+        var audio_streams = discoverer_info.get_audio_streams ();
 
         GLib.List<string> audio_languages = null;
         foreach (var audio_stream in audio_streams) {
@@ -212,7 +212,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         }
 
         try {
-            discovererInfo = discoverer.discover_uri (playback.uri);
+            discoverer_info = discoverer.discover_uri (playback.uri);
         } catch (Error e) {
             debug ("Discoverer Error %d: %s\n", e.code, e.message);
         }
