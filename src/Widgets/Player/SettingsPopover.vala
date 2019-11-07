@@ -19,12 +19,15 @@
  */
 
 public class Audience.Widgets.SettingsPopover : Gtk.Popover {
+    private const int DISCOVERER_TIMEOUT = 5;
+
     public bool is_setup = false;
 
     private Gtk.ComboBoxText languages;
     private Gtk.ComboBoxText subtitles;
     private Gtk.FileChooserButton external_subtitle_file;
     private ClutterGst.Playback playback;
+    private Gst.PbUtils.DiscovererInfo discovererInfo;
 
     public SettingsPopover (ClutterGst.Playback playback) {
         this.playback = playback;
@@ -144,9 +147,11 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             languages.remove_all ();
         }
 
+        var languages_names = get_audio_track_names ();
         uint track = 1;
         playback.get_audio_streams ().foreach ((lang) => {
-            languages.append (lang, _("Track %u").printf (track++));
+            languages.append (lang, _("Track %u - %s").printf (track, languages_names.nth_data (track - 1)));
+            track++;
         });
 
         int count = languages.model.iter_n_children (null);
@@ -177,6 +182,38 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         int count = subtitles.model.iter_n_children (null);
         if (count > 0) {
             subtitles.active = (subtitles.active + 1) % count;
+        }
+    }
+
+    private GLib.List<string> get_audio_track_names () {
+        get_discoverer_info ();
+
+        var audio_streams = discovererInfo.get_audio_streams ();
+
+        GLib.List<string> audio_languages = null;
+        foreach (var audio_stream in audio_streams) {
+            unowned string audio_language = (audio_stream as Gst.PbUtils.DiscovererAudioInfo).get_language ();
+            audio_languages.append (audio_language);
+        }
+
+        // Both Clutter and DiscovererAudioInfo return tracks in opposite order.
+        audio_languages.reverse ();
+
+        return audio_languages;
+    }
+
+    private void get_discoverer_info () {
+        Gst.PbUtils.Discoverer discoverer = null;
+        try {
+            discoverer = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (DISCOVERER_TIMEOUT * Gst.SECOND));
+        } catch (Error e) {
+            debug ("Could not create Gst discoverer object: %s", e.message);
+        }
+
+        try {
+            discovererInfo = discoverer.discover_uri (playback.uri);
+        } catch (Error e) {
+            debug ("Discoverer Error %d: %s\n", e.code, e.message);
         }
     }
 }
