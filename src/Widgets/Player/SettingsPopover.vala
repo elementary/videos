@@ -18,7 +18,6 @@
  */
 
 public class Audience.Widgets.SettingsPopover : Gtk.Popover {
-
     public bool is_setup = false;
 
     private Gtk.ComboBoxText languages;
