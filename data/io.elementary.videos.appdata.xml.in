@@ -67,7 +67,7 @@
           <li>Navigate the playlist with the keyboard</li>
           <li>Hide seekbar preview when switching windows with Alt + Tab</li>
           <li>Add a button to clear the playlist</li>
-          <li>Show audio track language with track number in settings popover</li>
+          <li>Show audio track language with track number in settings</li>
           <li>Translation updates</li>
         </ul>
       </description>
