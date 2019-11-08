@@ -187,23 +187,25 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     }
 
     private GLib.List<string?> get_audio_track_names () {
-        var discoverer_info = Audience.get_discoverer_info (playback.uri);
-
-        var audio_streams = discoverer_info.get_audio_streams ();
-
         GLib.List<string?> audio_languages = null;
-        foreach (var audio_stream in audio_streams) {
-            unowned string language_code = (audio_stream as Gst.PbUtils.DiscovererAudioInfo).get_language ();
-            if (language_code != null) {
-                var language_name = Gst.Tag.get_language_name (language_code);
-                audio_languages.append (language_name);
-            } else {
-                audio_languages.append (null);
-            }
-        }
 
-        // Both ClutterGst and DiscovererAudioInfo return tracks in opposite order.
-        audio_languages.reverse ();
+        var discoverer_info = Audience.get_discoverer_info (playback.uri);
+        if (discoverer_info != null) {
+            var audio_streams = discoverer_info.get_audio_streams ();
+
+            foreach (var audio_stream in audio_streams) {
+                unowned string language_code = (audio_stream as Gst.PbUtils.DiscovererAudioInfo).get_language ();
+                if (language_code != null) {
+                    var language_name = Gst.Tag.get_language_name (language_code);
+                    audio_languages.append (language_name);
+                } else {
+                    audio_languages.append (null);
+                }
+            }
+
+            // Both ClutterGst and DiscovererAudioInfo return tracks in opposite order.
+            audio_languages.reverse ();
+        }
 
         return audio_languages;
     }
