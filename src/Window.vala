@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2013-2016 elementary LLC.
+ * Copyright (c) 2013-2019 elementary Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,17 +21,17 @@
  */
 
 public class Audience.Window : Gtk.Window {
-    private Gtk.Stack main_stack;
-    private Gtk.HeaderBar header;
-    private WelcomePage welcome_page;
-    private LibraryPage library_page;
-    private EpisodesPage episodes_page;
     private Granite.Widgets.AlertView alert_view;
     private Granite.Widgets.Toast app_notification;
-    private NavigationButton navigation_button;
-    private ZeitgeistManager zeitgeist_manager;
-    private Gtk.SearchEntry search_entry;
     private Granite.ModeSwitch autoqueue_next;
+    private EpisodesPage episodes_page;
+    private Gtk.HeaderBar header;
+    private LibraryPage library_page;
+    private Gtk.Stack main_stack;
+    private NavigationButton navigation_button;
+    private Gtk.SearchEntry search_entry;
+    private WelcomePage welcome_page;
+    private ZeitgeistManager zeitgeist_manager;
 
     public PlayerPage player_page { get; private set; }
 
@@ -70,12 +69,12 @@ public class Audience.Window : Gtk.Window {
         search_entry.placeholder_text = _("Search Videos");
         search_entry.valign = Gtk.Align.CENTER;
         search_entry.search_changed.connect (() => {
-                if (main_stack.visible_child == episodes_page ) {
-                    episodes_page.filter (search_entry.text);
-                } else {
-                    library_page.filter (search_entry.text);
-                }
-            });
+            if (main_stack.visible_child == episodes_page ) {
+                episodes_page.filter (search_entry.text);
+            } else {
+                library_page.filter (search_entry.text);
+            }
+        });
 
         header.pack_end (search_entry);
 
@@ -100,25 +99,28 @@ public class Audience.Window : Gtk.Window {
                 library_page.last_filter = "";
             }
         });
+
         library_page.unmap.connect (() => {
             if (main_stack.visible_child != alert_view && main_stack.visible_child != episodes_page) {
                 search_entry.visible = false;
             }
         });
-        library_page.filter_result_changed.connect ((has_result) => {
+
+        library_page.filter_result_changed.connect (has_result => {
             if (!has_result) {
                 show_alert (_("No Results for “%s”").printf (search_entry.text), _("Try changing search terms."), "edit-find-symbolic");
             } else if (main_stack.visible_child != library_page ) {
                 hide_alert ();
             }
         });
+
         library_page.show_episodes.connect ((item, setup_only) => {
             episodes_page.set_episodes_items (item.episodes);
             episodes_page.poster.pixbuf = item.poster.pixbuf;
             if (!setup_only) {
                 navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
                 main_stack.set_visible_child (episodes_page);
-                this.title = item.get_title ();
+                title = item.get_title ();
                 search_entry.text = "";
                 autoqueue_next.visible = true;
             }
@@ -352,9 +354,9 @@ public class Audience.Window : Gtk.Window {
         return base.key_press_event (e);
     }
 
-    public void open_files (File[] files, bool clear_playlist = false, bool force_play = true) {
-        if (clear_playlist) {
-            player_page.get_playlist_widget ().clear_items ();
+    public void open_files (File[] files, bool clear_playlist_items = false, bool force_play = true) {
+        if (clear_playlist_items) {
+            clear_playlist ();
         }
 
         string[] videos = {};
@@ -398,7 +400,7 @@ public class Audience.Window : Gtk.Window {
 
     public void add_to_playlist (string uri, bool preserve_playlist) {
         if (!preserve_playlist) {
-            player_page.get_playlist_widget ().clear_items ();
+            clear_playlist ();
         }
 
         player_page.append_to_playlist (File.new_for_uri (uri));
@@ -452,8 +454,9 @@ public class Audience.Window : Gtk.Window {
 
     private async void read_first_disk () {
         var disk_manager = DiskManager.get_default ();
-        if (disk_manager.get_volumes ().is_empty)
+        if (disk_manager.get_volumes ().is_empty) {
             return;
+        }
 
         var volume = disk_manager.get_volumes ().first ();
         if (volume.can_mount () == true && volume.get_mount ().can_unmount () == false) {
@@ -574,6 +577,6 @@ public class Audience.Window : Gtk.Window {
     }
 
     public bool autoqueue_next_active () {
-        return this.autoqueue_next.active;
+        return autoqueue_next.active;
     }
 }

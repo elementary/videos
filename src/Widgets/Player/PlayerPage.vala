@@ -29,14 +29,15 @@ namespace Audience {
         public signal void unfullscreen_clicked ();
         public signal void ended ();
 
-        public GtkClutter.Embed clutter;
-        private Clutter.Actor video_actor;
+        private GtkClutter.Actor bottom_actor;
+        private GtkClutter.Embed clutter;
+        private GnomeMediaKeys mediakeys;
+        private ClutterGst.Playback playback;
         private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_bar;
         private GtkClutter.Actor unfullscreen_actor;
-        private GtkClutter.Actor bottom_actor;
-        private GnomeMediaKeys mediakeys;
-        private ClutterGst.Playback playback;
+        private Clutter.Actor video_actor;
+
         public Audience.Widgets.BottomBar bottom_bar {get; private set;}
 
         private bool mouse_primary_down = false;
@@ -162,7 +163,7 @@ namespace Audience {
                 warning (e.message);
             }
 
-            this.motion_notify_event.connect ((event) => {
+            motion_notify_event.connect (event => {
                 if (mouse_primary_down && settings.get_boolean ("move-window")) {
                     mouse_primary_down = false;
                     App.get_instance ().mainwindow.begin_move_drag (Gdk.BUTTON_PRIMARY,
@@ -174,38 +175,42 @@ namespace Audience {
                 return update_pointer_position (event.y, allocation.height);
             });
 
-            this.button_press_event.connect ((event) => {
-                if (event.button == Gdk.BUTTON_PRIMARY)
+            button_press_event.connect (event => {
+                if (event.button == Gdk.BUTTON_PRIMARY) {
                     mouse_primary_down = true;
+                }
 
                 return false;
             });
 
-            this.button_release_event.connect ((event) => {
-                if (event.button == Gdk.BUTTON_PRIMARY)
+            button_release_event.connect (event => {
+                if (event.button == Gdk.BUTTON_PRIMARY) {
                     mouse_primary_down = false;
+                }
 
                 return false;
             });
 
-            this.leave_notify_event.connect ((event) => {
+            leave_notify_event.connect (event => {
                 Gtk.Allocation allocation;
                 clutter.get_allocation (out allocation);
 
-                if (event.x == event.window.get_width ())
+                if (event.x == event.window.get_width ()) {
                     return update_pointer_position (event.window.get_height (), allocation.height);
-                else if (event.x == 0)
+                } else if (event.x == 0) {
                     return update_pointer_position (event.window.get_height (), allocation.height);
+                }
 
                 return update_pointer_position (event.y, allocation.height);
             });
 
-            this.destroy.connect (() => {
+            destroy.connect (() => {
                 // FIXME:should find better way to decide if its end of playlist
-                if (playback.progress > 0.99)
+                if (playback.progress > 0.99) {
                     settings.set_double ("last-stopped", 0);
-                else
+                } else {
                     settings.set_double ("last-stopped", playback.progress);
+                }
 
                 get_playlist_widget ().save_playlist ();
                 Audience.Services.Inhibitor.get_instance ().uninhibit ();
@@ -395,26 +400,30 @@ namespace Audience {
             int last_dot = uri.last_index_of (".", 0);
             int last_slash = uri.last_index_of ("/", 0);
 
-            if (last_dot < last_slash) //we dont have extension
+            if (last_dot < last_slash) {//we dont have extension
                 without_ext = uri;
-            else
+            } else {
                 without_ext = uri.slice (0, last_dot);
+            }
 
             foreach (string ext in SUBTITLE_EXTENSIONS) {
                 string sub_uri = without_ext + "." + ext;
-                if (File.new_for_uri (sub_uri).query_exists ())
+                if (File.new_for_uri (sub_uri).query_exists ()) {
                     return sub_uri;
+                }
             }
             return null;
         }
 
         private bool is_subtitle (string uri) {
-            if (uri.length < 4 || uri.get_char (uri.length - 4) != '.')
+            if (uri.length < 4 || uri.get_char (uri.length - 4) != '.') {
                 return false;
+            }
 
             foreach (string ext in SUBTITLE_EXTENSIONS) {
-                if (uri.down ().has_suffix (ext))
+                if (uri.down ().has_suffix (ext)) {
                     return true;
+                }
             }
 
             return false;
@@ -455,8 +464,9 @@ namespace Audience {
             var video_sink = playback.get_video_sink ();
             var frame = video_sink.get_frame ();
 
-            if (frame == null)
+            if (frame == null) {
                 return true;
+            }
 
             float x, y;
             event.get_coords (out x, out y);
