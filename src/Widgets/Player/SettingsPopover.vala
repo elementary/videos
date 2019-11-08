@@ -18,7 +18,6 @@
  */
 
 public class Audience.Widgets.SettingsPopover : Gtk.Popover {
-    private const int DISCOVERER_TIMEOUT = 5;
 
     public bool is_setup = false;
 
@@ -26,7 +25,6 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     private Gtk.ComboBoxText subtitles;
     private Gtk.FileChooserButton external_subtitle_file;
     private ClutterGst.Playback playback;
-    private Gst.PbUtils.DiscovererInfo discoverer_info;
 
     public SettingsPopover (ClutterGst.Playback playback) {
         this.playback = playback;
@@ -149,7 +147,12 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         var languages_names = get_audio_track_names ();
         uint track = 1;
         playback.get_audio_streams ().foreach ((lang) => {
-            languages.append (lang, _("Track %u - %s").printf (track, languages_names.nth_data (track - 1)));
+            var audio_stream_lang = languages_names.nth_data (track - 1);
+            if (audio_stream_lang != null) {
+                languages.append (lang, _("Track %u - %s").printf (track, audio_stream_lang));
+            } else {
+                languages.append (lang, _("Track %u").printf (track));
+            }
             track++;
         });
 
@@ -184,36 +187,27 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         }
     }
 
-    private GLib.List<string> get_audio_track_names () {
-        get_discoverer_info ();
+    private GLib.List<string?> get_audio_track_names () {
+        var discoverer_info = Audience.get_discoverer_info (playback.uri);
 
         var audio_streams = discoverer_info.get_audio_streams ();
 
-        GLib.List<string> audio_languages = null;
+        GLib.List<string?> audio_languages = null;
         foreach (var audio_stream in audio_streams) {
             unowned string language_code = (audio_stream as Gst.PbUtils.DiscovererAudioInfo).get_language ();
-            var language_name = Gst.Tag.get_language_name (language_code);
-            audio_languages.append (language_name);
+            if (language_code != null) {
+                var language_name = Gst.Tag.get_language_name (language_code);
+                audio_languages.append (language_name);
+            } else {
+                audio_languages.append (null);
+            }
         }
 
-        // Both Clutter and DiscovererAudioInfo return tracks in opposite order.
+        // Both ClutterGst and DiscovererAudioInfo return tracks in opposite order.
         audio_languages.reverse ();
 
         return audio_languages;
     }
 
-    private void get_discoverer_info () {
-        Gst.PbUtils.Discoverer discoverer = null;
-        try {
-            discoverer = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (DISCOVERER_TIMEOUT * Gst.SECOND));
-        } catch (Error e) {
-            debug ("Could not create Gst discoverer object: %s", e.message);
-        }
 
-        try {
-            discoverer_info = discoverer.discover_uri (playback.uri);
-        } catch (Error e) {
-            debug ("Discoverer Error %d: %s\n", e.code, e.message);
-        }
-    }
 }

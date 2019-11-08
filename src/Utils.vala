@@ -34,6 +34,8 @@ public interface GnomeSessionManager : GLib.Object {
 }
 
 namespace Audience {
+    private const int DISCOVERER_TIMEOUT = 5;
+
     public delegate void FuncOverDir (File file_under_dir);
     public static void recurse_over_dir (File file_to_process, FuncOverDir func) {
         if (file_to_process.query_file_type (0) == FileType.DIRECTORY) {
@@ -84,5 +86,23 @@ namespace Audience {
     public static bool file_exists (string uri) {
         var file = File.new_for_uri (uri);
         return file.query_exists ();
+    }
+
+    public static Gst.PbUtils.DiscovererInfo? get_discoverer_info (string uri) {
+        Gst.PbUtils.Discoverer discoverer = null;
+        try {
+            discoverer = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (DISCOVERER_TIMEOUT * Gst.SECOND));
+        } catch (Error e) {
+            debug ("Could not create Gst discoverer object: %s", e.message);
+        }
+
+        Gst.PbUtils.DiscovererInfo discoverer_info = null;
+        try {
+            discoverer_info = discoverer.discover_uri (uri);
+        } catch (Error e) {
+            debug ("Discoverer Error %d: %s\n", e.code, e.message);
+        }
+
+        return discoverer_info;
     }
 }
