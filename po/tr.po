@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-06 17:03+0000\n"
-"PO-Revision-Date: 2019-04-26 09:39+0000\n"
+"PO-Revision-Date: 2019-11-11 12:24+0000\n"
 "Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/videos/videos/tr/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6\n"
+"X-Generator: Weblate 3.7.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: src/Application.vala:73 src/Window.vala:522
@@ -42,13 +42,12 @@ msgid "Search Videos"
 msgstr "Videoları Ara"
 
 #: src/Window.vala:82
-#, fuzzy
 msgid "Play one video"
-msgstr "Son videoyu tekrar oynatın"
+msgstr "Bir video oynat"
 
 #: src/Window.vala:83
 msgid "Automatically play next videos"
-msgstr ""
+msgstr "Sonraki videoları otomatik olarak oynat"
 
 #: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
@@ -85,16 +84,16 @@ msgstr "_İptal"
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
-msgstr ""
+msgstr "Tanınmayan dosya biçimi"
 
 #: src/Widgets/UnsupportedFileDialog.vala:26
 #, c-format
 msgid "Videos might not be able to play the file '%s'."
-msgstr ""
+msgstr "Videolar '%s' dosyasını oynatamayabilir."
 
 #: src/Widgets/UnsupportedFileDialog.vala:37
 msgid "Play Anyway"
-msgstr ""
+msgstr "Yine de Oynat"
 
 #: src/Widgets/UnsupportedFileDialog.vala:40
 #, c-format
@@ -102,6 +101,8 @@ msgid ""
 "Unable to play file at: %s\n"
 "The file is not a video (\"%s\")."
 msgstr ""
+"Dosya oynatılamıyor:%s\n"
+"Bu bir video dosyası değil (\"%s\")."
 
 #: src/Widgets/WelcomePage.vala:23
 msgid "No Videos Open"
@@ -181,9 +182,8 @@ msgid "Unfullscreen"
 msgstr "Tam Ekrandan Çık"
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
-#, fuzzy
 msgid "Clear Playlist"
-msgstr "Oynatma Listesi"
+msgstr "Oynatma Listesini Temizle"
 
 #: src/Widgets/Player/PlaylistPopover.vala:45
 #: src/Widgets/Player/PlaylistPopover.vala:76
