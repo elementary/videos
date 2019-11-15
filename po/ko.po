@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-06 19:34+0000\n"
+"POT-Creation-Date: 2019-11-15 20:16+0000\n"
 "PO-Revision-Date: 2018-07-25 00:00+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://weblate.elementary.io/projects/videos/videos/"
@@ -20,66 +20,66 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:73 src/Window.vala:522
+#: src/Application.vala:73 src/Window.vala:525
 msgid "Videos"
 msgstr "비디오"
 
 #. For better translation
-#: src/Window.vala:41
+#: src/Window.vala:40
 msgid "Back"
 msgstr "뒤로"
 
-#: src/Window.vala:42
+#: src/Window.vala:41
 msgid "Library"
 msgstr "라이브러리"
 
-#: src/Window.vala:43
+#: src/Window.vala:42
 msgid "Episodes"
 msgstr "에피소드"
 
-#: src/Window.vala:69
+#: src/Window.vala:68
 msgid "Search Videos"
 msgstr "비디오 검색"
 
-#: src/Window.vala:82
+#: src/Window.vala:81
 #, fuzzy
 msgid "Play one video"
 msgstr "마지막 비디오 다시 재생"
 
-#: src/Window.vala:83
+#: src/Window.vala:82
 msgid "Automatically play next videos"
 msgstr ""
 
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
+#: src/Window.vala:110 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
 msgid "No Results for “%s”"
 msgstr "“%s”에 대한 검색 결과가 없습니다"
 
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
+#: src/Window.vala:110 src/Widgets/Library/EpisodesPage.vala:126
 msgid "Try changing search terms."
 msgstr "검색어를 바꿔보세요."
 
-#: src/Window.vala:165
+#: src/Window.vala:167
 msgid "Restore"
 msgstr "복원하기"
 
-#: src/Window.vala:409 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:411 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "모든 파일"
 
-#: src/Window.vala:413
+#: src/Window.vala:415
 msgid "Video files"
 msgstr "비디오 파일"
 
-#: src/Window.vala:417 src/Widgets/Library/LibraryItem.vala:167
+#: src/Window.vala:419 src/Widgets/Library/LibraryItem.vala:167
 msgid "Open"
 msgstr "열기"
 
-#: src/Window.vala:420 src/Widgets/Library/LibraryItem.vala:170
+#: src/Window.vala:422 src/Widgets/Library/LibraryItem.vala:170
 msgid "_Open"
 msgstr "_열기"
 
-#: src/Window.vala:421 src/Widgets/Library/LibraryItem.vala:171
+#: src/Window.vala:423 src/Widgets/Library/LibraryItem.vala:171
 msgid "_Cancel"
 msgstr "_취소"
 

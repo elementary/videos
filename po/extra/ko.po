@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-06 19:34+0000\n"
+"POT-Creation-Date: 2019-11-15 20:15+0000\n"
 "PO-Revision-Date: 2018-06-14 00:07+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://weblate.elementary.io/projects/videos/extra/"
@@ -73,67 +73,71 @@ msgid "Add a button to clear the playlist"
 msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:70
-#: data/io.elementary.videos.appdata.xml.in:78
-#: data/io.elementary.videos.appdata.xml.in:86
-#: data/io.elementary.videos.appdata.xml.in:93
-#: data/io.elementary.videos.appdata.xml.in:125
-#: data/io.elementary.videos.appdata.xml.in:133
-#: data/io.elementary.videos.appdata.xml.in:140
-#: data/io.elementary.videos.appdata.xml.in:156
+msgid "Show playlist item titles in their tooltips"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:71
+#: data/io.elementary.videos.appdata.xml.in:79
+#: data/io.elementary.videos.appdata.xml.in:87
+#: data/io.elementary.videos.appdata.xml.in:94
+#: data/io.elementary.videos.appdata.xml.in:126
+#: data/io.elementary.videos.appdata.xml.in:134
+#: data/io.elementary.videos.appdata.xml.in:141
+#: data/io.elementary.videos.appdata.xml.in:157
 msgid "Translation updates"
 msgstr "번역 업데이트"
 
-#: data/io.elementary.videos.appdata.xml.in:77
-#: data/io.elementary.videos.appdata.xml.in:85
+#: data/io.elementary.videos.appdata.xml.in:78
+#: data/io.elementary.videos.appdata.xml.in:86
 msgid "Build fixes"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:100
+#: data/io.elementary.videos.appdata.xml.in:101
 msgid "Window behavior improvements"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:101
+#: data/io.elementary.videos.appdata.xml.in:102
 msgid "Fix disappearing subtitle tracks"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:108
+#: data/io.elementary.videos.appdata.xml.in:109
 msgid "Disallow setting playback before start"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:115
+#: data/io.elementary.videos.appdata.xml.in:116
 msgid "Limit consecutive spacebar pauses"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:122
+#: data/io.elementary.videos.appdata.xml.in:123
 msgid "Crash fixes"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:123
+#: data/io.elementary.videos.appdata.xml.in:124
 msgid "Remove About dialog"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:124
-#: data/io.elementary.videos.appdata.xml.in:163
+#: data/io.elementary.videos.appdata.xml.in:125
+#: data/io.elementary.videos.appdata.xml.in:164
 msgid "Minor bug fixes"
 msgstr "자잘한 버그 해결"
 
-#: data/io.elementary.videos.appdata.xml.in:132
+#: data/io.elementary.videos.appdata.xml.in:133
 msgid "Preview popover now closely follows cursor position"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:147
+#: data/io.elementary.videos.appdata.xml.in:148
 msgid "Fix appstream date format"
 msgstr "앱스트림 날짜 형식 수정"
 
-#: data/io.elementary.videos.appdata.xml.in:154
+#: data/io.elementary.videos.appdata.xml.in:155
 msgid "Added a library view with search"
 msgstr "라이브러리 보기에 검색을 추가했습니다"
 
-#: data/io.elementary.videos.appdata.xml.in:155
+#: data/io.elementary.videos.appdata.xml.in:156
 msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "키보드 검색을 방해하는 버그를 해결했습니다"
 
-#: data/io.elementary.videos.appdata.xml.in:168
+#: data/io.elementary.videos.appdata.xml.in:169
 #, fuzzy
 msgid "elementary, Inc."
 msgstr "elementary LLC."
