@@ -59,6 +59,8 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
 
         Gtk.drag_source_set (dnd_event_box, Gdk.ModifierType.BUTTON1_MASK, TARGET_ENTRIES, Gdk.DragAction.MOVE);
 
+        set_tooltip_text (title);
+
         add (dnd_event_box);
         show_all ();
 
