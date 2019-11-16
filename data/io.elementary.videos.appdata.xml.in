@@ -68,6 +68,7 @@
           <li>Hide seekbar preview when switching windows with Alt + Tab</li>
           <li>Add a button to clear the playlist</li>
           <li>Show audio track language with track number in settings</li>
+          <li>Show playlist item titles in their tooltips</li>
           <li>Translation updates</li>
         </ul>
       </description>

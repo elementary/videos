@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-06 19:34+0000\n"
+"POT-Creation-Date: 2019-11-15 20:16+0000\n"
 "PO-Revision-Date: 2018-09-23 10:40+0000\n"
 "Last-Translator: Axel Philip Advento <badwolf.bloodseeker.rev@gmail.com>\n"
 "Language-Team: Tagalog <https://weblate.elementary.io/projects/videos/videos/"
@@ -21,66 +21,66 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:73 src/Window.vala:522
+#: src/Application.vala:73 src/Window.vala:525
 msgid "Videos"
 msgstr "Mga Video"
 
 #. For better translation
-#: src/Window.vala:41
+#: src/Window.vala:40
 msgid "Back"
 msgstr "Bumalik"
 
-#: src/Window.vala:42
+#: src/Window.vala:41
 msgid "Library"
 msgstr "Library"
 
-#: src/Window.vala:43
+#: src/Window.vala:42
 msgid "Episodes"
 msgstr "Mga Episode"
 
-#: src/Window.vala:69
+#: src/Window.vala:68
 msgid "Search Videos"
 msgstr "Maghanap ng mga Video"
 
-#: src/Window.vala:82
+#: src/Window.vala:81
 #, fuzzy
 msgid "Play one video"
 msgstr "I-play muli ang huling video"
 
-#: src/Window.vala:83
+#: src/Window.vala:82
 msgid "Automatically play next videos"
 msgstr ""
 
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
+#: src/Window.vala:110 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Walang Resulta para sa “%s"
 
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
+#: src/Window.vala:110 src/Widgets/Library/EpisodesPage.vala:126
 msgid "Try changing search terms."
 msgstr "Subukang palitan ang search terms."
 
-#: src/Window.vala:165
+#: src/Window.vala:167
 msgid "Restore"
 msgstr "Ibalik"
 
-#: src/Window.vala:409 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:411 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Lahat ng mga file"
 
-#: src/Window.vala:413
+#: src/Window.vala:415
 msgid "Video files"
 msgstr "Mga video file"
 
-#: src/Window.vala:417 src/Widgets/Library/LibraryItem.vala:167
+#: src/Window.vala:419 src/Widgets/Library/LibraryItem.vala:167
 msgid "Open"
 msgstr "Buksan"
 
-#: src/Window.vala:420 src/Widgets/Library/LibraryItem.vala:170
+#: src/Window.vala:422 src/Widgets/Library/LibraryItem.vala:170
 msgid "_Open"
 msgstr "_Buksan"
 
-#: src/Window.vala:421 src/Widgets/Library/LibraryItem.vala:171
+#: src/Window.vala:423 src/Widgets/Library/LibraryItem.vala:171
 msgid "_Cancel"
 msgstr "_Ikansela"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-06 19:34+0000\n"
+"POT-Creation-Date: 2019-11-15 20:15+0000\n"
 "PO-Revision-Date: 2019-10-10 14:23+0000\n"
 "Last-Translator: Daniel R. <riesp@pm.me>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/videos/extra/es/"
@@ -74,67 +74,71 @@ msgid "Add a button to clear the playlist"
 msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:70
-#: data/io.elementary.videos.appdata.xml.in:78
-#: data/io.elementary.videos.appdata.xml.in:86
-#: data/io.elementary.videos.appdata.xml.in:93
-#: data/io.elementary.videos.appdata.xml.in:125
-#: data/io.elementary.videos.appdata.xml.in:133
-#: data/io.elementary.videos.appdata.xml.in:140
-#: data/io.elementary.videos.appdata.xml.in:156
+msgid "Show playlist item titles in their tooltips"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:71
+#: data/io.elementary.videos.appdata.xml.in:79
+#: data/io.elementary.videos.appdata.xml.in:87
+#: data/io.elementary.videos.appdata.xml.in:94
+#: data/io.elementary.videos.appdata.xml.in:126
+#: data/io.elementary.videos.appdata.xml.in:134
+#: data/io.elementary.videos.appdata.xml.in:141
+#: data/io.elementary.videos.appdata.xml.in:157
 msgid "Translation updates"
 msgstr "Actualización de traducciones"
 
-#: data/io.elementary.videos.appdata.xml.in:77
-#: data/io.elementary.videos.appdata.xml.in:85
+#: data/io.elementary.videos.appdata.xml.in:78
+#: data/io.elementary.videos.appdata.xml.in:86
 msgid "Build fixes"
 msgstr "Correcciones de compilación"
 
-#: data/io.elementary.videos.appdata.xml.in:100
+#: data/io.elementary.videos.appdata.xml.in:101
 msgid "Window behavior improvements"
 msgstr "Mejoras del comportamiento de las ventanas"
 
-#: data/io.elementary.videos.appdata.xml.in:101
+#: data/io.elementary.videos.appdata.xml.in:102
 msgid "Fix disappearing subtitle tracks"
 msgstr "Corrección de la desaparición de pistas de subtítulos"
 
-#: data/io.elementary.videos.appdata.xml.in:108
+#: data/io.elementary.videos.appdata.xml.in:109
 msgid "Disallow setting playback before start"
 msgstr "No permitir la configuración de reproducción antes de comenzar"
 
-#: data/io.elementary.videos.appdata.xml.in:115
+#: data/io.elementary.videos.appdata.xml.in:116
 msgid "Limit consecutive spacebar pauses"
 msgstr "Limitar las pausas consecutivas de la barra espaciadora"
 
-#: data/io.elementary.videos.appdata.xml.in:122
+#: data/io.elementary.videos.appdata.xml.in:123
 msgid "Crash fixes"
 msgstr "Correcciones de bloqueo"
 
-#: data/io.elementary.videos.appdata.xml.in:123
+#: data/io.elementary.videos.appdata.xml.in:124
 msgid "Remove About dialog"
 msgstr "Eliminar cuadro de diálogo «Acerca de»"
 
-#: data/io.elementary.videos.appdata.xml.in:124
-#: data/io.elementary.videos.appdata.xml.in:163
+#: data/io.elementary.videos.appdata.xml.in:125
+#: data/io.elementary.videos.appdata.xml.in:164
 msgid "Minor bug fixes"
 msgstr "Solventados errores menores"
 
-#: data/io.elementary.videos.appdata.xml.in:132
+#: data/io.elementary.videos.appdata.xml.in:133
 msgid "Preview popover now closely follows cursor position"
 msgstr "Vista de la ventana emergente cerca de la posición del cursor"
 
-#: data/io.elementary.videos.appdata.xml.in:147
+#: data/io.elementary.videos.appdata.xml.in:148
 msgid "Fix appstream date format"
 msgstr "Corregido el formato de fecha de appstream"
 
-#: data/io.elementary.videos.appdata.xml.in:154
+#: data/io.elementary.videos.appdata.xml.in:155
 msgid "Added a library view with search"
 msgstr "Agregada una vista de biblioteca con función de búsqueda"
 
-#: data/io.elementary.videos.appdata.xml.in:155
+#: data/io.elementary.videos.appdata.xml.in:156
 msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "Arreglado un error que impedía la navegación mediante el teclado"
 
-#: data/io.elementary.videos.appdata.xml.in:168
+#: data/io.elementary.videos.appdata.xml.in:169
 #, fuzzy
 msgid "elementary, Inc."
 msgstr "elementary LLC."
