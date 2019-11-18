@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-06 17:03+0000\n"
-"PO-Revision-Date: 2019-07-04 06:28+0000\n"
+"PO-Revision-Date: 2019-11-19 22:24+0000\n"
 "Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/videos/videos/"
 "eo/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.7.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 
 #: src/Application.vala:73 src/Window.vala:522
@@ -42,13 +42,12 @@ msgid "Search Videos"
 msgstr "Serĉi videoj"
 
 #: src/Window.vala:82
-#, fuzzy
 msgid "Play one video"
-msgstr "Reludi lastan videon"
+msgstr "Ludi unu videon"
 
 #: src/Window.vala:83
 msgid "Automatically play next videos"
-msgstr ""
+msgstr "Aŭtomate ludi la sekvajn videojn"
 
 #: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
@@ -85,16 +84,16 @@ msgstr "_Rezigni"
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
-msgstr ""
+msgstr "Nerekonita dosiera formato"
 
 #: src/Widgets/UnsupportedFileDialog.vala:26
 #, c-format
 msgid "Videos might not be able to play the file '%s'."
-msgstr ""
+msgstr "Videoj eble ne kapablas ludi la dosieron „%s“."
 
 #: src/Widgets/UnsupportedFileDialog.vala:37
 msgid "Play Anyway"
-msgstr ""
+msgstr "Ludi tamen"
 
 #: src/Widgets/UnsupportedFileDialog.vala:40
 #, c-format
@@ -102,6 +101,8 @@ msgid ""
 "Unable to play file at: %s\n"
 "The file is not a video (\"%s\")."
 msgstr ""
+"Neeblas ludi la dosieron ĉe: %s\n"
+"La dosiero ne estas videa („%s“)."
 
 #: src/Widgets/WelcomePage.vala:23
 msgid "No Videos Open"
@@ -181,9 +182,8 @@ msgid "Unfullscreen"
 msgstr "Malplenekranigi"
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
-#, fuzzy
 msgid "Clear Playlist"
-msgstr "Ludlisto"
+msgstr "Malplenigi la ludliston"
 
 #: src/Widgets/Player/PlaylistPopover.vala:45
 #: src/Widgets/Player/PlaylistPopover.vala:76
