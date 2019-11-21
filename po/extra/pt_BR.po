@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-20 14:53-0800\n"
-"PO-Revision-Date: 2019-08-27 22:22+0000\n"
+"PO-Revision-Date: 2019-11-22 17:24+0000\n"
 "Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "videos/extra/pt_BR/>\n"
@@ -57,25 +57,27 @@ msgid "Thumbnail previews on the seek bar"
 msgstr "Prévia de miniaturas na barra de reprodução"
 
 #: data/io.elementary.videos.appdata.xml.in:66
-#, fuzzy
 msgid "Fix disappearing cursor on headerbar"
-msgstr "Corrigir desaparecimento de faixas de legendas"
+msgstr "Corrigir o desaparecimento do cursor na barra de cabeçalho"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Navigate the playlist with the keyboard"
-msgstr ""
+msgstr "Navegue na lista de reprodução com o teclado"
 
 #: data/io.elementary.videos.appdata.xml.in:68
 msgid "Hide seekbar preview when switching windows with Alt + Tab"
 msgstr ""
+"Ocultar a visualização da barra de busca ao alternar entre janelas com Alt + "
+"Tab"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 msgid "Add a button to clear the playlist"
-msgstr ""
+msgstr "Adicione um botão para limpar a lista de reprodução"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 msgid "Show playlist item titles in their tooltips"
 msgstr ""
+"Mostrar títulos de itens da lista de reprodução nas dicas de ferramentas"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 #: data/io.elementary.videos.appdata.xml.in:79
@@ -139,9 +141,8 @@ msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "Corrigido o bug que impedia a navegação pelo teclado"
 
 #: data/io.elementary.videos.appdata.xml.in:169
-#, fuzzy
 msgid "elementary, Inc."
-msgstr "elementary LLC."
+msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
