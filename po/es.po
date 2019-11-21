@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-15 20:16+0000\n"
-"PO-Revision-Date: 2019-10-16 15:23+0000\n"
+"POT-Creation-Date: 2019-11-20 14:53-0800\n"
+"PO-Revision-Date: 2019-11-11 12:24+0000\n"
 "Last-Translator: Daniel R. <riesp@pm.me>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/videos/videos/es/"
 ">\n"
@@ -44,11 +44,11 @@ msgstr "Buscar Vídeos"
 #: src/Window.vala:81
 #, fuzzy
 msgid "Play one video"
-msgstr "Repetir el último vídeo"
+msgstr "Reproducir un vídeo"
 
 #: src/Window.vala:82
 msgid "Automatically play next videos"
-msgstr ""
+msgstr "Reproducir siguientes vídeos automáticamente"
 
 #: src/Window.vala:110 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
@@ -85,16 +85,16 @@ msgstr "_Cancelar"
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
-msgstr ""
+msgstr "Formato de archivo no reconocido"
 
 #: src/Widgets/UnsupportedFileDialog.vala:26
 #, c-format
 msgid "Videos might not be able to play the file '%s'."
-msgstr ""
+msgstr "Es posible que Vídeos no pueda reproducir el archivo «%s»."
 
 #: src/Widgets/UnsupportedFileDialog.vala:37
 msgid "Play Anyway"
-msgstr ""
+msgstr "Reproducir de todos modos"
 
 #: src/Widgets/UnsupportedFileDialog.vala:40
 #, c-format
@@ -102,6 +102,8 @@ msgid ""
 "Unable to play file at: %s\n"
 "The file is not a video (\"%s\")."
 msgstr ""
+"No se puede reproducir el vídeo en: %s\n"
+"El archivo no es un vídeo («%s»)."
 
 #: src/Widgets/WelcomePage.vala:23
 msgid "No Videos Open"
@@ -181,9 +183,8 @@ msgid "Unfullscreen"
 msgstr "Salir de pantalla completa"
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
-#, fuzzy
 msgid "Clear Playlist"
-msgstr "Lista de reproducción"
+msgstr "Crear lista de reproducción"
 
 #: src/Widgets/Player/PlaylistPopover.vala:45
 #: src/Widgets/Player/PlaylistPopover.vala:76
