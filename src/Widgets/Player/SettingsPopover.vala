@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2013-2014 Audience Developers (http://launchpad.net/pantheon-chat)
+ * Copyright (c) 2013-2019 elementary, Inc. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -144,9 +143,16 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             languages.remove_all ();
         }
 
+        var languages_names = get_audio_track_names ();
         uint track = 1;
         playback.get_audio_streams ().foreach ((lang) => {
-            languages.append (lang, _("Track %u").printf (track++));
+            var audio_stream_lang = languages_names.nth_data (track - 1);
+            if (audio_stream_lang != null) {
+                languages.append (lang, _("%s").printf (audio_stream_lang));
+            } else {
+                languages.append (lang, _("Track %u").printf (track));
+            }
+            track++;
         });
 
         int count = languages.model.iter_n_children (null);
@@ -179,4 +185,30 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             subtitles.active = (subtitles.active + 1) % count;
         }
     }
+
+    private GLib.List<string?> get_audio_track_names () {
+        GLib.List<string?> audio_languages = null;
+
+        var discoverer_info = Audience.get_discoverer_info (playback.uri);
+        if (discoverer_info != null) {
+            var audio_streams = discoverer_info.get_audio_streams ();
+
+            foreach (var audio_stream in audio_streams) {
+                unowned string language_code = (audio_stream as Gst.PbUtils.DiscovererAudioInfo).get_language ();
+                if (language_code != null) {
+                    var language_name = Gst.Tag.get_language_name (language_code);
+                    audio_languages.append (language_name);
+                } else {
+                    audio_languages.append (null);
+                }
+            }
+
+            // Both ClutterGst and DiscovererAudioInfo return tracks in opposite order.
+            audio_languages.reverse ();
+        }
+
+        return audio_languages;
+    }
+
+
 }
