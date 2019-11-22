@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-20 14:53-0800\n"
+"POT-Creation-Date: 2019-11-22 22:59+0000\n"
 "PO-Revision-Date: 2016-12-19 19:23+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <lt@li.org>\n"
@@ -61,7 +61,7 @@ msgstr "Pabandykite pakeisti paieškos žodžius."
 msgid "Restore"
 msgstr "Atkurti"
 
-#: src/Window.vala:411 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:411 src/Widgets/Player/SettingsPopover.vala:36
 msgid "All files"
 msgstr "Visi failai"
 
@@ -192,7 +192,7 @@ msgstr "Įjungti kartojimą"
 msgid "Disable Repeat"
 msgstr "Išjungti kartojimą"
 
-#: src/Widgets/Player/SettingsPopover.vala:41
+#: src/Widgets/Player/SettingsPopover.vala:40
 msgid "Subtitle files"
 msgstr "Subtitrų failai"
 
@@ -201,34 +201,39 @@ msgstr "Subtitrų failai"
 #. .sub
 #. .ssa & .ass
 #. exclude .asc, mimetype is generic "application/pgp-encrypted"
-#: src/Widgets/Player/SettingsPopover.vala:48
+#: src/Widgets/Player/SettingsPopover.vala:47
 msgid "External Subtitles"
 msgstr "Išoriniai subtitrai"
 
-#: src/Widgets/Player/SettingsPopover.vala:52
+#: src/Widgets/Player/SettingsPopover.vala:51
 msgid "Audio:"
 msgstr "Garsas:"
 
-#: src/Widgets/Player/SettingsPopover.vala:55
+#: src/Widgets/Player/SettingsPopover.vala:54
 msgid "Subtitles:"
 msgstr "Subtitrai:"
 
-#: src/Widgets/Player/SettingsPopover.vala:58
+#: src/Widgets/Player/SettingsPopover.vala:57
 msgid "External Subtitles:"
 msgstr "Išoriniai subtitrai:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:125
-#: src/Widgets/Player/SettingsPopover.vala:149
+#: src/Widgets/Player/SettingsPopover.vala:124
+#: src/Widgets/Player/SettingsPopover.vala:153
 #, c-format
 msgid "Track %u"
 msgstr "Takelis %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:127
+#: src/Widgets/Player/SettingsPopover.vala:126
 msgid "None"
 msgstr "Nėra"
 
-#: src/Widgets/Player/SettingsPopover.vala:160
+#: src/Widgets/Player/SettingsPopover.vala:151
+#, c-format
+msgid "%s"
+msgstr ""
+
+#: src/Widgets/Player/SettingsPopover.vala:166
 msgid "Default"
 msgstr "Numatytasis"
 
