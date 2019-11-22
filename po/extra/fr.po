@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-20 14:53-0800\n"
-"PO-Revision-Date: 2019-10-05 10:23+0000\n"
+"PO-Revision-Date: 2019-11-22 17:24+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
-"Language-Team: French <https://l10n.elementary.io/projects/videos/extra/fr/"
-">\n"
+"Language-Team: French <https://l10n.elementary.io/projects/videos/extra/fr/>"
+"\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,25 +57,26 @@ msgid "Thumbnail previews on the seek bar"
 msgstr "Miniatures sur la barre de navigation"
 
 #: data/io.elementary.videos.appdata.xml.in:66
-#, fuzzy
 msgid "Fix disappearing cursor on headerbar"
-msgstr "Correction de la disparition de la piste des sous-titres"
+msgstr "Correction de la disparition du curseur dans l'entête"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Navigate the playlist with the keyboard"
-msgstr ""
+msgstr "Naviguez à travers les playlists au clavier"
 
 #: data/io.elementary.videos.appdata.xml.in:68
 msgid "Hide seekbar preview when switching windows with Alt + Tab"
 msgstr ""
+"L'aperçu de la barre de progression est masqué lors du basculement des "
+"fenêtres avec Alt + Tab"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 msgid "Add a button to clear the playlist"
-msgstr ""
+msgstr "Ajout d'un bouton pour effacer la playlist"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 msgid "Show playlist item titles in their tooltips"
-msgstr ""
+msgstr "Affichage du titre des éléments des playlists dans leur infobulle"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 #: data/io.elementary.videos.appdata.xml.in:79
@@ -141,9 +142,8 @@ msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "Correction d'un bug empêchant la navigation avec le clavier"
 
 #: data/io.elementary.videos.appdata.xml.in:169
-#, fuzzy
 msgid "elementary, Inc."
-msgstr "elementary LLC."
+msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"

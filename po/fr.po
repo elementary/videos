@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-20 14:53-0800\n"
-"PO-Revision-Date: 2019-11-06 19:34+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementary.io>\n"
-"Language-Team: French <https://l10n.elementary.io/projects/videos/videos/fr/"
-">\n"
+"PO-Revision-Date: 2019-11-22 17:24+0000\n"
+"Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
+"Language-Team: French <https://l10n.elementary.io/projects/videos/videos/fr/>"
+"\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +42,6 @@ msgid "Search Videos"
 msgstr "Rechercher des vidéos"
 
 #: src/Window.vala:81
-#, fuzzy
 msgid "Play one video"
 msgstr "Lire une vidéo"
 
