@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-22 22:59+0000\n"
-"PO-Revision-Date: 2019-11-11 12:24+0000\n"
+"PO-Revision-Date: 2019-11-25 09:24+0000\n"
 "Last-Translator: Daniel R. <riesp@pm.me>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/videos/videos/es/"
 ">\n"
@@ -42,7 +42,6 @@ msgid "Search Videos"
 msgstr "Buscar Vídeos"
 
 #: src/Window.vala:81
-#, fuzzy
 msgid "Play one video"
 msgstr "Reproducir un vídeo"
 
