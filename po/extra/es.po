@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-22 22:59+0000\n"
-"PO-Revision-Date: 2019-10-10 14:23+0000\n"
+"PO-Revision-Date: 2019-11-25 09:24+0000\n"
 "Last-Translator: Daniel R. <riesp@pm.me>\n"
-"Language-Team: Spanish <https://l10n.elementary.io/projects/videos/extra/es/"
-">\n"
+"Language-Team: Spanish <https://l10n.elementary.io/projects/videos/extra/es/>"
+"\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,21 +57,22 @@ msgid "Thumbnail previews on the seek bar"
 msgstr "Previsualizar miniaturas en la barra de búsqueda"
 
 #: data/io.elementary.videos.appdata.xml.in:66
-#, fuzzy
 msgid "Fix disappearing cursor on headerbar"
-msgstr "Corrección de la desaparición de pistas de subtítulos"
+msgstr "Corrección de la desaparición del cursor en la barra de encabezado"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Navigate the playlist with the keyboard"
-msgstr ""
+msgstr "Navegar por la lista de reproducción con el teclado"
 
 #: data/io.elementary.videos.appdata.xml.in:68
 msgid "Hide seekbar preview when switching windows with Alt + Tab"
 msgstr ""
+"Ocultar la vista previa de la barra de búsqueda al cambiar de ventana con "
+"Alt + Tabulador"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 msgid "Add a button to clear the playlist"
-msgstr ""
+msgstr "Añadido un botón para limpiar la lista de reproducción"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 msgid "Show audio track language with track number in settings"
@@ -80,6 +81,8 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Show playlist item titles in their tooltips"
 msgstr ""
+"Mostrar el título de los elementos de la lista de reproducción en su "
+"información sobre herramientas"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 #: data/io.elementary.videos.appdata.xml.in:80
@@ -143,9 +146,8 @@ msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "Arreglado un error que impedía la navegación mediante el teclado"
 
 #: data/io.elementary.videos.appdata.xml.in:170
-#, fuzzy
 msgid "elementary, Inc."
-msgstr "elementary LLC."
+msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
