@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-20 14:53-0800\n"
-"PO-Revision-Date: 2019-11-07 21:31+0000\n"
+"POT-Creation-Date: 2019-11-22 22:59+0000\n"
+"PO-Revision-Date: 2019-11-25 09:24+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/videos/"
 "ja/>\n"
@@ -42,7 +42,6 @@ msgid "Search Videos"
 msgstr "動画を検索"
 
 #: src/Window.vala:81
-#, fuzzy
 msgid "Play one video"
 msgstr "連続再生しない"
 
@@ -63,7 +62,7 @@ msgstr "検索用語を変更してみてください。"
 msgid "Restore"
 msgstr "復元"
 
-#: src/Window.vala:411 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:411 src/Widgets/Player/SettingsPopover.vala:36
 msgid "All files"
 msgstr "すべてのファイル"
 
@@ -195,7 +194,7 @@ msgstr "リピートを有効にする"
 msgid "Disable Repeat"
 msgstr "リピートを無効にする"
 
-#: src/Widgets/Player/SettingsPopover.vala:41
+#: src/Widgets/Player/SettingsPopover.vala:40
 msgid "Subtitle files"
 msgstr "字幕ファイル"
 
@@ -204,34 +203,39 @@ msgstr "字幕ファイル"
 #. .sub
 #. .ssa & .ass
 #. exclude .asc, mimetype is generic "application/pgp-encrypted"
-#: src/Widgets/Player/SettingsPopover.vala:48
+#: src/Widgets/Player/SettingsPopover.vala:47
 msgid "External Subtitles"
 msgstr "外部字幕"
 
-#: src/Widgets/Player/SettingsPopover.vala:52
+#: src/Widgets/Player/SettingsPopover.vala:51
 msgid "Audio:"
 msgstr "オーディオ:"
 
-#: src/Widgets/Player/SettingsPopover.vala:55
+#: src/Widgets/Player/SettingsPopover.vala:54
 msgid "Subtitles:"
 msgstr "字幕:"
 
-#: src/Widgets/Player/SettingsPopover.vala:58
+#: src/Widgets/Player/SettingsPopover.vala:57
 msgid "External Subtitles:"
 msgstr "外部字幕:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:125
-#: src/Widgets/Player/SettingsPopover.vala:149
+#: src/Widgets/Player/SettingsPopover.vala:124
+#: src/Widgets/Player/SettingsPopover.vala:153
 #, c-format
 msgid "Track %u"
 msgstr "トラック %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:127
+#: src/Widgets/Player/SettingsPopover.vala:126
 msgid "None"
 msgstr "なし"
 
-#: src/Widgets/Player/SettingsPopover.vala:160
+#: src/Widgets/Player/SettingsPopover.vala:151
+#, c-format
+msgid "%s"
+msgstr ""
+
+#: src/Widgets/Player/SettingsPopover.vala:166
 msgid "Default"
 msgstr "デフォルト"
 

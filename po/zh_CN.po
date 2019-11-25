@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-20 14:53-0800\n"
+"POT-Creation-Date: 2019-11-22 22:59+0000\n"
 "PO-Revision-Date: 2019-01-16 00:02+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.elementary.io/projects/"
@@ -63,7 +63,7 @@ msgstr "尝试更改搜索内容。"
 msgid "Restore"
 msgstr "恢复"
 
-#: src/Window.vala:411 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:411 src/Widgets/Player/SettingsPopover.vala:36
 msgid "All files"
 msgstr "所有文件"
 
@@ -194,7 +194,7 @@ msgstr "启用循环"
 msgid "Disable Repeat"
 msgstr "禁用循环"
 
-#: src/Widgets/Player/SettingsPopover.vala:41
+#: src/Widgets/Player/SettingsPopover.vala:40
 msgid "Subtitle files"
 msgstr "字幕文件"
 
@@ -203,34 +203,39 @@ msgstr "字幕文件"
 #. .sub
 #. .ssa & .ass
 #. exclude .asc, mimetype is generic "application/pgp-encrypted"
-#: src/Widgets/Player/SettingsPopover.vala:48
+#: src/Widgets/Player/SettingsPopover.vala:47
 msgid "External Subtitles"
 msgstr "外挂字幕"
 
-#: src/Widgets/Player/SettingsPopover.vala:52
+#: src/Widgets/Player/SettingsPopover.vala:51
 msgid "Audio:"
 msgstr "音频选择："
 
-#: src/Widgets/Player/SettingsPopover.vala:55
+#: src/Widgets/Player/SettingsPopover.vala:54
 msgid "Subtitles:"
 msgstr "内置字幕："
 
-#: src/Widgets/Player/SettingsPopover.vala:58
+#: src/Widgets/Player/SettingsPopover.vala:57
 msgid "External Subtitles:"
 msgstr "外挂字幕："
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:125
-#: src/Widgets/Player/SettingsPopover.vala:149
+#: src/Widgets/Player/SettingsPopover.vala:124
+#: src/Widgets/Player/SettingsPopover.vala:153
 #, c-format
 msgid "Track %u"
 msgstr "曲目 %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:127
+#: src/Widgets/Player/SettingsPopover.vala:126
 msgid "None"
 msgstr "无"
 
-#: src/Widgets/Player/SettingsPopover.vala:160
+#: src/Widgets/Player/SettingsPopover.vala:151
+#, c-format
+msgid "%s"
+msgstr ""
+
+#: src/Widgets/Player/SettingsPopover.vala:166
 msgid "Default"
 msgstr "默认"
 

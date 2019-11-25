@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-20 14:53-0800\n"
+"POT-Creation-Date: 2019-11-22 22:59+0000\n"
 "PO-Revision-Date: 2016-09-29 11:56+0000\n"
 "Last-Translator: Адмирал АнимЕ <Unknown>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
@@ -71,71 +71,75 @@ msgid "Add a button to clear the playlist"
 msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:70
-msgid "Show playlist item titles in their tooltips"
+msgid "Show audio track language with track number in settings"
 msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:71
-#: data/io.elementary.videos.appdata.xml.in:79
-#: data/io.elementary.videos.appdata.xml.in:87
-#: data/io.elementary.videos.appdata.xml.in:94
-#: data/io.elementary.videos.appdata.xml.in:126
-#: data/io.elementary.videos.appdata.xml.in:134
-#: data/io.elementary.videos.appdata.xml.in:141
-#: data/io.elementary.videos.appdata.xml.in:157
+msgid "Show playlist item titles in their tooltips"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:72
+#: data/io.elementary.videos.appdata.xml.in:80
+#: data/io.elementary.videos.appdata.xml.in:88
+#: data/io.elementary.videos.appdata.xml.in:95
+#: data/io.elementary.videos.appdata.xml.in:127
+#: data/io.elementary.videos.appdata.xml.in:135
+#: data/io.elementary.videos.appdata.xml.in:142
+#: data/io.elementary.videos.appdata.xml.in:158
 msgid "Translation updates"
 msgstr "Обновяване на превода"
 
-#: data/io.elementary.videos.appdata.xml.in:78
-#: data/io.elementary.videos.appdata.xml.in:86
+#: data/io.elementary.videos.appdata.xml.in:79
+#: data/io.elementary.videos.appdata.xml.in:87
 msgid "Build fixes"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:101
+#: data/io.elementary.videos.appdata.xml.in:102
 msgid "Window behavior improvements"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:102
+#: data/io.elementary.videos.appdata.xml.in:103
 msgid "Fix disappearing subtitle tracks"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:109
+#: data/io.elementary.videos.appdata.xml.in:110
 msgid "Disallow setting playback before start"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:116
+#: data/io.elementary.videos.appdata.xml.in:117
 msgid "Limit consecutive spacebar pauses"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:123
+#: data/io.elementary.videos.appdata.xml.in:124
 msgid "Crash fixes"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:124
+#: data/io.elementary.videos.appdata.xml.in:125
 msgid "Remove About dialog"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:125
-#: data/io.elementary.videos.appdata.xml.in:164
+#: data/io.elementary.videos.appdata.xml.in:126
+#: data/io.elementary.videos.appdata.xml.in:165
 msgid "Minor bug fixes"
 msgstr "Поправки на дребни грешки"
 
-#: data/io.elementary.videos.appdata.xml.in:133
+#: data/io.elementary.videos.appdata.xml.in:134
 msgid "Preview popover now closely follows cursor position"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:148
+#: data/io.elementary.videos.appdata.xml.in:149
 msgid "Fix appstream date format"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:155
+#: data/io.elementary.videos.appdata.xml.in:156
 msgid "Added a library view with search"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:156
+#: data/io.elementary.videos.appdata.xml.in:157
 msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "Поправка на грешка, възпрепятстваща навигация с клавиатурата"
 
-#: data/io.elementary.videos.appdata.xml.in:169
+#: data/io.elementary.videos.appdata.xml.in:170
 msgid "elementary, Inc."
 msgstr ""
 
