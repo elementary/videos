@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-25 17:20+0000\n"
-"PO-Revision-Date: 2019-11-22 17:24+0000\n"
+"PO-Revision-Date: 2019-11-27 08:24+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/videos/videos/ca/"
 ">\n"
@@ -233,7 +233,7 @@ msgstr "Cap"
 #: src/Widgets/Player/SettingsPopover.vala:151
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: src/Widgets/Player/SettingsPopover.vala:166
 msgid "Default"
