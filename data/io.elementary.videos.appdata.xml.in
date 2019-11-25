@@ -62,13 +62,19 @@
   <releases>
     <release version="2.7.0" date="2019-11-25" urgency="medium">
       <description>
+        <p>New features:</p>
         <ul>
-          <li>Fix disappearing cursor on headerbar</li>
+          <li>Option to automatically play next videos</li>
           <li>Navigate the playlist with the keyboard</li>
-          <li>Hide seekbar preview when switching windows with Alt + Tab</li>
           <li>Add a button to clear the playlist</li>
-          <li>Show audio track language with track number in settings</li>
+          <li>Show audio track language in settings</li>
           <li>Show playlist item titles in their tooltips</li>
+        </ul>
+        <p>Other updates:</p>
+        <ul>
+          <li>Show an error for unsupported files</li>
+          <li>Fix disappearing cursor on headerbar</li>
+          <li>Hide seekbar preview when switching windows with Alt + Tab</li>
           <li>Translation updates</li>
         </ul>
       </description>
