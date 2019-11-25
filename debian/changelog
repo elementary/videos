@@ -1,3 +1,45 @@
+audience (2.7.0) bionic; urgency=medium
+
+  * Release 2.7.0 (#162)
+  * Update translation template
+  * Show audio track names (#160)
+  * Update translation template
+  * Update io.elementary.videos.appdata.xml.in
+  * Show title in tooltip for playlist item (#159)
+  * Cleanup: PlayerPage.vala (#156)
+  * Cleanup: Window.vala (#157)
+  * Update translation template
+  * AppData: Add 2.7.0 release data
+  * Add Release to Actions
+  * Travis: Downgrade node to 10
+  * Update translation template
+  * Update POTFILES
+  * Add Gettext Updates to Actions
+  * Auto-queue videos from library (#151)
+  * Convert Playlist to ListBox (#147)
+  * Add option to clear playlist (#146)
+  * Throw error dialog in case of unsupported file (#150)
+  * Add video to playlist if played from resume button or library (#148)
+  * Hide Preview popover on ALT+Tab (#144)
+  * Better Popover height allocation (#142)
+  * Switch to GLib.Settings (#145)
+  * Make playlist focusable and browsable with keyboard (#143)
+  * Fix disappearing cursor on headerbar (#141)
+  * Add Lint to CI (#133)
+  * WelcomePage: Fix extra whitespace
+  * Fix code style issues (#134)
+  * Update WelcomePage.vala
+  * Added copyright header to files #135. (#136)
+  * Delete AUTHORS
+  * Delete CODE_OF_CONDUCT.md
+  * Add Silesian and update translation template
+  * LibraryItem: Use FileChooserNative (#126)
+  * Window: Use FileChooserNative (#121)
+  * Remove .desktop suffix from appdata id
+  * Use new methods of screen inhibiting (#116)
+
+ -- Cody Garver <cody@elementary.io>  Mon, 25 Nov 2019 17:18:55 +0000
+
 audience (2.6.3) bionic; urgency=medium
 
   * New upstream release.
