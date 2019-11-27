@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-25 17:20+0000\n"
-"PO-Revision-Date: 2019-11-07 21:31+0000\n"
+"PO-Revision-Date: 2019-11-29 02:24+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/videos/videos/"
 "pt/>\n"
@@ -42,7 +42,6 @@ msgid "Search Videos"
 msgstr "Pesquisar Vídeos"
 
 #: src/Window.vala:81
-#, fuzzy
 msgid "Play one video"
 msgstr "Reproduzir um vídeo"
 
@@ -234,7 +233,7 @@ msgstr "Nenhuma"
 #: src/Widgets/Player/SettingsPopover.vala:151
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: src/Widgets/Player/SettingsPopover.vala:166
 msgid "Default"
