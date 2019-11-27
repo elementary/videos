@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-25 17:20+0000\n"
-"PO-Revision-Date: 2019-08-29 17:22+0000\n"
+"PO-Revision-Date: 2019-11-29 02:24+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/videos/extra/"
 "pt/>\n"
@@ -66,11 +66,11 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:68
 msgid "Navigate the playlist with the keyboard"
-msgstr ""
+msgstr "Navegar na lista de reprodução com o teclado"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 msgid "Add a button to clear the playlist"
-msgstr ""
+msgstr "Adicionar um botão para limpar a lista de reprodução"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 msgid "Show audio track language in settings"
@@ -79,6 +79,7 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Show playlist item titles in their tooltips"
 msgstr ""
+"Mostrar títulos de itens da lista de reprodução nas suas dicas de ferramentas"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Other updates:"
@@ -89,13 +90,13 @@ msgid "Show an error for unsupported files"
 msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:76
-#, fuzzy
 msgid "Fix disappearing cursor on headerbar"
-msgstr "Corrigir faixas de legendas desaparecidas"
+msgstr "Corrige o cursor desaparecido na barra superior"
 
 #: data/io.elementary.videos.appdata.xml.in:77
 msgid "Hide seekbar preview when switching windows with Alt + Tab"
 msgstr ""
+"Ocultar visualização da barra de procura ao mudar de janela com Alt + Tab"
 
 #: data/io.elementary.videos.appdata.xml.in:78
 #: data/io.elementary.videos.appdata.xml.in:86
@@ -160,9 +161,8 @@ msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "Corrigido problema que impedia a navegação por teclado"
 
 #: data/io.elementary.videos.appdata.xml.in:176
-#, fuzzy
 msgid "elementary, Inc."
-msgstr "elementary LLC."
+msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
