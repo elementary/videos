@@ -19,6 +19,7 @@
 */
 
 public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
+    public signal void remove_item ();
     public bool is_playing { get; set; }
     public string title { get; construct; }
     public string filename { get; construct; }
@@ -44,12 +45,30 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         var track_name_label = new Gtk.Label (title);
         track_name_label.ellipsize = Pango.EllipsizeMode.MIDDLE;
 
+        var delete_button = new Gtk.Image.from_icon_name ("edit-delete-symbolic", Gtk.IconSize.BUTTON);
+        delete_button.tooltip_text = _("Remove video from playlist");
+        delete_button.halign = Gtk.Align.END;
+        delete_button.expand = true;
+
+        var remove_item_event_box = new Gtk.EventBox ();
+        remove_item_event_box.add (delete_button);
+        remove_item_event_box.button_release_event.connect (on_button_released);
+
+        var action_revealer = new Gtk.Revealer ();
+        action_revealer.transition_type = Gtk.RevealerTransitionType.CROSSFADE;
+        action_revealer.add (remove_item_event_box);
+        action_revealer.transition_duration = 1000;
+        action_revealer.show_all ();
+        action_revealer.set_reveal_child (false);
+
         var grid = new Gtk.Grid ();
+        grid.expand = true;
         grid.margin = 3;
         grid.margin_bottom = grid.margin_top = 6;
         grid.column_spacing = 6;
-        grid.add (play_revealer);
-        grid.add (track_name_label);
+        grid.attach (play_revealer, 0, 0, 1, 1);
+        grid.attach (track_name_label, 1, 0, 3, 1);
+        grid.attach (action_revealer, 4, 0, 1, 1);
 
         // Drag source must have a GdkWindow. GTK4 will remove the limitation.
         var dnd_event_box = new Gtk.EventBox ();
@@ -58,6 +77,24 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         dnd_event_box.add (grid);
 
         Gtk.drag_source_set (dnd_event_box, Gdk.ModifierType.BUTTON1_MASK, TARGET_ENTRIES, Gdk.DragAction.MOVE);
+
+        dnd_event_box.add_events (Gdk.EventMask.ENTER_NOTIFY_MASK | Gdk.EventMask.LEAVE_NOTIFY_MASK);
+
+        dnd_event_box.enter_notify_event.connect ((event) => {
+            action_revealer.set_reveal_child (true);
+            return Gdk.EVENT_PROPAGATE;
+        });
+
+        dnd_event_box.leave_notify_event.connect ((event) => {
+            if (event.detail == Gdk.NotifyType.INFERIOR) {
+                return Gdk.EVENT_PROPAGATE;
+            }
+
+            action_revealer.set_reveal_child (false);
+            return Gdk.EVENT_PROPAGATE;
+        });
+
+
 
         set_tooltip_text (title);
 
@@ -91,5 +128,10 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         selection_data.set (
             Gdk.Atom.intern_static_string ("PLAYLIST_ITEM"), 32, data
         );
+    }
+
+    private bool on_button_released (Gtk.Widget sender, Gdk.EventButton event) {
+        remove_item ();
+        return Gdk.EVENT_STOP;
     }
 }

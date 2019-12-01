@@ -46,7 +46,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
 
         playlist_scrolled = new Gtk.ScrolledWindow (null, null);
         playlist_scrolled.min_content_height = 100;
-        playlist_scrolled.min_content_width = 260;
+        playlist_scrolled.min_content_width = 300;
         playlist_scrolled.propagate_natural_height = true;
 
         playlist = new Playlist ();
