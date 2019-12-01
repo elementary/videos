@@ -62,13 +62,12 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         action_revealer.set_reveal_child (false);
 
         var grid = new Gtk.Grid ();
-        grid.expand = true;
         grid.margin = 3;
         grid.margin_bottom = grid.margin_top = 6;
         grid.column_spacing = 6;
-        grid.attach (play_revealer, 0, 0, 1, 1);
-        grid.attach (track_name_label, 1, 0, 3, 1);
-        grid.attach (action_revealer, 4, 0, 1, 1);
+        grid.add (play_revealer);
+        grid.add (track_name_label);
+        grid.add (action_revealer);
 
         // Drag source must have a GdkWindow. GTK4 will remove the limitation.
         var dnd_event_box = new Gtk.EventBox ();
