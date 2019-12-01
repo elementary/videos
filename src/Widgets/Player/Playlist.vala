@@ -227,7 +227,8 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
             if (row.is_playing) {
                 next ();
             }
+            
             remove (row);
-        }); 
+        });
     }
 }

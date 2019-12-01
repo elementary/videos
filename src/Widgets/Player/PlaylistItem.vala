@@ -80,12 +80,12 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
 
         dnd_event_box.add_events (Gdk.EventMask.ENTER_NOTIFY_MASK | Gdk.EventMask.LEAVE_NOTIFY_MASK);
 
-        dnd_event_box.enter_notify_event.connect ((event) => {
+        dnd_event_box.enter_notify_event.connect (event => {
             action_revealer.set_reveal_child (true);
             return Gdk.EVENT_PROPAGATE;
         });
 
-        dnd_event_box.leave_notify_event.connect ((event) => {
+        dnd_event_box.leave_notify_event.connect (event => {
             if (event.detail == Gdk.NotifyType.INFERIOR) {
                 return Gdk.EVENT_PROPAGATE;
             }
@@ -93,8 +93,6 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
             action_revealer.set_reveal_child (false);
             return Gdk.EVENT_PROPAGATE;
         });
-
-
 
         set_tooltip_text (title);
 
