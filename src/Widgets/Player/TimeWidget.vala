@@ -23,7 +23,7 @@ public class Audience.Widgets.TimeWidget : Granite.SeekBar {
     unowned ClutterGst.Playback main_playback;
     public Audience.Widgets.PreviewPopover preview_popover {get; private set;}
 
-    public const string trough_css = """
+    public const string TROUGH_CSS = """
         scale trough {
             border-radius: 12px;
             background-color: alpha (#000, 0.05);
@@ -56,7 +56,7 @@ public class Audience.Widgets.TimeWidget : Granite.SeekBar {
 
         var scale_css_provider = new Gtk.CssProvider ();
         try {
-            scale_css_provider.load_from_data (trough_css);
+            scale_css_provider.load_from_data (TROUGH_CSS);
             scale.get_style_context ().add_provider (scale_css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
         } catch (GLib.Error e) {
             warning ("Failed to load css %s", e.message);
