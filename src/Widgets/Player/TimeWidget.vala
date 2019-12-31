@@ -23,6 +23,18 @@ public class Audience.Widgets.TimeWidget : Granite.SeekBar {
     unowned ClutterGst.Playback main_playback;
     public Audience.Widgets.PreviewPopover preview_popover {get; private set;}
 
+    public const string trough_css = """
+        scale trough {
+            border-radius: 12px;
+            background-color: alpha (#000, 0.05);
+            box-shadow: none;
+            margin: 0px 0px;
+            padding: 6px 6px;
+            min-height: 6px;
+            min-width: 5px;
+        }
+    """;
+
     public TimeWidget (ClutterGst.Playback main_playback) {
         Object (playback_duration: 0.0);
 
@@ -41,6 +53,14 @@ public class Audience.Widgets.TimeWidget : Granite.SeekBar {
                 preview_popover.relative_to = scale;
             }
         });
+
+        var scale_css_provider = new Gtk.CssProvider ();
+        try {
+            scale_css_provider.load_from_data (trough_css);
+            scale.get_style_context ().add_provider (scale_css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
+        } catch (GLib.Error e) {
+            warning ("Failed to load css %s", e.message);
+        }
 
         scale.vexpand = true;
 
