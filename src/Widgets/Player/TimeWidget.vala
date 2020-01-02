@@ -25,13 +25,15 @@ public class Audience.Widgets.TimeWidget : Granite.SeekBar {
 
     public const string TROUGH_CSS = """
         scale trough {
-            border-radius: 12px;
-            background-color: alpha (#000, 0.05);
-            box-shadow: none;
-            margin: 0px 0px;
-            padding: 6px 6px;
-            min-height: 6px;
+            margin: 0px 6px;
+            padding: 0px 6px;
+            min-height: 10px;
             min-width: 5px;
+                box-shadow:
+                inset 0 0 0 1px alpha (#000, 0.3),
+                inset 0 0 0 2px alpha (#000, 0.03),
+                0 1px 0 0 alpha (@bg_highlight_color, 0.3),
+                0 0 6px 0px alpha (#000, 0.01);
         }
     """;
 
