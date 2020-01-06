@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-25 17:20+0000\n"
-"PO-Revision-Date: 2020-01-05 14:21+0000\n"
+"PO-Revision-Date: 2020-01-07 01:30+0000\n"
 "Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/videos/videos/nl/>"
 "\n"
@@ -42,9 +42,8 @@ msgid "Search Videos"
 msgstr "Zoek video's"
 
 #: src/Window.vala:81
-#, fuzzy
 msgid "Play one video"
-msgstr "Speel laatste video opnieuw af"
+msgstr "Speel één video af"
 
 #: src/Window.vala:82
 msgid "Automatically play next videos"
@@ -85,16 +84,16 @@ msgstr "_Annuleer"
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
-msgstr ""
+msgstr "Onbekend bestandstype"
 
 #: src/Widgets/UnsupportedFileDialog.vala:26
 #, c-format
 msgid "Videos might not be able to play the file '%s'."
-msgstr ""
+msgstr "Videos kan '%s' mogelijk niet afspelen."
 
 #: src/Widgets/UnsupportedFileDialog.vala:37
 msgid "Play Anyway"
-msgstr ""
+msgstr "Toch afspelen"
 
 #: src/Widgets/UnsupportedFileDialog.vala:40
 #, c-format
@@ -102,6 +101,8 @@ msgid ""
 "Unable to play file at: %s\n"
 "The file is not a video (\"%s\")."
 msgstr ""
+"Kan bestand niet afspelen op: %s\n"
+"Dit bestand is geen video (\"%s\")."
 
 #: src/Widgets/WelcomePage.vala:23
 msgid "No Videos Open"
@@ -149,11 +150,11 @@ msgstr "Verplaats naar prullenbak"
 
 #: src/Widgets/Library/LibraryItem.vala:77
 msgid "Set Artwork"
-msgstr ""
+msgstr "Stel kunstwerk in"
 
 #: src/Widgets/Library/LibraryItem.vala:163
 msgid "Image files"
-msgstr ""
+msgstr "Afbeeldingen"
 
 #: src/Widgets/Library/LibraryPage.vala:69
 #, c-format
@@ -181,9 +182,8 @@ msgid "Unfullscreen"
 msgstr "Sluit volledig scherm"
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
-#, fuzzy
 msgid "Clear Playlist"
-msgstr "Afspeellijst"
+msgstr "Afspeellijst leegmaken"
 
 #: src/Widgets/Player/PlaylistPopover.vala:45
 #: src/Widgets/Player/PlaylistPopover.vala:76
@@ -224,7 +224,7 @@ msgstr "Externe ondertitels:"
 #: src/Widgets/Player/SettingsPopover.vala:153
 #, c-format
 msgid "Track %u"
-msgstr ""
+msgstr "Track %u"
 
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "None"
@@ -233,7 +233,7 @@ msgstr "Geen"
 #: src/Widgets/Player/SettingsPopover.vala:151
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: src/Widgets/Player/SettingsPopover.vala:166
 msgid "Default"
