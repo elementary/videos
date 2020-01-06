@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-25 17:20+0000\n"
-"PO-Revision-Date: 2020-01-05 14:21+0000\n"
+"PO-Revision-Date: 2020-01-07 01:30+0000\n"
 "Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/videos/extra/nl/>\n"
 "Language: nl\n"
@@ -26,7 +26,7 @@ msgstr "Video's"
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Kijk video’s en films"
 
 #: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
@@ -34,22 +34,25 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
+"Een moderne videospeler met de nadruk op de inhoud van een video en niet op "
+"de besturing. De speler onthoud uw laatst afgespeelde video en positie zodat "
+"u door kunt kijken waar u eerder gestopt was."
 
 #: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
-msgstr ""
+msgstr "Aanvullende functies zijn onder andere:"
 
 #: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
-msgstr ""
+msgstr "Ondersteuning voor ondertiteling"
 
 #: data/io.elementary.videos.appdata.xml.in:21
 msgid "Play queue"
-msgstr ""
+msgstr "Een afspeelwachtrij"
 
 #: data/io.elementary.videos.appdata.xml.in:22
 msgid "Thumbnail previews on the seek bar"
-msgstr ""
+msgstr "Miniatuurweergave tijdens het zoeken"
 
 #: data/io.elementary.videos.appdata.xml.in:65
 msgid "New features:"
@@ -61,11 +64,11 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:68
 msgid "Navigate the playlist with the keyboard"
-msgstr ""
+msgstr "Navigeer door de speellijst met het toetsenbord"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 msgid "Add a button to clear the playlist"
-msgstr ""
+msgstr "Een knop toegevoegd om de afspeellijst te legen"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 msgid "Show audio track language in settings"
@@ -73,7 +76,7 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Show playlist item titles in their tooltips"
-msgstr ""
+msgstr "Toon de titels van items op de afspeellijst in hun tooltips"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Other updates:"
@@ -85,11 +88,13 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:76
 msgid "Fix disappearing cursor on headerbar"
-msgstr ""
+msgstr "Verdwijnende aanwijzer op de hoofdbalk verholpen"
 
 #: data/io.elementary.videos.appdata.xml.in:77
 msgid "Hide seekbar preview when switching windows with Alt + Tab"
 msgstr ""
+"Verberg de miniatuurweergave op de zoekbalk bij het wisselen van vensters "
+"met Alt + Tab"
 
 #: data/io.elementary.videos.appdata.xml.in:78
 #: data/io.elementary.videos.appdata.xml.in:86
@@ -100,66 +105,68 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:148
 #: data/io.elementary.videos.appdata.xml.in:164
 msgid "Translation updates"
-msgstr ""
+msgstr "Bijgewerkte vertalingen"
 
 #: data/io.elementary.videos.appdata.xml.in:85
 #: data/io.elementary.videos.appdata.xml.in:93
 msgid "Build fixes"
-msgstr ""
+msgstr "Oplossingen voor problemen"
 
 #: data/io.elementary.videos.appdata.xml.in:108
 msgid "Window behavior improvements"
-msgstr ""
+msgstr "De manier waarop vensters zich gedragen is verbeterd"
 
 #: data/io.elementary.videos.appdata.xml.in:109
 msgid "Fix disappearing subtitle tracks"
-msgstr ""
+msgstr "Een probleem met verdwijnende ondertitel tracks opgelost"
 
 #: data/io.elementary.videos.appdata.xml.in:116
 msgid "Disallow setting playback before start"
-msgstr ""
+msgstr "Sta het instellen van afspelen voor start niet toe"
 
 #: data/io.elementary.videos.appdata.xml.in:123
 msgid "Limit consecutive spacebar pauses"
-msgstr ""
+msgstr "Limiteer het aantal opeenvolgende pauzemomenten via de spatiebalk"
 
 #: data/io.elementary.videos.appdata.xml.in:130
 msgid "Crash fixes"
-msgstr ""
+msgstr "Crashes verholpen"
 
 #: data/io.elementary.videos.appdata.xml.in:131
 msgid "Remove About dialog"
-msgstr ""
+msgstr "Het Over venster verwijderd"
 
 #: data/io.elementary.videos.appdata.xml.in:132
 #: data/io.elementary.videos.appdata.xml.in:171
 msgid "Minor bug fixes"
-msgstr ""
+msgstr "Kleine fouten opgelost"
 
 #: data/io.elementary.videos.appdata.xml.in:140
 msgid "Preview popover now closely follows cursor position"
-msgstr ""
+msgstr "De preview popover volgt nu de positie van de aanwijzer"
 
 #: data/io.elementary.videos.appdata.xml.in:155
 msgid "Fix appstream date format"
-msgstr ""
+msgstr "Een probleem met het appstream data formaat opgelost"
 
 #: data/io.elementary.videos.appdata.xml.in:162
 msgid "Added a library view with search"
-msgstr ""
+msgstr "Een bibliotheek weergave met zoekfunctie toegevoegd"
 
 #: data/io.elementary.videos.appdata.xml.in:163
 msgid "Fixed a bug that prevents keyboard navigation"
 msgstr ""
+"Een fout ,die voorkwam dat de speler met het toetsenbord kon worden bediend, "
+"is verholpen"
 
 #: data/io.elementary.videos.appdata.xml.in:176
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
-msgstr ""
+msgstr "Video speler"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "multimedia-video-player"
-msgstr ""
+msgstr "multimedia-video-player"
