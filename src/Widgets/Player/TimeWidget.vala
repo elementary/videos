@@ -58,7 +58,15 @@ public class Audience.Widgets.TimeWidget : Granite.SeekBar {
             return false;
         });
 
-        scale.button_release_event.connect ((event) => {
+        this.button_release_event.connect ((event) => {
+            // Manually set the slider value using the click event
+            // dimensions. The slider widget doesn't set itself
+            // when clicked too much above/below the slider itself.
+            // This isn't necessarily a bug with the slider widget,
+            // but this is the desired behavior for this slider in
+            // the video player
+            scale.set_value (event.x / scale.get_range_rect ().width);
+
             main_playback.progress = scale.get_value ();
             return false;
         });
