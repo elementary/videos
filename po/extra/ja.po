@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-25 17:20+0000\n"
-"PO-Revision-Date: 2019-11-25 09:24+0000\n"
+"PO-Revision-Date: 2020-01-19 13:07+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
@@ -58,11 +58,11 @@ msgstr "シークバー上のサムネイルプレビュー"
 
 #: data/io.elementary.videos.appdata.xml.in:65
 msgid "New features:"
-msgstr ""
+msgstr "新機能:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Option to automatically play next videos"
-msgstr ""
+msgstr "次の動画を自動的に再生できるオプション"
 
 #: data/io.elementary.videos.appdata.xml.in:68
 msgid "Navigate the playlist with the keyboard"
@@ -74,7 +74,7 @@ msgstr "プレイリストを消去するボタンを追加"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 msgid "Show audio track language in settings"
-msgstr ""
+msgstr "設定にオーディオトラックの言語を表示"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Show playlist item titles in their tooltips"
@@ -82,11 +82,11 @@ msgstr "プレイリストの項目のタイトルをツールチップで表示
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Other updates:"
-msgstr ""
+msgstr "その他のアップデート:"
 
 #: data/io.elementary.videos.appdata.xml.in:75
 msgid "Show an error for unsupported files"
-msgstr ""
+msgstr "非対応のファイルに対しエラーを表示するように修正"
 
 #: data/io.elementary.videos.appdata.xml.in:76
 msgid "Fix disappearing cursor on headerbar"
