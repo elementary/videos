@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-25 17:20+0000\n"
-"PO-Revision-Date: 2020-01-19 13:07+0000\n"
+"PO-Revision-Date: 2020-01-25 15:08+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -42,7 +42,7 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
-msgstr "その他の含まれる機能:"
+msgstr "そのほかの含まれる機能:"
 
 #: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
@@ -82,7 +82,7 @@ msgstr "プレイリストの項目のタイトルをツールチップで表示
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Other updates:"
-msgstr "その他のアップデート:"
+msgstr "そのほかのアップデート:"
 
 #: data/io.elementary.videos.appdata.xml.in:75
 msgid "Show an error for unsupported files"
