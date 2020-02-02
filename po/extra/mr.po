@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-25 17:20+0000\n"
-"PO-Revision-Date: 2019-11-25 09:24+0000\n"
+"PO-Revision-Date: 2020-02-03 08:08+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/videos/extra/mr/"
-">\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/videos/extra/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
 #: data/io.elementary.videos.desktop.in:4
@@ -56,11 +56,11 @@ msgstr "शोध बारवर लघुप्रतिमा पूर्व
 
 #: data/io.elementary.videos.appdata.xml.in:65
 msgid "New features:"
-msgstr ""
+msgstr "नवीन वैशिष्ट्ये:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Option to automatically play next videos"
-msgstr ""
+msgstr "पुढील व्हिडिओ स्वयंचलितपणे प्ले करण्याचा पर्याय"
 
 #: data/io.elementary.videos.appdata.xml.in:68
 msgid "Navigate the playlist with the keyboard"
@@ -72,7 +72,7 @@ msgstr "प्लेलिस्ट साफ करण्यासाठी ब
 
 #: data/io.elementary.videos.appdata.xml.in:70
 msgid "Show audio track language in settings"
-msgstr ""
+msgstr "सेटिंग्जमध्ये ऑडिओ ट्रॅक भाषा दाखवा"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Show playlist item titles in their tooltips"
@@ -80,11 +80,11 @@ msgstr "त्यांच्या टूलटिपमध्ये प्ल�
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Other updates:"
-msgstr ""
+msgstr "इतर अद्यतने:"
 
 #: data/io.elementary.videos.appdata.xml.in:75
 msgid "Show an error for unsupported files"
-msgstr ""
+msgstr "असमर्थित फायलींसाठी त्रुटी दाखवा"
 
 #: data/io.elementary.videos.appdata.xml.in:76
 msgid "Fix disappearing cursor on headerbar"
