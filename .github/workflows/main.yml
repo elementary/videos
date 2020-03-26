@@ -2,6 +2,7 @@ name: CI
 
 on: [push, pull_request]
 
+
 jobs:
   build:
 
@@ -26,7 +27,6 @@ jobs:
         ninja -C build
         ninja -C build install
 
-jobs:
   lint:
 
     runs-on: ubuntu-latest
