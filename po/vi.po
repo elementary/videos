@@ -1,12 +1,12 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:46+0200\n"
+"POT-Creation-Date: 2019-11-25 17:20+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
 
-#: src/Application.vala:70 src/Window.vala:482
+#: src/Application.vala:73 src/Window.vala:525
 msgid "Videos"
 msgstr ""
 
@@ -27,88 +27,116 @@ msgstr ""
 msgid "Search Videos"
 msgstr ""
 
-#: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
+#: src/Window.vala:81
+msgid "Play one video"
+msgstr ""
+
+#: src/Window.vala:82
+msgid "Automatically play next videos"
+msgstr ""
+
+#: src/Window.vala:110 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
 msgid "No Results for “%s”"
 msgstr ""
 
-#: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
+#: src/Window.vala:110 src/Widgets/Library/EpisodesPage.vala:126
 msgid "Try changing search terms."
 msgstr ""
 
-#: src/Window.vala:155
+#: src/Window.vala:167
 msgid "Restore"
 msgstr ""
 
-#: src/Window.vala:378 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:411 src/Widgets/Player/SettingsPopover.vala:36
 msgid "All files"
 msgstr ""
 
-#: src/Window.vala:382
+#: src/Window.vala:415
 msgid "Video files"
 msgstr ""
 
-#: src/Window.vala:386 src/Widgets/Library/LibraryItem.vala:168
+#: src/Window.vala:419 src/Widgets/Library/LibraryItem.vala:167
 msgid "Open"
 msgstr ""
 
-#: src/Window.vala:389 src/Widgets/Library/LibraryItem.vala:171
+#: src/Window.vala:422 src/Widgets/Library/LibraryItem.vala:170
 msgid "_Open"
 msgstr ""
 
-#: src/Window.vala:390 src/Widgets/Library/LibraryItem.vala:172
+#: src/Window.vala:423 src/Widgets/Library/LibraryItem.vala:171
 msgid "_Cancel"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:6
+#: src/Widgets/UnsupportedFileDialog.vala:25
+msgid "Unrecognized file format"
+msgstr ""
+
+#: src/Widgets/UnsupportedFileDialog.vala:26
+#, c-format
+msgid "Videos might not be able to play the file '%s'."
+msgstr ""
+
+#: src/Widgets/UnsupportedFileDialog.vala:37
+msgid "Play Anyway"
+msgstr ""
+
+#: src/Widgets/UnsupportedFileDialog.vala:40
+#, c-format
+msgid ""
+"Unable to play file at: %s\n"
+"The file is not a video (\"%s\")."
+msgstr ""
+
+#: src/Widgets/WelcomePage.vala:23
 msgid "No Videos Open"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:6
+#: src/Widgets/WelcomePage.vala:23
 msgid "Select a source to begin playing."
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:10 src/Widgets/Player/PlaylistPopover.vala:35
+#: src/Widgets/WelcomePage.vala:27 src/Widgets/Player/PlaylistPopover.vala:36
 msgid "Open file"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:10
+#: src/Widgets/WelcomePage.vala:27
 msgid "Open a saved file."
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:20 src/Widgets/WelcomePage.vala:79
+#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:97
 msgid "Replay last video"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:22 src/Widgets/WelcomePage.vala:82
+#: src/Widgets/WelcomePage.vala:39 src/Widgets/WelcomePage.vala:100
 msgid "Resume last video"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:47 src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/WelcomePage.vala:64 src/Widgets/Player/PlaylistPopover.vala:38
 msgid "Play from Disc"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:47
+#: src/Widgets/WelcomePage.vala:64
 msgid "Watch a DVD or open a file from disc"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:50
+#: src/Widgets/WelcomePage.vala:67
 msgid "Browse Library"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:50
+#: src/Widgets/WelcomePage.vala:67
 msgid "Watch a movie from your library"
 msgstr ""
 
-#: src/Widgets/Library/LibraryItem.vala:65
+#: src/Widgets/Library/LibraryItem.vala:64
 msgid "Move to Trash"
 msgstr ""
 
-#: src/Widgets/Library/LibraryItem.vala:78
+#: src/Widgets/Library/LibraryItem.vala:77
 msgid "Set Artwork"
 msgstr ""
 
-#: src/Widgets/Library/LibraryItem.vala:164
+#: src/Widgets/Library/LibraryItem.vala:163
 msgid "Image files"
 msgstr ""
 
@@ -138,15 +166,19 @@ msgid "Unfullscreen"
 msgstr ""
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
-#: src/Widgets/Player/PlaylistPopover.vala:67
+msgid "Clear Playlist"
+msgstr ""
+
+#: src/Widgets/Player/PlaylistPopover.vala:45
+#: src/Widgets/Player/PlaylistPopover.vala:76
 msgid "Enable Repeat"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:64
+#: src/Widgets/Player/PlaylistPopover.vala:73
 msgid "Disable Repeat"
 msgstr ""
 
-#: src/Widgets/Player/SettingsPopover.vala:41
+#: src/Widgets/Player/SettingsPopover.vala:40
 msgid "Subtitle files"
 msgstr ""
 
@@ -155,33 +187,38 @@ msgstr ""
 #. .sub
 #. .ssa & .ass
 #. exclude .asc, mimetype is generic "application/pgp-encrypted"
-#: src/Widgets/Player/SettingsPopover.vala:48
+#: src/Widgets/Player/SettingsPopover.vala:47
 msgid "External Subtitles"
 msgstr ""
 
-#: src/Widgets/Player/SettingsPopover.vala:52
+#: src/Widgets/Player/SettingsPopover.vala:51
 msgid "Audio:"
 msgstr ""
 
-#: src/Widgets/Player/SettingsPopover.vala:55
+#: src/Widgets/Player/SettingsPopover.vala:54
 msgid "Subtitles:"
 msgstr ""
 
-#: src/Widgets/Player/SettingsPopover.vala:58
+#: src/Widgets/Player/SettingsPopover.vala:57
 msgid "External Subtitles:"
 msgstr ""
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:125
-#: src/Widgets/Player/SettingsPopover.vala:149
+#: src/Widgets/Player/SettingsPopover.vala:124
+#: src/Widgets/Player/SettingsPopover.vala:153
 #, c-format
 msgid "Track %u"
 msgstr ""
 
-#: src/Widgets/Player/SettingsPopover.vala:127
+#: src/Widgets/Player/SettingsPopover.vala:126
 msgid "None"
 msgstr ""
 
-#: src/Widgets/Player/SettingsPopover.vala:160
+#: src/Widgets/Player/SettingsPopover.vala:151
+#, c-format
+msgid "%s"
+msgstr ""
+
+#: src/Widgets/Player/SettingsPopover.vala:166
 msgid "Default"
 msgstr ""

@@ -1,7 +1,5 @@
 src/Application.vala
-src/Consts.vala
 src/DiskManager.vala
-src/Settings.vala
 src/Utils.vala
 src/Window.vala
 src/ZeitgeistManager.vala
@@ -11,14 +9,15 @@ src/Services/Inhibitor.vala
 src/Services/LibraryManager.vala
 src/Services/Thumbnailer.vala
 src/Widgets/NavigationButton.vala
-src/Widgets/WelcomePage.vala
 src/Widgets/UnsupportedFileDialog.vala
+src/Widgets/WelcomePage.vala
 src/Widgets/Library/EpisodesPage.vala
 src/Widgets/Library/LibraryItem.vala
 src/Widgets/Library/LibraryPage.vala
 src/Widgets/Player/BottomBar.vala
 src/Widgets/Player/PlayerPage.vala
 src/Widgets/Player/Playlist.vala
+src/Widgets/Player/PlaylistItem.vala
 src/Widgets/Player/PlaylistPopover.vala
 src/Widgets/Player/PreviewPopover.vala
 src/Widgets/Player/SettingsPopover.vala
