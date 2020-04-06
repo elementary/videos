@@ -60,7 +60,9 @@ public class Audience.Services.Inhibitor : Object {
             try {
                 inhibited = true;
                 screensaver_inhibit_cookie = screensaver_iface.inhibit (application.application_id, "Playing movie");
-                suspend_inhibit_cookie = application.inhibit (application.get_active_window (), Gtk.ApplicationInhibitFlags.SUSPEND, "Playing Movie");
+                var window = application.get_active_window ();
+                var suspend = Gtk.ApplicationInhibitFlags.SUSPEND;
+                suspend_inhibit_cookie = application.inhibit (window, suspend, "Playing Movie");
                 debug ("Inhibiting screen");
             } catch (Error e) {
                 warning ("Could not inhibit screen: %s", e.message);

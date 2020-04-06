@@ -65,12 +65,17 @@ namespace Audience.Objects {
                 container = Path.get_basename (directory);
             }
 
-            hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_uri (), video_file.get_uri ().length);
-            hash_episode_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_parent ().get_uri (), video_file.get_parent ().get_uri ().length);
+            var uri = video_file.get_uri ();
+            hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, uri, uri.length);
+            var parent_uri = video_file.get_parent ().get_uri ();
+            hash_episode_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, parent_uri, parent_uri.length);
 
-            thumbnail_large_path = Path.build_filename (GLib.Environment.get_user_cache_dir (), "thumbnails", "large", hash_file_poster + ".png");
-            thumbnail_normal_path = Path.build_filename (GLib.Environment.get_user_cache_dir (), "thumbnails", "normal", hash_file_poster + ".png");
-            poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash_file_poster + ".jpg");
+            var user_cache = GLib.Environment.get_user_cache_dir ();
+            thumbnail_large_path = Path.build_filename (user_cache, "thumbnails", "large", hash_file_poster + ".png");
+            thumbnail_normal_path = Path.build_filename (user_cache, "thumbnails", "normal", hash_file_poster + ".png");
+
+            var app_cache_dir = App.get_instance ().get_cache_directory ();
+            poster_cache_file = Path.build_filename (app_cache_dir, hash_file_poster + ".jpg");
 
             notify["poster"].connect (() => {
                 poster_changed (this);
@@ -105,7 +110,9 @@ namespace Audience.Objects {
             Gdk.Pixbuf? pixbuf = null;
 
             ThreadFunc<void*> run = () => {
-                if (!FileUtils.test (thumbnail_large_path, FileTest.EXISTS) || !FileUtils.test (thumbnail_normal_path, FileTest.EXISTS)) {
+                var large_thumbnail_exists = FileUtils.test (thumbnail_large_path, FileTest.EXISTS);
+                var normal_thumbnail_exists = FileUtils.test (thumbnail_normal_path, FileTest.EXISTS);
+                if (!large_thumbnail_exists || !normal_thumbnail_exists) {
                     // Call DBUS for create a new THUMBNAIL
                     Gee.ArrayList<string> uris = new Gee.ArrayList<string> ();
                     Gee.ArrayList<string> mimes = new Gee.ArrayList<string> ();

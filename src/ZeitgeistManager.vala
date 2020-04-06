@@ -28,11 +28,14 @@ namespace Audience {
 
     public class ZeitgeistManager : Object {
 
+        private const string ENGINE = "org.gnome.zeitgeist.Engine";
+        private const string BLACKLIST = "/org/gnome/zeitgeist/blacklist";
+
         private BlacklistInterface apps;
 
         public ZeitgeistManager () {
             try {
-                apps = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.zeitgeist.Engine", "/org/gnome/zeitgeist/blacklist");
+                apps = Bus.get_proxy_sync (BusType.SESSION, ENGINE, BLACKLIST);
             } catch (Error e) {
                 warning (e.message);
             }

@@ -41,6 +41,12 @@ public class Audience.Window : Gtk.Window {
     const string NAVIGATION_BUTTON_LIBRARY = N_("Library");
     const string NAVIGATION_BUTTON_EPISODES = N_("Episodes");
 
+    private const string TRY_CHANGE = _("Try changing search terms.");
+
+    private const string ICON_PLAY_ONE = "media-playback-pause-symbolic";
+    private const string ICON_PLAY_NEXT = "media-playback-skip-forward";
+    private const string ICON_FIND = "edit-find-symbolic";
+
     public signal void media_volumes_changed ();
 
     public Window () {
@@ -77,7 +83,7 @@ public class Audience.Window : Gtk.Window {
 
         header.pack_end (search_entry);
 
-        autoqueue_next = new Granite.ModeSwitch.from_icon_name ("media-playback-pause-symbolic", "media-playback-skip-forward");
+        autoqueue_next = new Granite.ModeSwitch.from_icon_name (ICON_PLAY_ONE, ICON_PLAY_NEXT);
         autoqueue_next.primary_icon_tooltip_text = _("Play one video");
         autoqueue_next.secondary_icon_tooltip_text = _("Automatically play next videos");
         autoqueue_next.valign = Gtk.Align.CENTER;
@@ -107,7 +113,7 @@ public class Audience.Window : Gtk.Window {
 
         library_page.filter_result_changed.connect (has_result => {
             if (!has_result) {
-                show_alert (_("No Results for “%s”").printf (search_entry.text), _("Try changing search terms."), "edit-find-symbolic");
+                show_alert (_("No Results for “%s”").printf (search_entry.text), TRY_CHANGE, ICON_FIND);
             } else if (main_stack.visible_child != library_page ) {
                 hide_alert ();
             }
@@ -442,7 +448,9 @@ public class Audience.Window : Gtk.Window {
 
     public bool is_privacy_mode_enabled () {
         var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
-        bool privacy_mode = !privacy_settings.get_boolean ("remember-recent-files") || !privacy_settings.get_boolean ("remember-app-usage");
+        bool remember_recent = privacy_settings.get_boolean ("remember-recent-files");
+        bool remember_app_usage = privacy_settings.get_boolean ("remember-app-usage");
+        bool privacy_mode = !remember_recent || !remember_app_usage;
 
         if (privacy_mode) {
             return true;
