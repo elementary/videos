@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-25 17:20+0000\n"
-"PO-Revision-Date: 2020-02-03 08:08+0000\n"
+"PO-Revision-Date: 2020-03-26 18:09+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/videos/videos/mr/"
 ">\n"
@@ -202,15 +202,15 @@ msgstr "बाह्य उपशीर्षके"
 
 #: src/Widgets/Player/SettingsPopover.vala:51
 msgid "Audio:"
-msgstr "ऑडिओः"
+msgstr "ऑडिओ:"
 
 #: src/Widgets/Player/SettingsPopover.vala:54
 msgid "Subtitles:"
-msgstr "उपशीर्षकेः"
+msgstr "उपशीर्षके:"
 
 #: src/Widgets/Player/SettingsPopover.vala:57
 msgid "External Subtitles:"
-msgstr "बाह्य उपशीर्षकेः"
+msgstr "बाह्य उपशीर्षके:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
 #: src/Widgets/Player/SettingsPopover.vala:124
