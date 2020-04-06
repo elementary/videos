@@ -91,7 +91,7 @@ namespace Audience {
                 string uri = selected.episodes.first ().video_file.get_uri ();
                 bool from_beginning = uri != settings.get_string ("current-video");
                 var window = App.get_instance ().mainwindow;
-                window.add_to_playlist (uri, false);
+                window.add_to_playlist (uri, !from_beginning);
                 window.play_file (uri, Window.NavigationPage.LIBRARY, from_beginning);
             } else {
                 last_filter = query;
