@@ -89,7 +89,7 @@ namespace Audience {
 
             settings.changed["current-video"].connect (() => {
                 current_video = settings.get_string ("current-video");
-		    });
+            });
         }
 
         public void refresh () {
