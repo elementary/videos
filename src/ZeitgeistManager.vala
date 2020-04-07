@@ -33,8 +33,8 @@ namespace Audience {
         public ZeitgeistManager () {
             try {
                 apps = Bus.get_proxy_sync (
-                    BusType.SESSION, 
-                    "org.gnome.zeitgeist.Engine", 
+                    BusType.SESSION,
+                    "org.gnome.zeitgeist.Engine",
                     "/org/gnome/zeitgeist/blacklist"
                 );
             } catch (Error e) {

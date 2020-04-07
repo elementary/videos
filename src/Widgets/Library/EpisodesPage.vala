@@ -123,7 +123,11 @@ namespace Audience {
              query = text.strip ();
              view_episodes.invalidate_filter ();
              if (!has_child ()) {
-                show_alert (_("No Results for “%s”").printf (text), _("Try changing search terms."), "edit-find-symbolic");
+                show_alert (
+                    _("No Results for “%s”").printf (text),
+                    _("Try changing search terms."),
+                    "edit-find-symbolic"
+                );
              } else {
                 alert_view.hide ();
              }
@@ -155,9 +159,10 @@ namespace Audience {
         }
 
         private void add_item (Audience.Objects.Video episode) {
+            var path_to_add = episode.video_file.get_parent ().get_path ();
             if (view_episodes.get_children ().length () > 0 ) {
                 var first = (view_episodes.get_children ().first ().data as Audience.LibraryItem);
-                if (first != null && first.episodes.first ().video_file.get_parent ().get_path () == episode.video_file.get_parent ().get_path ()) {
+                if (first != null && first.episodes.first ().video_file.get_parent ().get_path () == path_to_add) {
                     view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
                 }
             }
@@ -165,13 +170,18 @@ namespace Audience {
 
         private async void remove_item_from_path (string path ) {
             foreach (var child in view_episodes.get_children ()) {
-                if ((child as LibraryItem).episodes.size == 0 || (child as LibraryItem).episodes.first ().video_file.get_path ().has_prefix (path)) {
-                    child.dispose ();
+                var item = (child as LibraryItem);
+                if (item != null) {
+                    var episodes = item.episodes;
+                    if (episodes.size == 0 || episodes.first ().video_file.get_path ().has_prefix (path)) {
+                        child.dispose ();
+                    }
                 }
             }
 
-            if (Audience.App.get_instance ().mainwindow.get_visible_child () == this && view_episodes.get_children ().length () == 0) {
-                Audience.App.get_instance ().mainwindow.navigate_back ();
+            var window = Audience.App.get_instance ().mainwindow;
+            if (window.get_visible_child () == this && view_episodes.get_children ().length () == 0) {
+                window.navigate_back ();
             }
         }
 

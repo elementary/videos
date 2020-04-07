@@ -73,7 +73,10 @@ namespace Audience.Services {
         public async void detect_video_files (string source) throws GLib.Error {
             File directory = File.new_for_path (source);
 
-            DirectoryMonitoring dir_monitor = new DirectoryMonitoring (source, directory.monitor (FileMonitorFlags.NONE, null));
+            DirectoryMonitoring dir_monitor = new DirectoryMonitoring (
+                source, 
+                directory.monitor (FileMonitorFlags.NONE, null)
+            );
             dir_monitor.monitor.changed.connect ((src, dest, event) => {
                 if (event == GLib.FileMonitorEvent.DELETED) {
                     video_file_deleted (src.get_path ());
@@ -87,9 +90,10 @@ namespace Audience.Services {
                     FileInfo file_info;
                     try {
                         file_info = src.query_info (
-                            FileAttribute.STANDARD_CONTENT_TYPE + "," + 
-                            FileAttribute.STANDARD_IS_HIDDEN + "," + 
-                            FileAttribute.STANDARD_TYPE, 0
+                            FileAttribute.STANDARD_CONTENT_TYPE + "," +
+                            FileAttribute.STANDARD_IS_HIDDEN + "," +
+                            FileAttribute.STANDARD_TYPE,
+                            0
                         );
                     } catch (Error e) {
                         warning (e.message);
@@ -106,8 +110,9 @@ namespace Audience.Services {
             monitoring_directories.add (dir_monitor);
 
             var children = directory.enumerate_children (
-                FileAttribute.STANDARD_CONTENT_TYPE + "," + 
-                FileAttribute.STANDARD_IS_HIDDEN, 0);
+                FileAttribute.STANDARD_CONTENT_TYPE + "," +
+                FileAttribute.STANDARD_IS_HIDDEN, 0
+            );
 
             FileInfo file_info;
             while ((file_info = children.next_file ()) != null) {
@@ -156,10 +161,10 @@ namespace Audience.Services {
         public async void clear_unused_cache_files () {
             File directory = File.new_for_path (App.get_instance ().get_cache_directory ());
             directory.enumerate_children_async.begin (
-                FileAttribute.STANDARD_NAME, 
-                0, 
-                Priority.DEFAULT, 
-                null, 
+                FileAttribute.STANDARD_NAME,
+                0,
+                Priority.DEFAULT,
+                null,
                 (obj, res) => {
                     try {
                         FileEnumerator children = directory.enumerate_children_async.end (res);
@@ -188,8 +193,7 @@ namespace Audience.Services {
                 File trash = File.new_for_uri ("trash:///");
                 try {
                     var children = trash.enumerate_children (
-                        FileAttribute.TRASH_ORIG_PATH + "," + 
-                        FileAttribute.STANDARD_NAME, 
+                        FileAttribute.TRASH_ORIG_PATH + "," + FileAttribute.STANDARD_NAME,
                         0
                     );
                     FileInfo file_info;

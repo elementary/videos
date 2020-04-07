@@ -39,7 +39,10 @@ namespace Audience {
     public static void recurse_over_dir (File file_to_process, FuncOverDir func) {
         if (file_to_process.query_file_type (0) == FileType.DIRECTORY) {
             try {
-                var files = file_to_process.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.ACCESS_CAN_READ, FileQueryInfoFlags.NONE);
+                var files = file_to_process.enumerate_children (
+                    FileAttribute.STANDARD_NAME + "," + FileAttribute.ACCESS_CAN_READ, 
+                    FileQueryInfoFlags.NONE
+                );
                 FileInfo info;
                 while ((info = files.next_file ()) != null) {
                     var file = GLib.File.new_for_uri (file_to_process.get_uri () + "/" + info.get_name ());

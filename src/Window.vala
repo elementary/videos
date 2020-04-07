@@ -111,8 +111,8 @@ public class Audience.Window : Gtk.Window {
         library_page.filter_result_changed.connect (has_result => {
             if (!has_result) {
                 show_alert (
-                    _("No Results for “%s”").printf (search_entry.text), 
-                    _("Try changing search terms."), 
+                    _("No Results for “%s”").printf (search_entry.text),
+                    _("Try changing search terms."),
                     "edit-find-symbolic"
                 );
             } else if (main_stack.visible_child != library_page ) {
