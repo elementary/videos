@@ -19,8 +19,6 @@
  *
  */
 
-using GLib.FileAttribute;
-
 namespace Audience.Services {
     public const int POSTER_WIDTH = 170;
     public const int POSTER_HEIGHT = 240;
@@ -88,7 +86,10 @@ namespace Audience.Services {
                 else if (event == GLib.FileMonitorEvent.CHANGES_DONE_HINT) {
                     FileInfo file_info;
                     try {
-                        file_info = src.query_info (STANDARD_CONTENT_TYPE + "," + STANDARD_IS_HIDDEN + "," + STANDARD_TYPE, 0);
+                        file_info = src.query_info (
+                            FileAttribute.STANDARD_CONTENT_TYPE + "," + 
+                            FileAttribute.STANDARD_IS_HIDDEN + "," + 
+                            FileAttribute.STANDARD_TYPE, 0);
                     } catch (Error e) {
                         warning (e.message);
                         return;
@@ -103,7 +104,9 @@ namespace Audience.Services {
             });
             monitoring_directories.add (dir_monitor);
 
-            var children = directory.enumerate_children (STANDARD_CONTENT_TYPE + "," + STANDARD_IS_HIDDEN, 0);
+            var children = directory.enumerate_children (
+                FileAttribute.STANDARD_CONTENT_TYPE + "," + 
+                FileAttribute.STANDARD_IS_HIDDEN, 0);
 
             FileInfo file_info;
             while ((file_info = children.next_file ()) != null) {
@@ -151,20 +154,26 @@ namespace Audience.Services {
 
         public async void clear_unused_cache_files () {
             File directory = File.new_for_path (App.get_instance ().get_cache_directory ());
-            directory.enumerate_children_async.begin (STANDARD_NAME, 0, Priority.DEFAULT, null, (obj, res) => {
-                try {
-                    FileEnumerator children = directory.enumerate_children_async.end (res);
-                    FileInfo file_info;
-                    while ((file_info = children.next_file ()) != null) {
-                        if (!poster_hash.contains (file_info.get_name ())) {
-                            File to_delete = children.get_child (file_info);
-                            Process.spawn_command_line_async ("rm " + to_delete.get_path ());
+            directory.enumerate_children_async.begin (
+                FileAttribute.STANDARD_NAME, 
+                0, 
+                Priority.DEFAULT, 
+                null, 
+                (obj, res) => {
+                    try {
+                        FileEnumerator children = directory.enumerate_children_async.end (res);
+                        FileInfo file_info;
+                        while ((file_info = children.next_file ()) != null) {
+                            if (!poster_hash.contains (file_info.get_name ())) {
+                                File to_delete = children.get_child (file_info);
+                                Process.spawn_command_line_async ("rm " + to_delete.get_path ());
+                            }
                         }
+                    } catch (Error e) {
+                        warning (e.message);
                     }
-                } catch (Error e) {
-                    warning (e.message);
                 }
-            });
+            );
         }
 
         public void deleted_items (string path) {
@@ -177,10 +186,12 @@ namespace Audience.Services {
                 string restore = trashed_files.last ();
                 File trash = File.new_for_uri ("trash:///");
                 try {
-                    var children = trash.enumerate_children (TRASH_ORIG_PATH + "," + STANDARD_NAME, 0);
+                    var children = trash.enumerate_children (
+                        FileAttribute.TRASH_ORIG_PATH + "," + 
+                        FileAttribute.STANDARD_NAME, 0);
                     FileInfo file_info;
                     while ((file_info = children.next_file ()) != null) {
-                        string orinal_path = file_info.get_attribute_as_string (TRASH_ORIG_PATH);
+                        string orinal_path = file_info.get_attribute_as_string (FileAttribute.TRASH_ORIG_PATH);
                         if (orinal_path == restore) {
                             File restore_file = children.get_child (file_info);
                             restore_file.move (File.new_for_path (restore), 0);
