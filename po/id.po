@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-25 17:20+0000\n"
+"POT-Creation-Date: 2020-04-07 20:09+0000\n"
 "PO-Revision-Date: 2017-06-20 07:44+0000\n"
 "Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
 "Language-Team: Indonesian <https://l10n.elementary.io/projects/videos/videos/"
@@ -102,43 +102,43 @@ msgid ""
 "The file is not a video (\"%s\")."
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
 msgstr "Tidak Ada Video yang Dibuka"
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "Select a source to begin playing."
 msgstr "Pilih sumber untuk mulai memutar."
 
-#: src/Widgets/WelcomePage.vala:27 src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/WelcomePage.vala:28 src/Widgets/Player/PlaylistPopover.vala:36
 msgid "Open file"
 msgstr "Buka berkas"
 
-#: src/Widgets/WelcomePage.vala:27
+#: src/Widgets/WelcomePage.vala:28
 msgid "Open a saved file."
 msgstr "Buka berkas tersimpan."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:97
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/WelcomePage.vala:100
 msgid "Replay last video"
 msgstr "Putar ulang video terakhir"
 
-#: src/Widgets/WelcomePage.vala:39 src/Widgets/WelcomePage.vala:100
+#: src/Widgets/WelcomePage.vala:40 src/Widgets/WelcomePage.vala:103
 msgid "Resume last video"
 msgstr "Lanjutkan video terakhir"
 
-#: src/Widgets/WelcomePage.vala:64 src/Widgets/Player/PlaylistPopover.vala:38
+#: src/Widgets/WelcomePage.vala:65 src/Widgets/Player/PlaylistPopover.vala:38
 msgid "Play from Disc"
 msgstr "Putar Cakram"
 
-#: src/Widgets/WelcomePage.vala:64
+#: src/Widgets/WelcomePage.vala:65
 msgid "Watch a DVD or open a file from disc"
 msgstr "Tonton DVD atau buka berkas dari cakram"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:68
 msgid "Browse Library"
 msgstr "Jelajahi Perpustakaan"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:68
 msgid "Watch a movie from your library"
 msgstr "Tonton film dari perpustakaan Anda"
 
