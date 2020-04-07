@@ -60,6 +60,15 @@
     <content_attribute id="money-gambling">none</content_attribute>
   </content_rating>
   <releases>
+    <release version="2.7.1" date="2020-04-06" urgency="medium">
+      <description>
+        <p>Other updates:</p>
+        <ul>
+          <li>Reliably update the replay button description and file</li>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.7.0" date="2019-11-25" urgency="medium">
       <description>
         <p>New features:</p>
