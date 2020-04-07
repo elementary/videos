@@ -83,7 +83,10 @@ public class Audience.Window : Gtk.Window {
 
         header.pack_end (search_entry);
 
-        autoqueue_next = new Granite.ModeSwitch.from_icon_name (ICON_PLAY_ONE, ICON_PLAY_NEXT);
+        autoqueue_next = new Granite.ModeSwitch.from_icon_name (
+            "media-playlist-repeat-one-symbolic",
+            "media-playlist-consecutive-symbolic"
+        );
         autoqueue_next.primary_icon_tooltip_text = _("Play one video");
         autoqueue_next.secondary_icon_tooltip_text = _("Automatically play next videos");
         autoqueue_next.valign = Gtk.Align.CENTER;
