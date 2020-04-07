@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-25 17:20+0000\n"
+"POT-Creation-Date: 2020-04-07 20:09+0000\n"
 "PO-Revision-Date: 2016-10-16 08:04+0000\n"
 "Last-Translator: Waqar Ahmed <waqar.17a@gmail.com>\n"
 "Language-Team: Urdu <ur@li.org>\n"
@@ -101,43 +101,43 @@ msgid ""
 "The file is not a video (\"%s\")."
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
 msgstr "کوئی ویڈیو نہیں چل رہی"
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "Select a source to begin playing."
 msgstr "چلائے جانے کے لیے کوئی ماخذ چنیں"
 
-#: src/Widgets/WelcomePage.vala:27 src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/WelcomePage.vala:28 src/Widgets/Player/PlaylistPopover.vala:36
 msgid "Open file"
 msgstr "فائل کھولیں"
 
-#: src/Widgets/WelcomePage.vala:27
+#: src/Widgets/WelcomePage.vala:28
 msgid "Open a saved file."
 msgstr "ایک محفوظ فائل کو کھولیں۔"
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:97
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/WelcomePage.vala:100
 msgid "Replay last video"
 msgstr "آخری ویڈیو چلائیں"
 
-#: src/Widgets/WelcomePage.vala:39 src/Widgets/WelcomePage.vala:100
+#: src/Widgets/WelcomePage.vala:40 src/Widgets/WelcomePage.vala:103
 msgid "Resume last video"
 msgstr "آخری ویڈیو واپس شروع کریں"
 
-#: src/Widgets/WelcomePage.vala:64 src/Widgets/Player/PlaylistPopover.vala:38
+#: src/Widgets/WelcomePage.vala:65 src/Widgets/Player/PlaylistPopover.vala:38
 msgid "Play from Disc"
 msgstr "ڈسک سے چلائیں"
 
-#: src/Widgets/WelcomePage.vala:64
+#: src/Widgets/WelcomePage.vala:65
 msgid "Watch a DVD or open a file from disc"
 msgstr "کوئی ڈی۔وی۔ڈی دیکھیں یا ڈسک سے فائل کھولیں"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:68
 msgid "Browse Library"
 msgstr "لائیبریری پھرولیں"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:68
 msgid "Watch a movie from your library"
 msgstr "اپنی لائیبریری سے کوئی فلم دیکھیں"
 

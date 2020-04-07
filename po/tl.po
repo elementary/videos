@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-25 17:20+0000\n"
+"POT-Creation-Date: 2020-04-07 20:09+0000\n"
 "PO-Revision-Date: 2018-09-23 10:40+0000\n"
 "Last-Translator: Axel Philip Advento <badwolf.bloodseeker.rev@gmail.com>\n"
 "Language-Team: Tagalog <https://weblate.elementary.io/projects/videos/videos/"
@@ -104,43 +104,43 @@ msgid ""
 "The file is not a video (\"%s\")."
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
 msgstr "Walang mga Nakabukas na Video"
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "Select a source to begin playing."
 msgstr "Pumili ng source upang makapagumpisang makapag-play."
 
-#: src/Widgets/WelcomePage.vala:27 src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/WelcomePage.vala:28 src/Widgets/Player/PlaylistPopover.vala:36
 msgid "Open file"
 msgstr "Buksan ang file"
 
-#: src/Widgets/WelcomePage.vala:27
+#: src/Widgets/WelcomePage.vala:28
 msgid "Open a saved file."
 msgstr "Magbukas ng nakasave na file."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:97
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/WelcomePage.vala:100
 msgid "Replay last video"
 msgstr "I-play muli ang huling video"
 
-#: src/Widgets/WelcomePage.vala:39 src/Widgets/WelcomePage.vala:100
+#: src/Widgets/WelcomePage.vala:40 src/Widgets/WelcomePage.vala:103
 msgid "Resume last video"
 msgstr "I-resume ang huling video"
 
-#: src/Widgets/WelcomePage.vala:64 src/Widgets/Player/PlaylistPopover.vala:38
+#: src/Widgets/WelcomePage.vala:65 src/Widgets/Player/PlaylistPopover.vala:38
 msgid "Play from Disc"
 msgstr "I-play mula sa Disc"
 
-#: src/Widgets/WelcomePage.vala:64
+#: src/Widgets/WelcomePage.vala:65
 msgid "Watch a DVD or open a file from disc"
 msgstr "Manuod ng DVD o magbukas ng file mula sa disc"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:68
 msgid "Browse Library"
 msgstr "Mag-browse ng Library"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:68
 msgid "Watch a movie from your library"
 msgstr "Manuod ng pelikula mula sa iyong library"
 
