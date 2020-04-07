@@ -113,7 +113,8 @@ public class Audience.Window : Gtk.Window {
                 show_alert (
                     _("No Results for “%s”").printf (search_entry.text), 
                     _("Try changing search terms."), 
-                    "edit-find-symbolic");
+                    "edit-find-symbolic"
+                );
             } else if (main_stack.visible_child != library_page ) {
                 hide_alert ();
             }

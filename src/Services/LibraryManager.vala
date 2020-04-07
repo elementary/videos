@@ -89,7 +89,8 @@ namespace Audience.Services {
                         file_info = src.query_info (
                             FileAttribute.STANDARD_CONTENT_TYPE + "," + 
                             FileAttribute.STANDARD_IS_HIDDEN + "," + 
-                            FileAttribute.STANDARD_TYPE, 0);
+                            FileAttribute.STANDARD_TYPE, 0
+                        );
                     } catch (Error e) {
                         warning (e.message);
                         return;
@@ -188,7 +189,9 @@ namespace Audience.Services {
                 try {
                     var children = trash.enumerate_children (
                         FileAttribute.TRASH_ORIG_PATH + "," + 
-                        FileAttribute.STANDARD_NAME, 0);
+                        FileAttribute.STANDARD_NAME, 
+                        0
+                    );
                     FileInfo file_info;
                     while ((file_info = children.next_file ()) != null) {
                         string orinal_path = file_info.get_attribute_as_string (FileAttribute.TRASH_ORIG_PATH);
