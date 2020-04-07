@@ -66,7 +66,9 @@ namespace Audience {
             manager.video_file_detected.connect (add_item);
             manager.video_file_deleted.connect (remove_item_from_path);
             manager.video_moved_to_trash.connect ((video) => {
-                Audience.App.get_instance ().mainwindow.set_app_notification (_("Video '%s' Removed.").printf (Path.get_basename (video)));
+                Audience.App.get_instance ().mainwindow.set_app_notification (
+                    _("Video '%s' Removed.").printf (Path.get_basename (video))
+                );
             });
 
             manager.begin_scan ();
@@ -123,8 +125,11 @@ namespace Audience {
 
         private async void remove_item_from_path (string path ) {
             foreach (var child in view_movies.get_children ()) {
-                if ((child as LibraryItem).episodes.size == 0 || (child as LibraryItem).episodes.first ().video_file.get_path ().has_prefix (path)) {
-                    remove_item.begin (child as LibraryItem);
+                var item = (child as LibraryItem);
+                if (item != null) {
+                    if (item.episodes.size == 0 || item.episodes.first ().video_file.get_path ().has_prefix (path)) {
+                        remove_item.begin (item);
+                    }
                 }
             }
 

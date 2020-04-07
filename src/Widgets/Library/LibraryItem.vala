@@ -45,8 +45,10 @@ namespace Audience {
             video.title_changed.connect (video_title_changed);
             video.poster_changed.connect (video_poster_changed);
 
-            hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, video.video_file.get_parent ().get_uri (), video.video_file.get_parent ().get_uri ().length);
-            episode_poster_path = Path.build_filename (video.video_file.get_parent ().get_path (), video.video_file.get_parent ().get_basename () + ".jpg");
+            var parent = video.video_file.get_parent ();
+            var parent_uri = parent.get_uri ();
+            hash = GLib.Checksum.compute_for_string (ChecksumType.MD5, parent_uri, parent_uri.length);
+            episode_poster_path = Path.build_filename (parent.get_path (), parent.get_basename () + ".jpg");
             poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash + ".jpg");
         }
 

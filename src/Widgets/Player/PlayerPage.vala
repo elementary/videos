@@ -275,7 +275,10 @@ namespace Audience {
 
             var file = File.new_for_uri (uri);
             try {
-                FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
+                FileInfo info = file.query_info (
+                    GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 
+                    0
+                );
                 unowned string content_type = info.get_content_type ();
 
                 if (!GLib.ContentType.is_a (content_type, "video/*")) {
@@ -462,14 +465,25 @@ namespace Audience {
                     ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-move", 0, x, y);
                     break;
                 case Clutter.EventType.BUTTON_PRESS:
-                    ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-button-press", (int)event.button.button, x, y);
+                    ((Gst.Video.Navigation) video_sink).send_mouse_event (
+                        "mouse-button-press",
+                        (int)event.button.button,
+                        x,
+                        y
+                    );
                     break;
                 case Clutter.EventType.KEY_PRESS:
                     warning (X.keysym_to_string (event.key.keyval));
-                    ((Gst.Video.Navigation) video_sink).send_key_event ("key-press", X.keysym_to_string (event.key.keyval));
+                    ((Gst.Video.Navigation) video_sink).send_key_event (
+                        "key-press",
+                        X.keysym_to_string (event.key.keyval)
+                    );
                     break;
                 case Clutter.EventType.KEY_RELEASE:
-                    ((Gst.Video.Navigation) video_sink).send_key_event ("key-release", X.keysym_to_string (event.key.keyval));
+                    ((Gst.Video.Navigation) video_sink).send_key_event (
+                        "key-release",
+                        X.keysym_to_string (event.key.keyval)
+                    );
                     break;
             }
 

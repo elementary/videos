@@ -54,7 +54,10 @@ public class Audience.Widgets.TimeWidget : Granite.SeekBar {
         });
         scale.motion_notify_event.connect ((event) => {
             preview_popover.update_pointing ((int) event.x);
-            preview_popover.set_preview_progress (event.x / ((double) event.window.get_width ()), !main_playback.playing);
+            preview_popover.set_preview_progress (
+                event.x / ((double) event.window.get_width ()),
+                !main_playback.playing
+            );
             return false;
         });
 

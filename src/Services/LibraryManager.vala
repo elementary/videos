@@ -74,7 +74,7 @@ namespace Audience.Services {
             File directory = File.new_for_path (source);
 
             DirectoryMonitoring dir_monitor = new DirectoryMonitoring (
-                source, 
+                source,
                 directory.monitor (FileMonitorFlags.NONE, null)
             );
             dir_monitor.monitor.changed.connect ((src, dest, event) => {

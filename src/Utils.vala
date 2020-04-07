@@ -40,7 +40,7 @@ namespace Audience {
         if (file_to_process.query_file_type (0) == FileType.DIRECTORY) {
             try {
                 var files = file_to_process.enumerate_children (
-                    FileAttribute.STANDARD_NAME + "," + FileAttribute.ACCESS_CAN_READ, 
+                    FileAttribute.STANDARD_NAME + "," + FileAttribute.ACCESS_CAN_READ,
                     FileQueryInfoFlags.NONE
                 );
                 FileInfo info;
