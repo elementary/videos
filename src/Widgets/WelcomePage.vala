@@ -17,6 +17,7 @@
 
 public class Audience.WelcomePage : Granite.Widgets.Welcome {
     private string current_video;
+    private Granite.Widgets.WelcomeButton replay_button;
 
     public WelcomePage () {
         Object (
@@ -30,6 +31,8 @@ public class Audience.WelcomePage : Granite.Widgets.Welcome {
         append ("media-playlist-repeat", _("Replay last video"), "");
         append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
         append ("folder-videos", _("Browse Library"), _("Watch a movie from your library"));
+
+        replay_button = get_button_from_index (1);
 
         var disk_manager = DiskManager.get_default ();
         set_item_visible (2, disk_manager.has_media_volumes ());
@@ -91,7 +94,6 @@ public class Audience.WelcomePage : Granite.Widgets.Welcome {
         if (current_video != "") {
             var last_file = File.new_for_uri (current_video);
             if (last_file.query_exists () == true) {
-                var replay_button = get_button_from_index (1);
                 replay_button.description = get_title (last_file.get_basename ());
 
                 show_replay_button = true;
@@ -102,7 +104,6 @@ public class Audience.WelcomePage : Granite.Widgets.Welcome {
     }
 
     private void update_replay_title () {
-        var replay_button = get_button_from_index (1);
         if (settings.get_double ("last-stopped") == 0.0 || !settings.get_boolean ("resume-videos")) {
             replay_button.title = _("Replay last video");
             replay_button.icon.icon_name = ("media-playlist-repeat");
