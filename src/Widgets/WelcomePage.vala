@@ -95,7 +95,6 @@ public class Audience.WelcomePage : Granite.Widgets.Welcome {
                 replay_button.description = get_title (last_file.get_basename ());
 
                 show_replay_button = true;
-                show_all ();
             }
         }
 
