@@ -43,8 +43,8 @@ public class Audience.Window : Gtk.Window {
 
     private const string TRY_CHANGE = _("Try changing search terms.");
 
-    private const string ICON_PLAY_ONE = "media-playback-pause-symbolic";
-    private const string ICON_PLAY_NEXT = "media-playback-skip-forward";
+    private const string ICON_PLAY_ONE = "media-playlist-repeat-one-symbolic";
+    private const string ICON_PLAY_NEXT = "media-playlist-consecutive-symbolic";
     private const string ICON_FIND = "edit-find-symbolic";
 
     public signal void media_volumes_changed ();

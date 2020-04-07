@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-25 17:20+0000\n"
+"POT-Creation-Date: 2020-04-07 20:09+0000\n"
 "PO-Revision-Date: 2020-01-15 21:07+0000\n"
 "Last-Translator: Daniel R. <riesp@pm.me>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/videos/videos/es/"
@@ -104,43 +104,43 @@ msgstr ""
 "No se puede reproducir el vídeo en: %s\n"
 "El archivo no es un vídeo («%s»)."
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
 msgstr "No hay vídeos abiertos"
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "Select a source to begin playing."
 msgstr "Seleccione una fuente para comenzar la reproducción."
 
-#: src/Widgets/WelcomePage.vala:27 src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/WelcomePage.vala:28 src/Widgets/Player/PlaylistPopover.vala:36
 msgid "Open file"
 msgstr "Abrir un archivo"
 
-#: src/Widgets/WelcomePage.vala:27
+#: src/Widgets/WelcomePage.vala:28
 msgid "Open a saved file."
 msgstr "Abrir un archivo guardado."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:97
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/WelcomePage.vala:100
 msgid "Replay last video"
 msgstr "Repetir el último vídeo"
 
-#: src/Widgets/WelcomePage.vala:39 src/Widgets/WelcomePage.vala:100
+#: src/Widgets/WelcomePage.vala:40 src/Widgets/WelcomePage.vala:103
 msgid "Resume last video"
 msgstr "Continuar la reproducción del último vídeo"
 
-#: src/Widgets/WelcomePage.vala:64 src/Widgets/Player/PlaylistPopover.vala:38
+#: src/Widgets/WelcomePage.vala:65 src/Widgets/Player/PlaylistPopover.vala:38
 msgid "Play from Disc"
 msgstr "Reproducir desde disco"
 
-#: src/Widgets/WelcomePage.vala:64
+#: src/Widgets/WelcomePage.vala:65
 msgid "Watch a DVD or open a file from disc"
 msgstr "Ver un DVD o abrir un archivo desde un disco"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:68
 msgid "Browse Library"
 msgstr "Explorar Biblioteca"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:68
 msgid "Watch a movie from your library"
 msgstr "Ver una película de tu biblioteca"
 
