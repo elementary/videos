@@ -32,13 +32,15 @@ public class Audience.WelcomePage : Granite.Widgets.Welcome {
         append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
         append ("folder-videos", _("Browse Library"), _("Watch a movie from your library"));
 
-        replay_button = get_button_from_index (1);
-
         var disk_manager = DiskManager.get_default ();
         set_item_visible (2, disk_manager.has_media_volumes ());
 
         var library_manager = Services.LibraryManager.get_instance ();
         set_item_visible (3, library_manager.has_items);
+
+        replay_button = get_button_from_index (1);
+        update_replay_button ();
+        update_replay_title ();
 
         activated.connect ((index) => {
             var window = App.get_instance ().mainwindow;
@@ -59,12 +61,10 @@ public class Audience.WelcomePage : Granite.Widgets.Welcome {
             }
         });
 
-        update_replay_button ();
         settings.changed["current-video"].connect (() => {
             update_replay_button ();
         });
 
-        update_replay_title ();
         settings.changed["last-stopped"].connect (() => {
             update_replay_title ();
         });
