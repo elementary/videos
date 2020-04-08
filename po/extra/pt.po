@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-08 17:33+0000\n"
-"PO-Revision-Date: 2020-04-08 17:03+0000\n"
+"PO-Revision-Date: 2020-04-09 14:50+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/videos/extra/"
 "pt/>\n"
@@ -64,6 +64,8 @@ msgstr "Outras actualizações:"
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "More consistently remember the last playing video and its play position"
 msgstr ""
+"Lembra-se mais consistentemente do último vídeo em reprodução e da sua "
+"posição de reprodução"
 
 #: data/io.elementary.videos.appdata.xml.in:68
 msgid "Fix missing icon in episode view"
