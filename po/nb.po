@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-06 19:34+0000\n"
+"POT-Creation-Date: 2020-04-07 20:09+0000\n"
 "PO-Revision-Date: 2018-05-30 03:55+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
@@ -20,66 +20,66 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:73 src/Window.vala:522
+#: src/Application.vala:73 src/Window.vala:525
 msgid "Videos"
 msgstr "Videoer"
 
 #. For better translation
-#: src/Window.vala:41
+#: src/Window.vala:40
 msgid "Back"
 msgstr "Tilbake"
 
-#: src/Window.vala:42
+#: src/Window.vala:41
 msgid "Library"
 msgstr "Bibliotek"
 
-#: src/Window.vala:43
+#: src/Window.vala:42
 msgid "Episodes"
 msgstr "Episoder"
 
-#: src/Window.vala:69
+#: src/Window.vala:68
 msgid "Search Videos"
 msgstr "Søk i videoer"
 
-#: src/Window.vala:82
+#: src/Window.vala:81
 #, fuzzy
 msgid "Play one video"
 msgstr "Spill siste video på nytt"
 
-#: src/Window.vala:83
+#: src/Window.vala:82
 msgid "Automatically play next videos"
 msgstr ""
 
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
+#: src/Window.vala:110 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Ingen resultater for \"%s\""
 
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
+#: src/Window.vala:110 src/Widgets/Library/EpisodesPage.vala:126
 msgid "Try changing search terms."
 msgstr "Prøv å endre søket ditt."
 
-#: src/Window.vala:165
+#: src/Window.vala:167
 msgid "Restore"
 msgstr "Gjenopprett"
 
-#: src/Window.vala:409 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:411 src/Widgets/Player/SettingsPopover.vala:36
 msgid "All files"
 msgstr "Alle filer"
 
-#: src/Window.vala:413
+#: src/Window.vala:415
 msgid "Video files"
 msgstr "Videofiler"
 
-#: src/Window.vala:417 src/Widgets/Library/LibraryItem.vala:167
+#: src/Window.vala:419 src/Widgets/Library/LibraryItem.vala:167
 msgid "Open"
 msgstr "Åpne"
 
-#: src/Window.vala:420 src/Widgets/Library/LibraryItem.vala:170
+#: src/Window.vala:422 src/Widgets/Library/LibraryItem.vala:170
 msgid "_Open"
 msgstr "_Åpne"
 
-#: src/Window.vala:421 src/Widgets/Library/LibraryItem.vala:171
+#: src/Window.vala:423 src/Widgets/Library/LibraryItem.vala:171
 msgid "_Cancel"
 msgstr "_Avbryt"
 
@@ -103,43 +103,43 @@ msgid ""
 "The file is not a video (\"%s\")."
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
 msgstr "Ingen videoer åpne."
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "Select a source to begin playing."
 msgstr "Velg en kilde for å begynne avspilling."
 
-#: src/Widgets/WelcomePage.vala:27 src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/WelcomePage.vala:28 src/Widgets/Player/PlaylistPopover.vala:36
 msgid "Open file"
 msgstr "Åpne fil"
 
-#: src/Widgets/WelcomePage.vala:27
+#: src/Widgets/WelcomePage.vala:28
 msgid "Open a saved file."
 msgstr "Åpne en lagret fil."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:97
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/WelcomePage.vala:100
 msgid "Replay last video"
 msgstr "Spill siste video på nytt"
 
-#: src/Widgets/WelcomePage.vala:39 src/Widgets/WelcomePage.vala:100
+#: src/Widgets/WelcomePage.vala:40 src/Widgets/WelcomePage.vala:103
 msgid "Resume last video"
 msgstr "Fortsett forrige videoavspilling."
 
-#: src/Widgets/WelcomePage.vala:64 src/Widgets/Player/PlaylistPopover.vala:38
+#: src/Widgets/WelcomePage.vala:65 src/Widgets/Player/PlaylistPopover.vala:38
 msgid "Play from Disc"
 msgstr "Spill av fra plate"
 
-#: src/Widgets/WelcomePage.vala:64
+#: src/Widgets/WelcomePage.vala:65
 msgid "Watch a DVD or open a file from disc"
 msgstr "Se en DVD eller åpne en fil fra en plate."
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:68
 msgid "Browse Library"
 msgstr "Utforsk bibliotek"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:68
 msgid "Watch a movie from your library"
 msgstr "Se en film fra biblioteket ditt"
 
@@ -194,7 +194,7 @@ msgstr "Slå på gjentaking"
 msgid "Disable Repeat"
 msgstr "Slå av gjentagelse"
 
-#: src/Widgets/Player/SettingsPopover.vala:41
+#: src/Widgets/Player/SettingsPopover.vala:40
 msgid "Subtitle files"
 msgstr "Undertekstfiler"
 
@@ -203,34 +203,39 @@ msgstr "Undertekstfiler"
 #. .sub
 #. .ssa & .ass
 #. exclude .asc, mimetype is generic "application/pgp-encrypted"
-#: src/Widgets/Player/SettingsPopover.vala:48
+#: src/Widgets/Player/SettingsPopover.vala:47
 msgid "External Subtitles"
 msgstr "Eksterne undertekster"
 
-#: src/Widgets/Player/SettingsPopover.vala:52
+#: src/Widgets/Player/SettingsPopover.vala:51
 msgid "Audio:"
 msgstr "Lyd:"
 
-#: src/Widgets/Player/SettingsPopover.vala:55
+#: src/Widgets/Player/SettingsPopover.vala:54
 msgid "Subtitles:"
 msgstr "Undertekster:"
 
-#: src/Widgets/Player/SettingsPopover.vala:58
+#: src/Widgets/Player/SettingsPopover.vala:57
 msgid "External Subtitles:"
 msgstr "Eksterne undertekster:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:125
-#: src/Widgets/Player/SettingsPopover.vala:149
+#: src/Widgets/Player/SettingsPopover.vala:124
+#: src/Widgets/Player/SettingsPopover.vala:153
 #, c-format
 msgid "Track %u"
 msgstr "Spor %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:127
+#: src/Widgets/Player/SettingsPopover.vala:126
 msgid "None"
 msgstr "Ingen"
 
-#: src/Widgets/Player/SettingsPopover.vala:160
+#: src/Widgets/Player/SettingsPopover.vala:151
+#, c-format
+msgid "%s"
+msgstr ""
+
+#: src/Widgets/Player/SettingsPopover.vala:166
 msgid "Default"
 msgstr "Standardvalg"
 

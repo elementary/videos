@@ -1,26 +1,28 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-06 19:34+0000\n"
-"PO-Revision-Date: 2019-06-26 18:53+0200\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2020-04-07 20:09+0000\n"
+"PO-Revision-Date: 2020-02-23 10:08+0000\n"
+"Last-Translator: gkkulik <g.kulik@o2.pl>\n"
+"Language-Team: Silesian <https://l10n.elementary.io/projects/videos/extra/"
+"szl/>\n"
 "Language: szl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
 #: data/io.elementary.videos.desktop.in:4
 msgid "Videos"
-msgstr ""
+msgstr "Filmy"
 
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Ôglōndej zbiory wideo jak tyż filmy"
 
 #: data/io.elementary.videos.appdata.xml.in:11
 msgid ""
@@ -28,108 +30,143 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
+"Moderny ôdgrowocz filmōw, co sie skupio na pokazowaniu treści wideo zamiast "
+"na kōntrolkami. Pamiynto niydowno ôdtworzany zbiōr wideo jak tyż pozycyjo "
+"ôdtworzanio, dziynki czymu idzie na niego patrzeć ôd miyjsca, kaj bōł "
+"zastawiōny."
 
 #: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
-msgstr ""
+msgstr "Ekstra funkcyje ôbyjmujōm:"
 
 #: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
-msgstr ""
+msgstr "Sparcie nopisōw"
 
 #: data/io.elementary.videos.appdata.xml.in:21
 msgid "Play queue"
-msgstr ""
+msgstr "Raja ôdgrowanio"
 
 #: data/io.elementary.videos.appdata.xml.in:22
 msgid "Thumbnail previews on the seek bar"
-msgstr ""
+msgstr "Miniaturowy podglōnd na posku przewijanio"
 
-#: data/io.elementary.videos.appdata.xml.in:66
-msgid "Fix disappearing cursor on headerbar"
-msgstr ""
+#: data/io.elementary.videos.appdata.xml.in:65
+#: data/io.elementary.videos.appdata.xml.in:82
+msgid "Other updates:"
+msgstr "Inksze aktualizacyje:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
-msgid "Navigate the playlist with the keyboard"
+msgid "Fix missing icon in episode view"
 msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:68
-msgid "Hide seekbar preview when switching windows with Alt + Tab"
-msgstr ""
-
-#: data/io.elementary.videos.appdata.xml.in:69
-msgid "Add a button to clear the playlist"
-msgstr ""
-
-#: data/io.elementary.videos.appdata.xml.in:70
-#: data/io.elementary.videos.appdata.xml.in:78
-#: data/io.elementary.videos.appdata.xml.in:86
-#: data/io.elementary.videos.appdata.xml.in:93
-#: data/io.elementary.videos.appdata.xml.in:125
-#: data/io.elementary.videos.appdata.xml.in:133
-#: data/io.elementary.videos.appdata.xml.in:140
-#: data/io.elementary.videos.appdata.xml.in:156
+#: data/io.elementary.videos.appdata.xml.in:87
+#: data/io.elementary.videos.appdata.xml.in:95
+#: data/io.elementary.videos.appdata.xml.in:103
+#: data/io.elementary.videos.appdata.xml.in:110
+#: data/io.elementary.videos.appdata.xml.in:142
+#: data/io.elementary.videos.appdata.xml.in:150
+#: data/io.elementary.videos.appdata.xml.in:157
+#: data/io.elementary.videos.appdata.xml.in:173
 msgid "Translation updates"
-msgstr ""
+msgstr "Aktualizacyje przekładu"
+
+#: data/io.elementary.videos.appdata.xml.in:74
+msgid "New features:"
+msgstr "Nowe funkcyje:"
+
+#: data/io.elementary.videos.appdata.xml.in:76
+msgid "Option to automatically play next videos"
+msgstr "Ôpcyjo autōmatycznego granio nastympnych filmōw"
 
 #: data/io.elementary.videos.appdata.xml.in:77
+msgid "Navigate the playlist with the keyboard"
+msgstr "Nawigowanie playlisty tastaturōm"
+
+#: data/io.elementary.videos.appdata.xml.in:78
+msgid "Add a button to clear the playlist"
+msgstr "Przidanie knefla do wysnożanio playlisty"
+
+#: data/io.elementary.videos.appdata.xml.in:79
+msgid "Show audio track language in settings"
+msgstr "Pokazowanie jynzyka źwiynku we sztelōnkach"
+
+#: data/io.elementary.videos.appdata.xml.in:80
+msgid "Show playlist item titles in their tooltips"
+msgstr "Pokazowanie tytułōw elymyntōw playlisty we jejich podpowiedziach"
+
+#: data/io.elementary.videos.appdata.xml.in:84
+msgid "Show an error for unsupported files"
+msgstr "Pokazowanie feleru przi niyspiyranych zbiorach"
+
 #: data/io.elementary.videos.appdata.xml.in:85
+msgid "Fix disappearing cursor on headerbar"
+msgstr "Sprawiynie tracynio sie kursora na wiyrchnim posku"
+
+#: data/io.elementary.videos.appdata.xml.in:86
+msgid "Hide seekbar preview when switching windows with Alt + Tab"
+msgstr ""
+"Skrycie podglōndu na posku przeskakowanio przi umiynianiu ôkyn ze Alt + Tab"
+
+#: data/io.elementary.videos.appdata.xml.in:94
+#: data/io.elementary.videos.appdata.xml.in:102
 msgid "Build fixes"
-msgstr ""
+msgstr "Poprowki buildu"
 
-#: data/io.elementary.videos.appdata.xml.in:100
+#: data/io.elementary.videos.appdata.xml.in:117
 msgid "Window behavior improvements"
-msgstr ""
+msgstr "Ulepszynia zachowanio ôkna"
 
-#: data/io.elementary.videos.appdata.xml.in:101
+#: data/io.elementary.videos.appdata.xml.in:118
 msgid "Fix disappearing subtitle tracks"
-msgstr ""
+msgstr "Sprawiynie tracynio sie nopisōw"
 
-#: data/io.elementary.videos.appdata.xml.in:108
+#: data/io.elementary.videos.appdata.xml.in:125
 msgid "Disallow setting playback before start"
-msgstr ""
-
-#: data/io.elementary.videos.appdata.xml.in:115
-msgid "Limit consecutive spacebar pauses"
-msgstr ""
-
-#: data/io.elementary.videos.appdata.xml.in:122
-msgid "Crash fixes"
-msgstr ""
-
-#: data/io.elementary.videos.appdata.xml.in:123
-msgid "Remove About dialog"
-msgstr ""
-
-#: data/io.elementary.videos.appdata.xml.in:124
-#: data/io.elementary.videos.appdata.xml.in:163
-msgid "Minor bug fixes"
-msgstr ""
+msgstr "Niyprzizwolanie na granie przed sztartym"
 
 #: data/io.elementary.videos.appdata.xml.in:132
+msgid "Limit consecutive spacebar pauses"
+msgstr "Limit pauz spacyjōm jedna za drugōm"
+
+#: data/io.elementary.videos.appdata.xml.in:139
+msgid "Crash fixes"
+msgstr "Poprowki przi awaryjach"
+
+#: data/io.elementary.videos.appdata.xml.in:140
+msgid "Remove About dialog"
+msgstr "Zlikwidowanie ôkna ze informacyjami"
+
+#: data/io.elementary.videos.appdata.xml.in:141
+#: data/io.elementary.videos.appdata.xml.in:180
+msgid "Minor bug fixes"
+msgstr "Poprowki drobnych błyndōw"
+
+#: data/io.elementary.videos.appdata.xml.in:149
 msgid "Preview popover now closely follows cursor position"
-msgstr ""
+msgstr "Ôkynko podglōndu teroz idzie zaroz za kursorym"
 
-#: data/io.elementary.videos.appdata.xml.in:147
+#: data/io.elementary.videos.appdata.xml.in:164
 msgid "Fix appstream date format"
-msgstr ""
+msgstr "Poprowki formatu daty appstream"
 
-#: data/io.elementary.videos.appdata.xml.in:154
+#: data/io.elementary.videos.appdata.xml.in:171
 msgid "Added a library view with search"
-msgstr ""
+msgstr "Przidano było widok bibliotyki z wyszukowaniym"
 
-#: data/io.elementary.videos.appdata.xml.in:155
+#: data/io.elementary.videos.appdata.xml.in:172
 msgid "Fixed a bug that prevents keyboard navigation"
-msgstr ""
+msgstr "Sprawiōno było błōnd, kery niy dozwoloł nawigacyjo tastaturōm"
 
-#: data/io.elementary.videos.appdata.xml.in:168
+#: data/io.elementary.videos.appdata.xml.in:185
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
-msgstr ""
+msgstr "Ôdgrowocz filmōw"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "multimedia-video-player"
-msgstr ""
+msgstr "multimedia-video-player"
