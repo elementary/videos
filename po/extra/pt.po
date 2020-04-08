@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-07 20:09+0000\n"
-"PO-Revision-Date: 2019-11-29 02:24+0000\n"
+"PO-Revision-Date: 2020-04-08 17:03+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/videos/extra/"
 "pt/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
@@ -59,11 +59,11 @@ msgstr "Miniaturas na barra de pesquisa"
 #: data/io.elementary.videos.appdata.xml.in:65
 #: data/io.elementary.videos.appdata.xml.in:82
 msgid "Other updates:"
-msgstr ""
+msgstr "Outras actualizações:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Fix missing icon in episode view"
-msgstr ""
+msgstr "Corrige ícone em falta na visualização de episódios"
 
 #: data/io.elementary.videos.appdata.xml.in:68
 #: data/io.elementary.videos.appdata.xml.in:87
@@ -79,11 +79,11 @@ msgstr "Atualização de traduções"
 
 #: data/io.elementary.videos.appdata.xml.in:74
 msgid "New features:"
-msgstr ""
+msgstr "Novas funcionalidades:"
 
 #: data/io.elementary.videos.appdata.xml.in:76
 msgid "Option to automatically play next videos"
-msgstr ""
+msgstr "Opção para reproduzir automaticamente os próximos vídeos"
 
 #: data/io.elementary.videos.appdata.xml.in:77
 msgid "Navigate the playlist with the keyboard"
@@ -95,16 +95,16 @@ msgstr "Adicionar um botão para limpar a lista de reprodução"
 
 #: data/io.elementary.videos.appdata.xml.in:79
 msgid "Show audio track language in settings"
-msgstr ""
+msgstr "Mostra o idioma da faixa de áudio em definições"
 
 #: data/io.elementary.videos.appdata.xml.in:80
 msgid "Show playlist item titles in their tooltips"
 msgstr ""
-"Mostrar títulos de itens da lista de reprodução nas suas dicas de ferramentas"
+"Mostra títulos de itens da lista de reprodução nas suas dicas de ferramentas"
 
 #: data/io.elementary.videos.appdata.xml.in:84
 msgid "Show an error for unsupported files"
-msgstr ""
+msgstr "Mostra um erro para ficheiros não suportados"
 
 #: data/io.elementary.videos.appdata.xml.in:85
 msgid "Fix disappearing cursor on headerbar"
