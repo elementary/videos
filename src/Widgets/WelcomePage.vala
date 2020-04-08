@@ -19,6 +19,7 @@ namespace Audience {
     public class WelcomePage : Granite.Widgets.Welcome {
         private DiskManager disk_manager;
         private Services.LibraryManager library_manager;
+        private string current_video;
         public WelcomePage () {
             base (_("No Videos Open"), _("Select a source to begin playing."));
         }
@@ -26,9 +27,9 @@ namespace Audience {
         construct {
             append ("document-open", _("Open file"), _("Open a saved file."));
 
-            var filename = settings.get_string ("current-video");
-            var last_file = File.new_for_uri (filename);
-            bool show_last_file = settings.get_string ("current-video") != "";
+            current_video = settings.get_string ("current-video");
+            var last_file = File.new_for_uri (current_video);
+            bool show_last_file = current_video != "";
             if (last_file.query_exists () == false) {
                 show_last_file = false;
             }
@@ -75,7 +76,7 @@ namespace Audience {
                         window.run_open_file (true);
                         break;
                     case 1:
-                        window.add_to_playlist (filename, true);
+                        window.add_to_playlist (current_video, true);
                         window.resume_last_videos ();
                         break;
                     case 2:
@@ -85,13 +86,15 @@ namespace Audience {
                         window.show_library ();
                 }
             });
+
+            settings.changed["current-video"].connect (() => {
+                current_video = settings.get_string ("current-video");
+            });
         }
 
         public void refresh () {
             var replay_button = get_button_from_index (1);
-
-            var filename = settings.get_string ("current-video");
-            var last_file = File.new_for_uri (filename);
+            var last_file = File.new_for_uri (current_video);
 
             if (settings.get_double ("last-stopped") == 0.0) {
                 replay_button.title = _("Replay last video");
@@ -102,7 +105,7 @@ namespace Audience {
             }
             replay_button.description = get_title (last_file.get_basename ());
 
-            bool show_last_file = settings.get_string ("current-video") != "";
+            bool show_last_file = current_video != "";
             if (last_file.query_exists () == false) {
                 show_last_file = false;
             }

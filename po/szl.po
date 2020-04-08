@@ -1,91 +1,93 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-25 17:20+0000\n"
-"PO-Revision-Date: 2019-06-26 18:53+0200\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2020-04-07 20:09+0000\n"
+"PO-Revision-Date: 2020-02-23 10:08+0000\n"
+"Last-Translator: gkkulik <g.kulik@o2.pl>\n"
+"Language-Team: Silesian <https://l10n.elementary.io/projects/videos/videos/"
+"szl/>\n"
 "Language: szl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: src/Application.vala:73 src/Window.vala:525
 msgid "Videos"
-msgstr ""
+msgstr "Filmy"
 
 #. For better translation
 #: src/Window.vala:40
 msgid "Back"
-msgstr ""
+msgstr "Nazod"
 
 #: src/Window.vala:41
 msgid "Library"
-msgstr ""
+msgstr "Bibliotyka"
 
 #: src/Window.vala:42
 msgid "Episodes"
-msgstr ""
+msgstr "Ôdcinki"
 
 #: src/Window.vala:68
 msgid "Search Videos"
-msgstr ""
+msgstr "Szukanie filmōw"
 
 #: src/Window.vala:81
 msgid "Play one video"
-msgstr ""
+msgstr "Grej jedyn film"
 
 #: src/Window.vala:82
 msgid "Automatically play next videos"
-msgstr ""
+msgstr "Autōmatycznie grej nastympne filmy"
 
 #: src/Window.vala:110 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
 msgid "No Results for “%s”"
-msgstr ""
+msgstr "Brak wynikōw do „%s”"
 
 #: src/Window.vala:110 src/Widgets/Library/EpisodesPage.vala:126
 msgid "Try changing search terms."
-msgstr ""
+msgstr "Sprōbuj zmiynić wyszukowane słowa."
 
 #: src/Window.vala:167
 msgid "Restore"
-msgstr ""
+msgstr "Prziwrōć"
 
 #: src/Window.vala:411 src/Widgets/Player/SettingsPopover.vala:36
 msgid "All files"
-msgstr ""
+msgstr "Wszyjske zbiory"
 
 #: src/Window.vala:415
 msgid "Video files"
-msgstr ""
+msgstr "Zbiory filmōw"
 
 #: src/Window.vala:419 src/Widgets/Library/LibraryItem.vala:167
 msgid "Open"
-msgstr ""
+msgstr "Ôtwōrz"
 
 #: src/Window.vala:422 src/Widgets/Library/LibraryItem.vala:170
 msgid "_Open"
-msgstr ""
+msgstr "_Ôtwōrz"
 
 #: src/Window.vala:423 src/Widgets/Library/LibraryItem.vala:171
 msgid "_Cancel"
-msgstr ""
+msgstr "_Pociep"
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
-msgstr ""
+msgstr "Niyznōmy format zbioru"
 
 #: src/Widgets/UnsupportedFileDialog.vala:26
 #, c-format
 msgid "Videos might not be able to play the file '%s'."
-msgstr ""
+msgstr "Filmy może niy poradzić grać zbioru '%s'."
 
 #: src/Widgets/UnsupportedFileDialog.vala:37
 msgid "Play Anyway"
-msgstr ""
+msgstr "Grej i tak"
 
 #: src/Widgets/UnsupportedFileDialog.vala:40
 #, c-format
@@ -93,100 +95,102 @@ msgid ""
 "Unable to play file at: %s\n"
 "The file is not a video (\"%s\")."
 msgstr ""
+"Niy idzie grać zbioru we: %s\n"
+"Tyn zbiōr to niy je film („%s”)."
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
-msgstr ""
+msgstr "Brak ôtwartych filmōw"
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "Select a source to begin playing."
-msgstr ""
+msgstr "Ôbier zdrzōdło do granio."
 
-#: src/Widgets/WelcomePage.vala:27 src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/WelcomePage.vala:28 src/Widgets/Player/PlaylistPopover.vala:36
 msgid "Open file"
-msgstr ""
+msgstr "Ôtwōrz zbiōr"
 
-#: src/Widgets/WelcomePage.vala:27
+#: src/Widgets/WelcomePage.vala:28
 msgid "Open a saved file."
-msgstr ""
+msgstr "Ôtwōrz zapisany zbiōr."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:97
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/WelcomePage.vala:100
 msgid "Replay last video"
-msgstr ""
+msgstr "Grej na nowo ôstatni film"
 
-#: src/Widgets/WelcomePage.vala:39 src/Widgets/WelcomePage.vala:100
+#: src/Widgets/WelcomePage.vala:40 src/Widgets/WelcomePage.vala:103
 msgid "Resume last video"
-msgstr ""
+msgstr "Znōw ôstatni film"
 
-#: src/Widgets/WelcomePage.vala:64 src/Widgets/Player/PlaylistPopover.vala:38
+#: src/Widgets/WelcomePage.vala:65 src/Widgets/Player/PlaylistPopover.vala:38
 msgid "Play from Disc"
-msgstr ""
+msgstr "Grej z dysku"
 
-#: src/Widgets/WelcomePage.vala:64
+#: src/Widgets/WelcomePage.vala:65
 msgid "Watch a DVD or open a file from disc"
-msgstr ""
+msgstr "Patrz na DVD abo ôtwōrz zbiōr z dysku"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:68
 msgid "Browse Library"
-msgstr ""
+msgstr "Przeglōndej bibliotyka"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:68
 msgid "Watch a movie from your library"
-msgstr ""
+msgstr "Patrz film ze swojij bibliotyki"
 
 #: src/Widgets/Library/LibraryItem.vala:64
 msgid "Move to Trash"
-msgstr ""
+msgstr "Przeniyś do hasioka"
 
 #: src/Widgets/Library/LibraryItem.vala:77
 msgid "Set Artwork"
-msgstr ""
+msgstr "Nasztaluj ôbkłodka"
 
 #: src/Widgets/Library/LibraryItem.vala:163
 msgid "Image files"
-msgstr ""
+msgstr "Zbiory ôbrazōw"
 
 #: src/Widgets/Library/LibraryPage.vala:69
 #, c-format
 msgid "Video '%s' Removed."
-msgstr ""
+msgstr "Film '%s' bōł skasowany."
 
 #: src/Widgets/Player/BottomBar.vala:83
 msgid "Pause"
-msgstr ""
+msgstr "Pauza"
 
 #: src/Widgets/Player/BottomBar.vala:87 src/Widgets/Player/BottomBar.vala:126
 msgid "Play"
-msgstr ""
+msgstr "Ôdgrowanie"
 
 #: src/Widgets/Player/BottomBar.vala:133
 msgid "Playlist"
-msgstr ""
+msgstr "Playlista"
 
 #: src/Widgets/Player/BottomBar.vala:140
 msgid "Settings"
-msgstr ""
+msgstr "Sztelōnki"
 
 #: src/Widgets/Player/BottomBar.vala:165
 msgid "Unfullscreen"
-msgstr ""
+msgstr "Zastow połny ekran"
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
 msgid "Clear Playlist"
-msgstr ""
+msgstr "Wysnoż playlista"
 
 #: src/Widgets/Player/PlaylistPopover.vala:45
 #: src/Widgets/Player/PlaylistPopover.vala:76
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Powtorzej"
 
 #: src/Widgets/Player/PlaylistPopover.vala:73
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Niy powtorzej"
 
 #: src/Widgets/Player/SettingsPopover.vala:40
 msgid "Subtitle files"
-msgstr ""
+msgstr "Zbiory nopisōw"
 
 #. .smi
 #. .srt
@@ -195,36 +199,36 @@ msgstr ""
 #. exclude .asc, mimetype is generic "application/pgp-encrypted"
 #: src/Widgets/Player/SettingsPopover.vala:47
 msgid "External Subtitles"
-msgstr ""
+msgstr "Zewnyntrzne nopisy"
 
 #: src/Widgets/Player/SettingsPopover.vala:51
 msgid "Audio:"
-msgstr ""
+msgstr "Źwiynk:"
 
 #: src/Widgets/Player/SettingsPopover.vala:54
 msgid "Subtitles:"
-msgstr ""
+msgstr "Nopisy:"
 
 #: src/Widgets/Player/SettingsPopover.vala:57
 msgid "External Subtitles:"
-msgstr ""
+msgstr "Zewnyntrzne nopisy:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
 #: src/Widgets/Player/SettingsPopover.vala:124
 #: src/Widgets/Player/SettingsPopover.vala:153
 #, c-format
 msgid "Track %u"
-msgstr ""
+msgstr "Drōga %u"
 
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "None"
-msgstr ""
+msgstr "Brak"
 
 #: src/Widgets/Player/SettingsPopover.vala:151
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: src/Widgets/Player/SettingsPopover.vala:166
 msgid "Default"
-msgstr ""
+msgstr "Wychodne"
