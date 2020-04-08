@@ -64,6 +64,7 @@
        <description>
          <p>Other updates:</p>
          <ul>
+           <li>More consistently remember the last playing video and its play position</li>
            <li>Fix missing icon in episode view</li>
            <li>Translation updates</li>
          </ul>
