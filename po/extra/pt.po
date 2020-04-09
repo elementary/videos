@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-09 18:28+0000\n"
-"PO-Revision-Date: 2020-04-09 14:50+0000\n"
+"PO-Revision-Date: 2020-04-11 10:10+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/videos/extra/"
 "pt/>\n"
@@ -64,6 +64,7 @@ msgstr "Outras actualizações:"
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Reliably update the replay button description and file"
 msgstr ""
+"Atualizar de forma fiável a descrição e o ficheiro do botão de repetição"
 
 #: data/io.elementary.videos.appdata.xml.in:68
 msgid "More consistently remember the last playing video and its play position"
