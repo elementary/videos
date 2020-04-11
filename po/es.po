@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-09 18:28+0000\n"
-"PO-Revision-Date: 2020-01-15 21:07+0000\n"
-"Last-Translator: Daniel R. <riesp@pm.me>\n"
+"PO-Revision-Date: 2020-04-12 13:10+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/videos/videos/es/"
 ">\n"
 "Language: es\n"
@@ -27,11 +27,11 @@ msgstr "Vídeos"
 #. For better translation
 #: src/Window.vala:40
 msgid "Back"
-msgstr "Regresar"
+msgstr "Volver"
 
 #: src/Window.vala:41
 msgid "Library"
-msgstr "Biblioteca"
+msgstr "Videoteca"
 
 #: src/Window.vala:42
 msgid "Episodes"
@@ -39,7 +39,7 @@ msgstr "Episodios"
 
 #: src/Window.vala:68
 msgid "Search Videos"
-msgstr "Buscar Vídeos"
+msgstr "Buscar vídeos"
 
 #: src/Window.vala:81
 msgid "Play one video"
@@ -47,7 +47,7 @@ msgstr "Reproducir un vídeo"
 
 #: src/Window.vala:82
 msgid "Automatically play next videos"
-msgstr "Reproducir siguientes vídeos automáticamente"
+msgstr "Reproducir vídeos posteriores automáticamente"
 
 #: src/Window.vala:110 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
@@ -134,11 +134,11 @@ msgstr "Ver un DVD o abrir un archivo desde un disco"
 
 #: src/Widgets/WelcomePage.vala:33
 msgid "Browse Library"
-msgstr "Explorar Biblioteca"
+msgstr "Explorar videoteca"
 
 #: src/Widgets/WelcomePage.vala:33
 msgid "Watch a movie from your library"
-msgstr "Ver una película de tu biblioteca"
+msgstr "Ver una película de su videoteca"
 
 #: src/Widgets/WelcomePage.vala:111
 msgid "Resume last video"
@@ -159,7 +159,7 @@ msgstr "Archivos de imágenes"
 #: src/Widgets/Library/LibraryPage.vala:69
 #, c-format
 msgid "Video '%s' Removed."
-msgstr "Vídeo «%s» eliminado."
+msgstr "Se quitó el vídeo «%s»."
 
 #: src/Widgets/Player/BottomBar.vala:83
 msgid "Pause"
@@ -183,7 +183,7 @@ msgstr "Salir de pantalla completa"
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
 msgid "Clear Playlist"
-msgstr "Crear lista de reproducción"
+msgstr "Vaciar lista de reproducción"
 
 #: src/Widgets/Player/PlaylistPopover.vala:45
 #: src/Widgets/Player/PlaylistPopover.vala:76
