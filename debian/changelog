@@ -1,3 +1,30 @@
+audience (2.7.1) bionic; urgency=medium
+
+  * Release 2.7.1 (#189)
+  * Update translation files
+  * Update translation files
+  * Update translation template
+  * Rewrite WelcomePage (#186)
+  * Update translation files
+  * Update translation template
+  * Update io.elementary.videos.appdata.xml.in
+  * Prevent clearing of playlist when resuming, to avoid loss of
+    progress (#183)
+  * Library page may attempt to resume completed videos (#182)
+  * Update translation files
+  * Update translation files
+  * Update translation template
+  * Update io.elementary.videos.appdata.xml.in
+  * Substitute consecutive icon for missing named icon (#184)
+  * Filename incorrectly used in closure (#181)
+  * Add build action (#180)
+  * Update .travis.yml
+  * Handle time jumping even if the user clicks above/below the slider
+    (#172)
+  * Update translation template
+
+ -- Cody Garver <cody@elementary.io>  Tue, 14 Apr 2020 22:20:15 +0000
+
 audience (2.7.0) bionic; urgency=medium
 
   * Release 2.7.0 (#162)
