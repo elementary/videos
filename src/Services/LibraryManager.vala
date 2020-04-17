@@ -34,9 +34,11 @@ namespace Audience.Services {
         public DbusThumbnailer thumbler { get; construct set; }
 
         public bool has_items { get; private set; }
+        public bool is_scanning { get; private set; }
 
         private Gee.ArrayList<string> poster_hash;
         private Gee.ArrayList<DirectoryMonitoring> monitoring_directories;
+        private Gee.Queue<string> unchecked_directories;
 
         private Gee.ArrayList<string> trashed_files;
 
@@ -56,6 +58,7 @@ namespace Audience.Services {
             trashed_files = new Gee.ArrayList<string> ();
             poster_hash = new Gee.ArrayList<string> ();
             monitoring_directories = new Gee.ArrayList<DirectoryMonitoring> ();
+            unchecked_directories = new Gee.UnrolledLinkedList<string> ();
             try {
                 regex_year = new Regex ("\\(\\d\\d\\d\\d(?=(\\)$))");
             } catch (Error e) {
@@ -67,57 +70,85 @@ namespace Audience.Services {
         }
 
         public void begin_scan () {
-            detect_video_files.begin (Audience.settings.get_string ("library-folder"));
+            unchecked_directories.offer (Audience.settings.get_string ("library-folder"));
+            detect_video_files.begin ();
         }
 
-        public async void detect_video_files (string source) throws GLib.Error {
-            File directory = File.new_for_path (source);
+        private void monitored_directory_changed (FileMonitor monitor, File src, File? dest, FileMonitorEvent event) {
+            if (event == GLib.FileMonitorEvent.DELETED) {
+                video_file_deleted (src.get_path ());
+                foreach (DirectoryMonitoring item in monitoring_directories) {
+                    if (item.path == src.get_path ()) {
+                        item.monitor.cancel ();
+                    }
+                }
+            }
+            else if (event == GLib.FileMonitorEvent.CHANGES_DONE_HINT) {
+                FileInfo file_info;
+                try {
+                    file_info = src.query_info (FileAttribute.STANDARD_CONTENT_TYPE + "," + FileAttribute.STANDARD_IS_HIDDEN + "," + FileAttribute.STANDARD_TYPE, 0);
+                } catch (Error e) {
+                    warning (e.message);
+                    return;
+                }
+                if (file_info.get_file_type () == FileType.DIRECTORY) {
+                    unchecked_directories.offer (src.get_path());
+                    if (!is_scanning) {
+                        begin_scan ();
+                    }
+                } else if (is_file_valid (file_info)) {
+                    string src_path = src.get_path ();
+                    crate_video_object (file_info, Path.get_dirname (src_path), Path.get_basename (src_path));
+                }
+            }
+        }
 
-            DirectoryMonitoring dir_monitor = new DirectoryMonitoring (source, directory.monitor (FileMonitorFlags.NONE, null));
-            dir_monitor.monitor.changed.connect ((src, dest, event) => {
-                if (event == GLib.FileMonitorEvent.DELETED) {
-                    video_file_deleted (src.get_path ());
-                    foreach (DirectoryMonitoring item in monitoring_directories) {
-                        if (item.path == src.get_path ()) {
-                            item.monitor.cancel ();
+        private void monitor_directory(string path, File directory) {
+            try {
+                DirectoryMonitoring dir_monitor = new DirectoryMonitoring (path, directory.monitor (FileMonitorFlags.NONE, null));
+                dir_monitor.monitor.changed.connect (monitored_directory_changed);
+                monitoring_directories.add (dir_monitor);
+            } catch (Error e) {
+                warning(e.message);
+            }
+        }
+
+        public async void detect_video_files () throws GLib.Error {
+
+            is_scanning = true;
+
+            while (!unchecked_directories.is_empty) {
+                string source = unchecked_directories.poll();
+                Idle.add(detect_video_files.callback);
+                yield;
+
+                try {
+                    File directory = File.new_for_path (source);
+                    var children = directory.enumerate_children (FileAttribute.STANDARD_CONTENT_TYPE + "," + FileAttribute.STANDARD_IS_HIDDEN, 0);
+
+                    bool videos_found = false;
+                    FileInfo file_info;
+                    while ((file_info = children.next_file ()) != null) {
+                        if (file_info.get_file_type () == FileType.DIRECTORY) {
+                            unchecked_directories.offer (source + "/" + file_info.get_name ());
+                            continue;
+                        }
+
+                        if (is_file_valid (file_info)) {
+                            crate_video_object (file_info, source);
+                            videos_found = true;
                         }
                     }
-                }
-                else if (event == GLib.FileMonitorEvent.CHANGES_DONE_HINT) {
-                    FileInfo file_info;
-                    try {
-                        file_info = src.query_info (FileAttribute.STANDARD_CONTENT_TYPE + "," + FileAttribute.STANDARD_IS_HIDDEN + "," + FileAttribute.STANDARD_TYPE, 0);
-                    } catch (Error e) {
-                        warning (e.message);
-                        return;
+                    if (videos_found) {
+                        monitor_directory (source, directory);
                     }
-                    if (file_info.get_file_type () == FileType.DIRECTORY) {
-                        detect_video_files.begin (src.get_path ());
-                    } else if (is_file_valid (file_info)) {
-                        string src_path = src.get_path ();
-                        crate_video_object (file_info, Path.get_dirname (src_path), Path.get_basename (src_path));
-                    }
-                }
-            });
-            monitoring_directories.add (dir_monitor);
-
-            var children = directory.enumerate_children (FileAttribute.STANDARD_CONTENT_TYPE + "," + FileAttribute.STANDARD_IS_HIDDEN, 0);
-
-            FileInfo file_info;
-            while ((file_info = children.next_file ()) != null) {
-                if (file_info.get_file_type () == FileType.DIRECTORY) {
-                    detect_video_files.begin (source + "/" + file_info.get_name ());
-                    continue;
-                }
-
-                if (is_file_valid (file_info)) {
-                    crate_video_object (file_info, source);
+                } catch (Error e) {
+                    warning (e.message);
                 }
             }
 
-            if (directory.get_path () == Audience.settings.get_string ("library-folder")) {
-                finished ();
-            }
+            finished ();
+            is_scanning = false;
         }
 
         private bool is_file_valid (FileInfo file_info) {
