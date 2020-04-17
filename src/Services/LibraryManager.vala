@@ -92,7 +92,7 @@ namespace Audience.Services {
                     return;
                 }
                 if (file_info.get_file_type () == FileType.DIRECTORY) {
-                    unchecked_directories.offer (src.get_path());
+                    unchecked_directories.offer (src.get_path ());
                     if (!is_scanning) {
                         begin_scan ();
                     }
@@ -103,13 +103,13 @@ namespace Audience.Services {
             }
         }
 
-        private void monitor_directory(string path, File directory) {
+        private void monitor_directory (string path, File directory) {
             try {
                 DirectoryMonitoring dir_monitor = new DirectoryMonitoring (path, directory.monitor (FileMonitorFlags.NONE, null));
                 dir_monitor.monitor.changed.connect (monitored_directory_changed);
                 monitoring_directories.add (dir_monitor);
             } catch (Error e) {
-                warning(e.message);
+                warning (e.message);
             }
         }
 
@@ -118,8 +118,8 @@ namespace Audience.Services {
             is_scanning = true;
 
             while (!unchecked_directories.is_empty) {
-                string source = unchecked_directories.poll();
-                Idle.add(detect_video_files.callback);
+                string source = unchecked_directories.poll ();
+                Idle.add (detect_video_files.callback);
                 yield;
 
                 try {
