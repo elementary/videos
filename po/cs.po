@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-25 17:20+0000\n"
+"POT-Creation-Date: 2020-04-09 18:28+0000\n"
 "PO-Revision-Date: 2018-07-24 00:05+0000\n"
 "Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: Czech <https://weblate.elementary.io/projects/videos/videos/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 
-#: src/Application.vala:73 src/Window.vala:525
+#: src/Application.vala:73 src/Window.vala:523
 msgid "Videos"
 msgstr "Videa"
 
@@ -103,45 +103,45 @@ msgid ""
 "The file is not a video (\"%s\")."
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
 msgstr "Žádná otevřená videa"
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:25
 msgid "Select a source to begin playing."
 msgstr "Pro začátek přehrávání zvolte zdroj."
 
-#: src/Widgets/WelcomePage.vala:27 src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:36
 msgid "Open file"
 msgstr "Otevřít soubor"
 
-#: src/Widgets/WelcomePage.vala:27
+#: src/Widgets/WelcomePage.vala:30
 msgid "Open a saved file."
 msgstr "Otevřít uložený soubor."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:97
+#: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:108
 msgid "Replay last video"
 msgstr "Přehrát poslední video"
 
-#: src/Widgets/WelcomePage.vala:39 src/Widgets/WelcomePage.vala:100
-msgid "Resume last video"
-msgstr "Pokračovat v posledním videu"
-
-#: src/Widgets/WelcomePage.vala:64 src/Widgets/Player/PlaylistPopover.vala:38
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:38
 msgid "Play from Disc"
 msgstr "Přehrávat z disku"
 
-#: src/Widgets/WelcomePage.vala:64
+#: src/Widgets/WelcomePage.vala:32
 msgid "Watch a DVD or open a file from disc"
 msgstr "Přehrávat DVD nebo otevřít soubor z disku"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:33
 msgid "Browse Library"
 msgstr "Procházet knihovnu"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:33
 msgid "Watch a movie from your library"
 msgstr "Sledovat film z vaší knihovny"
+
+#: src/Widgets/WelcomePage.vala:111
+msgid "Resume last video"
+msgstr "Pokračovat v posledním videu"
 
 #: src/Widgets/Library/LibraryItem.vala:64
 msgid "Move to Trash"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-25 17:20+0000\n"
+"POT-Creation-Date: 2020-04-09 18:28+0000\n"
 "PO-Revision-Date: 2017-05-30 19:54+0000\n"
 "Last-Translator: Sergiu <sergiup26@gmail.com>\n"
 "Language-Team: Romanian <https://l10n.elementary.io/projects/videos/videos/"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:73 src/Window.vala:525
+#: src/Application.vala:73 src/Window.vala:523
 msgid "Videos"
 msgstr "Fişiere video"
 
@@ -104,45 +104,45 @@ msgid ""
 "The file is not a video (\"%s\")."
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
 msgstr "Nici un video deschis"
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:25
 msgid "Select a source to begin playing."
 msgstr "Selectează o sursă pentru a începe redarea."
 
-#: src/Widgets/WelcomePage.vala:27 src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:36
 msgid "Open file"
 msgstr "Deschidere fișier"
 
-#: src/Widgets/WelcomePage.vala:27
+#: src/Widgets/WelcomePage.vala:30
 msgid "Open a saved file."
 msgstr "Deschide un fişier salvat."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:97
+#: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:108
 msgid "Replay last video"
 msgstr "Redă din nou ultimul video"
 
-#: src/Widgets/WelcomePage.vala:39 src/Widgets/WelcomePage.vala:100
-msgid "Resume last video"
-msgstr "Reia ultimul video"
-
-#: src/Widgets/WelcomePage.vala:64 src/Widgets/Player/PlaylistPopover.vala:38
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:38
 msgid "Play from Disc"
 msgstr "Redă de pe disc"
 
-#: src/Widgets/WelcomePage.vala:64
+#: src/Widgets/WelcomePage.vala:32
 msgid "Watch a DVD or open a file from disc"
 msgstr "Vizualizează un DVD sau deschide un fișier de pe disc"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:33
 msgid "Browse Library"
 msgstr "Navighează în librărie"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:33
 msgid "Watch a movie from your library"
 msgstr "Vizualizează un film din librărie"
+
+#: src/Widgets/WelcomePage.vala:111
+msgid "Resume last video"
+msgstr "Reia ultimul video"
 
 #: src/Widgets/Library/LibraryItem.vala:64
 msgid "Move to Trash"

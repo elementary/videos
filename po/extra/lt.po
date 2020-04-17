@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-25 17:20+0000\n"
+"POT-Creation-Date: 2020-04-09 18:28+0000\n"
 "PO-Revision-Date: 2019-08-29 17:22+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://l10n.elementary.io/projects/videos/extra/"
@@ -58,108 +58,122 @@ msgid "Thumbnail previews on the seek bar"
 msgstr "Miniatiūrų peržiūra takelio juostoje"
 
 #: data/io.elementary.videos.appdata.xml.in:65
-msgid "New features:"
-msgstr ""
-
-#: data/io.elementary.videos.appdata.xml.in:67
-msgid "Option to automatically play next videos"
-msgstr ""
-
-#: data/io.elementary.videos.appdata.xml.in:68
-msgid "Navigate the playlist with the keyboard"
-msgstr ""
-
-#: data/io.elementary.videos.appdata.xml.in:69
-msgid "Add a button to clear the playlist"
-msgstr ""
-
-#: data/io.elementary.videos.appdata.xml.in:70
-msgid "Show audio track language in settings"
-msgstr ""
-
-#: data/io.elementary.videos.appdata.xml.in:71
-msgid "Show playlist item titles in their tooltips"
-msgstr ""
-
-#: data/io.elementary.videos.appdata.xml.in:73
+#: data/io.elementary.videos.appdata.xml.in:84
 msgid "Other updates:"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:75
+#: data/io.elementary.videos.appdata.xml.in:67
+msgid "Reliably update the replay button description and file"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:68
+msgid "More consistently remember the last playing video and its play position"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:69
+msgid "Fix missing icon in episode view"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:70
+#: data/io.elementary.videos.appdata.xml.in:89
+#: data/io.elementary.videos.appdata.xml.in:97
+#: data/io.elementary.videos.appdata.xml.in:105
+#: data/io.elementary.videos.appdata.xml.in:112
+#: data/io.elementary.videos.appdata.xml.in:144
+#: data/io.elementary.videos.appdata.xml.in:152
+#: data/io.elementary.videos.appdata.xml.in:159
+#: data/io.elementary.videos.appdata.xml.in:175
+msgid "Translation updates"
+msgstr "Vertimų atnaujinimai"
+
+#: data/io.elementary.videos.appdata.xml.in:76
+msgid "New features:"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:78
+msgid "Option to automatically play next videos"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:79
+msgid "Navigate the playlist with the keyboard"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:80
+msgid "Add a button to clear the playlist"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:81
+msgid "Show audio track language in settings"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:82
+msgid "Show playlist item titles in their tooltips"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:86
 msgid "Show an error for unsupported files"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:76
+#: data/io.elementary.videos.appdata.xml.in:87
 #, fuzzy
 msgid "Fix disappearing cursor on headerbar"
 msgstr "Pataisytas išnykstantis subtitrų takelis"
 
-#: data/io.elementary.videos.appdata.xml.in:77
+#: data/io.elementary.videos.appdata.xml.in:88
 msgid "Hide seekbar preview when switching windows with Alt + Tab"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:78
-#: data/io.elementary.videos.appdata.xml.in:86
-#: data/io.elementary.videos.appdata.xml.in:94
-#: data/io.elementary.videos.appdata.xml.in:101
-#: data/io.elementary.videos.appdata.xml.in:133
-#: data/io.elementary.videos.appdata.xml.in:141
-#: data/io.elementary.videos.appdata.xml.in:148
-#: data/io.elementary.videos.appdata.xml.in:164
-msgid "Translation updates"
-msgstr "Vertimų atnaujinimai"
-
-#: data/io.elementary.videos.appdata.xml.in:85
-#: data/io.elementary.videos.appdata.xml.in:93
+#: data/io.elementary.videos.appdata.xml.in:96
+#: data/io.elementary.videos.appdata.xml.in:104
 msgid "Build fixes"
 msgstr "Darinio pataisymai"
 
-#: data/io.elementary.videos.appdata.xml.in:108
+#: data/io.elementary.videos.appdata.xml.in:119
 msgid "Window behavior improvements"
 msgstr "Lango elgsenos patobulinimai"
 
-#: data/io.elementary.videos.appdata.xml.in:109
+#: data/io.elementary.videos.appdata.xml.in:120
 msgid "Fix disappearing subtitle tracks"
 msgstr "Pataisytas išnykstantis subtitrų takelis"
 
-#: data/io.elementary.videos.appdata.xml.in:116
+#: data/io.elementary.videos.appdata.xml.in:127
 msgid "Disallow setting playback before start"
 msgstr "Neleidžiama nustatyti vaizdo įrašo atkūrimą prieš jo pradžią"
 
-#: data/io.elementary.videos.appdata.xml.in:123
+#: data/io.elementary.videos.appdata.xml.in:134
 msgid "Limit consecutive spacebar pauses"
 msgstr "Apriboti einančius iš eilės pristabdymus tarpo klavišu"
 
-#: data/io.elementary.videos.appdata.xml.in:130
+#: data/io.elementary.videos.appdata.xml.in:141
 msgid "Crash fixes"
 msgstr "Strigčių pataisymai"
 
-#: data/io.elementary.videos.appdata.xml.in:131
+#: data/io.elementary.videos.appdata.xml.in:142
 msgid "Remove About dialog"
 msgstr "Pašalintas Apie dialogas"
 
-#: data/io.elementary.videos.appdata.xml.in:132
-#: data/io.elementary.videos.appdata.xml.in:171
+#: data/io.elementary.videos.appdata.xml.in:143
+#: data/io.elementary.videos.appdata.xml.in:182
 msgid "Minor bug fixes"
 msgstr "Smulkių klaidų pataisymai"
 
-#: data/io.elementary.videos.appdata.xml.in:140
+#: data/io.elementary.videos.appdata.xml.in:151
 msgid "Preview popover now closely follows cursor position"
 msgstr "Iškylantysis peržiūros langas dabar atidžiai seka žymeklio vietą"
 
-#: data/io.elementary.videos.appdata.xml.in:155
+#: data/io.elementary.videos.appdata.xml.in:166
 msgid "Fix appstream date format"
 msgstr "Pataisyti appstream datos formatą"
 
-#: data/io.elementary.videos.appdata.xml.in:162
+#: data/io.elementary.videos.appdata.xml.in:173
 msgid "Added a library view with search"
 msgstr "Pridėtas bibliotekos rodinys su paieška"
 
-#: data/io.elementary.videos.appdata.xml.in:163
+#: data/io.elementary.videos.appdata.xml.in:174
 msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "Ištaisyta klaida, kuri neleido naršymo klaviatūra"
 
-#: data/io.elementary.videos.appdata.xml.in:176
+#: data/io.elementary.videos.appdata.xml.in:187
 #, fuzzy
 msgid "elementary, Inc."
 msgstr "elementary LLC."

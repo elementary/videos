@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-25 17:20+0000\n"
+"POT-Creation-Date: 2020-04-09 18:28+0000\n"
 "PO-Revision-Date: 2020-03-01 14:09+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:73 src/Window.vala:525
+#: src/Application.vala:73 src/Window.vala:523
 msgid "Videos"
 msgstr "影片"
 
@@ -104,45 +104,45 @@ msgstr ""
 "無法播放檔案：%s\n"
 "該檔案不是影片 (「%s」)。"
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
 msgstr "未開啟視訊"
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:25
 msgid "Select a source to begin playing."
 msgstr "選擇個來源開始播放。"
 
-#: src/Widgets/WelcomePage.vala:27 src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:36
 msgid "Open file"
 msgstr "開啟檔案"
 
-#: src/Widgets/WelcomePage.vala:27
+#: src/Widgets/WelcomePage.vala:30
 msgid "Open a saved file."
 msgstr "開啟儲存的檔案。"
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:97
+#: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:108
 msgid "Replay last video"
 msgstr "再次播放上個影片"
 
-#: src/Widgets/WelcomePage.vala:39 src/Widgets/WelcomePage.vala:100
-msgid "Resume last video"
-msgstr "恢復播放最後一次播放的視訊"
-
-#: src/Widgets/WelcomePage.vala:64 src/Widgets/Player/PlaylistPopover.vala:38
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:38
 msgid "Play from Disc"
 msgstr "從光碟播放"
 
-#: src/Widgets/WelcomePage.vala:64
+#: src/Widgets/WelcomePage.vala:32
 msgid "Watch a DVD or open a file from disc"
 msgstr "觀賞 DVD 或從光碟開啟檔案"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:33
 msgid "Browse Library"
 msgstr "瀏覽珍藏館"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:33
 msgid "Watch a movie from your library"
 msgstr "觀賞珍藏館中的電影"
+
+#: src/Widgets/WelcomePage.vala:111
+msgid "Resume last video"
+msgstr "恢復播放最後一次播放的視訊"
 
 #: src/Widgets/Library/LibraryItem.vala:64
 msgid "Move to Trash"

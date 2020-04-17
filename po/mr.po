@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-25 17:20+0000\n"
+"POT-Creation-Date: 2020-04-09 18:28+0000\n"
 "PO-Revision-Date: 2020-03-26 18:09+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/videos/videos/mr/"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#: src/Application.vala:73 src/Window.vala:525
+#: src/Application.vala:73 src/Window.vala:523
 msgid "Videos"
 msgstr "व्हिडीओ"
 
@@ -97,45 +97,45 @@ msgstr ""
 "%s येथे फाइल प्ले करण्यात अक्षम: \n"
 "(\"%s\") फाइल व्हिडिओ नाही."
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
 msgstr "कोणतेही व्हिडिओ उघडलेले नाहीत"
 
-#: src/Widgets/WelcomePage.vala:23
+#: src/Widgets/WelcomePage.vala:25
 msgid "Select a source to begin playing."
 msgstr "व्हिडीओ सुरू करण्यासाठी स्त्रोत निवडा."
 
-#: src/Widgets/WelcomePage.vala:27 src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:36
 msgid "Open file"
 msgstr "फाईल उघडा"
 
-#: src/Widgets/WelcomePage.vala:27
+#: src/Widgets/WelcomePage.vala:30
 msgid "Open a saved file."
 msgstr "एक सेव्ह केलेली फाइल उघडा."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:97
+#: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:108
 msgid "Replay last video"
 msgstr "शेवटचा व्हिडिओ पुन्हा चालवा"
 
-#: src/Widgets/WelcomePage.vala:39 src/Widgets/WelcomePage.vala:100
-msgid "Resume last video"
-msgstr "शेवटचा व्हिडिओ पुन्हा सुरु करा"
-
-#: src/Widgets/WelcomePage.vala:64 src/Widgets/Player/PlaylistPopover.vala:38
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:38
 msgid "Play from Disc"
 msgstr "डिस्कवरून चालवा"
 
-#: src/Widgets/WelcomePage.vala:64
+#: src/Widgets/WelcomePage.vala:32
 msgid "Watch a DVD or open a file from disc"
 msgstr "डीव्हीडी पहा किंवा डिस्कमधून फाइल उघडा"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:33
 msgid "Browse Library"
 msgstr "लायब्ररी ब्राउझ करा"
 
-#: src/Widgets/WelcomePage.vala:67
+#: src/Widgets/WelcomePage.vala:33
 msgid "Watch a movie from your library"
 msgstr "आपल्या लायब्ररीमधून एक चित्रपट पहा"
+
+#: src/Widgets/WelcomePage.vala:111
+msgid "Resume last video"
+msgstr "शेवटचा व्हिडिओ पुन्हा सुरु करा"
 
 #: src/Widgets/Library/LibraryItem.vala:64
 msgid "Move to Trash"

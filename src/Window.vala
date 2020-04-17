@@ -77,7 +77,7 @@ public class Audience.Window : Gtk.Window {
 
         header.pack_end (search_entry);
 
-        autoqueue_next = new Granite.ModeSwitch.from_icon_name ("media-playback-pause-symbolic", "media-playback-skip-forward");
+        autoqueue_next = new Granite.ModeSwitch.from_icon_name ("media-playlist-repeat-one-symbolic", "media-playlist-consecutive-symbolic");
         autoqueue_next.primary_icon_tooltip_text = _("Play one video");
         autoqueue_next.secondary_icon_tooltip_text = _("Automatically play next videos");
         autoqueue_next.valign = Gtk.Align.CENTER;
@@ -501,8 +501,6 @@ public class Audience.Window : Gtk.Window {
         if (settings.get_boolean ("stay-on-top") && !settings.get_boolean ("playback-wait")) {
             set_keep_above (true);
         }
-
-        welcome_page.refresh ();
     }
 
     public void clear_playlist () {
@@ -539,7 +537,6 @@ public class Audience.Window : Gtk.Window {
             search_entry.visible = false;
             autoqueue_next.visible = false;
         }
-        welcome_page.refresh ();
     }
 
     public void hide_alert () {
