@@ -55,9 +55,11 @@ namespace Audience {
                 if (settings.get_string ("last-folder") == "-1") {
                     settings.set_string ("last-folder", GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS));
                 }
-                if (settings.get_string ("library-folder") == "") {
+
+                File library_folder = File.new_for_path (settings.get_string ("library-folder"));
+                if (library_folder.get_path () == "" || !library_folder.query_exists ()) {
                     settings.set_string ("library-folder", GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS));
-                }
+                };
 
                 try {
                     File cache = File.new_for_path (get_cache_directory ());
