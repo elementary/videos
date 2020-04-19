@@ -104,10 +104,11 @@ namespace Audience {
             var video = selected.episodes.first ();
             if (video.video_file.query_exists ()) {
                 string uri = video.video_file.get_uri ();
-                bool from_beginning = uri != settings.get_string ("current-video");
-                var window = App.get_instance ().mainwindow;// Clean playlist
-                window.clear_playlist ();
-                window.add_to_playlist (uri, false);
+                bool same_video = uri == settings.get_string ("current-video");
+                bool playback_complete = settings.get_double ("last-stopped") == 0.0;
+                bool from_beginning = !same_video || playback_complete;
+                var window = App.get_instance ().mainwindow;
+                window.add_to_playlist (uri, same_video);
                 window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
                 if (window.autoqueue_next_active ()) {
                     // Add next from the current view to the queue
