@@ -94,7 +94,7 @@ namespace Audience.Services {
                 if (file_info.get_file_type () == FileType.DIRECTORY) {
                     unchecked_directories.offer (src.get_path ());
                     if (!is_scanning) {
-                        begin_scan ();
+                        detect_video_files.begin ();
                     }
                 } else if (is_file_valid (file_info)) {
                     string src_path = src.get_path ();
