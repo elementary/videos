@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-09 18:28+0000\n"
-"PO-Revision-Date: 2020-01-25 15:08+0000\n"
+"PO-Revision-Date: 2020-04-21 01:10+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -63,15 +63,15 @@ msgstr "そのほかのアップデート:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Reliably update the replay button description and file"
-msgstr ""
+msgstr "再生ボタンの説明とファイルを確実に更新するように変更"
 
 #: data/io.elementary.videos.appdata.xml.in:68
 msgid "More consistently remember the last playing video and its play position"
-msgstr ""
+msgstr "最後に再生した動画と再生位置をより正確に保存"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 msgid "Fix missing icon in episode view"
-msgstr ""
+msgstr "エピソードビューでアイコンが表示されていなかった問題を修正"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 #: data/io.elementary.videos.appdata.xml.in:89
@@ -171,7 +171,7 @@ msgstr "検索でライブラリービューを追加する"
 
 #: data/io.elementary.videos.appdata.xml.in:174
 msgid "Fixed a bug that prevents keyboard navigation"
-msgstr "キーボードでの操作を妨害するバグを修正"
+msgstr "キーボード操作を妨害するバグを修正"
 
 #: data/io.elementary.videos.appdata.xml.in:187
 msgid "elementary, Inc."
