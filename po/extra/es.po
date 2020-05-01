@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-09 18:28+0000\n"
-"PO-Revision-Date: 2020-01-15 21:07+0000\n"
-"Last-Translator: Daniel R. <riesp@pm.me>\n"
-"Language-Team: Spanish <https://l10n.elementary.io/projects/videos/extra/es/"
-">\n"
+"PO-Revision-Date: 2020-05-01 04:10+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"Language-Team: Spanish <https://l10n.elementary.io/projects/videos/extra/es/>"
+"\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,17 +36,17 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
-"Un reproductor de vídeo moderno centrado en el contenido a reproducir en "
-"lugar de en las opciones de reproducción. Recuerda el último vídeo y momento "
-"reproducido para que puedas retomar la reproducción donde la dejaste."
+"Un reproductor de vídeos moderno centrado en el contenido y no en los "
+"controles de reproducción. Recuerda el último vídeo y momento reproducido "
+"para que pueda retomar la reproducción donde la dejó."
 
 #: data/io.elementary.videos.appdata.xml.in:16
 msgid "Additional features include:"
-msgstr "Características adicionales incluidas:"
+msgstr "Se incluyen, entre otras funcionalidades:"
 
 #: data/io.elementary.videos.appdata.xml.in:20
 msgid "Subtitle support"
-msgstr "Soporte para subtitulos"
+msgstr "Admite subtítulos"
 
 #: data/io.elementary.videos.appdata.xml.in:21
 msgid "Play queue"
@@ -54,7 +54,7 @@ msgstr "Cola de reproducción"
 
 #: data/io.elementary.videos.appdata.xml.in:22
 msgid "Thumbnail previews on the seek bar"
-msgstr "Previsualizar miniaturas en la barra de búsqueda"
+msgstr "Previsualizaciones en miniatura sobre la barra de posición"
 
 #: data/io.elementary.videos.appdata.xml.in:65
 #: data/io.elementary.videos.appdata.xml.in:84
@@ -64,14 +64,18 @@ msgstr "Otras actualizaciones:"
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Reliably update the replay button description and file"
 msgstr ""
+"Se actualiza de forma fiable la descripción y el archivo en el botón de "
+"rerreproducir"
 
 #: data/io.elementary.videos.appdata.xml.in:68
 msgid "More consistently remember the last playing video and its play position"
 msgstr ""
+"Se recuerda de forma más coherente el último vídeo abierto y la posición de "
+"reproducción"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 msgid "Fix missing icon in episode view"
-msgstr ""
+msgstr "Faltaba un icono en la vista de episodios"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 #: data/io.elementary.videos.appdata.xml.in:89
@@ -83,11 +87,11 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:159
 #: data/io.elementary.videos.appdata.xml.in:175
 msgid "Translation updates"
-msgstr "Actualización de traducciones"
+msgstr "Traducciones actualizadas"
 
 #: data/io.elementary.videos.appdata.xml.in:76
 msgid "New features:"
-msgstr "Nuevas características:"
+msgstr "Funcionalidades nuevas:"
 
 #: data/io.elementary.videos.appdata.xml.in:78
 msgid "Option to automatically play next videos"
