@@ -502,8 +502,6 @@ public class Audience.Window : Gtk.Window {
         if (settings.get_boolean ("stay-on-top") && !settings.get_boolean ("playback-wait")) {
             set_keep_above (true);
         }
-
-        welcome_page.refresh ();
     }
 
     public void clear_playlist () {
@@ -540,7 +538,6 @@ public class Audience.Window : Gtk.Window {
             search_entry.visible = false;
             autoqueue_next.visible = false;
         }
-        welcome_page.refresh ();
     }
 
     public void hide_alert () {
