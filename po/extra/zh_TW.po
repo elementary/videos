@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-09 18:28+0000\n"
-"PO-Revision-Date: 2016-10-14 15:41+0000\n"
+"PO-Revision-Date: 2020-05-04 08:10+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
-"Language: \n"
+"Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
+"videos/extra/zh_Hant/>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-"X-Generator: Launchpad (build 18354)\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
 #: data/io.elementary.videos.desktop.in:4
@@ -56,7 +58,7 @@ msgstr "時間查找軸會有縮圖預覽"
 #: data/io.elementary.videos.appdata.xml.in:65
 #: data/io.elementary.videos.appdata.xml.in:84
 msgid "Other updates:"
-msgstr ""
+msgstr "其他更新："
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Reliably update the replay button description and file"
