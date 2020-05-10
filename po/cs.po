@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-09 18:28+0000\n"
-"PO-Revision-Date: 2020-05-08 15:10+0000\n"
+"PO-Revision-Date: 2020-05-11 21:10+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/videos/videos/cs/>"
 "\n"
@@ -89,7 +89,7 @@ msgstr "Neznámý formát souboru"
 #: src/Widgets/UnsupportedFileDialog.vala:26
 #, c-format
 msgid "Videos might not be able to play the file '%s'."
-msgstr "Videa možná nebudou umět přehrát soubor „%s“"
+msgstr "Videa možná nebudou umět přehrát soubor „%s“."
 
 #: src/Widgets/UnsupportedFileDialog.vala:37
 msgid "Play Anyway"
@@ -233,7 +233,7 @@ msgstr "Žádný"
 #: src/Widgets/Player/SettingsPopover.vala:151
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: src/Widgets/Player/SettingsPopover.vala:166
 msgid "Default"
