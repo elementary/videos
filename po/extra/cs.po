@@ -8,16 +8,15 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-09 18:28+0000\n"
-"PO-Revision-Date: 2018-06-01 00:02+0000\n"
-"Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
-"Language-Team: Czech <https://weblate.elementary.io/projects/videos/extra/cs/"
-">\n"
+"PO-Revision-Date: 2020-05-11 21:10+0000\n"
+"Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
+"Language-Team: Czech <https://l10n.elementary.io/projects/videos/extra/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
@@ -59,19 +58,21 @@ msgstr "Náhledy videa na vyhledávací liště"
 #: data/io.elementary.videos.appdata.xml.in:65
 #: data/io.elementary.videos.appdata.xml.in:84
 msgid "Other updates:"
-msgstr ""
+msgstr "Ostatní aktualizace:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Reliably update the replay button description and file"
-msgstr ""
+msgstr "Spolehlivě aktualizován popisek tlačítka opětovného přehrání a souboru"
 
 #: data/io.elementary.videos.appdata.xml.in:68
 msgid "More consistently remember the last playing video and its play position"
 msgstr ""
+"Jednotnější zapamatování naposledy přehrávaného videa a kde se v něm minule "
+"skončilo"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 msgid "Fix missing icon in episode view"
-msgstr ""
+msgstr "Oprava chybějící ikony v pohledu s epizodami"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 #: data/io.elementary.videos.appdata.xml.in:89
@@ -87,27 +88,27 @@ msgstr "Aktualizace překladů"
 
 #: data/io.elementary.videos.appdata.xml.in:76
 msgid "New features:"
-msgstr ""
+msgstr "Nové funkce:"
 
 #: data/io.elementary.videos.appdata.xml.in:78
 msgid "Option to automatically play next videos"
-msgstr ""
+msgstr "Volba pro automatické přehrávání videí, která následují"
 
 #: data/io.elementary.videos.appdata.xml.in:79
 msgid "Navigate the playlist with the keyboard"
-msgstr ""
+msgstr "Pohybování se po seznamu stop pomocí klávesnice"
 
 #: data/io.elementary.videos.appdata.xml.in:80
 msgid "Add a button to clear the playlist"
-msgstr ""
+msgstr "Přidání tlačítka pro vymazání seznamu stop"
 
 #: data/io.elementary.videos.appdata.xml.in:81
 msgid "Show audio track language in settings"
-msgstr ""
+msgstr "Zobrazení jazyka zvukové stopy v nastavení"
 
 #: data/io.elementary.videos.appdata.xml.in:82
 msgid "Show playlist item titles in their tooltips"
-msgstr ""
+msgstr "V jejich nástrojových tipech zobrazovat nadpisy položek seznamu stop"
 
 #: data/io.elementary.videos.appdata.xml.in:86
 msgid "Show an error for unsupported files"
@@ -172,9 +173,8 @@ msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "Opravena chyba zabraňující ovládání pomocí klávesnice"
 
 #: data/io.elementary.videos.appdata.xml.in:187
-#, fuzzy
 msgid "elementary, Inc."
-msgstr "elementary LLC."
+msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
@@ -182,7 +182,7 @@ msgstr "Přehrávač videa"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "multimedia-video-player"
-msgstr "multimedia-video-player"
+msgstr ""
 
 #~ msgid "Audience"
 #~ msgstr "Audience"
