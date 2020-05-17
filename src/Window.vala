@@ -472,11 +472,13 @@ public class Audience.Window : Gtk.Window {
     }
 
     private void on_player_ended () {
+warning ("WINDOW: on player ended");
         navigate_back ();
         unfullscreen ();
     }
 
     public void play_file (string uri, NavigationPage origin, bool from_beginning = true) {
+warning ("WINDOW:play file");
         search_entry.visible = false;
         navigation_button.visible = true;
         switch (origin) {
