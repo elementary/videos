@@ -438,28 +438,27 @@ namespace Audience {
             return false;
         }
 
+        private ulong ready_handler_id = 0;
         public void set_subtitle (string uri) {
             var progress = playback.progress;
             var is_playing = playback.playing;
-
             unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
-            pipeline.set_state (Gst.State.NULL);
-            var val = Value (GLib.Type.STRING);
-            val.take_string (uri.dup ());
-            pipeline.set_property ("suburi", val);
-            pipeline.set_state (Gst.State.PLAYING);
-            Timeout.add (200, () => {
+
+            /* Temporarily connect to the ready signal so that we can restore the progress setting
+             * after resetting the pipeline in order to set the subtitle uri */
+            ready_handler_id = playback.ready.connect (() => {
                 playback.progress = progress;
-                // Doesn't do anything but set value for FileChooserButton
-                // without need for passing another property around.
-                playback.subtitle_uri = uri;
-                return false;
+                // Pause video if it was in Paused state before adding the subtitle
+                if (!is_playing) {
+                    pipeline.set_state (Gst.State.PAUSED);
+                }
+
+                playback.disconnect (ready_handler_id);
             });
 
-            // Pause video if it was in Paused state before adding the subtitle
-            if (!is_playing) {
-                pipeline.set_state (Gst.State.PAUSED);
-            }
+            pipeline.set_state (Gst.State.NULL); // Does not work otherwise
+            playback.set_subtitle_uri (uri);
+            pipeline.set_state (Gst.State.PLAYING);
 
             settings.set_string ("current-external-subtitles-uri", uri);
         }
