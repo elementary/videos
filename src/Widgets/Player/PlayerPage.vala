@@ -208,7 +208,9 @@ namespace Audience {
                 // FIXME:should find better way to decide if its end of playlist
                 if (playback.progress > 0.99) {
                     settings.set_double ("last-stopped", 0);
-                } else {
+                } else if (playback.uri != "") {
+                    /* The progress is only valid if the uri has not been reset as the current video setting is not
+                     * updated.  The playback.uri has been reset when the window is destroyed from the Welcome page */
                     settings.set_double ("last-stopped", playback.progress);
                 }
 
@@ -300,8 +302,18 @@ namespace Audience {
 
             get_playlist_widget ().set_current (uri);
             playback.uri = uri;
-            string sub_uri = "";
 
+
+            App.get_instance ().mainwindow.title = get_title (uri);
+
+            /* Set progress before subtitle uri else it gets reset to zero */
+            if (from_beginning) {
+                playback.progress = 0.0;
+            } else {
+                playback.progress = settings.get_double ("last-stopped");
+            }
+
+            string sub_uri = "";
             if (!from_beginning) { //We are resuming the current video - fetch the current subtitles
                 /* Should not bind to this setting else may cause loop */
                 sub_uri = settings.get_string ("current-external-subtitles-uri");
@@ -310,14 +322,6 @@ namespace Audience {
             }
 
             set_subtitle (sub_uri);
-
-            App.get_instance ().mainwindow.title = get_title (uri);
-
-            if (from_beginning) {
-                playback.progress = 0.0;
-            } else {
-                playback.progress = settings.get_double ("last-stopped");
-            }
 
             playback.playing = !settings.get_boolean ("playback-wait");
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
@@ -447,6 +451,7 @@ namespace Audience {
             /* Temporarily connect to the ready signal so that we can restore the progress setting
              * after resetting the pipeline in order to set the subtitle uri */
             ready_handler_id = playback.ready.connect (() => {
+
                 playback.progress = progress;
                 // Pause video if it was in Paused state before adding the subtitle
                 if (!is_playing) {

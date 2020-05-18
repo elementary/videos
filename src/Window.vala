@@ -472,13 +472,11 @@ public class Audience.Window : Gtk.Window {
     }
 
     private void on_player_ended () {
-warning ("WINDOW: on player ended");
         navigate_back ();
         unfullscreen ();
     }
 
     public void play_file (string uri, NavigationPage origin, bool from_beginning = true) {
-warning ("WINDOW:play file");
         search_entry.visible = false;
         navigation_button.visible = true;
         switch (origin) {
@@ -519,10 +517,12 @@ warning ("WINDOW:play file");
         if (progress > 0) {
             settings.set_double ("last-stopped", progress);
         }
+
         if (player_page.playing) {
             player_page.playing = false;
-            player_page.reset_played_uri ();
+            player_page.reset_played_uri (); // Do we need to do this?? It loses the progress
         }
+
         title = _("Videos");
         get_window ().set_cursor (null);
 
