@@ -300,11 +300,16 @@ namespace Audience {
 
             get_playlist_widget ().set_current (uri);
             playback.uri = uri;
+            string sub_uri = "";
 
-            string? sub_uri = get_subtitle_for_uri (uri);
-            if (sub_uri != null && sub_uri != uri) {
-                set_subtitle (sub_uri);
+            if (!from_beginning) { //We are resuming the current video - fetch the current subtitles
+                /* Should not bind to this setting else may cause loop */
+                sub_uri = settings.get_string ("current-external-subtitles-uri");
+            } else {
+                sub_uri = get_subtitle_for_uri (uri);
             }
+
+            set_subtitle (sub_uri);
 
             App.get_instance ().mainwindow.title = get_title (uri);
 
@@ -396,7 +401,9 @@ namespace Audience {
             }
         }
 
-        private string? get_subtitle_for_uri (string uri) {
+        private string get_subtitle_for_uri (string uri) {
+            /* This assumes that the subtitle file has the same basename as the video file but with
+             * one of the subtitle extensions, and is in the same folder. */
             string without_ext;
             int last_dot = uri.last_index_of (".", 0);
             int last_slash = uri.last_index_of ("/", 0);
@@ -414,7 +421,7 @@ namespace Audience {
                 }
             }
 
-            return null;
+            return "";
         }
 
         private bool is_subtitle (string uri) {
@@ -437,7 +444,9 @@ namespace Audience {
 
             unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
             pipeline.set_state (Gst.State.NULL);
-            pipeline.set_property ("suburi", uri);
+            var val = Value (GLib.Type.STRING);
+            val.take_string (uri.dup ());
+            pipeline.set_property ("suburi", val);
             pipeline.set_state (Gst.State.PLAYING);
             Timeout.add (200, () => {
                 playback.progress = progress;
@@ -451,6 +460,8 @@ namespace Audience {
             if (!is_playing) {
                 pipeline.set_state (Gst.State.PAUSED);
             }
+
+            settings.set_string ("current-external-subtitles-uri", uri);
         }
 
         public bool update_pointer_position (double y, int window_height) {

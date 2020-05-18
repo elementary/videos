@@ -72,8 +72,11 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             App.get_instance ().mainwindow.player_page.set_subtitle (external_subtitle_file.get_uri ());
         });
 
-        playback.notify["subtitle-uri"].connect (() => {
-            external_subtitle_file.select_uri (playback.subtitle_uri);
+        unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
+        /* playback.subtitle_uri does not seem to notify so connect directly to the pipeline */
+        pipeline.notify["suburi"].connect (() => {
+            /* Easier to retrieve the uri from the playback than the pipeline */
+            external_subtitle_file.select_uri (playback.subtitle_uri ?? "");
         });
 
         subtitles.changed.connect (on_subtitles_changed);
