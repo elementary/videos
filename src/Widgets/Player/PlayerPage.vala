@@ -332,6 +332,8 @@ namespace Audience {
         }
 
         public void reset_played_uri () {
+            var pipeline = (Gst.Pipeline)(playback.get_pipeline ());
+            pipeline.set_state (Gst.State.NULL);
             playback.uri = "";
         }
 
