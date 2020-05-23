@@ -518,28 +518,32 @@ public class Audience.Window : Gtk.Window {
             settings.set_double ("last-stopped", progress);
         }
 
-        if (player_page.playing) {
-            player_page.playing = false;
-            player_page.reset_played_uri (); // Do we need to do this?? It loses the progress
-        }
+        /* Changing the player_page playing properties triggers a number of signals/bindings and
+         * pipeline needs time to react so wrap subsequent code in an Idle loop.
+         */
+        player_page.playing = false;
 
-        title = _("Videos");
-        get_window ().set_cursor (null);
+        Idle.add (() => {
+            title = _("Videos");
+            get_window ().set_cursor (null);
 
-        if (navigation_button.label == _(NAVIGATION_BUTTON_LIBRARY)) {
-            navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
-            main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
-            autoqueue_next.visible = false;
-        } else if (navigation_button.label == _(NAVIGATION_BUTTON_EPISODES)) {
-            navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
-            main_stack.set_visible_child_full ("episodes", Gtk.StackTransitionType.SLIDE_RIGHT);
-            autoqueue_next.visible = true;
-        } else {
-            navigation_button.hide ();
-            main_stack.set_visible_child (welcome_page);
-            search_entry.visible = false;
-            autoqueue_next.visible = false;
-        }
+            if (navigation_button.label == _(NAVIGATION_BUTTON_LIBRARY)) {
+                navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
+                main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
+                autoqueue_next.visible = false;
+            } else if (navigation_button.label == _(NAVIGATION_BUTTON_EPISODES)) {
+                navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
+                main_stack.set_visible_child_full ("episodes", Gtk.StackTransitionType.SLIDE_RIGHT);
+                autoqueue_next.visible = true;
+            } else {
+                navigation_button.hide ();
+                main_stack.set_visible_child (welcome_page);
+                search_entry.visible = false;
+                autoqueue_next.visible = false;
+            }
+
+            return Source.REMOVE;
+        });
     }
 
     public void hide_alert () {

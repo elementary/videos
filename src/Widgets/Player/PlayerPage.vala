@@ -33,6 +33,7 @@ namespace Audience {
         private GtkClutter.Embed clutter;
         private GnomeMediaKeys mediakeys;
         private ClutterGst.Playback playback;
+        private unowned Gst.Pipeline pipeline;
         private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_bar;
         private GtkClutter.Actor unfullscreen_actor;
@@ -82,6 +83,8 @@ namespace Audience {
             events |= Gdk.EventMask.KEY_PRESS_MASK;
             events |= Gdk.EventMask.KEY_RELEASE_MASK;
             playback = new ClutterGst.Playback ();
+            pipeline = (Gst.Pipeline)(playback.get_pipeline ());
+
             playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
 
             clutter = new GtkClutter.Embed ();
@@ -242,14 +245,18 @@ namespace Audience {
             });
 
             get_playlist_widget ().stop_video.connect (() => {
-                playback.playing = false;
-                playback.progress = 1.0;
-
                 settings.set_double ("last-stopped", 0);
                 settings.set_strv ("last-played-videos", {});
                 settings.set_string ("current-video", "");
 
-                ended ();
+                /* We do not want to emit an "ended" signal if already ended - it can cause premature
+                 * ending of next video and other side-effects
+                 */
+                if (playback.playing) {
+                    playback.playing = false;
+                    playback.progress = 1.0;
+                    ended ();
+                }
             });
 
             bottom_bar.notify["child-revealed"].connect (() => {
@@ -274,7 +281,7 @@ namespace Audience {
 
         public void play_file (string uri, bool from_beginning = true) {
             debug ("Opening %s", uri);
-
+            pipeline.set_state (Gst.State.NULL);
             var file = File.new_for_uri (uri);
             try {
                 FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
@@ -350,7 +357,7 @@ namespace Audience {
         }
 
         public void prev () {
-            get_playlist_widget ().next ();
+            get_playlist_widget ().next (); //Is this right??
         }
 
         public void resume_last_videos () {
@@ -446,12 +453,10 @@ namespace Audience {
         public void set_subtitle (string uri) {
             var progress = playback.progress;
             var is_playing = playback.playing;
-            unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
 
             /* Temporarily connect to the ready signal so that we can restore the progress setting
              * after resetting the pipeline in order to set the subtitle uri */
             ready_handler_id = playback.ready.connect (() => {
-
                 playback.progress = progress;
                 // Pause video if it was in Paused state before adding the subtitle
                 if (!is_playing) {
@@ -480,7 +485,6 @@ namespace Audience {
         private bool navigation_event (GtkClutter.Embed embed, Clutter.Event event) {
             var video_sink = playback.get_video_sink ();
             var frame = video_sink.get_frame ();
-
             if (frame == null) {
                 return true;
             }

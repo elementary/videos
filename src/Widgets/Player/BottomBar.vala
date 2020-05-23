@@ -72,7 +72,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     }
 
     private bool _playing = false;
-    public bool playing {
+    public bool playing { // This is bound to Playerpage.playing
         get {
             return _playing;
         }
@@ -126,7 +126,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         play_button.tooltip_text = _("Play");
         play_button.clicked.connect (() => {
             playing = !playing;
-            play_toggled ();
+            play_toggled (); //Not used
         });
 
         playlist_button = new Gtk.Button.from_icon_name ("view-list-symbolic", Gtk.IconSize.BUTTON);
