@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: elementary/docker:hera-unstable
+      image: elementary/docker:juno-unstable
 
     steps:
     - uses: actions/checkout@v1
