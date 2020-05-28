@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-09 18:28+0000\n"
+"POT-Creation-Date: 2020-05-28 18:02+0000\n"
 "PO-Revision-Date: 2017-01-20 11:38+0000\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
-#: src/Application.vala:73 src/Window.vala:523
+#: src/Application.vala:75 src/Window.vala:523
 msgid "Videos"
 msgstr "Snimke"
 
@@ -227,11 +227,6 @@ msgstr "Zapis %u"
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "None"
 msgstr "Isključeni"
-
-#: src/Widgets/Player/SettingsPopover.vala:151
-#, c-format
-msgid "%s"
-msgstr ""
 
 #: src/Widgets/Player/SettingsPopover.vala:166
 msgid "Default"
