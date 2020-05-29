@@ -62,6 +62,10 @@
   <releases>
     <release version="2.7.1" date="2020-04-14" urgency="medium">
       <description>
+        <p>New features:</p>
+        <ul>
+          <li>Load external subtitles</li>
+        </ul>
         <p>Other updates:</p>
         <ul>
           <li>Reliably update the replay button description and file</li>
