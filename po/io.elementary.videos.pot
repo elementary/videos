@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.videos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-09 18:28+0000\n"
+"POT-Creation-Date: 2020-05-28 18:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/Application.vala:73 src/Window.vala:523
+#: src/Application.vala:75 src/Window.vala:523
 msgid "Videos"
 msgstr ""
 
@@ -223,11 +223,6 @@ msgstr ""
 
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "None"
-msgstr ""
-
-#: src/Widgets/Player/SettingsPopover.vala:151
-#, c-format
-msgid "%s"
 msgstr ""
 
 #: src/Widgets/Player/SettingsPopover.vala:166

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-09 18:28+0000\n"
+"POT-Creation-Date: 2020-05-28 18:02+0000\n"
 "PO-Revision-Date: 2020-05-16 11:10+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:73 src/Window.vala:523
+#: src/Application.vala:75 src/Window.vala:523
 msgid "Videos"
 msgstr "视频"
 
@@ -230,14 +230,12 @@ msgstr "曲目 %u"
 msgid "None"
 msgstr "无"
 
-#: src/Widgets/Player/SettingsPopover.vala:151
-#, c-format
-msgid "%s"
-msgstr "%s"
-
 #: src/Widgets/Player/SettingsPopover.vala:166
 msgid "Default"
 msgstr "默认"
+
+#~ msgid "%s"
+#~ msgstr "%s"
 
 #~ msgid "Audience;Video;Player;Movies;"
 #~ msgstr "视频;视频;播放器;影片;"

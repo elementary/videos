@@ -151,7 +151,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         playback.get_audio_streams ().foreach ((lang) => {
             var audio_stream_lang = languages_names.nth_data (track - 1);
             if (audio_stream_lang != null) {
-                languages.append (lang, _("%s").printf (audio_stream_lang));
+                languages.append (lang, audio_stream_lang);
             } else {
                 languages.append (lang, _("Track %u").printf (track));
             }

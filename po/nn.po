@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-09 18:28+0000\n"
+"POT-Creation-Date: 2020-05-28 18:02+0000\n"
 "PO-Revision-Date: 2019-01-07 00:03+0000\n"
 "Last-Translator: Simon Dagfinrud <semonje@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk <https://weblate.elementary.io/projects/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:73 src/Window.vala:523
+#: src/Application.vala:75 src/Window.vala:523
 msgid "Videos"
 msgstr "Videoar"
 
@@ -229,11 +229,6 @@ msgstr "Spor %u"
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "None"
 msgstr "Ingen"
-
-#: src/Widgets/Player/SettingsPopover.vala:151
-#, c-format
-msgid "%s"
-msgstr ""
 
 #: src/Widgets/Player/SettingsPopover.vala:166
 msgid "Default"
