@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-28 18:02+0000\n"
-"PO-Revision-Date: 2020-05-11 21:10+0000\n"
+"PO-Revision-Date: 2020-05-29 19:23+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
-"Language-Team: Czech <https://l10n.elementary.io/projects/videos/videos/cs/"
-">\n"
+"Language-Team: Czech <https://l10n.elementary.io/projects/videos/videos/cs/>"
+"\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,7 +80,7 @@ msgstr "_Otevřít"
 
 #: src/Window.vala:423 src/Widgets/Library/LibraryItem.vala:171
 msgid "_Cancel"
-msgstr "_Zrušit"
+msgstr "_Storno"
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
@@ -142,7 +142,7 @@ msgstr "Sledovat film z vaší knihovny"
 
 #: src/Widgets/WelcomePage.vala:111
 msgid "Resume last video"
-msgstr "Pokračovat v posledním videu"
+msgstr "Pokračovat v naposledy otevřeném videu"
 
 #: src/Widgets/Library/LibraryItem.vala:64
 msgid "Move to Trash"
@@ -159,7 +159,7 @@ msgstr "Obrázkové soubory"
 #: src/Widgets/Library/LibraryPage.vala:69
 #, c-format
 msgid "Video '%s' Removed."
-msgstr "Video '%s' odstraněno."
+msgstr "Video „%s“ odstraněno."
 
 #: src/Widgets/Player/BottomBar.vala:83
 msgid "Pause"
@@ -188,11 +188,11 @@ msgstr "Vyčistit seznam stop"
 #: src/Widgets/Player/PlaylistPopover.vala:45
 #: src/Widgets/Player/PlaylistPopover.vala:76
 msgid "Enable Repeat"
-msgstr "Povolit opakování"
+msgstr "Zapnout opakování"
 
 #: src/Widgets/Player/PlaylistPopover.vala:73
 msgid "Disable Repeat"
-msgstr "Zakázat opakování"
+msgstr "Vypnout opakování"
 
 #: src/Widgets/Player/SettingsPopover.vala:40
 msgid "Subtitle files"
