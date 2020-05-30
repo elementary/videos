@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-29 19:24+0000\n"
-"PO-Revision-Date: 2020-04-21 01:10+0000\n"
+"PO-Revision-Date: 2020-06-02 13:11+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -63,7 +63,7 @@ msgstr "新機能:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Load external subtitles"
-msgstr ""
+msgstr "外部字幕の読み込みに対応"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 #: data/io.elementary.videos.appdata.xml.in:88
