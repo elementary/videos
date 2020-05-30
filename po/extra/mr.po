@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-29 19:24+0000\n"
-"PO-Revision-Date: 2020-05-28 10:11+0000\n"
+"PO-Revision-Date: 2020-06-02 13:11+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/videos/extra/mr/"
-">\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/videos/extra/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,7 +61,7 @@ msgstr "नवीन वैशिष्ट्ये:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Load external subtitles"
-msgstr ""
+msgstr "बाह्य उपशीर्षके लोड करा"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 #: data/io.elementary.videos.appdata.xml.in:88
