@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-29 19:24+0000\n"
-"PO-Revision-Date: 2020-04-11 10:10+0000\n"
+"PO-Revision-Date: 2020-06-02 13:11+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/videos/extra/"
 "pt/>\n"
@@ -63,7 +63,7 @@ msgstr "Novas funcionalidades:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Load external subtitles"
-msgstr ""
+msgstr "Carregar legendas externas"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 #: data/io.elementary.videos.appdata.xml.in:88
