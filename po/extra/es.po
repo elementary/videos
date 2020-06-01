@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-29 19:24+0000\n"
-"PO-Revision-Date: 2020-05-01 04:10+0000\n"
+"PO-Revision-Date: 2020-06-02 13:11+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
-"Language-Team: Spanish <https://l10n.elementary.io/projects/videos/extra/es/"
-">\n"
+"Language-Team: Spanish <https://l10n.elementary.io/projects/videos/extra/es/>"
+"\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,7 +63,7 @@ msgstr "Funcionalidades nuevas:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Load external subtitles"
-msgstr ""
+msgstr "Carga de subtítulos externos"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 #: data/io.elementary.videos.appdata.xml.in:88
@@ -112,27 +112,27 @@ msgstr "Añadido un botón para limpiar la lista de reproducción"
 
 #: data/io.elementary.videos.appdata.xml.in:85
 msgid "Show audio track language in settings"
-msgstr "Mostrar el idioma de la pista de audio en la configuración"
+msgstr "Se muestra el idioma de la pista de audio en la configuración"
 
 #: data/io.elementary.videos.appdata.xml.in:86
 msgid "Show playlist item titles in their tooltips"
 msgstr ""
-"Mostrar el título de los elementos de la lista de reproducción en su "
-"información sobre herramientas"
+"El título de los elementos de la lista de reproducción figura en sus "
+"descripciones emergentes"
 
 #: data/io.elementary.videos.appdata.xml.in:90
 msgid "Show an error for unsupported files"
-msgstr "Mostrar un error para archivos no compatibles"
+msgstr "Se muestra un error para archivos no compatibles"
 
 #: data/io.elementary.videos.appdata.xml.in:91
 msgid "Fix disappearing cursor on headerbar"
-msgstr "Corrección de la desaparición del cursor en la barra de encabezado"
+msgstr "Corrección de la desaparición del cursor en la barra de cabecera"
 
 #: data/io.elementary.videos.appdata.xml.in:92
 msgid "Hide seekbar preview when switching windows with Alt + Tab"
 msgstr ""
-"Ocultar la vista previa de la barra de búsqueda al cambiar de ventana con "
-"Alt + Tabulador"
+"Se oculta la previsualización de la barra de búsqueda al cambiar de ventana "
+"con Alt + Tabulador"
 
 #: data/io.elementary.videos.appdata.xml.in:100
 #: data/io.elementary.videos.appdata.xml.in:108
@@ -157,7 +157,7 @@ msgstr "Limitar las pausas consecutivas de la barra espaciadora"
 
 #: data/io.elementary.videos.appdata.xml.in:145
 msgid "Crash fixes"
-msgstr "Correcciones de bloqueo"
+msgstr "Correcciones de cierres inesperados"
 
 #: data/io.elementary.videos.appdata.xml.in:146
 msgid "Remove About dialog"
