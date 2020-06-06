@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-29 19:24+0000\n"
-"PO-Revision-Date: 2020-06-02 13:11+0000\n"
+"PO-Revision-Date: 2020-06-07 13:11+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -80,7 +80,7 @@ msgstr "最後に再生した動画と再生位置をより正確に保存"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Fix missing icon in episode view"
-msgstr "エピソードビューでアイコンが表示されていなかった問題を修正"
+msgstr "エピソードビューでアイコンが表示されていなかった不具合を修正"
 
 #: data/io.elementary.videos.appdata.xml.in:74
 #: data/io.elementary.videos.appdata.xml.in:93
@@ -120,7 +120,7 @@ msgstr "非対応のファイルに対しエラーを表示するように修正
 
 #: data/io.elementary.videos.appdata.xml.in:91
 msgid "Fix disappearing cursor on headerbar"
-msgstr "ヘッダーバーでカーソルが消える問題を修正"
+msgstr "ヘッダーバーでカーソルが消える不具合を修正"
 
 #: data/io.elementary.videos.appdata.xml.in:92
 msgid "Hide seekbar preview when switching windows with Alt + Tab"
@@ -139,7 +139,7 @@ msgstr "ウィンドウの動作の改善"
 
 #: data/io.elementary.videos.appdata.xml.in:124
 msgid "Fix disappearing subtitle tracks"
-msgstr "字幕が消える問題を修正"
+msgstr "字幕が消える不具合を修正"
 
 #: data/io.elementary.videos.appdata.xml.in:131
 msgid "Disallow setting playback before start"
