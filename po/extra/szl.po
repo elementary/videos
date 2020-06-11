@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-29 19:24+0000\n"
-"PO-Revision-Date: 2020-02-23 10:08+0000\n"
-"Last-Translator: gkkulik <g.kulik@o2.pl>\n"
+"PO-Revision-Date: 2020-06-12 22:11+0000\n"
+"Last-Translator: Grzegorz Kulik <g.kulik@o2.pl>\n"
 "Language-Team: Silesian <https://l10n.elementary.io/projects/videos/extra/"
 "szl/>\n"
 "Language: szl\n"
@@ -58,7 +58,7 @@ msgstr "Nowe funkcyje:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Load external subtitles"
-msgstr ""
+msgstr "Wgrej zewnyntrzne nopisy"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 #: data/io.elementary.videos.appdata.xml.in:88
@@ -67,15 +67,17 @@ msgstr "Inksze aktualizacyje:"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Reliably update the replay button description and file"
-msgstr ""
+msgstr "Pewne aktualizowanie ôpisu knefla granio ôd nowa i zbioru"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid "More consistently remember the last playing video and its play position"
 msgstr ""
+"Barzij stabilne pamiyntanie ôstatnio granego filmu i czasu, kedy sie "
+"skōńczyło"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Fix missing icon in episode view"
-msgstr ""
+msgstr "Sprawiynie brakujōncyj ikōny we widoku ôdcinkōw"
 
 #: data/io.elementary.videos.appdata.xml.in:74
 #: data/io.elementary.videos.appdata.xml.in:93
