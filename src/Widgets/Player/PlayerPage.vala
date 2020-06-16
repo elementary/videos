@@ -33,6 +33,7 @@ namespace Audience {
         private GtkClutter.Embed clutter;
         private GnomeMediaKeys mediakeys;
         private ClutterGst.Playback playback;
+        private unowned Gst.Pipeline pipeline;
         private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_bar;
         private GtkClutter.Actor unfullscreen_actor;
@@ -82,6 +83,8 @@ namespace Audience {
             events |= Gdk.EventMask.KEY_PRESS_MASK;
             events |= Gdk.EventMask.KEY_RELEASE_MASK;
             playback = new ClutterGst.Playback ();
+            pipeline = (Gst.Pipeline)(playback.get_pipeline ());
+
             playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
 
             clutter = new GtkClutter.Embed ();
@@ -208,7 +211,9 @@ namespace Audience {
                 // FIXME:should find better way to decide if its end of playlist
                 if (playback.progress > 0.99) {
                     settings.set_double ("last-stopped", 0);
-                } else {
+                } else if (playback.uri != "") {
+                    /* The progress is only valid if the uri has not been reset as the current video setting is not
+                     * updated.  The playback.uri has been reset when the window is destroyed from the Welcome page */
                     settings.set_double ("last-stopped", playback.progress);
                 }
 
@@ -240,14 +245,18 @@ namespace Audience {
             });
 
             get_playlist_widget ().stop_video.connect (() => {
-                playback.playing = false;
-                playback.progress = 1.0;
-
                 settings.set_double ("last-stopped", 0);
                 settings.set_strv ("last-played-videos", {});
                 settings.set_string ("current-video", "");
 
-                ended ();
+                /* We do not want to emit an "ended" signal if already ended - it can cause premature
+                 * ending of next video and other side-effects
+                 */
+                if (playback.playing) {
+                    playback.playing = false;
+                    playback.progress = 1.0;
+                    ended ();
+                }
             });
 
             bottom_bar.notify["child-revealed"].connect (() => {
@@ -272,7 +281,7 @@ namespace Audience {
 
         public void play_file (string uri, bool from_beginning = true) {
             debug ("Opening %s", uri);
-
+            pipeline.set_state (Gst.State.NULL);
             var file = File.new_for_uri (uri);
             try {
                 FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
@@ -301,17 +310,25 @@ namespace Audience {
             get_playlist_widget ().set_current (uri);
             playback.uri = uri;
 
-            string? sub_uri = get_subtitle_for_uri (uri);
-            if (sub_uri != null && sub_uri != uri)
-                playback.set_subtitle_uri (sub_uri);
 
             App.get_instance ().mainwindow.title = get_title (uri);
 
+            /* Set progress before subtitle uri else it gets reset to zero */
             if (from_beginning) {
                 playback.progress = 0.0;
             } else {
                 playback.progress = settings.get_double ("last-stopped");
             }
+
+            string sub_uri = "";
+            if (!from_beginning) { //We are resuming the current video - fetch the current subtitles
+                /* Should not bind to this setting else may cause loop */
+                sub_uri = settings.get_string ("current-external-subtitles-uri");
+            } else {
+                sub_uri = get_subtitle_for_uri (uri);
+            }
+
+            set_subtitle (sub_uri);
 
             playback.playing = !settings.get_boolean ("playback-wait");
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
@@ -340,7 +357,7 @@ namespace Audience {
         }
 
         public void prev () {
-            get_playlist_widget ().next ();
+            get_playlist_widget ().next (); //Is this right??
         }
 
         public void resume_last_videos () {
@@ -356,8 +373,8 @@ namespace Audience {
         }
 
         public void append_to_playlist (File file) {
-            if (playback.playing && is_subtitle (file.get_uri ())) {
-                playback.set_subtitle_uri (file.get_uri ());
+            if (is_subtitle (file.get_uri ())) {
+                set_subtitle (file.get_uri ());
             } else {
                 get_playlist_widget ().add_item (file);
             }
@@ -395,7 +412,9 @@ namespace Audience {
             }
         }
 
-        private string? get_subtitle_for_uri (string uri) {
+        private string get_subtitle_for_uri (string uri) {
+            /* This assumes that the subtitle file has the same basename as the video file but with
+             * one of the subtitle extensions, and is in the same folder. */
             string without_ext;
             int last_dot = uri.last_index_of (".", 0);
             int last_slash = uri.last_index_of ("/", 0);
@@ -412,7 +431,8 @@ namespace Audience {
                     return sub_uri;
                 }
             }
-            return null;
+
+            return "";
         }
 
         private bool is_subtitle (string uri) {
@@ -429,6 +449,30 @@ namespace Audience {
             return false;
         }
 
+        private ulong ready_handler_id = 0;
+        public void set_subtitle (string uri) {
+            var progress = playback.progress;
+            var is_playing = playback.playing;
+
+            /* Temporarily connect to the ready signal so that we can restore the progress setting
+             * after resetting the pipeline in order to set the subtitle uri */
+            ready_handler_id = playback.ready.connect (() => {
+                playback.progress = progress;
+                // Pause video if it was in Paused state before adding the subtitle
+                if (!is_playing) {
+                    pipeline.set_state (Gst.State.PAUSED);
+                }
+
+                playback.disconnect (ready_handler_id);
+            });
+
+            pipeline.set_state (Gst.State.NULL); // Does not work otherwise
+            playback.set_subtitle_uri (uri);
+            pipeline.set_state (Gst.State.PLAYING);
+
+            settings.set_string ("current-external-subtitles-uri", uri);
+        }
+
         public bool update_pointer_position (double y, int window_height) {
             App.get_instance ().mainwindow.get_window ().set_cursor (null);
 
@@ -441,7 +485,6 @@ namespace Audience {
         private bool navigation_event (GtkClutter.Embed embed, Clutter.Event event) {
             var video_sink = playback.get_video_sink ();
             var frame = video_sink.get_frame ();
-
             if (frame == null) {
                 return true;
             }

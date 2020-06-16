@@ -69,11 +69,14 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.column_spacing = 12;
 
         external_subtitle_file.file_set.connect (() => {
-            playback.set_subtitle_uri (external_subtitle_file.get_uri ());
+            App.get_instance ().mainwindow.player_page.set_subtitle (external_subtitle_file.get_uri ());
         });
 
-        playback.notify["subtitle-uri"].connect (() => {
-            external_subtitle_file.select_uri (playback.subtitle_uri);
+        unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
+        /* playback.subtitle_uri does not seem to notify so connect directly to the pipeline */
+        pipeline.notify["suburi"].connect (() => {
+            /* Easier to retrieve the uri from the playback than the pipeline */
+            external_subtitle_file.select_uri (playback.subtitle_uri ?? "");
         });
 
         subtitles.changed.connect (on_subtitles_changed);
@@ -148,7 +151,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         playback.get_audio_streams ().foreach ((lang) => {
             var audio_stream_lang = languages_names.nth_data (track - 1);
             if (audio_stream_lang != null) {
-                languages.append (lang, _("%s").printf (audio_stream_lang));
+                languages.append (lang, audio_stream_lang);
             } else {
                 languages.append (lang, _("Track %u").printf (track));
             }
