@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-29 19:24+0000\n"
-"PO-Revision-Date: 2020-01-07 01:30+0000\n"
+"PO-Revision-Date: 2020-06-18 15:11+0000\n"
 "Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/videos/extra/nl/>\n"
 "Language: nl\n"
@@ -57,28 +57,31 @@ msgstr "Miniatuurweergave tijdens het zoeken"
 #: data/io.elementary.videos.appdata.xml.in:65
 #: data/io.elementary.videos.appdata.xml.in:80
 msgid "New features:"
-msgstr ""
+msgstr "Nieuwe functies:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Load external subtitles"
-msgstr ""
+msgstr "Laad externe ondertiteling"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 #: data/io.elementary.videos.appdata.xml.in:88
 msgid "Other updates:"
-msgstr ""
+msgstr "Andere updates:"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Reliably update the replay button description and file"
 msgstr ""
+"Verbeterde bijwerking van de beschrijving van de herhaal knop en het bestand"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid "More consistently remember the last playing video and its play position"
 msgstr ""
+"De speler onthoudt het laatst afgespeelde videobestand en de afspeelpositie "
+"beter"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Fix missing icon in episode view"
-msgstr ""
+msgstr "Ontbrekend icoon toegevoegd in aflevering weergave"
 
 #: data/io.elementary.videos.appdata.xml.in:74
 #: data/io.elementary.videos.appdata.xml.in:93
@@ -94,7 +97,7 @@ msgstr "Bijgewerkte vertalingen"
 
 #: data/io.elementary.videos.appdata.xml.in:82
 msgid "Option to automatically play next videos"
-msgstr ""
+msgstr "Optie om automatisch de volgende videobestanden af te spelen"
 
 #: data/io.elementary.videos.appdata.xml.in:83
 msgid "Navigate the playlist with the keyboard"
@@ -106,7 +109,7 @@ msgstr "Een knop toegevoegd om de afspeellijst te legen"
 
 #: data/io.elementary.videos.appdata.xml.in:85
 msgid "Show audio track language in settings"
-msgstr ""
+msgstr "Toon de taal van de audio in instellingen"
 
 #: data/io.elementary.videos.appdata.xml.in:86
 msgid "Show playlist item titles in their tooltips"
@@ -114,7 +117,7 @@ msgstr "Toon de titels van items op de afspeellijst in hun tooltips"
 
 #: data/io.elementary.videos.appdata.xml.in:90
 msgid "Show an error for unsupported files"
-msgstr ""
+msgstr "Toon een foutmelding voor bestandstypen die niet ondersteund worden"
 
 #: data/io.elementary.videos.appdata.xml.in:91
 msgid "Fix disappearing cursor on headerbar"
