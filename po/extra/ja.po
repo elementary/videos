@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-30 23:20+0000\n"
-"PO-Revision-Date: 2020-06-07 13:11+0000\n"
+"PO-Revision-Date: 2020-07-02 23:12+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -58,11 +58,11 @@ msgstr "シークバー上のサムネイルプレビュー"
 
 #: data/io.elementary.videos.appdata.xml.in:65
 msgid "Improvements:"
-msgstr ""
+msgstr "改善点:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Start up faster with large libraries"
-msgstr ""
+msgstr "ライブラリのサイズが大きい環境での起動を高速化"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 #: data/io.elementary.videos.appdata.xml.in:83
@@ -72,11 +72,11 @@ msgstr "そのほかのアップデート:"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Fix cases where subtitles refused to load"
-msgstr ""
+msgstr "字幕の読み込みが拒否される不具合を修正"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid "Handle if library folder is deleted or moved"
-msgstr ""
+msgstr "ライブラリフォルダーが削除または移動された場合に正しく処理できるように修正"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 #: data/io.elementary.videos.appdata.xml.in:88
