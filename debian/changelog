@@ -1,3 +1,22 @@
+audience (2.7.2) bionic; urgency=medium
+
+  * Release 2.7.2 (#204)
+  * Update translation files
+  * Update translation template
+  * Update io.elementary.videos.appdata.xml.in
+  * Update translation files
+  * Update translation files
+  * Update translation template
+  * Fix External subtitle not loading (#153)
+  * Update translation files
+  * Update translation template
+  * SettingsPopover: Remove unnecessary print (#202)
+  * CI: Use the juno container (#203)
+  * LibraryManager yield, and reduced FileMonitors (#191)
+  * Application: handle if library-folder doesn't exist (#190)
+
+ -- Cody Garver <cody@elementary.io>  Wed, 01 Jul 2020 16:28:05 +0000
+
 audience (2.7.1) bionic; urgency=medium
 
   * Release 2.7.1 (#189)
