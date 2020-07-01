@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-30 23:20+0000\n"
-"PO-Revision-Date: 2020-06-02 13:11+0000\n"
+"PO-Revision-Date: 2020-07-01 16:26+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
-"Language-Team: French <https://l10n.elementary.io/projects/videos/extra/fr/"
-">\n"
+"Language-Team: French <https://l10n.elementary.io/projects/videos/extra/fr/>"
+"\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,11 +58,11 @@ msgstr "Miniatures sur la barre de navigation"
 
 #: data/io.elementary.videos.appdata.xml.in:65
 msgid "Improvements:"
-msgstr ""
+msgstr "Améliorations :"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Start up faster with large libraries"
-msgstr ""
+msgstr "Démarrage plus rapide avec de grandes bibliothèques"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 #: data/io.elementary.videos.appdata.xml.in:83
@@ -72,11 +72,13 @@ msgstr "Autres mises à jour :"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Fix cases where subtitles refused to load"
-msgstr ""
+msgstr "Correction des cas où les sous-titres ne chargeaient pas"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid "Handle if library folder is deleted or moved"
 msgstr ""
+"Gestion correcte en cas de déplacement ou suppression du dossier de "
+"bibliothèque"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 #: data/io.elementary.videos.appdata.xml.in:88
