@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-30 23:20+0000\n"
-"PO-Revision-Date: 2020-06-02 13:11+0000\n"
+"PO-Revision-Date: 2020-07-01 16:26+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/videos/extra/"
 "pt/>\n"
@@ -58,11 +58,11 @@ msgstr "Miniaturas na barra de pesquisa"
 
 #: data/io.elementary.videos.appdata.xml.in:65
 msgid "Improvements:"
-msgstr ""
+msgstr "Melhorias:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Start up faster with large libraries"
-msgstr ""
+msgstr "Inicia mais rapidamente com grandes bibliotecas"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 #: data/io.elementary.videos.appdata.xml.in:83
@@ -72,11 +72,11 @@ msgstr "Outras actualizações:"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Fix cases where subtitles refused to load"
-msgstr ""
+msgstr "Correção de casos em que as legendas se recusavam a carregar"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid "Handle if library folder is deleted or moved"
-msgstr ""
+msgstr "Resolve se a pasta da biblioteca for apagada ou movida"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 #: data/io.elementary.videos.appdata.xml.in:88
