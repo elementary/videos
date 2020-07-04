@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-30 23:20+0000\n"
-"PO-Revision-Date: 2020-06-18 15:11+0000\n"
+"PO-Revision-Date: 2020-07-05 16:12+0000\n"
 "Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/videos/extra/nl/>\n"
 "Language: nl\n"
@@ -56,11 +56,11 @@ msgstr "Miniatuurweergave tijdens het zoeken"
 
 #: data/io.elementary.videos.appdata.xml.in:65
 msgid "Improvements:"
-msgstr ""
+msgstr "Verbeteringen:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Start up faster with large libraries"
-msgstr ""
+msgstr "Start sneller op met grote bibliotheken"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 #: data/io.elementary.videos.appdata.xml.in:83
@@ -70,11 +70,11 @@ msgstr "Andere updates:"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Fix cases where subtitles refused to load"
-msgstr ""
+msgstr "Problemen opgelost met het laden van ondertitels"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid "Handle if library folder is deleted or moved"
-msgstr ""
+msgstr "Verwerk als de bibliotheek map wordt verwijderd of verplaatst"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 #: data/io.elementary.videos.appdata.xml.in:88
