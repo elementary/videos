@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-30 23:20+0000\n"
-"PO-Revision-Date: 2020-05-18 20:11+0000\n"
-"Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
-"Language-Team: Turkish <https://l10n.elementary.io/projects/videos/extra/tr/"
-">\n"
+"PO-Revision-Date: 2020-07-16 10:12+0000\n"
+"Last-Translator: Sinan Decron <intenfinitia@gmail.com>\n"
+"Language-Team: Turkish <https://l10n.elementary.io/projects/videos/extra/tr/>"
+"\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,25 +58,25 @@ msgstr "Arama çubuğunda önizlemeler"
 
 #: data/io.elementary.videos.appdata.xml.in:65
 msgid "Improvements:"
-msgstr ""
+msgstr "İyileştirmeler:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Start up faster with large libraries"
-msgstr ""
+msgstr "Büyük kütüphanelerle hızlı açılır"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 #: data/io.elementary.videos.appdata.xml.in:83
 #: data/io.elementary.videos.appdata.xml.in:102
 msgid "Other updates:"
-msgstr ""
+msgstr "Diğer güncellemeler:"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Fix cases where subtitles refused to load"
-msgstr ""
+msgstr "Altyazıların yüklenmeyi reddettiği durumlar düzeltildi"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid "Handle if library folder is deleted or moved"
-msgstr ""
+msgstr "Kütüphane klasörü silinirse veya taşınırsa sorgula"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 #: data/io.elementary.videos.appdata.xml.in:88
@@ -94,84 +94,89 @@ msgstr "Çeviriler güncellendi"
 #: data/io.elementary.videos.appdata.xml.in:79
 #: data/io.elementary.videos.appdata.xml.in:94
 msgid "New features:"
-msgstr ""
+msgstr "Yeni özellikler:"
 
 #: data/io.elementary.videos.appdata.xml.in:81
 msgid "Load external subtitles"
-msgstr ""
+msgstr "Dışarıdan altyazıları yükle"
 
 #: data/io.elementary.videos.appdata.xml.in:85
 msgid "Reliably update the replay button description and file"
 msgstr ""
+"Yeniden oynatma düğmesi açıklamasını ve dosyasını güvenilir bir şekilde "
+"güncelle"
 
 #: data/io.elementary.videos.appdata.xml.in:86
 msgid "More consistently remember the last playing video and its play position"
 msgstr ""
+"Son oynatılan videoyu ve oynatma konumunu daha tutarlı bir şekilde hatırla"
 
 #: data/io.elementary.videos.appdata.xml.in:87
 msgid "Fix missing icon in episode view"
-msgstr ""
+msgstr "Bölüm görünümünde eksik simgeyi düzelt"
 
 #: data/io.elementary.videos.appdata.xml.in:96
 msgid "Option to automatically play next videos"
-msgstr ""
+msgstr "Sonraki videoları otomatik olarak oynatma seçeneği"
 
 #: data/io.elementary.videos.appdata.xml.in:97
 msgid "Navigate the playlist with the keyboard"
-msgstr ""
+msgstr "Çalma listesini klavye ile gezin"
 
 #: data/io.elementary.videos.appdata.xml.in:98
 msgid "Add a button to clear the playlist"
-msgstr ""
+msgstr "Oynatma listesini silmek için bir düğme ekleyin"
 
 #: data/io.elementary.videos.appdata.xml.in:99
 msgid "Show audio track language in settings"
-msgstr ""
+msgstr "Ses parçası dilini ayarlarda göster"
 
 #: data/io.elementary.videos.appdata.xml.in:100
 msgid "Show playlist item titles in their tooltips"
-msgstr ""
+msgstr "Oynatma listesi öğe başlıklarını araç ipuçlarında göster"
 
 #: data/io.elementary.videos.appdata.xml.in:104
 msgid "Show an error for unsupported files"
-msgstr ""
+msgstr "Desteklenmeyen dosyalar için hata göster"
 
 #: data/io.elementary.videos.appdata.xml.in:105
 msgid "Fix disappearing cursor on headerbar"
-msgstr ""
+msgstr "Başlık çubuğunda kaybolan imleç düzeltildi"
 
 #: data/io.elementary.videos.appdata.xml.in:106
 msgid "Hide seekbar preview when switching windows with Alt + Tab"
 msgstr ""
+"Alt + Tab ile pencereler arasında geçiş yaparken arama çubuğu önizlemesini "
+"gizle"
 
 #: data/io.elementary.videos.appdata.xml.in:114
 #: data/io.elementary.videos.appdata.xml.in:122
 msgid "Build fixes"
-msgstr ""
+msgstr "Derleme düzeltmeleri"
 
 #: data/io.elementary.videos.appdata.xml.in:137
 msgid "Window behavior improvements"
-msgstr ""
+msgstr "Pencere davranışı iyileştirmeleri"
 
 #: data/io.elementary.videos.appdata.xml.in:138
 msgid "Fix disappearing subtitle tracks"
-msgstr ""
+msgstr "Kaybolan altyazı parçaları düzeltildi"
 
 #: data/io.elementary.videos.appdata.xml.in:145
 msgid "Disallow setting playback before start"
-msgstr ""
+msgstr "Başlamadan önce oynatma ayarına izin verme"
 
 #: data/io.elementary.videos.appdata.xml.in:152
 msgid "Limit consecutive spacebar pauses"
-msgstr ""
+msgstr "Ardışık boşluk çubuğu duraklamalarını sınırla"
 
 #: data/io.elementary.videos.appdata.xml.in:159
 msgid "Crash fixes"
-msgstr ""
+msgstr "Çökme düzeltmeleri"
 
 #: data/io.elementary.videos.appdata.xml.in:160
 msgid "Remove About dialog"
-msgstr ""
+msgstr "Hakkında iletişim penceresi kaldırıldı"
 
 #: data/io.elementary.videos.appdata.xml.in:161
 #: data/io.elementary.videos.appdata.xml.in:200
@@ -180,7 +185,7 @@ msgstr "Küçük hata düzeltmeleri"
 
 #: data/io.elementary.videos.appdata.xml.in:169
 msgid "Preview popover now closely follows cursor position"
-msgstr ""
+msgstr "Önizleme popover'ı şimdi imleç konumunu yakından takip ediyor"
 
 #: data/io.elementary.videos.appdata.xml.in:184
 msgid "Fix appstream date format"
