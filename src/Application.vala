@@ -52,12 +52,8 @@ namespace Audience {
 
         public override void activate () {
             if (mainwindow == null) {
-                if (settings.get_string ("last-folder") == "-1") {
+                if (settings.get_string ("last-folder") == "-1" && settings.get_string ("library-folder") == "") {
                     settings.set_string ("last-folder", GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS));
-                }
-
-                File library_folder = File.new_for_path (settings.get_string ("library-folder"));
-                if (library_folder.get_path () == "" || !library_folder.query_exists ()) {
                     settings.set_string ("library-folder", GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS));
                 };
 
