@@ -29,10 +29,11 @@ public class Audience.Window : Gtk.Window {
     private LibraryPage library_page;
     private Gtk.Stack main_stack;
     private NavigationButton navigation_button;
-    private PlayerPage player_page;
     private Gtk.SearchEntry search_entry;
     private WelcomePage welcome_page;
     private ZeitgeistManager zeitgeist_manager;
+
+    public PlayerPage player_page { get; private set; }
 
     public enum NavigationPage { WELCOME, LIBRARY, EPISODES }
 
@@ -519,8 +520,6 @@ public class Audience.Window : Gtk.Window {
         if (settings.get_boolean ("stay-on-top") && !settings.get_boolean ("playback-wait")) {
             set_keep_above (true);
         }
-
-        welcome_page.refresh ();
     }
 
     public void clear_playlist () {
@@ -536,28 +535,33 @@ public class Audience.Window : Gtk.Window {
         if (progress > 0) {
             settings.set_double ("last-stopped", progress);
         }
-        if (player_page.playing) {
-            player_page.playing = false;
-            player_page.reset_played_uri ();
-        }
-        title = _("Videos");
-        get_window ().set_cursor (null);
 
-        if (navigation_button.label == _(NAVIGATION_BUTTON_LIBRARY)) {
-            navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
-            main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
-            autoqueue_next.visible = false;
-        } else if (navigation_button.label == _(NAVIGATION_BUTTON_EPISODES)) {
-            navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
-            main_stack.set_visible_child_full ("episodes", Gtk.StackTransitionType.SLIDE_RIGHT);
-            autoqueue_next.visible = true;
-        } else {
-            navigation_button.hide ();
-            main_stack.set_visible_child (welcome_page);
-            search_entry.visible = false;
-            autoqueue_next.visible = false;
-        }
-        welcome_page.refresh ();
+        /* Changing the player_page playing properties triggers a number of signals/bindings and
+         * pipeline needs time to react so wrap subsequent code in an Idle loop.
+         */
+        player_page.playing = false;
+
+        Idle.add (() => {
+            title = _("Videos");
+            get_window ().set_cursor (null);
+
+            if (navigation_button.label == _(NAVIGATION_BUTTON_LIBRARY)) {
+                navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
+                main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
+                autoqueue_next.visible = false;
+            } else if (navigation_button.label == _(NAVIGATION_BUTTON_EPISODES)) {
+                navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
+                main_stack.set_visible_child_full ("episodes", Gtk.StackTransitionType.SLIDE_RIGHT);
+                autoqueue_next.visible = true;
+            } else {
+                navigation_button.hide ();
+                main_stack.set_visible_child (welcome_page);
+                search_entry.visible = false;
+                autoqueue_next.visible = false;
+            }
+
+            return Source.REMOVE;
+        });
     }
 
     public void hide_alert () {
