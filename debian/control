@@ -1,4 +1,4 @@
-Source: io.elementary.videos
+Source: audience
 Section: video
 Priority: optional
 Maintainer: elementary, Inc. <builds@elementary.io>
@@ -15,7 +15,7 @@ Build-Depends: debhelper (>= 10.5.1),
 Standards-Version: 4.1.1
 Homepage: https://github.com/elementary/videos
 
-Package: io.elementary.videos
+Package: audience
 Architecture: any
 Depends: xdg-utils, ${misc:Depends}, ${shlibs:Depends}
 Breaks: audience
@@ -23,11 +23,3 @@ Replaces: audience
 Description: A modern media player
  Audience is a simple, modern media player that makes greater use of
  hardware acceleration than most players out there.
-
-Package: audience
-Architecture: any
-Depends: io.elementary.videos, ${misc:Depends}
-Section: oldlibs
-Priority: optional
-Description: transitional dummy package
-    This is a transitional dummy package. It can safely be removed.

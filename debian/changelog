@@ -1,9 +1,9 @@
-io.elementary.videos (2.7.2) bionic; urgency=medium
+audience (2.7.2) bionic; urgency=medium
 
   * Release 2.7.2 (#204)
   * Update translation files
   * Update translation template
-  * Update io.elementary.videos.appdata.xml.in
+  * Update audience.appdata.xml.in
   * Update translation files
   * Update translation files
   * Update translation template
@@ -17,7 +17,7 @@ io.elementary.videos (2.7.2) bionic; urgency=medium
 
  -- Cody Garver <cody@elementary.io>  Wed, 01 Jul 2020 16:28:05 +0000
 
-io.elementary.videos (2.7.1) bionic; urgency=medium
+audience (2.7.1) bionic; urgency=medium
 
   * Release 2.7.1 (#189)
   * Update translation files
@@ -26,14 +26,14 @@ io.elementary.videos (2.7.1) bionic; urgency=medium
   * Rewrite WelcomePage (#186)
   * Update translation files
   * Update translation template
-  * Update io.elementary.videos.appdata.xml.in
+  * Update audience.appdata.xml.in
   * Prevent clearing of playlist when resuming, to avoid loss of
     progress (#183)
   * Library page may attempt to resume completed videos (#182)
   * Update translation files
   * Update translation files
   * Update translation template
-  * Update io.elementary.videos.appdata.xml.in
+  * Update audience.appdata.xml.in
   * Substitute consecutive icon for missing named icon (#184)
   * Filename incorrectly used in closure (#181)
   * Add build action (#180)
@@ -44,13 +44,13 @@ io.elementary.videos (2.7.1) bionic; urgency=medium
 
  -- Cody Garver <cody@elementary.io>  Tue, 14 Apr 2020 22:20:15 +0000
 
-io.elementary.videos (2.7.0) bionic; urgency=medium
+audience (2.7.0) bionic; urgency=medium
 
   * Release 2.7.0 (#162)
   * Update translation template
   * Show audio track names (#160)
   * Update translation template
-  * Update io.elementary.videos.appdata.xml.in
+  * Update audience.appdata.xml.in
   * Show title in tooltip for playlist item (#159)
   * Cleanup: PlayerPage.vala (#156)
   * Cleanup: Window.vala (#157)
@@ -86,103 +86,103 @@ io.elementary.videos (2.7.0) bionic; urgency=medium
 
  -- Cody Garver <cody@elementary.io>  Mon, 25 Nov 2019 17:18:55 +0000
 
-io.elementary.videos (2.6.3) bionic; urgency=medium
+audience (2.6.3) bionic; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Wed, 09 Jan 2019 04:19:08 -0600
 
-io.elementary.videos (2.6.2) bionic; urgency=medium
+audience (2.6.2) bionic; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Mon, 01 Oct 2018 01:52:42 -0500
 
-io.elementary.videos (2.6.1) bionic; urgency=medium
+audience (2.6.1) bionic; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Tue, 31 Jul 2018 04:16:34 -0500
 
-io.elementary.videos (0.2.6) bionic; urgency=medium
+audience (0.2.6) bionic; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Mon, 16 Apr 2018 09:44:39 -0700
 
-io.elementary.videos (0.2.5) xenial; urgency=medium
+audience (0.2.5) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Mon, 08 Jan 2018 13:54:00 -0600
 
-io.elementary.videos (0.2.4) xenial; urgency=medium
+audience (0.2.4) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Fri, 11 Aug 2017 21:08:18 -0500
 
-io.elementary.videos (0.2.3) xenial; urgency=medium
+audience (0.2.3) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Wed, 02 Aug 2017 06:08:39 -0500
 
-io.elementary.videos (0.2.2) xenial; urgency=medium
+audience (0.2.2) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Thu, 13 Apr 2017 19:26:21 -0500
 
-io.elementary.videos (0.2.1.2) xenial; urgency=medium
+audience (0.2.1.2) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Thu, 19 Jan 2017 16:23:14 -0600
 
-io.elementary.videos (0.2.1.1) xenial; urgency=medium
+audience (0.2.1.1) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Mon, 31 Oct 2016 15:01:36 +0100
 
-io.elementary.videos (0.2.1) xenial; urgency=medium
+audience (0.2.1) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Mon, 31 Oct 2016 00:24:34 +0100
 
-io.elementary.videos (0.2.0.2) xenial; urgency=medium
+audience (0.2.0.2) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Tue, 20 Sep 2016 13:53:23 -0500
 
-io.elementary.videos (0.2.0.1) xenial; urgency=medium
+audience (0.2.0.1) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Thu, 08 Sep 2016 17:59:05 -0500
 
-io.elementary.videos (0.2) xenial; urgency=medium
+audience (0.2) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Sat, 13 Aug 2016 06:37:38 -0500
 
-io.elementary.videos (0.1.0.2) trusty; urgency=medium
+audience (0.1.0.2) trusty; urgency=medium
 
   * Fix icon in about dialog (lp:1478005)
 
  -- Cody Garver <cody@elementary.io>  Sun, 16 Aug 2015 02:36:30 -0500
 
-io.elementary.videos (0.1.0.1) trusty; urgency=medium
+audience (0.1.0.1) trusty; urgency=medium
 
   * Custom subtitle font support (lp:1455752)
 
  -- Cody Garver <cody@elementaryos.org>  Wed, 03 Jun 2015 16:37:52 -0500
 
-io.elementary.videos (0.1-0) oneiric; urgency=low
+audience (0.1-0) oneiric; urgency=low
 
   * Initial release
 
