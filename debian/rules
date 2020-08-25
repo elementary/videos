@@ -9,15 +9,11 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-# Enable additional explot mitigation
-# (PIE and *full* RELRO at the time of this writing)
-export DEB_BUILD_MAINT_OPTIONS=hardening=+all
-
 %:
-	dh $@ --buildsystem=meson
+	dh $@
+
+override_dh_missing:
+	dh_missing --fail-missing
 
 override_dh_strip:
-	dh_strip -p audience --dbgsym-migration='audience-dbg (<< 0.2.5)'
-
-override_dh_auto_install:
-	dh_auto_install --destdir=debian/audience
+	dh_strip --dbgsym-migration='audience-dbg (<< 0.2.5)'
