@@ -5,7 +5,6 @@ src/Window.vala
 src/ZeitgeistManager.vala
 src/Objects/Video.vala
 src/Services/DirectoryMonitoring.vala
-src/Services/Inhibitor.vala
 src/Services/LibraryManager.vala
 src/Services/Thumbnailer.vala
 src/Widgets/NavigationButton.vala
