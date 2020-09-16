@@ -219,8 +219,11 @@ namespace Audience {
                 }
 
                 get_playlist_widget ().save_playlist ();
-                ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
-                inhibit_token = 0;
+
+                if (inhibit_token != 0) {
+                    ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
+                    inhibit_token = 0;
+                }
             });
 
             //end
