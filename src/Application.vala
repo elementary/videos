@@ -39,8 +39,6 @@ namespace Audience {
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
 
             settings = new GLib.Settings (SCHEMA);
-
-            Services.Inhibitor.initialize (this);
         }
 
         private static App app; // global App instance

@@ -8,7 +8,6 @@ executable(
     'ZeitgeistManager.vala',
     'Objects/Video.vala',
     'Services/DirectoryMonitoring.vala',
-    'Services/Inhibitor.vala',
     'Services/LibraryManager.vala',
     'Services/Thumbnailer.vala',
     'Widgets/NavigationButton.vala',
