@@ -284,7 +284,7 @@ namespace Audience {
                         Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND,
                         _("A video is playing")
                     );
-                } else if (inhibit_token != 0){
+                } else if (inhibit_token != 0) {
                     app.uninhibit (inhibit_token);
                     inhibit_token = 0;
                 }
