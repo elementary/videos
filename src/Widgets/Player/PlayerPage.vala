@@ -38,6 +38,7 @@ namespace Audience {
         private Gtk.Revealer unfullscreen_bar;
         private GtkClutter.Actor unfullscreen_actor;
         private Clutter.Actor video_actor;
+        private uint inhibit_token = 0;
 
         public Audience.Widgets.BottomBar bottom_bar {get; private set;}
 
@@ -218,7 +219,11 @@ namespace Audience {
                 }
 
                 get_playlist_widget ().save_playlist ();
-                Audience.Services.Inhibitor.get_instance ().uninhibit ();
+
+                if (inhibit_token != 0) {
+                    ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
+                    inhibit_token = 0;
+                }
             });
 
             //end
@@ -267,11 +272,21 @@ namespace Audience {
                 }
             });
 
-            notify["playing"].connect (() => {
-                if (playing) {
-                    Audience.Services.Inhibitor.get_instance ().inhibit ();
-                } else {
-                    Audience.Services.Inhibitor.get_instance ().uninhibit ();
+            playback.notify["playing"].connect (() => {
+                unowned Gtk.Application app = (Gtk.Application) GLib.Application.get_default ();
+                if (playback.playing) {
+                    if (inhibit_token != 0) {
+                        app.uninhibit (inhibit_token);
+                    }
+
+                    inhibit_token = app.inhibit (
+                        app.get_active_window (),
+                        Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND,
+                        _("A video is playing")
+                    );
+                } else if (inhibit_token != 0) {
+                    app.uninhibit (inhibit_token);
+                    inhibit_token = 0;
                 }
             });
 
@@ -336,7 +351,6 @@ namespace Audience {
 
             bottom_bar.preferences_popover.is_setup = false;
 
-            Audience.Services.Inhibitor.get_instance ().inhibit ();
             settings.set_string ("current-video", uri);
         }
 
