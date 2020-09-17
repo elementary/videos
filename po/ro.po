@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-29 19:24+0000\n"
+"POT-Creation-Date: 2020-09-17 16:59+0000\n"
 "PO-Revision-Date: 2017-05-30 19:54+0000\n"
 "Last-Translator: Sergiu <sergiup26@gmail.com>\n"
 "Language-Team: Romanian <https://l10n.elementary.io/projects/videos/videos/"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:75 src/Window.vala:527
+#: src/Application.vala:74 src/Window.vala:527
 msgid "Videos"
 msgstr "Fişiere video"
 
@@ -180,6 +180,10 @@ msgstr "Setări"
 #: src/Widgets/Player/BottomBar.vala:165
 msgid "Unfullscreen"
 msgstr "Ieși din ecran complet"
+
+#: src/Widgets/Player/PlayerPage.vala:285
+msgid "A video is playing"
+msgstr ""
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
 #, fuzzy

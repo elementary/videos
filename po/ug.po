@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-29 19:24+0000\n"
+"POT-Creation-Date: 2020-09-17 16:59+0000\n"
 "PO-Revision-Date: 2016-12-14 16:25+0000\n"
 "Last-Translator: ablimet <Unknown>\n"
 "Language-Team: Uyghur <ug@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
-#: src/Application.vala:75 src/Window.vala:527
+#: src/Application.vala:74 src/Window.vala:527
 msgid "Videos"
 msgstr "ۋېدىئولار"
 
@@ -177,6 +177,10 @@ msgstr "تەڭشەكلەر"
 #: src/Widgets/Player/BottomBar.vala:165
 msgid "Unfullscreen"
 msgstr "پۈتۈن ئىكراندىن چىكىنىش"
+
+#: src/Widgets/Player/PlayerPage.vala:285
+msgid "A video is playing"
+msgstr ""
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
 #, fuzzy

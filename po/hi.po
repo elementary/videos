@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-29 19:24+0000\n"
+"POT-Creation-Date: 2020-09-17 16:59+0000\n"
 "PO-Revision-Date: 2018-12-23 05:58+0000\n"
 "Last-Translator: hitanshu Sahu <hitansh.hacker1992@gmail.com>\n"
 "Language-Team: Hindi <https://weblate.elementary.io/projects/videos/videos/"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.0.1\n"
 
-#: src/Application.vala:75 src/Window.vala:527
+#: src/Application.vala:74 src/Window.vala:527
 msgid "Videos"
 msgstr "वीडियो"
 
@@ -170,6 +170,10 @@ msgstr ""
 
 #: src/Widgets/Player/BottomBar.vala:165
 msgid "Unfullscreen"
+msgstr ""
+
+#: src/Widgets/Player/PlayerPage.vala:285
+msgid "A video is playing"
 msgstr ""
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
