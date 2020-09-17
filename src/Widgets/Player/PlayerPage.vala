@@ -274,7 +274,7 @@ namespace Audience {
 
             playback.notify["playing"].connect (() => {
                 unowned Gtk.Application app = (Gtk.Application) GLib.Application.get_default ();
-                if (playing) {
+                if (playback.playing) {
                     if (inhibit_token != 0) {
                         app.uninhibit (inhibit_token);
                     }
