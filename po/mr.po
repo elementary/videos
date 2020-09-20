@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-17 16:59+0000\n"
-"PO-Revision-Date: 2020-03-26 18:09+0000\n"
+"PO-Revision-Date: 2020-09-21 11:14+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/videos/videos/mr/"
 ">\n"
@@ -176,7 +176,7 @@ msgstr "अनफुलस्क्रीन"
 
 #: src/Widgets/Player/PlayerPage.vala:285
 msgid "A video is playing"
-msgstr ""
+msgstr "एक व्हिडिओ चालू आहे"
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
 msgid "Clear Playlist"
