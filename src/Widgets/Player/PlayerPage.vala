@@ -366,7 +366,7 @@ namespace Audience {
                 var context = new Gst.PbUtils.InstallPluginsContext ();
                 context.set_desktop_id ("io.elementary.videos");
 
-                var missing_plugin_dialog = new MissingPluginDialog (playback.uri, get_title(playback.uri), plugin_name);
+                var missing_plugin_dialog = new MissingPluginDialog (playback.uri, get_title (playback.uri), plugin_name);
                 missing_plugin_dialog.present ();
                 missing_plugin_dialog.response.connect (type => {
                     if (type == Gtk.ResponseType.ACCEPT) {
