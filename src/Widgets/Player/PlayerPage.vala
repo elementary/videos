@@ -38,7 +38,6 @@ namespace Audience {
         private GtkClutter.Actor bottom_actor;
         private GnomeMediaKeys mediakeys;
         private ClutterGst.Playback playback;
-        Gst.PbUtils.DiscovererInfo discovererInfo;
         public Audience.Widgets.BottomBar bottom_bar {get; private set;}
 
         private bool mouse_primary_down = false;
@@ -296,35 +295,17 @@ namespace Audience {
                 debug (e.message);
             }
 
-             if (!check_if_plugin_available (uri)) {
-                unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
-                var caps = discovererInfo.get_stream_info ().get_caps ();
-                var message = Gst.PbUtils.missing_decoder_message_new (pipeline, caps);
-                var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail (message);
-                var plugin_name = Gst.PbUtils.missing_plugin_message_get_description (message);
-                var context = new Gst.PbUtils.InstallPluginsContext ();
-
-                var missing_plugin_dialog = new MissingPluginDialog (uri, info.get_name (), plugin_name);
-                missing_plugin_dialog.present ();
-                missing_plugin_dialog.response.connect (type => {
-                    if (type == Gtk.ResponseType.ACCEPT) {
-                        Gst.PbUtils.InstallPluginsReturn ret = Gst.PbUtils.install_plugins_sync ({ installer }, context);
-                        if (ret == Gst.PbUtils.InstallPluginsReturn.SUCCESS) {
-                            debug ("Plugin Installed");
-                        } else {
-                            debug ("Error");
-                        }
-                    }
-
-                    missing_plugin_dialog.destroy ();
-                });
-            } else {
-                play_video (uri, from_beginning);
-            }
+            play_video (uri, from_beginning);
         }
 
         private void play_video (string uri, bool from_beginning) {
             get_playlist_widget ().set_current (uri);
+
+            // Listen to all messages from the bus and catch any missing codec errors.
+            // We also listen to ready so we can remove our missing codec listener once the
+            // pipeline is ready
+            playback.get_pipeline ().bus.message.connect (listen_for_missing_codec_message);
+            playback.ready.connect (pipeline_ready);
             playback.uri = uri;
 
             string? sub_uri = get_subtitle_for_uri (uri);
@@ -348,6 +329,30 @@ namespace Audience {
 
             Audience.Services.Inhibitor.get_instance ().inhibit ();
             settings.set_string ("current-video", uri);
+        }
+
+        private void listen_for_missing_codec_message (Gst.Message msg) {
+            if (Gst.PbUtils.is_missing_plugin_message (msg)) {
+                var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail (msg);
+                var plugin_name = Gst.PbUtils.missing_plugin_message_get_description (msg);
+                var context = new Gst.PbUtils.InstallPluginsContext ();
+                context.set_desktop_id ("io.elementary.videos");
+
+                var missing_plugin_dialog = new MissingPluginDialog (playback.uri, get_title(playback.uri), plugin_name);
+                missing_plugin_dialog.present ();
+                missing_plugin_dialog.response.connect (type => {
+                    if (type == Gtk.ResponseType.ACCEPT) {
+                        Gst.PbUtils.install_plugins_async ({ installer }, context, () => {});
+                    }
+
+                    missing_plugin_dialog.destroy ();
+                });
+            }
+        }
+
+        private void pipeline_ready () {
+            playback.get_pipeline ().bus.message.disconnect (listen_for_missing_codec_message);
+            playback.ready.disconnect (pipeline_ready);
         }
 
         public double get_progress () {
@@ -496,30 +501,6 @@ namespace Audience {
             }
 
             return false;
-        }
-
-        private bool check_if_plugin_available (string uri) {
-            Gst.PbUtils.Discoverer discoverer = null;
-            try {
-                discoverer = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (DISCOVERER_TIMEOUT * Gst.SECOND));
-            } catch (Error e) {
-                debug ("Could not create Gst discoverer object: %s", e.message);
-                return true;
-            }
-
-            try {
-                discovererInfo = discoverer.discover_uri (uri);
-            } catch (Error e) {
-                debug ("Discoverer Error %d: %s\n", e.code, e.message);
-                return true;
-            }
-
-            if (discovererInfo.get_result () == Gst.PbUtils.DiscovererResult.MISSING_PLUGINS) {
-                warning ("GStreamer could not play '%s': Missing plugins.", uri);
-                return false;
-            }
-
-            return true;
         }
     }
 }
