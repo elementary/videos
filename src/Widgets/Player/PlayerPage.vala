@@ -16,7 +16,6 @@
  */
 
 namespace Audience {
-    private const int DISCOVERER_TIMEOUT = 5;
     private const string[] SUBTITLE_EXTENSIONS = {
         "sub",
         "srt",
@@ -30,14 +29,17 @@ namespace Audience {
         public signal void unfullscreen_clicked ();
         public signal void ended ();
 
-        public GtkClutter.Embed clutter;
-        private Clutter.Actor video_actor;
+        private GtkClutter.Actor bottom_actor;
+        private GtkClutter.Embed clutter;
+        private GnomeMediaKeys mediakeys;
+        private ClutterGst.Playback playback;
+        private unowned Gst.Pipeline pipeline;
         private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_bar;
         private GtkClutter.Actor unfullscreen_actor;
-        private GtkClutter.Actor bottom_actor;
-        private GnomeMediaKeys mediakeys;
-        private ClutterGst.Playback playback;
+        private Clutter.Actor video_actor;
+        private uint inhibit_token = 0;
+
         public Audience.Widgets.BottomBar bottom_bar {get; private set;}
 
         private bool mouse_primary_down = false;
@@ -82,6 +84,8 @@ namespace Audience {
             events |= Gdk.EventMask.KEY_PRESS_MASK;
             events |= Gdk.EventMask.KEY_RELEASE_MASK;
             playback = new ClutterGst.Playback ();
+            pipeline = (Gst.Pipeline)(playback.get_pipeline ());
+
             playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
 
             clutter = new GtkClutter.Embed ();
@@ -163,7 +167,7 @@ namespace Audience {
                 warning (e.message);
             }
 
-            this.motion_notify_event.connect ((event) => {
+            motion_notify_event.connect (event => {
                 if (mouse_primary_down && settings.get_boolean ("move-window")) {
                     mouse_primary_down = false;
                     App.get_instance ().mainwindow.begin_move_drag (Gdk.BUTTON_PRIMARY,
@@ -175,41 +179,51 @@ namespace Audience {
                 return update_pointer_position (event.y, allocation.height);
             });
 
-            this.button_press_event.connect ((event) => {
-                if (event.button == Gdk.BUTTON_PRIMARY)
+            button_press_event.connect (event => {
+                if (event.button == Gdk.BUTTON_PRIMARY) {
                     mouse_primary_down = true;
+                }
 
                 return false;
             });
 
-            this.button_release_event.connect ((event) => {
-                if (event.button == Gdk.BUTTON_PRIMARY)
+            button_release_event.connect (event => {
+                if (event.button == Gdk.BUTTON_PRIMARY) {
                     mouse_primary_down = false;
+                }
 
                 return false;
             });
 
-            this.leave_notify_event.connect ((event) => {
+            leave_notify_event.connect (event => {
                 Gtk.Allocation allocation;
                 clutter.get_allocation (out allocation);
 
-                if (event.x == event.window.get_width ())
+                if (event.x == event.window.get_width ()) {
                     return update_pointer_position (event.window.get_height (), allocation.height);
-                else if (event.x == 0)
+                } else if (event.x == 0) {
                     return update_pointer_position (event.window.get_height (), allocation.height);
+                }
 
                 return update_pointer_position (event.y, allocation.height);
             });
 
-            this.destroy.connect (() => {
+            destroy.connect (() => {
                 // FIXME:should find better way to decide if its end of playlist
-                if (playback.progress > 0.99)
+                if (playback.progress > 0.99) {
                     settings.set_double ("last-stopped", 0);
-                else
+                } else if (playback.uri != "") {
+                    /* The progress is only valid if the uri has not been reset as the current video setting is not
+                     * updated.  The playback.uri has been reset when the window is destroyed from the Welcome page */
                     settings.set_double ("last-stopped", playback.progress);
+                }
 
                 get_playlist_widget ().save_playlist ();
-                Audience.Services.Inhibitor.get_instance ().uninhibit ();
+
+                if (inhibit_token != 0) {
+                    ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
+                    inhibit_token = 0;
+                }
             });
 
             //end
@@ -236,14 +250,18 @@ namespace Audience {
             });
 
             get_playlist_widget ().stop_video.connect (() => {
-                playback.playing = false;
-                playback.progress = 1.0;
-
                 settings.set_double ("last-stopped", 0);
                 settings.set_strv ("last-played-videos", {});
                 settings.set_string ("current-video", "");
 
-                ended ();
+                /* We do not want to emit an "ended" signal if already ended - it can cause premature
+                 * ending of next video and other side-effects
+                 */
+                if (playback.playing) {
+                    playback.playing = false;
+                    playback.progress = 1.0;
+                    ended ();
+                }
             });
 
             bottom_bar.notify["child-revealed"].connect (() => {
@@ -254,11 +272,21 @@ namespace Audience {
                 }
             });
 
-            notify["playing"].connect (() => {
-                if (playing) {
-                    Audience.Services.Inhibitor.get_instance ().inhibit ();
-                } else {
-                    Audience.Services.Inhibitor.get_instance ().uninhibit ();
+            playback.notify["playing"].connect (() => {
+                unowned Gtk.Application app = (Gtk.Application) GLib.Application.get_default ();
+                if (playback.playing) {
+                    if (inhibit_token != 0) {
+                        app.uninhibit (inhibit_token);
+                    }
+
+                    inhibit_token = app.inhibit (
+                        app.get_active_window (),
+                        Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND,
+                        _("A video is playing")
+                    );
+                } else if (inhibit_token != 0) {
+                    app.uninhibit (inhibit_token);
+                    inhibit_token = 0;
                 }
             });
 
@@ -268,11 +296,10 @@ namespace Audience {
 
         public void play_file (string uri, bool from_beginning = true) {
             debug ("Opening %s", uri);
-
+            pipeline.set_state (Gst.State.NULL);
             var file = File.new_for_uri (uri);
-            FileInfo info = new FileInfo ();
             try {
-                info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
+                FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
                 unowned string content_type = info.get_content_type ();
 
                 if (!GLib.ContentType.is_a (content_type, "video/*")) {
@@ -295,10 +322,6 @@ namespace Audience {
                 debug (e.message);
             }
 
-            play_video (uri, from_beginning);
-        }
-
-        private void play_video (string uri, bool from_beginning) {
             get_playlist_widget ().set_current (uri);
 
             // Listen to all messages from the bus and catch any missing codec errors.
@@ -308,18 +331,24 @@ namespace Audience {
             playback.ready.connect (pipeline_ready);
             playback.uri = uri;
 
-            string? sub_uri = get_subtitle_for_uri (uri);
-            if (sub_uri != null && sub_uri != uri) {
-                playback.set_subtitle_uri (sub_uri);
-            }
-
             App.get_instance ().mainwindow.title = get_title (uri);
 
+            /* Set progress before subtitle uri else it gets reset to zero */
             if (from_beginning) {
                 playback.progress = 0.0;
             } else {
                 playback.progress = settings.get_double ("last-stopped");
             }
+
+            string sub_uri = "";
+            if (!from_beginning) { //We are resuming the current video - fetch the current subtitles
+                /* Should not bind to this setting else may cause loop */
+                sub_uri = settings.get_string ("current-external-subtitles-uri");
+            } else {
+                sub_uri = get_subtitle_for_uri (uri);
+            }
+
+            set_subtitle (sub_uri);
 
             playback.playing = !settings.get_boolean ("playback-wait");
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
@@ -327,7 +356,6 @@ namespace Audience {
 
             bottom_bar.preferences_popover.is_setup = false;
 
-            Audience.Services.Inhibitor.get_instance ().inhibit ();
             settings.set_string ("current-video", uri);
         }
 
@@ -372,7 +400,7 @@ namespace Audience {
         }
 
         public void prev () {
-            get_playlist_widget ().next ();
+            get_playlist_widget ().next (); //Is this right??
         }
 
         public void resume_last_videos () {
@@ -388,8 +416,8 @@ namespace Audience {
         }
 
         public void append_to_playlist (File file) {
-            if (playback.playing && is_subtitle (file.get_uri ())) {
-                playback.set_subtitle_uri (file.get_uri ());
+            if (is_subtitle (file.get_uri ())) {
+                set_subtitle (file.get_uri ());
             } else {
                 get_playlist_widget ().add_item (file);
             }
@@ -427,34 +455,65 @@ namespace Audience {
             }
         }
 
-        private string? get_subtitle_for_uri (string uri) {
+        private string get_subtitle_for_uri (string uri) {
+            /* This assumes that the subtitle file has the same basename as the video file but with
+             * one of the subtitle extensions, and is in the same folder. */
             string without_ext;
             int last_dot = uri.last_index_of (".", 0);
             int last_slash = uri.last_index_of ("/", 0);
 
-            if (last_dot < last_slash) //we dont have extension
+            if (last_dot < last_slash) {//we dont have extension
                 without_ext = uri;
-            else
+            } else {
                 without_ext = uri.slice (0, last_dot);
+            }
 
             foreach (string ext in SUBTITLE_EXTENSIONS) {
                 string sub_uri = without_ext + "." + ext;
-                if (File.new_for_uri (sub_uri).query_exists ())
+                if (File.new_for_uri (sub_uri).query_exists ()) {
                     return sub_uri;
+                }
             }
-            return null;
+
+            return "";
         }
 
         private bool is_subtitle (string uri) {
-            if (uri.length < 4 || uri.get_char (uri.length - 4) != '.')
+            if (uri.length < 4 || uri.get_char (uri.length - 4) != '.') {
                 return false;
+            }
 
             foreach (string ext in SUBTITLE_EXTENSIONS) {
-                if (uri.down ().has_suffix (ext))
+                if (uri.down ().has_suffix (ext)) {
                     return true;
+                }
             }
 
             return false;
+        }
+
+        private ulong ready_handler_id = 0;
+        public void set_subtitle (string uri) {
+            var progress = playback.progress;
+            var is_playing = playback.playing;
+
+            /* Temporarily connect to the ready signal so that we can restore the progress setting
+             * after resetting the pipeline in order to set the subtitle uri */
+            ready_handler_id = playback.ready.connect (() => {
+                playback.progress = progress;
+                // Pause video if it was in Paused state before adding the subtitle
+                if (!is_playing) {
+                    pipeline.set_state (Gst.State.PAUSED);
+                }
+
+                playback.disconnect (ready_handler_id);
+            });
+
+            pipeline.set_state (Gst.State.NULL); // Does not work otherwise
+            playback.set_subtitle_uri (uri);
+            pipeline.set_state (Gst.State.PLAYING);
+
+            settings.set_string ("current-external-subtitles-uri", uri);
         }
 
         public bool update_pointer_position (double y, int window_height) {
@@ -469,9 +528,9 @@ namespace Audience {
         private bool navigation_event (GtkClutter.Embed embed, Clutter.Event event) {
             var video_sink = playback.get_video_sink ();
             var frame = video_sink.get_frame ();
-
-            if (frame == null)
+            if (frame == null) {
                 return true;
+            }
 
             float x, y;
             event.get_coords (out x, out y);

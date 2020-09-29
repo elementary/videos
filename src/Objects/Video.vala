@@ -105,7 +105,9 @@ namespace Audience.Objects {
             Gdk.Pixbuf? pixbuf = null;
 
             ThreadFunc<void*> run = () => {
-                if (!FileUtils.test (thumbnail_large_path, FileTest.EXISTS) || !FileUtils.test (thumbnail_normal_path, FileTest.EXISTS)) {
+                if (!FileUtils.test (thumbnail_large_path, FileTest.EXISTS) ||
+                    !FileUtils.test (thumbnail_normal_path, FileTest.EXISTS)) {
+
                     // Call DBUS for create a new THUMBNAIL
                     Gee.ArrayList<string> uris = new Gee.ArrayList<string> ();
                     Gee.ArrayList<string> mimes = new Gee.ArrayList<string> ();
@@ -153,7 +155,7 @@ namespace Audience.Objects {
             };
 
             try {
-                new Thread<void*>.try (null, run);
+                new Thread<void*>.try (null, (owned)run);
             } catch (Error e) {
                 warning (e.message);
             }

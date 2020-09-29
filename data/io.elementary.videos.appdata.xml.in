@@ -60,6 +60,54 @@
     <content_attribute id="money-gambling">none</content_attribute>
   </content_rating>
   <releases>
+    <release version="2.7.2" date="2020-06-30" urgency="medium">
+      <description>
+        <p>Improvements:</p>
+        <ul>
+          <li>Start up faster with large libraries</li>
+        </ul>
+        <p>Other updates:</p>
+        <ul>
+          <li>Fix cases where subtitles refused to load</li>
+          <li>Handle if library folder is deleted or moved</li>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
+    <release version="2.7.1" date="2020-04-14" urgency="medium">
+      <description>
+        <p>New features:</p>
+        <ul>
+          <li>Load external subtitles</li>
+        </ul>
+        <p>Other updates:</p>
+        <ul>
+          <li>Reliably update the replay button description and file</li>
+          <li>More consistently remember the last playing video and its play position</li>
+          <li>Fix missing icon in episode view</li>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
+    <release version="2.7.0" date="2019-11-25" urgency="medium">
+      <description>
+        <p>New features:</p>
+        <ul>
+          <li>Option to automatically play next videos</li>
+          <li>Navigate the playlist with the keyboard</li>
+          <li>Add a button to clear the playlist</li>
+          <li>Show audio track language in settings</li>
+          <li>Show playlist item titles in their tooltips</li>
+        </ul>
+        <p>Other updates:</p>
+        <ul>
+          <li>Show an error for unsupported files</li>
+          <li>Fix disappearing cursor on headerbar</li>
+          <li>Hide seekbar preview when switching windows with Alt + Tab</li>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.6.3" date="2019-01-08" urgency="medium">
       <description>
         <ul>
@@ -154,7 +202,7 @@
       </description>
     </release>
   </releases>
-  <developer_name>elementary LLC.</developer_name>
+  <developer_name>elementary, Inc.</developer_name>
   <url type="homepage">https://elementary.io/</url>
   <url type="bugtracker">https://github.com/elementary/videos/issues</url>
   <url type="donation">https://elementary.io/get-involved#funding</url>

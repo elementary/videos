@@ -7,129 +7,159 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:46+0200\n"
-"PO-Revision-Date: 2018-07-24 00:05+0000\n"
-"Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
-"Language-Team: Czech <https://weblate.elementary.io/projects/videos/videos/"
-"cs/>\n"
+"POT-Creation-Date: 2020-09-17 16:59+0000\n"
+"PO-Revision-Date: 2020-05-29 19:23+0000\n"
+"Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
+"Language-Team: Czech <https://l10n.elementary.io/projects/videos/videos/cs/"
+">\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 
-#: src/Application.vala:70 src/Window.vala:482
+#: src/Application.vala:74 src/Window.vala:527
 msgid "Videos"
 msgstr "Videa"
 
 #. For better translation
-#: src/Window.vala:40
+#: src/Window.vala:41
 msgid "Back"
 msgstr "Zpět"
 
-#: src/Window.vala:41
+#: src/Window.vala:42
 msgid "Library"
 msgstr "Knihovna"
 
-#: src/Window.vala:42
+#: src/Window.vala:43
 msgid "Episodes"
 msgstr "Epizody"
 
-#: src/Window.vala:68
+#: src/Window.vala:69
 msgid "Search Videos"
 msgstr "Hledat videa"
 
-#: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
+#: src/Window.vala:82
+msgid "Play one video"
+msgstr "Přehrát jedno video"
+
+#: src/Window.vala:83
+msgid "Automatically play next videos"
+msgstr "Automaticky přehrát další videa"
+
+#: src/Window.vala:111 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Žádné výsledky pro „%s“"
 
-#: src/Window.vala:100 src/Widgets/Library/EpisodesPage.vala:106
+#: src/Window.vala:111 src/Widgets/Library/EpisodesPage.vala:126
 msgid "Try changing search terms."
 msgstr "Zkuste změnit vyhledávaný výraz."
 
-#: src/Window.vala:155
+#: src/Window.vala:168
 msgid "Restore"
 msgstr "Obnovit"
 
-#: src/Window.vala:378 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:412 src/Widgets/Player/SettingsPopover.vala:36
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: src/Window.vala:382
+#: src/Window.vala:416
 msgid "Video files"
 msgstr "Video soubory"
 
-#: src/Window.vala:386 src/Widgets/Library/LibraryItem.vala:168
+#: src/Window.vala:420 src/Widgets/Library/LibraryItem.vala:167
 msgid "Open"
 msgstr "Otevřít"
 
-#: src/Window.vala:389 src/Widgets/Library/LibraryItem.vala:171
+#: src/Window.vala:423 src/Widgets/Library/LibraryItem.vala:170
 msgid "_Open"
 msgstr "_Otevřít"
 
-#: src/Window.vala:390 src/Widgets/Library/LibraryItem.vala:172
+#: src/Window.vala:424 src/Widgets/Library/LibraryItem.vala:171
 msgid "_Cancel"
-msgstr "_Zrušit"
+msgstr "_Storno"
 
-#: src/Widgets/WelcomePage.vala:6
+#: src/Widgets/UnsupportedFileDialog.vala:25
+msgid "Unrecognized file format"
+msgstr "Neznámý formát souboru"
+
+#: src/Widgets/UnsupportedFileDialog.vala:26
+#, c-format
+msgid "Videos might not be able to play the file '%s'."
+msgstr "Videa možná nebudou umět přehrát soubor „%s“."
+
+#: src/Widgets/UnsupportedFileDialog.vala:37
+msgid "Play Anyway"
+msgstr "Přehrát přesto"
+
+#: src/Widgets/UnsupportedFileDialog.vala:40
+#, c-format
+msgid ""
+"Unable to play file at: %s\n"
+"The file is not a video (\"%s\")."
+msgstr ""
+"Nepodařilo se přehrát soubor na: %s\n"
+"Soubor není video („%s“)."
+
+#: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
 msgstr "Žádná otevřená videa"
 
-#: src/Widgets/WelcomePage.vala:6
+#: src/Widgets/WelcomePage.vala:25
 msgid "Select a source to begin playing."
 msgstr "Pro začátek přehrávání zvolte zdroj."
 
-#: src/Widgets/WelcomePage.vala:10 src/Widgets/Player/PlaylistPopover.vala:35
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:36
 msgid "Open file"
 msgstr "Otevřít soubor"
 
-#: src/Widgets/WelcomePage.vala:10
+#: src/Widgets/WelcomePage.vala:30
 msgid "Open a saved file."
 msgstr "Otevřít uložený soubor."
 
-#: src/Widgets/WelcomePage.vala:20 src/Widgets/WelcomePage.vala:79
+#: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:108
 msgid "Replay last video"
 msgstr "Přehrát poslední video"
 
-#: src/Widgets/WelcomePage.vala:22 src/Widgets/WelcomePage.vala:82
-msgid "Resume last video"
-msgstr "Pokračovat v posledním videu"
-
-#: src/Widgets/WelcomePage.vala:47 src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:38
 msgid "Play from Disc"
 msgstr "Přehrávat z disku"
 
-#: src/Widgets/WelcomePage.vala:47
+#: src/Widgets/WelcomePage.vala:32
 msgid "Watch a DVD or open a file from disc"
 msgstr "Přehrávat DVD nebo otevřít soubor z disku"
 
-#: src/Widgets/WelcomePage.vala:50
+#: src/Widgets/WelcomePage.vala:33
 msgid "Browse Library"
 msgstr "Procházet knihovnu"
 
-#: src/Widgets/WelcomePage.vala:50
+#: src/Widgets/WelcomePage.vala:33
 msgid "Watch a movie from your library"
 msgstr "Sledovat film z vaší knihovny"
 
-#: src/Widgets/Library/LibraryItem.vala:65
+#: src/Widgets/WelcomePage.vala:111
+msgid "Resume last video"
+msgstr "Pokračovat v naposledy otevřeném videu"
+
+#: src/Widgets/Library/LibraryItem.vala:64
 msgid "Move to Trash"
 msgstr "Přesunout do koše"
 
-#: src/Widgets/Library/LibraryItem.vala:78
+#: src/Widgets/Library/LibraryItem.vala:77
 msgid "Set Artwork"
 msgstr "Nastavit obrázek"
 
-#: src/Widgets/Library/LibraryItem.vala:164
+#: src/Widgets/Library/LibraryItem.vala:163
 msgid "Image files"
 msgstr "Obrázkové soubory"
 
 #: src/Widgets/Library/LibraryPage.vala:69
 #, c-format
 msgid "Video '%s' Removed."
-msgstr "Video '%s' odstraněno."
+msgstr "Video „%s“ odstraněno."
 
 #: src/Widgets/Player/BottomBar.vala:83
 msgid "Pause"
@@ -151,16 +181,24 @@ msgstr "Nastavení"
 msgid "Unfullscreen"
 msgstr "Opustit režim Celé obrazovky"
 
+#: src/Widgets/Player/PlayerPage.vala:285
+msgid "A video is playing"
+msgstr ""
+
 #: src/Widgets/Player/PlaylistPopover.vala:41
-#: src/Widgets/Player/PlaylistPopover.vala:67
+msgid "Clear Playlist"
+msgstr "Vyčistit seznam stop"
+
+#: src/Widgets/Player/PlaylistPopover.vala:45
+#: src/Widgets/Player/PlaylistPopover.vala:76
 msgid "Enable Repeat"
-msgstr "Povolit opakování"
+msgstr "Zapnout opakování"
 
-#: src/Widgets/Player/PlaylistPopover.vala:64
+#: src/Widgets/Player/PlaylistPopover.vala:73
 msgid "Disable Repeat"
-msgstr "Zakázat opakování"
+msgstr "Vypnout opakování"
 
-#: src/Widgets/Player/SettingsPopover.vala:41
+#: src/Widgets/Player/SettingsPopover.vala:40
 msgid "Subtitle files"
 msgstr "Soubory s titulky"
 
@@ -169,36 +207,39 @@ msgstr "Soubory s titulky"
 #. .sub
 #. .ssa & .ass
 #. exclude .asc, mimetype is generic "application/pgp-encrypted"
-#: src/Widgets/Player/SettingsPopover.vala:48
+#: src/Widgets/Player/SettingsPopover.vala:47
 msgid "External Subtitles"
 msgstr "Externí titulky"
 
-#: src/Widgets/Player/SettingsPopover.vala:52
+#: src/Widgets/Player/SettingsPopover.vala:51
 msgid "Audio:"
 msgstr "Zvuk:"
 
-#: src/Widgets/Player/SettingsPopover.vala:55
+#: src/Widgets/Player/SettingsPopover.vala:54
 msgid "Subtitles:"
 msgstr "Titulky:"
 
-#: src/Widgets/Player/SettingsPopover.vala:58
+#: src/Widgets/Player/SettingsPopover.vala:57
 msgid "External Subtitles:"
 msgstr "Externí titulky:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:125
-#: src/Widgets/Player/SettingsPopover.vala:149
+#: src/Widgets/Player/SettingsPopover.vala:127
+#: src/Widgets/Player/SettingsPopover.vala:156
 #, c-format
 msgid "Track %u"
 msgstr "Stopa %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:127
+#: src/Widgets/Player/SettingsPopover.vala:129
 msgid "None"
 msgstr "Žádný"
 
-#: src/Widgets/Player/SettingsPopover.vala:160
+#: src/Widgets/Player/SettingsPopover.vala:169
 msgid "Default"
 msgstr "Výchozí"
+
+#~ msgid "%s"
+#~ msgstr "%s"
 
 #~ msgid "Audience;Video;Player;Movies;"
 #~ msgstr "Audience;Video;Přehrávač;Filmy;"

@@ -89,9 +89,11 @@ namespace Audience {
 
             if (selected.episodes.size == 1) {
                 string uri = selected.episodes.first ().video_file.get_uri ();
-                bool from_beginning = uri != settings.get_string ("current-video");
+                bool same_video = uri == settings.get_string ("current-video");
+                bool playback_complete = settings.get_double ("last-stopped") == 0.0;
+                bool from_beginning = !same_video || playback_complete;
                 var window = App.get_instance ().mainwindow;
-                window.add_to_playlist (uri, false);
+                window.add_to_playlist (uri, !from_beginning);
                 window.play_file (uri, Window.NavigationPage.LIBRARY, from_beginning);
             } else {
                 last_filter = query;
@@ -101,8 +103,8 @@ namespace Audience {
 
         public void add_item (Audience.Objects.Video video) {
             foreach (var child in view_movies.get_children ()) {
-                if (video.container != null && (child as LibraryItem).episodes.first ().container == video.container) {
-                    (child as LibraryItem).add_episode (video);
+                if (video.container != null && ((LibraryItem)(child)).episodes.first ().container == video.container) {
+                    ((LibraryItem)(child)).add_episode (video);
                     return;
                 }
             }
@@ -123,7 +125,9 @@ namespace Audience {
 
         private async void remove_item_from_path (string path ) {
             foreach (var child in view_movies.get_children ()) {
-                if ((child as LibraryItem).episodes.size == 0 || (child as LibraryItem).episodes.first ().video_file.get_path ().has_prefix (path)) {
+                if (((LibraryItem)(child)).episodes.size == 0 ||
+                    ((LibraryItem)(child)).episodes.first ().video_file.get_path ().has_prefix (path)) {
+
                     remove_item.begin (child as LibraryItem);
                 }
             }
@@ -135,7 +139,7 @@ namespace Audience {
 
         private async void poster_initialisation () {
             foreach (var child in view_movies.get_children ()) {
-                var first_episode = (child as LibraryItem).episodes.first ();
+                var first_episode = ((LibraryItem)(child)).episodes.first ();
                 if (!first_episode.poster_initialized) {
                     first_episode.initialize_poster.begin ();
                 }
@@ -148,7 +152,7 @@ namespace Audience {
             }
 
             string[] filter_elements = query.split (" ");
-            var video_title = (child as LibraryItem).get_title ();
+            var video_title = ((LibraryItem)(child)).get_title ();
 
             foreach (string filter_element in filter_elements) {
                 if (!video_title.down ().contains (filter_element.down ())) {

@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2013-2014 Audience Developers (http://launchpad.net/pantheon-chat)
+ * Copyright (c) 2013-2019 elementary, Inc. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -70,11 +69,14 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.column_spacing = 12;
 
         external_subtitle_file.file_set.connect (() => {
-            playback.set_subtitle_uri (external_subtitle_file.get_uri ());
+            App.get_instance ().mainwindow.player_page.set_subtitle (external_subtitle_file.get_uri ());
         });
 
-        playback.notify["subtitle-uri"].connect (() => {
-            external_subtitle_file.select_uri (playback.subtitle_uri);
+        unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
+        /* playback.subtitle_uri does not seem to notify so connect directly to the pipeline */
+        pipeline.notify["suburi"].connect (() => {
+            /* Easier to retrieve the uri from the playback than the pipeline */
+            external_subtitle_file.select_uri (playback.subtitle_uri ?? "");
         });
 
         subtitles.changed.connect (on_subtitles_changed);
@@ -144,9 +146,16 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             languages.remove_all ();
         }
 
+        var languages_names = get_audio_track_names ();
         uint track = 1;
         playback.get_audio_streams ().foreach ((lang) => {
-            languages.append (lang, _("Track %u").printf (track++));
+            var audio_stream_lang = languages_names.nth_data (track - 1);
+            if (audio_stream_lang != null) {
+                languages.append (lang, audio_stream_lang);
+            } else {
+                languages.append (lang, _("Track %u").printf (track));
+            }
+            track++;
         });
 
         int count = languages.model.iter_n_children (null);
@@ -179,4 +188,30 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             subtitles.active = (subtitles.active + 1) % count;
         }
     }
+
+    private GLib.List<string?> get_audio_track_names () {
+        GLib.List<string?> audio_languages = null;
+
+        var discoverer_info = Audience.get_discoverer_info (playback.uri);
+        if (discoverer_info != null) {
+            var audio_streams = discoverer_info.get_audio_streams ();
+
+            foreach (var audio_stream in audio_streams) {
+                unowned string language_code = ((Gst.PbUtils.DiscovererAudioInfo)(audio_stream)).get_language ();
+                if (language_code != null) {
+                    var language_name = Gst.Tag.get_language_name (language_code);
+                    audio_languages.append (language_name);
+                } else {
+                    audio_languages.append (null);
+                }
+            }
+
+            // Both ClutterGst and DiscovererAudioInfo return tracks in opposite order.
+            audio_languages.reverse ();
+        }
+
+        return audio_languages;
+    }
+
+
 }
