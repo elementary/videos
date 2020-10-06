@@ -7,7 +7,6 @@ src/Objects/Video.vala
 src/Services/DirectoryMonitoring.vala
 src/Services/LibraryManager.vala
 src/Services/Thumbnailer.vala
-src/Widgets/MissingPluginDialog.vala
 src/Widgets/NavigationButton.vala
 src/Widgets/UnsupportedFileDialog.vala
 src/Widgets/WelcomePage.vala

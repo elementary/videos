@@ -362,19 +362,10 @@ namespace Audience {
         private void listen_for_missing_codec_message (Gst.Message msg) {
             if (Gst.PbUtils.is_missing_plugin_message (msg)) {
                 var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail (msg);
-                var plugin_name = Gst.PbUtils.missing_plugin_message_get_description (msg);
                 var context = new Gst.PbUtils.InstallPluginsContext ();
                 context.set_desktop_id ("io.elementary.videos");
 
-                var missing_plugin_dialog = new MissingPluginDialog (playback.uri, get_title (playback.uri), plugin_name);
-                missing_plugin_dialog.present ();
-                missing_plugin_dialog.response.connect (type => {
-                    if (type == Gtk.ResponseType.ACCEPT) {
-                        Gst.PbUtils.install_plugins_async ({ installer }, context, () => {});
-                    }
-
-                    missing_plugin_dialog.destroy ();
-                });
+                Gst.PbUtils.install_plugins_async ({ installer }, context, () => {});
             }
         }
 
