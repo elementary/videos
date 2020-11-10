@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-30 23:20+0000\n"
+"POT-Creation-Date: 2020-11-10 19:29+0000\n"
 "PO-Revision-Date: 2019-03-13 16:27+0000\n"
 "Last-Translator: nasserbinlaboun <nasser1990com@gmail.com>\n"
 "Language-Team: Arabic <https://l10n.elementary.io/projects/videos/extra/ar/"
@@ -201,5 +201,6 @@ msgid "Video Player"
 msgstr "مشغل الفيديو"
 
 #: data/io.elementary.videos.desktop.in:8
-msgid "multimedia-video-player"
-msgstr ""
+#, fuzzy
+msgid "io.elementary.videos"
+msgstr "elementary LLC."

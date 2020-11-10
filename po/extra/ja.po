@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-30 23:20+0000\n"
+"POT-Creation-Date: 2020-11-10 19:29+0000\n"
 "PO-Revision-Date: 2020-07-02 23:12+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
@@ -76,7 +76,8 @@ msgstr "字幕の読み込みが拒否される不具合を修正"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid "Handle if library folder is deleted or moved"
-msgstr "ライブラリフォルダーが削除または移動された場合に正しく処理できるように修正"
+msgstr ""
+"ライブラリフォルダーが削除または移動された場合に正しく処理できるように修正"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 #: data/io.elementary.videos.appdata.xml.in:88
@@ -205,8 +206,13 @@ msgid "Video Player"
 msgstr "ビデオプレーヤー"
 
 #: data/io.elementary.videos.desktop.in:8
-msgid "multimedia-video-player"
-msgstr "multimedia-video-player"
+#, fuzzy
+#| msgid "elementary, Inc."
+msgid "io.elementary.videos"
+msgstr "elementary, Inc."
+
+#~ msgid "multimedia-video-player"
+#~ msgstr "multimedia-video-player"
 
 #~ msgid "Audience"
 #~ msgstr "Audience"

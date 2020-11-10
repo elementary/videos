@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-30 23:20+0000\n"
+"POT-Creation-Date: 2020-11-10 19:29+0000\n"
 "PO-Revision-Date: 2017-01-06 07:52+0000\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -201,7 +201,7 @@ msgid "Video Player"
 msgstr "Програм за пуштање снимака"
 
 #: data/io.elementary.videos.desktop.in:8
-msgid "multimedia-video-player"
+msgid "io.elementary.videos"
 msgstr ""
 
 #~ msgid "Audience"

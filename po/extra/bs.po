@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-30 23:20+0000\n"
+"POT-Creation-Date: 2020-11-10 19:29+0000\n"
 "PO-Revision-Date: 2018-11-04 18:33+0000\n"
 "Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/videos/extra/"
@@ -204,5 +204,9 @@ msgid "Video Player"
 msgstr "Videoplejer"
 
 #: data/io.elementary.videos.desktop.in:8
-msgid "multimedia-video-player"
-msgstr "multimedia-video-player"
+#, fuzzy
+msgid "io.elementary.videos"
+msgstr "elementary LLC."
+
+#~ msgid "multimedia-video-player"
+#~ msgstr "multimedia-video-player"

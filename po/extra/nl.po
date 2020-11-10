@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-30 23:20+0000\n"
+"POT-Creation-Date: 2020-11-10 19:29+0000\n"
 "PO-Revision-Date: 2020-07-05 16:12+0000\n"
 "Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/videos/extra/nl/>\n"
@@ -208,5 +208,10 @@ msgid "Video Player"
 msgstr "Video speler"
 
 #: data/io.elementary.videos.desktop.in:8
-msgid "multimedia-video-player"
-msgstr "multimedia-video-player"
+#, fuzzy
+#| msgid "elementary, Inc."
+msgid "io.elementary.videos"
+msgstr "elementary, Inc."
+
+#~ msgid "multimedia-video-player"
+#~ msgstr "multimedia-video-player"
