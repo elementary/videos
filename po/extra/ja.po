@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 19:29+0000\n"
-"PO-Revision-Date: 2020-07-02 23:12+0000\n"
+"PO-Revision-Date: 2020-11-14 08:15+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -206,10 +206,8 @@ msgid "Video Player"
 msgstr "ビデオプレーヤー"
 
 #: data/io.elementary.videos.desktop.in:8
-#, fuzzy
-#| msgid "elementary, Inc."
 msgid "io.elementary.videos"
-msgstr "elementary, Inc."
+msgstr "io.elementary.videos"
 
 #~ msgid "multimedia-video-player"
 #~ msgstr "multimedia-video-player"
