@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-17 16:59+0000\n"
-"PO-Revision-Date: 2020-05-16 11:10+0000\n"
+"PO-Revision-Date: 2020-11-17 02:15+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "videos/videos/zh_Hans/>\n"
@@ -183,7 +183,7 @@ msgstr "退出全屏"
 
 #: src/Widgets/Player/PlayerPage.vala:285
 msgid "A video is playing"
-msgstr ""
+msgstr "视频播放中"
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
 msgid "Clear Playlist"
