@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-30 23:20+0000\n"
+"POT-Creation-Date: 2020-11-10 19:29+0000\n"
 "PO-Revision-Date: 2016-12-12 20:18+0000\n"
 "Last-Translator: Martin Korpala <Unknown>\n"
 "Language-Team: Slovak <>\n"
@@ -202,7 +202,7 @@ msgid "Video Player"
 msgstr "Video prehrávač"
 
 #: data/io.elementary.videos.desktop.in:8
-msgid "multimedia-video-player"
+msgid "io.elementary.videos"
 msgstr ""
 
 #~ msgid "Audience"

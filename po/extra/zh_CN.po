@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-30 23:20+0000\n"
-"PO-Revision-Date: 2019-12-12 01:25+0000\n"
+"POT-Creation-Date: 2020-11-10 19:29+0000\n"
+"PO-Revision-Date: 2020-11-20 21:15+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "videos/extra/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
@@ -193,17 +193,19 @@ msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "修复一个影响键盘控制的BUG"
 
 #: data/io.elementary.videos.appdata.xml.in:205
-#, fuzzy
 msgid "elementary, Inc."
-msgstr "elementary LLC."
+msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "视频播放器"
 
 #: data/io.elementary.videos.desktop.in:8
-msgid "multimedia-video-player"
-msgstr "multimedia-video-player"
+msgid "io.elementary.videos"
+msgstr "io.elementary.videos"
+
+#~ msgid "multimedia-video-player"
+#~ msgstr "multimedia-video-player"
 
 #~ msgid "Audience"
 #~ msgstr "Audience"

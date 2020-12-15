@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-17 16:59+0000\n"
-"PO-Revision-Date: 2020-10-28 01:15+0000\n"
+"PO-Revision-Date: 2020-11-12 18:15+0000\n"
 "Last-Translator: Uwe S <saabisto@gmx.de>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/videos/videos/de/>"
 "\n"
@@ -43,7 +43,7 @@ msgstr "Videos durchsuchen"
 
 #: src/Window.vala:82
 msgid "Play one video"
-msgstr "Ein Video wiedergeben"
+msgstr "Einzelnes Video wiedergeben"
 
 #: src/Window.vala:83
 msgid "Automatically play next videos"
@@ -183,7 +183,7 @@ msgstr "Vollbild verlassen"
 
 #: src/Widgets/Player/PlayerPage.vala:285
 msgid "A video is playing"
-msgstr "Ein Video wird abgespielt"
+msgstr "Ein Video wird wiedergegeben"
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
 msgid "Clear Playlist"

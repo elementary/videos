@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-30 23:20+0000\n"
+"POT-Creation-Date: 2020-11-10 19:29+0000\n"
 "PO-Revision-Date: 2019-01-09 10:00+0000\n"
 "Last-Translator: Cody Garver <cody@elementary.io>\n"
 "Language-Team: Tagalog <https://weblate.elementary.io/projects/videos/extra/"
@@ -205,5 +205,9 @@ msgid "Video Player"
 msgstr "Player ng Video"
 
 #: data/io.elementary.videos.desktop.in:8
-msgid "multimedia-video-player"
-msgstr "multimedia-video-player"
+#, fuzzy
+msgid "io.elementary.videos"
+msgstr "elementary LLC."
+
+#~ msgid "multimedia-video-player"
+#~ msgstr "multimedia-video-player"
