@@ -114,13 +114,15 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         }
     }
 
-    public void clear_items () {
+    public void clear_items (bool should_stop = true) {
         current = 0;
         foreach (Gtk.Widget item in get_children ()) {
             remove (item);
         }
-
-        stop_video ();
+        
+        if (should_stop) {
+            stop_video ();
+        }
     }
 
     public File? get_first_item () {
