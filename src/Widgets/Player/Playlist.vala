@@ -119,7 +119,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         foreach (Gtk.Widget item in get_children ()) {
             remove (item);
         }
-        
+
         if (should_stop) {
             stop_video ();
         }
