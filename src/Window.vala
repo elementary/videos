@@ -356,7 +356,7 @@ public class Audience.Window : Gtk.Window {
 
     public void open_files (File[] files, bool clear_playlist_items = false, bool force_play = true) {
         if (clear_playlist_items) {
-            clear_playlist ();
+            clear_playlist (false);
         }
 
         string[] videos = {};
@@ -504,8 +504,8 @@ public class Audience.Window : Gtk.Window {
         }
     }
 
-    public void clear_playlist () {
-        player_page.get_playlist_widget ().clear_items ();
+    public void clear_playlist (bool should_stop = true) {
+        player_page.get_playlist_widget ().clear_items (should_stop);
     }
 
     public void append_to_playlist (File file) {
