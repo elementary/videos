@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 19:29+0000\n"
-"PO-Revision-Date: 2021-03-03 11:56+0000\n"
+"PO-Revision-Date: 2021-03-15 11:18+0000\n"
 "Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/videos/extra/ru/>"
 "\n"
@@ -181,7 +181,7 @@ msgstr "Убран диалог О программе"
 #: data/io.elementary.videos.appdata.xml.in:161
 #: data/io.elementary.videos.appdata.xml.in:200
 msgid "Minor bug fixes"
-msgstr "Исправления небольших ошибок"
+msgstr "Исправления незначительных ошибок"
 
 #: data/io.elementary.videos.appdata.xml.in:169
 msgid "Preview popover now closely follows cursor position"
