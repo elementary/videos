@@ -2,7 +2,6 @@ src/Application.vala
 src/DiskManager.vala
 src/Utils.vala
 src/Window.vala
-src/ZeitgeistManager.vala
 src/Objects/Video.vala
 src/Services/DirectoryMonitoring.vala
 src/Services/LibraryManager.vala
