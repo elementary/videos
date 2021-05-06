@@ -37,7 +37,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         );
 
         row_activated.connect ((item) => {
-            string filename = (item as PlaylistItem).filename;
+            string filename = ((PlaylistItem)(item)).filename;
             play (File.new_for_commandline_arg (filename));
         });
 
@@ -87,7 +87,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         bool exist = false;
 
         foreach (Gtk.Widget item in get_children ()) {
-            string name = (item as PlaylistItem).filename;
+            string name = ((PlaylistItem)(item)).filename;
             if (name == file_name) {
                 exist = true;
             }
@@ -106,7 +106,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         var file_name = path.get_uri ();
 
         foreach (Gtk.Widget item in get_children ()) {
-            string name = (item as PlaylistItem).filename;
+            string name = ((PlaylistItem)(item)).filename;
             if (name == file_name) {
                 remove (item);
                 return;
@@ -114,13 +114,15 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         }
     }
 
-    public void clear_items () {
+    public void clear_items (bool should_stop = true) {
         current = 0;
         foreach (Gtk.Widget item in get_children ()) {
             remove (item);
         }
 
-        stop_video ();
+        if (should_stop) {
+            stop_video ();
+        }
     }
 
     public File? get_first_item () {
@@ -159,7 +161,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
     public List<string> get_all_items () {
         var list = new List<string> ();
         foreach (Gtk.Widget item in get_children ()) {
-            string name = (item as PlaylistItem).filename;
+            string name = ((PlaylistItem)(item)).filename;
             list.append (name);
         }
 

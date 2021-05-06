@@ -136,7 +136,7 @@ namespace Audience {
             }
 
             string[] filter_elements = query.split (" ");
-            var video_title = (child as LibraryItem).get_title ();
+            var video_title = ((LibraryItem)(child)).get_title ();
 
             foreach (string filter_element in filter_elements) {
                 if (!video_title.down ().contains (filter_element.down ())) {
@@ -166,7 +166,9 @@ namespace Audience {
 
         private async void remove_item_from_path (string path ) {
             foreach (var child in view_episodes.get_children ()) {
-                if ((child as LibraryItem).episodes.size == 0 || (child as LibraryItem).episodes.first ().video_file.get_path ().has_prefix (path)) {
+                if (((LibraryItem)(child)).episodes.size == 0 ||
+                    ((LibraryItem)(child)).episodes.first ().video_file.get_path ().has_prefix (path)) {
+
                     child.dispose ();
                 }
             }

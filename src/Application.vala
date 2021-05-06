@@ -39,8 +39,6 @@ namespace Audience {
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
 
             settings = new GLib.Settings (SCHEMA);
-
-            Services.Inhibitor.initialize (this);
         }
 
         private static App app; // global App instance
@@ -56,8 +54,9 @@ namespace Audience {
                     settings.set_string ("last-folder", GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS));
                 }
 
-                File library_folder = File.new_for_path (settings.get_string ("library-folder"));
-                if (library_folder.get_path () == "" || !library_folder.query_exists ()) {
+                var library_path = settings.get_string ("library-folder");
+                File library_folder = File.new_for_path (library_path);
+                if (library_path == "" || !library_folder.query_exists ()) {
                     settings.set_string ("library-folder", GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS));
                 };
 
