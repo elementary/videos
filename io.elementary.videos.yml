@@ -13,7 +13,6 @@ finish-args:
   - '--device=dri'
 
   - '--talk-name=org.freedesktop.thumbnails.Thumbnailer1'
-  - '--talk-name=org.gnome.zeitgeist.Engine'
   - '--talk-name=org.gnome.SettingsDaemon'
 
   - '--metadata=X-DConf=migrate-path=/io/elementary/videos/'
