@@ -31,7 +31,6 @@ public class Audience.Window : Gtk.Window {
     private NavigationButton navigation_button;
     private Gtk.SearchEntry search_entry;
     private WelcomePage welcome_page;
-    private ZeitgeistManager zeitgeist_manager;
 
     public PlayerPage player_page { get; private set; }
 
@@ -49,7 +48,6 @@ public class Audience.Window : Gtk.Window {
     }
 
     construct {
-        zeitgeist_manager = new ZeitgeistManager ();
         window_position = Gtk.WindowPosition.CENTER;
         gravity = Gdk.Gravity.CENTER;
         set_default_size (1000, 680);
@@ -443,13 +441,7 @@ public class Audience.Window : Gtk.Window {
 
     public bool is_privacy_mode_enabled () {
         var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
-        bool privacy_mode = !privacy_settings.get_boolean ("remember-recent-files") || !privacy_settings.get_boolean ("remember-app-usage");
-
-        if (privacy_mode) {
-            return true;
-        }
-
-        return zeitgeist_manager.app_into_blacklist (GLib.Application.get_default ().application_id);
+        return !privacy_settings.get_boolean ("remember-recent-files") || !privacy_settings.get_boolean ("remember-app-usage");
     }
 
     private async void read_first_disk () {

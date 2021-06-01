@@ -5,7 +5,6 @@ executable(
     'DiskManager.vala',
     'Utils.vala',
     'Window.vala',
-    'ZeitgeistManager.vala',
     'Objects/Video.vala',
     'Services/DirectoryMonitoring.vala',
     'Services/LibraryManager.vala',
