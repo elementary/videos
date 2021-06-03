@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-17 16:59+0000\n"
-"PO-Revision-Date: 2021-01-21 21:19+0000\n"
+"PO-Revision-Date: 2021-06-03 13:37+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/videos/"
 "videos/nb/>\n"
@@ -42,9 +42,8 @@ msgid "Search Videos"
 msgstr "Søk i videoer"
 
 #: src/Window.vala:82
-#, fuzzy
 msgid "Play one video"
-msgstr "Spill siste video på nytt"
+msgstr "Spill én video"
 
 #: src/Window.vala:83
 #, fuzzy
@@ -188,9 +187,8 @@ msgid "A video is playing"
 msgstr "En video spilles"
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
-#, fuzzy
 msgid "Clear Playlist"
-msgstr "Spilleliste"
+msgstr "Tøm spilleliste"
 
 #: src/Widgets/Player/PlaylistPopover.vala:45
 #: src/Widgets/Player/PlaylistPopover.vala:76
