@@ -8,20 +8,23 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 19:29+0000\n"
-"PO-Revision-Date: 2017-01-06 07:52+0000\n"
+"PO-Revision-Date: 2020-12-19 14:16+0000\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
-"Language-Team: Serbian <sr@li.org>\n"
+"Language-Team: Serbian <https://l10n.elementary.io/projects/videos/extra/sr/>"
+"\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-"X-Generator: Launchpad (build 18354)\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
 #: data/io.elementary.videos.desktop.in:4
 msgid "Videos"
-msgstr "Снимци"
+msgstr "Видео снимци"
 
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:6
@@ -56,25 +59,25 @@ msgstr "Претпрегледи на траци премотавања"
 
 #: data/io.elementary.videos.appdata.xml.in:65
 msgid "Improvements:"
-msgstr ""
+msgstr "Побољшања:"
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Start up faster with large libraries"
-msgstr ""
+msgstr "Покреће се брже са великим збиркама"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 #: data/io.elementary.videos.appdata.xml.in:83
 #: data/io.elementary.videos.appdata.xml.in:102
 msgid "Other updates:"
-msgstr ""
+msgstr "Остала ажурирања:"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Fix cases where subtitles refused to load"
-msgstr ""
+msgstr "Поправља случајеве када преводи одбијају да се учитају"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid "Handle if library folder is deleted or moved"
-msgstr ""
+msgstr "Управља брисањем или премештањем фасцикле збирке"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 #: data/io.elementary.videos.appdata.xml.in:88
@@ -92,84 +95,87 @@ msgstr "Најновији преводи"
 #: data/io.elementary.videos.appdata.xml.in:79
 #: data/io.elementary.videos.appdata.xml.in:94
 msgid "New features:"
-msgstr ""
+msgstr "Нове функције:"
 
 #: data/io.elementary.videos.appdata.xml.in:81
 msgid "Load external subtitles"
-msgstr ""
+msgstr "Учитава спољне титлове"
 
 #: data/io.elementary.videos.appdata.xml.in:85
 msgid "Reliably update the replay button description and file"
-msgstr ""
+msgstr "Поузданије освежава опис дугмета за репродукцију и датотеку"
 
 #: data/io.elementary.videos.appdata.xml.in:86
 msgid "More consistently remember the last playing video and its play position"
 msgstr ""
+"Доследније се сећа последњег репродукованог видео записа и његовог места "
+"репродукције"
 
 #: data/io.elementary.videos.appdata.xml.in:87
 msgid "Fix missing icon in episode view"
-msgstr ""
+msgstr "Поправља недостајућу иконицу у прегледу епизоде"
 
 #: data/io.elementary.videos.appdata.xml.in:96
 msgid "Option to automatically play next videos"
-msgstr ""
+msgstr "Опција за аутоматско пуштање следећег видео снимка"
 
 #: data/io.elementary.videos.appdata.xml.in:97
 msgid "Navigate the playlist with the keyboard"
-msgstr ""
+msgstr "Креће се списком нумера помоћу тастатуре"
 
 #: data/io.elementary.videos.appdata.xml.in:98
 msgid "Add a button to clear the playlist"
-msgstr ""
+msgstr "Додаје дугме да очисти списак нумера"
 
 #: data/io.elementary.videos.appdata.xml.in:99
 msgid "Show audio track language in settings"
-msgstr ""
+msgstr "Приказује језик аудио нумере у подешавањима"
 
 #: data/io.elementary.videos.appdata.xml.in:100
 msgid "Show playlist item titles in their tooltips"
-msgstr ""
+msgstr "Приказује наслове ставки списка нумера у њиховим облачићима"
 
 #: data/io.elementary.videos.appdata.xml.in:104
 msgid "Show an error for unsupported files"
-msgstr ""
+msgstr "Показује грешку за неподржане датотеке"
 
 #: data/io.elementary.videos.appdata.xml.in:105
 msgid "Fix disappearing cursor on headerbar"
-msgstr ""
+msgstr "Поправља нестајање курзора на траци заглавља"
 
 #: data/io.elementary.videos.appdata.xml.in:106
 msgid "Hide seekbar preview when switching windows with Alt + Tab"
 msgstr ""
+"Скрива претпреглед траке тражења приликом мењања прозора са Алт + табулатор"
 
 #: data/io.elementary.videos.appdata.xml.in:114
 #: data/io.elementary.videos.appdata.xml.in:122
 msgid "Build fixes"
-msgstr ""
+msgstr "Исправке грешака"
 
 #: data/io.elementary.videos.appdata.xml.in:137
 msgid "Window behavior improvements"
-msgstr ""
+msgstr "Побољшања понашања прозора"
 
 #: data/io.elementary.videos.appdata.xml.in:138
 msgid "Fix disappearing subtitle tracks"
-msgstr ""
+msgstr "Поправља нестајање нумера превода"
 
 #: data/io.elementary.videos.appdata.xml.in:145
 msgid "Disallow setting playback before start"
-msgstr ""
+msgstr "Онемогућава подешавање пуштања пре почетка"
 
 #: data/io.elementary.videos.appdata.xml.in:152
 msgid "Limit consecutive spacebar pauses"
-msgstr ""
+msgstr "Ограничава узастопне застоје размакнице"
 
 #: data/io.elementary.videos.appdata.xml.in:159
 msgid "Crash fixes"
-msgstr ""
+msgstr "Поправке урушавања"
 
 #: data/io.elementary.videos.appdata.xml.in:160
 msgid "Remove About dialog"
-msgstr ""
+msgstr "Гномово прозорче „О програму“"
 
 #: data/io.elementary.videos.appdata.xml.in:161
 #: data/io.elementary.videos.appdata.xml.in:200
@@ -178,11 +184,11 @@ msgstr "Мање исправке грешака"
 
 #: data/io.elementary.videos.appdata.xml.in:169
 msgid "Preview popover now closely follows cursor position"
-msgstr ""
+msgstr "Искакање претпрегледа сада ближе прати положај курзора"
 
 #: data/io.elementary.videos.appdata.xml.in:184
 msgid "Fix appstream date format"
-msgstr "Поправи узводни формат датума"
+msgstr "Исправка формата датума тока програма"
 
 #: data/io.elementary.videos.appdata.xml.in:191
 msgid "Added a library view with search"
@@ -194,7 +200,7 @@ msgstr "Исправљене грешке које спречавају нави
 
 #: data/io.elementary.videos.appdata.xml.in:205
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
@@ -202,7 +208,7 @@ msgstr "Програм за пуштање снимака"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "io.elementary.videos"
-msgstr ""
+msgstr "io.elementary.videos"
 
 #~ msgid "Audience"
 #~ msgstr "Аудијенс"
