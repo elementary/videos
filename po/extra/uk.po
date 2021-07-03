@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 19:29+0000\n"
-"PO-Revision-Date: 2021-05-03 20:55+0000\n"
+"PO-Revision-Date: 2021-07-03 13:14+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/videos/extra/"
 "uk/>\n"
@@ -130,7 +130,7 @@ msgstr "Додано кнопку очищення списку відтворе
 
 #: data/io.elementary.videos.appdata.xml.in:99
 msgid "Show audio track language in settings"
-msgstr "Показ мови звукової доріжки в параметрах"
+msgstr "Показ мови звукової доріжки в налаштуваннях"
 
 #: data/io.elementary.videos.appdata.xml.in:100
 msgid "Show playlist item titles in their tooltips"
