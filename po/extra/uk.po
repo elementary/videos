@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 19:29+0000\n"
-"PO-Revision-Date: 2021-07-03 13:14+0000\n"
+"PO-Revision-Date: 2021-07-05 19:09+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/videos/extra/"
 "uk/>\n"
@@ -118,7 +118,7 @@ msgstr "Виправлено відсутність піктограм пода�
 
 #: data/io.elementary.videos.appdata.xml.in:96
 msgid "Option to automatically play next videos"
-msgstr "Параметр автоматичного відтворення наступних відео"
+msgstr "Можливість автоматичного відтворення наступних відео"
 
 #: data/io.elementary.videos.appdata.xml.in:97
 msgid "Navigate the playlist with the keyboard"
