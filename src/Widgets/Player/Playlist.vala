@@ -52,9 +52,13 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         save_playlist ();
     }
 
-    public bool next () {
+    public bool next (bool update_current = true) {
         var children = get_children ();
-        current++;
+        
+        if (update_current) {
+            current++;
+        }
+
         if (current >= children.length ()) {
             current = 0;
             return false;
@@ -100,6 +104,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         var row = new PlaylistItem (Audience.get_title (path.get_basename ()), path.get_uri ());
         add (row);
         item_added ();
+        connect_row_signals (row);
     }
 
     public void remove_item (File path) {
@@ -220,5 +225,16 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
 
         remove (source);
         insert (source, new_position);
+    }
+
+    private void connect_row_signals (PlaylistItem row) {
+        row.remove_item.connect (() => {
+            remove_item (File.new_for_path (row.filename));
+            remove (row);
+
+            if (row.is_playing) {
+                next (false);
+            }
+        });
     }
 }
