@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-17 16:59+0000\n"
-"PO-Revision-Date: 2019-11-29 02:24+0000\n"
-"Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
+"PO-Revision-Date: 2021-07-12 01:15+0000\n"
+"Last-Translator: lucaspifonseca <lucaspifonseca@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "videos/videos/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: src/Application.vala:74 src/Window.vala:527
@@ -183,7 +183,7 @@ msgstr "Sair da tela cheia"
 
 #: src/Widgets/Player/PlayerPage.vala:285
 msgid "A video is playing"
-msgstr ""
+msgstr "Um vídeo está sendo reproduzido"
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
 msgid "Clear Playlist"
