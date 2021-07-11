@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 19:29+0000\n"
-"PO-Revision-Date: 2020-06-02 13:11+0000\n"
-"Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
+"PO-Revision-Date: 2021-07-12 01:15+0000\n"
+"Last-Translator: Mário Victor Ribeiro Silva <mariovictorrs@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "videos/extra/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/io.elementary.videos.appdata.xml.in:8
@@ -62,7 +62,7 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:67
 msgid "Start up faster with large libraries"
-msgstr ""
+msgstr "Inicie mais rápido com bibliotecas maiores"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 #: data/io.elementary.videos.appdata.xml.in:83
@@ -72,11 +72,11 @@ msgstr "Outras atualizações:"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Fix cases where subtitles refused to load"
-msgstr ""
+msgstr "Corrige casos onde legendas não carregam"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid "Handle if library folder is deleted or moved"
-msgstr ""
+msgstr "Lida caso uma pasta da biblioteca é deletada ou movida"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 #: data/io.elementary.videos.appdata.xml.in:88
