@@ -323,8 +323,13 @@ namespace Audience {
             }
 
             get_playlist_widget ().set_current (uri);
-            playback.uri = uri;
 
+            // Listen to all messages from the bus and catch any missing codec errors.
+            // We also listen to ready so we can remove our missing codec listener once the
+            // pipeline is ready
+            playback.get_pipeline ().bus.message.connect (listen_for_missing_codec_message);
+            playback.ready.connect (pipeline_ready);
+            playback.uri = uri;
 
             App.get_instance ().mainwindow.title = get_title (uri);
 
@@ -352,6 +357,21 @@ namespace Audience {
             bottom_bar.preferences_popover.is_setup = false;
 
             settings.set_string ("current-video", uri);
+        }
+
+        private void listen_for_missing_codec_message (Gst.Message msg) {
+            if (Gst.PbUtils.is_missing_plugin_message (msg)) {
+                var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail (msg);
+                var context = new Gst.PbUtils.InstallPluginsContext ();
+                context.set_desktop_id ("io.elementary.videos");
+
+                Gst.PbUtils.install_plugins_async ({ installer }, context, () => {});
+            }
+        }
+
+        private void pipeline_ready () {
+            playback.get_pipeline ().bus.message.disconnect (listen_for_missing_codec_message);
+            playback.ready.disconnect (pipeline_ready);
         }
 
         public double get_progress () {
