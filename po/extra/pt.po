@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2020-11-12 18:15+0000\n"
+"PO-Revision-Date: 2021-07-14 22:06+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/videos/extra/"
 "pt/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/io.elementary.videos.appdata.xml.in:9
@@ -65,16 +65,18 @@ msgstr "Outras actualizações:"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Fix an issue with accessing library view"
-msgstr ""
+msgstr "Corrige um problema de acesso à vista da biblioteca"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid ""
 "Fix an issue with returning to the welcome page while playing multiple videos"
 msgstr ""
+"Corrige um problema com o regresso à página de boas-vindas enquanto se "
+"reproduzem vários vídeos"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Prevent sleep while playing a video"
-msgstr ""
+msgstr "Evita a hibernação durante a reprodução de um vídeo"
 
 #: data/io.elementary.videos.appdata.xml.in:74
 #: data/io.elementary.videos.appdata.xml.in:88
