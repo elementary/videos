@@ -1,3 +1,22 @@
+io.elementary.videos (2.7.3) bionic; urgency=medium
+
+  * Release 2.7.3 (#230)
+  * Update screenshots
+  * Remove Zeitgeist (#222)
+  * Add launchable tag to appdata (#223)
+  * Flatpak: Use elementary runtime and Sdk (#221)
+  * Keep the application on the player page when a new video is opened
+    while another on is playing (#220)
+  * Update translation files
+  * Update translation template
+  * Add flatpak (#217)
+  * Install icons (#215)
+  * PlayerPage: Use Gtk.Application.inhibit (#214)
+  * Fix unsafe casts and other terminal warnings (#213)
+  * Restore Library View functionality (#206)
+
+ -- elementary, Inc. <builds@elementary.io>  Wed, 14 Jul 2021 19:11:57 +0000
+
 io.elementary.videos (2.7.2) bionic; urgency=medium
 
   * Release 2.7.2 (#204)
