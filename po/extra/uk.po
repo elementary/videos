@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2021-07-05 19:09+0000\n"
+"PO-Revision-Date: 2021-07-14 22:06+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/videos/extra/"
 "uk/>\n"
@@ -67,16 +67,18 @@ msgstr "Інші оновлення:"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Fix an issue with accessing library view"
-msgstr ""
+msgstr "Виправлено проблему доступу до перегляду бібліотеки"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid ""
 "Fix an issue with returning to the welcome page while playing multiple videos"
 msgstr ""
+"Виправлено проблему повернення на сторінку привітання під час відтворення "
+"кількох відео"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Prevent sleep while playing a video"
-msgstr ""
+msgstr "Запобігання засинанню під час відтворення відео"
 
 #: data/io.elementary.videos.appdata.xml.in:74
 #: data/io.elementary.videos.appdata.xml.in:88
