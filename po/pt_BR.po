@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-17 16:59+0000\n"
+"POT-Creation-Date: 2021-07-14 19:12+0000\n"
 "PO-Revision-Date: 2021-07-12 01:15+0000\n"
 "Last-Translator: lucaspifonseca <lucaspifonseca@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
@@ -20,65 +20,65 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:74 src/Window.vala:527
+#: src/Application.vala:74 src/Window.vala:519
 msgid "Videos"
 msgstr "Vídeos"
 
 #. For better translation
-#: src/Window.vala:41
+#: src/Window.vala:40
 msgid "Back"
 msgstr "Voltar"
 
-#: src/Window.vala:42
+#: src/Window.vala:41
 msgid "Library"
 msgstr "Biblioteca"
 
-#: src/Window.vala:43
+#: src/Window.vala:42
 msgid "Episodes"
 msgstr "Episódios"
 
-#: src/Window.vala:69
+#: src/Window.vala:67
 msgid "Search Videos"
 msgstr "Pesquisar Vídeos"
 
-#: src/Window.vala:82
+#: src/Window.vala:80
 msgid "Play one video"
 msgstr "Reproduzir um vídeo"
 
-#: src/Window.vala:83
+#: src/Window.vala:81
 msgid "Automatically play next videos"
 msgstr "Reproduzir automaticamente os próximos vídeos"
 
-#: src/Window.vala:111 src/Widgets/Library/EpisodesPage.vala:126
+#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Sem resultados para \"%s\""
 
-#: src/Window.vala:111 src/Widgets/Library/EpisodesPage.vala:126
+#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
 msgid "Try changing search terms."
 msgstr "Tente alterar os termos da pesquisa."
 
-#: src/Window.vala:168
+#: src/Window.vala:166
 msgid "Restore"
 msgstr "Recuperar"
 
-#: src/Window.vala:412 src/Widgets/Player/SettingsPopover.vala:36
+#: src/Window.vala:410 src/Widgets/Player/SettingsPopover.vala:36
 msgid "All files"
 msgstr "Todos os arquivos"
 
-#: src/Window.vala:416
+#: src/Window.vala:414
 msgid "Video files"
 msgstr "Arquivos de vídeo"
 
-#: src/Window.vala:420 src/Widgets/Library/LibraryItem.vala:167
+#: src/Window.vala:418 src/Widgets/Library/LibraryItem.vala:167
 msgid "Open"
 msgstr "Abrir"
 
-#: src/Window.vala:423 src/Widgets/Library/LibraryItem.vala:170
+#: src/Window.vala:421 src/Widgets/Library/LibraryItem.vala:170
 msgid "_Open"
 msgstr "_Abrir"
 
-#: src/Window.vala:424 src/Widgets/Library/LibraryItem.vala:171
+#: src/Window.vala:422 src/Widgets/Library/LibraryItem.vala:171
 msgid "_Cancel"
 msgstr "_Cancelar"
 
