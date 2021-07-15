@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2021-07-15 14:12+0000\n"
-"Last-Translator: lucaspifonseca <lucaspifonseca@gmail.com>\n"
+"PO-Revision-Date: 2021-07-15 15:49+0000\n"
+"Last-Translator: Mário Victor Ribeiro Silva <mariovictorrs@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "videos/extra/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -226,8 +226,6 @@ msgid "Video Player"
 msgstr "Reprodutor de vídeo"
 
 #: data/io.elementary.videos.desktop.in:8
-#, fuzzy
-#| msgid "elementary, Inc."
 msgid "io.elementary.videos"
 msgstr "io.elementary.videos"
 
