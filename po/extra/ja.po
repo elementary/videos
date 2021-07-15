@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2020-11-14 08:15+0000\n"
+"PO-Revision-Date: 2021-07-15 12:34+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/io.elementary.videos.appdata.xml.in:9
@@ -65,16 +65,16 @@ msgstr "そのほかのアップデート:"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Fix an issue with accessing library view"
-msgstr ""
+msgstr "ライブラリービューへの切り替えに関する不具合を修正"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid ""
 "Fix an issue with returning to the welcome page while playing multiple videos"
-msgstr ""
+msgstr "複数の動画を再生している際にようこそ画面に戻ると発生する不具合を修正"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Prevent sleep while playing a video"
-msgstr ""
+msgstr "動画の再生中にスリープしないように修正"
 
 #: data/io.elementary.videos.appdata.xml.in:74
 #: data/io.elementary.videos.appdata.xml.in:88
@@ -202,7 +202,7 @@ msgstr "プレビュー表示のポップオーバーがカーソルの位置に
 
 #: data/io.elementary.videos.appdata.xml.in:199
 msgid "Fix appstream date format"
-msgstr "appstream の日付形式を修正"
+msgstr "AppStream の日付形式を修正"
 
 #: data/io.elementary.videos.appdata.xml.in:206
 msgid "Added a library view with search"
