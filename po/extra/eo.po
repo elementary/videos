@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2019-08-30 21:22+0000\n"
-"Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
+"PO-Revision-Date: 2021-07-22 16:05+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/videos/extra/"
 "eo/>\n"
 "Language: eo\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:4
@@ -219,9 +219,8 @@ msgid "Video Player"
 msgstr "Videoludilo"
 
 #: data/io.elementary.videos.desktop.in:8
-#, fuzzy
 msgid "io.elementary.videos"
-msgstr "elementary LLC."
+msgstr "io.elementary.videos"
 
 #~ msgid "multimedia-video-player"
 #~ msgstr "multimedia-video-player"
