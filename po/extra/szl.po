@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2020-06-12 22:11+0000\n"
-"Last-Translator: Grzegorz Kulik <g.kulik@o2.pl>\n"
+"PO-Revision-Date: 2021-07-22 16:05+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Silesian <https://l10n.elementary.io/projects/videos/extra/"
 "szl/>\n"
 "Language: szl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:4
@@ -216,10 +216,8 @@ msgid "Video Player"
 msgstr "Ôdgrowocz filmōw"
 
 #: data/io.elementary.videos.desktop.in:8
-#, fuzzy
-#| msgid "elementary, Inc."
 msgid "io.elementary.videos"
-msgstr "elementary, Inc."
+msgstr "io.elementary.videos"
 
 #~ msgid "multimedia-video-player"
 #~ msgstr "multimedia-video-player"
