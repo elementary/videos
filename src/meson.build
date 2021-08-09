@@ -1,5 +1,6 @@
 executable(
     meson.project_name(),
+    config_file,
     'Application.vala',
     'Consts.vala',
     'DiskManager.vala',
