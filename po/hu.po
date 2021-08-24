@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2021-08-24 01:12+0000\n"
-"Last-Translator: zoli111 <acszoltan111@gmail.com>\n"
+"PO-Revision-Date: 2021-08-24 01:31+0000\n"
+"Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/videos/"
 "hu/>\n"
 "Language: hu\n"
@@ -186,9 +186,8 @@ msgid "A video is playing"
 msgstr "Videó lejátszása folyamatban"
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
-#, fuzzy
 msgid "Clear Playlist"
-msgstr "Lejátszólista"
+msgstr "Lejátszási lista törlése"
 
 #: src/Widgets/Player/PlaylistPopover.vala:45
 #: src/Widgets/Player/PlaylistPopover.vala:76
