@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
 "PO-Revision-Date: 2021-08-24 01:12+0000\n"
-"Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
+"Last-Translator: zoli111 <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/videos/"
 "hu/>\n"
 "Language: hu\n"
@@ -84,7 +84,7 @@ msgstr "_Mégsem"
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
-msgstr ""
+msgstr "Ismeretlen fájlformátum"
 
 #: src/Widgets/UnsupportedFileDialog.vala:26
 #, c-format
@@ -93,7 +93,7 @@ msgstr "Előfordulhat, hogy a Videók nem tudja lejátszani a(z) '%s' fájlt."
 
 #: src/Widgets/UnsupportedFileDialog.vala:37
 msgid "Play Anyway"
-msgstr ""
+msgstr "Lejátszás mindenképp"
 
 #: src/Widgets/UnsupportedFileDialog.vala:40
 #, c-format
