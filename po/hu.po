@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
 "PO-Revision-Date: 2021-08-24 01:12+0000\n"
-"Last-Translator: Sziráki Bálint <blntsziraki@gmail.com>\n"
+"Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/videos/"
 "hu/>\n"
 "Language: hu\n"
@@ -42,13 +42,12 @@ msgid "Search Videos"
 msgstr "Videók keresése"
 
 #: src/Window.vala:80
-#, fuzzy
 msgid "Play one video"
-msgstr "Utolsó videó ismétlése"
+msgstr "Egy videó lejátszása"
 
 #: src/Window.vala:81
 msgid "Automatically play next videos"
-msgstr ""
+msgstr "A következő videók automatikus lejátszása"
 
 #: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
@@ -90,7 +89,7 @@ msgstr ""
 #: src/Widgets/UnsupportedFileDialog.vala:26
 #, c-format
 msgid "Videos might not be able to play the file '%s'."
-msgstr ""
+msgstr "Előfordulhat, hogy a Videók nem tudja lejátszani a(z) '%s' fájlt."
 
 #: src/Widgets/UnsupportedFileDialog.vala:37
 msgid "Play Anyway"
@@ -102,6 +101,8 @@ msgid ""
 "Unable to play file at: %s\n"
 "The file is not a video (\"%s\")."
 msgstr ""
+"A z itt található fájlt nem lehet lejátszani: %s\n"
+"A fájl nem egy videó (\"%s\")."
 
 #: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
