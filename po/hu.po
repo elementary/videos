@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2021-08-24 01:31+0000\n"
+"PO-Revision-Date: 2021-08-27 01:16+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/videos/"
 "hu/>\n"
@@ -52,7 +52,7 @@ msgstr "A következő videók automatikus lejátszása"
 #: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
 msgid "No Results for “%s”"
-msgstr "Nincs találat erre \"%s\""
+msgstr "Nincs találat erre: \"%s\""
 
 #: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
 msgid "Try changing search terms."
@@ -80,7 +80,7 @@ msgstr "Meg_nyitás"
 
 #: src/Window.vala:422 src/Widgets/Library/LibraryItem.vala:171
 msgid "_Cancel"
-msgstr "_Mégsem"
+msgstr "_Mégse"
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
@@ -106,7 +106,7 @@ msgstr ""
 
 #: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
-msgstr "Nincs megnyitott video"
+msgstr "Nincs megnyitott videó"
 
 #: src/Widgets/WelcomePage.vala:25
 msgid "Select a source to begin playing."
