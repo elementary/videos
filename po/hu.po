@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2021-08-27 01:16+0000\n"
+"PO-Revision-Date: 2021-08-28 01:10+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/videos/"
 "hu/>\n"
@@ -171,7 +171,7 @@ msgstr "Lejátszás"
 
 #: src/Widgets/Player/BottomBar.vala:133
 msgid "Playlist"
-msgstr "Lejátszólista"
+msgstr "Lejátszási lista"
 
 #: src/Widgets/Player/BottomBar.vala:140
 msgid "Settings"
