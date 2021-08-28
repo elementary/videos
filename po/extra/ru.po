@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2021-07-22 22:51+0000\n"
-"Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
+"PO-Revision-Date: 2021-08-28 21:45+0000\n"
+"Last-Translator: DartDeaDia <dartdeadia@protonmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/videos/extra/ru/>"
 "\n"
 "Language: ru\n"
@@ -29,7 +29,7 @@ msgstr "Видео"
 #: data/io.elementary.videos.appdata.xml.in:10
 #: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr "Просмотр видео и фильмов"
+msgstr "Просматривайте видео и фильмы"
 
 #: data/io.elementary.videos.appdata.xml.in:12
 msgid ""
