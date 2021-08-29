@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2021-08-29 15:03+0000\n"
+"PO-Revision-Date: 2021-08-29 16:01+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/videos/videos/sk/>"
 "\n"
@@ -110,7 +110,7 @@ msgstr "Žiadne otvorené videá"
 
 #: src/Widgets/WelcomePage.vala:25
 msgid "Select a source to begin playing."
-msgstr "Vyberte zdroj, ktorý chcete prehrať."
+msgstr "Vyberte zdroj pre začatie prehrávania."
 
 #: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:36
 msgid "Open file"
@@ -118,7 +118,7 @@ msgstr "Otvoriť súbor"
 
 #: src/Widgets/WelcomePage.vala:30
 msgid "Open a saved file."
-msgstr "Otvoriť uložený súbor."
+msgstr "Otvorí uložený súbor."
 
 #: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:108
 msgid "Replay last video"
@@ -130,15 +130,15 @@ msgstr "Prehrať z disku"
 
 #: src/Widgets/WelcomePage.vala:32
 msgid "Watch a DVD or open a file from disc"
-msgstr "Pozrieť DVD alebo otvoriť súbor uložený na disku"
+msgstr "Prehrajte DVD alebo otvorte súbor z disku"
 
 #: src/Widgets/WelcomePage.vala:33
 msgid "Browse Library"
-msgstr ""
+msgstr "Prechádzať knižnicu"
 
 #: src/Widgets/WelcomePage.vala:33
 msgid "Watch a movie from your library"
-msgstr ""
+msgstr "Sledujte film z vašej knižnice"
 
 #: src/Widgets/WelcomePage.vala:111
 msgid "Resume last video"
@@ -146,20 +146,20 @@ msgstr "Pokračovať v prehrávaní posledného videa"
 
 #: src/Widgets/Library/LibraryItem.vala:64
 msgid "Move to Trash"
-msgstr ""
+msgstr "Presunúť do koša"
 
 #: src/Widgets/Library/LibraryItem.vala:77
 msgid "Set Artwork"
-msgstr ""
+msgstr "Nastaviť obrázok"
 
 #: src/Widgets/Library/LibraryItem.vala:163
 msgid "Image files"
-msgstr ""
+msgstr "Obrázkové súbory"
 
 #: src/Widgets/Library/LibraryPage.vala:69
 #, c-format
 msgid "Video '%s' Removed."
-msgstr ""
+msgstr "Video ‚%s‘ bolo odstránené."
 
 #: src/Widgets/Player/BottomBar.vala:83
 msgid "Pause"
@@ -171,7 +171,7 @@ msgstr "Prehrať"
 
 #: src/Widgets/Player/BottomBar.vala:133
 msgid "Playlist"
-msgstr "Zoznam videí"
+msgstr "Zoznam prehrávania"
 
 #: src/Widgets/Player/BottomBar.vala:140
 msgid "Settings"
@@ -179,25 +179,24 @@ msgstr "Nastavenia"
 
 #: src/Widgets/Player/BottomBar.vala:165
 msgid "Unfullscreen"
-msgstr "Opustit režim Celej obrazovky"
+msgstr "Ukončiť režim Na celú obrazovku"
 
 #: src/Widgets/Player/PlayerPage.vala:285
 msgid "A video is playing"
-msgstr ""
+msgstr "Video sa prehráva"
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
-#, fuzzy
 msgid "Clear Playlist"
-msgstr "Zoznam videí"
+msgstr "Vyčistiť zoznam prehrávania"
 
 #: src/Widgets/Player/PlaylistPopover.vala:45
 #: src/Widgets/Player/PlaylistPopover.vala:76
 msgid "Enable Repeat"
-msgstr "Povoliť opakovanie"
+msgstr "Zapnúť opakovanie"
 
 #: src/Widgets/Player/PlaylistPopover.vala:73
 msgid "Disable Repeat"
-msgstr "Zakázať opakovanie"
+msgstr "Vypnúť opakovanie"
 
 #: src/Widgets/Player/SettingsPopover.vala:40
 msgid "Subtitle files"
@@ -222,14 +221,14 @@ msgstr "Titulky:"
 
 #: src/Widgets/Player/SettingsPopover.vala:57
 msgid "External Subtitles:"
-msgstr "Externé titulky"
+msgstr "Externé titulky:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
 #: src/Widgets/Player/SettingsPopover.vala:127
 #: src/Widgets/Player/SettingsPopover.vala:156
 #, c-format
 msgid "Track %u"
-msgstr ""
+msgstr "Stopa %u"
 
 #: src/Widgets/Player/SettingsPopover.vala:129
 msgid "None"
