@@ -9,15 +9,17 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2016-12-12 20:18+0000\n"
-"Last-Translator: Martin Korpala <Unknown>\n"
-"Language-Team: Slovak <>\n"
+"PO-Revision-Date: 2021-08-29 16:01+0000\n"
+"Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
+"Language-Team: Slovak <https://l10n.elementary.io/projects/videos/extra/sk/>"
+"\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-"X-Generator: Launchpad (build 18354)\n"
 
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:4
@@ -27,7 +29,7 @@ msgstr "Videá"
 #: data/io.elementary.videos.appdata.xml.in:10
 #: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr "Pozeraj videá a filmy"
+msgstr "Sledujte videá a filmy"
 
 #: data/io.elementary.videos.appdata.xml.in:12
 msgid ""
@@ -35,45 +37,47 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
-"Moderný prehrávač videa, ktorý sa sústreďuje na zobrazovanie obsahu namiesto "
-"ovládania prehrávača. Pamätá si Tvoje posledné video a pozíciu prehrávania, "
-"takže môžeš pokračovať tam kde si prestal."
+"Moderný prehrávač videa, ktorý sa zameriava hlavne na zobrazovanie obsahu "
+"namiesto ovládania prehrávača. Pamätá si naposledy prehrávané video a "
+"pozíciu prehrávania, takže môžete pokračovať tam, kde ste prestali."
 
 #: data/io.elementary.videos.appdata.xml.in:17
 msgid "Additional features include:"
-msgstr "Doplnkové funkcie zahŕňajú:"
+msgstr "Medzi ďalšie funkcie patria:"
 
 #: data/io.elementary.videos.appdata.xml.in:21
 msgid "Subtitle support"
-msgstr "Podpora titulkov"
+msgstr "Podporu titulkov"
 
 #: data/io.elementary.videos.appdata.xml.in:22
 msgid "Play queue"
-msgstr "Hraj rad"
+msgstr "Frontu prehrávania"
 
 #: data/io.elementary.videos.appdata.xml.in:23
 msgid "Thumbnail previews on the seek bar"
-msgstr "Náhľady na vyhľadávacom páse"
+msgstr "Náhľadové obrázky na posuvníku prehrávania"
 
 #: data/io.elementary.videos.appdata.xml.in:69
 #: data/io.elementary.videos.appdata.xml.in:84
 #: data/io.elementary.videos.appdata.xml.in:98
 #: data/io.elementary.videos.appdata.xml.in:117
 msgid "Other updates:"
-msgstr ""
+msgstr "Ostatné aktualizácie:"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Fix an issue with accessing library view"
-msgstr ""
+msgstr "Opravený problém s pristupovaním do zobrazenia knižnice"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid ""
 "Fix an issue with returning to the welcome page while playing multiple videos"
 msgstr ""
+"Opravený problém pri návrate na uvítaciu obrazovku pri prehrávaní viacerých "
+"videí"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Prevent sleep while playing a video"
-msgstr ""
+msgstr "Zabránenie uspania pri prehrávaní videa"
 
 #: data/io.elementary.videos.appdata.xml.in:74
 #: data/io.elementary.videos.appdata.xml.in:88
@@ -87,11 +91,11 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:192
 #: data/io.elementary.videos.appdata.xml.in:208
 msgid "Translation updates"
-msgstr "Aktualizácie prekladu."
+msgstr "Aktualizované preklady"
 
 #: data/io.elementary.videos.appdata.xml.in:80
 msgid "Improvements:"
-msgstr ""
+msgstr "Vylepšenia:"
 
 #: data/io.elementary.videos.appdata.xml.in:82
 msgid "Start up faster with large libraries"
