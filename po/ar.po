@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2021-03-01 16:14+0000\n"
+"PO-Revision-Date: 2021-08-31 13:00+0000\n"
 "Last-Translator: aalhaif <aalhaif@hotmail.com>\n"
-"Language-Team: Arabic <https://l10n.elementary.io/projects/videos/videos/ar/"
-">\n"
+"Language-Team: Arabic <https://l10n.elementary.io/projects/videos/videos/ar/>"
+"\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,9 +43,8 @@ msgid "Search Videos"
 msgstr "البحث عن مقاطع الفيديو"
 
 #: src/Window.vala:80
-#, fuzzy
 msgid "Play one video"
-msgstr "إعادة تشغيل الفيديو الماضي"
+msgstr "تشغيل فيديو واحد"
 
 #: src/Window.vala:81
 msgid "Automatically play next videos"
@@ -70,7 +69,7 @@ msgstr "كل الملفات"
 
 #: src/Window.vala:414
 msgid "Video files"
-msgstr "ملفات مرئية"
+msgstr "ملفات فيديو"
 
 #: src/Window.vala:418 src/Widgets/Library/LibraryItem.vala:167
 msgid "Open"
@@ -78,24 +77,24 @@ msgstr "افتح"
 
 #: src/Window.vala:421 src/Widgets/Library/LibraryItem.vala:170
 msgid "_Open"
-msgstr ""
+msgstr "_فتح"
 
 #: src/Window.vala:422 src/Widgets/Library/LibraryItem.vala:171
 msgid "_Cancel"
-msgstr ""
+msgstr "_إلغاء"
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
-msgstr ""
+msgstr "صيغة ملف غير معروفة"
 
 #: src/Widgets/UnsupportedFileDialog.vala:26
 #, c-format
 msgid "Videos might not be able to play the file '%s'."
-msgstr ""
+msgstr "تطبيق Videos قد لا يكون قادر على تشغيل الملف '%s'."
 
 #: src/Widgets/UnsupportedFileDialog.vala:37
 msgid "Play Anyway"
-msgstr ""
+msgstr "تشغيل على أي حال"
 
 #: src/Widgets/UnsupportedFileDialog.vala:40
 #, c-format
@@ -103,6 +102,8 @@ msgid ""
 "Unable to play file at: %s\n"
 "The file is not a video (\"%s\")."
 msgstr ""
+"لا يمكن تشغيل الملف الموجود بهذا المسار: %s\n"
+"الملف ليس بفيديو (\"%s\")."
 
 #: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
@@ -150,7 +151,7 @@ msgstr "انقل الى سلة المهملات"
 
 #: src/Widgets/Library/LibraryItem.vala:77
 msgid "Set Artwork"
-msgstr ""
+msgstr "إعداد عمل فني"
 
 #: src/Widgets/Library/LibraryItem.vala:163
 msgid "Image files"
@@ -228,7 +229,7 @@ msgstr "الترجمات الخارجية:"
 #: src/Widgets/Player/SettingsPopover.vala:156
 #, c-format
 msgid "Track %u"
-msgstr ""
+msgstr "تسلسل %u"
 
 #: src/Widgets/Player/SettingsPopover.vala:129
 msgid "None"
