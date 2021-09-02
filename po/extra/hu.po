@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
 "PO-Revision-Date: 2021-09-02 21:31+0000\n"
-"Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
+"Last-Translator: Sziráki Bálint <blntsziraki@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/extra/"
 "hu/>\n"
 "Language: hu\n"
@@ -60,7 +60,7 @@ msgstr "Indexkép előnézetek a sávon"
 #: data/io.elementary.videos.appdata.xml.in:98
 #: data/io.elementary.videos.appdata.xml.in:117
 msgid "Other updates:"
-msgstr ""
+msgstr "További frissítések:"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Fix an issue with accessing library view"
@@ -91,11 +91,11 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:80
 msgid "Improvements:"
-msgstr ""
+msgstr "Fejlesztések:"
 
 #: data/io.elementary.videos.appdata.xml.in:82
 msgid "Start up faster with large libraries"
-msgstr ""
+msgstr "Gyorsabb indulás nagyobb könyvtárak használatával"
 
 #: data/io.elementary.videos.appdata.xml.in:86
 msgid "Fix cases where subtitles refused to load"
