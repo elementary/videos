@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
 "PO-Revision-Date: 2021-09-02 21:31+0000\n"
-"Last-Translator: Sziráki Bálint <blntsziraki@gmail.com>\n"
+"Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/extra/"
 "hu/>\n"
 "Language: hu\n"
@@ -35,18 +35,21 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
+"Egy modern videólejátszó ami a videó megjelenítésére fókuszál a lejátszó "
+"vezérlése helyett. Emlékszik a legutóbb lejátszott videóra és a megállított "
+"pozícióra, így ott folytathatja, ahol abbahagyta."
 
 #: data/io.elementary.videos.appdata.xml.in:17
 msgid "Additional features include:"
-msgstr ""
+msgstr "További jellemzők közé tartozik:"
 
 #: data/io.elementary.videos.appdata.xml.in:21
 msgid "Subtitle support"
-msgstr ""
+msgstr "Feliratok támogatása"
 
 #: data/io.elementary.videos.appdata.xml.in:22
 msgid "Play queue"
-msgstr ""
+msgstr "Lejátszási sor"
 
 #: data/io.elementary.videos.appdata.xml.in:23
 msgid "Thumbnail previews on the seek bar"
