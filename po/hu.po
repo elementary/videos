@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2021-09-02 21:29+0000\n"
-"Last-Translator: zoli111 <acszoltan111@gmail.com>\n"
+"PO-Revision-Date: 2021-09-02 23:35+0000\n"
+"Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/videos/"
 "hu/>\n"
 "Language: hu\n"
@@ -47,7 +47,7 @@ msgstr "Egy videó lejátszása"
 
 #: src/Window.vala:81
 msgid "Automatically play next videos"
-msgstr "Következő videó automatikus lejátszása"
+msgstr "A következő videók automatikus lejátszása"
 
 #: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
