@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2021-08-29 16:01+0000\n"
+"PO-Revision-Date: 2021-09-08 18:29+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/videos/videos/sk/>"
 "\n"
@@ -118,7 +118,7 @@ msgstr "Otvoriť súbor"
 
 #: src/Widgets/WelcomePage.vala:30
 msgid "Open a saved file."
-msgstr "Otvorí uložený súbor."
+msgstr "Otvoriť uložený súbor."
 
 #: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:108
 msgid "Replay last video"
