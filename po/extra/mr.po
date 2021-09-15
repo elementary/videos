@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2020-11-20 21:15+0000\n"
+"PO-Revision-Date: 2021-09-15 15:47+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/videos/extra/mr/"
-">\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/videos/extra/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:4
@@ -63,16 +63,18 @@ msgstr "इतर अद्यतने:"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Fix an issue with accessing library view"
-msgstr ""
+msgstr "लायब्ररी व्ह्यूमध्ये प्रवेश करण्याशी संबंधित समस्येचे निराकरण करा"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid ""
 "Fix an issue with returning to the welcome page while playing multiple videos"
 msgstr ""
+"एकाधिक व्हिडिओ प्ले करताना स्वागत पृष्ठावर परत येण्याशी संबंधित समस्येचे निरा"
+"करण करा"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Prevent sleep while playing a video"
-msgstr ""
+msgstr "व्हिडिओ प्ले करताना स्लीप मोडमध्ये जाण्यापासून प्रतिबंधित करा"
 
 #: data/io.elementary.videos.appdata.xml.in:74
 #: data/io.elementary.videos.appdata.xml.in:88
