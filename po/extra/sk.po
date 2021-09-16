@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
-"PO-Revision-Date: 2021-08-29 16:01+0000\n"
+"PO-Revision-Date: 2021-09-16 23:57+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/videos/extra/sk/>"
 "\n"
@@ -99,28 +99,30 @@ msgstr "Vylepšenia:"
 
 #: data/io.elementary.videos.appdata.xml.in:82
 msgid "Start up faster with large libraries"
-msgstr ""
+msgstr "Rýchlejšie spustenie v prípade prítomnosti veľkých knižníc videí"
 
 #: data/io.elementary.videos.appdata.xml.in:86
 msgid "Fix cases where subtitles refused to load"
-msgstr ""
+msgstr "Opravené prípady, kedy sa titulky odmietali načítať"
 
 #: data/io.elementary.videos.appdata.xml.in:87
 msgid "Handle if library folder is deleted or moved"
-msgstr ""
+msgstr "Upravené presúvanie a odstraňovanie priečinkov knižnice"
 
 #: data/io.elementary.videos.appdata.xml.in:94
 #: data/io.elementary.videos.appdata.xml.in:109
 msgid "New features:"
-msgstr ""
+msgstr "Nové funkcie:"
 
 #: data/io.elementary.videos.appdata.xml.in:96
 msgid "Load external subtitles"
-msgstr ""
+msgstr "Načítanie externých tituliek"
 
 #: data/io.elementary.videos.appdata.xml.in:100
 msgid "Reliably update the replay button description and file"
 msgstr ""
+"Zlepšenie spoľahlivosti pri aktualizácii popisu tlačidla opätovného "
+"prehrania a súboru"
 
 #: data/io.elementary.videos.appdata.xml.in:101
 msgid "More consistently remember the last playing video and its play position"
