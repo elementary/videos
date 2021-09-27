@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 19:12+0000\n"
 "PO-Revision-Date: 2021-09-27 10:17+0000\n"
-"Last-Translator: DarkKnightComes <darkknightcomes@gmail.com>\n"
+"Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/videos/videos/pl/>"
 "\n"
 "Language: pl\n"
@@ -43,13 +43,12 @@ msgid "Search Videos"
 msgstr "Wyszukiwanie nagrań wideo"
 
 #: src/Window.vala:80
-#, fuzzy
 msgid "Play one video"
-msgstr "Odtwórz ponownie ostatnie wideo"
+msgstr "Odtwórz jeden film"
 
 #: src/Window.vala:81
 msgid "Automatically play next videos"
-msgstr ""
+msgstr "Automatycznie odtwarzaj następne filmy"
 
 #: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
 #, c-format
