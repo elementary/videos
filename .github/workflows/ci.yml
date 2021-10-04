@@ -10,7 +10,7 @@ on:
       - synchronize
 
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-latest
 
     container:
@@ -31,8 +31,7 @@ jobs:
         ninja -C build
         ninja -C build install
 
-  flatpak:
-    name: Flatpak
+  Flatpak:
     runs-on: ubuntu-latest
 
     strategy:
@@ -66,8 +65,7 @@ jobs:
           cache-key: "flatpak-builder-${{ github.sha }}"
           arch: ${{ matrix.arch }}
 
-  lint:
-    name: Lint
+  Lint:
     runs-on: ubuntu-latest
 
     container:
