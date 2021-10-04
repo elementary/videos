@@ -58,8 +58,8 @@ jobs:
       - name: Build
         uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
         with:
-          bundle: calculator.flatpak
-          manifest-path: io.elementary.calculator.yml
+          bundle: videos.flatpak
+          manifest-path: io.elementary.videos.yml
           run-tests: true
           repository-name: appcenter
           repository-url: https://flatpak.elementary.io/repo.flatpakrepo
