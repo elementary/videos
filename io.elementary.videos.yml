@@ -5,7 +5,7 @@ sdk: io.elementary.Sdk
 command: io.elementary.videos
 finish-args:
   - '--filesystem=xdg-cache/thumbnails:ro'
-  - '--filesystem=xdg-videos:ro
+  - '--filesystem=xdg-videos:ro'
 
   - '--share=ipc'
   - '--socket=fallback-x11'
