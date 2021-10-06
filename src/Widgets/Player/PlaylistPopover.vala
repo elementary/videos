@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2013-2014 Audience Developers (http://launchpad.net/pantheon-chat)
+ * Copyright (c) 2013-2021 elementary, Inc. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,47 +18,59 @@
  */
 
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
-    public Playlist playlist;
-    public Gtk.ToggleButton rep;
-    private Gtk.ScrolledWindow playlist_scrolled;
+    public Playlist playlist { get; private set; }
+    public Gtk.ToggleButton rep { get; private set; }
+
     private Gtk.Button dvd;
     private const int HEIGHT_OFFSET = 300;
 
-    public PlaylistPopover () {
-        opacity = GLOBAL_OPACITY;
-        var grid = new Gtk.Grid ();
-        grid.row_spacing = 6;
-        grid.column_spacing = 12;
-        grid.margin = 6;
+    construct {
+        var fil = new Gtk.Button.from_icon_name ("document-open-symbolic", Gtk.IconSize.BUTTON) {
+            tooltip_text = _("Open file")
+        };
 
-        var fil = new Gtk.Button.from_icon_name ("document-open-symbolic", Gtk.IconSize.BUTTON);
-        fil.tooltip_text = _("Open file");
-        dvd = new Gtk.Button.from_icon_name ("media-optical-symbolic", Gtk.IconSize.BUTTON);
-        dvd.tooltip_text = _("Play from Disc");
+        dvd = new Gtk.Button.from_icon_name ("media-optical-symbolic", Gtk.IconSize.BUTTON) {
+            tooltip_text = _("Play from Disc")
+        };
 
         var clear_playlist_button = new Gtk.Button.from_icon_name ("edit-delete-symbolic", Gtk.IconSize.BUTTON);
         clear_playlist_button.tooltip_text = _("Clear Playlist");
 
-        rep = new Gtk.ToggleButton ();
-        rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON));
-        rep.tooltip_text = _("Enable Repeat");
+        rep = new Gtk.ToggleButton () {
+            image = new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON),
+            tooltip_text = _("Enable Repeat")
+        };
 
-        playlist_scrolled = new Gtk.ScrolledWindow (null, null);
-        playlist_scrolled.min_content_height = 100;
-        playlist_scrolled.min_content_width = 260;
-        playlist_scrolled.propagate_natural_height = true;
+        var playlist_scrolled = new Gtk.ScrolledWindow (null, null) {
+            min_content_height = 100,
+            min_content_width = 260,
+            propagate_natural_height = true
+        };
 
         playlist = new Playlist ();
         playlist_scrolled.add (playlist);
 
+        var grid = new Gtk.Grid () {
+            column_spacing = 12,
+            row_spacing = 6,
+            margin = 6
+        };
+        grid.attach (playlist_scrolled, 0, 0, 7);
+        grid.attach (fil, 0, 1);
+        grid.attach (clear_playlist_button, 1, 1);
+        grid.attach (dvd, 2, 1);
+        grid.attach (rep, 6, 1);
+
+        add (grid);
+
         fil.clicked.connect (() => {
-            hide ();
-            App.get_instance ().mainwindow.run_open_file (false, false);
+            popdown ();
+            ((Audience.Window)((Gtk.Application) Application.get_default ()).active_window).run_open_file (false, false);
         });
 
         dvd.clicked.connect (() => {
-            hide ();
-            App.get_instance ().mainwindow.run_open_dvd ();
+            popdown ();
+            ((Audience.Window)((Gtk.Application) Application.get_default ()).active_window).run_open_dvd ();
         });
 
         clear_playlist_button.clicked.connect (() => {
@@ -69,21 +80,13 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         rep.toggled.connect ( () => {
             /* app.repeat = rep.active; */
             if (rep.active) {
-                rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.BUTTON));
-                rep.set_tooltip_text (_("Disable Repeat"));
+                ((Gtk.Image) rep.image).icon_name = "media-playlist-repeat-symbolic";
+                rep.tooltip_text = _("Disable Repeat");
             } else {
-                rep.set_image (new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON));
-                rep.set_tooltip_text (_("Enable Repeat"));
+                ((Gtk.Image) rep.image).icon_name = "media-playlist-no-repeat-symbolic";
+                rep.tooltip_text = _("Enable Repeat");
             }
         });
-
-        grid.attach (playlist_scrolled, 0, 0, 7, 1);
-        grid.attach (fil, 0, 1, 1, 1);
-        grid.attach (clear_playlist_button, 1, 1, 1, 1);
-        grid.attach (dvd, 2, 1, 1, 1);
-        grid.attach (rep, 6, 1, 1, 1);
-
-        add (grid);
 
         var disk_manager = DiskManager.get_default ();
         set_dvd_visibility (disk_manager.has_media_volumes ());
@@ -96,7 +99,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         });
 
         map.connect (() => {
-            var window_height = App.get_instance ().mainwindow.get_window ().get_height ();
+            var window_height = ((Gtk.Application) Application.get_default ()).active_window.get_window ().get_height ();
             playlist_scrolled.set_max_content_height (window_height - HEIGHT_OFFSET);
         });
     }
