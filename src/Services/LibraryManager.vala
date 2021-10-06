@@ -179,7 +179,7 @@ namespace Audience.Services {
         }
 
         public async void clear_unused_cache_files () {
-            File directory = File.new_for_path (App.get_instance ().get_cache_directory ());
+            File directory = File.new_for_path (((Audience.App) Application.get_default ()).get_cache_directory ());
             directory.enumerate_children_async.begin (FileAttribute.STANDARD_NAME, 0, Priority.DEFAULT, null, (obj, res) => {
                 try {
                     FileEnumerator children = directory.enumerate_children_async.end (res);
