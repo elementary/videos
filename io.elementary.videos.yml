@@ -17,6 +17,18 @@ finish-args:
 
   - '--metadata=X-DConf=migrate-path=/io/elementary/videos/'
 modules:
+  - name: canberra
+    config-opts:
+      - '--enable-gstreamer'
+      - '--enable-pulse'
+      - '--disable-oss'
+      - '--disable-static'
+      - '--with-builtin=dso'
+    sources:
+      - type: git
+        url: http://git.0pointer.net/clone/libcanberra.git
+        disable-shallow-clone: true
+
   - name: videos
     buildsystem: meson
     sources:
