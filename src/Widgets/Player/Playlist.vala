@@ -31,7 +31,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
 
     construct {
         can_focus = true;
-        expand =true;
+        expand = true;
         selection_mode = Gtk.SelectionMode.BROWSE;
 
         row_activated.connect ((item) => {
