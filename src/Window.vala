@@ -164,12 +164,6 @@ public class Audience.Window : Gtk.Window {
 
         app_notification = new Granite.Widgets.Toast ("");
         app_notification.set_default_action (_("Restore"));
-        app_notification.default_action.connect (() => {
-            library_page.manager.undo_delete_item ();
-            if (main_stack.visible_child != episodes_page) {
-                main_stack.set_visible_child (library_page);
-            }
-        });
 
         var overlay = new Gtk.Overlay ();
         overlay.add (main_stack);
@@ -182,6 +176,19 @@ public class Audience.Window : Gtk.Window {
         search_entry.visible = false;
         autoqueue_next.visible = false;
         main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.NONE);
+
+        var manager = Audience.Services.LibraryManager.get_instance ();
+        manager.video_moved_to_trash.connect ((video) => {
+            app_notification.title = _("Video '%s' Removed.").printf (Path.get_basename (video));
+            app_notification.send_notification ();
+        });
+
+        app_notification.default_action.connect (() => {
+            manager.undo_delete_item ();
+            if (main_stack.visible_child != episodes_page) {
+                main_stack.set_visible_child (library_page);
+            }
+        });
 
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
         Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
@@ -340,7 +347,7 @@ public class Audience.Window : Gtk.Window {
             if (ctrl_pressed && match_keycode (Gdk.Key.f, keycode)) {
                 search_entry.grab_focus ();
             } else if (ctrl_pressed && match_keycode (Gdk.Key.z, keycode)) {
-                library_page.manager.undo_delete_item ();
+                Audience.Services.LibraryManager.get_instance ().undo_delete_item ();
                 app_notification.reveal_child = false;
             } else if (match_keycode (Gdk.Key.Escape, keycode)) {
                 search_entry.text = "";
@@ -551,11 +558,6 @@ public class Audience.Window : Gtk.Window {
         alert_view.description = secondary_text;
         alert_view.icon_name = icon_name;
         main_stack.set_visible_child_full ("alert", Gtk.StackTransitionType.NONE);
-    }
-
-    public void set_app_notification (string text) {
-        app_notification.title = text;
-        app_notification.send_notification ();
     }
 
     public Gtk.Widget get_visible_child () {
