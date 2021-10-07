@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2013-2014 Audience Developers (http://launchpad.net/pantheon-chat)
+ * Copyright 2013-2021 elementary, Inc. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +18,8 @@
  */
 
 public class Audience.Widgets.PreviewPopover : Gtk.Popover {
+    public string playback_uri { get; construct; }
+
     private enum PlayFlags {
         VIDEO = (1 << 0),
         AUDIO = (1 << 1),
@@ -33,77 +34,53 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         SOFT_COLORBALANCE = (1 << 10)
     }
 
-    ClutterGst.Playback playback;
-    GtkClutter.Embed clutter;
-    uint loop_timer_id = 0;
-    uint show_timer_id = 0;
-    uint hide_timer_id = 0;
-    uint idle_id = 0;
-    double req_progress = -1;
-    bool req_loop = false;
+    private dynamic Gst.Element playbin;
+    private Gtk.Widget gst_video_widget;
 
-    public PreviewPopover (ClutterGst.Playback main_playback) {
-        opacity = GLOBAL_OPACITY;
+    private uint loop_timer_id = 0;
+    private uint show_timer_id = 0;
+    private uint hide_timer_id = 0;
+    private uint idle_id = 0;
+    private double req_progress = -1;
+    private bool req_loop = false;
+
+    public PreviewPopover (string playback_uri) {
+        Object (playback_uri: playback_uri);
+    }
+
+    construct {
         can_focus = false;
         sensitive = false;
         modal = false;
 
-        playback = new ClutterGst.Playback ();
-        playback.ready.connect (() => {
-            unowned Gst.Element pipeline = playback.get_pipeline ();
-            int flags;
-            pipeline.get ("flags", out flags);
-            flags &= ~PlayFlags.TEXT;   //disable subtitle
-            flags &= ~PlayFlags.AUDIO;  //disable audio sink
-            pipeline.set ("flags", flags);
-        });
+        playbin = Gst.ElementFactory.make ("playbin", "bin");
+        playbin.uri = playback_uri;
 
-        playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
-        playback.uri = main_playback.uri;
-        playback.playing = false;
-        clutter = new GtkClutter.Embed ();
-        clutter.margin = 3;
-        var stage = (Clutter.Stage)clutter.get_stage ();
-        stage.background_color = {0, 0, 0, 0};
+        var gtksink = Gst.ElementFactory.make ("gtksink", "sink");
+        gtksink.get ("widget", out gst_video_widget);
 
-        var video_actor = new Clutter.Actor ();
-#if VALA_0_34
-        var aspect_ratio = new ClutterGst.Aspectratio ();
-#else
-        var aspect_ratio = ClutterGst.Aspectratio.@new ();
-#endif
-        ((ClutterGst.Aspectratio) aspect_ratio).paint_borders = false;
-        ((ClutterGst.Content) aspect_ratio).player = playback;
-        video_actor.content = aspect_ratio;
-        ((ClutterGst.Content) aspect_ratio).size_change.connect ((width, height) => {
-            if (width > 0 && height > 0) {
-                double diagonal = Math.sqrt ((width * width) + (height * height));
-                double k = 230 / diagonal; // for 16:9 ratio it produces width of ~200px
-                clutter.set_size_request ((int)(width * k), (int)(height * k));
-            }
-        });
+        playbin["video-sink"] = gtksink;
 
-        video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
-        video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
+        gst_video_widget.margin = 3;
+        gst_video_widget.height_request = 64;
 
-        stage.add_child (video_actor);
-        add (clutter);
+        add (gst_video_widget);
 
         closed.connect (() => {
-            playback.playing = false;
+            playbin.set_state (Gst.State.NULL);
             cancel_loop_timer ();
             cancel_timer (ref show_timer_id);
             cancel_timer (ref hide_timer_id);
         });
 
         hide.connect (() => {
-            playback.playing = false;
+            playbin.set_state (Gst.State.NULL);
             cancel_loop_timer ();
         });
     }
 
     ~PreviewPopover () {
-        playback.playing = false;
+        playbin.set_state (Gst.State.NULL);
         cancel_loop_timer ();
     }
 
@@ -120,9 +97,11 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         }
 
         idle_id = Idle.add_full (GLib.Priority.LOW, () => {
-            playback.playing = true;
-            playback.progress = progress;
-            playback.playing = loop;
+            int64 duration = 0;
+            playbin.query_duration (Gst.Format.TIME, out duration);
+            playbin.set_state (Gst.State.PLAYING);
+            playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)(progress * duration));
+            // playback.playing = loop;
             if (loop) {
                 loop_timer_id = Timeout.add_seconds (5, () => {
                     set_preview_progress (progress, true);
