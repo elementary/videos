@@ -53,13 +53,12 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         sensitive = false;
         modal = false;
 
-        playbin = Gst.ElementFactory.make ("playbin", "bin");
-        playbin.uri = playback_uri;
-
         var gtksink = Gst.ElementFactory.make ("gtksink", "sink");
         gtksink.get ("widget", out gst_video_widget);
 
-        playbin["video-sink"] = gtksink;
+        playbin = Gst.ElementFactory.make ("playbin", "bin");
+        playbin.uri = playback_uri;
+        playbin.video_sink = gtksink;
 
         gst_video_widget.margin = 3;
         gst_video_widget.height_request = 64;
