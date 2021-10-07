@@ -43,7 +43,7 @@ public class Audience.WelcomePage : Granite.Widgets.Welcome {
         update_replay_title ();
 
         activated.connect ((index) => {
-            var window = App.get_instance ().mainwindow;
+            var window = (Audience.Window) ((Gtk.Application) Application.get_default ()).active_window;
             switch (index) {
                 case 0:
                     // Open file
