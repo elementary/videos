@@ -47,8 +47,6 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         playbin.video_sink = gtksink;
 
         gst_video_widget.margin = 3;
-        gst_video_widget.halign = Gtk.Align.CENTER;
-        gst_video_widget.valign = Gtk.Align.CENTER;
 
         add (gst_video_widget);
 
