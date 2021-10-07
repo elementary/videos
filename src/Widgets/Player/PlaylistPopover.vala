@@ -82,6 +82,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         grid.attach (clear_playlist_button, 1, 1, 1, 1);
         grid.attach (dvd, 2, 1, 1, 1);
         grid.attach (rep, 6, 1, 1, 1);
+        grid.show_all ();
 
         add (grid);
 
