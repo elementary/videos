@@ -20,20 +20,6 @@
 public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     public string playback_uri { get; construct; }
 
-    private enum PlayFlags {
-        VIDEO = (1 << 0),
-        AUDIO = (1 << 1),
-        TEXT = (1 << 2),
-        VIS = (1 << 3),
-        SOFT_VOLUME = (1 << 4),
-        NATIVE_AUDIO = (1 << 5),
-        NATIVE_VIDEO = (1 << 6),
-        DOWNLOAD = (1 << 7),
-        BUFFERING = (1 << 8),
-        DEINTERLACE = (1 << 9),
-        SOFT_COLORBALANCE = (1 << 10)
-    }
-
     private dynamic Gst.Element playbin;
     private Gtk.Widget gst_video_widget;
 
@@ -61,7 +47,8 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         playbin.video_sink = gtksink;
 
         gst_video_widget.margin = 3;
-        gst_video_widget.height_request = 64;
+        gst_video_widget.halign = Gtk.Align.CENTER;
+        gst_video_widget.valign = Gtk.Align.CENTER;
 
         add (gst_video_widget);
 
