@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 19:12+0000\n"
+"POT-Creation-Date: 2021-10-08 16:06+0000\n"
 "PO-Revision-Date: 2020-09-21 11:14+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/videos/videos/mr/"
@@ -13,65 +13,56 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#: src/Application.vala:74 src/Window.vala:519
+#: src/Application.vala:77 src/Window.vala:504
 msgid "Videos"
 msgstr "व्हिडीओ"
 
 #. For better translation
-#: src/Window.vala:40
+#: src/Window.vala:39
 msgid "Back"
 msgstr "मागे"
 
-#: src/Window.vala:41
+#: src/Window.vala:40
 msgid "Library"
 msgstr "संग्रह"
 
-#: src/Window.vala:42
+#: src/Window.vala:41
 msgid "Episodes"
 msgstr "भाग"
 
-#: src/Window.vala:67
+#: src/Window.vala:66
 msgid "Search Videos"
 msgstr "व्हिडीओ शोध"
 
-#: src/Window.vala:80
+#: src/Window.vala:79
 msgid "Play one video"
 msgstr "एक व्हिडिओ प्ले करा"
 
-#: src/Window.vala:81
+#: src/Window.vala:80
 msgid "Automatically play next videos"
 msgstr "पुढील व्हिडिओ स्वयंचलितपणे प्ले करा"
 
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
-#, c-format
-msgid "No Results for “%s”"
-msgstr "\"%S\" साठी कोणतेही परिणाम नाहीत"
-
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
-msgid "Try changing search terms."
-msgstr "शोध संज्ञा बदलण्याचा प्रयत्न करा."
-
-#: src/Window.vala:166
+#: src/Window.vala:151
 msgid "Restore"
 msgstr "पुनर्संचयित करा"
 
-#: src/Window.vala:410 src/Widgets/Player/SettingsPopover.vala:36
+#: src/Window.vala:395 src/Widgets/Player/SettingsPopover.vala:36
 msgid "All files"
 msgstr "सर्व फायली"
 
-#: src/Window.vala:414
+#: src/Window.vala:399
 msgid "Video files"
 msgstr "व्हिडिओ फायली"
 
-#: src/Window.vala:418 src/Widgets/Library/LibraryItem.vala:167
+#: src/Window.vala:403 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "उघडा"
 
-#: src/Window.vala:421 src/Widgets/Library/LibraryItem.vala:170
+#: src/Window.vala:406 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "(_O)उघडा"
 
-#: src/Window.vala:422 src/Widgets/Library/LibraryItem.vala:171
+#: src/Window.vala:407 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "(_C)रद्द करा"
 
@@ -137,40 +128,51 @@ msgstr "आपल्या लायब्ररीमधून एक चित
 msgid "Resume last video"
 msgstr "शेवटचा व्हिडिओ पुन्हा सुरु करा"
 
-#: src/Widgets/Library/LibraryItem.vala:64
+#: src/Widgets/Library/EpisodesPage.vala:126
+#: src/Widgets/Library/LibraryPage.vala:186
+#, c-format
+msgid "No Results for “%s”"
+msgstr "\"%S\" साठी कोणतेही परिणाम नाहीत"
+
+#: src/Widgets/Library/EpisodesPage.vala:126
+#: src/Widgets/Library/LibraryPage.vala:55
+msgid "Try changing search terms."
+msgstr "शोध संज्ञा बदलण्याचा प्रयत्न करा."
+
+#: src/Widgets/Library/LibraryItem.vala:76
 msgid "Move to Trash"
 msgstr "कचरापेटीमध्ये हलवा"
 
-#: src/Widgets/Library/LibraryItem.vala:77
+#: src/Widgets/Library/LibraryItem.vala:89
 msgid "Set Artwork"
 msgstr "आर्टवर्क सेट करा"
 
-#: src/Widgets/Library/LibraryItem.vala:163
+#: src/Widgets/Library/LibraryItem.vala:179
 msgid "Image files"
 msgstr "प्रतिमा फायली"
 
-#: src/Widgets/Library/LibraryPage.vala:69
+#: src/Widgets/Library/LibraryPage.vala:74
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "व्हिडिओ '%s' काढला."
 
-#: src/Widgets/Player/BottomBar.vala:83
+#: src/Widgets/Player/BottomBar.vala:81
 msgid "Pause"
 msgstr "थांबवा"
 
-#: src/Widgets/Player/BottomBar.vala:87 src/Widgets/Player/BottomBar.vala:126
+#: src/Widgets/Player/BottomBar.vala:85 src/Widgets/Player/BottomBar.vala:102
 msgid "Play"
 msgstr "करा"
 
-#: src/Widgets/Player/BottomBar.vala:133
+#: src/Widgets/Player/BottomBar.vala:110
 msgid "Playlist"
 msgstr "प्लेलिस्ट"
 
-#: src/Widgets/Player/BottomBar.vala:140
+#: src/Widgets/Player/BottomBar.vala:118
 msgid "Settings"
 msgstr "सेटिंग्ज"
 
-#: src/Widgets/Player/BottomBar.vala:165
+#: src/Widgets/Player/BottomBar.vala:132
 msgid "Unfullscreen"
 msgstr "अनफुलस्क्रीन"
 
@@ -217,17 +219,17 @@ msgid "External Subtitles:"
 msgstr "बाह्य उपशीर्षके:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:127
-#: src/Widgets/Player/SettingsPopover.vala:156
+#: src/Widgets/Player/SettingsPopover.vala:132
+#: src/Widgets/Player/SettingsPopover.vala:161
 #, c-format
 msgid "Track %u"
 msgstr "ट्रॅक %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:129
+#: src/Widgets/Player/SettingsPopover.vala:134
 msgid "None"
 msgstr "काहीही नाही"
 
-#: src/Widgets/Player/SettingsPopover.vala:169
+#: src/Widgets/Player/SettingsPopover.vala:174
 msgid "Default"
 msgstr "डिफॉल्ट"
 
