@@ -18,9 +18,10 @@
  *
  */
 
-public class Audience.LibraryPage : Gtk.Grid {
-    public signal void filter_result_changed (bool has_results);
+public class Audience.LibraryPage : Gtk.Stack {
     public signal void show_episodes (Audience.LibraryItem item, bool setup_only = false);
+
+    private Granite.Widgets.AlertView alert_view;
 
     public Gtk.ScrolledWindow scrolled_window { get; private set; }
     public string last_filter { get; set; default = ""; }
@@ -60,7 +61,14 @@ public class Audience.LibraryPage : Gtk.Grid {
 
         scrolled_window.add (view_movies);
 
+        alert_view = new Granite.Widgets.AlertView (
+            "",
+            _("Try changing search terms."),
+            "edit-find-symbolic"
+        );
+
         add (scrolled_window);
+        add (alert_view);
 
         view_movies.child_activated.connect (play_video);
 
@@ -168,6 +176,7 @@ public class Audience.LibraryPage : Gtk.Grid {
         var item2 = (LibraryItem)child2;
         if (item1 != null && item2 != null) {
             return item1.get_title ().collate (item2.get_title ());
+
         }
         return 0;
     }
@@ -175,7 +184,13 @@ public class Audience.LibraryPage : Gtk.Grid {
     public void filter (string text) {
         query = text.strip ();
         view_movies.invalidate_filter ();
-        filter_result_changed (has_child ());
+
+        if (!has_child ()) {
+            visible_child = alert_view;
+            alert_view.title = _("No Results for “%s”").printf (text);
+        } else {
+            visible_child = scrolled_window;
+        }
     }
 
     public bool has_child () {

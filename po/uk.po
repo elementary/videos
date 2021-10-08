@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 19:12+0000\n"
+"POT-Creation-Date: 2021-10-08 16:06+0000\n"
 "PO-Revision-Date: 2021-07-18 15:07+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/videos/videos/"
@@ -21,65 +21,56 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:74 src/Window.vala:519
+#: src/Application.vala:77 src/Window.vala:504
 msgid "Videos"
 msgstr "Відео"
 
 #. For better translation
-#: src/Window.vala:40
+#: src/Window.vala:39
 msgid "Back"
 msgstr "Назад"
 
-#: src/Window.vala:41
+#: src/Window.vala:40
 msgid "Library"
 msgstr "Бібліотека"
 
-#: src/Window.vala:42
+#: src/Window.vala:41
 msgid "Episodes"
 msgstr "Епізоди"
 
-#: src/Window.vala:67
+#: src/Window.vala:66
 msgid "Search Videos"
 msgstr "Шукати відео"
 
-#: src/Window.vala:80
+#: src/Window.vala:79
 msgid "Play one video"
 msgstr "Повторювати одне відео"
 
-#: src/Window.vala:81
+#: src/Window.vala:80
 msgid "Automatically play next videos"
 msgstr "Автовідтворення наступних відео"
 
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
-#, c-format
-msgid "No Results for “%s”"
-msgstr "За запитом «%s» нічого не знайдено"
-
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
-msgid "Try changing search terms."
-msgstr "Спробуйте змінити пошуковий термін."
-
-#: src/Window.vala:166
+#: src/Window.vala:151
 msgid "Restore"
 msgstr "Відновити"
 
-#: src/Window.vala:410 src/Widgets/Player/SettingsPopover.vala:36
+#: src/Window.vala:395 src/Widgets/Player/SettingsPopover.vala:36
 msgid "All files"
 msgstr "Всі файли"
 
-#: src/Window.vala:414
+#: src/Window.vala:399
 msgid "Video files"
 msgstr "Відеофайли"
 
-#: src/Window.vala:418 src/Widgets/Library/LibraryItem.vala:167
+#: src/Window.vala:403 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Відкрити"
 
-#: src/Window.vala:421 src/Widgets/Library/LibraryItem.vala:170
+#: src/Window.vala:406 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Відкрити"
 
-#: src/Window.vala:422 src/Widgets/Library/LibraryItem.vala:171
+#: src/Window.vala:407 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Скасувати"
 
@@ -145,40 +136,51 @@ msgstr "Дивитись фільм з вашої бібліотеки"
 msgid "Resume last video"
 msgstr "Відновити попереднє відео"
 
-#: src/Widgets/Library/LibraryItem.vala:64
+#: src/Widgets/Library/EpisodesPage.vala:126
+#: src/Widgets/Library/LibraryPage.vala:186
+#, c-format
+msgid "No Results for “%s”"
+msgstr "За запитом «%s» нічого не знайдено"
+
+#: src/Widgets/Library/EpisodesPage.vala:126
+#: src/Widgets/Library/LibraryPage.vala:55
+msgid "Try changing search terms."
+msgstr "Спробуйте змінити пошуковий термін."
+
+#: src/Widgets/Library/LibraryItem.vala:76
 msgid "Move to Trash"
 msgstr "Перемістити в смітник"
 
-#: src/Widgets/Library/LibraryItem.vala:77
+#: src/Widgets/Library/LibraryItem.vala:89
 msgid "Set Artwork"
 msgstr "Встановити обкладинку"
 
-#: src/Widgets/Library/LibraryItem.vala:163
+#: src/Widgets/Library/LibraryItem.vala:179
 msgid "Image files"
 msgstr "Файли зображень"
 
-#: src/Widgets/Library/LibraryPage.vala:69
+#: src/Widgets/Library/LibraryPage.vala:74
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Відео «%s» вилучено."
 
-#: src/Widgets/Player/BottomBar.vala:83
+#: src/Widgets/Player/BottomBar.vala:81
 msgid "Pause"
 msgstr "Пауза"
 
-#: src/Widgets/Player/BottomBar.vala:87 src/Widgets/Player/BottomBar.vala:126
+#: src/Widgets/Player/BottomBar.vala:85 src/Widgets/Player/BottomBar.vala:102
 msgid "Play"
 msgstr "Відтворити"
 
-#: src/Widgets/Player/BottomBar.vala:133
+#: src/Widgets/Player/BottomBar.vala:110
 msgid "Playlist"
 msgstr "Добірка"
 
-#: src/Widgets/Player/BottomBar.vala:140
+#: src/Widgets/Player/BottomBar.vala:118
 msgid "Settings"
 msgstr "Налаштування"
 
-#: src/Widgets/Player/BottomBar.vala:165
+#: src/Widgets/Player/BottomBar.vala:132
 msgid "Unfullscreen"
 msgstr "Вийти з повноекранного режиму"
 
@@ -225,17 +227,17 @@ msgid "External Subtitles:"
 msgstr "Зовнішні субтитри:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:127
-#: src/Widgets/Player/SettingsPopover.vala:156
+#: src/Widgets/Player/SettingsPopover.vala:132
+#: src/Widgets/Player/SettingsPopover.vala:161
 #, c-format
 msgid "Track %u"
 msgstr "Доріжка %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:129
+#: src/Widgets/Player/SettingsPopover.vala:134
 msgid "None"
 msgstr "Немає"
 
-#: src/Widgets/Player/SettingsPopover.vala:169
+#: src/Widgets/Player/SettingsPopover.vala:174
 msgid "Default"
 msgstr "Типово"
 

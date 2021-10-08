@@ -21,7 +21,6 @@
  */
 
 public class Audience.Window : Gtk.Window {
-    private Granite.Widgets.AlertView alert_view;
     private Granite.Widgets.Toast app_notification;
     private Granite.ModeSwitch autoqueue_next;
     private EpisodesPage episodes_page;
@@ -99,16 +98,8 @@ public class Audience.Window : Gtk.Window {
         });
 
         library_page.unmap.connect (() => {
-            if (main_stack.visible_child != alert_view && main_stack.visible_child != episodes_page) {
+            if (main_stack.visible_child != episodes_page) {
                 search_entry.visible = false;
-            }
-        });
-
-        library_page.filter_result_changed.connect (has_result => {
-            if (!has_result) {
-                show_alert (_("No Results for “%s”").printf (search_entry.text), _("Try changing search terms."), "edit-find-symbolic");
-            } else if (main_stack.visible_child != library_page ) {
-                hide_alert ();
             }
         });
 
@@ -143,11 +134,6 @@ public class Audience.Window : Gtk.Window {
             app_notification.visible = true;
         });
 
-        alert_view = new Granite.Widgets.AlertView ("", "", "");
-        alert_view.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
-        alert_view.set_vexpand (true);
-        alert_view.no_show_all = true;
-
         episodes_page = new EpisodesPage ();
         episodes_page.map.connect (() => {
             search_entry.visible = true;
@@ -159,7 +145,6 @@ public class Audience.Window : Gtk.Window {
         main_stack.add_named (player_page, "player");
         main_stack.add_named (library_page, "library");
         main_stack.add_named (episodes_page, "episodes");
-        main_stack.add_named (alert_view, "alert");
         main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
         app_notification = new Granite.Widgets.Toast ("");
@@ -543,21 +528,6 @@ public class Audience.Window : Gtk.Window {
 
             return Source.REMOVE;
         });
-    }
-
-    public void hide_alert () {
-        alert_view.no_show_all = true;
-        main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.NONE);
-        alert_view.hide ();
-    }
-
-    public void show_alert (string primary_text, string secondary_text, string icon_name) {
-        alert_view.no_show_all = false;
-        alert_view.show_all ();
-        alert_view.title = primary_text;
-        alert_view.description = secondary_text;
-        alert_view.icon_name = icon_name;
-        main_stack.set_visible_child_full ("alert", Gtk.StackTransitionType.NONE);
     }
 
     public Gtk.Widget get_visible_child () {
