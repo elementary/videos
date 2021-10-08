@@ -42,6 +42,8 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         var gtksink = Gst.ElementFactory.make ("gtksink", "sink");
         gtksink.get ("widget", out gst_video_widget);
 
+        var sink_pad = gtksink.get_static_pad ("sink");
+
         playbin = Gst.ElementFactory.make ("playbin", "bin");
         playbin.uri = playback_uri;
         playbin.video_sink = gtksink;
@@ -60,6 +62,36 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         hide.connect (() => {
             playbin.set_state (Gst.State.NULL);
             cancel_loop_timer ();
+        });
+
+        sink_pad.notify["caps"].connect (() => {
+            var caps = sink_pad.get_current_caps ();
+            if (caps == null) {
+                return;
+            }
+
+            for (uint i = 0; i < caps.get_size (); i++) {
+                unowned var structure = caps.get_structure (i);
+
+                /* Ignore if not video */
+                if (!("video" in structure.get_name ())) {
+                    continue;
+                }
+
+                int width, height;
+                structure.get_int ("width", out width);
+                structure.get_int ("height", out height);
+                double ratio = double.min (width/height, height/width);
+
+                var vheight = Value (typeof (int));
+                vheight.set_int (32);
+
+                var vwidth = Value (typeof (int));
+                vwidth.set_int ((int) (32 * ratio));
+
+                structure.set_value ("height", vheight);
+                structure.set_value ("width", vwidth);
+            }
         });
     }
 
