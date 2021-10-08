@@ -43,6 +43,7 @@ executable(
         dependency('gstreamer-video-1.0'),
         dependency('gstreamer-tag-1.0'),
         dependency('gtk+-3.0', version: '>=3.22'),
+        dependency('libhandy-1'),
 
         meson.get_compiler('vala').find_library('posix'),
         meson.get_compiler('c').find_library('m', required : false)
