@@ -72,6 +72,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.attach (subtitles, 1, 2);
         setupgrid.attach (sub_ext_label, 0, 3);
         setupgrid.attach (external_subtitle_file, 1, 3);
+        setupgrid.show_all ();
 
         external_subtitle_file.file_set.connect (() => {
             ((Audience.Window)((Gtk.Application) Application.get_default ()).active_window).player_page.set_subtitle (external_subtitle_file.get_uri ());
@@ -89,9 +90,13 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         languages.changed.connect (on_languages_changed);
 
         add (setupgrid);
+
+        map.connect (() => {
+            setup ();
+        });
     }
 
-    public void setup () {
+    private void setup () {
         if (!is_setup) {
             is_setup = true;
             setup_text ();
