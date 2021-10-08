@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 19:12+0000\n"
+"POT-Creation-Date: 2021-10-08 16:06+0000\n"
 "PO-Revision-Date: 2017-06-20 07:44+0000\n"
 "Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
 "Language-Team: Indonesian <https://l10n.elementary.io/projects/videos/videos/"
@@ -19,66 +19,57 @@ msgstr ""
 "X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:74 src/Window.vala:519
+#: src/Application.vala:77 src/Window.vala:504
 msgid "Videos"
 msgstr "Video"
 
 #. For better translation
-#: src/Window.vala:40
+#: src/Window.vala:39
 msgid "Back"
 msgstr "Kembali"
 
-#: src/Window.vala:41
+#: src/Window.vala:40
 msgid "Library"
 msgstr "Perpustakaan"
 
-#: src/Window.vala:42
+#: src/Window.vala:41
 msgid "Episodes"
 msgstr "Episode"
 
-#: src/Window.vala:67
+#: src/Window.vala:66
 msgid "Search Videos"
 msgstr "Cari Video"
 
-#: src/Window.vala:80
+#: src/Window.vala:79
 #, fuzzy
 msgid "Play one video"
 msgstr "Putar ulang video terakhir"
 
-#: src/Window.vala:81
+#: src/Window.vala:80
 msgid "Automatically play next videos"
 msgstr ""
 
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
-#, c-format
-msgid "No Results for “%s”"
-msgstr "Tidak ada hasil untuk \"%s\""
-
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
-msgid "Try changing search terms."
-msgstr "Coba ubah istilah penelusuran."
-
-#: src/Window.vala:166
+#: src/Window.vala:151
 msgid "Restore"
 msgstr "Kembalikan"
 
-#: src/Window.vala:410 src/Widgets/Player/SettingsPopover.vala:36
+#: src/Window.vala:395 src/Widgets/Player/SettingsPopover.vala:36
 msgid "All files"
 msgstr "Semua file"
 
-#: src/Window.vala:414
+#: src/Window.vala:399
 msgid "Video files"
 msgstr "Berkas video"
 
-#: src/Window.vala:418 src/Widgets/Library/LibraryItem.vala:167
+#: src/Window.vala:403 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Buka"
 
-#: src/Window.vala:421 src/Widgets/Library/LibraryItem.vala:170
+#: src/Window.vala:406 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Buka"
 
-#: src/Window.vala:422 src/Widgets/Library/LibraryItem.vala:171
+#: src/Window.vala:407 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Batal"
 
@@ -142,40 +133,51 @@ msgstr "Tonton film dari perpustakaan Anda"
 msgid "Resume last video"
 msgstr "Lanjutkan video terakhir"
 
-#: src/Widgets/Library/LibraryItem.vala:64
+#: src/Widgets/Library/EpisodesPage.vala:126
+#: src/Widgets/Library/LibraryPage.vala:186
+#, c-format
+msgid "No Results for “%s”"
+msgstr "Tidak ada hasil untuk \"%s\""
+
+#: src/Widgets/Library/EpisodesPage.vala:126
+#: src/Widgets/Library/LibraryPage.vala:55
+msgid "Try changing search terms."
+msgstr "Coba ubah istilah penelusuran."
+
+#: src/Widgets/Library/LibraryItem.vala:76
 msgid "Move to Trash"
 msgstr "Pindahkan ke Tong Sampah"
 
-#: src/Widgets/Library/LibraryItem.vala:77
+#: src/Widgets/Library/LibraryItem.vala:89
 msgid "Set Artwork"
 msgstr "Atur karya seni"
 
-#: src/Widgets/Library/LibraryItem.vala:163
+#: src/Widgets/Library/LibraryItem.vala:179
 msgid "Image files"
 msgstr "Berkas gambar"
 
-#: src/Widgets/Library/LibraryPage.vala:69
+#: src/Widgets/Library/LibraryPage.vala:74
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Video '%s' Dihapus."
 
-#: src/Widgets/Player/BottomBar.vala:83
+#: src/Widgets/Player/BottomBar.vala:81
 msgid "Pause"
 msgstr "Jeda"
 
-#: src/Widgets/Player/BottomBar.vala:87 src/Widgets/Player/BottomBar.vala:126
+#: src/Widgets/Player/BottomBar.vala:85 src/Widgets/Player/BottomBar.vala:102
 msgid "Play"
 msgstr "Putar"
 
-#: src/Widgets/Player/BottomBar.vala:133
+#: src/Widgets/Player/BottomBar.vala:110
 msgid "Playlist"
 msgstr "Daftar Putar"
 
-#: src/Widgets/Player/BottomBar.vala:140
+#: src/Widgets/Player/BottomBar.vala:118
 msgid "Settings"
 msgstr "Pengaturan"
 
-#: src/Widgets/Player/BottomBar.vala:165
+#: src/Widgets/Player/BottomBar.vala:132
 msgid "Unfullscreen"
 msgstr "Tidak layar penuh"
 
@@ -223,17 +225,17 @@ msgid "External Subtitles:"
 msgstr "Subtitel Eksternal:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:127
-#: src/Widgets/Player/SettingsPopover.vala:156
+#: src/Widgets/Player/SettingsPopover.vala:132
+#: src/Widgets/Player/SettingsPopover.vala:161
 #, c-format
 msgid "Track %u"
 msgstr "Trek %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:129
+#: src/Widgets/Player/SettingsPopover.vala:134
 msgid "None"
 msgstr "Tidak ada"
 
-#: src/Widgets/Player/SettingsPopover.vala:169
+#: src/Widgets/Player/SettingsPopover.vala:174
 msgid "Default"
 msgstr "Standar"
 
