@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 19:12+0000\n"
+"POT-Creation-Date: 2021-10-08 16:06+0000\n"
 "PO-Revision-Date: 2016-10-16 08:04+0000\n"
 "Last-Translator: Waqar Ahmed <waqar.17a@gmail.com>\n"
 "Language-Team: Urdu <ur@li.org>\n"
@@ -18,66 +18,57 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
-#: src/Application.vala:74 src/Window.vala:519
+#: src/Application.vala:77 src/Window.vala:504
 msgid "Videos"
 msgstr "ویڈیوز"
 
 #. For better translation
-#: src/Window.vala:40
+#: src/Window.vala:39
 msgid "Back"
 msgstr "واپس"
 
-#: src/Window.vala:41
+#: src/Window.vala:40
 msgid "Library"
 msgstr "لائیبریری"
 
-#: src/Window.vala:42
+#: src/Window.vala:41
 msgid "Episodes"
 msgstr "قسطیں"
 
-#: src/Window.vala:67
+#: src/Window.vala:66
 msgid "Search Videos"
 msgstr "ویڈیوز تلاش کریں"
 
-#: src/Window.vala:80
+#: src/Window.vala:79
 #, fuzzy
 msgid "Play one video"
 msgstr "آخری ویڈیو چلائیں"
 
-#: src/Window.vala:81
+#: src/Window.vala:80
 msgid "Automatically play next videos"
 msgstr ""
 
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
-#, c-format
-msgid "No Results for “%s”"
-msgstr "تلاش “%s” کے لیے کوئی نتائج نہیں"
-
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
-msgid "Try changing search terms."
-msgstr "تلاش کے الفاظ تبدیل کر کے دیکھیں۔"
-
-#: src/Window.vala:166
+#: src/Window.vala:151
 msgid "Restore"
 msgstr "واپس بحال کریں"
 
-#: src/Window.vala:410 src/Widgets/Player/SettingsPopover.vala:36
+#: src/Window.vala:395 src/Widgets/Player/SettingsPopover.vala:36
 msgid "All files"
 msgstr "تمام فائلیں"
 
-#: src/Window.vala:414
+#: src/Window.vala:399
 msgid "Video files"
 msgstr "ویڈیو فائلیں"
 
-#: src/Window.vala:418 src/Widgets/Library/LibraryItem.vala:167
+#: src/Window.vala:403 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "کھولیں"
 
-#: src/Window.vala:421 src/Widgets/Library/LibraryItem.vala:170
+#: src/Window.vala:406 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_کھولیں"
 
-#: src/Window.vala:422 src/Widgets/Library/LibraryItem.vala:171
+#: src/Window.vala:407 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_منسوخ کریں"
 
@@ -141,40 +132,51 @@ msgstr "اپنی لائیبریری سے کوئی فلم دیکھیں"
 msgid "Resume last video"
 msgstr "آخری ویڈیو واپس شروع کریں"
 
-#: src/Widgets/Library/LibraryItem.vala:64
+#: src/Widgets/Library/EpisodesPage.vala:126
+#: src/Widgets/Library/LibraryPage.vala:186
+#, c-format
+msgid "No Results for “%s”"
+msgstr "تلاش “%s” کے لیے کوئی نتائج نہیں"
+
+#: src/Widgets/Library/EpisodesPage.vala:126
+#: src/Widgets/Library/LibraryPage.vala:55
+msgid "Try changing search terms."
+msgstr "تلاش کے الفاظ تبدیل کر کے دیکھیں۔"
+
+#: src/Widgets/Library/LibraryItem.vala:76
 msgid "Move to Trash"
 msgstr "ردی میں منتقل کریں"
 
-#: src/Widgets/Library/LibraryItem.vala:77
+#: src/Widgets/Library/LibraryItem.vala:89
 msgid "Set Artwork"
 msgstr "آرٹ ورک مقرر کریں"
 
-#: src/Widgets/Library/LibraryItem.vala:163
+#: src/Widgets/Library/LibraryItem.vala:179
 msgid "Image files"
 msgstr "تصویر فائلیں"
 
-#: src/Widgets/Library/LibraryPage.vala:69
+#: src/Widgets/Library/LibraryPage.vala:74
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "ویڈیو '%s'  ہٹا دی گئی۔"
 
-#: src/Widgets/Player/BottomBar.vala:83
+#: src/Widgets/Player/BottomBar.vala:81
 msgid "Pause"
 msgstr "موقوف"
 
-#: src/Widgets/Player/BottomBar.vala:87 src/Widgets/Player/BottomBar.vala:126
+#: src/Widgets/Player/BottomBar.vala:85 src/Widgets/Player/BottomBar.vala:102
 msgid "Play"
 msgstr "چلائیں"
 
-#: src/Widgets/Player/BottomBar.vala:133
+#: src/Widgets/Player/BottomBar.vala:110
 msgid "Playlist"
 msgstr "پلے لسٹ"
 
-#: src/Widgets/Player/BottomBar.vala:140
+#: src/Widgets/Player/BottomBar.vala:118
 msgid "Settings"
 msgstr "ترتیبات"
 
-#: src/Widgets/Player/BottomBar.vala:165
+#: src/Widgets/Player/BottomBar.vala:132
 msgid "Unfullscreen"
 msgstr "مکمل سکرین ختم"
 
@@ -222,17 +224,17 @@ msgid "External Subtitles:"
 msgstr "بیرونی سب ٹائٹل:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:127
-#: src/Widgets/Player/SettingsPopover.vala:156
+#: src/Widgets/Player/SettingsPopover.vala:132
+#: src/Widgets/Player/SettingsPopover.vala:161
 #, c-format
 msgid "Track %u"
 msgstr ""
 
-#: src/Widgets/Player/SettingsPopover.vala:129
+#: src/Widgets/Player/SettingsPopover.vala:134
 msgid "None"
 msgstr "کچھ نہیں"
 
-#: src/Widgets/Player/SettingsPopover.vala:169
+#: src/Widgets/Player/SettingsPopover.vala:174
 msgid "Default"
 msgstr "طے شدہ"
 
