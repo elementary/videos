@@ -162,7 +162,6 @@ public class Audience.Window : Gtk.Window {
         autoqueue_next.visible = false;
         main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.NONE);
 
-
         var manager = Audience.Services.LibraryManager.get_instance ();
         manager.video_moved_to_trash.connect ((video) => {
             app_notification.title = _("Video '%s' Removed.").printf (Path.get_basename (video));
