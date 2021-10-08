@@ -29,14 +29,12 @@ namespace Audience {
         public signal void unfullscreen_clicked ();
         public signal void ended ();
 
-        private GtkClutter.Actor bottom_actor;
-        private GtkClutter.Embed clutter;
+        private dynamic Gst.Element playbin;
+        private Gtk.Widget gst_video_widget;
+
         private GnomeMediaKeys mediakeys;
         private ClutterGst.Playback playback;
-        private unowned Gst.Pipeline pipeline;
-        private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_bar;
-        private GtkClutter.Actor unfullscreen_actor;
         private Clutter.Actor video_actor;
         private uint inhibit_token = 0;
 
@@ -58,10 +56,11 @@ namespace Audience {
                 return playback.playing;
             }
             set {
-                if (playback.playing == value)
-                    return;
-
-                playback.playing = value;
+                if (value) {
+                    playbin.set_state (Gst.State.PLAYING);
+                } else {
+                    playbin.set_state (Gst.State.NULL);
+                }
             }
         }
 
@@ -83,23 +82,10 @@ namespace Audience {
             events |= Gdk.EventMask.POINTER_MOTION_MASK;
             events |= Gdk.EventMask.KEY_PRESS_MASK;
             events |= Gdk.EventMask.KEY_RELEASE_MASK;
-            playback = new ClutterGst.Playback ();
-            pipeline = (Gst.Pipeline)(playback.get_pipeline ());
 
+            playback = new ClutterGst.Playback ();
             playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
 
-            clutter = new GtkClutter.Embed ();
-            stage = (Clutter.Stage)clutter.get_stage ();
-            stage.background_color = {0, 0, 0, 0};
-
-            video_actor = new Clutter.Actor ();
-#if VALA_0_34
-            var aspect_ratio = new ClutterGst.Aspectratio ();
-#else
-            var aspect_ratio = ClutterGst.Aspectratio.@new ();
-#endif
-            ((ClutterGst.Aspectratio) aspect_ratio).paint_borders = false;
-            ((ClutterGst.Content) aspect_ratio).player = playback;
             /* Commented because of a bug in the compositor
             ((ClutterGst.Content) aspect_ratio).size_change.connect ((width, height) => {
                 double aspect = ((double) width)/((double) height);
@@ -109,36 +95,33 @@ namespace Audience {
                 ((Gtk.Window) get_toplevel ()).set_geometry_hints (get_toplevel (), geometry, Gdk.WindowHints.ASPECT);
             });
             */
-            video_actor.content = aspect_ratio;
 
-            video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
-            video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
+            var gtksink = Gst.ElementFactory.make ("gtksink", "sink");
+            gtksink.get ("widget", out gst_video_widget);
 
-            Signal.connect (clutter, "button-press-event", (GLib.Callback) navigation_event, this);
-            Signal.connect (clutter, "button-release-event", (GLib.Callback) navigation_event, this);
-            Signal.connect (clutter, "key-press-event", (GLib.Callback) navigation_event, this);
-            Signal.connect (clutter, "key-release-event", (GLib.Callback) navigation_event, this);
-            Signal.connect (clutter, "motion-notify-event", (GLib.Callback) navigation_event, this);
+            playbin = Gst.ElementFactory.make ("playbin", "bin");
+            playbin.video_sink = gtksink;
 
-            stage.add_child (video_actor);
-
-            bottom_bar = new Widgets.BottomBar (playback);
+            bottom_bar = new Widgets.BottomBar (playback) {
+                valign = Gtk.Align.END
+            };
             bottom_bar.bind_property ("playing", playback, "playing", BindingFlags.BIDIRECTIONAL);
             bottom_bar.unfullscreen.connect (() => unfullscreen_clicked ());
 
             unfullscreen_bar = bottom_bar.get_unfullscreen_button ();
 
-            bottom_actor = new GtkClutter.Actor.with_contents (bottom_bar);
-            bottom_actor.opacity = GLOBAL_OPACITY;
-            bottom_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
-            bottom_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 1));
-            stage.add_child (bottom_actor);
+            var overlay = new Gtk.Overlay ();
+            overlay.add (gst_video_widget);
+            overlay.add_overlay (bottom_bar);
 
-            unfullscreen_actor = new GtkClutter.Actor.with_contents (unfullscreen_bar);
-            unfullscreen_actor.opacity = GLOBAL_OPACITY;
-            unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.X_AXIS, 1));
-            unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 0));
-            stage.add_child (unfullscreen_actor);
+            add (overlay);
+            show_all ();
+
+            // Signal.connect (clutter, "button-press-event", (GLib.Callback) navigation_event, this);
+            // Signal.connect (clutter, "button-release-event", (GLib.Callback) navigation_event, this);
+            // Signal.connect (clutter, "key-press-event", (GLib.Callback) navigation_event, this);
+            // Signal.connect (clutter, "key-release-event", (GLib.Callback) navigation_event, this);
+            // Signal.connect (clutter, "motion-notify-event", (GLib.Callback) navigation_event, this);
 
             //media keys
             try {
@@ -175,7 +158,7 @@ namespace Audience {
                 }
 
                 Gtk.Allocation allocation;
-                clutter.get_allocation (out allocation);
+                // clutter.get_allocation (out allocation);
                 return update_pointer_position (event.y, allocation.height);
             });
 
@@ -197,7 +180,7 @@ namespace Audience {
 
             leave_notify_event.connect (event => {
                 Gtk.Allocation allocation;
-                clutter.get_allocation (out allocation);
+                // clutter.get_allocation (out allocation);
 
                 if (event.x == event.window.get_width ()) {
                     return update_pointer_position (event.window.get_height (), allocation.height);
@@ -235,7 +218,7 @@ namespace Audience {
                             string file = get_playlist_widget ().get_first_item ().get_uri ();
                             App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file) });
                         } else {
-                            playback.playing = false;
+                            playbin.set_state (Gst.State.NULL);
                             settings.set_double ("last-stopped", 0);
                             ended ();
                         }
@@ -258,7 +241,7 @@ namespace Audience {
                  * ending of next video and other side-effects
                  */
                 if (playback.playing) {
-                    playback.playing = false;
+                    playbin.set_state (Gst.State.NULL);
                     playback.progress = 1.0;
                     ended ();
                 }
@@ -290,13 +273,13 @@ namespace Audience {
                 }
             });
 
-            add (clutter);
-            show_all ();
+            // add (clutter);
         }
 
         public void play_file (string uri, bool from_beginning = true) {
             debug ("Opening %s", uri);
-            pipeline.set_state (Gst.State.NULL);
+
+            playbin.set_state (Gst.State.NULL);
             var file = File.new_for_uri (uri);
             try {
                 FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
@@ -323,8 +306,7 @@ namespace Audience {
             }
 
             get_playlist_widget ().set_current (uri);
-            playback.uri = uri;
-
+            playbin.uri = uri;
 
             App.get_instance ().mainwindow.title = get_title (uri);
 
@@ -345,7 +327,12 @@ namespace Audience {
 
             set_subtitle (sub_uri);
 
-            playback.playing = !settings.get_boolean ("playback-wait");
+            if (settings.get_boolean ("playback-wait")) {
+                playbin.set_state (Gst.State.NULL);
+            } else {
+                playbin.set_state (Gst.State.PLAYING);
+            }
+
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
 
@@ -359,11 +346,11 @@ namespace Audience {
         }
 
         public string get_played_uri () {
-            return playback.uri;
+            return playbin.uri;
         }
 
         public void reset_played_uri () {
-            playback.uri = "";
+            playbin.uri = "";
         }
 
         public void next () {
@@ -376,14 +363,18 @@ namespace Audience {
 
         public void resume_last_videos () {
             play_file (settings.get_string ("current-video"));
-            playback.playing = false;
+            playbin.set_state (Gst.State.NULL);
             if (settings.get_boolean ("resume-videos")) {
                 playback.progress = settings.get_double ("last-stopped");
             } else {
                 playback.progress = 0.0;
             }
 
-            playback.playing = !settings.get_boolean ("playback-wait");
+            if (settings.get_boolean ("playback-wait")) {
+                playbin.set_state (Gst.State.NULL);
+            } else {
+                playbin.set_state (Gst.State.PLAYING);
+            }
         }
 
         public void append_to_playlist (File file) {
@@ -469,20 +460,20 @@ namespace Audience {
             var is_playing = playback.playing;
 
             /* Temporarily connect to the ready signal so that we can restore the progress setting
-             * after resetting the pipeline in order to set the subtitle uri */
+             * after resetting the playbin in order to set the subtitle uri */
             ready_handler_id = playback.ready.connect (() => {
                 playback.progress = progress;
                 // Pause video if it was in Paused state before adding the subtitle
                 if (!is_playing) {
-                    pipeline.set_state (Gst.State.PAUSED);
+                    playbin.set_state (Gst.State.PAUSED);
                 }
 
                 playback.disconnect (ready_handler_id);
             });
 
-            pipeline.set_state (Gst.State.NULL); // Does not work otherwise
+            playbin.set_state (Gst.State.NULL); // Does not work otherwise
             playback.set_subtitle_uri (uri);
-            pipeline.set_state (Gst.State.PLAYING);
+            playbin.set_state (Gst.State.PLAYING);
 
             settings.set_string ("current-external-subtitles-uri", uri);
         }
