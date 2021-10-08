@@ -22,8 +22,6 @@
 
 public class Audience.Window : Gtk.Window {
     private Hdy.Deck deck;
-
-    private Granite.Widgets.AlertView alert_view;
     private Granite.Widgets.Toast app_notification;
     private Granite.ModeSwitch autoqueue_next;
     private EpisodesPage episodes_page;
@@ -100,16 +98,8 @@ public class Audience.Window : Gtk.Window {
         });
 
         library_page.unmap.connect (() => {
-            if (deck.visible_child != alert_view && deck.visible_child != episodes_page) {
+            if (deck.visible_child != episodes_page) {
                 search_entry.visible = false;
-            }
-        });
-
-        library_page.filter_result_changed.connect (has_result => {
-            if (!has_result) {
-                show_alert (_("No Results for “%s”").printf (search_entry.text), _("Try changing search terms."), "edit-find-symbolic");
-            } else if (deck.visible_child != library_page ) {
-                hide_alert ();
             }
         });
 
@@ -143,9 +133,6 @@ public class Audience.Window : Gtk.Window {
         player_page.unmap.connect (() => {
             app_notification.visible = true;
         });
-
-        alert_view = new Granite.Widgets.AlertView ("", "", "");
-        alert_view.set_vexpand (true);
 
         episodes_page = new EpisodesPage ();
         episodes_page.map.connect (() => {
@@ -535,23 +522,6 @@ public class Audience.Window : Gtk.Window {
 
             return Source.REMOVE;
         });
-    }
-
-    public void hide_alert () {
-        alert_view.no_show_all = true;
-        deck.visible_child = library_page;
-        alert_view.hide ();
-    }
-
-    public void show_alert (string primary_text, string secondary_text, string icon_name) {
-        alert_view.show_all ();
-        alert_view.title = primary_text;
-        alert_view.description = secondary_text;
-        alert_view.icon_name = icon_name;
-        alert_view.show_all ();
-
-        deck.add (alert_view);
-        deck.visible_child = alert_view;
     }
 
     public void set_app_notification (string text) {

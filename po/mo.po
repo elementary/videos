@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 19:12+0000\n"
+"POT-Creation-Date: 2021-10-08 16:06+0000\n"
 "PO-Revision-Date: 2018-05-31 08:00+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/videos/"
@@ -13,67 +13,58 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.18\n"
 
-#: src/Application.vala:74 src/Window.vala:519
+#: src/Application.vala:77 src/Window.vala:504
 #, fuzzy
 msgid "Videos"
 msgstr "Fișiere video"
 
 #. For better translation
-#: src/Window.vala:40
+#: src/Window.vala:39
 msgid "Back"
 msgstr "Înapoi"
 
-#: src/Window.vala:41
+#: src/Window.vala:40
 msgid "Library"
 msgstr "Bibliotecă"
 
-#: src/Window.vala:42
+#: src/Window.vala:41
 msgid "Episodes"
 msgstr "Episoade"
 
-#: src/Window.vala:67
+#: src/Window.vala:66
 msgid "Search Videos"
 msgstr "Caută video"
 
-#: src/Window.vala:80
+#: src/Window.vala:79
 #, fuzzy
 msgid "Play one video"
 msgstr "Repetați ultimul videoclip"
 
-#: src/Window.vala:81
+#: src/Window.vala:80
 msgid "Automatically play next videos"
 msgstr ""
 
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
-#, c-format
-msgid "No Results for “%s”"
-msgstr "Fără rezultate pentru “%s 1”"
-
-#: src/Window.vala:109 src/Widgets/Library/EpisodesPage.vala:126
-msgid "Try changing search terms."
-msgstr "Modifică termenii de căutare."
-
-#: src/Window.vala:166
+#: src/Window.vala:151
 msgid "Restore"
 msgstr "Restabilește"
 
-#: src/Window.vala:410 src/Widgets/Player/SettingsPopover.vala:36
+#: src/Window.vala:395 src/Widgets/Player/SettingsPopover.vala:36
 msgid "All files"
 msgstr "Toate fișierele"
 
-#: src/Window.vala:414
+#: src/Window.vala:399
 msgid "Video files"
 msgstr "Fișiere video"
 
-#: src/Window.vala:418 src/Widgets/Library/LibraryItem.vala:167
+#: src/Window.vala:403 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Deschide"
 
-#: src/Window.vala:421 src/Widgets/Library/LibraryItem.vala:170
+#: src/Window.vala:406 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Deschide"
 
-#: src/Window.vala:422 src/Widgets/Library/LibraryItem.vala:171
+#: src/Window.vala:407 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Anulează"
 
@@ -137,40 +128,51 @@ msgstr "Urmăriți un film din bibliotecă"
 msgid "Resume last video"
 msgstr "Reluați ultimul videoclip"
 
-#: src/Widgets/Library/LibraryItem.vala:64
+#: src/Widgets/Library/EpisodesPage.vala:126
+#: src/Widgets/Library/LibraryPage.vala:186
+#, c-format
+msgid "No Results for “%s”"
+msgstr "Fără rezultate pentru “%s 1”"
+
+#: src/Widgets/Library/EpisodesPage.vala:126
+#: src/Widgets/Library/LibraryPage.vala:55
+msgid "Try changing search terms."
+msgstr "Modifică termenii de căutare."
+
+#: src/Widgets/Library/LibraryItem.vala:76
 msgid "Move to Trash"
 msgstr "Aruncă la gunoi"
 
-#: src/Widgets/Library/LibraryItem.vala:77
+#: src/Widgets/Library/LibraryItem.vala:89
 msgid "Set Artwork"
 msgstr "Stabiliți ilustrații"
 
-#: src/Widgets/Library/LibraryItem.vala:163
+#: src/Widgets/Library/LibraryItem.vala:179
 msgid "Image files"
 msgstr "Fișiere imagine"
 
-#: src/Widgets/Library/LibraryPage.vala:69
+#: src/Widgets/Library/LibraryPage.vala:74
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Video '%s 1' Eliminat."
 
-#: src/Widgets/Player/BottomBar.vala:83
+#: src/Widgets/Player/BottomBar.vala:81
 msgid "Pause"
 msgstr "Pauză"
 
-#: src/Widgets/Player/BottomBar.vala:87 src/Widgets/Player/BottomBar.vala:126
+#: src/Widgets/Player/BottomBar.vala:85 src/Widgets/Player/BottomBar.vala:102
 msgid "Play"
 msgstr "Redare"
 
-#: src/Widgets/Player/BottomBar.vala:133
+#: src/Widgets/Player/BottomBar.vala:110
 msgid "Playlist"
 msgstr "Listă de redare"
 
-#: src/Widgets/Player/BottomBar.vala:140
+#: src/Widgets/Player/BottomBar.vala:118
 msgid "Settings"
 msgstr "Setări"
 
-#: src/Widgets/Player/BottomBar.vala:165
+#: src/Widgets/Player/BottomBar.vala:132
 msgid "Unfullscreen"
 msgstr "Ecran complet"
 
@@ -218,16 +220,16 @@ msgid "External Subtitles:"
 msgstr "Subtitrări externe:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:127
-#: src/Widgets/Player/SettingsPopover.vala:156
+#: src/Widgets/Player/SettingsPopover.vala:132
+#: src/Widgets/Player/SettingsPopover.vala:161
 #, c-format
 msgid "Track %u"
 msgstr "Pista %u 1"
 
-#: src/Widgets/Player/SettingsPopover.vala:129
+#: src/Widgets/Player/SettingsPopover.vala:134
 msgid "None"
 msgstr "Nici unul"
 
-#: src/Widgets/Player/SettingsPopover.vala:169
+#: src/Widgets/Player/SettingsPopover.vala:174
 msgid "Default"
 msgstr "Prestabilit"
