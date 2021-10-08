@@ -77,17 +77,6 @@ public class Audience.Widgets.TimeWidget : Granite.SeekBar {
         });
     }
 
-    public override void get_preferred_width (out int minimum_width, out int natural_width) {
-        base.get_preferred_width (out minimum_width, out natural_width);
-
-        if (parent.get_window () == null)
-            return;
-        var width = parent.get_window ().get_width ();
-        if (width > 0 && width >= minimum_width) {
-            natural_width = width;
-        }
-    }
-
     private void progress_callback () {
         if (!is_grabbing) {
             playback_progress = main_playback.progress;
