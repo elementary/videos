@@ -21,8 +21,6 @@
 public class Audience.LibraryPage : Gtk.Stack {
     public signal void show_episodes (Audience.LibraryItem item, bool setup_only = false);
 
-    private Granite.Widgets.AlertView alert_view;
-
     public Gtk.ScrolledWindow scrolled_window { get; private set; }
     public string last_filter { get; set; default = ""; }
 
@@ -33,6 +31,7 @@ public class Audience.LibraryPage : Gtk.Stack {
     }
 
     private Audience.Services.LibraryManager manager;
+    private Granite.Widgets.AlertView alert_view;
     private Gtk.FlowBox view_movies;
     private bool posters_initialized = false;
     private string query = "";
