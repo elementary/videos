@@ -529,10 +529,6 @@ public class Audience.Window : Gtk.Window {
         app_notification.send_notification ();
     }
 
-    public Gtk.Widget get_visible_child () {
-        return deck.visible_child;
-    }
-
     public void hide_mouse_cursor () {
         var cursor = new Gdk.Cursor.for_display (get_window ().get_display (), Gdk.CursorType.BLANK_CURSOR);
         get_window ().set_cursor (cursor);

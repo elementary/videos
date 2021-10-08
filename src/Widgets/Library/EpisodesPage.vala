@@ -172,8 +172,9 @@ namespace Audience {
                 }
             }
 
-            if (Audience.App.get_instance ().mainwindow.get_visible_child () == this && view_episodes.get_children ().length () == 0) {
-                Audience.App.get_instance ().mainwindow.navigate_back ();
+            var deck = (Hdy.Deck) get_ancestor (typeof (Hdy.Deck));
+            if (deck.visible_child == this && view_episodes.get_children ().length () == 0) {
+                deck.navigate (Hdy.NavigationDirection.BACK);
             }
         }
 
