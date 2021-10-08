@@ -20,11 +20,10 @@
  */
 
 namespace Audience {
-    public class LibraryPage : Gtk.Grid {
-
-        public signal void filter_result_changed (bool has_results);
+    public class LibraryPage : Gtk.Stack {
         public signal void show_episodes (Audience.LibraryItem item, bool setup_only = false);
 
+        private Granite.Widgets.AlertView alert_view;
         public Gtk.FlowBox view_movies;
         public Audience.Services.LibraryManager manager;
         public Gtk.ScrolledWindow scrolled_window;
@@ -50,6 +49,12 @@ namespace Audience {
 
             scrolled_window = new Gtk.ScrolledWindow (null, null);
             scrolled_window.expand = true;
+
+            alert_view = new Granite.Widgets.AlertView (
+                "",
+                _("Try changing search terms."),
+                "edit-find-symbolic"
+            );
 
             view_movies = new Gtk.FlowBox ();
             view_movies.margin = 24;
@@ -82,6 +87,7 @@ namespace Audience {
             view_movies.set_filter_func (video_filter_func);
 
             add (scrolled_window);
+            add (alert_view);
         }
 
         private void play_video (Gtk.FlowBoxChild item) {
@@ -174,7 +180,13 @@ namespace Audience {
         public void filter (string text) {
             query = text.strip ();
             view_movies.invalidate_filter ();
-            filter_result_changed (has_child ());
+
+            if (!has_child ()) {
+                visible_child = alert_view;
+                alert_view.title = _("No Results for “%s”").printf (text);
+            } else {
+                visible_child = scrolled_window;
+            }
         }
 
         public bool has_child () {
