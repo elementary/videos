@@ -36,7 +36,6 @@ namespace Audience {
         private GnomeMediaKeys mediakeys;
         private ClutterGst.Playback playback;
         private Gtk.Revealer unfullscreen_bar;
-        private Clutter.Actor video_actor;
         private uint inhibit_token = 0;
 
         public Audience.Widgets.BottomBar bottom_bar {get; private set;}
@@ -122,12 +121,6 @@ namespace Audience {
             add (overlay);
             show_all ();
 
-            // Signal.connect (clutter, "button-press-event", (GLib.Callback) navigation_event, this);
-            // Signal.connect (clutter, "button-release-event", (GLib.Callback) navigation_event, this);
-            // Signal.connect (clutter, "key-press-event", (GLib.Callback) navigation_event, this);
-            // Signal.connect (clutter, "key-release-event", (GLib.Callback) navigation_event, this);
-            // Signal.connect (clutter, "motion-notify-event", (GLib.Callback) navigation_event, this);
-
             //media keys
             try {
                 mediakeys = Bus.get_proxy_sync (BusType.SESSION,
@@ -143,7 +136,7 @@ namespace Audience {
                             get_playlist_widget ().next ();
                             break;
                         case "Play":
-                            playback.playing = !playback.playing;
+                            playing = !playing;
                             break;
                         default:
                             break;
@@ -259,8 +252,6 @@ namespace Audience {
                     inhibit_token = 0;
                 }
             });
-
-            // add (clutter);
         }
 
         private bool bus_callback (Gst.Bus bus, Gst.Message message) {
@@ -490,44 +481,6 @@ namespace Audience {
             App.get_instance ().mainwindow.get_window ().set_cursor (null);
 
             bottom_bar.reveal_control ();
-
-            return false;
-        }
-
-        [CCode (instance_pos = -1)]
-        private bool navigation_event (GtkClutter.Embed embed, Clutter.Event event) {
-            var video_sink = playback.get_video_sink ();
-            var frame = video_sink.get_frame ();
-            if (frame == null) {
-                return true;
-            }
-
-            float x, y;
-            event.get_coords (out x, out y);
-            // Transform event coordinates into the actor's coordinates
-            video_actor.transform_stage_point (x, y, out x, out y);
-            float actor_width, actor_height;
-            video_actor.get_size (out actor_width, out actor_height);
-
-            /* Convert event's coordinates into the frame's coordinates. */
-            x = x * frame.resolution.width / actor_width;
-            y = y * frame.resolution.height / actor_height;
-
-            switch (event.type) {
-                case Clutter.EventType.MOTION:
-                    ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-move", 0, x, y);
-                    break;
-                case Clutter.EventType.BUTTON_PRESS:
-                    ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-button-press", (int)event.button.button, x, y);
-                    break;
-                case Clutter.EventType.KEY_PRESS:
-                    warning (X.keysym_to_string (event.key.keyval));
-                    ((Gst.Video.Navigation) video_sink).send_key_event ("key-press", X.keysym_to_string (event.key.keyval));
-                    break;
-                case Clutter.EventType.KEY_RELEASE:
-                    ((Gst.Video.Navigation) video_sink).send_key_event ("key-release", X.keysym_to_string (event.key.keyval));
-                    break;
-            }
 
             return false;
         }
