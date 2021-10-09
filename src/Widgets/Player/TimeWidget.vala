@@ -37,7 +37,7 @@ public class Audience.Widgets.TimeWidget : Granite.SeekBar {
             // Don't allow to change the time if there is none.
             sensitive = (main_playback.duration != 0);
             if (sensitive) {
-                preview_popover = new Audience.Widgets.PreviewPopover (main_playback);
+                preview_popover = new Audience.Widgets.PreviewPopover (main_playback.uri);
                 preview_popover.relative_to = scale;
             }
         });
@@ -75,17 +75,6 @@ public class Audience.Widgets.TimeWidget : Granite.SeekBar {
             if (preview_popover != null)
                 preview_popover.realign_pointing (alloc_rect.width);
         });
-    }
-
-    public override void get_preferred_width (out int minimum_width, out int natural_width) {
-        base.get_preferred_width (out minimum_width, out natural_width);
-
-        if (parent.get_window () == null)
-            return;
-        var width = parent.get_window ().get_width ();
-        if (width > 0 && width >= minimum_width) {
-            natural_width = width;
-        }
     }
 
     private void progress_callback () {

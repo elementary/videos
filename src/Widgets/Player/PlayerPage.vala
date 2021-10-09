@@ -35,7 +35,7 @@ namespace Audience {
         private ClutterGst.Playback playback;
         private unowned Gst.Pipeline pipeline;
         private Clutter.Stage stage;
-        private Gtk.Revealer unfullscreen_bar;
+        private Gtk.Revealer unfullscreen_revealer;
         private GtkClutter.Actor unfullscreen_actor;
         private Clutter.Actor video_actor;
         private uint inhibit_token = 0;
@@ -72,7 +72,12 @@ namespace Audience {
             }
             set {
                 _fullscreened = value;
-                bottom_bar.fullscreen = value;
+
+                if (value && bottom_bar.child_revealed) {
+                    unfullscreen_revealer.reveal_child = true;
+                } else if (!value && bottom_bar.child_revealed) {
+                    unfullscreen_revealer.reveal_child = false;
+                }
             }
         }
 
@@ -124,9 +129,16 @@ namespace Audience {
 
             bottom_bar = new Widgets.BottomBar (playback);
             bottom_bar.bind_property ("playing", playback, "playing", BindingFlags.BIDIRECTIONAL);
-            bottom_bar.unfullscreen.connect (() => unfullscreen_clicked ());
 
-            unfullscreen_bar = bottom_bar.get_unfullscreen_button ();
+            var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic", Gtk.IconSize.BUTTON) {
+                tooltip_text = _("Unfullscreen")
+            };
+
+            unfullscreen_revealer = new Gtk.Revealer () {
+                transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN
+            };
+            unfullscreen_revealer.add (unfullscreen_button);
+            unfullscreen_revealer.show_all ();
 
             bottom_actor = new GtkClutter.Actor.with_contents (bottom_bar);
             bottom_actor.opacity = GLOBAL_OPACITY;
@@ -134,7 +146,7 @@ namespace Audience {
             bottom_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 1));
             stage.add_child (bottom_actor);
 
-            unfullscreen_actor = new GtkClutter.Actor.with_contents (unfullscreen_bar);
+            unfullscreen_actor = new GtkClutter.Actor.with_contents (unfullscreen_revealer);
             unfullscreen_actor.opacity = GLOBAL_OPACITY;
             unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.X_AXIS, 1));
             unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 0));
@@ -193,6 +205,18 @@ namespace Audience {
                 }
 
                 return false;
+            });
+
+            bottom_bar.notify["child-revealed"].connect (() => {
+                if (bottom_bar.child_revealed && fullscreened) {
+                    unfullscreen_revealer.reveal_child = bottom_bar.child_revealed;
+                } else if (!bottom_bar.child_revealed) {
+                    unfullscreen_revealer.reveal_child = bottom_bar.child_revealed;
+                }
+            });
+
+            unfullscreen_button.clicked.connect (() => {
+                unfullscreen_clicked ();
             });
 
             leave_notify_event.connect (event => {
