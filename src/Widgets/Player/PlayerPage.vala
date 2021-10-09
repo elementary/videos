@@ -31,6 +31,7 @@ namespace Audience {
 
         private dynamic Gst.Element playbin;
         private Gtk.Widget gst_video_widget;
+        private Gst.Bus bus;
 
         private GnomeMediaKeys mediakeys;
         private ClutterGst.Playback playback;
@@ -101,6 +102,10 @@ namespace Audience {
 
             playbin = Gst.ElementFactory.make ("playbin", "bin");
             playbin.video_sink = gtksink;
+
+            bus = playbin.get_bus ();
+            bus.add_watch (0, bus_callback);
+            bus.enable_sync_message_emission ();
 
             bottom_bar = new Widgets.BottomBar (playback) {
                 valign = Gtk.Align.END
@@ -209,24 +214,6 @@ namespace Audience {
                 }
             });
 
-            //end
-            playback.eos.connect (() => {
-                Idle.add (() => {
-                    playback.progress = 0;
-                    if (!get_playlist_widget ().next ()) {
-                        if (repeat) {
-                            string file = get_playlist_widget ().get_first_item ().get_uri ();
-                            App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file) });
-                        } else {
-                            playbin.set_state (Gst.State.NULL);
-                            settings.set_double ("last-stopped", 0);
-                            ended ();
-                        }
-                    }
-                    return false;
-                });
-            });
-
             //playlist wants us to open a file
             get_playlist_widget ().play.connect ((file) => {
                 App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file.get_uri ()) });
@@ -274,6 +261,27 @@ namespace Audience {
             });
 
             // add (clutter);
+        }
+
+        private bool bus_callback (Gst.Bus bus, Gst.Message message) {
+            if (message.type == Gst.MessageType.EOS) {
+                Idle.add (() => {
+                    playback.progress = 0;
+                    if (!get_playlist_widget ().next ()) {
+                        if (repeat) {
+                            string file = get_playlist_widget ().get_first_item ().get_uri ();
+                            App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file) });
+                        } else {
+                            playbin.set_state (Gst.State.NULL);
+                            settings.set_double ("last-stopped", 0);
+                            ended ();
+                        }
+                    }
+                    return false;
+                });
+            }
+
+            return true;
         }
 
         public void play_file (string uri, bool from_beginning = true) {
