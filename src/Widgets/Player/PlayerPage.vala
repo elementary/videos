@@ -107,6 +107,8 @@ namespace Audience {
             bus.enable_sync_message_emission ();
 
             bottom_bar = new Widgets.BottomBar (playback) {
+                //FIXME: This should use CSS
+                opacity = GLOBAL_OPACITY,
                 valign = Gtk.Align.END
             };
             bottom_bar.bind_property ("playing", playback, "playing", BindingFlags.BIDIRECTIONAL);
