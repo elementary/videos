@@ -20,11 +20,11 @@
  *              Corentin Noël <corentin@elementary.io>
  */
 
-public class Audience.Window : Gtk.Window {
+public class Audience.Window : Hdy.Window {
     private Granite.Widgets.Toast app_notification;
     private Granite.ModeSwitch autoqueue_next;
     private EpisodesPage episodes_page;
-    private Gtk.HeaderBar header;
+    private Hdy.HeaderBar header;
     private LibraryPage library_page;
     private Gtk.Stack main_stack;
     private NavigationButton navigation_button;
@@ -47,20 +47,16 @@ public class Audience.Window : Gtk.Window {
     }
 
     construct {
+        Hdy.init ();
+
         window_position = Gtk.WindowPosition.CENTER;
         gravity = Gdk.Gravity.CENTER;
         set_default_size (1000, 680);
-
-        header = new Gtk.HeaderBar ();
-        header.set_show_close_button (true);
-        header.get_style_context ().add_class ("compact");
 
         navigation_button = new NavigationButton ();
         navigation_button.clicked.connect (() => {
             navigate_back ();
         });
-
-        header.pack_start (navigation_button);
 
         search_entry = new Gtk.SearchEntry ();
         search_entry.placeholder_text = _("Search Videos");
@@ -73,17 +69,18 @@ public class Audience.Window : Gtk.Window {
             }
         });
 
-        header.pack_end (search_entry);
-
         autoqueue_next = new Granite.ModeSwitch.from_icon_name ("media-playlist-repeat-one-symbolic", "media-playlist-consecutive-symbolic");
         autoqueue_next.primary_icon_tooltip_text = _("Play one video");
         autoqueue_next.secondary_icon_tooltip_text = _("Automatically play next videos");
         autoqueue_next.valign = Gtk.Align.CENTER;
         settings.bind ("autoqueue-next", autoqueue_next, "active", SettingsBindFlags.DEFAULT);
 
+        header = new Hdy.HeaderBar ();
+        header.set_show_close_button (true);
+        header.get_style_context ().add_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
+        header.pack_start (navigation_button);
+        header.pack_end (search_entry);
         header.pack_end (autoqueue_next);
-
-        set_titlebar (header);
 
         library_page = LibraryPage.get_instance ();
         library_page.map.connect (() => {
@@ -160,7 +157,11 @@ public class Audience.Window : Gtk.Window {
         overlay.add (main_stack);
         overlay.add_overlay (app_notification);
 
-        add (overlay);
+        var grid = new Gtk.Grid ();
+        grid.attach (header, 0, 0);
+        grid.attach (overlay, 0, 1);
+
+        add (grid);
         show_all ();
 
         navigation_button.hide ();
