@@ -27,7 +27,7 @@ public class Audience.Window : Gtk.Window {
     private Gtk.HeaderBar header;
     private LibraryPage library_page;
     private Gtk.Stack main_stack;
-    private NavigationButton navigation_button;
+    private Gtk.Button navigation_button;
     private Gtk.SearchEntry search_entry;
     private WelcomePage welcome_page;
 
@@ -55,7 +55,11 @@ public class Audience.Window : Gtk.Window {
         header.set_show_close_button (true);
         header.get_style_context ().add_class ("compact");
 
-        navigation_button = new NavigationButton ();
+        navigation_button = new Gtk.Button.with_label (NAVIGATION_BUTTON_WELCOMESCREEN) {
+            valign = Gtk.Align.CENTER
+        };
+        navigation_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
+
         navigation_button.clicked.connect (() => {
             navigate_back ();
         });
