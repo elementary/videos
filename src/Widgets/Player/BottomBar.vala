@@ -23,7 +23,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     private const string PULSE_TYPE = "attention";
 
     public signal void play_toggled ();
-    public signal void unfullscreen ();
     public signal void seeked (double val);
 
     public SettingsPopover preferences_popover { get; private set; }
@@ -32,24 +31,8 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
     private Gtk.Button play_button;
     private Gtk.MenuButton playlist_button;
-    private Gtk.Revealer unfullscreen_revealer;
     private uint hiding_timer = 0;
     private bool playlist_glowing = false;
-
-    private bool _fullscreen = false;
-    public bool fullscreen {
-        get {
-            return _fullscreen;
-        }
-        set {
-            _fullscreen = value;
-            if (value && child_revealed) {
-                unfullscreen_revealer.reveal_child = true;
-            } else if (!value && child_revealed) {
-                unfullscreen_revealer.reveal_child = false;
-            }
-        }
-    }
 
     private bool _hovered = false;
     private bool hovered {
@@ -128,16 +111,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
         add (main_actionbar);
 
-        var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic", Gtk.IconSize.BUTTON) {
-            tooltip_text = _("Unfullscreen")
-        };
-
-        unfullscreen_revealer = new Gtk.Revealer () {
-            transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN
-        };
-        unfullscreen_revealer.add (unfullscreen_button);
-        unfullscreen_revealer.show_all ();
-
         show_all ();
 
         transition_type = Gtk.RevealerTransitionType.SLIDE_UP;
@@ -168,10 +141,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         playlist_popover.playlist.item_added.connect (() => {
             playlist_item_added ();
         });
-
-        unfullscreen_button.clicked.connect (() => {
-            unfullscreen ();
-        });
     }
 
     private void playlist_item_added () {
@@ -186,19 +155,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
                 playlist_glowing = false;
                 return false;
             });
-        }
-    }
-
-    public Gtk.Revealer get_unfullscreen_button () {
-        return unfullscreen_revealer;
-    }
-
-    private new void set_reveal_child (bool reveal) {
-        base.set_reveal_child (reveal);
-        if (reveal == true && fullscreen == true) {
-            unfullscreen_revealer.reveal_child = reveal;
-        } else if (reveal == false) {
-            unfullscreen_revealer.reveal_child = reveal;
         }
     }
 
@@ -229,7 +185,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
                 return false;
             }
             set_reveal_child (false);
-            unfullscreen_revealer.reveal_child = false;
             hiding_timer = 0;
             return false;
         });
