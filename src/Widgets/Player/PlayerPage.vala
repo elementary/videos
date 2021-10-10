@@ -51,11 +51,13 @@ namespace Audience {
             }
         }
 
+        private bool _playing = false;
         public bool playing {
             get {
-                return playback.playing;
+                return _playing;
             }
             set {
+                _playing = value;
                 if (value) {
                     playbin.set_state (Gst.State.PLAYING);
                 } else {
@@ -89,17 +91,6 @@ namespace Audience {
             events |= Gdk.EventMask.KEY_RELEASE_MASK;
 
             playback = new ClutterGst.Playback ();
-            playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
-
-            /* Commented because of a bug in the compositor
-            ((ClutterGst.Content) aspect_ratio).size_change.connect ((width, height) => {
-                double aspect = ((double) width)/((double) height);
-                var geometry = Gdk.Geometry ();
-                geometry.min_aspect = aspect;
-                geometry.max_aspect = aspect;
-                ((Gtk.Window) get_toplevel ()).set_geometry_hints (get_toplevel (), geometry, Gdk.WindowHints.ASPECT);
-            });
-            */
 
             var gtksink = Gst.ElementFactory.make ("gtksink", "sink");
             gtksink.get ("widget", out gst_video_widget);
@@ -116,7 +107,7 @@ namespace Audience {
                 opacity = GLOBAL_OPACITY,
                 valign = Gtk.Align.END
             };
-            bottom_bar.bind_property ("playing", playback, "playing", BindingFlags.BIDIRECTIONAL);
+            bottom_bar.bind_property ("playing", this, "playing", BindingFlags.BIDIRECTIONAL);
 
             var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic", Gtk.IconSize.BUTTON) {
                 tooltip_text = _("Unfullscreen")
@@ -246,8 +237,8 @@ namespace Audience {
                 /* We do not want to emit an "ended" signal if already ended - it can cause premature
                  * ending of next video and other side-effects
                  */
-                if (playback.playing) {
-                    playbin.set_state (Gst.State.NULL);
+                if (playing) {
+                    playing = false;
                     playback.progress = 1.0;
                     ended ();
                 }
@@ -261,9 +252,9 @@ namespace Audience {
                 }
             });
 
-            playback.notify["playing"].connect (() => {
+            this.notify["playing"].connect (() => {
                 unowned Gtk.Application app = (Gtk.Application) GLib.Application.get_default ();
-                if (playback.playing) {
+                if (playing) {
                     if (inhibit_token != 0) {
                         app.uninhibit (inhibit_token);
                     }
@@ -289,7 +280,7 @@ namespace Audience {
                             string file = get_playlist_widget ().get_first_item ().get_uri ();
                             App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file) });
                         } else {
-                            playbin.set_state (Gst.State.NULL);
+                            playing = false;
                             settings.set_double ("last-stopped", 0);
                             ended ();
                         }
@@ -304,7 +295,7 @@ namespace Audience {
         public void play_file (string uri, bool from_beginning = true) {
             debug ("Opening %s", uri);
 
-            playbin.set_state (Gst.State.NULL);
+            playing = false;
             var file = File.new_for_uri (uri);
             try {
                 FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
@@ -352,11 +343,7 @@ namespace Audience {
 
             set_subtitle (sub_uri);
 
-            if (settings.get_boolean ("playback-wait")) {
-                playbin.set_state (Gst.State.NULL);
-            } else {
-                playbin.set_state (Gst.State.PLAYING);
-            }
+            playing = !(settings.get_boolean ("playback-wait"));
 
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
@@ -388,18 +375,14 @@ namespace Audience {
 
         public void resume_last_videos () {
             play_file (settings.get_string ("current-video"));
-            playbin.set_state (Gst.State.NULL);
+            playing = false;
             if (settings.get_boolean ("resume-videos")) {
                 playback.progress = settings.get_double ("last-stopped");
             } else {
                 playback.progress = 0.0;
             }
 
-            if (settings.get_boolean ("playback-wait")) {
-                playbin.set_state (Gst.State.NULL);
-            } else {
-                playbin.set_state (Gst.State.PLAYING);
-            }
+            playing = !(settings.get_boolean ("playback-wait"));
         }
 
         public void append_to_playlist (File file) {
@@ -482,23 +465,22 @@ namespace Audience {
         private ulong ready_handler_id = 0;
         public void set_subtitle (string uri) {
             var progress = playback.progress;
-            var is_playing = playback.playing;
 
             /* Temporarily connect to the ready signal so that we can restore the progress setting
              * after resetting the playbin in order to set the subtitle uri */
             ready_handler_id = playback.ready.connect (() => {
                 playback.progress = progress;
                 // Pause video if it was in Paused state before adding the subtitle
-                if (!is_playing) {
+                if (!playing) {
                     playbin.set_state (Gst.State.PAUSED);
                 }
 
                 playback.disconnect (ready_handler_id);
             });
 
-            playbin.set_state (Gst.State.NULL); // Does not work otherwise
+            playing = false; // Does not work otherwise
             playback.set_subtitle_uri (uri);
-            playbin.set_state (Gst.State.PLAYING);
+            playing = true;;
 
             settings.set_string ("current-external-subtitles-uri", uri);
         }
