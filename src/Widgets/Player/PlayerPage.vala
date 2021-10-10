@@ -42,15 +42,6 @@ namespace Audience {
 
         private bool mouse_primary_down = false;
 
-        public bool repeat {
-            get {
-                return bottom_bar.repeat;
-            }
-            set {
-                bottom_bar.repeat = value;
-            }
-        }
-
         public bool playing {
             get {
                 var state = Gst.State.NULL;
@@ -283,7 +274,7 @@ namespace Audience {
                 Idle.add (() => {
                     playback.progress = 0;
                     if (!get_playlist_widget ().next ()) {
-                        if (repeat) {
+                        if (bottom_bar.repeat) {
                             string file = get_playlist_widget ().get_first_item ().get_uri ();
                             App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file) });
                         } else {
