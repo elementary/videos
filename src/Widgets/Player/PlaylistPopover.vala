@@ -103,6 +103,14 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             var window_height = ((Gtk.Application) Application.get_default ()).active_window.get_window ().get_height ();
             playlist_scrolled.set_max_content_height (window_height - HEIGHT_OFFSET);
         });
+
+        playlist.item_added.connect ((item_title) => {
+            var window = (Audience.Window) ((Gtk.Application) Application.get_default ()).active_window;
+
+            window.app_notification.title = _("“%s” added to playlist").printf (item_title);
+            window.app_notification.set_default_action (null);
+            window.app_notification.send_notification ();
+        });
     }
 
     private void set_dvd_visibility (bool visible) {

@@ -19,9 +19,6 @@
  */
 
 public class Audience.Widgets.BottomBar : Gtk.Revealer {
-    private const string PULSE_CLASS = "pulse";
-    private const string PULSE_TYPE = "attention";
-
     public SettingsPopover preferences_popover { get; private set; }
     public PlaylistPopover playlist_popover { get; private set; }
     public TimeWidget time_widget { get; private set; }
@@ -29,7 +26,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     private Gtk.Button play_button;
     private Gtk.MenuButton playlist_button;
     private uint hiding_timer = 0;
-    private bool playlist_glowing = false;
 
     private bool _hovered = false;
     private bool hovered {
@@ -133,25 +129,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         play_button.clicked.connect (() => {
             playing = !playing;
         });
-
-        playlist_popover.playlist.item_added.connect (() => {
-            playlist_item_added ();
-        });
-    }
-
-    private void playlist_item_added () {
-        if (!playlist_glowing) {
-            playlist_glowing = true;
-            playlist_button.get_child ().get_style_context ().add_class (PULSE_CLASS);
-            playlist_button.get_child ().get_style_context ().add_class (PULSE_TYPE);
-
-            Timeout.add (6000, () => {
-                playlist_button.get_child ().get_style_context ().remove_class (PULSE_CLASS);
-                playlist_button.get_child ().get_style_context ().remove_class (PULSE_TYPE);
-                playlist_glowing = false;
-                return false;
-            });
-        }
     }
 
     public override void get_preferred_width (out int minimum_width, out int natural_width) {

@@ -21,7 +21,8 @@
  */
 
 public class Audience.Window : Gtk.Window {
-    private Granite.Widgets.Toast app_notification;
+    public Granite.Widgets.Toast app_notification { get; private set; }
+
     private Granite.ModeSwitch autoqueue_next;
     private EpisodesPage episodes_page;
     private Gtk.HeaderBar header;
@@ -131,13 +132,6 @@ public class Audience.Window : Gtk.Window {
             set_keep_above (player_page.playing && settings.get_boolean ("stay-on-top"));
         });
 
-        player_page.map.connect (() => {
-            app_notification.visible = false;
-        });
-        player_page.unmap.connect (() => {
-            app_notification.visible = true;
-        });
-
         episodes_page = new EpisodesPage ();
         episodes_page.map.connect (() => {
             search_entry.visible = true;
@@ -152,7 +146,6 @@ public class Audience.Window : Gtk.Window {
         main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
         app_notification = new Granite.Widgets.Toast ("");
-        app_notification.set_default_action (_("Restore"));
 
         var overlay = new Gtk.Overlay ();
         overlay.add (main_stack);
@@ -169,6 +162,7 @@ public class Audience.Window : Gtk.Window {
         var manager = Audience.Services.LibraryManager.get_instance ();
         manager.video_moved_to_trash.connect ((video) => {
             app_notification.title = _("Video '%s' Removed.").printf (Path.get_basename (video));
+            app_notification.set_default_action (_("Restore"));
             app_notification.send_notification ();
         });
 

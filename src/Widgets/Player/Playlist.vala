@@ -20,7 +20,7 @@
 
 public class Audience.Widgets.Playlist : Gtk.ListBox {
     public signal void play (File path);
-    public signal void item_added ();
+    public signal void item_added (string item_title);
     public signal void stop_video ();
 
     private int current = 0;
@@ -99,9 +99,11 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
             return;
         }
 
-        var row = new PlaylistItem (Audience.get_title (path.get_basename ()), path.get_uri ());
+        var item_title = Audience.get_title (path.get_basename ());
+
+        var row = new PlaylistItem (item_title, path.get_uri ());
         add (row);
-        item_added ();
+        item_added (item_title);
     }
 
     public void clear_items (bool should_stop = true) {
