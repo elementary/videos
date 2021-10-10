@@ -51,13 +51,16 @@ namespace Audience {
             }
         }
 
-        private bool _playing = false;
         public bool playing {
             get {
-                return _playing;
+                var state = Gst.State.NULL;
+                var pending = Gst.State.NULL;
+
+                playbin.get_state (out state, out pending, 300);
+
+                return state == Gst.State.PLAYING;
             }
             set {
-                _playing = value;
                 if (value) {
                     playbin.set_state (Gst.State.PLAYING);
                 } else {
@@ -141,7 +144,11 @@ namespace Audience {
                             get_playlist_widget ().next ();
                             break;
                         case "Play":
-                            playing = !playing;
+                            if (playing) {
+                                playbin.set_state (Gst.State.PAUSED);
+                            } else {
+                                playbin.set_state (Gst.State.PLAYING);
+                            }
                             break;
                         default:
                             break;
@@ -238,7 +245,7 @@ namespace Audience {
                  * ending of next video and other side-effects
                  */
                 if (playing) {
-                    playing = false;
+                    playbin.set_state (Gst.State.NULL);
                     playback.progress = 1.0;
                     ended ();
                 }
@@ -252,7 +259,7 @@ namespace Audience {
                 }
             });
 
-            this.notify["playing"].connect (() => {
+            notify["playing"].connect (() => {
                 unowned Gtk.Application app = (Gtk.Application) GLib.Application.get_default ();
                 if (playing) {
                     if (inhibit_token != 0) {
@@ -280,7 +287,7 @@ namespace Audience {
                             string file = get_playlist_widget ().get_first_item ().get_uri ();
                             App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file) });
                         } else {
-                            playing = false;
+                            playbin.set_state (Gst.State.NULL);
                             settings.set_double ("last-stopped", 0);
                             ended ();
                         }
@@ -295,7 +302,7 @@ namespace Audience {
         public void play_file (string uri, bool from_beginning = true) {
             debug ("Opening %s", uri);
 
-            playing = false;
+            playbin.set_state (Gst.State.NULL);
             var file = File.new_for_uri (uri);
             try {
                 FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
@@ -343,7 +350,11 @@ namespace Audience {
 
             set_subtitle (sub_uri);
 
-            playing = !(settings.get_boolean ("playback-wait"));
+            if (settings.get_boolean ("playback-wait")) {
+                playbin.set_state (Gst.State.NULL);
+            } else {
+                playbin.set_state (Gst.State.PLAYING);
+            }
 
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
@@ -375,14 +386,18 @@ namespace Audience {
 
         public void resume_last_videos () {
             play_file (settings.get_string ("current-video"));
-            playing = false;
+            playbin.set_state (Gst.State.NULL);
             if (settings.get_boolean ("resume-videos")) {
                 playback.progress = settings.get_double ("last-stopped");
             } else {
                 playback.progress = 0.0;
             }
 
-            playing = !(settings.get_boolean ("playback-wait"));
+            if (settings.get_boolean ("playback-wait")) {
+                playbin.set_state (Gst.State.NULL);
+            } else {
+                playbin.set_state (Gst.State.PLAYING);
+            }
         }
 
         public void append_to_playlist (File file) {
@@ -478,9 +493,9 @@ namespace Audience {
                 playback.disconnect (ready_handler_id);
             });
 
-            playing = false; // Does not work otherwise
+            playbin.set_state (Gst.State.NULL); // Does not work otherwise
             playback.set_subtitle_uri (uri);
-            playing = true;;
+            playbin.set_state (Gst.State.PLAYING);
 
             settings.set_string ("current-external-subtitles-uri", uri);
         }
