@@ -60,15 +60,6 @@ namespace Audience {
         return title;
     }
 
-    public static string get_extension (string filename) {
-        for (uint i = filename.length; i != 0; i--) {
-            if (filename[i] == '.')
-                return filename.substring (i + 1);
-        }
-
-        return filename;
-    }
-
     public static string get_basename (string filename) {
         var basename = Path.get_basename (filename);
 
@@ -76,15 +67,6 @@ namespace Audience {
         var launcher_base = (index_of_last_dot >= 0 ? basename.slice (0, index_of_last_dot) : basename);
 
         return launcher_base;
-    }
-
-    public static bool has_dvd () {
-        return !DiskManager.get_default ().get_volumes ().is_empty;
-    }
-
-    public static bool file_exists (string uri) {
-        var file = File.new_for_uri (uri);
-        return file.query_exists ();
     }
 
     public static Gst.PbUtils.DiscovererInfo? get_discoverer_info (string uri) {
