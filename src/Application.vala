@@ -25,6 +25,12 @@ namespace Audience {
     public GLib.Settings settings; //global space for easier access...
 
     public class App : Gtk.Application {
+        public const string ACTION_PREFIX = "app.";
+        public const string ACTION_PLAY_PAUSE = "action-play-pause";
+
+        private const ActionEntry[] ACTION_ENTRIES = {
+            { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
+        };
 
         public Window mainwindow;
         public GLib.VolumeMonitor monitor;
@@ -53,6 +59,8 @@ namespace Audience {
 
         public override void activate () {
             if (mainwindow == null) {
+                add_action_entries (ACTION_ENTRIES, this);
+
                 if (settings.get_string ("last-folder") == "-1") {
                     settings.set_string ("last-folder", GLib.Environment.get_user_special_dir (GLib.UserDirectory.VIDEOS));
                 }
@@ -86,6 +94,15 @@ namespace Audience {
         public override void open (File[] files, string hint) {
             activate ();
             mainwindow.open_files (files, true);
+        }
+
+        private void action_play_pause () {
+            var play_pause_action = lookup_action (ACTION_PLAY_PAUSE);
+            if (play_pause_action.get_state ().get_boolean ()) {
+                ((SimpleAction) play_pause_action).set_state (false);
+            } else {
+                ((SimpleAction) play_pause_action).set_state (true);
+            }
         }
     }
 }

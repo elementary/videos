@@ -44,17 +44,17 @@ namespace Audience {
 
         private bool mouse_primary_down = false;
 
-        public bool playing {
-            get {
-                return playback.playing;
-            }
-            set {
-                if (playback.playing == value)
-                    return;
+        // public bool playing {
+        //     get {
+        //         return playback.playing;
+        //     }
+        //     set {
+        //         if (playback.playing == value)
+        //             return;
 
-                playback.playing = value;
-            }
-        }
+        //         playback.playing = value;
+        //     }
+        // }
 
         private bool _fullscreened = false;
         public bool fullscreened {
@@ -119,7 +119,6 @@ namespace Audience {
             stage.add_child (video_actor);
 
             bottom_bar = new Widgets.BottomBar (playback);
-            bottom_bar.bind_property ("playing", playback, "playing", BindingFlags.BIDIRECTIONAL);
 
             var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic", Gtk.IconSize.BUTTON) {
                 tooltip_text = _("Unfullscreen")
@@ -287,8 +286,18 @@ namespace Audience {
                 }
             });
 
+            GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
+                if (name == Audience.App.ACTION_PLAY_PAUSE) {
+                    playback.playing = new_state.get_boolean ();
+                }
+            });
+
             playback.notify["playing"].connect (() => {
-                unowned Gtk.Application app = (Gtk.Application) GLib.Application.get_default ();
+                unowned var app = (Gtk.Application) Application.get_default ();
+
+                var play_pause_action = app.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+                ((SimpleAction) play_pause_action).set_state (playback.playing);
+
                 if (playback.playing) {
                     if (inhibit_token != 0) {
                         app.uninhibit (inhibit_token);
