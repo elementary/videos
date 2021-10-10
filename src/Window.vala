@@ -501,11 +501,6 @@ public class Audience.Window : Gtk.Window {
     }
 
     public void navigate_back () {
-        double progress = player_page.get_progress ();
-        if (progress > 0) {
-            settings.set_double ("last-stopped", progress);
-        }
-
         /* Changing the player_page playing properties triggers a number of signals/bindings and
          * pipeline needs time to react so wrap subsequent code in an Idle loop.
          */

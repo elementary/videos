@@ -29,6 +29,8 @@ namespace Audience {
         public signal void unfullscreen_clicked ();
         public signal void ended ();
 
+        public int64 playback_position { get; private set; }
+
         private dynamic Gst.Element playbin;
         private Gtk.Widget gst_video_widget;
         private Gst.Bus bus;
@@ -36,6 +38,7 @@ namespace Audience {
         private GnomeMediaKeys mediakeys;
         private ClutterGst.Playback playback;
         private Gtk.Revealer unfullscreen_revealer;
+        private uint progress_timer = 0;
         private uint inhibit_token = 0;
 
         public Audience.Widgets.BottomBar bottom_bar {get; private set;}
@@ -211,7 +214,7 @@ namespace Audience {
                 } else if (playback.uri != "") {
                     /* The progress is only valid if the uri has not been reset as the current video setting is not
                      * updated.  The playback.uri has been reset when the window is destroyed from the Welcome page */
-                    settings.set_double ("last-stopped", playback.progress);
+                    settings.set_int64 ("playback-position", playback_position);
                 }
 
                 get_playlist_widget ().save_playlist ();
@@ -249,42 +252,67 @@ namespace Audience {
                     ((Audience.Window) App.get_instance ().active_window).hide_mouse_cursor ();
                 }
             });
-
-            notify["playing"].connect (() => {
-                unowned Gtk.Application app = (Gtk.Application) GLib.Application.get_default ();
-                if (playing) {
-                    if (inhibit_token != 0) {
-                        app.uninhibit (inhibit_token);
-                    }
-
-                    inhibit_token = app.inhibit (
-                        app.get_active_window (),
-                        Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND,
-                        _("A video is playing")
-                    );
-                } else if (inhibit_token != 0) {
-                    app.uninhibit (inhibit_token);
-                    inhibit_token = 0;
-                }
-            });
         }
 
         private bool bus_callback (Gst.Bus bus, Gst.Message message) {
-            if (message.type == Gst.MessageType.EOS) {
-                Idle.add (() => {
-                    playback.progress = 0;
-                    if (!get_playlist_widget ().next ()) {
-                        if (bottom_bar.repeat) {
-                            string file = get_playlist_widget ().get_first_item ().get_uri ();
-                            App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file) });
-                        } else {
-                            playbin.set_state (Gst.State.NULL);
-                            settings.set_double ("last-stopped", 0);
-                            ended ();
+            switch (message.type) {
+                case Gst.MessageType.STATE_CHANGED:
+                    Gst.State old_state;
+                    Gst.State new_state;
+                    Gst.State pending_state;
+
+                    message.parse_state_changed (out old_state, out new_state, out pending_state);
+
+                    unowned Gtk.Application app = (Gtk.Application) GLib.Application.get_default ();
+
+                    if (new_state == Gst.State.PLAYING) {
+                        if (inhibit_token != 0) {
+                            app.uninhibit (inhibit_token);
+                        }
+
+                        inhibit_token = app.inhibit (
+                            app.get_active_window (),
+                            Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND,
+                            _("A video is playing")
+                        );
+
+                        progress_timer = GLib.Timeout.add (250, () => {
+                            int64 position = 0;
+                            playbin.query_position (Gst.Format.TIME, out position);
+                            playback_position = position;
+
+                            return Source.CONTINUE;
+                        });
+                    } else {
+                        if (inhibit_token != 0) {
+                            app.uninhibit (inhibit_token);
+                            inhibit_token = 0;
+                        }
+
+                        settings.set_int64 ("playback-position", playback_position);
+                        if (progress_timer != 0) {
+                            Source.remove (progress_timer);
+                            progress_timer = 0;
                         }
                     }
-                    return false;
-                });
+                    break;
+
+                case Gst.MessageType.EOS:
+                    Idle.add (() => {
+                        playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, 0);
+                        if (!get_playlist_widget ().next ()) {
+                            if (bottom_bar.repeat) {
+                                string file = get_playlist_widget ().get_first_item ().get_uri ();
+                                App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file) });
+                            } else {
+                                playbin.set_state (Gst.State.NULL);
+                                settings.set_double ("last-stopped", 0);
+                                ended ();
+                            }
+                        }
+                        return false;
+                    });
+                    break;
             }
 
             return true;
@@ -326,9 +354,9 @@ namespace Audience {
 
             /* Set progress before subtitle uri else it gets reset to zero */
             if (from_beginning) {
-                playback.progress = 0.0;
+                playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, 0);
             } else {
-                playback.progress = settings.get_double ("last-stopped");
+                playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, settings.get_int64 ("playback-position"));
             }
 
             string sub_uri = "";
@@ -355,10 +383,6 @@ namespace Audience {
             settings.set_string ("current-video", uri);
         }
 
-        public double get_progress () {
-            return playback.progress;
-        }
-
         public void append_to_playlist (File file) {
             if (is_subtitle (file.get_uri ())) {
                 set_subtitle (file.get_uri ());
@@ -376,10 +400,8 @@ namespace Audience {
         }
 
         public void seek_jump_seconds (int seconds) {
-            var duration = playback.duration;
-            var progress = playback.progress;
-            var new_progress = ((duration * progress) + (double)seconds) / duration;
-            playback.progress = new_progress.clamp (0.0, 1.0);
+            playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, playback_position + (seconds / 1000));
+
             bottom_bar.reveal_control ();
         }
 
