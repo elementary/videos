@@ -19,6 +19,8 @@
  */
 
 public class Audience.Widgets.PreviewPopover : Gtk.Popover {
+    public string playback_uri { get; construct; }
+
     private enum PlayFlags {
         VIDEO = (1 << 0),
         AUDIO = (1 << 1),
@@ -42,7 +44,11 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     double req_progress = -1;
     bool req_loop = false;
 
-    public PreviewPopover (ClutterGst.Playback main_playback) {
+    public PreviewPopover (string playback_uri) {
+         Object (playback_uri: playback_uri);
+     }
+
+    construct {
         opacity = GLOBAL_OPACITY;
         can_focus = false;
         sensitive = false;
@@ -59,7 +65,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         });
 
         playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
-        playback.uri = main_playback.uri;
+        playback.uri = playback_uri;
         playback.playing = false;
         clutter = new GtkClutter.Embed ();
         clutter.margin = 3;
