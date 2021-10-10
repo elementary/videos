@@ -359,49 +359,12 @@ namespace Audience {
             return playback.progress;
         }
 
-        public string get_played_uri () {
-            return playbin.uri;
-        }
-
-        public void reset_played_uri () {
-            playbin.uri = "";
-        }
-
-        public void next () {
-            get_playlist_widget ().next ();
-        }
-
-        public void prev () {
-            get_playlist_widget ().next (); //Is this right??
-        }
-
-        public void resume_last_videos () {
-            play_file (settings.get_string ("current-video"));
-            playbin.set_state (Gst.State.NULL);
-            if (settings.get_boolean ("resume-videos")) {
-                playback.progress = settings.get_double ("last-stopped");
-            } else {
-                playback.progress = 0.0;
-            }
-
-            if (settings.get_boolean ("playback-wait")) {
-                playbin.set_state (Gst.State.NULL);
-            } else {
-                playbin.set_state (Gst.State.PLAYING);
-            }
-        }
-
         public void append_to_playlist (File file) {
             if (is_subtitle (file.get_uri ())) {
                 set_subtitle (file.get_uri ());
             } else {
                 get_playlist_widget ().add_item (file);
             }
-        }
-
-        public void play_first_in_playlist () {
-            var file = get_playlist_widget ().get_first_item ();
-            play_file (file.get_uri ());
         }
 
         public void next_audio () {
@@ -491,7 +454,7 @@ namespace Audience {
             settings.set_string ("current-external-subtitles-uri", uri);
         }
 
-        public bool update_pointer_position (double y, int window_height) {
+        private bool update_pointer_position (double y, int window_height) {
             App.get_instance ().active_window.get_window ().set_cursor (null);
 
             bottom_bar.reveal_control ();
