@@ -182,7 +182,7 @@ namespace Audience {
             motion_notify_event.connect (event => {
                 if (mouse_primary_down && settings.get_boolean ("move-window")) {
                     mouse_primary_down = false;
-                    App.get_instance ().mainwindow.begin_move_drag (Gdk.BUTTON_PRIMARY,
+                    App.get_instance ().active_window.begin_move_drag (Gdk.BUTTON_PRIMARY,
                         (int)event.x_root, (int)event.y_root, event.time);
                 }
 
@@ -257,7 +257,7 @@ namespace Audience {
                     if (!get_playlist_widget ().next ()) {
                         if (repeat) {
                             string file = get_playlist_widget ().get_first_item ().get_uri ();
-                            App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file) });
+                            ((Audience.Window) App.get_instance ().active_window).open_files ({ File.new_for_uri (file) });
                         } else {
                             playback.playing = false;
                             settings.set_double ("last-stopped", 0);
@@ -270,7 +270,7 @@ namespace Audience {
 
             //playlist wants us to open a file
             get_playlist_widget ().play.connect ((file) => {
-                App.get_instance ().mainwindow.open_files ({ File.new_for_uri (file.get_uri ()) });
+                ((Audience.Window) App.get_instance ().active_window).open_files ({ File.new_for_uri (file.get_uri ()) });
             });
 
             get_playlist_widget ().stop_video.connect (() => {
@@ -290,9 +290,9 @@ namespace Audience {
 
             bottom_bar.notify["child-revealed"].connect (() => {
                 if (bottom_bar.child_revealed == true) {
-                    App.get_instance ().mainwindow.show_mouse_cursor ();
+                    ((Audience.Window) App.get_instance ().active_window).show_mouse_cursor ();
                 } else {
-                    App.get_instance ().mainwindow.hide_mouse_cursor ();
+                    ((Audience.Window) App.get_instance ().active_window).hide_mouse_cursor ();
                 }
             });
 
@@ -350,7 +350,7 @@ namespace Audience {
             playback.uri = uri;
 
 
-            App.get_instance ().mainwindow.title = get_title (uri);
+            App.get_instance ().active_window.title = get_title (uri);
 
             /* Set progress before subtitle uri else it gets reset to zero */
             if (from_beginning) {
@@ -512,7 +512,7 @@ namespace Audience {
         }
 
         public bool update_pointer_position (double y, int window_height) {
-            App.get_instance ().mainwindow.get_window ().set_cursor (null);
+            App.get_instance ().active_window.get_window ().set_cursor (null);
 
             bottom_bar.reveal_control ();
 
