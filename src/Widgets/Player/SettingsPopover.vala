@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2013-2019 elementary, Inc. (https://elementary.io)
+ * Copyright 2013-2021 elementary, Inc. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,17 +18,18 @@
  */
 
 public class Audience.Widgets.SettingsPopover : Gtk.Popover {
+    public ClutterGst.Playback playback { get; construct; }
     public bool is_setup = false;
 
     private Gtk.ComboBoxText languages;
     private Gtk.ComboBoxText subtitles;
     private Gtk.FileChooserButton external_subtitle_file;
-    private ClutterGst.Playback playback;
 
     public SettingsPopover (ClutterGst.Playback playback) {
-        this.playback = playback;
-        opacity = GLOBAL_OPACITY;
+        Object (playback: playback);
+    }
 
+    construct {
         languages = new Gtk.ComboBoxText ();
         subtitles = new Gtk.ComboBoxText ();
 
@@ -48,29 +49,33 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         external_subtitle_file.add_filter (subtitle_files_filter);
         external_subtitle_file.add_filter (all_files_filter);
 
-        var lang_label = new Gtk.Label (_("Audio:"));
-        lang_label.halign = Gtk.Align.END;
+        var lang_label = new Gtk.Label (_("Audio:")) {
+            halign = Gtk.Align.END
+        };
 
-        var sub_label = new Gtk.Label (_("Subtitles:"));
-        sub_label.halign = Gtk.Align.END;
+        var sub_label = new Gtk.Label (_("Subtitles:")) {
+            halign = Gtk.Align.END
+        };
 
-        var sub_ext_label = new Gtk.Label (_("External Subtitles:"));
-        sub_ext_label.halign = Gtk.Align.END;
+        var sub_ext_label = new Gtk.Label (_("External Subtitles:")) {
+            halign = Gtk.Align.END
+        };
 
-        var setupgrid = new Gtk.Grid ();
-        setupgrid.row_spacing = 6;
-        setupgrid.margin = 6;
-        setupgrid.attach (lang_label, 0, 1, 1, 1);
-        setupgrid.attach (languages, 1, 1, 1, 1);
-        setupgrid.attach (sub_label, 0, 2, 1, 1);
-        setupgrid.attach (subtitles, 1, 2, 1, 1);
-        setupgrid.attach (sub_ext_label, 0, 3, 1, 1);
-        setupgrid.attach (external_subtitle_file, 1, 3, 1, 1);
-        setupgrid.column_spacing = 12;
+        var setupgrid = new Gtk.Grid () {
+            column_spacing = 12,
+            row_spacing = 6,
+            margin = 6
+        };
+        setupgrid.attach (lang_label, 0, 1);
+        setupgrid.attach (languages, 1, 1);
+        setupgrid.attach (sub_label, 0, 2);
+        setupgrid.attach (subtitles, 1, 2);
+        setupgrid.attach (sub_ext_label, 0, 3);
+        setupgrid.attach (external_subtitle_file, 1, 3);
         setupgrid.show_all ();
 
         external_subtitle_file.file_set.connect (() => {
-            App.get_instance ().mainwindow.player_page.set_subtitle (external_subtitle_file.get_uri ());
+            ((Audience.Window)((Gtk.Application) Application.get_default ()).active_window).player_page.set_subtitle (external_subtitle_file.get_uri ());
         });
 
         unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
@@ -217,6 +222,4 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
         return audio_languages;
     }
-
-
 }
