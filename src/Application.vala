@@ -72,7 +72,8 @@ namespace Audience {
                     warning (e.message);
                 }
 
-                mainwindow = new Window (this);
+                mainwindow = new Window ();
+                mainwindow.application = this;
                 mainwindow.title = _("Videos");
             }
         }
