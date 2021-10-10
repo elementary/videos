@@ -45,18 +45,21 @@ public class Audience.Window : Gtk.ApplicationWindow {
     public const string ACTION_GROUP_PREFIX = "win";
     public const string ACTION_PREFIX = ACTION_GROUP_PREFIX + ".";
     public const string ACTION_FULLSCREEN = "action-fullscreen";
+    public const string ACTION_OPEN_FILE = "action-open-file";
     public const string ACTION_QUIT = "action-quit";
 
     private static Gee.MultiMap<string, string> action_accelerators = new Gee.HashMultiMap<string, string> ();
 
     private const ActionEntry[] ACTION_ENTRIES = {
         { ACTION_FULLSCREEN, action_fullscreen },
+        { ACTION_OPEN_FILE, action_open_file },
         { ACTION_QUIT, action_quit },
     };
 
     static construct {
         action_accelerators[ACTION_FULLSCREEN] = "F";
         action_accelerators[ACTION_FULLSCREEN] = "F11";
+        action_accelerators[ACTION_OPEN_FILE] = "<Control>O";
         action_accelerators[ACTION_QUIT] = "<Control>Q";
     }
 
@@ -264,6 +267,10 @@ public class Audience.Window : Gtk.ApplicationWindow {
         }
     }
 
+    private void action_open_file () {
+        run_open_file ();
+    }
+
     private void action_quit () {
         destroy ();
     }
@@ -342,9 +349,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
             if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
                 resume_last_videos ();
                 return true;
-            } else if (ctrl_pressed && match_keycode (Gdk.Key.o, keycode)) {
-                run_open_file ();
-                return true;
             } else if (ctrl_pressed && match_keycode (Gdk.Key.b, keycode)) {
                 show_library ();
                 return true;
@@ -394,7 +398,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
         if (settings.get_string ("current-video") != "") {
             play_file (settings.get_string ("current-video"), NavigationPage.WELCOME, false);
         } else {
-            run_open_file ();
+            action_open_file ();
         }
     }
 
