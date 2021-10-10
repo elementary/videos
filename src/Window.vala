@@ -276,19 +276,11 @@ public class Audience.Window : Gtk.Window {
         if (main_stack.visible_child == player_page) {
             if (match_keycode (Gdk.Key.space, keycode)) {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-                if (play_pause_action.get_state ().get_boolean ()) {
-                    ((SimpleAction) play_pause_action).set_state (false);
-                } else {
-                    ((SimpleAction) play_pause_action).set_state (true);
-                }
+                ((SimpleAction) play_pause_action).activate (null);
                 return true;
             } else if (match_keycode (Gdk.Key.p, keycode)) {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-                if (play_pause_action.get_state ().get_boolean ()) {
-                    ((SimpleAction) play_pause_action).set_state (false);
-                } else {
-                    ((SimpleAction) play_pause_action).set_state (true);
-                }
+                ((SimpleAction) play_pause_action).activate (null);
             } else if (match_keycode (Gdk.Key.a, keycode)) {
                 player_page.next_audio ();
             } else if (match_keycode (Gdk.Key.s, keycode)) {
