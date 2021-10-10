@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-08 16:06+0000\n"
+"POT-Creation-Date: 2021-10-09 20:38+0000\n"
 "PO-Revision-Date: 2016-07-30 14:30+0000\n"
 "Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
-#: src/Application.vala:77 src/Window.vala:504
+#: src/Application.vala:77 src/Window.vala:515
 msgid "Videos"
 msgstr "Video"
 
@@ -35,40 +35,45 @@ msgstr ""
 msgid "Episodes"
 msgstr ""
 
-#: src/Window.vala:66
+#: src/Window.vala:70
 msgid "Search Videos"
 msgstr ""
 
-#: src/Window.vala:79
+#: src/Window.vala:83
 #, fuzzy
 msgid "Play one video"
 msgstr "Main semula video terakhir"
 
-#: src/Window.vala:80
+#: src/Window.vala:84
 msgid "Automatically play next videos"
 msgstr ""
 
-#: src/Window.vala:151
+#: src/Window.vala:155
 msgid "Restore"
 msgstr ""
 
-#: src/Window.vala:395 src/Widgets/Player/SettingsPopover.vala:36
+#: src/Window.vala:171
+#, c-format
+msgid "Video '%s' Removed."
+msgstr ""
+
+#: src/Window.vala:406 src/Widgets/Player/SettingsPopover.vala:36
 msgid "All files"
 msgstr "Semua fail"
 
-#: src/Window.vala:399
+#: src/Window.vala:410
 msgid "Video files"
 msgstr "Fail video"
 
-#: src/Window.vala:403 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Buka"
 
-#: src/Window.vala:406 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:417 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "B_uka"
 
-#: src/Window.vala:407 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:418 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Batal"
 
@@ -133,13 +138,13 @@ msgid "Resume last video"
 msgstr "Sambung semula video terakhir"
 
 #: src/Widgets/Library/EpisodesPage.vala:126
-#: src/Widgets/Library/LibraryPage.vala:186
+#: src/Widgets/Library/LibraryPage.vala:181
 #, c-format
 msgid "No Results for “%s”"
 msgstr ""
 
 #: src/Widgets/Library/EpisodesPage.vala:126
-#: src/Widgets/Library/LibraryPage.vala:55
+#: src/Widgets/Library/LibraryPage.vala:53
 msgid "Try changing search terms."
 msgstr ""
 
@@ -155,32 +160,27 @@ msgstr ""
 msgid "Image files"
 msgstr ""
 
-#: src/Widgets/Library/LibraryPage.vala:74
-#, c-format
-msgid "Video '%s' Removed."
-msgstr ""
-
-#: src/Widgets/Player/BottomBar.vala:81
+#: src/Widgets/Player/BottomBar.vala:64
 msgid "Pause"
 msgstr "Jeda"
 
-#: src/Widgets/Player/BottomBar.vala:85 src/Widgets/Player/BottomBar.vala:102
+#: src/Widgets/Player/BottomBar.vala:68 src/Widgets/Player/BottomBar.vala:85
 msgid "Play"
 msgstr "Main"
 
-#: src/Widgets/Player/BottomBar.vala:110
+#: src/Widgets/Player/BottomBar.vala:93
 msgid "Playlist"
 msgstr "Senarai Main"
 
-#: src/Widgets/Player/BottomBar.vala:118
+#: src/Widgets/Player/BottomBar.vala:101
 msgid "Settings"
 msgstr "Tetapan"
 
-#: src/Widgets/Player/BottomBar.vala:132
+#: src/Widgets/Player/PlayerPage.vala:134
 msgid "Unfullscreen"
 msgstr "Jangan skrin penuh"
 
-#: src/Widgets/Player/PlayerPage.vala:285
+#: src/Widgets/Player/PlayerPage.vala:309
 msgid "A video is playing"
 msgstr ""
 
