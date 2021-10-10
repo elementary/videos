@@ -25,7 +25,7 @@ namespace Audience {
 
         private Granite.Widgets.AlertView alert_view;
         public Gtk.FlowBox view_movies;
-        public Audience.Services.LibraryManager manager;
+        private Audience.Services.LibraryManager manager;
         public Gtk.ScrolledWindow scrolled_window;
         bool posters_initialized = false;
         string query;
@@ -43,8 +43,6 @@ namespace Audience {
         }
 
         construct {
-            manager = Audience.Services.LibraryManager.get_instance ();
-
             query = "";
 
             scrolled_window = new Gtk.ScrolledWindow (null, null);
@@ -70,9 +68,6 @@ namespace Audience {
             manager = Audience.Services.LibraryManager.get_instance ();
             manager.video_file_detected.connect (add_item);
             manager.video_file_deleted.connect (remove_item_from_path);
-            manager.video_moved_to_trash.connect ((video) => {
-                Audience.App.get_instance ().mainwindow.set_app_notification (_("Video '%s' Removed.").printf (Path.get_basename (video)));
-            });
 
             manager.begin_scan ();
 
