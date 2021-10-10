@@ -44,18 +44,6 @@ namespace Audience {
 
         private bool mouse_primary_down = false;
 
-        // public bool playing {
-        //     get {
-        //         return playback.playing;
-        //     }
-        //     set {
-        //         if (playback.playing == value)
-        //             return;
-
-        //         playback.playing = value;
-        //     }
-        // }
-
         private bool _fullscreened = false;
         public bool fullscreened {
             get {
