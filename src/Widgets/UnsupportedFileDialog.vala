@@ -26,7 +26,7 @@ public class Audience.UnsupportedFileDialog : Granite.MessageDialog {
             secondary_text: _("Videos might not be able to play the file '%s'.".printf (filename)),
             buttons: Gtk.ButtonsType.CANCEL,
             image_icon: new ThemedIcon ("dialog-error"),
-            transient_for: App.get_instance ().mainwindow,
+            transient_for: ((Gtk.Application) Application.get_default ()).active_window,
             window_position: Gtk.WindowPosition.CENTER,
             content_type: content_type,
             uri: uri

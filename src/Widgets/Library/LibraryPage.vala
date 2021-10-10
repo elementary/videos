@@ -57,7 +57,6 @@ public class Audience.LibraryPage : Gtk.Stack {
             selection_mode = Gtk.SelectionMode.NONE,
             valign = Gtk.Align.START
         };
-
         scrolled_window.add (view_movies);
 
         alert_view = new Granite.Widgets.AlertView (
