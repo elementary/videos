@@ -44,15 +44,6 @@ namespace Audience {
 
         private bool mouse_primary_down = false;
 
-        public bool repeat {
-            get {
-                return bottom_bar.repeat;
-            }
-            set {
-                bottom_bar.repeat = value;
-            }
-        }
-
         public bool playing {
             get {
                 return playback.playing;
@@ -255,7 +246,7 @@ namespace Audience {
                 Idle.add (() => {
                     playback.progress = 0;
                     if (!get_playlist_widget ().next ()) {
-                        if (repeat) {
+                        if (bottom_bar.repeat) {
                             string file = get_playlist_widget ().get_first_item ().get_uri ();
                             ((Audience.Window) App.get_instance ().active_window).open_files ({ File.new_for_uri (file) });
                         } else {
@@ -382,45 +373,12 @@ namespace Audience {
             return playback.progress;
         }
 
-        public string get_played_uri () {
-            return playback.uri;
-        }
-
-        public void reset_played_uri () {
-            playback.uri = "";
-        }
-
-        public void next () {
-            get_playlist_widget ().next ();
-        }
-
-        public void prev () {
-            get_playlist_widget ().next (); //Is this right??
-        }
-
-        public void resume_last_videos () {
-            play_file (settings.get_string ("current-video"));
-            playback.playing = false;
-            if (settings.get_boolean ("resume-videos")) {
-                playback.progress = settings.get_double ("last-stopped");
-            } else {
-                playback.progress = 0.0;
-            }
-
-            playback.playing = !settings.get_boolean ("playback-wait");
-        }
-
         public void append_to_playlist (File file) {
             if (is_subtitle (file.get_uri ())) {
                 set_subtitle (file.get_uri ());
             } else {
                 get_playlist_widget ().add_item (file);
             }
-        }
-
-        public void play_first_in_playlist () {
-            var file = get_playlist_widget ().get_first_item ();
-            play_file (file.get_uri ());
         }
 
         public void next_audio () {
@@ -511,7 +469,7 @@ namespace Audience {
             settings.set_string ("current-external-subtitles-uri", uri);
         }
 
-        public bool update_pointer_position (double y, int window_height) {
+        private bool update_pointer_position (double y, int window_height) {
             App.get_instance ().active_window.get_window ().set_cursor (null);
 
             bottom_bar.reveal_control ();
