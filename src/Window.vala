@@ -127,7 +127,7 @@ public class Audience.Window : Gtk.Window {
             unfullscreen ();
         });
 
-        application.action_state_changed.connect ((name, new_state) => {
+        Application.get_default ().action_state_changed.connect ((name, new_state) => {
             if (name == Audience.App.ACTION_PLAY_PAUSE) {
                 set_keep_above (new_state.get_boolean () && settings.get_boolean ("stay-on-top"));
             }
