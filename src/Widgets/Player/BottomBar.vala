@@ -121,9 +121,11 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
                 if (new_state.get_boolean () == false) {
                     ((Gtk.Image) play_button.image).icon_name = "media-playback-start-symbolic";
                     play_button.tooltip_text = _("Play");
+                    reveal_child = true;
                 } else {
                     ((Gtk.Image) play_button.image).icon_name = "media-playback-pause-symbolic";
                     play_button.tooltip_text = _("Pause");
+                    reveal_control ();
                 }
             }
         });
