@@ -22,9 +22,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     private const string PULSE_CLASS = "pulse";
     private const string PULSE_TYPE = "attention";
 
-    public signal void play_toggled ();
-    public signal void seeked (double val);
-
     public SettingsPopover preferences_popover { get; private set; }
     public PlaylistPopover playlist_popover { get; private set; }
     public TimeWidget time_widget { get; private set; }
@@ -135,7 +132,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
         play_button.clicked.connect (() => {
             playing = !playing;
-            play_toggled (); //Not used
         });
 
         playlist_popover.playlist.item_added.connect (() => {
