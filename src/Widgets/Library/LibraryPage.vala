@@ -203,7 +203,7 @@ public class Audience.LibraryPage : Gtk.Stack {
     }
 
     public Audience.Window.NavigationPage prepare_to_play (string file) {
-        if (!File.new_for_uri (file).has_prefix (File.new_for_path (settings.get_string ("library-folder")))) {
+        if (!File.new_for_uri (file).has_prefix (File.new_for_path (Environment.get_user_special_dir (UserDirectory.VIDEOS)))) {
             return Window.NavigationPage.WELCOME;
         }
 
