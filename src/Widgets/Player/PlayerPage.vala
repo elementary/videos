@@ -206,7 +206,7 @@ namespace Audience {
             });
 
             unfullscreen_button.clicked.connect (() => {
-                ((Gtk.Application) Application.get_default ()).active_window.unfullscreen ();
+                ((Gtk.Window) get_toplevel ()).unfullscreen ();
             });
 
             leave_notify_event.connect (event => {
