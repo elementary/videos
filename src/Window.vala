@@ -123,9 +123,6 @@ public class Audience.Window : Gtk.Window {
 
         player_page = new PlayerPage ();
         player_page.ended.connect (on_player_ended);
-        player_page.unfullscreen_clicked.connect (() => {
-            unfullscreen ();
-        });
 
         player_page.notify["playing"].connect (() => {
             set_keep_above (player_page.playing && settings.get_boolean ("stay-on-top"));
