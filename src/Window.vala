@@ -246,8 +246,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
         });
 
         configure_event.connect (event => {
-            player_page.hide_preview_popover ();
-            player_page.bottom_bar.playlist_popover.popdown ();
+            player_page.hide_popovers ();
             return Gdk.EVENT_PROPAGATE;
         });
 
