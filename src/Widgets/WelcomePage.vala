@@ -104,7 +104,7 @@ public class Audience.WelcomePage : Granite.Widgets.Welcome {
     }
 
     private void update_replay_title () {
-        if (settings.get_double ("last-stopped") == 0.0 || !settings.get_boolean ("resume-videos")) {
+        if (settings.get_double ("last-stopped") == 0.0) {
             replay_button.title = _("Replay last video");
             replay_button.icon.icon_name = ("media-playlist-repeat");
         } else {
