@@ -124,10 +124,6 @@ public class Audience.Window : Gtk.Window {
         player_page = new PlayerPage ();
         player_page.ended.connect (on_player_ended);
 
-        player_page.notify["playing"].connect (() => {
-            set_keep_above (player_page.playing && settings.get_boolean ("stay-on-top"));
-        });
-
         player_page.map.connect (() => {
             app_notification.visible = false;
         });
@@ -482,10 +478,6 @@ public class Audience.Window : Gtk.Window {
         player_page.play_file (uri, from_beginning);
         if (is_maximized) {
             fullscreen ();
-        }
-
-        if (settings.get_boolean ("stay-on-top") && !settings.get_boolean ("playback-wait")) {
-            set_keep_above (true);
         }
     }
 
