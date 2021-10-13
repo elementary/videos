@@ -123,9 +123,6 @@ public class Audience.Window : Gtk.Window {
 
         player_page = new PlayerPage ();
         player_page.ended.connect (on_player_ended);
-        player_page.unfullscreen_clicked.connect (() => {
-            unfullscreen ();
-        });
 
         player_page.map.connect (() => {
             app_notification.visible = false;

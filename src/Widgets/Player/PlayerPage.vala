@@ -26,7 +26,6 @@ namespace Audience {
     };
 
     public class PlayerPage : Gtk.EventBox {
-        public signal void unfullscreen_clicked ();
         public signal void ended ();
 
         private GtkClutter.Actor bottom_actor;
@@ -207,7 +206,7 @@ namespace Audience {
             });
 
             unfullscreen_button.clicked.connect (() => {
-                unfullscreen_clicked ();
+                ((Gtk.Window) get_toplevel ()).unfullscreen ();
             });
 
             leave_notify_event.connect (event => {
