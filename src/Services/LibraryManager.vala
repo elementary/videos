@@ -70,7 +70,7 @@ namespace Audience.Services {
         }
 
         public void begin_scan () {
-            unchecked_directories.offer (Audience.settings.get_string ("library-folder"));
+            unchecked_directories.offer (Environment.get_user_special_dir (UserDirectory.VIDEOS));
             detect_video_files.begin ();
         }
 
