@@ -1,24 +1,5 @@
 <schemalist>
   <schema path="/io/elementary/videos/" id="io.elementary.videos" gettext-domain="audience">
-        <key name="subtitle-font" type="s">
-            <default>"Open Sans Bold"</default>
-            <summary>Set the default font of video subtitles</summary>
-        </key>
-        <key name="move-window" type="b">
-            <default>true</default>
-            <summary>Move the window</summary>
-            <description>Allow moving the window by dragging on the canvas</description>
-        </key>
-        <key name="keep-aspect" type="b">
-            <default>true</default>
-            <summary>Keep the video's aspect ratio</summary>
-            <description>Lock window resizing to the aspect ration of the current video</description>
-        </key>
-        <key name="resume-videos" type="b">
-            <default>true</default>
-            <summary>Resume videos</summary>
-            <description>Resume video at the point they were stopped when audience was closed</description>
-        </key>
         <key name="last-played-videos" type="as">
             <default>[]</default>
             <summary>List of last played videos</summary>
@@ -48,21 +29,6 @@
             <default>"-1"</default>
             <summary>The last visited folder</summary>
             <description>The last folder you visited</description>
-        </key>
-        <key name="playback-wait" type="b">
-            <default>false</default>
-            <summary>Don't instantly start video playback</summary>
-            <description>Audience doesn't play an opened file instantly, but waits until you explicitely play it, allowing you to seek to some place or do some settings before watching</description>
-        </key>
-        <key name="stay-on-top" type="b">
-            <default>false</default>
-            <summary>Cause the audience window to stay on top by default when it's playing</summary>
-            <description>Set the option to keep the audience window above all other windows by default when audience is currently playing</description>
-        </key>
-        <key name="library-folder" type="s">
-            <default>""</default>
-            <summary>Library folder</summary>
-            <description></description>
         </key>
         <key name="poster-names" type="as">
             <default>['poster.jpg','Poster.jpg','cover.jpg','Cover.jpg']</default>

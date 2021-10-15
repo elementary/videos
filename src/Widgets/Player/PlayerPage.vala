@@ -26,7 +26,6 @@ namespace Audience {
     };
 
     public class PlayerPage : Gtk.EventBox {
-        public signal void unfullscreen_clicked ();
         public signal void ended ();
 
         public int64 playback_position { get; private set; }
@@ -155,7 +154,7 @@ namespace Audience {
             }
 
             motion_notify_event.connect (event => {
-                if (mouse_primary_down && settings.get_boolean ("move-window")) {
+                if (mouse_primary_down) {
                     mouse_primary_down = false;
                     App.get_instance ().active_window.begin_move_drag (Gdk.BUTTON_PRIMARY,
                         (int)event.x_root, (int)event.y_root, event.time);
@@ -191,7 +190,7 @@ namespace Audience {
             });
 
             unfullscreen_button.clicked.connect (() => {
-                unfullscreen_clicked ();
+                ((Gtk.Window) get_toplevel ()).unfullscreen ();
             });
 
             leave_notify_event.connect (event => {
@@ -369,12 +368,7 @@ namespace Audience {
 
             set_subtitle (sub_uri);
 
-            if (settings.get_boolean ("playback-wait")) {
-                playbin.set_state (Gst.State.NULL);
-            } else {
-                playbin.set_state (Gst.State.PLAYING);
-            }
-
+            playbin.set_state (Gst.State.PLAYING);
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
 
