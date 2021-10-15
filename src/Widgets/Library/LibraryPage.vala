@@ -139,8 +139,9 @@ public class Audience.LibraryPage : Gtk.Stack {
             }
         }
 
-        if (view_movies.get_children ().length () == 0) {
-            ((Audience.Window) ((Gtk.Application) Application.get_default ()).active_window).navigate_back ();
+        var deck = (Hdy.Deck) get_ancestor (typeof (Hdy.Deck));
+        if (deck.visible_child == this && view_movies.get_children ().length () == 0) {
+            deck.navigate (Hdy.NavigationDirection.BACK);
         }
     }
 

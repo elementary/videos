@@ -61,7 +61,7 @@ public class Audience.Window : Gtk.Window {
         navigation_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
 
         navigation_button.clicked.connect (() => {
-            navigate_back ();
+            deck.navigate (Hdy.NavigationDirection.BACK);
         });
 
         header.pack_start (navigation_button);
@@ -111,8 +111,11 @@ public class Audience.Window : Gtk.Window {
             episodes_page.set_episodes_items (item.episodes);
             episodes_page.poster.pixbuf = item.poster.pixbuf;
             if (!setup_only) {
-                navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
-                deck.set_visible_child (episodes_page);
+                episodes_page.show_all ();
+
+                deck.add (episodes_page);
+                deck.visible_child = episodes_page;
+
                 title = item.get_title ();
                 search_entry.text = "";
                 autoqueue_next.visible = true;
@@ -136,7 +139,9 @@ public class Audience.Window : Gtk.Window {
             search_entry.visible = true;
         });
 
-        deck = new Hdy.Deck ();
+        deck = new Hdy.Deck () {
+            can_swipe_back = true
+        };
         deck.add (welcome_page);
 
         app_notification = new Granite.Widgets.Toast ("");
@@ -164,6 +169,14 @@ public class Audience.Window : Gtk.Window {
             if (deck.visible_child != episodes_page) {
                 deck.visible_child = library_page;
             }
+        });
+
+        deck.notify["visible-child"].connect (() => {
+            update_navigation ();
+        });
+
+        deck.notify["transition-running"].connect (() => {
+            update_navigation ();
         });
 
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
@@ -209,7 +222,7 @@ public class Audience.Window : Gtk.Window {
             if (Gdk.WindowState.MAXIMIZED in e.changed_mask) {
                 bool currently_maximixed = Gdk.WindowState.MAXIMIZED in e.new_window_state;
 
-                if (deck.get_visible_child () == player_page && currently_maximixed) {
+                if (deck.visible_child == player_page && currently_maximixed) {
                    fullscreen ();
                 }
             }
@@ -450,7 +463,7 @@ public class Audience.Window : Gtk.Window {
     }
 
     private void on_player_ended () {
-        navigate_back ();
+        deck.navigate (Hdy.NavigationDirection.BACK);
         unfullscreen ();
     }
 
@@ -490,38 +503,51 @@ public class Audience.Window : Gtk.Window {
         player_page.append_to_playlist (file);
     }
 
-    public void navigate_back () {
-        double progress = player_page.get_progress ();
-        if (progress > 0) {
-            settings.set_double ("last-stopped", progress);
-        }
-
-        /* Changing the player_page playing properties triggers a number of signals/bindings and
-         * pipeline needs time to react so wrap subsequent code in an Idle loop.
-         */
-        player_page.playing = false;
-
-        Idle.add (() => {
-            title = _("Videos");
-            get_window ().set_cursor (null);
-
-            if (navigation_button.label == _(NAVIGATION_BUTTON_LIBRARY)) {
-                navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
-                deck.visible_child = library_page;
-                autoqueue_next.visible = false;
-            } else if (navigation_button.label == _(NAVIGATION_BUTTON_EPISODES)) {
-                navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
-                deck.visible_child = episodes_page;
-                autoqueue_next.visible = true;
-            } else {
-                navigation_button.hide ();
-                deck.set_visible_child (welcome_page);
-                search_entry.visible = false;
-                autoqueue_next.visible = false;
+    private void update_navigation () {
+        if (!deck.transition_running) {
+            double progress = player_page.get_progress ();
+            if (progress > 0) {
+                settings.set_double ("last-stopped", progress);
             }
 
-            return Source.REMOVE;
-        });
+            /* Changing the player_page playing properties triggers a number of signals/bindings and
+             * pipeline needs time to react so wrap subsequent code in an Idle loop.
+             */
+            player_page.playing = false;
+
+            Idle.add (() => {
+                get_window ().set_cursor (null);
+
+                if (deck.visible_child == welcome_page) {
+                    title = _("Videos");
+                } else if (deck.visible_child == library_page) {
+                    title = _("Library");
+                }
+
+                var previous_child = deck.get_adjacent_child (Hdy.NavigationDirection.BACK);
+                if (previous_child == welcome_page) {
+                    navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
+                    autoqueue_next.visible = false;
+                } else if (previous_child == library_page) {
+                    navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
+                    autoqueue_next.visible = true;
+                } else if (previous_child == episodes_page) {
+                    navigation_button.label = _(NAVIGATION_BUTTON_EPISODES);
+                    autoqueue_next.visible = true;
+                } else {
+                    navigation_button.hide ();
+                    search_entry.visible = false;
+                    autoqueue_next.visible = false;
+                }
+
+                var next_child = deck.get_adjacent_child (Hdy.NavigationDirection.FORWARD);
+                if (next_child != null) {
+                    deck.remove (next_child);
+                }
+
+                return Source.REMOVE;
+            });
+        }
     }
 
     public void hide_mouse_cursor () {
