@@ -91,19 +91,12 @@ public class Audience.Window : Gtk.Window {
 
         library_page = LibraryPage.get_instance ();
         library_page.map.connect (() => {
-            search_entry.visible = true;
             if (search_entry.text != "" && !library_page.has_child ()) {
                 search_entry.text = "";
             }
             if (library_page.last_filter != "") {
                 search_entry.text = library_page.last_filter;
                 library_page.last_filter = "";
-            }
-        });
-
-        library_page.unmap.connect (() => {
-            if (deck.visible_child != episodes_page) {
-                search_entry.visible = false;
             }
         });
 
@@ -135,9 +128,6 @@ public class Audience.Window : Gtk.Window {
         });
 
         episodes_page = new EpisodesPage ();
-        episodes_page.map.connect (() => {
-            search_entry.visible = true;
-        });
 
         deck = new Hdy.Deck () {
             can_swipe_back = true
@@ -468,22 +458,6 @@ public class Audience.Window : Gtk.Window {
     }
 
     public void play_file (string uri, NavigationPage origin, bool from_beginning = true) {
-        search_entry.visible = false;
-        navigation_button.visible = true;
-        switch (origin) {
-            default:
-            case NavigationPage.WELCOME:
-                navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
-                break;
-            case NavigationPage.LIBRARY:
-                navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
-                break;
-            case NavigationPage.EPISODES:
-                navigation_button.label = _(NAVIGATION_BUTTON_EPISODES);
-                autoqueue_next.visible = true;
-                break;
-        }
-
         player_page.show_all ();
 
         deck.add (player_page);
@@ -520,8 +494,15 @@ public class Audience.Window : Gtk.Window {
 
                 if (deck.visible_child == welcome_page) {
                     title = _("Videos");
+                    search_entry.visible = false;
                 } else if (deck.visible_child == library_page) {
                     title = _("Library");
+                    search_entry.visible = true;
+                } else if (deck.visible_child == episodes_page) {
+                    search_entry.visible = true;
+                } else if (deck.visible_child == player_page) {
+                    search_entry.visible = false;
+                    navigation_button.visible = true;
                 }
 
                 var previous_child = deck.get_adjacent_child (Hdy.NavigationDirection.BACK);
