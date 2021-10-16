@@ -20,7 +20,7 @@
  *              Corentin Noël <corentin@elementary.io>
  */
 
-public class Audience.Window : Gtk.Window {
+public class Audience.Window : Gtk.ApplicationWindow {
     private Granite.Widgets.Toast app_notification;
     private Granite.ModeSwitch autoqueue_next;
     private EpisodesPage episodes_page;
@@ -42,11 +42,37 @@ public class Audience.Window : Gtk.Window {
 
     public signal void media_volumes_changed ();
 
-    public Window () {
+    public const string ACTION_GROUP_PREFIX = "win";
+    public const string ACTION_PREFIX = ACTION_GROUP_PREFIX + ".";
+    public const string ACTION_FULLSCREEN = "action-fullscreen";
+    public const string ACTION_OPEN_FILE = "action-open-file";
+    public const string ACTION_QUIT = "action-quit";
 
+    private static Gee.MultiMap<string, string> action_accelerators = new Gee.HashMultiMap<string, string> ();
+
+    private const ActionEntry[] ACTION_ENTRIES = {
+        { ACTION_FULLSCREEN, action_fullscreen },
+        { ACTION_OPEN_FILE, action_open_file },
+        { ACTION_QUIT, action_quit },
+    };
+
+    static construct {
+        action_accelerators[ACTION_FULLSCREEN] = "F";
+        action_accelerators[ACTION_FULLSCREEN] = "F11";
+        action_accelerators[ACTION_OPEN_FILE] = "<Control>O";
+        action_accelerators[ACTION_QUIT] = "<Control>Q";
     }
 
     construct {
+        add_action_entries (ACTION_ENTRIES, this);
+
+        var application_instance = (Gtk.Application) GLib.Application.get_default ();
+        foreach (var action in action_accelerators.get_keys ()) {
+            application_instance.set_accels_for_action (
+                ACTION_PREFIX + action, action_accelerators[action].to_array ()
+            );
+        }
+
         window_position = Gtk.WindowPosition.CENTER;
         gravity = Gdk.Gravity.CENTER;
         set_default_size (1000, 680);
@@ -187,11 +213,7 @@ public class Audience.Window : Gtk.Window {
         player_page.button_press_event.connect ((event) => {
             // double left click
             if (event.button == Gdk.BUTTON_PRIMARY && event.type == Gdk.EventType.2BUTTON_PRESS) {
-                if (player_page.fullscreened) {
-                    unfullscreen ();
-                } else {
-                    fullscreen ();
-                }
+                action_fullscreen ();
             }
 
             // right click
@@ -236,6 +258,24 @@ public class Audience.Window : Gtk.Window {
         });
     }
 
+    private void action_fullscreen () {
+        if (main_stack.visible_child == player_page) {
+            if (player_page.fullscreened) {
+                unfullscreen ();
+            } else {
+                fullscreen ();
+            }
+        }
+    }
+
+    private void action_open_file () {
+        run_open_file ();
+    }
+
+    private void action_quit () {
+        destroy ();
+    }
+
     /** Returns true if the code parameter matches the keycode of the keyval parameter for
     * any keyboard group or level (in order to allow for non-QWERTY keyboards) **/
 #if VALA_0_42
@@ -276,12 +316,6 @@ public class Audience.Window : Gtk.Window {
                 player_page.next_audio ();
             } else if (match_keycode (Gdk.Key.s, keycode)) {
                 player_page.next_text ();
-            } else if (match_keycode (Gdk.Key.f, keycode)) {
-                if (player_page.fullscreened) {
-                    unfullscreen ();
-                } else {
-                    fullscreen ();
-                }
             }
 
             bool shift_pressed = Gdk.ModifierType.SHIFT_MASK in e.state;
@@ -317,12 +351,6 @@ public class Audience.Window : Gtk.Window {
         } else if (main_stack.visible_child == welcome_page) {
             if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
                 resume_last_videos ();
-                return true;
-            } else if (ctrl_pressed && match_keycode (Gdk.Key.o, keycode)) {
-                run_open_file ();
-                return true;
-            } else if (ctrl_pressed && match_keycode (Gdk.Key.q, keycode)) {
-                destroy ();
                 return true;
             } else if (ctrl_pressed && match_keycode (Gdk.Key.b, keycode)) {
                 show_library ();
@@ -373,7 +401,7 @@ public class Audience.Window : Gtk.Window {
         if (settings.get_string ("current-video") != "") {
             play_file (settings.get_string ("current-video"), NavigationPage.WELCOME, false);
         } else {
-            run_open_file ();
+            action_open_file ();
         }
     }
 
