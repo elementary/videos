@@ -254,7 +254,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     private void action_fullscreen () {
-        if (main_stack.visible_child == player_page) {
+        if (deck.visible_child == player_page) {
             if (player_page.fullscreened) {
                 unfullscreen ();
             } else {
