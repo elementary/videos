@@ -12,6 +12,7 @@ You'll need the following dependencies:
 * libgranite-dev
 * libgstreamer-plugins-base1.0-dev
 * libgstreamer1.0-dev
+* libhandy-1-dev
 * meson
 * valac
 
