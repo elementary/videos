@@ -28,6 +28,7 @@ namespace Audience {
     public class PlayerPage : Gtk.EventBox {
         public signal void ended ();
 
+        private Audience.Widgets.BottomBar bottom_bar;
         private GtkClutter.Actor bottom_actor;
         private GtkClutter.Embed clutter;
         private GnomeMediaKeys mediakeys;
@@ -38,8 +39,6 @@ namespace Audience {
         private GtkClutter.Actor unfullscreen_actor;
         private Clutter.Actor video_actor;
         private uint inhibit_token = 0;
-
-        public Audience.Widgets.BottomBar bottom_bar {get; private set;}
 
         private bool mouse_primary_down = false;
 
@@ -397,7 +396,9 @@ namespace Audience {
             return bottom_bar.playlist_popover.playlist;
         }
 
-        public void hide_preview_popover () {
+        public void hide_popovers () {
+            bottom_bar.playlist_popover.popdown ();
+
             var popover = bottom_bar.time_widget.preview_popover;
             if (popover != null) {
                 popover.schedule_hide ();
