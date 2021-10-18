@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-09 20:38+0000\n"
+"POT-Creation-Date: 2021-10-18 22:45+0000\n"
 "PO-Revision-Date: 2018-10-24 14:12+0000\n"
 "Last-Translator: Fredrik B <frbo9002@gmail.com>\n"
 "Language-Team: Swedish <https://weblate.elementary.io/projects/videos/videos/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:77 src/Window.vala:515
+#: src/Application.vala:71 src/Window.vala:531
 msgid "Videos"
 msgstr "Videor"
 
@@ -37,45 +37,45 @@ msgstr "Bibliotek"
 msgid "Episodes"
 msgstr "Avsnitt"
 
-#: src/Window.vala:70
+#: src/Window.vala:96
 msgid "Search Videos"
 msgstr "Sök filmer"
 
-#: src/Window.vala:83
+#: src/Window.vala:109
 #, fuzzy
 msgid "Play one video"
 msgstr "Upprepa senaste videon"
 
-#: src/Window.vala:84
+#: src/Window.vala:110
 msgid "Automatically play next videos"
 msgstr ""
 
-#: src/Window.vala:155
+#: src/Window.vala:174
 msgid "Restore"
 msgstr "Återställ"
 
-#: src/Window.vala:171
+#: src/Window.vala:190
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Filmen '%s' togs bort."
 
-#: src/Window.vala:406 src/Widgets/Player/SettingsPopover.vala:36
+#: src/Window.vala:426 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Alla filer"
 
-#: src/Window.vala:410
+#: src/Window.vala:430
 msgid "Video files"
 msgstr "Videofiler"
 
-#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:434 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Öppna"
 
-#: src/Window.vala:417 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:437 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Öppna"
 
-#: src/Window.vala:418 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:438 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Avbryt"
 
@@ -107,7 +107,7 @@ msgstr "Inga videor öppna"
 msgid "Select a source to begin playing."
 msgstr "Välj en källa för att starta uppspelning."
 
-#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
 msgstr "Öppna fil"
 
@@ -119,7 +119,7 @@ msgstr "Öppna en sparad fil."
 msgid "Replay last video"
 msgstr "Upprepa senaste videon"
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:38
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "Spela upp från skiva"
 
@@ -139,16 +139,16 @@ msgstr "Se  en film från ditt bibliotek"
 msgid "Resume last video"
 msgstr "Återställ senaste videon"
 
-#: src/Widgets/Library/EpisodesPage.vala:126
-#: src/Widgets/Library/LibraryPage.vala:181
+#: src/Widgets/Library/EpisodesPage.vala:59
+#: src/Widgets/Library/LibraryPage.vala:64
+msgid "Try changing search terms."
+msgstr "Försök med att ändra söktermer."
+
+#: src/Widgets/Library/EpisodesPage.vala:132
+#: src/Widgets/Library/LibraryPage.vala:188
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Inga resultat för \"%s\""
-
-#: src/Widgets/Library/EpisodesPage.vala:126
-#: src/Widgets/Library/LibraryPage.vala:53
-msgid "Try changing search terms."
-msgstr "Försök med att ändra söktermer."
 
 #: src/Widgets/Library/LibraryItem.vala:76
 msgid "Move to Trash"
@@ -162,45 +162,45 @@ msgstr "Ange omslagsbild"
 msgid "Image files"
 msgstr "Bildfiler"
 
-#: src/Widgets/Player/BottomBar.vala:64
+#: src/Widgets/Player/BottomBar.vala:61
 msgid "Pause"
 msgstr "Pausa"
 
-#: src/Widgets/Player/BottomBar.vala:68 src/Widgets/Player/BottomBar.vala:85
+#: src/Widgets/Player/BottomBar.vala:65 src/Widgets/Player/BottomBar.vala:82
 msgid "Play"
 msgstr "Spela"
 
-#: src/Widgets/Player/BottomBar.vala:93
+#: src/Widgets/Player/BottomBar.vala:90
 msgid "Playlist"
 msgstr "Spellista"
 
-#: src/Widgets/Player/BottomBar.vala:101
+#: src/Widgets/Player/BottomBar.vala:98
 msgid "Settings"
 msgstr "Inställningar"
 
-#: src/Widgets/Player/PlayerPage.vala:134
+#: src/Widgets/Player/PlayerPage.vala:123
 msgid "Unfullscreen"
 msgstr "Stäng fullskärm"
 
-#: src/Widgets/Player/PlayerPage.vala:309
+#: src/Widgets/Player/PlayerPage.vala:298
 msgid "A video is playing"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/Player/PlaylistPopover.vala:37
 #, fuzzy
 msgid "Clear Playlist"
 msgstr "Spellista"
 
-#: src/Widgets/Player/PlaylistPopover.vala:45
-#: src/Widgets/Player/PlaylistPopover.vala:76
+#: src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/Player/PlaylistPopover.vala:88
 msgid "Enable Repeat"
 msgstr "Aktivera upprepning"
 
-#: src/Widgets/Player/PlaylistPopover.vala:73
+#: src/Widgets/Player/PlaylistPopover.vala:85
 msgid "Disable Repeat"
 msgstr "Inaktivera upprepning"
 
-#: src/Widgets/Player/SettingsPopover.vala:40
+#: src/Widgets/Player/SettingsPopover.vala:41
 msgid "Subtitle files"
 msgstr "Undertextfiler"
 
@@ -209,34 +209,34 @@ msgstr "Undertextfiler"
 #. .sub
 #. .ssa & .ass
 #. exclude .asc, mimetype is generic "application/pgp-encrypted"
-#: src/Widgets/Player/SettingsPopover.vala:47
+#: src/Widgets/Player/SettingsPopover.vala:48
 msgid "External Subtitles"
 msgstr "Externa undertexter"
 
-#: src/Widgets/Player/SettingsPopover.vala:51
+#: src/Widgets/Player/SettingsPopover.vala:52
 msgid "Audio:"
 msgstr "Ljud:"
 
-#: src/Widgets/Player/SettingsPopover.vala:54
+#: src/Widgets/Player/SettingsPopover.vala:56
 msgid "Subtitles:"
 msgstr "Undertexter:"
 
-#: src/Widgets/Player/SettingsPopover.vala:57
+#: src/Widgets/Player/SettingsPopover.vala:60
 msgid "External Subtitles:"
 msgstr "Externa undertexter:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:132
-#: src/Widgets/Player/SettingsPopover.vala:161
+#: src/Widgets/Player/SettingsPopover.vala:137
+#: src/Widgets/Player/SettingsPopover.vala:166
 #, c-format
 msgid "Track %u"
 msgstr "Spår %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:134
+#: src/Widgets/Player/SettingsPopover.vala:139
 msgid "None"
 msgstr "Ingen"
 
-#: src/Widgets/Player/SettingsPopover.vala:174
+#: src/Widgets/Player/SettingsPopover.vala:179
 msgid "Default"
 msgstr "Standard"
 
