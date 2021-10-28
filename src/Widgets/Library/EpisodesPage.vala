@@ -174,13 +174,13 @@ public class Audience.EpisodesPage : Gtk.Grid {
         foreach (var child in view_episodes.get_children ()) {
             if (((LibraryItem)(child)).episodes.size == 0 ||
                 ((LibraryItem)(child)).episodes.first ().video_file.get_path ().has_prefix (path)) {
-
                 child.dispose ();
             }
         }
 
-        if (Audience.App.get_instance ().mainwindow.get_visible_child () == this && view_episodes.get_children ().length () == 0) {
-            Audience.App.get_instance ().mainwindow.navigate_back ();
+        var deck = (Hdy.Deck) get_ancestor (typeof (Hdy.Deck));
+        if (deck.visible_child == this && view_episodes.get_children ().length () == 0) {
+            deck.navigate (Hdy.NavigationDirection.BACK);
         }
     }
 

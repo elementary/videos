@@ -21,12 +21,12 @@
  */
 
 public class Audience.Window : Gtk.ApplicationWindow {
+    private Hdy.Deck deck;
     private Granite.Widgets.Toast app_notification;
     private Granite.ModeSwitch autoqueue_next;
     private EpisodesPage episodes_page;
     private Gtk.HeaderBar header;
     private LibraryPage library_page;
-    private Gtk.Stack main_stack;
     private Gtk.Button navigation_button;
     private Gtk.SearchEntry search_entry;
     private WelcomePage welcome_page;
@@ -87,7 +87,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
         navigation_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
 
         navigation_button.clicked.connect (() => {
-            navigate_back ();
+            deck.navigate (Hdy.NavigationDirection.BACK);
         });
 
         header.pack_start (navigation_button);
@@ -96,7 +96,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
         search_entry.placeholder_text = _("Search Videos");
         search_entry.valign = Gtk.Align.CENTER;
         search_entry.search_changed.connect (() => {
-            if (main_stack.visible_child == episodes_page ) {
+            if (deck.visible_child == episodes_page ) {
                 episodes_page.filter (search_entry.text);
             } else {
                 library_page.filter (search_entry.text);
@@ -117,7 +117,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         library_page = LibraryPage.get_instance ();
         library_page.map.connect (() => {
-            search_entry.visible = true;
             if (search_entry.text != "" && !library_page.has_child ()) {
                 search_entry.text = "";
             }
@@ -127,18 +126,15 @@ public class Audience.Window : Gtk.ApplicationWindow {
             }
         });
 
-        library_page.unmap.connect (() => {
-            if (main_stack.visible_child != episodes_page) {
-                search_entry.visible = false;
-            }
-        });
-
         library_page.show_episodes.connect ((item, setup_only) => {
             episodes_page.set_episodes_items (item.episodes);
             episodes_page.poster.pixbuf = item.poster.pixbuf;
             if (!setup_only) {
-                navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
-                main_stack.set_visible_child (episodes_page);
+                episodes_page.show_all ();
+
+                deck.add (episodes_page);
+                deck.visible_child = episodes_page;
+
                 title = item.get_title ();
                 search_entry.text = "";
                 autoqueue_next.visible = true;
@@ -158,23 +154,17 @@ public class Audience.Window : Gtk.ApplicationWindow {
         });
 
         episodes_page = new EpisodesPage ();
-        episodes_page.map.connect (() => {
-            search_entry.visible = true;
-        });
 
-        main_stack = new Gtk.Stack ();
-        main_stack.expand = true;
-        main_stack.add_named (welcome_page, "welcome");
-        main_stack.add_named (player_page, "player");
-        main_stack.add_named (library_page, "library");
-        main_stack.add_named (episodes_page, "episodes");
-        main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
+        deck = new Hdy.Deck () {
+            can_swipe_back = true
+        };
+        deck.add (welcome_page);
 
         app_notification = new Granite.Widgets.Toast ("");
         app_notification.set_default_action (_("Restore"));
 
         var overlay = new Gtk.Overlay ();
-        overlay.add (main_stack);
+        overlay.add (deck);
         overlay.add_overlay (app_notification);
 
         add (overlay);
@@ -183,7 +173,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
         navigation_button.hide ();
         search_entry.visible = false;
         autoqueue_next.visible = false;
-        main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.NONE);
 
         var manager = Audience.Services.LibraryManager.get_instance ();
         manager.video_moved_to_trash.connect ((video) => {
@@ -193,9 +182,17 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         app_notification.default_action.connect (() => {
             manager.undo_delete_item ();
-            if (main_stack.visible_child != episodes_page) {
-                main_stack.set_visible_child (library_page);
+            if (deck.visible_child != episodes_page) {
+                deck.visible_child = library_page;
             }
+        });
+
+        deck.notify["visible-child"].connect (() => {
+            update_navigation ();
+        });
+
+        deck.notify["transition-running"].connect (() => {
+            update_navigation ();
         });
 
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
@@ -238,7 +235,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
             if (Gdk.WindowState.MAXIMIZED in e.changed_mask) {
                 bool currently_maximixed = Gdk.WindowState.MAXIMIZED in e.new_window_state;
 
-                if (main_stack.get_visible_child () == player_page && currently_maximixed) {
+                if (deck.visible_child == player_page && currently_maximixed) {
                    fullscreen ();
                 }
             }
@@ -258,7 +255,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     private void action_fullscreen () {
-        if (main_stack.visible_child == player_page) {
+        if (deck.visible_child == player_page) {
             if (player_page.fullscreened) {
                 unfullscreen ();
             } else {
@@ -303,7 +300,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
             return true;
         }
 
-        if (main_stack.visible_child == player_page) {
+        if (deck.visible_child == player_page) {
             if (match_keycode (Gdk.Key.space, keycode)) {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
                 ((SimpleAction) play_pause_action).activate (null);
@@ -347,7 +344,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
                 default:
                     break;
             }
-        } else if (main_stack.visible_child == welcome_page) {
+        } else if (deck.visible_child == welcome_page) {
             if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
                 resume_last_videos ();
                 return true;
@@ -411,8 +408,11 @@ public class Audience.Window : Gtk.ApplicationWindow {
     public void show_library () {
         navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
         navigation_button.show ();
-        main_stack.visible_child = library_page;
-        library_page.scrolled_window.grab_focus ();
+
+        library_page.show_all ();
+
+        deck.add (library_page);
+        deck.visible_child = library_page;
     }
 
     public void add_to_playlist (string uri, bool preserve_playlist) {
@@ -483,28 +483,16 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     private void on_player_ended () {
-        navigate_back ();
+        deck.navigate (Hdy.NavigationDirection.BACK);
         unfullscreen ();
     }
 
     public void play_file (string uri, NavigationPage origin, bool from_beginning = true) {
-        search_entry.visible = false;
-        navigation_button.visible = true;
-        switch (origin) {
-            default:
-            case NavigationPage.WELCOME:
-                navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
-                break;
-            case NavigationPage.LIBRARY:
-                navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
-                break;
-            case NavigationPage.EPISODES:
-                navigation_button.label = _(NAVIGATION_BUTTON_EPISODES);
-                autoqueue_next.visible = true;
-                break;
-        }
+        player_page.show_all ();
 
-        main_stack.set_visible_child_full ("player", Gtk.StackTransitionType.SLIDE_LEFT);
+        deck.add (player_page);
+        deck.visible_child = player_page;
+
         player_page.play_file (uri, from_beginning);
         if (is_maximized) {
             fullscreen ();
@@ -519,43 +507,61 @@ public class Audience.Window : Gtk.ApplicationWindow {
         player_page.append_to_playlist (file);
     }
 
-    public void navigate_back () {
+    private void update_navigation () {
         double progress = player_page.get_progress ();
         if (progress > 0) {
             settings.set_double ("last-stopped", progress);
         }
 
-        /* Changing the player_page playing properties triggers a number of signals/bindings and
-         * pipeline needs time to react so wrap subsequent code in an Idle loop.
-         */
         var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
         ((SimpleAction) play_pause_action).set_state (false);
 
-        Idle.add (() => {
-            title = _("Videos");
-            get_window ().set_cursor (null);
+        if (!deck.transition_running) {
+            /* Changing the player_page playing properties triggers a number of signals/bindings and
+             * pipeline needs time to react so wrap subsequent code in an Idle loop.
+             */
+            Idle.add (() => {
+                get_window ().set_cursor (null);
 
-            if (navigation_button.label == _(NAVIGATION_BUTTON_LIBRARY)) {
-                navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
-                main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
-                autoqueue_next.visible = false;
-            } else if (navigation_button.label == _(NAVIGATION_BUTTON_EPISODES)) {
-                navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
-                main_stack.set_visible_child_full ("episodes", Gtk.StackTransitionType.SLIDE_RIGHT);
-                autoqueue_next.visible = true;
-            } else {
-                navigation_button.hide ();
-                main_stack.set_visible_child (welcome_page);
-                search_entry.visible = false;
-                autoqueue_next.visible = false;
-            }
+                if (deck.visible_child == welcome_page) {
+                    title = _("Videos");
+                    search_entry.visible = false;
+                } else if (deck.visible_child == library_page) {
+                    title = _("Library");
+                    search_entry.visible = true;
+                } else if (deck.visible_child == episodes_page) {
+                    search_entry.visible = true;
+                } else if (deck.visible_child == player_page) {
+                    search_entry.visible = false;
+                    navigation_button.visible = true;
 
-            return Source.REMOVE;
-        });
-    }
+                    ((SimpleAction) play_pause_action).set_state (true);
+                }
 
-    public Gtk.Widget get_visible_child () {
-        return main_stack.visible_child;
+                var previous_child = deck.get_adjacent_child (Hdy.NavigationDirection.BACK);
+                if (previous_child == welcome_page) {
+                    navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
+                    autoqueue_next.visible = false;
+                } else if (previous_child == library_page) {
+                    navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
+                    autoqueue_next.visible = true;
+                } else if (previous_child == episodes_page) {
+                    navigation_button.label = _(NAVIGATION_BUTTON_EPISODES);
+                    autoqueue_next.visible = true;
+                } else {
+                    navigation_button.hide ();
+                    search_entry.visible = false;
+                    autoqueue_next.visible = false;
+                }
+
+                var next_child = deck.get_adjacent_child (Hdy.NavigationDirection.FORWARD);
+                if (next_child != null) {
+                    deck.remove (next_child);
+                }
+
+                return Source.REMOVE;
+            });
+        }
     }
 
     public void hide_mouse_cursor () {
