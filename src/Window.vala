@@ -510,7 +510,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
     private void update_navigation () {
         var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
 
-        if (deck.transition_running && deck.visible_child == player_page) {
+        if (deck.transition_running && deck.visible_child != player_page) {
             double progress = player_page.get_progress ();
             if (progress > 0) {
                 settings.set_double ("last-stopped", progress);
