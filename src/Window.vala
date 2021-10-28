@@ -516,11 +516,11 @@ public class Audience.Window : Gtk.ApplicationWindow {
                 settings.set_double ("last-stopped", progress);
             }
 
+            ((SimpleAction) play_pause_action).set_state (false);
+        } else if (!deck.transition_running) {
             /* Changing the player_page playing properties triggers a number of signals/bindings and
              * pipeline needs time to react so wrap subsequent code in an Idle loop.
              */
-            ((SimpleAction) play_pause_action).set_state (false);
-        } else {
             Idle.add (() => {
                 get_window ().set_cursor (null);
 
