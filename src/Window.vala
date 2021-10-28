@@ -215,7 +215,8 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
             // right click
             if (event.button == Gdk.BUTTON_SECONDARY) {
-                player_page.playing = !player_page.playing;
+                var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+                ((SimpleAction) play_pause_action).activate (null);
             }
 
             return base.button_press_event (event);
@@ -301,10 +302,12 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         if (deck.visible_child == player_page) {
             if (match_keycode (Gdk.Key.space, keycode)) {
-                player_page.playing = !player_page.playing;
+                var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+                ((SimpleAction) play_pause_action).activate (null);
                 return true;
             } else if (match_keycode (Gdk.Key.p, keycode)) {
-                player_page.playing = !player_page.playing;
+                var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+                ((SimpleAction) play_pause_action).activate (null);
             } else if (match_keycode (Gdk.Key.a, keycode)) {
                 player_page.next_audio ();
             } else if (match_keycode (Gdk.Key.s, keycode)) {
@@ -505,7 +508,9 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     private void update_navigation () {
-        if (!deck.transition_running) {
+        var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+
+        if (deck.transition_running) {
             double progress = player_page.get_progress ();
             if (progress > 0) {
                 settings.set_double ("last-stopped", progress);
@@ -514,8 +519,8 @@ public class Audience.Window : Gtk.ApplicationWindow {
             /* Changing the player_page playing properties triggers a number of signals/bindings and
              * pipeline needs time to react so wrap subsequent code in an Idle loop.
              */
-            player_page.playing = false;
-
+            ((SimpleAction) play_pause_action).set_state (false);
+        } else {
             Idle.add (() => {
                 get_window ().set_cursor (null);
 
@@ -530,6 +535,8 @@ public class Audience.Window : Gtk.ApplicationWindow {
                 } else if (deck.visible_child == player_page) {
                     search_entry.visible = false;
                     navigation_button.visible = true;
+
+                ((SimpleAction) play_pause_action).set_state (true);
                 }
 
                 var previous_child = deck.get_adjacent_child (Hdy.NavigationDirection.BACK);
