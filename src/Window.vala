@@ -218,7 +218,8 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
             // right click
             if (event.button == Gdk.BUTTON_SECONDARY) {
-                player_page.playing = !player_page.playing;
+                var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+                ((SimpleAction) play_pause_action).activate (null);
             }
 
             return base.button_press_event (event);
@@ -304,10 +305,12 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         if (main_stack.visible_child == player_page) {
             if (match_keycode (Gdk.Key.space, keycode)) {
-                player_page.playing = !player_page.playing;
+                var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+                ((SimpleAction) play_pause_action).activate (null);
                 return true;
             } else if (match_keycode (Gdk.Key.p, keycode)) {
-                player_page.playing = !player_page.playing;
+                var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+                ((SimpleAction) play_pause_action).activate (null);
             } else if (match_keycode (Gdk.Key.a, keycode)) {
                 player_page.next_audio ();
             } else if (match_keycode (Gdk.Key.s, keycode)) {
@@ -525,7 +528,8 @@ public class Audience.Window : Gtk.ApplicationWindow {
         /* Changing the player_page playing properties triggers a number of signals/bindings and
          * pipeline needs time to react so wrap subsequent code in an Idle loop.
          */
-        player_page.playing = false;
+        var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+        ((SimpleAction) play_pause_action).set_state (false);
 
         Idle.add (() => {
             title = _("Videos");
