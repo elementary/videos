@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-18 22:45+0000\n"
+"POT-Creation-Date: 2021-10-28 03:37+0000\n"
 "PO-Revision-Date: 2016-12-19 19:23+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <lt@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
-#: src/Application.vala:71 src/Window.vala:531
+#: src/Application.vala:79 src/Window.vala:535
 msgid "Videos"
 msgstr "Vaizdo įrašai"
 
@@ -57,23 +57,23 @@ msgstr "Atkurti"
 msgid "Video '%s' Removed."
 msgstr "Vaizdo įrašas \"%s\" pašalintas."
 
-#: src/Window.vala:426 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:429 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Visi failai"
 
-#: src/Window.vala:430
+#: src/Window.vala:433
 msgid "Video files"
 msgstr "Vaizdo įrašų failai"
 
-#: src/Window.vala:434 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:437 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Atverti"
 
-#: src/Window.vala:437 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:440 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "At_verti"
 
-#: src/Window.vala:438 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:441 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Atsisakyti"
 
@@ -160,27 +160,27 @@ msgstr "Nustatyti iliustraciją"
 msgid "Image files"
 msgstr "Paveikslų failai"
 
-#: src/Widgets/Player/BottomBar.vala:61
-msgid "Pause"
-msgstr "Pristabdyti"
-
-#: src/Widgets/Player/BottomBar.vala:65 src/Widgets/Player/BottomBar.vala:82
+#: src/Widgets/Player/BottomBar.vala:64 src/Widgets/Player/BottomBar.vala:123
 msgid "Play"
 msgstr "Groti"
 
-#: src/Widgets/Player/BottomBar.vala:90
+#: src/Widgets/Player/BottomBar.vala:72
 msgid "Playlist"
 msgstr "Grojaraštis"
 
-#: src/Widgets/Player/BottomBar.vala:98
+#: src/Widgets/Player/BottomBar.vala:80
 msgid "Settings"
 msgstr "Nustatymai"
 
-#: src/Widgets/Player/PlayerPage.vala:123
+#: src/Widgets/Player/BottomBar.vala:127
+msgid "Pause"
+msgstr "Pristabdyti"
+
+#: src/Widgets/Player/PlayerPage.vala:110
 msgid "Unfullscreen"
 msgstr "Išjungt visą ekraną"
 
-#: src/Widgets/Player/PlayerPage.vala:298
+#: src/Widgets/Player/PlayerPage.vala:295
 msgid "A video is playing"
 msgstr ""
 
