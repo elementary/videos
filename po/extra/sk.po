@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 03:37+0000\n"
+"POT-Creation-Date: 2021-10-28 22:43+0000\n"
 "PO-Revision-Date: 2021-09-16 23:57+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/videos/extra/sk/"
@@ -57,164 +57,171 @@ msgstr "Frontu prehrávania"
 msgid "Thumbnail previews on the seek bar"
 msgstr "Náhľadové obrázky na posuvníku prehrávania"
 
-#: data/io.elementary.videos.appdata.xml.in:69
-#: data/io.elementary.videos.appdata.xml.in:84
-#: data/io.elementary.videos.appdata.xml.in:98
-#: data/io.elementary.videos.appdata.xml.in:117
+#: data/io.elementary.videos.appdata.xml.in:41
+#: data/io.elementary.videos.appdata.xml.in:78
+#: data/io.elementary.videos.appdata.xml.in:93
+msgid "New features:"
+msgstr "Nové funkcie:"
+
+#: data/io.elementary.videos.appdata.xml.in:43
+msgid "Two-finger swipe to go back"
+msgstr ""
+
+#: data/io.elementary.videos.appdata.xml.in:45
+#: data/io.elementary.videos.appdata.xml.in:53
+#: data/io.elementary.videos.appdata.xml.in:68
+#: data/io.elementary.videos.appdata.xml.in:82
+#: data/io.elementary.videos.appdata.xml.in:101
 msgid "Other updates:"
 msgstr "Ostatné aktualizácie:"
 
-#: data/io.elementary.videos.appdata.xml.in:71
+#: data/io.elementary.videos.appdata.xml.in:47
+#: data/io.elementary.videos.appdata.xml.in:58
+#: data/io.elementary.videos.appdata.xml.in:72
+#: data/io.elementary.videos.appdata.xml.in:87
+#: data/io.elementary.videos.appdata.xml.in:106
+#: data/io.elementary.videos.appdata.xml.in:114
+#: data/io.elementary.videos.appdata.xml.in:122
+#: data/io.elementary.videos.appdata.xml.in:129
+#: data/io.elementary.videos.appdata.xml.in:161
+#: data/io.elementary.videos.appdata.xml.in:169
+#: data/io.elementary.videos.appdata.xml.in:176
+#: data/io.elementary.videos.appdata.xml.in:192
+msgid "Translation updates"
+msgstr "Aktualizované preklady"
+
+#: data/io.elementary.videos.appdata.xml.in:55
 msgid "Fix an issue with accessing library view"
 msgstr "Opravený problém s pristupovaním do zobrazenia knižnice"
 
-#: data/io.elementary.videos.appdata.xml.in:72
+#: data/io.elementary.videos.appdata.xml.in:56
 msgid ""
 "Fix an issue with returning to the welcome page while playing multiple videos"
 msgstr ""
 "Opravený problém pri návrate na uvítaciu obrazovku pri prehrávaní viacerých "
 "videí"
 
-#: data/io.elementary.videos.appdata.xml.in:73
+#: data/io.elementary.videos.appdata.xml.in:57
 msgid "Prevent sleep while playing a video"
 msgstr "Zabránenie uspania pri prehrávaní videa"
 
-#: data/io.elementary.videos.appdata.xml.in:74
-#: data/io.elementary.videos.appdata.xml.in:88
-#: data/io.elementary.videos.appdata.xml.in:103
-#: data/io.elementary.videos.appdata.xml.in:122
-#: data/io.elementary.videos.appdata.xml.in:130
-#: data/io.elementary.videos.appdata.xml.in:138
-#: data/io.elementary.videos.appdata.xml.in:145
-#: data/io.elementary.videos.appdata.xml.in:177
-#: data/io.elementary.videos.appdata.xml.in:185
-#: data/io.elementary.videos.appdata.xml.in:192
-#: data/io.elementary.videos.appdata.xml.in:208
-msgid "Translation updates"
-msgstr "Aktualizované preklady"
-
-#: data/io.elementary.videos.appdata.xml.in:80
+#: data/io.elementary.videos.appdata.xml.in:64
 msgid "Improvements:"
 msgstr "Vylepšenia:"
 
-#: data/io.elementary.videos.appdata.xml.in:82
+#: data/io.elementary.videos.appdata.xml.in:66
 msgid "Start up faster with large libraries"
 msgstr "Rýchlejšie spustenie v prípade prítomnosti veľkých knižníc videí"
 
-#: data/io.elementary.videos.appdata.xml.in:86
+#: data/io.elementary.videos.appdata.xml.in:70
 msgid "Fix cases where subtitles refused to load"
 msgstr "Opravené prípady, kedy sa titulky odmietali načítať"
 
-#: data/io.elementary.videos.appdata.xml.in:87
+#: data/io.elementary.videos.appdata.xml.in:71
 msgid "Handle if library folder is deleted or moved"
 msgstr "Upravené presúvanie a odstraňovanie priečinkov knižnice"
 
-#: data/io.elementary.videos.appdata.xml.in:94
-#: data/io.elementary.videos.appdata.xml.in:109
-msgid "New features:"
-msgstr "Nové funkcie:"
-
-#: data/io.elementary.videos.appdata.xml.in:96
+#: data/io.elementary.videos.appdata.xml.in:80
 msgid "Load external subtitles"
 msgstr "Načítanie externých tituliek"
 
-#: data/io.elementary.videos.appdata.xml.in:100
+#: data/io.elementary.videos.appdata.xml.in:84
 msgid "Reliably update the replay button description and file"
 msgstr ""
 "Zlepšenie spoľahlivosti pri aktualizácii popisu tlačidla opätovného "
 "prehrania a súboru"
 
-#: data/io.elementary.videos.appdata.xml.in:101
+#: data/io.elementary.videos.appdata.xml.in:85
 msgid "More consistently remember the last playing video and its play position"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:102
+#: data/io.elementary.videos.appdata.xml.in:86
 msgid "Fix missing icon in episode view"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:111
+#: data/io.elementary.videos.appdata.xml.in:95
 msgid "Option to automatically play next videos"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:112
+#: data/io.elementary.videos.appdata.xml.in:96
 msgid "Navigate the playlist with the keyboard"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:113
+#: data/io.elementary.videos.appdata.xml.in:97
 msgid "Add a button to clear the playlist"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:114
+#: data/io.elementary.videos.appdata.xml.in:98
 msgid "Show audio track language in settings"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:115
+#: data/io.elementary.videos.appdata.xml.in:99
 msgid "Show playlist item titles in their tooltips"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:119
+#: data/io.elementary.videos.appdata.xml.in:103
 msgid "Show an error for unsupported files"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:120
+#: data/io.elementary.videos.appdata.xml.in:104
 msgid "Fix disappearing cursor on headerbar"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:121
+#: data/io.elementary.videos.appdata.xml.in:105
 msgid "Hide seekbar preview when switching windows with Alt + Tab"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:129
-#: data/io.elementary.videos.appdata.xml.in:137
+#: data/io.elementary.videos.appdata.xml.in:113
+#: data/io.elementary.videos.appdata.xml.in:121
 msgid "Build fixes"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:152
+#: data/io.elementary.videos.appdata.xml.in:136
 msgid "Window behavior improvements"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:153
+#: data/io.elementary.videos.appdata.xml.in:137
 msgid "Fix disappearing subtitle tracks"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:160
+#: data/io.elementary.videos.appdata.xml.in:144
 msgid "Disallow setting playback before start"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:167
+#: data/io.elementary.videos.appdata.xml.in:151
 msgid "Limit consecutive spacebar pauses"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:174
+#: data/io.elementary.videos.appdata.xml.in:158
 msgid "Crash fixes"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:175
+#: data/io.elementary.videos.appdata.xml.in:159
 msgid "Remove About dialog"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:176
-#: data/io.elementary.videos.appdata.xml.in:215
+#: data/io.elementary.videos.appdata.xml.in:160
+#: data/io.elementary.videos.appdata.xml.in:199
 msgid "Minor bug fixes"
 msgstr "Menšie opravy chýb"
 
-#: data/io.elementary.videos.appdata.xml.in:184
+#: data/io.elementary.videos.appdata.xml.in:168
 msgid "Preview popover now closely follows cursor position"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:199
+#: data/io.elementary.videos.appdata.xml.in:183
 msgid "Fix appstream date format"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:206
+#: data/io.elementary.videos.appdata.xml.in:190
 msgid "Added a library view with search"
 msgstr "Pridaný prehľad knižnice s vyhľadávaním"
 
-#: data/io.elementary.videos.appdata.xml.in:207
+#: data/io.elementary.videos.appdata.xml.in:191
 msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "Opravená chyba, ktorá bránila v navigácii klávesnicou"
 
-#: data/io.elementary.videos.appdata.xml.in:220
+#: data/io.elementary.videos.appdata.xml.in:204
 msgid "elementary, Inc."
 msgstr ""
 
