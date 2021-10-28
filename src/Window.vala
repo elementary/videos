@@ -508,16 +508,15 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     private void update_navigation () {
+        double progress = player_page.get_progress ();
+        if (progress > 0) {
+            settings.set_double ("last-stopped", progress);
+        }
+
         var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+        ((SimpleAction) play_pause_action).set_state (false);
 
-        if (deck.transition_running && deck.visible_child != player_page) {
-            double progress = player_page.get_progress ();
-            if (progress > 0) {
-                settings.set_double ("last-stopped", progress);
-            }
-
-            ((SimpleAction) play_pause_action).set_state (false);
-        } else if (!deck.transition_running) {
+        if (!deck.transition_running) {
             /* Changing the player_page playing properties triggers a number of signals/bindings and
              * pipeline needs time to react so wrap subsequent code in an Idle loop.
              */
