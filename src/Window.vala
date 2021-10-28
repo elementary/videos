@@ -536,7 +536,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
                     search_entry.visible = false;
                     navigation_button.visible = true;
 
-                ((SimpleAction) play_pause_action).set_state (true);
+                    ((SimpleAction) play_pause_action).set_state (true);
                 }
 
                 var previous_child = deck.get_adjacent_child (Hdy.NavigationDirection.BACK);
