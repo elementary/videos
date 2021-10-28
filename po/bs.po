@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-18 22:45+0000\n"
+"POT-Creation-Date: 2021-10-28 03:37+0000\n"
 "PO-Revision-Date: 2018-11-08 19:01+0000\n"
 "Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/videos/videos/"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 
-#: src/Application.vala:71 src/Window.vala:531
+#: src/Application.vala:79 src/Window.vala:535
 msgid "Videos"
 msgstr "Video"
 
@@ -60,23 +60,23 @@ msgstr "Obnovi"
 msgid "Video '%s' Removed."
 msgstr "Video '%s' uklonjen."
 
-#: src/Window.vala:426 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:429 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Sve datoteke"
 
-#: src/Window.vala:430
+#: src/Window.vala:433
 msgid "Video files"
 msgstr "Videodatoteke"
 
-#: src/Window.vala:434 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:437 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Otvori"
 
-#: src/Window.vala:437 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:440 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Otvori"
 
-#: src/Window.vala:438 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:441 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "O_tkaži"
 
@@ -163,27 +163,27 @@ msgstr "Podesi omot"
 msgid "Image files"
 msgstr "Slikovne datoteke"
 
-#: src/Widgets/Player/BottomBar.vala:61
-msgid "Pause"
-msgstr "Pauza"
-
-#: src/Widgets/Player/BottomBar.vala:65 src/Widgets/Player/BottomBar.vala:82
+#: src/Widgets/Player/BottomBar.vala:64 src/Widgets/Player/BottomBar.vala:123
 msgid "Play"
 msgstr "Pokreni"
 
-#: src/Widgets/Player/BottomBar.vala:90
+#: src/Widgets/Player/BottomBar.vala:72
 msgid "Playlist"
 msgstr "Lista izvođenja"
 
-#: src/Widgets/Player/BottomBar.vala:98
+#: src/Widgets/Player/BottomBar.vala:80
 msgid "Settings"
 msgstr "Podešavanja"
 
-#: src/Widgets/Player/PlayerPage.vala:123
+#: src/Widgets/Player/BottomBar.vala:127
+msgid "Pause"
+msgstr "Pauza"
+
+#: src/Widgets/Player/PlayerPage.vala:110
 msgid "Unfullscreen"
 msgstr "Izlaz iz prikaza preko cijelog ekrana"
 
-#: src/Widgets/Player/PlayerPage.vala:298
+#: src/Widgets/Player/PlayerPage.vala:295
 msgid "A video is playing"
 msgstr ""
 

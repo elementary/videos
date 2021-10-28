@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-18 22:45+0000\n"
+"POT-Creation-Date: 2021-10-28 03:37+0000\n"
 "PO-Revision-Date: 2018-07-25 00:00+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://weblate.elementary.io/projects/videos/videos/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:71 src/Window.vala:531
+#: src/Application.vala:79 src/Window.vala:535
 msgid "Videos"
 msgstr "비디오"
 
@@ -59,23 +59,23 @@ msgstr "복원하기"
 msgid "Video '%s' Removed."
 msgstr "비디오 '%s'를 지웠습니다."
 
-#: src/Window.vala:426 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:429 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "모든 파일"
 
-#: src/Window.vala:430
+#: src/Window.vala:433
 msgid "Video files"
 msgstr "비디오 파일"
 
-#: src/Window.vala:434 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:437 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "열기"
 
-#: src/Window.vala:437 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:440 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_열기"
 
-#: src/Window.vala:438 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:441 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_취소"
 
@@ -162,27 +162,27 @@ msgstr "표지 설정"
 msgid "Image files"
 msgstr "이미지 파일"
 
-#: src/Widgets/Player/BottomBar.vala:61
-msgid "Pause"
-msgstr "일시정지"
-
-#: src/Widgets/Player/BottomBar.vala:65 src/Widgets/Player/BottomBar.vala:82
+#: src/Widgets/Player/BottomBar.vala:64 src/Widgets/Player/BottomBar.vala:123
 msgid "Play"
 msgstr "재생"
 
-#: src/Widgets/Player/BottomBar.vala:90
+#: src/Widgets/Player/BottomBar.vala:72
 msgid "Playlist"
 msgstr "재생목록"
 
-#: src/Widgets/Player/BottomBar.vala:98
+#: src/Widgets/Player/BottomBar.vala:80
 msgid "Settings"
 msgstr "설정"
 
-#: src/Widgets/Player/PlayerPage.vala:123
+#: src/Widgets/Player/BottomBar.vala:127
+msgid "Pause"
+msgstr "일시정지"
+
+#: src/Widgets/Player/PlayerPage.vala:110
 msgid "Unfullscreen"
 msgstr "전체화면 해제"
 
-#: src/Widgets/Player/PlayerPage.vala:298
+#: src/Widgets/Player/PlayerPage.vala:295
 msgid "A video is playing"
 msgstr ""
 
