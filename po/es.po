@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 03:37+0000\n"
+"POT-Creation-Date: 2021-10-28 22:43+0000\n"
 "PO-Revision-Date: 2020-09-29 06:14+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/videos/videos/es/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:79 src/Window.vala:535
+#: src/Application.vala:79 src/Window.vala:527
 msgid "Videos"
 msgstr "Vídeos"
 
@@ -29,7 +29,7 @@ msgstr "Vídeos"
 msgid "Back"
 msgstr "Volver"
 
-#: src/Window.vala:40
+#: src/Window.vala:40 src/Window.vala:530
 msgid "Library"
 msgstr "Videoteca"
 
@@ -49,11 +49,11 @@ msgstr "Reproducir un vídeo"
 msgid "Automatically play next videos"
 msgstr "Reproducir vídeos posteriores automáticamente"
 
-#: src/Window.vala:174
+#: src/Window.vala:164
 msgid "Restore"
 msgstr "Restaurar"
 
-#: src/Window.vala:190
+#: src/Window.vala:179
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Se quitó el vídeo «%s»."
@@ -146,7 +146,7 @@ msgid "Try changing search terms."
 msgstr "Intente cambiar los términos de búsqueda."
 
 #: src/Widgets/Library/EpisodesPage.vala:132
-#: src/Widgets/Library/LibraryPage.vala:188
+#: src/Widgets/Library/LibraryPage.vala:189
 #, c-format
 msgid "No Results for “%s”"
 msgstr "No hay resultados para «%s»"

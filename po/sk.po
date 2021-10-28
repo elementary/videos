@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 03:37+0000\n"
+"POT-Creation-Date: 2021-10-28 22:43+0000\n"
 "PO-Revision-Date: 2021-09-08 18:29+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/videos/videos/sk/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:79 src/Window.vala:535
+#: src/Application.vala:79 src/Window.vala:527
 msgid "Videos"
 msgstr "Videá"
 
@@ -29,7 +29,7 @@ msgstr "Videá"
 msgid "Back"
 msgstr "Späť"
 
-#: src/Window.vala:40
+#: src/Window.vala:40 src/Window.vala:530
 msgid "Library"
 msgstr "Knižnica"
 
@@ -49,11 +49,11 @@ msgstr "Prehrať jedno video"
 msgid "Automatically play next videos"
 msgstr "Automaticky prehrať ďalšie videá"
 
-#: src/Window.vala:174
+#: src/Window.vala:164
 msgid "Restore"
 msgstr "Obnoviť"
 
-#: src/Window.vala:190
+#: src/Window.vala:179
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Video ‚%s‘ bolo odstránené."
@@ -146,7 +146,7 @@ msgid "Try changing search terms."
 msgstr "Skúste pozmeniť hľadaný výraz."
 
 #: src/Widgets/Library/EpisodesPage.vala:132
-#: src/Widgets/Library/LibraryPage.vala:188
+#: src/Widgets/Library/LibraryPage.vala:189
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Žiadne výsledky pre „%s“"

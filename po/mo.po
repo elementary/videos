@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 03:37+0000\n"
+"POT-Creation-Date: 2021-10-28 22:43+0000\n"
 "PO-Revision-Date: 2018-05-31 08:00+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/videos/"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.18\n"
 
-#: src/Application.vala:79 src/Window.vala:535
+#: src/Application.vala:79 src/Window.vala:527
 #, fuzzy
 msgid "Videos"
 msgstr "Fișiere video"
@@ -23,7 +23,7 @@ msgstr "Fișiere video"
 msgid "Back"
 msgstr "Înapoi"
 
-#: src/Window.vala:40
+#: src/Window.vala:40 src/Window.vala:530
 msgid "Library"
 msgstr "Bibliotecă"
 
@@ -44,11 +44,11 @@ msgstr "Repetați ultimul videoclip"
 msgid "Automatically play next videos"
 msgstr ""
 
-#: src/Window.vala:174
+#: src/Window.vala:164
 msgid "Restore"
 msgstr "Restabilește"
 
-#: src/Window.vala:190
+#: src/Window.vala:179
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Video '%s 1' Eliminat."
@@ -139,7 +139,7 @@ msgid "Try changing search terms."
 msgstr "Modifică termenii de căutare."
 
 #: src/Widgets/Library/EpisodesPage.vala:132
-#: src/Widgets/Library/LibraryPage.vala:188
+#: src/Widgets/Library/LibraryPage.vala:189
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Fără rezultate pentru “%s 1”"

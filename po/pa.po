@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 03:37+0000\n"
+"POT-Creation-Date: 2021-10-28 22:43+0000\n"
 "PO-Revision-Date: 2021-07-28 03:23+0000\n"
 "Last-Translator: elSolus <tumbleweed@tuta.io>\n"
 "Language-Team: Punjabi <https://l10n.elementary.io/projects/videos/videos/pa/"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.4.2\n"
 
-#: src/Application.vala:79 src/Window.vala:535
+#: src/Application.vala:79 src/Window.vala:527
 msgid "Videos"
 msgstr "ਵਿਡਿਓਜ਼"
 
@@ -22,7 +22,7 @@ msgstr "ਵਿਡਿਓਜ਼"
 msgid "Back"
 msgstr "ਪਿੱਛੇ"
 
-#: src/Window.vala:40
+#: src/Window.vala:40 src/Window.vala:530
 msgid "Library"
 msgstr "ਲਾਇਬ੍ਰੇਰੀ"
 
@@ -42,11 +42,11 @@ msgstr "ਇੱਕ ਵਿਡੀਓ ਚਲਾਓ"
 msgid "Automatically play next videos"
 msgstr "ਆਪਣੇ-ਆਪ ਅਗਲੀਆਂ ਵਿਡਿਓਜ਼ ਵੀ ਚਲਾਓ"
 
-#: src/Window.vala:174
+#: src/Window.vala:164
 msgid "Restore"
 msgstr ""
 
-#: src/Window.vala:190
+#: src/Window.vala:179
 #, c-format
 msgid "Video '%s' Removed."
 msgstr ""
@@ -137,7 +137,7 @@ msgid "Try changing search terms."
 msgstr "ਖੋਜ ਸ਼ਬਦ ਬਦਲ ਕੇ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
 #: src/Widgets/Library/EpisodesPage.vala:132
-#: src/Widgets/Library/LibraryPage.vala:188
+#: src/Widgets/Library/LibraryPage.vala:189
 #, c-format
 msgid "No Results for “%s”"
 msgstr "“%s” ਲਈ ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਮਿਲੇ"
