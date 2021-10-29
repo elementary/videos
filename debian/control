@@ -2,27 +2,17 @@ Source: io.elementary.videos
 Section: video
 Priority: optional
 Maintainer: elementary, Inc. <builds@elementary.io>
-Build-Depends: debhelper (>= 10.5.1),
-               intltool,
-               libclutter-gst-3.0-dev,
-               libclutter-gtk-1.0-dev,
-               libgranite-dev,
-               libgstreamer-plugins-base1.0-dev,
-               libgstreamer1.0-dev,
-               libgtk-3-dev,
-               meson,
-               valac (>= 0.28.0)
+Build-Depends: debhelper (>= 10.5.1)
 Standards-Version: 4.1.1
 Homepage: https://github.com/elementary/videos
 
 Package: io.elementary.videos
 Architecture: any
-Depends: xdg-utils, ${misc:Depends}, ${shlibs:Depends}
+Depends: flatpak, ${misc:Depends}
 Breaks: audience
 Replaces: audience
-Description: A modern media player
- Audience is a simple, modern media player that makes greater use of
- hardware acceleration than most players out there.
+Description: Video player
+ A simple, modern video player.
 
 Package: audience
 Architecture: any
