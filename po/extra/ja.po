@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 22:43+0000\n"
-"PO-Revision-Date: 2021-07-30 08:31+0000\n"
+"PO-Revision-Date: 2021-10-30 01:34+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -64,7 +64,7 @@ msgstr "新機能:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Two-finger swipe to go back"
-msgstr ""
+msgstr "2本指のスワイプで前の画面に戻れるように変更"
 
 #: data/io.elementary.videos.appdata.xml.in:45
 #: data/io.elementary.videos.appdata.xml.in:53
