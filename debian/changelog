@@ -1,3 +1,44 @@
+io.elementary.videos (2.8.0) bionic; urgency=medium
+
+  * Release 2.8.0 (#278)
+  * Update translation files
+  * Update translation template
+  * Window: use Deck for navigation (#256)
+  * Application: create play/pause GLib.Action (#271)
+  * EpisodesPage: code style and cleanup (#275)
+  * PlayerPage: restrict access to bottom_bar
+  * fix an oops
+  * Window: add GLib.Action for open_file
+  * Window: Use GLib.Action for fullscreen and quit
+  * PlayerPage: unfullscreen without signals (#272)
+  * Remove unused settings (#274)
+  * Playerpage: Remove repeat property
+  * PlayerPage: Remove unused methods
+  * BottomBar: Remove unused signals
+  * Utils: Remove unused methods
+  * PlaylistPopover: code style and cleanup (#249)
+  * LibraryPage: code style and cleanup (#252)
+  * WelcomePage: use Gtk.Application.active_window
+  * UnsupportedFileDialog: use Gtk.Application.active_window
+  * PlayerPage: use Gtk.Application.active_window
+  * LibraryManager: Use Application.get_default
+  * SettingsPopover: code style and cleanup (#250)
+  * Window: connect to Manager to send toasts (#258)
+  * Playlist: cleanup (#254)
+  * Move Unfullscreen button from BottomBar to PlayerPage (#263)
+  * TimeWidget: remove preferred width override (#260)
+  * PreviewPopover: change arg to playback uri (#259)
+  * Window: build navigation button here (#264)
+  * LibraryPage: move placeholder from Window (#257)
+  * bump copyright
+  * BottomBar: code style and cleanup
+  * LibraryItem: Use modern code style and clean up (#244)
+  * Flatpak: Restrict Filesystem Access (#245)
+  * Add ARM builds (#240)
+  * l10n: Correctly setup the locales (#233)
+
+ -- elementary, Inc. <builds@elementary.io>  Sat, 30 Oct 2021 02:48:37 +0000
+
 io.elementary.videos (2.7.3) bionic; urgency=medium
 
   * Release 2.7.3 (#230)
