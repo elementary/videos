@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 22:43+0000\n"
-"PO-Revision-Date: 2021-11-01 08:05+0000\n"
+"PO-Revision-Date: 2021-11-01 10:55+0000\n"
 "Last-Translator: XXTXTOP <xxtxtop@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "videos/extra/zh_Hans/>\n"
@@ -183,7 +183,7 @@ msgstr "播放前不允许回放"
 
 #: data/io.elementary.videos.appdata.xml.in:151
 msgid "Limit consecutive spacebar pauses"
-msgstr "限制连续空格键暂停"
+msgstr "限制连续按空格键会暂停"
 
 #: data/io.elementary.videos.appdata.xml.in:158
 msgid "Crash fixes"
