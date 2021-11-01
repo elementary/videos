@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 22:43+0000\n"
-"PO-Revision-Date: 2021-01-29 09:54+0000\n"
-"Last-Translator: colindemian <colindemian@outlook.com>\n"
+"PO-Revision-Date: 2021-11-01 07:26+0000\n"
+"Last-Translator: XXTXTOP <xxtxtop@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "videos/extra/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -70,7 +70,7 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:82
 #: data/io.elementary.videos.appdata.xml.in:101
 msgid "Other updates:"
-msgstr ""
+msgstr "其他更新："
 
 #: data/io.elementary.videos.appdata.xml.in:47
 #: data/io.elementary.videos.appdata.xml.in:58
@@ -89,16 +89,16 @@ msgstr "翻译更新"
 
 #: data/io.elementary.videos.appdata.xml.in:55
 msgid "Fix an issue with accessing library view"
-msgstr ""
+msgstr "修复访问图库的问题"
 
 #: data/io.elementary.videos.appdata.xml.in:56
 msgid ""
 "Fix an issue with returning to the welcome page while playing multiple videos"
-msgstr ""
+msgstr "修复播放多个视频时返回初始页面的问题"
 
 #: data/io.elementary.videos.appdata.xml.in:57
 msgid "Prevent sleep while playing a video"
-msgstr ""
+msgstr "播放视频时防止休眠"
 
 #: data/io.elementary.videos.appdata.xml.in:64
 msgid "Improvements:"
@@ -106,15 +106,15 @@ msgstr "改进："
 
 #: data/io.elementary.videos.appdata.xml.in:66
 msgid "Start up faster with large libraries"
-msgstr ""
+msgstr "使用大型库更快地启动"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 msgid "Fix cases where subtitles refused to load"
-msgstr ""
+msgstr "修复字幕不能正常加载的情况"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Handle if library folder is deleted or moved"
-msgstr ""
+msgstr "处理库里文件夹是否被删除或移动"
 
 #: data/io.elementary.videos.appdata.xml.in:80
 msgid "Load external subtitles"
