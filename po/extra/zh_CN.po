@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 22:43+0000\n"
 "PO-Revision-Date: 2021-11-01 07:26+0000\n"
-"Last-Translator: XXTXTOP <xxtxtop@gmail.com>\n"
+"Last-Translator: Yuchen Deng <loaden@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "videos/extra/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -58,7 +58,7 @@ msgstr "进度条快速预览"
 #: data/io.elementary.videos.appdata.xml.in:78
 #: data/io.elementary.videos.appdata.xml.in:93
 msgid "New features:"
-msgstr ""
+msgstr "新特性："
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Two-finger swipe to go back"
