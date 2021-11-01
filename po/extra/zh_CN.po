@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 22:43+0000\n"
-"PO-Revision-Date: 2021-11-01 07:30+0000\n"
+"PO-Revision-Date: 2021-11-01 08:05+0000\n"
 "Last-Translator: Yuchen Deng <loaden@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "videos/extra/zh_Hans/>\n"
@@ -62,7 +62,7 @@ msgstr "新特性："
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Two-finger swipe to go back"
-msgstr ""
+msgstr "双指滑动返回"
 
 #: data/io.elementary.videos.appdata.xml.in:45
 #: data/io.elementary.videos.appdata.xml.in:53
@@ -122,7 +122,7 @@ msgstr "加载外部字幕"
 
 #: data/io.elementary.videos.appdata.xml.in:84
 msgid "Reliably update the replay button description and file"
-msgstr ""
+msgstr "可靠地更新重播按钮描述和文件"
 
 #: data/io.elementary.videos.appdata.xml.in:85
 msgid "More consistently remember the last playing video and its play position"
@@ -179,11 +179,11 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:144
 msgid "Disallow setting playback before start"
-msgstr ""
+msgstr "播放前不允许回放"
 
 #: data/io.elementary.videos.appdata.xml.in:151
 msgid "Limit consecutive spacebar pauses"
-msgstr ""
+msgstr "限制连续空格键暂停"
 
 #: data/io.elementary.videos.appdata.xml.in:158
 msgid "Crash fixes"
