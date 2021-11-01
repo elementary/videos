@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 22:43+0000\n"
 "PO-Revision-Date: 2021-11-01 08:05+0000\n"
-"Last-Translator: Yuchen Deng <loaden@gmail.com>\n"
+"Last-Translator: XXTXTOP <xxtxtop@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "videos/extra/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -167,15 +167,15 @@ msgstr "使用 Alt + Tab 切换窗口时隐藏搜索栏预览"
 #: data/io.elementary.videos.appdata.xml.in:113
 #: data/io.elementary.videos.appdata.xml.in:121
 msgid "Build fixes"
-msgstr ""
+msgstr "构建修复"
 
 #: data/io.elementary.videos.appdata.xml.in:136
 msgid "Window behavior improvements"
-msgstr ""
+msgstr "窗口行为改进"
 
 #: data/io.elementary.videos.appdata.xml.in:137
 msgid "Fix disappearing subtitle tracks"
-msgstr ""
+msgstr "修复字幕轨道消失的问题"
 
 #: data/io.elementary.videos.appdata.xml.in:144
 msgid "Disallow setting playback before start"
@@ -187,11 +187,11 @@ msgstr "限制连续空格键暂停"
 
 #: data/io.elementary.videos.appdata.xml.in:158
 msgid "Crash fixes"
-msgstr ""
+msgstr "崩溃修复"
 
 #: data/io.elementary.videos.appdata.xml.in:159
 msgid "Remove About dialog"
-msgstr ""
+msgstr "删除关于对话框"
 
 #: data/io.elementary.videos.appdata.xml.in:160
 #: data/io.elementary.videos.appdata.xml.in:199
@@ -200,7 +200,7 @@ msgstr "细节修复"
 
 #: data/io.elementary.videos.appdata.xml.in:168
 msgid "Preview popover now closely follows cursor position"
-msgstr ""
+msgstr "预览弹出框现在紧跟光标位置"
 
 #: data/io.elementary.videos.appdata.xml.in:183
 msgid "Fix appstream date format"
