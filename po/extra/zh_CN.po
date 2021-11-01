@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 22:43+0000\n"
 "PO-Revision-Date: 2021-11-01 07:30+0000\n"
-"Last-Translator: XXTXTOP <xxtxtop@gmail.com>\n"
+"Last-Translator: Yuchen Deng <loaden@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "videos/extra/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -134,7 +134,7 @@ msgstr "修复视频总视图中丢失的图标"
 
 #: data/io.elementary.videos.appdata.xml.in:95
 msgid "Option to automatically play next videos"
-msgstr "自动播放下一个视频的选项"
+msgstr "添加自动播放下一个视频的选项"
 
 #: data/io.elementary.videos.appdata.xml.in:96
 msgid "Navigate the playlist with the keyboard"
@@ -154,7 +154,7 @@ msgstr "在工具栏中显示播放列表项标题"
 
 #: data/io.elementary.videos.appdata.xml.in:103
 msgid "Show an error for unsupported files"
-msgstr ""
+msgstr "文件不受支持时报错"
 
 #: data/io.elementary.videos.appdata.xml.in:104
 msgid "Fix disappearing cursor on headerbar"
