@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 22:43+0000\n"
-"PO-Revision-Date: 2021-11-01 07:26+0000\n"
-"Last-Translator: Yuchen Deng <loaden@gmail.com>\n"
+"PO-Revision-Date: 2021-11-01 07:27+0000\n"
+"Last-Translator: XXTXTOP <xxtxtop@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "videos/extra/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -118,7 +118,7 @@ msgstr "处理库里文件夹是否被删除或移动"
 
 #: data/io.elementary.videos.appdata.xml.in:80
 msgid "Load external subtitles"
-msgstr ""
+msgstr "加载外部字幕"
 
 #: data/io.elementary.videos.appdata.xml.in:84
 msgid "Reliably update the replay button description and file"
@@ -126,15 +126,15 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:85
 msgid "More consistently remember the last playing video and its play position"
-msgstr ""
+msgstr "更准确地记住上次播放的视频及其播放位置"
 
 #: data/io.elementary.videos.appdata.xml.in:86
 msgid "Fix missing icon in episode view"
-msgstr ""
+msgstr "修复视频总视图中丢失的图标"
 
 #: data/io.elementary.videos.appdata.xml.in:95
 msgid "Option to automatically play next videos"
-msgstr ""
+msgstr "自动播放下一个视频的选项"
 
 #: data/io.elementary.videos.appdata.xml.in:96
 msgid "Navigate the playlist with the keyboard"
