@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 22:43+0000\n"
 "PO-Revision-Date: 2021-11-08 10:51+0000\n"
-"Last-Translator: Deleted User <noreply+917@weblate.org>\n"
+"Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/videos/extra/pl/>"
 "\n"
 "Language: pl\n"
@@ -62,11 +62,11 @@ msgstr "Miniaturowy podgląd na pasku przewijania"
 #: data/io.elementary.videos.appdata.xml.in:78
 #: data/io.elementary.videos.appdata.xml.in:93
 msgid "New features:"
-msgstr ""
+msgstr "Nowe funkcje:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Two-finger swipe to go back"
-msgstr ""
+msgstr "Dodano gest dwudotykowy by powrócić"
 
 #: data/io.elementary.videos.appdata.xml.in:45
 #: data/io.elementary.videos.appdata.xml.in:53
@@ -74,7 +74,7 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:82
 #: data/io.elementary.videos.appdata.xml.in:101
 msgid "Other updates:"
-msgstr ""
+msgstr "Inne aktualizacje:"
 
 #: data/io.elementary.videos.appdata.xml.in:47
 #: data/io.elementary.videos.appdata.xml.in:58
@@ -93,109 +93,114 @@ msgstr "Aktualizacje tłumaczenia"
 
 #: data/io.elementary.videos.appdata.xml.in:55
 msgid "Fix an issue with accessing library view"
-msgstr ""
+msgstr "Naprawiono problem z dostępem do widoku biblioteki"
 
 #: data/io.elementary.videos.appdata.xml.in:56
 msgid ""
 "Fix an issue with returning to the welcome page while playing multiple videos"
 msgstr ""
+"Naprawiono problem z powrotem do strony powitalnej podczas odtwarzania wielu "
+"wideo"
 
 #: data/io.elementary.videos.appdata.xml.in:57
 msgid "Prevent sleep while playing a video"
-msgstr ""
+msgstr "Zapobiegaj usypianiu podczas odtwarzania wideo"
 
 #: data/io.elementary.videos.appdata.xml.in:64
 msgid "Improvements:"
-msgstr ""
+msgstr "Ulepszenia:"
 
 #: data/io.elementary.videos.appdata.xml.in:66
 msgid "Start up faster with large libraries"
-msgstr ""
+msgstr "Szybsze uruchamianie z dużymi bibliotekami"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 msgid "Fix cases where subtitles refused to load"
-msgstr ""
+msgstr "Naprawiono przypadki, w których napisy nie dały się ładować"
 
 #: data/io.elementary.videos.appdata.xml.in:71
 msgid "Handle if library folder is deleted or moved"
-msgstr ""
+msgstr "Dodanie obsługi usuniętych lub przeniesionych folderów biblioteki"
 
 #: data/io.elementary.videos.appdata.xml.in:80
 msgid "Load external subtitles"
-msgstr ""
+msgstr "Ładowanie zewnętrznych napisów"
 
 #: data/io.elementary.videos.appdata.xml.in:84
 msgid "Reliably update the replay button description and file"
-msgstr ""
+msgstr "Skuteczne aktualizacje opisu i pliku przycisku ponownego odtwarzania"
 
 #: data/io.elementary.videos.appdata.xml.in:85
 msgid "More consistently remember the last playing video and its play position"
 msgstr ""
+"Bardziej spójne zapamiętywanie ostatnio odtwarzanego pliku wideo i pozycji "
+"odtwarzania"
 
 #: data/io.elementary.videos.appdata.xml.in:86
 msgid "Fix missing icon in episode view"
-msgstr ""
+msgstr "Naprawiono brakujące ikony w widoku odcinków"
 
 #: data/io.elementary.videos.appdata.xml.in:95
 msgid "Option to automatically play next videos"
-msgstr ""
+msgstr "Opcja automatycznego odtwarzania następnego wideo"
 
 #: data/io.elementary.videos.appdata.xml.in:96
 msgid "Navigate the playlist with the keyboard"
-msgstr ""
+msgstr "Nawigacja playlisty przy użyciu klawiatury"
 
 #: data/io.elementary.videos.appdata.xml.in:97
 msgid "Add a button to clear the playlist"
-msgstr ""
+msgstr "Dodanie przycisku do wyczyszczenia playlisty"
 
 #: data/io.elementary.videos.appdata.xml.in:98
 msgid "Show audio track language in settings"
-msgstr ""
+msgstr "Pokazanie języka ścieżki audio w ustawieniach"
 
 #: data/io.elementary.videos.appdata.xml.in:99
 msgid "Show playlist item titles in their tooltips"
-msgstr ""
+msgstr "Pokazanie tytułów elementów listy odtwarzania w ich tooltipach"
 
 #: data/io.elementary.videos.appdata.xml.in:103
 msgid "Show an error for unsupported files"
-msgstr ""
+msgstr "Pokazania błędu dla niewspieranych plików"
 
 #: data/io.elementary.videos.appdata.xml.in:104
 msgid "Fix disappearing cursor on headerbar"
-msgstr ""
+msgstr "Naprawiono znikający kursor na głównym pasku"
 
 #: data/io.elementary.videos.appdata.xml.in:105
 msgid "Hide seekbar preview when switching windows with Alt + Tab"
 msgstr ""
+"Schowaj podgląd paska wyszukiwania przy zmianie okien przy użyciu Alt + Tab"
 
 #: data/io.elementary.videos.appdata.xml.in:113
 #: data/io.elementary.videos.appdata.xml.in:121
 msgid "Build fixes"
-msgstr ""
+msgstr "Poprawki budowania"
 
 #: data/io.elementary.videos.appdata.xml.in:136
 msgid "Window behavior improvements"
-msgstr ""
+msgstr "Ulepszenia zachowania okna"
 
 #: data/io.elementary.videos.appdata.xml.in:137
 msgid "Fix disappearing subtitle tracks"
-msgstr ""
+msgstr "Naprawiono znikające ścieżki napisów"
 
 #: data/io.elementary.videos.appdata.xml.in:144
 msgid "Disallow setting playback before start"
-msgstr ""
+msgstr "Uniemożliwiono ustawienie odtwarzania przed startem"
 
 #: data/io.elementary.videos.appdata.xml.in:151
 msgid "Limit consecutive spacebar pauses"
-msgstr ""
+msgstr "Ograniczono kolejne pauzy przy użyciu spacji"
 
 #: data/io.elementary.videos.appdata.xml.in:158
 msgid "Crash fixes"
-msgstr ""
+msgstr "Poprawki błędów krytycznych"
 
 #: data/io.elementary.videos.appdata.xml.in:159
 msgid "Remove About dialog"
-msgstr ""
+msgstr "Usunięto okno dialogowe O programie"
 
 #: data/io.elementary.videos.appdata.xml.in:160
 #: data/io.elementary.videos.appdata.xml.in:199
@@ -204,7 +209,7 @@ msgstr "Poprawki drobnych błędów"
 
 #: data/io.elementary.videos.appdata.xml.in:168
 msgid "Preview popover now closely follows cursor position"
-msgstr ""
+msgstr "Popover z podglądem teraz dokładniej podąża za kursorem"
 
 #: data/io.elementary.videos.appdata.xml.in:183
 msgid "Fix appstream date format"
@@ -219,9 +224,8 @@ msgid "Fixed a bug that prevents keyboard navigation"
 msgstr "Naprawiono błąd, który uniemożliwiał nawigację klawiaturą"
 
 #: data/io.elementary.videos.appdata.xml.in:204
-#, fuzzy
 msgid "elementary, Inc."
-msgstr "elementary LLC."
+msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
