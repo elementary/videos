@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 22:43+0000\n"
-"PO-Revision-Date: 2021-10-30 01:34+0000\n"
+"PO-Revision-Date: 2021-11-16 00:21+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -176,7 +176,7 @@ msgstr "ビルドの修正"
 
 #: data/io.elementary.videos.appdata.xml.in:136
 msgid "Window behavior improvements"
-msgstr "ウィンドウの動作の改善"
+msgstr "ウィンドウの挙動の改善"
 
 #: data/io.elementary.videos.appdata.xml.in:137
 msgid "Fix disappearing subtitle tracks"
