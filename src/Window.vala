@@ -160,8 +160,22 @@ public class Audience.Window : Gtk.ApplicationWindow {
         };
         deck.add (welcome_page);
 
+        var manager = Audience.Services.LibraryManager.get_instance ();
         app_notification = new Granite.Widgets.Toast ("");
-        app_notification.set_default_action (_("Restore"));
+
+        /* we don't have access to trash when inside an flatpak sandbox
+         * so we don't allow the user to restore in this case.
+         */
+        if (!is_sandboxed ()) {
+            app_notification.set_default_action (_("Restore"));
+
+            app_notification.default_action.connect (() => {
+                manager.undo_delete_item ();
+                if (deck.visible_child != episodes_page) {
+                    deck.visible_child = library_page;
+                }
+            });
+        }
 
         var overlay = new Gtk.Overlay ();
         overlay.add (deck);
@@ -174,17 +188,9 @@ public class Audience.Window : Gtk.ApplicationWindow {
         search_entry.visible = false;
         autoqueue_next.visible = false;
 
-        var manager = Audience.Services.LibraryManager.get_instance ();
         manager.video_moved_to_trash.connect ((video) => {
             app_notification.title = _("Video '%s' Removed.").printf (Path.get_basename (video));
             app_notification.send_notification ();
-        });
-
-        app_notification.default_action.connect (() => {
-            manager.undo_delete_item ();
-            if (deck.visible_child != episodes_page) {
-                deck.visible_child = library_page;
-            }
         });
 
         deck.notify["visible-child"].connect (() => {
@@ -356,8 +362,10 @@ public class Audience.Window : Gtk.ApplicationWindow {
             if (ctrl_pressed && match_keycode (Gdk.Key.f, keycode)) {
                 search_entry.grab_focus ();
             } else if (ctrl_pressed && match_keycode (Gdk.Key.z, keycode)) {
-                Audience.Services.LibraryManager.get_instance ().undo_delete_item ();
-                app_notification.reveal_child = false;
+                if (!is_sandboxed ()) {
+                    Audience.Services.LibraryManager.get_instance ().undo_delete_item ();
+                    app_notification.reveal_child = false;
+                }
             } else if (match_keycode (Gdk.Key.Escape, keycode)) {
                 search_entry.text = "";
             } else if (!search_entry.is_focus && e.str.strip ().length > 0) {
