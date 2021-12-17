@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-17 10:21-0800\n"
-"PO-Revision-Date: 2021-10-29 01:32+0000\n"
+"PO-Revision-Date: 2021-12-18 00:13+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/videos/extra/"
 "uk/>\n"
@@ -68,10 +68,8 @@ msgid "Other updates:"
 msgstr "Інші оновлення:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
-#, fuzzy
-#| msgid "Fix an issue with accessing library view"
 msgid "Fix an issue with removing videos from library"
-msgstr "Виправлено проблему доступу до перегляду бібліотеки"
+msgstr "Виправлено проблему вилучення відео з бібліотеки"
 
 #: data/io.elementary.videos.appdata.xml.in:49
 #: data/io.elementary.videos.appdata.xml.in:86
