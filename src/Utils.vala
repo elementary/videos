@@ -86,4 +86,8 @@ namespace Audience {
 
         return discoverer_info;
     }
+
+    public static bool is_sandboxed () {
+        return FileUtils.test ("/.flatpak-info", FileTest.EXISTS);
+    }
 }

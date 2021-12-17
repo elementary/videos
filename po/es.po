@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 22:43+0000\n"
+"POT-Creation-Date: 2021-12-17 10:21-0800\n"
 "PO-Revision-Date: 2020-09-29 06:14+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/videos/videos/es/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:79 src/Window.vala:527
+#: src/Application.vala:79 src/Window.vala:535
 msgid "Videos"
 msgstr "Vídeos"
 
@@ -29,7 +29,7 @@ msgstr "Vídeos"
 msgid "Back"
 msgstr "Volver"
 
-#: src/Window.vala:40 src/Window.vala:530
+#: src/Window.vala:40 src/Window.vala:538
 msgid "Library"
 msgstr "Videoteca"
 
@@ -49,32 +49,32 @@ msgstr "Reproducir un vídeo"
 msgid "Automatically play next videos"
 msgstr "Reproducir vídeos posteriores automáticamente"
 
-#: src/Window.vala:164
+#: src/Window.vala:170
 msgid "Restore"
 msgstr "Restaurar"
 
-#: src/Window.vala:179
+#: src/Window.vala:192
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Se quitó el vídeo «%s»."
 
-#: src/Window.vala:429 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:437 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Todos los archivos"
 
-#: src/Window.vala:433
+#: src/Window.vala:441
 msgid "Video files"
 msgstr "Archivos de vídeo"
 
-#: src/Window.vala:437 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:445 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Abrir"
 
-#: src/Window.vala:440 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:448 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Abrir"
 
-#: src/Window.vala:441 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:449 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Cancelar"
 

@@ -4,8 +4,8 @@ runtime-version: '6'
 sdk: io.elementary.Sdk
 command: io.elementary.videos
 finish-args:
-  - '--filesystem=xdg-cache/thumbnails:ro'
-  - '--filesystem=xdg-videos:ro'
+  - '--filesystem=xdg-cache/thumbnails'
+  - '--filesystem=xdg-videos'
 
   - '--share=ipc'
   - '--socket=fallback-x11'
