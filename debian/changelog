@@ -1,3 +1,16 @@
+io.elementary.videos (2.8.1) bionic; urgency=medium
+
+  * Release 2.8.1 (#290)
+  * Update translation files
+  * Update POTFILES
+  * Flatpak: Allow Write Access to Library and Thumbnails Cache Folders
+    (#284)
+  * Fix data/meson.build (#288)
+  * Appdata: bump copyright (#280)
+  * Deploy flatpak on release (#279)
+
+ -- elementary, Inc. <builds@elementary.io>  Fri, 17 Dec 2021 18:36:49 +0000
+
 io.elementary.videos (2.8.0) bionic; urgency=medium
 
   * Release 2.8.0 (#278)
