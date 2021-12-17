@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 22:43+0000\n"
+"POT-Creation-Date: 2021-12-17 10:21-0800\n"
 "PO-Revision-Date: 2018-12-23 05:58+0000\n"
 "Last-Translator: hitanshu Sahu <hitansh.hacker1992@gmail.com>\n"
 "Language-Team: Hindi <https://weblate.elementary.io/projects/videos/videos/"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.0.1\n"
 
-#: src/Application.vala:79 src/Window.vala:527
+#: src/Application.vala:79 src/Window.vala:535
 msgid "Videos"
 msgstr "वीडियो"
 
@@ -22,7 +22,7 @@ msgstr "वीडियो"
 msgid "Back"
 msgstr "वापस"
 
-#: src/Window.vala:40 src/Window.vala:530
+#: src/Window.vala:40 src/Window.vala:538
 msgid "Library"
 msgstr ""
 
@@ -42,32 +42,32 @@ msgstr ""
 msgid "Automatically play next videos"
 msgstr ""
 
-#: src/Window.vala:164
+#: src/Window.vala:170
 msgid "Restore"
 msgstr ""
 
-#: src/Window.vala:179
+#: src/Window.vala:192
 #, c-format
 msgid "Video '%s' Removed."
 msgstr ""
 
-#: src/Window.vala:429 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:437 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr ""
 
-#: src/Window.vala:433
+#: src/Window.vala:441
 msgid "Video files"
 msgstr ""
 
-#: src/Window.vala:437 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:445 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr ""
 
-#: src/Window.vala:440 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:448 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr ""
 
-#: src/Window.vala:441 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:449 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr ""
 
