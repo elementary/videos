@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-17 10:21-0800\n"
-"PO-Revision-Date: 2021-10-29 12:11+0000\n"
+"PO-Revision-Date: 2021-12-18 00:13+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <https://l10n.elementary.io/projects/videos/extra/he/"
-">\n"
+"Language-Team: Hebrew <https://l10n.elementary.io/projects/videos/extra/he/>"
+"\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,10 +65,8 @@ msgid "Other updates:"
 msgstr "עדכונים אחרים:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
-#, fuzzy
-#| msgid "Fix an issue with accessing library view"
 msgid "Fix an issue with removing videos from library"
-msgstr "תוקנה תקלה בגישה לתצוגת הספרייה"
+msgstr "תוקנה תקלה בהסרת סרטונים מהספרייה"
 
 #: data/io.elementary.videos.appdata.xml.in:49
 #: data/io.elementary.videos.appdata.xml.in:86
