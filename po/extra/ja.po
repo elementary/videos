@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-17 10:21-0800\n"
-"PO-Revision-Date: 2021-11-16 00:21+0000\n"
+"PO-Revision-Date: 2021-12-19 05:01+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -66,10 +66,8 @@ msgid "Other updates:"
 msgstr "そのほかのアップデート:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
-#, fuzzy
-#| msgid "Fix an issue with accessing library view"
 msgid "Fix an issue with removing videos from library"
-msgstr "ライブラリービューへの切り替えに関する不具合を修正"
+msgstr "ライブラリーからの動画の削除に関する不具合を修正"
 
 #: data/io.elementary.videos.appdata.xml.in:49
 #: data/io.elementary.videos.appdata.xml.in:86
