@@ -1,6 +1,6 @@
 app-id: io.elementary.videos
 runtime: io.elementary.Platform
-runtime-version: '6'
+runtime-version: '6.1'
 sdk: io.elementary.Sdk
 command: io.elementary.videos
 finish-args:
@@ -22,7 +22,7 @@ add-extensions:
   org.freedesktop.Platform.ffmpeg-full:
     no-autodownload: true
     directory: lib/ffmpeg
-    version: '20.08'
+    version: '21.08'
     add-ld-path: '.'
 
 modules:
