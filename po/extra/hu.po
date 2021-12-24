@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-17 10:21-0800\n"
-"PO-Revision-Date: 2021-10-25 18:28+0000\n"
-"Last-Translator: Novák Gábor <novakg17@gmail.com>\n"
+"PO-Revision-Date: 2021-12-22 15:02+0000\n"
+"Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/extra/"
 "hu/>\n"
 "Language: hu\n"
@@ -66,7 +66,7 @@ msgstr "További frissítések:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Fix an issue with removing videos from library"
-msgstr ""
+msgstr "Videók eltávolításával kapcsolatos hiba javítva"
 
 #: data/io.elementary.videos.appdata.xml.in:49
 #: data/io.elementary.videos.appdata.xml.in:86
@@ -76,7 +76,7 @@ msgstr "Újdonságok:"
 
 #: data/io.elementary.videos.appdata.xml.in:51
 msgid "Two-finger swipe to go back"
-msgstr ""
+msgstr "Visszalépés két ujjal való csúsztatással"
 
 #: data/io.elementary.videos.appdata.xml.in:55
 #: data/io.elementary.videos.appdata.xml.in:66
@@ -91,11 +91,11 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:184
 #: data/io.elementary.videos.appdata.xml.in:200
 msgid "Translation updates"
-msgstr ""
+msgstr "Frissített fordítások"
 
 #: data/io.elementary.videos.appdata.xml.in:63
 msgid "Fix an issue with accessing library view"
-msgstr ""
+msgstr "A videótár elérésével kapcsolatos hiba javítva"
 
 #: data/io.elementary.videos.appdata.xml.in:64
 msgid ""
@@ -222,11 +222,11 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:212
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
-msgstr ""
+msgstr "Videólejátszó"
 
 #: data/io.elementary.videos.desktop.in:8
 msgid "io.elementary.videos"
