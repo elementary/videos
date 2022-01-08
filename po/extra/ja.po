@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-17 10:21-0800\n"
-"PO-Revision-Date: 2021-12-19 05:01+0000\n"
+"PO-Revision-Date: 2021-12-30 16:28+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -46,7 +46,7 @@ msgstr "そのほかの機能:"
 
 #: data/io.elementary.videos.appdata.xml.in:21
 msgid "Subtitle support"
-msgstr "字幕のサポート"
+msgstr "字幕に対応"
 
 #: data/io.elementary.videos.appdata.xml.in:22
 msgid "Play queue"
