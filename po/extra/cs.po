@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-17 10:21-0800\n"
-"PO-Revision-Date: 2021-07-22 16:05+0000\n"
-"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"PO-Revision-Date: 2022-01-09 23:13+0000\n"
+"Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/videos/extra/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr "Ostatní aktualizace:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Fix an issue with removing videos from library"
-msgstr ""
+msgstr "Opraven problém při odebírání videí z knihovny"
 
 #: data/io.elementary.videos.appdata.xml.in:49
 #: data/io.elementary.videos.appdata.xml.in:86
@@ -76,7 +76,7 @@ msgstr "Nové funkce:"
 
 #: data/io.elementary.videos.appdata.xml.in:51
 msgid "Two-finger swipe to go back"
-msgstr ""
+msgstr "Pro přechod zpět lze použít přejetí dvěma prsty"
 
 #: data/io.elementary.videos.appdata.xml.in:55
 #: data/io.elementary.videos.appdata.xml.in:66
@@ -95,16 +95,18 @@ msgstr "Aktualizace překladů"
 
 #: data/io.elementary.videos.appdata.xml.in:63
 msgid "Fix an issue with accessing library view"
-msgstr ""
+msgstr "Opraven problém s přístupem k zobrazení knihovny"
 
 #: data/io.elementary.videos.appdata.xml.in:64
 msgid ""
 "Fix an issue with returning to the welcome page while playing multiple videos"
 msgstr ""
+"Opraven problém s návratem na uvítací stránku při přehrávání vícero videí "
+"naráz"
 
 #: data/io.elementary.videos.appdata.xml.in:65
 msgid "Prevent sleep while playing a video"
-msgstr ""
+msgstr "Zabráněno uspání počítače v průběhu přehrávání videa"
 
 #: data/io.elementary.videos.appdata.xml.in:72
 msgid "Improvements:"
