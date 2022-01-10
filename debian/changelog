@@ -1,3 +1,12 @@
+io.elementary.videos (2.8.3) bionic; urgency=medium
+
+  * Release 2.8.3 (#293)
+  * Flatpak: update runtime to 6.1 (#292)
+  * Flatpak: Add `org.freedesktop.Platform.ffmpeg-full` Extension Point
+    (#285)
+
+ -- elementary, Inc. <builds@elementary.io>  Mon, 10 Jan 2022 17:55:36 +0000
+
 io.elementary.videos (2.8.1) bionic; urgency=medium
 
   * Release 2.8.1 (#290)
