@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-17 10:21-0800\n"
-"PO-Revision-Date: 2021-09-26 15:12+0000\n"
+"PO-Revision-Date: 2022-01-11 00:56+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/videos/"
 "hu/>\n"
@@ -181,7 +181,7 @@ msgstr "Szünet"
 
 #: src/Widgets/Player/PlayerPage.vala:110
 msgid "Unfullscreen"
-msgstr "Teljesképernyő elhagyása"
+msgstr "Teljesképernyős-mód bezárása"
 
 #: src/Widgets/Player/PlayerPage.vala:295
 msgid "A video is playing"
