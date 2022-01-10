@@ -41,6 +41,7 @@
         <p>Other updates:</p>
         <ul>
           <li>Update to 6.1 Flatpak runtime</li>
+          <li>Fixes a crash with certain video codecs</li>
         </ul>
       </description>
     </release>
