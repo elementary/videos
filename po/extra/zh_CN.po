@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-17 10:21-0800\n"
-"PO-Revision-Date: 2022-01-28 09:06+0000\n"
+"PO-Revision-Date: 2022-01-28 09:07+0000\n"
 "Last-Translator: XXTXTOP <xxtxtop@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "videos/extra/zh_Hans/>\n"
@@ -161,7 +161,7 @@ msgstr "在工具栏中显示播放列表项标题"
 
 #: data/io.elementary.videos.appdata.xml.in:111
 msgid "Show an error for unsupported files"
-msgstr "文件不受支持时报错"
+msgstr "显示不受支持的文件的错误"
 
 #: data/io.elementary.videos.appdata.xml.in:112
 msgid "Fix disappearing cursor on headerbar"
