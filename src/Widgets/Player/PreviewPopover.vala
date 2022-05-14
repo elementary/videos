@@ -81,7 +81,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
                 int width, height;
                 structure.get_int ("width", out width);
                 structure.get_int ("height", out height);
-                double ratio = double.min (width/height, height/width);
+                double ratio = double.min (width / height, height / width);
 
                 var vheight = Value (typeof (int));
                 vheight.set_int (32);
