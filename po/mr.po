@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-17 10:21-0800\n"
-"PO-Revision-Date: 2020-09-21 11:14+0000\n"
+"PO-Revision-Date: 2022-05-30 03:37+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/videos/videos/mr/"
 ">\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: src/Application.vala:79 src/Window.vala:535
 msgid "Videos"
@@ -78,7 +78,7 @@ msgstr "अपरिचित फाईल स्वरूप"
 #: src/Widgets/UnsupportedFileDialog.vala:26
 #, c-format
 msgid "Videos might not be able to play the file '%s'."
-msgstr "व्हिडिओ प्लेअर  '%s' फाइल प्ले करण्यास सक्षम नसावा ."
+msgstr "व्हिडिओ प्लेअर '%s' फाइल प्ले करण्यास सक्षम नसावा ."
 
 #: src/Widgets/UnsupportedFileDialog.vala:37
 msgid "Play Anyway"
@@ -142,7 +142,7 @@ msgstr "शोध संज्ञा बदलण्याचा प्रयत
 #: src/Widgets/Library/LibraryPage.vala:189
 #, c-format
 msgid "No Results for “%s”"
-msgstr "\"%S\" साठी कोणतेही परिणाम नाहीत"
+msgstr "\"%s\" साठी कोणतेही परिणाम नाहीत"
 
 #: src/Widgets/Library/LibraryItem.vala:76
 msgid "Move to Trash"
