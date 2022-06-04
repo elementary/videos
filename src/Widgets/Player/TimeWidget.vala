@@ -19,7 +19,7 @@
  *              Corentin Noël <corentin@elementaryos.org>
  */
 
-public class Audience.Widgets.TimeWidget : Granite.SeekBar {
+public class Audience.Widgets.TimeWidget : Videos.SeekBar {
     unowned ClutterGst.Playback main_playback;
     public Audience.Widgets.PreviewPopover preview_popover {get; private set;}
 
