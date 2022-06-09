@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-09 16:58+0000\n"
-"PO-Revision-Date: 2021-12-18 00:13+0000\n"
+"PO-Revision-Date: 2022-06-09 20:43+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/videos/extra/"
 "uk/>\n"
@@ -72,7 +72,7 @@ msgstr "Інші оновлення:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Update to Flatpak Platform 7"
-msgstr ""
+msgstr "Flatpak оновлено до Platform 7"
 
 #: data/io.elementary.videos.appdata.xml.in:44
 #: data/io.elementary.videos.appdata.xml.in:57
@@ -93,19 +93,19 @@ msgstr "Оновлено переклади"
 
 #: data/io.elementary.videos.appdata.xml.in:50
 msgid "Fixes:"
-msgstr ""
+msgstr "Виправлення:"
 
 #: data/io.elementary.videos.appdata.xml.in:52
 msgid "Fix a crash with certain video codecs"
-msgstr ""
+msgstr "Усунуто збої деяких відеокодеків"
 
 #: data/io.elementary.videos.appdata.xml.in:56
 msgid "Update to 6.1 Flatpak runtime"
-msgstr ""
+msgstr "Середовище виконання Flatpak оновлено до 6.1"
 
 #: data/io.elementary.videos.appdata.xml.in:65
 msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-msgstr ""
+msgstr "Додана підтримка розширення org.freedesktop.Platfrom.ffmpeg-full"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Fix an issue with removing videos from library"
