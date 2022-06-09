@@ -44,10 +44,8 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         var track_name_label = new Gtk.Label (title);
         track_name_label.ellipsize = Pango.EllipsizeMode.MIDDLE;
 
-        var grid = new Gtk.Grid ();
-        grid.margin = 3;
-        grid.margin_bottom = grid.margin_top = 6;
-        grid.column_spacing = 6;
+        var grid = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
+        grid.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUITEM);
         grid.add (play_revealer);
         grid.add (track_name_label);
 
@@ -62,7 +60,6 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         set_tooltip_text (title);
 
         add (dnd_event_box);
-        show_all ();
 
         bind_property ("is-playing", play_revealer, "reveal-child");
     }
