@@ -7,6 +7,8 @@ executable(
     'Utils.vala',
     'Window.vala',
     'Objects/Video.vala',
+    'DBus/MprisPlayer.vala',
+    'DBus/MprisRoot.vala',
     'Services/DirectoryMonitoring.vala',
     'Services/LibraryManager.vala',
     'Services/Thumbnailer.vala',
