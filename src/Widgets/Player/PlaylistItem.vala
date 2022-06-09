@@ -44,16 +44,16 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         var track_name_label = new Gtk.Label (title);
         track_name_label.ellipsize = Pango.EllipsizeMode.MIDDLE;
 
-        var grid = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
-        grid.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUITEM);
-        grid.add (play_revealer);
-        grid.add (track_name_label);
+        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
+        box.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUITEM);
+        box.add (play_revealer);
+        box.add (track_name_label);
 
         // Drag source must have a GdkWindow. GTK4 will remove the limitation.
         var dnd_event_box = new Gtk.EventBox ();
         dnd_event_box.drag_begin.connect (on_drag_begin);
         dnd_event_box.drag_data_get.connect (on_drag_data_get);
-        dnd_event_box.add (grid);
+        dnd_event_box.add (box);
 
         Gtk.drag_source_set (dnd_event_box, Gdk.ModifierType.BUTTON1_MASK, TARGET_ENTRIES, Gdk.DragAction.MOVE);
 
