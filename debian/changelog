@@ -1,3 +1,10 @@
+io.elementary.videos (2.8.4) bionic; urgency=medium
+
+  * Release 2.8.4 (#300)
+  * Flatpak: bump to Platform 7 (#298)
+
+ -- elementary, Inc. <builds@elementary.io>  Thu, 09 Jun 2022 16:58:30 +0000
+
 io.elementary.videos (2.8.3) bionic; urgency=medium
 
   * Release 2.8.3 (#293)
