@@ -83,8 +83,6 @@ public class Videos.SeekBar : Gtk.Box {
 
         scale.button_release_event.connect (() => {
             is_grabbing = false;
-            progression_label.label = Granite.DateTime.seconds_to_time ((int) main_playback.get_position ());
-            set_scale_progress (main_playback.progress);
             return false;
         });
 
