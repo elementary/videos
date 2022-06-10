@@ -30,7 +30,6 @@ public class Videos.SeekBar : Gtk.Box {
 
         scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 0.1) {
             hexpand = true,
-            vexpand = true,
             draw_value = false,
             can_focus = false
         };
@@ -46,7 +45,7 @@ public class Videos.SeekBar : Gtk.Box {
         main_playback.notify["progress"].connect (() => {
             if (!is_grabbing) {
                 progression_label.label = Granite.DateTime.seconds_to_time ((int) main_playback.get_position ());
-                set_scale_progress (main_playback.progress);
+                scale.set_value (main_playback.progress);
             }
         });
 
@@ -64,7 +63,7 @@ public class Videos.SeekBar : Gtk.Box {
             duration_label.label = Granite.DateTime.seconds_to_time ((int) playback_duration);
 
             if (!is_grabbing) {
-                set_scale_progress (main_playback.progress);
+                scale.set_value (main_playback.progress);
             }
 
             // Don't allow to change the time if there is none.
@@ -141,17 +140,5 @@ public class Videos.SeekBar : Gtk.Box {
         if (width > 0 && width >= minimum_width) {
             natural_width = width;
         }
-    }
-
-    private void set_scale_progress (double progress) {
-        if (progress < 0.0) {
-            debug ("Progress value less than 0.0, progress set to 0.0");
-            progress = 0.0;
-        } else if (progress > 1.0) {
-            debug ("Progress value greater than 1.0, progress set to 1.0");
-            progress = 1.0;
-        }
-
-        scale.set_value (progress);
     }
 }
