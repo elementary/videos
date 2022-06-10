@@ -13,9 +13,9 @@ src/Widgets/Library/LibraryItem.vala
 src/Widgets/Library/LibraryPage.vala
 src/Widgets/Player/BottomBar.vala
 src/Widgets/Player/PlayerPage.vala
-src/Widgets/Player/Playlist.vala
 src/Widgets/Player/PlaylistItem.vala
 src/Widgets/Player/PlaylistPopover.vala
+src/Widgets/Player/Playlist.vala
 src/Widgets/Player/PreviewPopover.vala
+src/Widgets/Player/SeekBar.vala
 src/Widgets/Player/SettingsPopover.vala
-src/Widgets/Player/TimeWidget.vala
