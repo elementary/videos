@@ -23,6 +23,7 @@ executable(
     'Widgets/Player/PlaylistItem.vala',
     'Widgets/Player/PlaylistPopover.vala',
     'Widgets/Player/PreviewPopover.vala',
+    'Widgets/Player/SeekBar.vala',
     'Widgets/Player/SettingsPopover.vala',
     'Widgets/Player/TimeWidget.vala',
 
