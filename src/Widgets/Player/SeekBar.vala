@@ -20,7 +20,7 @@ public class Videos.SeekBar : Gtk.Box {
     construct {
         get_style_context ().add_class (Granite.STYLE_CLASS_SEEKBAR);
 
-        progression_label = new Gtk.Label (null) {
+        progression_label = new Gtk.Label (Granite.DateTime.seconds_to_time (0)) {
             margin_start = 3
         };
 
@@ -42,9 +42,6 @@ public class Videos.SeekBar : Gtk.Box {
         add (progression_label);
         add (scale);
         add (duration_label);
-
-        progression_label.label = Granite.DateTime.seconds_to_time (0);
-        scale.set_value (0.0);
 
         main_playback.notify["progress"].connect (() => {
             if (!is_grabbing) {
