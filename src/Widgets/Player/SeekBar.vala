@@ -3,13 +3,11 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
 
-public class Videos.SeekBar : Gtk.Grid {
-    private double _playback_duration;
-    private double _playback_progress;
+public class Videos.SeekBar : Gtk.Box {
+    public Audience.Widgets.PreviewPopover preview_popover { get; private set; }
+    public ClutterGst.Playback main_playback { get; construct; }
 
-    /*
-     * The time of the full duration of the playback.
-     */
+    private double _playback_duration;
     public double playback_duration {
         get {
             return _playback_duration;
@@ -26,9 +24,7 @@ public class Videos.SeekBar : Gtk.Grid {
         }
     }
 
-    /*
-     * The progression of the playback as a decimal from 0.0 to 1.0.
-     */
+    private double _playback_progress;
     public double playback_progress {
         get {
             return _playback_progress;
@@ -49,53 +45,58 @@ public class Videos.SeekBar : Gtk.Grid {
         }
     }
 
-    /*
-     * If the pointer is grabbing the scale button.
-     */
-    public bool is_grabbing { get; private set; default = false; }
+    private Gtk.Label progression_label;
+    private Gtk.Label duration_label;
+    private Gtk.Scale scale;
+    private bool is_grabbing = false;
 
-    /*
-     * If the pointer is hovering over the scale.
-     */
-    public bool is_hovering { get; private set; default = false; }
-
-    /*
-     * The left label that displays the time progressed.
-     */
-    public Gtk.Label progression_label { get; construct set; }
-
-    /*
-     * The right label that displays the total duration time.
-     */
-    public Gtk.Label duration_label { get; construct set; }
-
-    /*
-     * The time of the full duration of the playback.
-     */
-    public Gtk.Scale scale { get; construct set; }
-
-    /*
-     * Creates a new SeekBar with a fixed playback duration.
-     * */
-    public SeekBar (double playback_duration) {
-        Object (playback_duration: playback_duration);
+    public SeekBar (ClutterGst.Playback main_playback) {
+        Object (main_playback: main_playback);
     }
 
     construct {
-        column_spacing = 6;
         get_style_context ().add_class (Granite.STYLE_CLASS_SEEKBAR);
 
-        progression_label = new Gtk.Label (null);
-        duration_label = new Gtk.Label (null);
-        progression_label.margin_start = duration_label.margin_end = 3;
+        progression_label = new Gtk.Label (null) {
+            margin_start = 3
+        };
 
-        scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 0.1);
-        scale.hexpand = true;
-        scale.draw_value = false;
-        scale.can_focus = false;
+        duration_label = new Gtk.Label (null) {
+            margin_end = 3
+        };
+
+        scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 0.1) {
+            hexpand = true,
+            vexpand = true,
+            draw_value = false,
+            can_focus = false
+        };
         scale.events |= Gdk.EventMask.POINTER_MOTION_MASK;
         scale.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
         scale.events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
+
+        spacing = 6;
+        add (progression_label);
+        add (scale);
+        add (duration_label);
+
+        playback_progress = 0.0;
+
+        main_playback.notify["progress"].connect (progress_callback);
+
+        main_playback.notify["duration"].connect (() => {
+            if (preview_popover != null) {
+                preview_popover.destroy ();
+            }
+            playback_duration = main_playback.duration;
+            progress_callback ();
+            // Don't allow to change the time if there is none.
+            sensitive = (main_playback.duration != 0);
+            if (sensitive) {
+                preview_popover = new Audience.Widgets.PreviewPopover (main_playback.uri);
+                preview_popover.relative_to = scale;
+            }
+        });
 
         /* signal property setting */
         scale.button_press_event.connect (() => {
@@ -110,25 +111,39 @@ public class Videos.SeekBar : Gtk.Grid {
         });
 
         scale.enter_notify_event.connect (() => {
-            is_hovering = true;
+            preview_popover.schedule_show ();
             return false;
         });
 
         scale.leave_notify_event.connect (() => {
-            is_hovering = false;
+            preview_popover.schedule_hide ();
             return false;
         });
 
-        scale.motion_notify_event.connect (() => {
+        scale.motion_notify_event.connect ((event) => {
             playback_progress = scale.get_value ();
+            preview_popover.update_pointing ((int) event.x);
+            preview_popover.set_preview_progress (event.x / ((double) event.window.get_width ()), !main_playback.playing);
             return false;
         });
 
-        add (progression_label);
-        add (scale);
-        add (duration_label);
+        scale.size_allocate.connect ((alloc_rect) => {
+            if (preview_popover != null)
+                preview_popover.realign_pointing (alloc_rect.width);
+        });
 
-        playback_progress = 0.0;
+        button_release_event.connect ((event) => {
+            // Manually set the slider value using the click event
+            // dimensions. The slider widget doesn't set itself
+            // when clicked too much above/below the slider itself.
+            // This isn't necessarily a bug with the slider widget,
+            // but this is the desired behavior for this slider in
+            // the video player
+            scale.set_value (event.x / scale.get_range_rect ().width);
+
+            main_playback.progress = scale.get_value ();
+            return false;
+        });
     }
 
     public override void get_preferred_width (out int minimum_width, out int natural_width) {
@@ -146,6 +161,12 @@ public class Videos.SeekBar : Gtk.Grid {
         var width = parent.get_window ().get_width ();
         if (width > 0 && width >= minimum_width) {
             natural_width = width;
+        }
+    }
+
+    private void progress_callback () {
+        if (!is_grabbing) {
+            playback_progress = main_playback.progress;
         }
     }
 }

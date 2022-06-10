@@ -24,7 +24,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
     public SettingsPopover preferences_popover { get; private set; }
     public PlaylistPopover playlist_popover { get; private set; }
-    public TimeWidget time_widget { get; private set; }
+    public Videos.SeekBar time_widget { get; private set; }
 
     private Gtk.Button play_button;
     private Gtk.MenuButton playlist_button;
@@ -80,7 +80,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
             tooltip_text = _("Settings")
         };
 
-        time_widget = new TimeWidget (playback);
+        time_widget = new Videos.SeekBar (playback);
 
         var main_actionbar = new Gtk.ActionBar ();
         main_actionbar.pack_start (play_button);

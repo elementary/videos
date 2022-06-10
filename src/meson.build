@@ -23,7 +23,6 @@ executable(
     'Widgets/Player/PreviewPopover.vala',
     'Widgets/Player/SeekBar.vala',
     'Widgets/Player/SettingsPopover.vala',
-    'Widgets/Player/TimeWidget.vala',
 
     vala_args: [
         '--enable-experimental',
