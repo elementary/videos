@@ -340,9 +340,9 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     public override bool key_press_event (Gdk.EventKey e) {
-        if (deck.visible_child == player_page) {
-            uint keycode = e.hardware_keycode;
+        uint keycode = e.hardware_keycode;
 
+        if (deck.visible_child == player_page) {
             if (match_keycode (Gdk.Key.space, keycode)) {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
                 ((SimpleAction) play_pause_action).activate (null);
@@ -385,6 +385,15 @@ public class Audience.Window : Gtk.ApplicationWindow {
                     break;
                 default:
                     break;
+            }
+        } else if (deck.visible_child == welcome_page) {
+            bool ctrl_pressed = (e.state & Gdk.ModifierType.CONTROL_MASK) != 0;
+            if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
+                resume_last_videos ();
+                return true;
+            } else if (ctrl_pressed && match_keycode (Gdk.Key.b, keycode)) {
+                show_library ();
+                return true;
             }
         }
 
