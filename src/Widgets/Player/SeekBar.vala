@@ -7,47 +7,10 @@ public class Videos.SeekBar : Gtk.Box {
     public Audience.Widgets.PreviewPopover preview_popover { get; private set; }
     public ClutterGst.Playback main_playback { get; construct; }
 
-    private double _playback_duration;
-    public double playback_duration {
-        get {
-            return _playback_duration;
-        }
-        set {
-            double duration = value;
-            if (duration < 0.0) {
-                debug ("Duration value less than zero, duration set to 0.0");
-                duration = 0.0;
-            }
-
-            _playback_duration = duration;
-            duration_label.label = Granite.DateTime.seconds_to_time ((int) duration);
-        }
-    }
-
-    private double _playback_progress;
-    public double playback_progress {
-        get {
-            return _playback_progress;
-        }
-        set {
-            double progress = value;
-            if (progress < 0.0) {
-                debug ("Progress value less than 0.0, progress set to 0.0");
-                progress = 0.0;
-            } else if (progress > 1.0) {
-                debug ("Progress value greater than 1.0, progress set to 1.0");
-                progress = 1.0;
-            }
-
-            _playback_progress = progress;
-            scale.set_value (progress);
-            progression_label.label = Granite.DateTime.seconds_to_time ((int) (progress * playback_duration));
-        }
-    }
-
     private Gtk.Label progression_label;
     private Gtk.Label duration_label;
     private Gtk.Scale scale;
+    private double playback_duration;
     private bool is_grabbing = false;
 
     public SeekBar (ClutterGst.Playback main_playback) {
@@ -57,7 +20,7 @@ public class Videos.SeekBar : Gtk.Box {
     construct {
         get_style_context ().add_class (Granite.STYLE_CLASS_SEEKBAR);
 
-        progression_label = new Gtk.Label (null) {
+        progression_label = new Gtk.Label (Granite.DateTime.seconds_to_time (0)) {
             margin_start = 3
         };
 
@@ -67,7 +30,6 @@ public class Videos.SeekBar : Gtk.Box {
 
         scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 0.1) {
             hexpand = true,
-            vexpand = true,
             draw_value = false,
             can_focus = false
         };
@@ -80,16 +42,30 @@ public class Videos.SeekBar : Gtk.Box {
         add (scale);
         add (duration_label);
 
-        playback_progress = 0.0;
-
-        main_playback.notify["progress"].connect (progress_callback);
+        main_playback.notify["progress"].connect (() => {
+            if (!is_grabbing) {
+                progression_label.label = Granite.DateTime.seconds_to_time ((int) main_playback.get_position ());
+                scale.set_value (main_playback.progress);
+            }
+        });
 
         main_playback.notify["duration"].connect (() => {
             if (preview_popover != null) {
                 preview_popover.destroy ();
             }
+
             playback_duration = main_playback.duration;
-            progress_callback ();
+            if (playback_duration < 0.0) {
+                debug ("Duration value less than zero, duration set to 0.0");
+                playback_duration = 0.0;
+            }
+
+            duration_label.label = Granite.DateTime.seconds_to_time ((int) playback_duration);
+
+            if (!is_grabbing) {
+                scale.set_value (main_playback.progress);
+            }
+
             // Don't allow to change the time if there is none.
             sensitive = (main_playback.duration != 0);
             if (sensitive) {
@@ -106,7 +82,6 @@ public class Videos.SeekBar : Gtk.Box {
 
         scale.button_release_event.connect (() => {
             is_grabbing = false;
-            playback_progress = scale.get_value ();
             return false;
         });
 
@@ -121,7 +96,10 @@ public class Videos.SeekBar : Gtk.Box {
         });
 
         scale.motion_notify_event.connect ((event) => {
-            playback_progress = scale.get_value ();
+            progression_label.label = Granite.DateTime.seconds_to_time (
+                (int) (scale.get_value () * playback_duration)
+            );
+
             preview_popover.update_pointing ((int) event.x);
             preview_popover.set_preview_progress (event.x / ((double) event.window.get_width ()), !main_playback.playing);
             return false;
@@ -161,12 +139,6 @@ public class Videos.SeekBar : Gtk.Box {
         var width = parent.get_window ().get_width ();
         if (width > 0 && width >= minimum_width) {
             natural_width = width;
-        }
-    }
-
-    private void progress_callback () {
-        if (!is_grabbing) {
-            playback_progress = main_playback.progress;
         }
     }
 }
