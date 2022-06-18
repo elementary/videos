@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-09 16:58+0000\n"
-"PO-Revision-Date: 2021-12-30 16:28+0000\n"
+"PO-Revision-Date: 2022-06-18 06:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -70,7 +70,7 @@ msgstr "そのほかのアップデート:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Update to Flatpak Platform 7"
-msgstr ""
+msgstr "Flatpak プラットフォームをバージョン 7 にアップデート"
 
 #: data/io.elementary.videos.appdata.xml.in:44
 #: data/io.elementary.videos.appdata.xml.in:57
@@ -91,19 +91,19 @@ msgstr "翻訳の更新"
 
 #: data/io.elementary.videos.appdata.xml.in:50
 msgid "Fixes:"
-msgstr ""
+msgstr "修正点:"
 
 #: data/io.elementary.videos.appdata.xml.in:52
 msgid "Fix a crash with certain video codecs"
-msgstr ""
+msgstr "特定のビデオコーデックでクラッシュする不具合を修正"
 
 #: data/io.elementary.videos.appdata.xml.in:56
 msgid "Update to 6.1 Flatpak runtime"
-msgstr ""
+msgstr "Flatpak ランタイムをバージョン 6.1 にアップデート"
 
 #: data/io.elementary.videos.appdata.xml.in:65
 msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-msgstr ""
+msgstr "拡張機能“org.freedesktop.Platfrom.ffmpeg-full”に対応"
 
 #: data/io.elementary.videos.appdata.xml.in:73
 msgid "Fix an issue with removing videos from library"
