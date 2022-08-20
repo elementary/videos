@@ -26,10 +26,14 @@ namespace Audience {
 
     public class App : Gtk.Application {
         public const string ACTION_PREFIX = "app.";
+        public const string ACTION_NEXT = "action-next";
         public const string ACTION_PLAY_PAUSE = "action-play-pause";
+        public const string ACTION_PREVIOUS = "action-previous";
 
         private const ActionEntry[] ACTION_ENTRIES = {
             { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
+            { ACTION_NEXT, action_next },
+            { ACTION_PREVIOUS, action_previous }
         };
 
         public Window mainwindow;
@@ -74,6 +78,19 @@ namespace Audience {
                     warning (e.message);
                 }
 
+                var mpris_id = Bus.own_name (
+                    BusType.SESSION,
+                    "org.mpris.MediaPlayer2.io.elementary.videos",
+                    BusNameOwnerFlags.NONE,
+                    on_bus_acquired,
+                    null,
+                    null
+                );
+
+                if (mpris_id == 0) {
+                    warning ("Could not initialize MPRIS session.\n");
+                }
+
                 mainwindow = new Window ();
                 mainwindow.application = this;
                 mainwindow.title = _("Videos");
@@ -96,6 +113,23 @@ namespace Audience {
                 ((SimpleAction) play_pause_action).set_state (false);
             } else {
                 ((SimpleAction) play_pause_action).set_state (true);
+            }
+        }
+
+        private void action_next () {
+            mainwindow.player_page.get_playlist_widget ().next ();
+        }
+
+        private void action_previous () {
+            mainwindow.player_page.get_playlist_widget ().previous ();
+        }
+
+        private void on_bus_acquired (DBusConnection connection, string name) {
+            try {
+                connection.register_object ("/org/mpris/MediaPlayer2", new Videos.MprisRoot ());
+                connection.register_object ("/org/mpris/MediaPlayer2", new Videos.MprisPlayer (connection));
+            } catch (IOError e) {
+                warning ("could not create MPRIS player: %s\n", e.message);
             }
         }
     }
