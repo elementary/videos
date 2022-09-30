@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-09 16:58+0000\n"
-"PO-Revision-Date: 2022-07-31 16:02+0000\n"
+"PO-Revision-Date: 2022-09-30 14:41+0000\n"
 "Last-Translator: lenemter <lenemter@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/videos/extra/ru/>"
 "\n"
@@ -38,8 +38,8 @@ msgid ""
 "so you can pick up from where you left off."
 msgstr ""
 "Современный видеоплеер, сфокусированный на просмотре видео, а не на "
-"усправлении им. Запоминает последние видео и позицию воспроизведения, так "
-"что вы всегда сможете вернуться к моменту, на котором остановились."
+"управлении им. Запоминает последние видео и позицию воспроизведения, так что "
+"вы всегда сможете вернуться к моменту, на котором остановились."
 
 #: data/io.elementary.videos.appdata.xml.in:17
 msgid "Additional features include:"
@@ -133,7 +133,7 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:95
 msgid "Prevent sleep while playing a video"
-msgstr "Предотвращение засыпания системы во время воспроизведения видео"
+msgstr "Предотвращено засыпание системы во время воспроизведения видео"
 
 #: data/io.elementary.videos.appdata.xml.in:102
 msgid "Improvements:"
@@ -149,7 +149,8 @@ msgstr "Исправлены случаи, когда субтитры отка�
 
 #: data/io.elementary.videos.appdata.xml.in:109
 msgid "Handle if library folder is deleted or moved"
-msgstr "Обработка, если папка библиотеки удалена или перемещена"
+msgstr ""
+"Добавлена обработка случая, когда папка библиотеки удалена или перемещена"
 
 #: data/io.elementary.videos.appdata.xml.in:118
 msgid "Load external subtitles"
@@ -162,7 +163,7 @@ msgstr "Обновлено описание кнопки воспроизвед�
 #: data/io.elementary.videos.appdata.xml.in:123
 msgid "More consistently remember the last playing video and its play position"
 msgstr ""
-"Более последовательное запоминания последнего воспроизведенного видео и "
+"Более последовательное запоминания последнего воспроизведённого видео и "
 "позицию его воспроизведения"
 
 #: data/io.elementary.videos.appdata.xml.in:124
@@ -171,7 +172,7 @@ msgstr "Исправлено отсутствие иконок в просмот
 
 #: data/io.elementary.videos.appdata.xml.in:133
 msgid "Option to automatically play next videos"
-msgstr "Возможность автоматически воспроизодить следующие видео"
+msgstr "Возможность автоматически воспроизводить следующие видео"
 
 #: data/io.elementary.videos.appdata.xml.in:134
 msgid "Navigate the playlist with the keyboard"
@@ -230,7 +231,7 @@ msgstr "Исправления сбоев"
 
 #: data/io.elementary.videos.appdata.xml.in:197
 msgid "Remove About dialog"
-msgstr "Убран диалог О программе"
+msgstr "Убран диалог «О программе»"
 
 #: data/io.elementary.videos.appdata.xml.in:198
 #: data/io.elementary.videos.appdata.xml.in:237
