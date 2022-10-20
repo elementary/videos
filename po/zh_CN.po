@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-09 16:58+0000\n"
+"POT-Creation-Date: 2022-10-20 17:53+0000\n"
 "PO-Revision-Date: 2020-11-17 02:15+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:79 src/Window.vala:535
+#: src/Application.vala:96 src/Window.vala:559
 msgid "Videos"
 msgstr "视频"
 
@@ -29,7 +29,7 @@ msgstr "视频"
 msgid "Back"
 msgstr "返回"
 
-#: src/Window.vala:40 src/Window.vala:538
+#: src/Window.vala:40 src/Window.vala:562
 msgid "Library"
 msgstr "媒体库"
 
@@ -37,44 +37,44 @@ msgstr "媒体库"
 msgid "Episodes"
 msgstr "集数"
 
-#: src/Window.vala:96
+#: src/Window.vala:106
 msgid "Search Videos"
 msgstr "搜索视频"
 
-#: src/Window.vala:109
+#: src/Window.vala:119
 msgid "Play one video"
 msgstr "播放一个视频"
 
-#: src/Window.vala:110
+#: src/Window.vala:120
 msgid "Automatically play next videos"
 msgstr "自动播放后续视频"
 
-#: src/Window.vala:170
+#: src/Window.vala:180
 msgid "Restore"
 msgstr "恢复"
 
-#: src/Window.vala:192
+#: src/Window.vala:199
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "视频 “%s” 已删除。"
 
-#: src/Window.vala:437 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:461 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "所有文件"
 
-#: src/Window.vala:441
+#: src/Window.vala:465
 msgid "Video files"
 msgstr "视频文件"
 
-#: src/Window.vala:445 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:469 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "打开"
 
-#: src/Window.vala:448 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:472 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "打开"
 
-#: src/Window.vala:449 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:473 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "取消"
 
@@ -179,11 +179,11 @@ msgstr "设置"
 msgid "Pause"
 msgstr "暂停"
 
-#: src/Widgets/Player/PlayerPage.vala:110
+#: src/Widgets/Player/PlayerPage.vala:109
 msgid "Unfullscreen"
 msgstr "退出全屏"
 
-#: src/Widgets/Player/PlayerPage.vala:295
+#: src/Widgets/Player/PlayerPage.vala:267
 msgid "A video is playing"
 msgstr "视频播放中"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-09 16:58+0000\n"
+"POT-Creation-Date: 2022-10-20 17:53+0000\n"
 "PO-Revision-Date: 2020-05-26 11:11+0000\n"
 "Last-Translator: Rantyrant <diseasemonger@gmail.com>\n"
 "Language-Team: Danish <https://l10n.elementary.io/projects/videos/videos/da/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 
-#: src/Application.vala:79 src/Window.vala:535
+#: src/Application.vala:96 src/Window.vala:559
 msgid "Videos"
 msgstr "Videoer"
 
@@ -29,7 +29,7 @@ msgstr "Videoer"
 msgid "Back"
 msgstr "Tilbage"
 
-#: src/Window.vala:40 src/Window.vala:538
+#: src/Window.vala:40 src/Window.vala:562
 msgid "Library"
 msgstr "Bibliotek"
 
@@ -37,44 +37,44 @@ msgstr "Bibliotek"
 msgid "Episodes"
 msgstr "Afsnit"
 
-#: src/Window.vala:96
+#: src/Window.vala:106
 msgid "Search Videos"
 msgstr "Søg efter videoer"
 
-#: src/Window.vala:109
+#: src/Window.vala:119
 msgid "Play one video"
 msgstr "Afspil en video"
 
-#: src/Window.vala:110
+#: src/Window.vala:120
 msgid "Automatically play next videos"
 msgstr "Afspil automatisk næste videoer"
 
-#: src/Window.vala:170
+#: src/Window.vala:180
 msgid "Restore"
 msgstr "Gendan"
 
-#: src/Window.vala:192
+#: src/Window.vala:199
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Video '%s' fjernet."
 
-#: src/Window.vala:437 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:461 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Alle filer"
 
-#: src/Window.vala:441
+#: src/Window.vala:465
 msgid "Video files"
 msgstr "Videofiler"
 
-#: src/Window.vala:445 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:469 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Åbn"
 
-#: src/Window.vala:448 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:472 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Åbn"
 
-#: src/Window.vala:449 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:473 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Annuller"
 
@@ -179,11 +179,11 @@ msgstr "Indstillinger"
 msgid "Pause"
 msgstr "Pause"
 
-#: src/Widgets/Player/PlayerPage.vala:110
+#: src/Widgets/Player/PlayerPage.vala:109
 msgid "Unfullscreen"
 msgstr "Afslut fuldskærm"
 
-#: src/Widgets/Player/PlayerPage.vala:295
+#: src/Widgets/Player/PlayerPage.vala:267
 msgid "A video is playing"
 msgstr ""
 
