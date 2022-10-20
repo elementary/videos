@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-20 17:53+0000\n"
-"PO-Revision-Date: 2022-06-09 20:43+0000\n"
+"PO-Revision-Date: 2022-10-21 23:57+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/videos/extra/"
 "uk/>\n"
@@ -67,7 +67,7 @@ msgstr "Нові функції:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Control playback from the sound indicator"
-msgstr ""
+msgstr "Контроль відтворення з індикатора звуку"
 
 #: data/io.elementary.videos.appdata.xml.in:45
 #: data/io.elementary.videos.appdata.xml.in:55
@@ -84,7 +84,7 @@ msgstr "Інші оновлення:"
 
 #: data/io.elementary.videos.appdata.xml.in:47
 msgid "Make playback duration more accurate"
-msgstr ""
+msgstr "Тривалість відтворення стала точнішою"
 
 #: data/io.elementary.videos.appdata.xml.in:48
 #: data/io.elementary.videos.appdata.xml.in:58
