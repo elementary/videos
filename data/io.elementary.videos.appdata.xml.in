@@ -36,7 +36,7 @@
   </screenshots>
   <content_rating type="oars-1.1" />
   <releases>
-    <release version="2.9.0" date="2022-10-19" urgency="medium">
+    <release version="2.9.0" date="2022-10-20" urgency="medium">
       <description>
         <p>New features:</p>
         <ul>
