@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-20 17:53+0000\n"
-"PO-Revision-Date: 2022-06-10 13:44+0000\n"
+"PO-Revision-Date: 2022-10-24 05:57+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.elementary.io/projects/videos/extra/ca/"
-">\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/videos/extra/ca/>"
+"\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,7 +66,7 @@ msgstr "Característiques noves:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Control playback from the sound indicator"
-msgstr ""
+msgstr "Control de la reproducció des de l'indicador de so"
 
 #: data/io.elementary.videos.appdata.xml.in:45
 #: data/io.elementary.videos.appdata.xml.in:55
@@ -83,7 +83,7 @@ msgstr "Altres actualitzacions:"
 
 #: data/io.elementary.videos.appdata.xml.in:47
 msgid "Make playback duration more accurate"
-msgstr ""
+msgstr "La durada de la reproducció és més precisa."
 
 #: data/io.elementary.videos.appdata.xml.in:48
 #: data/io.elementary.videos.appdata.xml.in:58
