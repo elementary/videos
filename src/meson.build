@@ -7,6 +7,8 @@ executable(
     'Utils.vala',
     'Window.vala',
     'Objects/Video.vala',
+    'DBus/MprisPlayer.vala',
+    'DBus/MprisRoot.vala',
     'Services/DirectoryMonitoring.vala',
     'Services/LibraryManager.vala',
     'Services/Thumbnailer.vala',
@@ -21,8 +23,8 @@ executable(
     'Widgets/Player/PlaylistItem.vala',
     'Widgets/Player/PlaylistPopover.vala',
     'Widgets/Player/PreviewPopover.vala',
+    'Widgets/Player/SeekBar.vala',
     'Widgets/Player/SettingsPopover.vala',
-    'Widgets/Player/TimeWidget.vala',
 
     vala_args: [
         '--enable-experimental',

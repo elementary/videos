@@ -31,7 +31,6 @@ namespace Audience {
         private Audience.Widgets.BottomBar bottom_bar;
         private GtkClutter.Actor bottom_actor;
         private GtkClutter.Embed clutter;
-        private GnomeMediaKeys mediakeys;
         private ClutterGst.Playback playback;
         private unowned Gst.Pipeline pipeline;
         private Clutter.Stage stage;
@@ -127,33 +126,6 @@ namespace Audience {
             unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.X_AXIS, 1));
             unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 0));
             stage.add_child (unfullscreen_actor);
-
-            //media keys
-            try {
-                mediakeys = Bus.get_proxy_sync (BusType.SESSION,
-                    "org.gnome.SettingsDaemon", "/org/gnome/SettingsDaemon/MediaKeys");
-                mediakeys.media_player_key_pressed.connect ((bus, app, key) => {
-                    if (app != "audience")
-                       return;
-                    switch (key) {
-                        case "Previous":
-                            get_playlist_widget ().previous ();
-                            break;
-                        case "Next":
-                            get_playlist_widget ().next ();
-                            break;
-                        case "Play":
-                            playback.playing = !playback.playing;
-                            break;
-                        default:
-                            break;
-                    }
-                });
-
-                mediakeys.grab_media_player_keys ("audience", 0);
-            } catch (Error e) {
-                warning (e.message);
-            }
 
             motion_notify_event.connect (event => {
                 if (mouse_primary_down) {

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-17 10:21-0800\n"
+"POT-Creation-Date: 2022-10-20 17:53+0000\n"
 "PO-Revision-Date: 2020-02-23 10:08+0000\n"
 "Last-Translator: gkkulik <g.kulik@o2.pl>\n"
 "Language-Team: Silesian <https://l10n.elementary.io/projects/videos/videos/"
@@ -14,7 +14,7 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#: src/Application.vala:79 src/Window.vala:535
+#: src/Application.vala:96 src/Window.vala:559
 msgid "Videos"
 msgstr "Filmy"
 
@@ -23,7 +23,7 @@ msgstr "Filmy"
 msgid "Back"
 msgstr "Nazod"
 
-#: src/Window.vala:40 src/Window.vala:538
+#: src/Window.vala:40 src/Window.vala:562
 msgid "Library"
 msgstr "Bibliotyka"
 
@@ -31,44 +31,44 @@ msgstr "Bibliotyka"
 msgid "Episodes"
 msgstr "Ôdcinki"
 
-#: src/Window.vala:96
+#: src/Window.vala:106
 msgid "Search Videos"
 msgstr "Szukanie filmōw"
 
-#: src/Window.vala:109
+#: src/Window.vala:119
 msgid "Play one video"
 msgstr "Grej jedyn film"
 
-#: src/Window.vala:110
+#: src/Window.vala:120
 msgid "Automatically play next videos"
 msgstr "Autōmatycznie grej nastympne filmy"
 
-#: src/Window.vala:170
+#: src/Window.vala:180
 msgid "Restore"
 msgstr "Prziwrōć"
 
-#: src/Window.vala:192
+#: src/Window.vala:199
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Film '%s' bōł skasowany."
 
-#: src/Window.vala:437 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:461 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Wszyjske zbiory"
 
-#: src/Window.vala:441
+#: src/Window.vala:465
 msgid "Video files"
 msgstr "Zbiory filmōw"
 
-#: src/Window.vala:445 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:469 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Ôtwōrz"
 
-#: src/Window.vala:448 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:472 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Ôtwōrz"
 
-#: src/Window.vala:449 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:473 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Pociep"
 
@@ -173,11 +173,11 @@ msgstr "Sztelōnki"
 msgid "Pause"
 msgstr "Pauza"
 
-#: src/Widgets/Player/PlayerPage.vala:110
+#: src/Widgets/Player/PlayerPage.vala:109
 msgid "Unfullscreen"
 msgstr "Zastow połny ekran"
 
-#: src/Widgets/Player/PlayerPage.vala:295
+#: src/Widgets/Player/PlayerPage.vala:267
 msgid "A video is playing"
 msgstr ""
 

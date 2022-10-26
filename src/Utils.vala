@@ -17,21 +17,6 @@
  * Authored by: Tom Beckmann <tomjonabc@gmail.com>
  */
 
-[DBus (name = "org.gnome.SettingsDaemon.MediaKeys")]
-public interface GnomeMediaKeys : GLib.Object {
-    public abstract void grab_media_player_keys (string application, uint32 time) throws GLib.Error;
-    public abstract void release_media_player_keys (string application) throws GLib.Error;
-    public signal void media_player_key_pressed (string application, string key);
-}
-
-[DBus (name = "org.gnome.SessionManager")]
-public interface GnomeSessionManager : GLib.Object {
-    [DBus (name = "isSessionRunning")]
-    public abstract bool is_session_running () throws GLib.Error;
-    public abstract uint32 inhibit (string app_id, uint32 toplevel_xid, string reason, uint32 flags) throws GLib.Error;
-    public abstract void uninhibit (uint32 inhibit_cookie) throws GLib.Error;
-}
-
 namespace Audience {
     private const int DISCOVERER_TIMEOUT = 5;
 
