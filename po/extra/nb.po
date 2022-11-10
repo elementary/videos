@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-20 17:53+0000\n"
-"PO-Revision-Date: 2021-07-22 16:05+0000\n"
-"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"PO-Revision-Date: 2022-11-11 14:29+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/videos/"
 "extra/nb/>\n"
 "Language: nb\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.14.2\n"
 
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:4
@@ -64,7 +64,7 @@ msgstr "Nye funksjoner:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Control playback from the sound indicator"
-msgstr ""
+msgstr "Kontroller avspilling fra lydindikatoren"
 
 #: data/io.elementary.videos.appdata.xml.in:45
 #: data/io.elementary.videos.appdata.xml.in:55
@@ -81,7 +81,7 @@ msgstr "Andre oppdateringer:"
 
 #: data/io.elementary.videos.appdata.xml.in:47
 msgid "Make playback duration more accurate"
-msgstr ""
+msgstr "Mer nøyaktig avspillingsvarighet"
 
 #: data/io.elementary.videos.appdata.xml.in:48
 #: data/io.elementary.videos.appdata.xml.in:58
@@ -103,19 +103,19 @@ msgstr "Oversettelsesoppdateringer"
 
 #: data/io.elementary.videos.appdata.xml.in:57
 msgid "Update to Flatpak Platform 7"
-msgstr ""
+msgstr "Oppdatering til Flatpak-plattform 7"
 
 #: data/io.elementary.videos.appdata.xml.in:64
 msgid "Fixes:"
-msgstr ""
+msgstr "Fikser:"
 
 #: data/io.elementary.videos.appdata.xml.in:66
 msgid "Fix a crash with certain video codecs"
-msgstr ""
+msgstr "Fikset krasj med noen videokodek"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 msgid "Update to 6.1 Flatpak runtime"
-msgstr ""
+msgstr "Oppdatering til 6.1-Flatpak-kjørerutine"
 
 #: data/io.elementary.videos.appdata.xml.in:79
 msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
