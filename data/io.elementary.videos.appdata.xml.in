@@ -10,9 +10,8 @@
   <summary>Watch videos and movies</summary>
   <description>
     <p>
-      A modern video player that focuses on displaying video content instead of
-      player controls. It remembers your last played video and playback position
-      so you can pick up from where you left off.
+      Modern video player focused on video content instead of showing player controls.
+      Remembers last playback position to pick up from where you left off.
     </p>
     <p>
       Additional features include:
@@ -185,7 +184,7 @@
     <release version="0.2.6" date="2018-06-20" urgency="medium">
       <description>
         <ul>
-          <li>Window behavior improvements</li>
+          <li>Window-behavior improvements</li>
           <li>Fix disappearing subtitle tracks</li>
         </ul>
       </description>
@@ -209,7 +208,7 @@
         <ul>
           <li>Crash fixes</li>
           <li>Remove About dialog</li>
-          <li>Minor bug fixes</li>
+          <li>Minor bug-fixes</li>
           <li>Translation updates</li>
         </ul>
       </description>
@@ -232,7 +231,7 @@
     <release version="0.2.1.1" date="2016-10-31" urgency="medium">
       <description>
         <ul>
-          <li>Fix appstream date format</li>
+          <li>Fix AppStream date format</li>
         </ul>
       </description>
     </release>
@@ -240,7 +239,7 @@
       <description>
         <ul>
           <li>Added a library view with search</li>
-          <li>Fixed a bug that prevents keyboard navigation</li>
+          <li>Fixed a bug preventing keyboard navigation</li>
           <li>Translation updates</li>
         </ul>
       </description>
@@ -248,7 +247,7 @@
     <release version="0.2.0.2" date="2016-05-05" urgency="medium">
       <description>
         <ul>
-          <li>Minor bug fixes</li>
+          <li>Minor bug-fixes</li>
         </ul>
       </description>
     </release>
