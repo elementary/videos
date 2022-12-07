@@ -20,13 +20,13 @@
  *              Corentin Noël <corentin@elementary.io>
  */
 
-public class Audience.Window : Gtk.Window {
+public class Audience.Window : Gtk.ApplicationWindow {
+    private Hdy.Deck deck;
     private Granite.Widgets.Toast app_notification;
     private Granite.ModeSwitch autoqueue_next;
     private EpisodesPage episodes_page;
     private Gtk.HeaderBar header;
     private LibraryPage library_page;
-    private Gtk.Stack main_stack;
     private Gtk.Button navigation_button;
     private Gtk.SearchEntry search_entry;
     private WelcomePage welcome_page;
@@ -42,11 +42,47 @@ public class Audience.Window : Gtk.Window {
 
     public signal void media_volumes_changed ();
 
-    public Window () {
+    public const string ACTION_GROUP_PREFIX = "win";
+    public const string ACTION_PREFIX = ACTION_GROUP_PREFIX + ".";
+    public const string ACTION_BACK = "back";
+    public const string ACTION_FULLSCREEN = "action-fullscreen";
+    public const string ACTION_OPEN_FILE = "action-open-file";
+    public const string ACTION_QUIT = "action-quit";
+    public const string ACTION_SEARCH = "action-search";
+    public const string ACTION_UNDO = "action-undo";
 
+    private static Gee.MultiMap<string, string> action_accelerators = new Gee.HashMultiMap<string, string> ();
+
+    private const ActionEntry[] ACTION_ENTRIES = {
+        { ACTION_BACK, action_back },
+        { ACTION_FULLSCREEN, action_fullscreen },
+        { ACTION_OPEN_FILE, action_open_file },
+        { ACTION_QUIT, action_quit },
+        { ACTION_SEARCH, action_search },
+        { ACTION_UNDO, action_undo }
+    };
+
+    static construct {
+        action_accelerators[ACTION_BACK] = "<Alt>Left";
+        action_accelerators[ACTION_BACK] = "Back";
+        action_accelerators[ACTION_FULLSCREEN] = "F";
+        action_accelerators[ACTION_FULLSCREEN] = "F11";
+        action_accelerators[ACTION_OPEN_FILE] = "<Control>O";
+        action_accelerators[ACTION_QUIT] = "<Control>Q";
+        action_accelerators[ACTION_SEARCH] = "<Control>F";
+        action_accelerators[ACTION_UNDO] = "<Control>Z";
     }
 
     construct {
+        add_action_entries (ACTION_ENTRIES, this);
+
+        var application_instance = (Gtk.Application) GLib.Application.get_default ();
+        foreach (var action in action_accelerators.get_keys ()) {
+            application_instance.set_accels_for_action (
+                ACTION_PREFIX + action, action_accelerators[action].to_array ()
+            );
+        }
+
         window_position = Gtk.WindowPosition.CENTER;
         gravity = Gdk.Gravity.CENTER;
         set_default_size (1000, 680);
@@ -61,7 +97,7 @@ public class Audience.Window : Gtk.Window {
         navigation_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
 
         navigation_button.clicked.connect (() => {
-            navigate_back ();
+            deck.navigate (Hdy.NavigationDirection.BACK);
         });
 
         header.pack_start (navigation_button);
@@ -70,7 +106,7 @@ public class Audience.Window : Gtk.Window {
         search_entry.placeholder_text = _("Search Videos");
         search_entry.valign = Gtk.Align.CENTER;
         search_entry.search_changed.connect (() => {
-            if (main_stack.visible_child == episodes_page ) {
+            if (deck.visible_child == episodes_page ) {
                 episodes_page.filter (search_entry.text);
             } else {
                 library_page.filter (search_entry.text);
@@ -91,7 +127,6 @@ public class Audience.Window : Gtk.Window {
 
         library_page = LibraryPage.get_instance ();
         library_page.map.connect (() => {
-            search_entry.visible = true;
             if (search_entry.text != "" && !library_page.has_child ()) {
                 search_entry.text = "";
             }
@@ -101,18 +136,15 @@ public class Audience.Window : Gtk.Window {
             }
         });
 
-        library_page.unmap.connect (() => {
-            if (main_stack.visible_child != episodes_page) {
-                search_entry.visible = false;
-            }
-        });
-
         library_page.show_episodes.connect ((item, setup_only) => {
             episodes_page.set_episodes_items (item.episodes);
             episodes_page.poster.pixbuf = item.poster.pixbuf;
             if (!setup_only) {
-                navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
-                main_stack.set_visible_child (episodes_page);
+                episodes_page.show_all ();
+
+                deck.add (episodes_page);
+                deck.visible_child = episodes_page;
+
                 title = item.get_title ();
                 search_entry.text = "";
                 autoqueue_next.visible = true;
@@ -132,23 +164,28 @@ public class Audience.Window : Gtk.Window {
         });
 
         episodes_page = new EpisodesPage ();
-        episodes_page.map.connect (() => {
-            search_entry.visible = true;
-        });
 
-        main_stack = new Gtk.Stack ();
-        main_stack.expand = true;
-        main_stack.add_named (welcome_page, "welcome");
-        main_stack.add_named (player_page, "player");
-        main_stack.add_named (library_page, "library");
-        main_stack.add_named (episodes_page, "episodes");
-        main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
+        deck = new Hdy.Deck () {
+            can_swipe_back = true
+        };
+        deck.add (welcome_page);
 
+        var manager = Audience.Services.LibraryManager.get_instance ();
         app_notification = new Granite.Widgets.Toast ("");
-        app_notification.set_default_action (_("Restore"));
+
+        /* we don't have access to trash when inside an flatpak sandbox
+         * so we don't allow the user to restore in this case.
+         */
+        if (!is_sandboxed ()) {
+            app_notification.set_default_action (_("Restore"));
+
+            app_notification.default_action.connect (() => {
+                action_undo ();
+            });
+        }
 
         var overlay = new Gtk.Overlay ();
-        overlay.add (main_stack);
+        overlay.add (deck);
         overlay.add_overlay (app_notification);
 
         add (overlay);
@@ -157,19 +194,18 @@ public class Audience.Window : Gtk.Window {
         navigation_button.hide ();
         search_entry.visible = false;
         autoqueue_next.visible = false;
-        main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.NONE);
 
-        var manager = Audience.Services.LibraryManager.get_instance ();
         manager.video_moved_to_trash.connect ((video) => {
             app_notification.title = _("Video '%s' Removed.").printf (Path.get_basename (video));
             app_notification.send_notification ();
         });
 
-        app_notification.default_action.connect (() => {
-            manager.undo_delete_item ();
-            if (main_stack.visible_child != episodes_page) {
-                main_stack.set_visible_child (library_page);
-            }
+        deck.notify["visible-child"].connect (() => {
+            update_navigation ();
+        });
+
+        deck.notify["transition-running"].connect (() => {
+            update_navigation ();
         });
 
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
@@ -187,19 +223,24 @@ public class Audience.Window : Gtk.Window {
         player_page.button_press_event.connect ((event) => {
             // double left click
             if (event.button == Gdk.BUTTON_PRIMARY && event.type == Gdk.EventType.2BUTTON_PRESS) {
-                if (player_page.fullscreened) {
-                    unfullscreen ();
-                } else {
-                    fullscreen ();
-                }
+                action_fullscreen ();
             }
 
             // right click
             if (event.button == Gdk.BUTTON_SECONDARY) {
-                player_page.playing = !player_page.playing;
+                var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+                ((SimpleAction) play_pause_action).activate (null);
             }
 
             return base.button_press_event (event);
+        });
+
+        search_entry.key_press_event.connect ((event) => {
+            if (event.keyval == Gdk.Key.Escape) {
+                search_entry.text = "";
+            }
+
+            return Gdk.EVENT_PROPAGATE;
         });
 
         window_state_event.connect ((e) => {
@@ -215,7 +256,7 @@ public class Audience.Window : Gtk.Window {
             if (Gdk.WindowState.MAXIMIZED in e.changed_mask) {
                 bool currently_maximixed = Gdk.WindowState.MAXIMIZED in e.new_window_state;
 
-                if (main_stack.get_visible_child () == player_page && currently_maximixed) {
+                if (deck.visible_child == player_page && currently_maximixed) {
                    fullscreen ();
                 }
             }
@@ -224,8 +265,7 @@ public class Audience.Window : Gtk.Window {
         });
 
         configure_event.connect (event => {
-            player_page.hide_preview_popover ();
-            player_page.bottom_bar.playlist_popover.popdown ();
+            player_page.hide_popovers ();
             return Gdk.EVENT_PROPAGATE;
         });
 
@@ -233,6 +273,50 @@ public class Audience.Window : Gtk.Window {
             show_mouse_cursor ();
             return Gdk.EVENT_PROPAGATE;
         });
+    }
+
+    private void action_back () {
+        deck.navigate (Hdy.NavigationDirection.BACK);
+    }
+
+    private void action_fullscreen () {
+        if (deck.visible_child == player_page) {
+            if (player_page.fullscreened) {
+                unfullscreen ();
+            } else {
+                fullscreen ();
+            }
+        }
+    }
+
+    private void action_open_file () {
+        run_open_file ();
+    }
+
+    private void action_quit () {
+        destroy ();
+    }
+
+    private void action_search () {
+        if (search_entry.visible) {
+            search_entry.grab_focus ();
+        } else {
+            Gdk.beep ();
+        }
+    }
+
+    private void action_undo () {
+        /* we don't have access to trash when inside an flatpak sandbox
+         * so we don't allow the user to restore in this case.
+         */
+        if (!is_sandboxed ()) {
+            Audience.Services.LibraryManager.get_instance ().undo_delete_item ();
+            app_notification.reveal_child = false;
+
+            if (deck.visible_child != episodes_page) {
+                deck.visible_child = library_page;
+            }
+        }
     }
 
     /** Returns true if the code parameter matches the keycode of the keyval parameter for
@@ -257,28 +341,19 @@ public class Audience.Window : Gtk.Window {
 
     public override bool key_press_event (Gdk.EventKey e) {
         uint keycode = e.hardware_keycode;
-        bool ctrl_pressed = (e.state & Gdk.ModifierType.CONTROL_MASK) != 0;
-        if ((e.state & Gdk.ModifierType.MOD1_MASK) != 0 && e.keyval == Gdk.Key.Left) {
-            navigation_button.clicked ();
-            return true;
-        }
 
-        if (main_stack.visible_child == player_page) {
+        if (deck.visible_child == player_page) {
             if (match_keycode (Gdk.Key.space, keycode)) {
-                player_page.playing = !player_page.playing;
+                var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+                ((SimpleAction) play_pause_action).activate (null);
                 return true;
             } else if (match_keycode (Gdk.Key.p, keycode)) {
-                player_page.playing = !player_page.playing;
+                var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+                ((SimpleAction) play_pause_action).activate (null);
             } else if (match_keycode (Gdk.Key.a, keycode)) {
                 player_page.next_audio ();
             } else if (match_keycode (Gdk.Key.s, keycode)) {
                 player_page.next_text ();
-            } else if (match_keycode (Gdk.Key.f, keycode)) {
-                if (player_page.fullscreened) {
-                    unfullscreen ();
-                } else {
-                    fullscreen ();
-                }
             }
 
             bool shift_pressed = Gdk.ModifierType.SHIFT_MASK in e.state;
@@ -311,30 +386,14 @@ public class Audience.Window : Gtk.Window {
                 default:
                     break;
             }
-        } else if (main_stack.visible_child == welcome_page) {
+        } else if (deck.visible_child == welcome_page) {
+            bool ctrl_pressed = (e.state & Gdk.ModifierType.CONTROL_MASK) != 0;
             if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
                 resume_last_videos ();
-                return true;
-            } else if (ctrl_pressed && match_keycode (Gdk.Key.o, keycode)) {
-                run_open_file ();
-                return true;
-            } else if (ctrl_pressed && match_keycode (Gdk.Key.q, keycode)) {
-                destroy ();
                 return true;
             } else if (ctrl_pressed && match_keycode (Gdk.Key.b, keycode)) {
                 show_library ();
                 return true;
-            }
-        } else if (search_entry.visible) {
-            if (ctrl_pressed && match_keycode (Gdk.Key.f, keycode)) {
-                search_entry.grab_focus ();
-            } else if (ctrl_pressed && match_keycode (Gdk.Key.z, keycode)) {
-                Audience.Services.LibraryManager.get_instance ().undo_delete_item ();
-                app_notification.reveal_child = false;
-            } else if (match_keycode (Gdk.Key.Escape, keycode)) {
-                search_entry.text = "";
-            } else if (!search_entry.is_focus && e.str.strip ().length > 0) {
-                search_entry.grab_focus ();
             }
         }
 
@@ -370,7 +429,7 @@ public class Audience.Window : Gtk.Window {
         if (settings.get_string ("current-video") != "") {
             play_file (settings.get_string ("current-video"), NavigationPage.WELCOME, false);
         } else {
-            run_open_file ();
+            action_open_file ();
         }
     }
 
@@ -381,8 +440,11 @@ public class Audience.Window : Gtk.Window {
     public void show_library () {
         navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
         navigation_button.show ();
-        main_stack.visible_child = library_page;
-        library_page.scrolled_window.grab_focus ();
+
+        library_page.show_all ();
+
+        deck.add (library_page);
+        deck.visible_child = library_page;
     }
 
     public void add_to_playlist (string uri, bool preserve_playlist) {
@@ -453,28 +515,16 @@ public class Audience.Window : Gtk.Window {
     }
 
     private void on_player_ended () {
-        navigate_back ();
+        deck.navigate (Hdy.NavigationDirection.BACK);
         unfullscreen ();
     }
 
     public void play_file (string uri, NavigationPage origin, bool from_beginning = true) {
-        search_entry.visible = false;
-        navigation_button.visible = true;
-        switch (origin) {
-            default:
-            case NavigationPage.WELCOME:
-                navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
-                break;
-            case NavigationPage.LIBRARY:
-                navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
-                break;
-            case NavigationPage.EPISODES:
-                navigation_button.label = _(NAVIGATION_BUTTON_EPISODES);
-                autoqueue_next.visible = true;
-                break;
-        }
+        player_page.show_all ();
 
-        main_stack.set_visible_child_full ("player", Gtk.StackTransitionType.SLIDE_LEFT);
+        deck.add (player_page);
+        deck.visible_child = player_page;
+
         player_page.play_file (uri, from_beginning);
         if (is_maximized) {
             fullscreen ();
@@ -489,37 +539,61 @@ public class Audience.Window : Gtk.Window {
         player_page.append_to_playlist (file);
     }
 
-    public void navigate_back () {
-        /* Changing the player_page playing properties triggers a number of signals/bindings and
-         * pipeline needs time to react so wrap subsequent code in an Idle loop.
-         */
-        player_page.playing = false;
+    private void update_navigation () {
+        double progress = player_page.get_progress ();
+        if (progress > 0) {
+            settings.set_double ("last-stopped", progress);
+        }
 
-        Idle.add (() => {
-            title = _("Videos");
-            get_window ().set_cursor (null);
+        var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+        ((SimpleAction) play_pause_action).set_state (false);
 
-            if (navigation_button.label == _(NAVIGATION_BUTTON_LIBRARY)) {
-                navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
-                main_stack.set_visible_child_full ("library", Gtk.StackTransitionType.SLIDE_RIGHT);
-                autoqueue_next.visible = false;
-            } else if (navigation_button.label == _(NAVIGATION_BUTTON_EPISODES)) {
-                navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
-                main_stack.set_visible_child_full ("episodes", Gtk.StackTransitionType.SLIDE_RIGHT);
-                autoqueue_next.visible = true;
-            } else {
-                navigation_button.hide ();
-                main_stack.set_visible_child (welcome_page);
-                search_entry.visible = false;
-                autoqueue_next.visible = false;
-            }
+        if (!deck.transition_running) {
+            /* Changing the player_page playing properties triggers a number of signals/bindings and
+             * pipeline needs time to react so wrap subsequent code in an Idle loop.
+             */
+            Idle.add (() => {
+                get_window ().set_cursor (null);
 
-            return Source.REMOVE;
-        });
-    }
+                if (deck.visible_child == welcome_page) {
+                    title = _("Videos");
+                    search_entry.visible = false;
+                } else if (deck.visible_child == library_page) {
+                    title = _("Library");
+                    search_entry.visible = true;
+                } else if (deck.visible_child == episodes_page) {
+                    search_entry.visible = true;
+                } else if (deck.visible_child == player_page) {
+                    search_entry.visible = false;
+                    navigation_button.visible = true;
 
-    public Gtk.Widget get_visible_child () {
-        return main_stack.visible_child;
+                    ((SimpleAction) play_pause_action).set_state (true);
+                }
+
+                var previous_child = deck.get_adjacent_child (Hdy.NavigationDirection.BACK);
+                if (previous_child == welcome_page) {
+                    navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
+                    autoqueue_next.visible = false;
+                } else if (previous_child == library_page) {
+                    navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
+                    autoqueue_next.visible = true;
+                } else if (previous_child == episodes_page) {
+                    navigation_button.label = _(NAVIGATION_BUTTON_EPISODES);
+                    autoqueue_next.visible = true;
+                } else {
+                    navigation_button.hide ();
+                    search_entry.visible = false;
+                    autoqueue_next.visible = false;
+                }
+
+                var next_child = deck.get_adjacent_child (Hdy.NavigationDirection.FORWARD);
+                if (next_child != null) {
+                    deck.remove (next_child);
+                }
+
+                return Source.REMOVE;
+            });
+        }
     }
 
     public void hide_mouse_cursor () {

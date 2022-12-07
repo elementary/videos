@@ -40,8 +40,6 @@ namespace Audience {
         private uint progress_timer = 0;
         private uint inhibit_token = 0;
 
-        public Audience.Widgets.BottomBar bottom_bar {get; private set;}
-
         private bool mouse_primary_down = false;
 
         public bool playing {
@@ -121,37 +119,6 @@ namespace Audience {
 
             add (overlay);
             show_all ();
-
-            //media keys
-            try {
-                mediakeys = Bus.get_proxy_sync (BusType.SESSION,
-                    "org.gnome.SettingsDaemon", "/org/gnome/SettingsDaemon/MediaKeys");
-                mediakeys.media_player_key_pressed.connect ((bus, app, key) => {
-                    if (app != "audience")
-                       return;
-                    switch (key) {
-                        case "Previous":
-                            get_playlist_widget ().previous ();
-                            break;
-                        case "Next":
-                            get_playlist_widget ().next ();
-                            break;
-                        case "Play":
-                            if (playing) {
-                                playbin.set_state (Gst.State.PAUSED);
-                            } else {
-                                playbin.set_state (Gst.State.PLAYING);
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-                });
-
-                mediakeys.grab_media_player_keys ("audience", 0);
-            } catch (Error e) {
-                warning (e.message);
-            }
 
             motion_notify_event.connect (event => {
                 if (mouse_primary_down) {
@@ -403,7 +370,9 @@ namespace Audience {
             return bottom_bar.playlist_popover.playlist;
         }
 
-        public void hide_preview_popover () {
+        public void hide_popovers () {
+            bottom_bar.playlist_popover.popdown ();
+
             var popover = bottom_bar.time_widget.preview_popover;
             if (popover != null) {
                 popover.schedule_hide ();

@@ -24,7 +24,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
     public SettingsPopover preferences_popover { get; private set; }
     public PlaylistPopover playlist_popover { get; private set; }
-    public TimeWidget time_widget { get; private set; }
+    public Videos.SeekBar time_widget { get; private set; }
 
     private Gtk.Button play_button;
     private Gtk.MenuButton playlist_button;
@@ -49,25 +49,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         }
     }
 
-    private bool _playing = false;
-    public bool playing { // This is bound to Playerpage.playing
-        get {
-            return _playing;
-        }
-        set {
-            _playing = value;
-            if (value) {
-                ((Gtk.Image) play_button.image).icon_name = "media-playback-pause-symbolic";
-                play_button.tooltip_text = _("Pause");
-                reveal_control ();
-            } else {
-                ((Gtk.Image) play_button.image).icon_name = "media-playback-start-symbolic";
-                play_button.tooltip_text = _("Play");
-                set_reveal_child (true);
-            }
-        }
-    }
-
     public bool repeat {
         get {
             return playlist_popover.rep.active;
@@ -79,6 +60,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
 
     public BottomBar (ClutterGst.Playback playback) {
         play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON) {
+            action_name = App.ACTION_PREFIX + App.ACTION_PLAY_PAUSE,
             tooltip_text = _("Play")
         };
 
@@ -98,7 +80,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
             tooltip_text = _("Settings")
         };
 
-        time_widget = new TimeWidget (playback);
+        time_widget = new Videos.SeekBar (playback);
 
         var main_actionbar = new Gtk.ActionBar ();
         main_actionbar.pack_start (play_button);
@@ -130,12 +112,22 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
             return false;
         });
 
-        play_button.clicked.connect (() => {
-            playing = !playing;
-        });
-
         playlist_popover.playlist.item_added.connect (() => {
             playlist_item_added ();
+        });
+
+        GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
+            if (name == Audience.App.ACTION_PLAY_PAUSE) {
+                if (new_state.get_boolean () == false) {
+                    ((Gtk.Image) play_button.image).icon_name = "media-playback-start-symbolic";
+                    play_button.tooltip_text = _("Play");
+                    reveal_child = true;
+                } else {
+                    ((Gtk.Image) play_button.image).icon_name = "media-playback-pause-symbolic";
+                    play_button.tooltip_text = _("Pause");
+                    reveal_control ();
+                }
+            }
         });
     }
 
@@ -154,18 +146,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         }
     }
 
-    public override void get_preferred_width (out int minimum_width, out int natural_width) {
-        base.get_preferred_width (out minimum_width, out natural_width);
-        if (parent.get_window () == null) {
-            return;
-        }
-
-        var width = parent.get_window ().get_width ();
-        if (width > 0 && width >= minimum_width) {
-            natural_width = width;
-        }
-    }
-
     public void reveal_control () {
         if (child_revealed == false) {
             set_reveal_child (true);
@@ -175,8 +155,10 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
             Source.remove (hiding_timer);
         }
 
+        var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+
         hiding_timer = GLib.Timeout.add (2000, () => {
-            if (hovered || preferences_popover.visible || playlist_popover.visible || !playing) {
+            if (hovered || preferences_popover.visible || playlist_popover.visible || !play_pause_action.get_state ().get_boolean ()) {
                 hiding_timer = 0;
                 return false;
             }

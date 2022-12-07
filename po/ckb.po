@@ -7,88 +7,89 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-09 20:38+0000\n"
-"PO-Revision-Date: 2016-07-30 14:30+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
-"Language-Team: Kurdish <ku@li.org>\n"
-"Language: ku\n"
+"POT-Creation-Date: 2022-10-20 17:53+0000\n"
+"PO-Revision-Date: 2022-10-07 13:03+0000\n"
+"Last-Translator: Aga Ismael <agaesmaeel@gmail.com>\n"
+"Language-Team: Kurdish (Central) <https://l10n.elementary.io/projects/videos/"
+"videos/ckb/>\n"
+"Language: ckb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
-"X-Generator: Launchpad (build 18354)\n"
 
-#: src/Application.vala:77 src/Window.vala:515
+#: src/Application.vala:96 src/Window.vala:559
 msgid "Videos"
 msgstr "ڤیدۆکان"
 
 #. For better translation
 #: src/Window.vala:39
 msgid "Back"
-msgstr ""
+msgstr "گەڕانەوە"
 
-#: src/Window.vala:40
+#: src/Window.vala:40 src/Window.vala:562
 msgid "Library"
-msgstr ""
+msgstr "ژێدەرگە"
 
 #: src/Window.vala:41
 msgid "Episodes"
-msgstr ""
+msgstr "ئەڵقەکان"
 
-#: src/Window.vala:70
+#: src/Window.vala:106
 msgid "Search Videos"
-msgstr ""
+msgstr "گەڕان"
 
-#: src/Window.vala:83
-#, fuzzy
+#: src/Window.vala:119
 msgid "Play one video"
-msgstr "دووپاتکردنی کۆتایین ڤیدیۆ"
+msgstr "یەک ڤیدیۆ لێدە"
 
-#: src/Window.vala:84
+#: src/Window.vala:120
 msgid "Automatically play next videos"
-msgstr ""
+msgstr "خۆکارانە ڤیدیۆی دواتر لێدە"
 
-#: src/Window.vala:155
+#: src/Window.vala:180
 msgid "Restore"
-msgstr ""
+msgstr "گەڕاندنەوە"
 
-#: src/Window.vala:171
+#: src/Window.vala:199
 #, c-format
 msgid "Video '%s' Removed."
-msgstr ""
+msgstr "ڤیدیۆی '%s' سڕایەوە."
 
-#: src/Window.vala:406 src/Widgets/Player/SettingsPopover.vala:36
+#: src/Window.vala:461 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
-msgstr "گشتی فایلەکان"
+msgstr "هەموو پەڕگەکان"
 
-#: src/Window.vala:410
+#: src/Window.vala:465
 msgid "Video files"
-msgstr "فایلی ڤیدیۆ"
+msgstr "پەڕگە ڤیدیۆییەکان"
 
-#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:469 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
-msgstr "دیتن"
+msgstr "کردنەوە"
 
-#: src/Window.vala:417 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:472 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
-msgstr "_دیتن"
+msgstr "_کردنەوە"
 
-#: src/Window.vala:418 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:473 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
-msgstr "_وازهێنان"
+msgstr "_هەڵوەشاندنەوە"
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
-msgstr ""
+msgstr "جۆری پەڕگە نەناسراوەیە"
 
 #: src/Widgets/UnsupportedFileDialog.vala:26
 #, c-format
 msgid "Videos might not be able to play the file '%s'."
-msgstr ""
+msgstr "لەوانەیە بەرنامەی ڤیدیۆز نەتوانێت پەڕگەی '%s' لێبدات."
 
 #: src/Widgets/UnsupportedFileDialog.vala:37
 msgid "Play Anyway"
-msgstr ""
+msgstr "هەرچۆنێک بێت لێیدە"
 
 #: src/Widgets/UnsupportedFileDialog.vala:40
 #, c-format
@@ -96,147 +97,148 @@ msgid ""
 "Unable to play file at: %s\n"
 "The file is not a video (\"%s\")."
 msgstr ""
+"نەتوانرا پەڕگەکە بکرێتەوە لە: %s\n"
+"پەڕگەکە ڤیدیۆ نییە (\"%s\")."
 
 #: src/Widgets/WelcomePage.vala:24
 msgid "No Videos Open"
-msgstr "ڤیدۆ نەکراوە"
+msgstr "هیچ ڤیدیۆیەک نەکراوەتەوە"
 
 #: src/Widgets/WelcomePage.vala:25
 msgid "Select a source to begin playing."
-msgstr "هەڵپژاردنی سەرچاوە بۆ چاولیکردن"
+msgstr "سەرچاوەیەک دیاریبکە بۆ دەستکردن بە سەیرکردن."
 
-#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
-msgstr "کردنەوەی فایل"
+msgstr "کردنەوەی پەڕگە"
 
 #: src/Widgets/WelcomePage.vala:30
 msgid "Open a saved file."
-msgstr "کدنەوە و پاشکەوتی فایل"
+msgstr "کردنەوەی پەڕگەیەکی پاشەکەوتکراو."
 
 #: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:108
 msgid "Replay last video"
-msgstr "دووپاتکردنی کۆتایین ڤیدیۆ"
+msgstr "کۆتا ڤیدیۆ بکەوە"
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:38
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
-msgstr "چاولیکردن لە دیسک"
+msgstr "کردنەوە لە پەپکەوە"
 
 #: src/Widgets/WelcomePage.vala:32
 msgid "Watch a DVD or open a file from disc"
-msgstr "دیتن لە سەر DVD  یان فایلێک لە دیسک"
+msgstr "سەیرکردنی DVD یان کردنەوەی پەڕگەیەک لە دیسکەوە"
 
 #: src/Widgets/WelcomePage.vala:33
 msgid "Browse Library"
-msgstr ""
+msgstr "گەڕان بەناو ژێدەرگە"
 
 #: src/Widgets/WelcomePage.vala:33
 msgid "Watch a movie from your library"
-msgstr ""
+msgstr "فیلم لە ژێدەرگەکەتەوە سەیر بکە"
 
 #: src/Widgets/WelcomePage.vala:111
 msgid "Resume last video"
-msgstr "دەستپێکردنەوە کۆتایین ڤیدیۆ"
+msgstr "دەستپێکردنەوە کۆتا ڤیدیۆ"
 
-#: src/Widgets/Library/EpisodesPage.vala:126
-#: src/Widgets/Library/LibraryPage.vala:181
+#: src/Widgets/Library/EpisodesPage.vala:59
+#: src/Widgets/Library/LibraryPage.vala:64
+msgid "Try changing search terms."
+msgstr "هەوڵدە وشەکانی گەڕان بگۆڕیت."
+
+#: src/Widgets/Library/EpisodesPage.vala:132
+#: src/Widgets/Library/LibraryPage.vala:189
 #, c-format
 msgid "No Results for “%s”"
-msgstr ""
-
-#: src/Widgets/Library/EpisodesPage.vala:126
-#: src/Widgets/Library/LibraryPage.vala:53
-msgid "Try changing search terms."
-msgstr ""
+msgstr "هیچ ئەنجامێک بۆ \"%s\" نەدۆزرایەوە"
 
 #: src/Widgets/Library/LibraryItem.vala:76
 msgid "Move to Trash"
-msgstr ""
+msgstr "گواستنەوەی بۆ تەنەکەی خۆڵ"
 
 #: src/Widgets/Library/LibraryItem.vala:89
 msgid "Set Artwork"
-msgstr ""
+msgstr "دانانی ئارتوێرک"
 
 #: src/Widgets/Library/LibraryItem.vala:179
 msgid "Image files"
-msgstr ""
+msgstr "پەڕگە وێنەییەکان"
 
-#: src/Widgets/Player/BottomBar.vala:64
-msgid "Pause"
-msgstr "وێستان"
-
-#: src/Widgets/Player/BottomBar.vala:68 src/Widgets/Player/BottomBar.vala:85
+#: src/Widgets/Player/BottomBar.vala:64 src/Widgets/Player/BottomBar.vala:123
 msgid "Play"
-msgstr "یاری"
+msgstr "لێدان"
 
-#: src/Widgets/Player/BottomBar.vala:93
+#: src/Widgets/Player/BottomBar.vala:72
 msgid "Playlist"
 msgstr "پلەی لیست"
 
-#: src/Widgets/Player/BottomBar.vala:101
+#: src/Widgets/Player/BottomBar.vala:80
 msgid "Settings"
-msgstr "رێکخستن"
+msgstr "رێکخستنەکان"
 
-#: src/Widgets/Player/PlayerPage.vala:134
+#: src/Widgets/Player/BottomBar.vala:127
+msgid "Pause"
+msgstr "وەستان"
+
+#: src/Widgets/Player/PlayerPage.vala:109
 msgid "Unfullscreen"
-msgstr "چکۆلە کردن"
+msgstr "بچووکردنەوە"
 
-#: src/Widgets/Player/PlayerPage.vala:309
+#: src/Widgets/Player/PlayerPage.vala:267
 msgid "A video is playing"
-msgstr ""
+msgstr "ڤیدیۆیەک کراوەتەوە"
+
+#: src/Widgets/Player/PlaylistPopover.vala:37
+msgid "Clear Playlist"
+msgstr "سڕینەوەی پلەی لیست"
 
 #: src/Widgets/Player/PlaylistPopover.vala:41
-#, fuzzy
-msgid "Clear Playlist"
-msgstr "پلەی لیست"
-
-#: src/Widgets/Player/PlaylistPopover.vala:45
-#: src/Widgets/Player/PlaylistPopover.vala:76
+#: src/Widgets/Player/PlaylistPopover.vala:88
 msgid "Enable Repeat"
-msgstr "چالاککردنی دوپات"
+msgstr "چالاککردنی دووبارە بوونەوە"
 
-#: src/Widgets/Player/PlaylistPopover.vala:73
+#: src/Widgets/Player/PlaylistPopover.vala:85
 msgid "Disable Repeat"
-msgstr "چالاکنکردنی دوبارە"
+msgstr "وەستاندنی دووبارە بوونەوە"
 
-#: src/Widgets/Player/SettingsPopover.vala:40
+#: src/Widgets/Player/SettingsPopover.vala:41
 msgid "Subtitle files"
-msgstr "فایلی ژێرنووس"
+msgstr "پەڕگەی ژێرنووس"
 
 #. .smi
 #. .srt
 #. .sub
 #. .ssa & .ass
 #. exclude .asc, mimetype is generic "application/pgp-encrypted"
-#: src/Widgets/Player/SettingsPopover.vala:47
+#: src/Widgets/Player/SettingsPopover.vala:48
 msgid "External Subtitles"
 msgstr "ژێرنووسی دەرەکی"
 
-#: src/Widgets/Player/SettingsPopover.vala:51
+#: src/Widgets/Player/SettingsPopover.vala:52
 msgid "Audio:"
-msgstr "دەنگ :"
+msgstr "دەنگ:"
 
-#: src/Widgets/Player/SettingsPopover.vala:54
+#: src/Widgets/Player/SettingsPopover.vala:56
 msgid "Subtitles:"
-msgstr "ژێر نووس"
+msgstr "ژێر نووس:"
 
-#: src/Widgets/Player/SettingsPopover.vala:57
+#: src/Widgets/Player/SettingsPopover.vala:60
 msgid "External Subtitles:"
-msgstr "ژێرنووسی دەرەکی"
+msgstr "ژێرنووسی دەرەکی:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:132
-#: src/Widgets/Player/SettingsPopover.vala:161
+#: src/Widgets/Player/SettingsPopover.vala:137
+#: src/Widgets/Player/SettingsPopover.vala:166
 #, c-format
 msgid "Track %u"
-msgstr ""
+msgstr "تراکی %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:134
+#: src/Widgets/Player/SettingsPopover.vala:139
 msgid "None"
 msgstr "هیج"
 
-#: src/Widgets/Player/SettingsPopover.vala:174
+#: src/Widgets/Player/SettingsPopover.vala:179
 msgid "Default"
-msgstr "فەرمی"
+msgstr "بنەڕەت"
 
 #~ msgid "Audience;Video;Player;Movies;"
 #~ msgstr "Audience;ڤیدیۆ;پلەیەر;فیلم;"

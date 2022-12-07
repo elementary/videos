@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2016-2016 elementary LLC.
+ * Copyright 2016-2021 elementary, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,182 +18,180 @@
  *
  */
 
-namespace Audience {
-    public class EpisodesPage : Gtk.Grid {
-        public Gtk.Image poster { get; set; }
-        Gtk.ScrolledWindow scrolled_window;
-        Gtk.FlowBox view_episodes;
-        Granite.Widgets.AlertView alert_view;
-        Gee.ArrayList<Audience.Objects.Video> shown_episodes;
+public class Audience.EpisodesPage : Gtk.Grid {
+    public Gtk.Image poster { get; private set; }
 
-        public Audience.Services.LibraryManager manager;
+    private Gtk.FlowBox view_episodes;
+    private Granite.Widgets.AlertView alert_view;
+    private Gee.ArrayList<Audience.Objects.Video> shown_episodes;
 
-        string query;
-        Objects.Video poster_source;
+    private string query;
+    private Objects.Video poster_source;
 
-        construct {
-            query = "";
-            poster_source = null;
+    construct {
+        query = "";
+        poster_source = null;
 
-            poster = new Gtk.Image ();
-            poster.margin = 24;
-            poster.margin_end = 0;
-            poster.valign = Gtk.Align.START;
-            poster.get_style_context ().add_class ("card");
+        poster = new Gtk.Image () {
+            margin = 24,
+            margin_end = 0,
+            valign = Gtk.Align.START
+        };
+        poster.get_style_context ().add_class (Granite.STYLE_CLASS_CARD);
 
-            view_episodes = new Gtk.FlowBox ();
-            view_episodes.margin = 24;
-            view_episodes.homogeneous = true;
-            view_episodes.valign = Gtk.Align.START;
-            view_episodes.selection_mode = Gtk.SelectionMode.NONE;
-            view_episodes.set_sort_func (episode_sort_func);
-            view_episodes.set_filter_func (episodes_filter_func);
-            view_episodes.child_activated.connect (play_video);
-            view_episodes.max_children_per_line = 1;
+        view_episodes = new Gtk.FlowBox () {
+            homogeneous = true,
+            margin = 24,
+            max_children_per_line = 1,
+            selection_mode = Gtk.SelectionMode.NONE,
+            valign = Gtk.Align.START
+        };
+        view_episodes.set_sort_func (episode_sort_func);
+        view_episodes.set_filter_func (episodes_filter_func);
 
-            scrolled_window = new Gtk.ScrolledWindow (null, null);
-            scrolled_window.expand = true;
-            scrolled_window.add (view_episodes);
+        var scrolled_window = new Gtk.ScrolledWindow (null, null) {
+            expand = true
+        };
+        scrolled_window.add (view_episodes);
 
-            alert_view = new Granite.Widgets.AlertView ("", "", "");
-            alert_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
+        alert_view = new Granite.Widgets.AlertView (
+            "",
+            _("Try changing search terms."),
+            "edit-find-symbolic"
+        );
+        alert_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
+        alert_view.no_show_all = true;
+
+        expand = true;
+        attach (poster, 0, 1);
+        attach (scrolled_window, 1, 1);
+        attach (alert_view, 1, 1);
+
+        view_episodes.child_activated.connect (play_video);
+
+        var manager = Audience.Services.LibraryManager.get_instance ();
+        manager.video_file_deleted.connect (remove_item_from_path);
+        manager.video_file_detected.connect (add_item);
+    }
+
+    public void set_episodes_items (Gee.ArrayList<Audience.Objects.Video> episodes) {
+        view_episodes.forall ((item) => {
+            item.dispose ();
+        });
+        shown_episodes = new Gee.ArrayList<Audience.Objects.Video> ();
+        foreach (Audience.Objects.Video episode in episodes) {
+            view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
+            shown_episodes.add (episode);
+        }
+        shown_episodes.sort ((a, b) => {
+            var item1 = (Audience.Objects.Video)a;
+            var item2 = (Audience.Objects.Video)b;
+            if (item1 != null && item2 != null) {
+                return item1.file.collate (item2.file);
+            }
+            return 0;
+        });
+        if (poster_source != null) {
+            poster_source.poster_changed.disconnect (update_poster);
+        }
+        poster_source = episodes.first ();
+        update_poster (poster_source);
+        poster_source.poster_changed.connect (update_poster);
+    }
+
+    private void update_poster (Objects.Video episode) {
+        poster.pixbuf = episode.poster;
+    }
+
+    private void play_video (Gtk.FlowBoxChild item) {
+        var selected = (item as Audience.LibraryItem);
+        var video = selected.episodes.first ();
+        if (video.video_file.query_exists ()) {
+            string uri = video.video_file.get_uri ();
+            bool from_beginning = uri != settings.get_string ("current-video");
+            var window = App.get_instance ().mainwindow;// Clean playlist
+            window.clear_playlist ();
+            window.add_to_playlist (uri, false);
+            window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
+            if (window.autoqueue_next_active ()) {
+                // Add next from the current view to the queue
+                int played_index = shown_episodes.index_of (video);
+                foreach (Audience.Objects.Video episode in shown_episodes.slice (played_index, shown_episodes.size)) {
+                    window.append_to_playlist (episode.video_file);
+                }
+            }
+        }
+    }
+
+    public void filter (string text) {
+         query = text.strip ();
+         view_episodes.invalidate_filter ();
+         if (!has_child ()) {
+            alert_view.no_show_all = false;
+            alert_view.show_all ();
+            alert_view.title = _("No Results for “%s”").printf (text);
+            alert_view.show ();
+         } else {
             alert_view.hide ();
+         }
+    }
 
-            expand = true;
-            attach (poster, 0, 1, 1, 1);
-            attach (scrolled_window, 1, 1, 1, 1);
-            attach (alert_view, 1, 1, 1, 1);
-
-            manager = Audience.Services.LibraryManager.get_instance ();
-            manager.video_file_deleted.connect (remove_item_from_path);
-            manager.video_file_detected.connect (add_item);
-        }
-
-        public void set_episodes_items (Gee.ArrayList<Audience.Objects.Video> episodes) {
-            view_episodes.forall ((item) => {
-                item.dispose ();
-            });
-            shown_episodes = new Gee.ArrayList<Audience.Objects.Video> ();
-            foreach (Audience.Objects.Video episode in episodes) {
-                view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
-                shown_episodes.add (episode);
-            }
-            shown_episodes.sort ((a, b) => {
-                var item1 = (Audience.Objects.Video)a;
-                var item2 = (Audience.Objects.Video)b;
-                if (item1 != null && item2 != null) {
-                    return item1.file.collate (item2.file);
-                }
-                return 0;
-            });
-            if (poster_source != null) {
-                poster_source.poster_changed.disconnect (update_poster);
-            }
-            poster_source = episodes.first ();
-            update_poster (poster_source);
-            poster_source.poster_changed.connect (update_poster);
-        }
-
-        private void update_poster (Objects.Video episode) {
-            poster.pixbuf = episode.poster;
-        }
-
-        private void play_video (Gtk.FlowBoxChild item) {
-            var selected = (item as Audience.LibraryItem);
-            var video = selected.episodes.first ();
-            if (video.video_file.query_exists ()) {
-                string uri = video.video_file.get_uri ();
-                bool from_beginning = uri != settings.get_string ("current-video");
-                var window = App.get_instance ().mainwindow;// Clean playlist
-                window.clear_playlist ();
-                window.add_to_playlist (uri, false);
-                window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
-                if (window.autoqueue_next_active ()) {
-                    // Add next from the current view to the queue
-                    int played_index = shown_episodes.index_of (video);
-                    foreach (Audience.Objects.Video episode in shown_episodes.slice (played_index, shown_episodes.size)) {
-                        window.append_to_playlist (episode.video_file);
-                    }
-                }
-            }
-        }
-
-        public void filter (string text) {
-             query = text.strip ();
-             view_episodes.invalidate_filter ();
-             if (!has_child ()) {
-                show_alert (_("No Results for “%s”").printf (text), _("Try changing search terms."), "edit-find-symbolic");
-             } else {
-                alert_view.hide ();
-             }
-        }
-
-        private bool episodes_filter_func (Gtk.FlowBoxChild child) {
-            if (query.length == 0) {
-                return true;
-            }
-
-            string[] filter_elements = query.split (" ");
-            var video_title = ((LibraryItem)(child)).get_title ();
-
-            foreach (string filter_element in filter_elements) {
-                if (!video_title.down ().contains (filter_element.down ())) {
-                    return false;
-                }
-            }
+    private bool episodes_filter_func (Gtk.FlowBoxChild child) {
+        if (query.length == 0) {
             return true;
         }
 
-        private int episode_sort_func (Gtk.FlowBoxChild child1, Gtk.FlowBoxChild child2) {
-            var item1 = (LibraryItem)child1;
-            var item2 = (LibraryItem)child2;
-            if (item1 != null && item2 != null) {
-                return item1.episodes.first ().file.collate (item2.episodes.first ().file);
-            }
-            return 0;
-        }
+        string[] filter_elements = query.split (" ");
+        var video_title = ((LibraryItem)(child)).get_title ();
 
-        private void add_item (Audience.Objects.Video episode) {
-            if (view_episodes.get_children ().length () > 0 ) {
-                var first = (view_episodes.get_children ().first ().data as Audience.LibraryItem);
-                if (first != null && first.episodes.first ().video_file.get_parent ().get_path () == episode.video_file.get_parent ().get_path ()) {
-                    view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
-                }
+        foreach (string filter_element in filter_elements) {
+            if (!video_title.down ().contains (filter_element.down ())) {
+                return false;
             }
         }
+        return true;
+    }
 
-        private async void remove_item_from_path (string path ) {
-            foreach (var child in view_episodes.get_children ()) {
-                if (((LibraryItem)(child)).episodes.size == 0 ||
-                    ((LibraryItem)(child)).episodes.first ().video_file.get_path ().has_prefix (path)) {
+    private int episode_sort_func (Gtk.FlowBoxChild child1, Gtk.FlowBoxChild child2) {
+        var item1 = (LibraryItem)child1;
+        var item2 = (LibraryItem)child2;
+        if (item1 != null && item2 != null) {
+            return item1.episodes.first ().file.collate (item2.episodes.first ().file);
+        }
+        return 0;
+    }
 
-                    child.dispose ();
-                }
+    private void add_item (Audience.Objects.Video episode) {
+        if (view_episodes.get_children ().length () > 0 ) {
+            var first = (view_episodes.get_children ().first ().data as Audience.LibraryItem);
+            if (first != null && first.episodes.first ().video_file.get_parent ().get_path () == episode.video_file.get_parent ().get_path ()) {
+                view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
             }
+        }
+    }
 
-            if (Audience.App.get_instance ().mainwindow.get_visible_child () == this && view_episodes.get_children ().length () == 0) {
-                Audience.App.get_instance ().mainwindow.navigate_back ();
+    private async void remove_item_from_path (string path ) {
+        foreach (var child in view_episodes.get_children ()) {
+            if (((LibraryItem)(child)).episodes.size == 0 ||
+                ((LibraryItem)(child)).episodes.first ().video_file.get_path ().has_prefix (path)) {
+                child.dispose ();
             }
         }
 
-        public bool has_child () {
-            if (view_episodes.get_children ().length () > 0) {
-               foreach (unowned Gtk.Widget child in view_episodes.get_children ()) {
-                   if (child.get_child_visible ()) {
-                       return true;
-                   }
-                }
-            }
-            return false;
+        var deck = (Hdy.Deck) get_ancestor (typeof (Hdy.Deck));
+        if (deck.visible_child == this && view_episodes.get_children ().length () == 0) {
+            deck.navigate (Hdy.NavigationDirection.BACK);
         }
+    }
 
-        public void show_alert (string primary_text, string secondary_text, string icon_name) {
-            alert_view.no_show_all = false;
-            alert_view.show_all ();
-            alert_view.title = primary_text;
-            alert_view.description = secondary_text;
-            alert_view.icon_name = icon_name;
-            alert_view.show ();
+    private bool has_child () {
+        if (view_episodes.get_children ().length () > 0) {
+           foreach (unowned Gtk.Widget child in view_episodes.get_children ()) {
+               if (child.get_child_visible ()) {
+                   return true;
+               }
+            }
         }
+        return false;
     }
 }

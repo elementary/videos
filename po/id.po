@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-09 20:38+0000\n"
+"POT-Creation-Date: 2022-10-20 17:53+0000\n"
 "PO-Revision-Date: 2017-06-20 07:44+0000\n"
 "Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
 "Language-Team: Indonesian <https://l10n.elementary.io/projects/videos/videos/"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:77 src/Window.vala:515
+#: src/Application.vala:96 src/Window.vala:559
 msgid "Videos"
 msgstr "Video"
 
@@ -28,7 +28,7 @@ msgstr "Video"
 msgid "Back"
 msgstr "Kembali"
 
-#: src/Window.vala:40
+#: src/Window.vala:40 src/Window.vala:562
 msgid "Library"
 msgstr "Perpustakaan"
 
@@ -36,45 +36,45 @@ msgstr "Perpustakaan"
 msgid "Episodes"
 msgstr "Episode"
 
-#: src/Window.vala:70
+#: src/Window.vala:106
 msgid "Search Videos"
 msgstr "Cari Video"
 
-#: src/Window.vala:83
+#: src/Window.vala:119
 #, fuzzy
 msgid "Play one video"
 msgstr "Putar ulang video terakhir"
 
-#: src/Window.vala:84
+#: src/Window.vala:120
 msgid "Automatically play next videos"
 msgstr ""
 
-#: src/Window.vala:155
+#: src/Window.vala:180
 msgid "Restore"
 msgstr "Kembalikan"
 
-#: src/Window.vala:171
+#: src/Window.vala:199
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Video '%s' Dihapus."
 
-#: src/Window.vala:406 src/Widgets/Player/SettingsPopover.vala:36
+#: src/Window.vala:461 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Semua file"
 
-#: src/Window.vala:410
+#: src/Window.vala:465
 msgid "Video files"
 msgstr "Berkas video"
 
-#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:469 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Buka"
 
-#: src/Window.vala:417 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:472 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Buka"
 
-#: src/Window.vala:418 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:473 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Batal"
 
@@ -106,7 +106,7 @@ msgstr "Tidak Ada Video yang Dibuka"
 msgid "Select a source to begin playing."
 msgstr "Pilih sumber untuk mulai memutar."
 
-#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
 msgstr "Buka berkas"
 
@@ -118,7 +118,7 @@ msgstr "Buka berkas tersimpan."
 msgid "Replay last video"
 msgstr "Putar ulang video terakhir"
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:38
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "Putar Cakram"
 
@@ -138,16 +138,16 @@ msgstr "Tonton film dari perpustakaan Anda"
 msgid "Resume last video"
 msgstr "Lanjutkan video terakhir"
 
-#: src/Widgets/Library/EpisodesPage.vala:126
-#: src/Widgets/Library/LibraryPage.vala:181
+#: src/Widgets/Library/EpisodesPage.vala:59
+#: src/Widgets/Library/LibraryPage.vala:64
+msgid "Try changing search terms."
+msgstr "Coba ubah istilah penelusuran."
+
+#: src/Widgets/Library/EpisodesPage.vala:132
+#: src/Widgets/Library/LibraryPage.vala:189
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Tidak ada hasil untuk \"%s\""
-
-#: src/Widgets/Library/EpisodesPage.vala:126
-#: src/Widgets/Library/LibraryPage.vala:53
-msgid "Try changing search terms."
-msgstr "Coba ubah istilah penelusuran."
 
 #: src/Widgets/Library/LibraryItem.vala:76
 msgid "Move to Trash"
@@ -161,45 +161,45 @@ msgstr "Atur karya seni"
 msgid "Image files"
 msgstr "Berkas gambar"
 
-#: src/Widgets/Player/BottomBar.vala:64
-msgid "Pause"
-msgstr "Jeda"
-
-#: src/Widgets/Player/BottomBar.vala:68 src/Widgets/Player/BottomBar.vala:85
+#: src/Widgets/Player/BottomBar.vala:64 src/Widgets/Player/BottomBar.vala:123
 msgid "Play"
 msgstr "Putar"
 
-#: src/Widgets/Player/BottomBar.vala:93
+#: src/Widgets/Player/BottomBar.vala:72
 msgid "Playlist"
 msgstr "Daftar Putar"
 
-#: src/Widgets/Player/BottomBar.vala:101
+#: src/Widgets/Player/BottomBar.vala:80
 msgid "Settings"
 msgstr "Pengaturan"
 
-#: src/Widgets/Player/PlayerPage.vala:134
+#: src/Widgets/Player/BottomBar.vala:127
+msgid "Pause"
+msgstr "Jeda"
+
+#: src/Widgets/Player/PlayerPage.vala:109
 msgid "Unfullscreen"
 msgstr "Tidak layar penuh"
 
-#: src/Widgets/Player/PlayerPage.vala:309
+#: src/Widgets/Player/PlayerPage.vala:267
 msgid "A video is playing"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/Player/PlaylistPopover.vala:37
 #, fuzzy
 msgid "Clear Playlist"
 msgstr "Daftar Putar"
 
-#: src/Widgets/Player/PlaylistPopover.vala:45
-#: src/Widgets/Player/PlaylistPopover.vala:76
+#: src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/Player/PlaylistPopover.vala:88
 msgid "Enable Repeat"
 msgstr "Aktifkan Ulangi"
 
-#: src/Widgets/Player/PlaylistPopover.vala:73
+#: src/Widgets/Player/PlaylistPopover.vala:85
 msgid "Disable Repeat"
 msgstr "Nonaktifkan Ulangi"
 
-#: src/Widgets/Player/SettingsPopover.vala:40
+#: src/Widgets/Player/SettingsPopover.vala:41
 msgid "Subtitle files"
 msgstr "Berkas subtitel"
 
@@ -208,34 +208,34 @@ msgstr "Berkas subtitel"
 #. .sub
 #. .ssa & .ass
 #. exclude .asc, mimetype is generic "application/pgp-encrypted"
-#: src/Widgets/Player/SettingsPopover.vala:47
+#: src/Widgets/Player/SettingsPopover.vala:48
 msgid "External Subtitles"
 msgstr "Subtitle Eksternal"
 
-#: src/Widgets/Player/SettingsPopover.vala:51
+#: src/Widgets/Player/SettingsPopover.vala:52
 msgid "Audio:"
 msgstr "Audio:"
 
-#: src/Widgets/Player/SettingsPopover.vala:54
+#: src/Widgets/Player/SettingsPopover.vala:56
 msgid "Subtitles:"
 msgstr "Subtitel:"
 
-#: src/Widgets/Player/SettingsPopover.vala:57
+#: src/Widgets/Player/SettingsPopover.vala:60
 msgid "External Subtitles:"
 msgstr "Subtitel Eksternal:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:132
-#: src/Widgets/Player/SettingsPopover.vala:161
+#: src/Widgets/Player/SettingsPopover.vala:137
+#: src/Widgets/Player/SettingsPopover.vala:166
 #, c-format
 msgid "Track %u"
 msgstr "Trek %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:134
+#: src/Widgets/Player/SettingsPopover.vala:139
 msgid "None"
 msgstr "Tidak ada"
 
-#: src/Widgets/Player/SettingsPopover.vala:174
+#: src/Widgets/Player/SettingsPopover.vala:179
 msgid "Default"
 msgstr "Standar"
 

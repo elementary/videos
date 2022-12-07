@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-09 20:38+0000\n"
+"POT-Creation-Date: 2022-10-20 17:53+0000\n"
 "PO-Revision-Date: 2019-10-16 15:23+0000\n"
 "Last-Translator: Daniel R. <riesp@pm.me>\n"
 "Language-Team: Galician <https://l10n.elementary.io/projects/videos/videos/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.7.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:77 src/Window.vala:515
+#: src/Application.vala:96 src/Window.vala:559
 msgid "Videos"
 msgstr "Vídeos"
 
@@ -29,7 +29,7 @@ msgstr "Vídeos"
 msgid "Back"
 msgstr "Volver"
 
-#: src/Window.vala:40
+#: src/Window.vala:40 src/Window.vala:562
 msgid "Library"
 msgstr "Libraría"
 
@@ -37,45 +37,45 @@ msgstr "Libraría"
 msgid "Episodes"
 msgstr "Episodios"
 
-#: src/Window.vala:70
+#: src/Window.vala:106
 msgid "Search Videos"
 msgstr "Procurar vídeos"
 
-#: src/Window.vala:83
+#: src/Window.vala:119
 #, fuzzy
 msgid "Play one video"
 msgstr "Repetir o último vídeo"
 
-#: src/Window.vala:84
+#: src/Window.vala:120
 msgid "Automatically play next videos"
 msgstr ""
 
-#: src/Window.vala:155
+#: src/Window.vala:180
 msgid "Restore"
 msgstr "Restaurar"
 
-#: src/Window.vala:171
+#: src/Window.vala:199
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Vídeo “%s” eliminado."
 
-#: src/Window.vala:406 src/Widgets/Player/SettingsPopover.vala:36
+#: src/Window.vala:461 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Todos os ficheiros"
 
-#: src/Window.vala:410
+#: src/Window.vala:465
 msgid "Video files"
 msgstr "Ficheiros de vídeo"
 
-#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:469 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Aberto"
 
-#: src/Window.vala:417 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:472 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Abrir"
 
-#: src/Window.vala:418 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:473 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Cancelar"
 
@@ -107,7 +107,7 @@ msgstr "Non hai ningún vídeo aberto"
 msgid "Select a source to begin playing."
 msgstr "Seleccione unha orixe para comezar a reproducir."
 
-#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
 msgstr "Abrir un ficheiro"
 
@@ -119,7 +119,7 @@ msgstr "Abrir un ficheiro gardado."
 msgid "Replay last video"
 msgstr "Repetir o último vídeo"
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:38
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "Reproducir desde un disco"
 
@@ -139,16 +139,16 @@ msgstr "Ver unha película da súa videoteca"
 msgid "Resume last video"
 msgstr "Continuar reproducindo o último vídeo"
 
-#: src/Widgets/Library/EpisodesPage.vala:126
-#: src/Widgets/Library/LibraryPage.vala:181
+#: src/Widgets/Library/EpisodesPage.vala:59
+#: src/Widgets/Library/LibraryPage.vala:64
+msgid "Try changing search terms."
+msgstr "Tente cambiar os termos de procura."
+
+#: src/Widgets/Library/EpisodesPage.vala:132
+#: src/Widgets/Library/LibraryPage.vala:189
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Non hai resultados para “%s”"
-
-#: src/Widgets/Library/EpisodesPage.vala:126
-#: src/Widgets/Library/LibraryPage.vala:53
-msgid "Try changing search terms."
-msgstr "Tente cambiar os termos de procura."
 
 #: src/Widgets/Library/LibraryItem.vala:76
 msgid "Move to Trash"
@@ -162,45 +162,45 @@ msgstr "Engadir carátula"
 msgid "Image files"
 msgstr "Ficheiros de imaxes"
 
-#: src/Widgets/Player/BottomBar.vala:64
-msgid "Pause"
-msgstr "Deter"
-
-#: src/Widgets/Player/BottomBar.vala:68 src/Widgets/Player/BottomBar.vala:85
+#: src/Widgets/Player/BottomBar.vala:64 src/Widgets/Player/BottomBar.vala:123
 msgid "Play"
 msgstr "Reproducir"
 
-#: src/Widgets/Player/BottomBar.vala:93
+#: src/Widgets/Player/BottomBar.vala:72
 msgid "Playlist"
 msgstr "Lista de reprodución"
 
-#: src/Widgets/Player/BottomBar.vala:101
+#: src/Widgets/Player/BottomBar.vala:80
 msgid "Settings"
 msgstr "Axustes"
 
-#: src/Widgets/Player/PlayerPage.vala:134
+#: src/Widgets/Player/BottomBar.vala:127
+msgid "Pause"
+msgstr "Deter"
+
+#: src/Widgets/Player/PlayerPage.vala:109
 msgid "Unfullscreen"
 msgstr "Saír de pantalla completa"
 
-#: src/Widgets/Player/PlayerPage.vala:309
+#: src/Widgets/Player/PlayerPage.vala:267
 msgid "A video is playing"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/Player/PlaylistPopover.vala:37
 #, fuzzy
 msgid "Clear Playlist"
 msgstr "Lista de reprodución"
 
-#: src/Widgets/Player/PlaylistPopover.vala:45
-#: src/Widgets/Player/PlaylistPopover.vala:76
+#: src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/Player/PlaylistPopover.vala:88
 msgid "Enable Repeat"
 msgstr "Activar a repetición"
 
-#: src/Widgets/Player/PlaylistPopover.vala:73
+#: src/Widgets/Player/PlaylistPopover.vala:85
 msgid "Disable Repeat"
 msgstr "Desactivar a repetición"
 
-#: src/Widgets/Player/SettingsPopover.vala:40
+#: src/Widgets/Player/SettingsPopover.vala:41
 msgid "Subtitle files"
 msgstr "Ficheiros de subtítulos"
 
@@ -209,34 +209,34 @@ msgstr "Ficheiros de subtítulos"
 #. .sub
 #. .ssa & .ass
 #. exclude .asc, mimetype is generic "application/pgp-encrypted"
-#: src/Widgets/Player/SettingsPopover.vala:47
+#: src/Widgets/Player/SettingsPopover.vala:48
 msgid "External Subtitles"
 msgstr "Subtítulos externos"
 
-#: src/Widgets/Player/SettingsPopover.vala:51
+#: src/Widgets/Player/SettingsPopover.vala:52
 msgid "Audio:"
 msgstr "Son:"
 
-#: src/Widgets/Player/SettingsPopover.vala:54
+#: src/Widgets/Player/SettingsPopover.vala:56
 msgid "Subtitles:"
 msgstr "Subtítulos:"
 
-#: src/Widgets/Player/SettingsPopover.vala:57
+#: src/Widgets/Player/SettingsPopover.vala:60
 msgid "External Subtitles:"
 msgstr "Subtítulos externos:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:132
-#: src/Widgets/Player/SettingsPopover.vala:161
+#: src/Widgets/Player/SettingsPopover.vala:137
+#: src/Widgets/Player/SettingsPopover.vala:166
 #, c-format
 msgid "Track %u"
 msgstr "Pista %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:134
+#: src/Widgets/Player/SettingsPopover.vala:139
 msgid "None"
 msgstr "Ningún"
 
-#: src/Widgets/Player/SettingsPopover.vala:174
+#: src/Widgets/Player/SettingsPopover.vala:179
 msgid "Default"
 msgstr "Predeterminado"
 
