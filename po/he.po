@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-09 16:58+0000\n"
+"POT-Creation-Date: 2022-10-20 17:53+0000\n"
 "PO-Revision-Date: 2020-09-29 06:14+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/videos/videos/he/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:79 src/Window.vala:535
+#: src/Application.vala:96 src/Window.vala:559
 msgid "Videos"
 msgstr "סרטונים"
 
@@ -29,7 +29,7 @@ msgstr "סרטונים"
 msgid "Back"
 msgstr "חזרה"
 
-#: src/Window.vala:40 src/Window.vala:538
+#: src/Window.vala:40 src/Window.vala:562
 msgid "Library"
 msgstr "ספריה"
 
@@ -37,44 +37,44 @@ msgstr "ספריה"
 msgid "Episodes"
 msgstr "פרקים"
 
-#: src/Window.vala:96
+#: src/Window.vala:106
 msgid "Search Videos"
 msgstr "חיפוש בסרטונים"
 
-#: src/Window.vala:109
+#: src/Window.vala:119
 msgid "Play one video"
 msgstr "ניגון סרטון אחד"
 
-#: src/Window.vala:110
+#: src/Window.vala:120
 msgid "Automatically play next videos"
 msgstr "לנגן אוטומטית את הסרטונים הבאים"
 
-#: src/Window.vala:170
+#: src/Window.vala:180
 msgid "Restore"
 msgstr "שחזור"
 
-#: src/Window.vala:192
+#: src/Window.vala:199
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "הסרטון ‚%s‘ הוסר."
 
-#: src/Window.vala:437 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:461 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "כל הקבצים"
 
-#: src/Window.vala:441
+#: src/Window.vala:465
 msgid "Video files"
 msgstr "קובצי וידאו"
 
-#: src/Window.vala:445 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:469 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "פתוחה"
 
-#: src/Window.vala:448 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:472 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_פתיחה"
 
-#: src/Window.vala:449 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:473 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_ביטול"
 
@@ -179,11 +179,11 @@ msgstr "הגדרות"
 msgid "Pause"
 msgstr "השהיה"
 
-#: src/Widgets/Player/PlayerPage.vala:110
+#: src/Widgets/Player/PlayerPage.vala:109
 msgid "Unfullscreen"
 msgstr "יציאה ממסך מלא"
 
-#: src/Widgets/Player/PlayerPage.vala:295
+#: src/Widgets/Player/PlayerPage.vala:267
 msgid "A video is playing"
 msgstr "סרטון מתנגן"
 
