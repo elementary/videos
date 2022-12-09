@@ -19,9 +19,7 @@
 */
 
 public class Audience.Widgets.Playlist : Gtk.ListBox {
-    public signal void play (File path);
     public signal void item_added ();
-    public signal void stop_video ();
 
     private int current = 0;
 
@@ -36,7 +34,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
 
         row_activated.connect ((item) => {
             string filename = ((PlaylistItem)(item)).filename;
-            play (File.new_for_commandline_arg (filename));
+            PlaybackManager.get_default ().play (File.new_for_commandline_arg (filename));
         });
 
         Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, TARGET_ENTRIES, Gdk.DragAction.MOVE);
@@ -63,7 +61,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         }
 
         var next_item = (children.nth_data (current) as PlaylistItem);
-        play (File.new_for_commandline_arg (next_item.filename));
+        PlaybackManager.get_default ().play (File.new_for_commandline_arg (next_item.filename));
         return true;
     }
 
@@ -72,12 +70,12 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         current--;
         if (current < 0) {
             var first_item = children.first ().data as PlaylistItem;
-            play (File.new_for_commandline_arg (first_item.filename));
+            PlaybackManager.get_default ().play (File.new_for_commandline_arg (first_item.filename));
             return;
         }
 
         var next_item = (children.nth_data (current) as PlaylistItem);
-        play (File.new_for_commandline_arg (next_item.filename));
+        PlaybackManager.get_default ().play (File.new_for_commandline_arg (next_item.filename));
     }
 
     public void add_item (File path) {
@@ -111,7 +109,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         }
 
         if (should_stop) {
-            stop_video ();
+            PlaybackManager.get_default ().stop ();
         }
     }
 

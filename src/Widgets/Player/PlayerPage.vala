@@ -217,11 +217,11 @@ namespace Audience {
             });
 
             //playlist wants us to open a file
-            get_playlist_widget ().play.connect ((file) => {
+            PlaybackManager.get_default ().play.connect ((file) => {
                 ((Audience.Window) App.get_instance ().active_window).open_files ({ File.new_for_uri (file.get_uri ()) });
             });
 
-            get_playlist_widget ().stop_video.connect (() => {
+            PlaybackManager.get_default ().stop.connect (() => {
                 settings.set_double ("last-stopped", 0);
                 settings.set_strv ("last-played-videos", {});
                 settings.set_string ("current-video", "");
