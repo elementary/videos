@@ -46,6 +46,10 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
             }
             add_item (File.new_for_uri (settings.get_strv ("last-played-videos")[i]));
         }
+
+        var playback_manager = PlaybackManager.get_default ();
+        playback_manager.next.connect (() => next ());
+        playback_manager.previous.connect (previous);
     }
 
     ~Playlist () {
@@ -65,7 +69,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         return true;
     }
 
-    public void previous () {
+    private void previous () {
         var children = get_children ();
         current--;
         if (current < 0) {

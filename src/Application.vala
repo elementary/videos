@@ -117,11 +117,11 @@ namespace Audience {
         }
 
         private void action_next () {
-            mainwindow.player_page.get_playlist_widget ().next ();
+            PlaybackManager.get_default ().next ();
         }
 
         private void action_previous () {
-            mainwindow.player_page.get_playlist_widget ().previous ();
+            PlaybackManager.get_default ().previous ();
         }
 
         private void on_bus_acquired (DBusConnection connection, string name) {

@@ -6,6 +6,8 @@
 public class Audience.PlaybackManager : Object {
     public signal void play (File path);
     public signal void stop ();
+    public signal void next ();
+    public signal void previous ();
 
     private static PlaybackManager? _instance;
     public static PlaybackManager get_default () {
