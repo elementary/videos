@@ -37,6 +37,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         clear_playlist_button.tooltip_text = _("Clear Playlist");
 
         rep = new Gtk.ToggleButton () {
+            action_name = App.ACTION_PREFIX + App.ACTION_REPEAT,
             image = new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON),
             tooltip_text = _("Enable Repeat")
         };
