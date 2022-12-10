@@ -149,28 +149,15 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         this.current = current_played;
     }
 
-    private List<string> get_all_items () {
-        var list = new List<string> ();
-        foreach (Gtk.Widget item in get_children ()) {
-            string name = ((PlaylistItem)(item)).filename;
-            list.append (name);
-        }
-
-        return (owned) list;
-    }
-
     private void save_playlist () {
         if (Audience.App.get_instance ().mainwindow.is_privacy_mode_enabled ()) {
             return;
         }
 
-        var list = get_all_items ();
-
-        uint i = 0;
-        var videos = new string[list.length ()];
-        foreach (var filename in list) {
-            videos[i] = filename;
-            i++;
+        string[] videos = {};
+        foreach (unowned var child in get_children ()) {
+            var filename = ((PlaylistItem) child).filename;
+            videos += filename;
         }
 
         settings.set_strv ("last-played-videos", videos);
