@@ -203,7 +203,8 @@ namespace Audience {
                 Idle.add (() => {
                     playback.progress = 0;
                     if (!get_playlist_widget ().next ()) {
-                        if (bottom_bar.repeat) {
+                        var repeat_action = Application.get_default ().lookup_action (Audience.App.ACTION_REPEAT);
+                        if (repeat_action.get_state ().get_boolean ()) {
                             string file = get_playlist_widget ().get_first_item ().get_uri ();
                             ((Audience.Window) App.get_instance ().active_window).open_files ({ File.new_for_uri (file) });
                         } else {

@@ -19,7 +19,6 @@
 
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     public Playlist playlist { get; private set; }
-    public Gtk.ToggleButton rep { get; private set; }
 
     private Gtk.Button dvd;
     private const int HEIGHT_OFFSET = 300;
@@ -36,7 +35,8 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         var clear_playlist_button = new Gtk.Button.from_icon_name ("edit-delete-symbolic", Gtk.IconSize.BUTTON);
         clear_playlist_button.tooltip_text = _("Clear Playlist");
 
-        rep = new Gtk.ToggleButton () {
+        var rep = new Gtk.ToggleButton () {
+            action_name = App.ACTION_PREFIX + App.ACTION_REPEAT,
             image = new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON),
             tooltip_text = _("Enable Repeat")
         };

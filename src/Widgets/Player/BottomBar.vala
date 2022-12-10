@@ -49,15 +49,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         }
     }
 
-    public bool repeat {
-        get {
-            return playlist_popover.rep.active;
-        }
-        set {
-            playlist_popover.rep.active = value;
-        }
-    }
-
     public BottomBar (ClutterGst.Playback playback) {
         play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON) {
             action_name = App.ACTION_PREFIX + App.ACTION_PLAY_PAUSE,
