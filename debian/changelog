@@ -1,3 +1,22 @@
+io.elementary.videos (2.9.0) bionic; urgency=medium
+
+  * Release 2.9.0 (#315)
+  * Update translation files
+  * Update Flatpak Runtime to 7.1 (#317)
+  * Square icon (#299)
+  * Update translation template
+  * Implement MPRIS (#306)
+  * Git ignore flatpak build and temporary files (#311)
+  * SeekBar: rewrite how progress and duration are set (#310)
+  * Window: use more actions for keyboard shortcuts (#308)
+  * Combine SeekBar and TimeWidget (#309)
+  * PlaylistItem: Grid → Box, and .menuitem (#304)
+  * BottomBar: Remove get_preferred_width (#305)
+  * Add SeekBar (#302)
+  * Utils: Remove unused session manager interface (#307)
+
+ -- elementary, Inc. <builds@elementary.io>  Sat, 10 Dec 2022 04:36:40 +0000
+
 io.elementary.videos (2.8.4) bionic; urgency=medium
 
   * Release 2.8.4 (#300)
