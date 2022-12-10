@@ -48,17 +48,19 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         }
 
         var playback_manager = PlaybackManager.get_default ();
+        playback_manager.clear_playlist.connect (clear_items);
         playback_manager.next.connect (next);
         playback_manager.previous.connect (previous);
-        playback_manager.clear_playlist.connect (clear_items);
         playback_manager.save_playlist.connect (save_playlist);
+        playback_manager.set_current.connect (set_current);
+        playback_manager.get_first_item.connect (get_first_item);
     }
 
     ~Playlist () {
         save_playlist ();
     }
 
-    public bool next () {
+    private bool next () {
         var children = get_children ();
         current++;
         if (current >= children.length ()) {
@@ -119,7 +121,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         }
     }
 
-    public File? get_first_item () {
+    private File? get_first_item () {
         var children = get_children ();
         if (children.length () > 0) {
             var first_item = children.first ().data as PlaylistItem;
@@ -129,7 +131,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         return null;
     }
 
-    public void set_current (string current_file) {
+    private void set_current (string current_file) {
         int count = 0;
         int current_played = 0;
 

@@ -206,8 +206,8 @@ namespace Audience {
                     playback.progress = 0;
                     if (!playback_manager.next ()) {
                         if (bottom_bar.repeat) {
-                            string file = bottom_bar.playlist_popover.playlist.get_first_item ().get_uri ();
-                            ((Audience.Window) App.get_instance ().active_window).open_files ({ File.new_for_uri (file) });
+                            var file = playback_manager.get_first_item ();
+                            ((Audience.Window) App.get_instance ().active_window).open_files ({ file });
                         } else {
                             playback.playing = false;
                             settings.set_double ("last-stopped", 0);
@@ -303,9 +303,8 @@ namespace Audience {
                 debug (e.message);
             }
 
-            bottom_bar.playlist_popover.playlist.set_current (uri);
+            PlaybackManager.get_default ().set_current (uri);
             playback.uri = uri;
-
 
             App.get_instance ().active_window.title = get_title (uri);
 
