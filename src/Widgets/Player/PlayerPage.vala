@@ -180,6 +180,8 @@ namespace Audience {
                 return update_pointer_position (event.y, allocation.height);
             });
 
+            var playback_manager = PlaybackManager.get_default ();
+
             destroy.connect (() => {
                 // FIXME:should find better way to decide if its end of playlist
                 if (playback.progress > 0.99) {
@@ -190,7 +192,7 @@ namespace Audience {
                     settings.set_double ("last-stopped", playback.progress);
                 }
 
-                PlaybackManager.get_default ().save_playlist ();
+                playback_manager.save_playlist ();
 
                 if (inhibit_token != 0) {
                     ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
@@ -202,7 +204,7 @@ namespace Audience {
             playback.eos.connect (() => {
                 Idle.add (() => {
                     playback.progress = 0;
-                    if (!bottom_bar.playlist_popover.playlist.next ()) {
+                    if (!playback_manager.next ()) {
                         if (bottom_bar.repeat) {
                             string file = bottom_bar.playlist_popover.playlist.get_first_item ().get_uri ();
                             ((Audience.Window) App.get_instance ().active_window).open_files ({ File.new_for_uri (file) });
@@ -215,8 +217,6 @@ namespace Audience {
                     return false;
                 });
             });
-
-            var playback_manager = PlaybackManager.get_default ();
 
             playback_manager.stop.connect (() => {
                 settings.set_double ("last-stopped", 0);
@@ -291,7 +291,7 @@ namespace Audience {
                     unsupported_file_dialog.response.connect (type => {
                         if (type == Gtk.ResponseType.CANCEL) {
                             // Play next video if available or else go to welcome page
-                            if (!bottom_bar.playlist_popover.playlist.next ()) {
+                            if (!PlaybackManager.get_default ().next ()) {
                                 ended ();
                             }
                         }

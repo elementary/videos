@@ -6,7 +6,7 @@
 public class Audience.PlaybackManager : Object {
     public signal void play (File path);
     public signal void stop ();
-    public signal void next ();
+    public signal bool next ();
     public signal void previous ();
     public signal void set_subtitle (string uri);
     public signal void clear_playlist (bool should_stop = true);

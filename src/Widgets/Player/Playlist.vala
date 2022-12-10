@@ -48,7 +48,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         }
 
         var playback_manager = PlaybackManager.get_default ();
-        playback_manager.next.connect (() => next ());
+        playback_manager.next.connect (next);
         playback_manager.previous.connect (previous);
         playback_manager.clear_playlist.connect (clear_items);
         playback_manager.save_playlist.connect (save_playlist);
