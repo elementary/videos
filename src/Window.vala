@@ -485,11 +485,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
         file.destroy ();
     }
 
-    public bool is_privacy_mode_enabled () {
-        var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
-        return !privacy_settings.get_boolean ("remember-recent-files") || !privacy_settings.get_boolean ("remember-app-usage");
-    }
-
     private async void read_first_disk () {
         var disk_manager = DiskManager.get_default ();
         if (disk_manager.get_volumes ().is_empty) {

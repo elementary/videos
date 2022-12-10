@@ -150,7 +150,8 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
     }
 
     private void save_playlist () {
-        if (Audience.App.get_instance ().mainwindow.is_privacy_mode_enabled ()) {
+        var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
+        if (!privacy_settings.get_boolean ("remember-recent-files") || !privacy_settings.get_boolean ("remember-app-usage")) {
             return;
         }
 
