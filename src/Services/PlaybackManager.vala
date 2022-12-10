@@ -16,13 +16,9 @@ public class Audience.PlaybackManager : Object {
     public signal void set_subtitle (string uri);
     public signal void stop ();
 
-    private static PlaybackManager? _instance;
-    public static PlaybackManager get_default () {
-        if (_instance == null) {
-            _instance = new PlaybackManager ();
-        }
-
-        return _instance;
+    private static GLib.Once<PlaybackManager> instance;
+    public static unowned PlaybackManager get_default () {
+        return instance.once (() => { return new PlaybackManager (); });
     }
 
     private PlaybackManager () {}
