@@ -19,8 +19,6 @@
 */
 
 public class Audience.Widgets.Playlist : Gtk.ListBox {
-    public signal void item_added ();
-
     private int current = 0;
 
     private const Gtk.TargetEntry[] TARGET_ENTRIES = {
@@ -49,11 +47,12 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
 
         var playback_manager = PlaybackManager.get_default ();
         playback_manager.clear_playlist.connect (clear_items);
+        playback_manager.get_first_item.connect (get_first_item);
         playback_manager.next.connect (next);
         playback_manager.previous.connect (previous);
+        playback_manager.queue_file.connect (add_item);
         playback_manager.save_playlist.connect (save_playlist);
         playback_manager.set_current.connect (set_current);
-        playback_manager.get_first_item.connect (get_first_item);
     }
 
     ~Playlist () {
@@ -86,7 +85,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         PlaybackManager.get_default ().play (File.new_for_commandline_arg (next_item.filename));
     }
 
-    public void add_item (File path) {
+    private void add_item (File path) {
         if (!path.query_exists ()) {
             return;
         }
@@ -107,7 +106,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
 
         var row = new PlaylistItem (Audience.get_title (path.get_basename ()), path.get_uri ());
         add (row);
-        item_added ();
+        PlaybackManager.get_default ().item_added ();
     }
 
     private void clear_items (bool should_stop = true) {

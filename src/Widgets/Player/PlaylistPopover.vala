@@ -18,7 +18,6 @@
  */
 
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
-    public Playlist playlist { get; private set; }
     public Gtk.ToggleButton rep { get; private set; }
 
     private Gtk.Button dvd;
@@ -47,7 +46,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             propagate_natural_height = true
         };
 
-        playlist = new Playlist ();
+        var playlist = new Playlist ();
         playlist_scrolled.add (playlist);
 
         var grid = new Gtk.Grid () {

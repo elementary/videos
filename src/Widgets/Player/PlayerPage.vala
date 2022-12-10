@@ -342,7 +342,7 @@ namespace Audience {
             if (is_subtitle (file.get_uri ())) {
                 set_subtitle (file.get_uri ());
             } else {
-                bottom_bar.playlist_popover.playlist.add_item (file);
+                PlaybackManager.get_default ().queue_file (file);
             }
         }
 
