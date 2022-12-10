@@ -205,7 +205,8 @@ namespace Audience {
                 Idle.add (() => {
                     playback.progress = 0;
                     if (!playback_manager.next ()) {
-                        if (bottom_bar.repeat) {
+                        var repeat_action = Application.get_default ().lookup_action (Audience.App.ACTION_REPEAT);
+                        if (repeat_action.get_state ().get_boolean ()) {
                             var file = playback_manager.get_first_item ();
                             ((Audience.Window) App.get_instance ().active_window).open_files ({ file });
                         } else {
