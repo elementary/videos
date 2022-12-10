@@ -338,14 +338,6 @@ namespace Audience {
             return playback.progress;
         }
 
-        public void append_to_playlist (File file) {
-            if (is_subtitle (file.get_uri ())) {
-                set_subtitle (file.get_uri ());
-            } else {
-                PlaybackManager.get_default ().queue_file (file);
-            }
-        }
-
         public void next_audio () {
             bottom_bar.preferences_popover.next_audio ();
         }
@@ -394,22 +386,8 @@ namespace Audience {
             return "";
         }
 
-        private bool is_subtitle (string uri) {
-            if (uri.length < 4 || uri.get_char (uri.length - 4) != '.') {
-                return false;
-            }
-
-            foreach (string ext in SUBTITLE_EXTENSIONS) {
-                if (uri.down ().has_suffix (ext)) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         private ulong ready_handler_id = 0;
-        public void set_subtitle (string uri) {
+        private void set_subtitle (string uri) {
             var progress = playback.progress;
             var is_playing = playback.playing;
 

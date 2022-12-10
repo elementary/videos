@@ -26,4 +26,26 @@ public class Audience.PlaybackManager : Object {
     }
 
     private PlaybackManager () {}
+
+    public void append_to_playlist (File file) {
+        if (is_subtitle (file.get_uri ())) {
+            set_subtitle (file.get_uri ());
+        } else {
+            queue_file (file);
+        }
+    }
+
+    private bool is_subtitle (string uri) {
+        if (uri.length < 4 || uri.get_char (uri.length - 4) != '.') {
+            return false;
+        }
+
+        foreach (string ext in SUBTITLE_EXTENSIONS) {
+            if (uri.down ().has_suffix (ext)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

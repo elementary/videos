@@ -117,7 +117,7 @@ public class Audience.EpisodesPage : Gtk.Grid {
                 // Add next from the current view to the queue
                 int played_index = shown_episodes.index_of (video);
                 foreach (Audience.Objects.Video episode in shown_episodes.slice (played_index, shown_episodes.size)) {
-                    window.append_to_playlist (episode.video_file);
+                    PlaybackManager.get_default ().append_to_playlist (episode.video_file);
                 }
             }
         }

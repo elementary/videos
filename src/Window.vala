@@ -413,11 +413,11 @@ public class Audience.Window : Gtk.ApplicationWindow {
         foreach (var file in files) {
             if (file.query_file_type (0) == FileType.DIRECTORY) {
                 Audience.recurse_over_dir (file, (file_ret) => {
-                    player_page.append_to_playlist (file);
+                    PlaybackManager.get_default ().append_to_playlist (file);
                     videos += file_ret.get_uri ();
                 });
             } else {
-                player_page.append_to_playlist (file);
+                PlaybackManager.get_default ().append_to_playlist (file);
                 videos += file.get_uri ();
             }
         }
@@ -456,7 +456,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
             PlaybackManager.get_default ().clear_playlist ();
         }
 
-        player_page.append_to_playlist (File.new_for_uri (uri));
+        PlaybackManager.get_default ().append_to_playlist (File.new_for_uri (uri));
         settings.set_string ("current-video", uri);
     }
 
@@ -533,10 +533,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
         if (is_maximized) {
             fullscreen ();
         }
-    }
-
-    public void append_to_playlist (File file) {
-        player_page.append_to_playlist (file);
     }
 
     private void update_navigation () {
