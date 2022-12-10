@@ -190,7 +190,7 @@ namespace Audience {
                     settings.set_double ("last-stopped", playback.progress);
                 }
 
-                get_playlist_widget ().save_playlist ();
+                bottom_bar.playlist_popover.playlist.save_playlist ();
 
                 if (inhibit_token != 0) {
                     ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
@@ -202,9 +202,9 @@ namespace Audience {
             playback.eos.connect (() => {
                 Idle.add (() => {
                     playback.progress = 0;
-                    if (!get_playlist_widget ().next ()) {
+                    if (!bottom_bar.playlist_popover.playlist.next ()) {
                         if (bottom_bar.repeat) {
-                            string file = get_playlist_widget ().get_first_item ().get_uri ();
+                            string file = bottom_bar.playlist_popover.playlist.get_first_item ().get_uri ();
                             ((Audience.Window) App.get_instance ().active_window).open_files ({ File.new_for_uri (file) });
                         } else {
                             playback.playing = false;
@@ -291,7 +291,7 @@ namespace Audience {
                     unsupported_file_dialog.response.connect (type => {
                         if (type == Gtk.ResponseType.CANCEL) {
                             // Play next video if available or else go to welcome page
-                            if (!get_playlist_widget ().next ()) {
+                            if (!bottom_bar.playlist_popover.playlist.next ()) {
                                 ended ();
                             }
                         }
@@ -303,7 +303,7 @@ namespace Audience {
                 debug (e.message);
             }
 
-            get_playlist_widget ().set_current (uri);
+            bottom_bar.playlist_popover.playlist.set_current (uri);
             playback.uri = uri;
 
 
@@ -343,7 +343,7 @@ namespace Audience {
             if (is_subtitle (file.get_uri ())) {
                 set_subtitle (file.get_uri ());
             } else {
-                get_playlist_widget ().add_item (file);
+                bottom_bar.playlist_popover.playlist.add_item (file);
             }
         }
 
@@ -361,10 +361,6 @@ namespace Audience {
             var new_progress = ((duration * progress) + (double)seconds) / duration;
             playback.progress = new_progress.clamp (0.0, 1.0);
             bottom_bar.reveal_control ();
-        }
-
-        private Widgets.Playlist get_playlist_widget () {
-            return bottom_bar.playlist_popover.playlist;
         }
 
         public void hide_popovers () {
