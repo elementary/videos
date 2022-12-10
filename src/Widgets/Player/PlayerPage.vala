@@ -216,12 +216,9 @@ namespace Audience {
                 });
             });
 
-            //playlist wants us to open a file
-            PlaybackManager.get_default ().play.connect ((file) => {
-                ((Audience.Window) App.get_instance ().active_window).open_files ({ File.new_for_uri (file.get_uri ()) });
-            });
+            var playback_manager = PlaybackManager.get_default ();
 
-            PlaybackManager.get_default ().stop.connect (() => {
+            playback_manager.stop.connect (() => {
                 settings.set_double ("last-stopped", 0);
                 settings.set_strv ("last-played-videos", {});
                 settings.set_string ("current-video", "");
@@ -235,6 +232,8 @@ namespace Audience {
                     ended ();
                 }
             });
+
+            playback_manager.set_subtitle.connect (set_subtitle);
 
             bottom_bar.notify["child-revealed"].connect (() => {
                 if (bottom_bar.child_revealed == true) {

@@ -30,8 +30,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
     private Gtk.Button navigation_button;
     private Gtk.SearchEntry search_entry;
     private WelcomePage welcome_page;
-
-    public PlayerPage player_page { get; private set; }
+    private PlayerPage player_page;
 
     public enum NavigationPage { WELCOME, LIBRARY, EPISODES }
 
@@ -241,6 +240,11 @@ public class Audience.Window : Gtk.ApplicationWindow {
             }
 
             return Gdk.EVENT_PROPAGATE;
+        });
+
+        //playlist wants us to open a file
+        PlaybackManager.get_default ().play.connect ((file) => {
+            open_files ({ File.new_for_uri (file.get_uri ()) });
         });
 
         window_state_event.connect ((e) => {

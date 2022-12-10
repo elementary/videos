@@ -75,7 +75,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.show_all ();
 
         external_subtitle_file.file_set.connect (() => {
-            ((Audience.Window)((Gtk.Application) Application.get_default ()).active_window).player_page.set_subtitle (external_subtitle_file.get_uri ());
+            PlaybackManager.get_default ().set_subtitle (external_subtitle_file.get_uri ());
         });
 
         unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
