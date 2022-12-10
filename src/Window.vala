@@ -535,10 +535,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
         }
     }
 
-    private void clear_playlist (bool should_stop = true) {
-
-    }
-
     public void append_to_playlist (File file) {
         player_page.append_to_playlist (file);
     }
