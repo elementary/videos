@@ -40,7 +40,7 @@ public class Audience.PlaybackManager : Object {
             return false;
         }
 
-        foreach (string ext in SUBTITLE_EXTENSIONS) {
+        foreach (unowned string ext in SUBTITLE_EXTENSIONS) {
             if (uri.down ().has_suffix (ext)) {
                 return true;
             }
