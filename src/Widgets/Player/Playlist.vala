@@ -50,6 +50,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         var playback_manager = PlaybackManager.get_default ();
         playback_manager.next.connect (() => next ());
         playback_manager.previous.connect (previous);
+        playback_manager.clear_playlist.connect (clear_items);
     }
 
     ~Playlist () {
@@ -106,7 +107,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         item_added ();
     }
 
-    public void clear_items (bool should_stop = true) {
+    private void clear_items (bool should_stop = true) {
         current = 0;
         foreach (Gtk.Widget item in get_children ()) {
             remove (item);

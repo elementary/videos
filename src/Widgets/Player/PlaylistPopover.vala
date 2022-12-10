@@ -75,7 +75,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         });
 
         clear_playlist_button.clicked.connect (() => {
-            playlist.clear_items ();
+            PlaybackManager.get_default ().clear_playlist ();
         });
 
         rep.toggled.connect ( () => {

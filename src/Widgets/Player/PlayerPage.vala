@@ -363,7 +363,7 @@ namespace Audience {
             bottom_bar.reveal_control ();
         }
 
-        public Widgets.Playlist get_playlist_widget () {
+        private Widgets.Playlist get_playlist_widget () {
             return bottom_bar.playlist_popover.playlist;
         }
 

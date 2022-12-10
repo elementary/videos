@@ -406,7 +406,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
     public void open_files (File[] files, bool clear_playlist_items = false, bool force_play = true) {
         if (clear_playlist_items) {
-            clear_playlist (false);
+            PlaybackManager.get_default ().clear_playlist (false);
         }
 
         string[] videos = {};
@@ -453,7 +453,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
     public void add_to_playlist (string uri, bool preserve_playlist) {
         if (!preserve_playlist) {
-            clear_playlist ();
+            PlaybackManager.get_default ().clear_playlist ();
         }
 
         player_page.append_to_playlist (File.new_for_uri (uri));
@@ -535,8 +535,8 @@ public class Audience.Window : Gtk.ApplicationWindow {
         }
     }
 
-    public void clear_playlist (bool should_stop = true) {
-        player_page.get_playlist_widget ().clear_items (should_stop);
+    private void clear_playlist (bool should_stop = true) {
+
     }
 
     public void append_to_playlist (File file) {

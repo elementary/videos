@@ -9,6 +9,7 @@ public class Audience.PlaybackManager : Object {
     public signal void next ();
     public signal void previous ();
     public signal void set_subtitle (string uri);
+    public signal void clear_playlist (bool should_stop = true);
 
     private static PlaybackManager? _instance;
     public static PlaybackManager get_default () {
