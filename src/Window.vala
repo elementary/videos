@@ -451,15 +451,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
         deck.visible_child = library_page;
     }
 
-    public void add_to_playlist (string uri, bool preserve_playlist) {
-        if (!preserve_playlist) {
-            PlaybackManager.get_default ().clear_playlist ();
-        }
-
-        PlaybackManager.get_default ().append_to_playlist (File.new_for_uri (uri));
-        settings.set_string ("current-video", uri);
-    }
-
     public void run_open_file (bool clear_playlist = false, bool force_play = true) {
         var all_files_filter = new Gtk.FileFilter ();
         all_files_filter.set_filter_name (_("All files"));

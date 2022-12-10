@@ -50,7 +50,8 @@ public class Audience.WelcomePage : Granite.Widgets.Welcome {
                     window.run_open_file (true);
                     break;
                 case 1:
-                    window.add_to_playlist (current_video, true);
+                    PlaybackManager.get_default ().append_to_playlist (File.new_for_uri (current_video));
+                    settings.set_string ("current-video", current_video);
                     window.resume_last_videos ();
                     break;
                 case 2:

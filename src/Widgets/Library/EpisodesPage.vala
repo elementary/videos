@@ -112,10 +112,11 @@ public class Audience.EpisodesPage : Gtk.Grid {
 
             var playback_manager = PlaybackManager.get_default ();
             playback_manager.clear_playlist ();
+            playback_manager.append_to_playlist (video.video_file);
 
             var window = App.get_instance ().mainwindow;
-            window.add_to_playlist (uri, false);
             window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
+
             if (window.autoqueue_next_active ()) {
                 // Add next from the current view to the queue
                 int played_index = shown_episodes.index_of (video);
