@@ -51,6 +51,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         playback_manager.next.connect (() => next ());
         playback_manager.previous.connect (previous);
         playback_manager.clear_playlist.connect (clear_items);
+        playback_manager.save_playlist.connect (save_playlist);
     }
 
     ~Playlist () {
@@ -157,7 +158,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         return (owned) list;
     }
 
-    public void save_playlist () {
+    private void save_playlist () {
         if (Audience.App.get_instance ().mainwindow.is_privacy_mode_enabled ()) {
             return;
         }
@@ -172,7 +173,6 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         }
 
         settings.set_strv ("last-played-videos", videos);
-
     }
 
     private void on_drag_data_received (Gdk.DragContext context, int x, int y,

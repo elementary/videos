@@ -10,6 +10,7 @@ public class Audience.PlaybackManager : Object {
     public signal void previous ();
     public signal void set_subtitle (string uri);
     public signal void clear_playlist (bool should_stop = true);
+    public signal void save_playlist ();
 
     private static PlaybackManager? _instance;
     public static PlaybackManager get_default () {

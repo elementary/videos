@@ -190,7 +190,7 @@ namespace Audience {
                     settings.set_double ("last-stopped", playback.progress);
                 }
 
-                bottom_bar.playlist_popover.playlist.save_playlist ();
+                PlaybackManager.get_default ().save_playlist ();
 
                 if (inhibit_token != 0) {
                     ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
