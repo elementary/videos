@@ -339,14 +339,6 @@ namespace Audience {
             return playback.progress;
         }
 
-        public void next_audio () {
-            bottom_bar.preferences_popover.next_audio ();
-        }
-
-        public void next_text () {
-            bottom_bar.preferences_popover.next_text ();
-        }
-
         public void seek_jump_seconds (int seconds) {
             var duration = playback.duration;
             var progress = playback.progress;

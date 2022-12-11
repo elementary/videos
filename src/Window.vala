@@ -355,9 +355,9 @@ public class Audience.Window : Gtk.ApplicationWindow {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
                 ((SimpleAction) play_pause_action).activate (null);
             } else if (match_keycode (Gdk.Key.a, keycode)) {
-                player_page.next_audio ();
+                PlaybackManager.get_default ().next_audio ();
             } else if (match_keycode (Gdk.Key.s, keycode)) {
-                player_page.next_text ();
+                PlaybackManager.get_default ().next_text ();
             }
 
             bool shift_pressed = Gdk.ModifierType.SHIFT_MASK in e.state;
