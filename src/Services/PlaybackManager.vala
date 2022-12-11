@@ -15,7 +15,6 @@ public class Audience.PlaybackManager : Object {
     public signal void queue_file (File file);
     public signal void save_playlist ();
     public signal void set_current (string current_file);
-    public signal void set_subtitle (string uri);
     public signal void stop ();
 
     public string? subtitle_uri { get; set; }
@@ -29,7 +28,7 @@ public class Audience.PlaybackManager : Object {
 
     public void append_to_playlist (File file) {
         if (is_subtitle (file.get_uri ())) {
-            set_subtitle (file.get_uri ());
+            subtitle_uri = file.get_uri ();
         } else {
             queue_file (file);
         }
