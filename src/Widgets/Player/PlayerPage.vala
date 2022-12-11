@@ -236,6 +236,11 @@ namespace Audience {
 
             playback_manager.set_subtitle.connect (set_subtitle);
 
+            /* playback.subtitle_uri does not seem to notify so connect directly to the pipeline */
+            pipeline.notify["suburi"].connect (() => {
+                playback_manager.subtitle_uri = playback.subtitle_uri;
+            });
+
             bottom_bar.notify["child-revealed"].connect (() => {
                 if (bottom_bar.child_revealed == true) {
                     ((Audience.Window) App.get_instance ().active_window).show_mouse_cursor ();
