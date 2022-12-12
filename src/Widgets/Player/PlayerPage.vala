@@ -180,6 +180,8 @@ namespace Audience {
                 return update_pointer_position (event.y, allocation.height);
             });
 
+            var playback_manager = PlaybackManager.get_default ();
+
             destroy.connect (() => {
                 // FIXME:should find better way to decide if its end of playlist
                 if (playback.progress > 0.99) {
@@ -190,7 +192,7 @@ namespace Audience {
                     settings.set_double ("last-stopped", playback.progress);
                 }
 
-                get_playlist_widget ().save_playlist ();
+                playback_manager.save_playlist ();
 
                 if (inhibit_token != 0) {
                     ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
@@ -202,11 +204,11 @@ namespace Audience {
             playback.eos.connect (() => {
                 Idle.add (() => {
                     playback.progress = 0;
-                    if (!get_playlist_widget ().next ()) {
+                    if (!playback_manager.next ()) {
                         var repeat_action = Application.get_default ().lookup_action (Audience.App.ACTION_REPEAT);
                         if (repeat_action.get_state ().get_boolean ()) {
-                            string file = get_playlist_widget ().get_first_item ().get_uri ();
-                            ((Audience.Window) App.get_instance ().active_window).open_files ({ File.new_for_uri (file) });
+                            var file = playback_manager.get_first_item ();
+                            ((Audience.Window) App.get_instance ().active_window).open_files ({ file });
                         } else {
                             playback.playing = false;
                             settings.set_double ("last-stopped", 0);
@@ -217,12 +219,7 @@ namespace Audience {
                 });
             });
 
-            //playlist wants us to open a file
-            get_playlist_widget ().play.connect ((file) => {
-                ((Audience.Window) App.get_instance ().active_window).open_files ({ File.new_for_uri (file.get_uri ()) });
-            });
-
-            get_playlist_widget ().stop_video.connect (() => {
+            playback_manager.stop.connect (() => {
                 settings.set_double ("last-stopped", 0);
                 settings.set_strv ("last-played-videos", {});
                 settings.set_string ("current-video", "");
@@ -234,6 +231,17 @@ namespace Audience {
                     playback.playing = false;
                     playback.progress = 1.0;
                     ended ();
+                }
+            });
+
+            playback_manager.notify["subtitle-uri"].connect (() => {
+                set_subtitle (playback_manager.subtitle_uri);
+            });
+
+            /* playback.subtitle_uri does not seem to notify so connect directly to the pipeline */
+            pipeline.notify["suburi"].connect (() => {
+                if (playback_manager.subtitle_uri != playback.subtitle_uri) {
+                    playback_manager.subtitle_uri = playback.subtitle_uri;
                 }
             });
 
@@ -293,7 +301,7 @@ namespace Audience {
                     unsupported_file_dialog.response.connect (type => {
                         if (type == Gtk.ResponseType.CANCEL) {
                             // Play next video if available or else go to welcome page
-                            if (!get_playlist_widget ().next ()) {
+                            if (!PlaybackManager.get_default ().next ()) {
                                 ended ();
                             }
                         }
@@ -305,9 +313,8 @@ namespace Audience {
                 debug (e.message);
             }
 
-            get_playlist_widget ().set_current (uri);
+            PlaybackManager.get_default ().set_current (uri);
             playback.uri = uri;
-
 
             App.get_instance ().active_window.title = get_title (uri);
 
@@ -341,32 +348,12 @@ namespace Audience {
             return playback.progress;
         }
 
-        public void append_to_playlist (File file) {
-            if (is_subtitle (file.get_uri ())) {
-                set_subtitle (file.get_uri ());
-            } else {
-                get_playlist_widget ().add_item (file);
-            }
-        }
-
-        public void next_audio () {
-            bottom_bar.preferences_popover.next_audio ();
-        }
-
-        public void next_text () {
-            bottom_bar.preferences_popover.next_text ();
-        }
-
         public void seek_jump_seconds (int seconds) {
             var duration = playback.duration;
             var progress = playback.progress;
             var new_progress = ((duration * progress) + (double)seconds) / duration;
             playback.progress = new_progress.clamp (0.0, 1.0);
             bottom_bar.reveal_control ();
-        }
-
-        public Widgets.Playlist get_playlist_widget () {
-            return bottom_bar.playlist_popover.playlist;
         }
 
         public void hide_popovers () {
@@ -401,22 +388,8 @@ namespace Audience {
             return "";
         }
 
-        private bool is_subtitle (string uri) {
-            if (uri.length < 4 || uri.get_char (uri.length - 4) != '.') {
-                return false;
-            }
-
-            foreach (string ext in SUBTITLE_EXTENSIONS) {
-                if (uri.down ().has_suffix (ext)) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         private ulong ready_handler_id = 0;
-        public void set_subtitle (string uri) {
+        private void set_subtitle (string uri) {
             var progress = playback.progress;
             var is_playing = playback.playing;
 

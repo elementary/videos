@@ -19,10 +19,6 @@
 */
 
 public class Audience.Widgets.Playlist : Gtk.ListBox {
-    public signal void play (File path);
-    public signal void item_added ();
-    public signal void stop_video ();
-
     private int current = 0;
 
     private const Gtk.TargetEntry[] TARGET_ENTRIES = {
@@ -36,7 +32,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
 
         row_activated.connect ((item) => {
             string filename = ((PlaylistItem)(item)).filename;
-            play (File.new_for_commandline_arg (filename));
+            PlaybackManager.get_default ().play (File.new_for_commandline_arg (filename));
         });
 
         Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, TARGET_ENTRIES, Gdk.DragAction.MOVE);
@@ -48,13 +44,22 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
             }
             add_item (File.new_for_uri (settings.get_strv ("last-played-videos")[i]));
         }
+
+        var playback_manager = PlaybackManager.get_default ();
+        playback_manager.clear_playlist.connect (clear_items);
+        playback_manager.get_first_item.connect (get_first_item);
+        playback_manager.next.connect (next);
+        playback_manager.previous.connect (previous);
+        playback_manager.queue_file.connect (add_item);
+        playback_manager.save_playlist.connect (save_playlist);
+        playback_manager.set_current.connect (set_current);
     }
 
     ~Playlist () {
         save_playlist ();
     }
 
-    public bool next () {
+    private bool next () {
         var children = get_children ();
         current++;
         if (current >= children.length ()) {
@@ -63,24 +68,24 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         }
 
         var next_item = (children.nth_data (current) as PlaylistItem);
-        play (File.new_for_commandline_arg (next_item.filename));
+        PlaybackManager.get_default ().play (File.new_for_commandline_arg (next_item.filename));
         return true;
     }
 
-    public void previous () {
+    private void previous () {
         var children = get_children ();
         current--;
         if (current < 0) {
             var first_item = children.first ().data as PlaylistItem;
-            play (File.new_for_commandline_arg (first_item.filename));
+            PlaybackManager.get_default ().play (File.new_for_commandline_arg (first_item.filename));
             return;
         }
 
         var next_item = (children.nth_data (current) as PlaylistItem);
-        play (File.new_for_commandline_arg (next_item.filename));
+        PlaybackManager.get_default ().play (File.new_for_commandline_arg (next_item.filename));
     }
 
-    public void add_item (File path) {
+    private void add_item (File path) {
         if (!path.query_exists ()) {
             return;
         }
@@ -101,21 +106,21 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
 
         var row = new PlaylistItem (Audience.get_title (path.get_basename ()), path.get_uri ());
         add (row);
-        item_added ();
+        PlaybackManager.get_default ().item_added ();
     }
 
-    public void clear_items (bool should_stop = true) {
+    private void clear_items (bool should_stop = true) {
         current = 0;
         foreach (Gtk.Widget item in get_children ()) {
             remove (item);
         }
 
         if (should_stop) {
-            stop_video ();
+            PlaybackManager.get_default ().stop ();
         }
     }
 
-    public File? get_first_item () {
+    private File? get_first_item () {
         var children = get_children ();
         if (children.length () > 0) {
             var first_item = children.first ().data as PlaylistItem;
@@ -125,7 +130,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         return null;
     }
 
-    public void set_current (string current_file) {
+    private void set_current (string current_file) {
         int count = 0;
         int current_played = 0;
 
@@ -144,32 +149,19 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         this.current = current_played;
     }
 
-    private List<string> get_all_items () {
-        var list = new List<string> ();
-        foreach (Gtk.Widget item in get_children ()) {
-            string name = ((PlaylistItem)(item)).filename;
-            list.append (name);
-        }
-
-        return (owned) list;
-    }
-
-    public void save_playlist () {
-        if (Audience.App.get_instance ().mainwindow.is_privacy_mode_enabled ()) {
+    private void save_playlist () {
+        var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
+        if (!privacy_settings.get_boolean ("remember-recent-files") || !privacy_settings.get_boolean ("remember-app-usage")) {
             return;
         }
 
-        var list = get_all_items ();
-
-        uint i = 0;
-        var videos = new string[list.length ()];
-        foreach (var filename in list) {
-            videos[i] = filename;
-            i++;
+        string[] videos = {};
+        foreach (unowned var child in get_children ()) {
+            var filename = ((PlaylistItem) child).filename;
+            videos += filename;
         }
 
         settings.set_strv ("last-played-videos", videos);
-
     }
 
     private void on_drag_data_received (Gdk.DragContext context, int x, int y,

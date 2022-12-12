@@ -74,15 +74,16 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.attach (external_subtitle_file, 1, 3);
         setupgrid.show_all ();
 
+        var playback_manager = PlaybackManager.get_default ();
+        playback_manager.next_audio.connect (next_audio);
+        playback_manager.next_text.connect (next_text);
+
         external_subtitle_file.file_set.connect (() => {
-            ((Audience.Window)((Gtk.Application) Application.get_default ()).active_window).player_page.set_subtitle (external_subtitle_file.get_uri ());
+            PlaybackManager.get_default ().subtitle_uri = external_subtitle_file.get_uri ();
         });
 
-        unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
-        /* playback.subtitle_uri does not seem to notify so connect directly to the pipeline */
-        pipeline.notify["suburi"].connect (() => {
-            /* Easier to retrieve the uri from the playback than the pipeline */
-            external_subtitle_file.select_uri (playback.subtitle_uri ?? "");
+        playback_manager.notify["subtitle-uri"].connect (() => {
+            external_subtitle_file.select_uri (playback_manager.subtitle_uri ?? "");
         });
 
         subtitles.changed.connect (on_subtitles_changed);
@@ -183,7 +184,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         languages.changed.connect (on_languages_changed);
     }
 
-    public void next_audio () {
+    private void next_audio () {
         setup ();
         int count = languages.model.iter_n_children (null);
         if (count > 0) {
@@ -191,7 +192,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         }
     }
 
-    public void next_text () {
+    private void next_text () {
         setup ();
         int count = subtitles.model.iter_n_children (null);
         if (count > 0) {

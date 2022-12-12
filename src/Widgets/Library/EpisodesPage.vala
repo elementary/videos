@@ -109,15 +109,19 @@ public class Audience.EpisodesPage : Gtk.Grid {
         if (video.video_file.query_exists ()) {
             string uri = video.video_file.get_uri ();
             bool from_beginning = uri != settings.get_string ("current-video");
-            var window = App.get_instance ().mainwindow;// Clean playlist
-            window.clear_playlist ();
-            window.add_to_playlist (uri, false);
+
+            var playback_manager = PlaybackManager.get_default ();
+            playback_manager.clear_playlist ();
+            playback_manager.append_to_playlist (video.video_file);
+
+            var window = App.get_instance ().mainwindow;
             window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
+
             if (window.autoqueue_next_active ()) {
                 // Add next from the current view to the queue
                 int played_index = shown_episodes.index_of (video);
                 foreach (Audience.Objects.Video episode in shown_episodes.slice (played_index, shown_episodes.size)) {
-                    window.append_to_playlist (episode.video_file);
+                    playback_manager.append_to_playlist (episode.video_file);
                 }
             }
         }

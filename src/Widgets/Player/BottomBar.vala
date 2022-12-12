@@ -103,7 +103,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
             return false;
         });
 
-        playlist_popover.playlist.item_added.connect (() => {
+        PlaybackManager.get_default ().item_added.connect (() => {
             playlist_item_added ();
         });
 

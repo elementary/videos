@@ -30,8 +30,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
     private Gtk.Button navigation_button;
     private Gtk.SearchEntry search_entry;
     private WelcomePage welcome_page;
-
-    public PlayerPage player_page { get; private set; }
+    private PlayerPage player_page;
 
     public enum NavigationPage { WELCOME, LIBRARY, EPISODES }
 
@@ -243,6 +242,11 @@ public class Audience.Window : Gtk.ApplicationWindow {
             return Gdk.EVENT_PROPAGATE;
         });
 
+        //playlist wants us to open a file
+        PlaybackManager.get_default ().play.connect ((file) => {
+            open_files ({ File.new_for_uri (file.get_uri ()) });
+        });
+
         window_state_event.connect ((e) => {
             if (Gdk.WindowState.FULLSCREEN in e.changed_mask) {
                 player_page.fullscreened = Gdk.WindowState.FULLSCREEN in e.new_window_state;
@@ -351,9 +355,9 @@ public class Audience.Window : Gtk.ApplicationWindow {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
                 ((SimpleAction) play_pause_action).activate (null);
             } else if (match_keycode (Gdk.Key.a, keycode)) {
-                player_page.next_audio ();
+                PlaybackManager.get_default ().next_audio ();
             } else if (match_keycode (Gdk.Key.s, keycode)) {
-                player_page.next_text ();
+                PlaybackManager.get_default ().next_text ();
             }
 
             bool shift_pressed = Gdk.ModifierType.SHIFT_MASK in e.state;
@@ -402,18 +406,18 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
     public void open_files (File[] files, bool clear_playlist_items = false, bool force_play = true) {
         if (clear_playlist_items) {
-            clear_playlist (false);
+            PlaybackManager.get_default ().clear_playlist (false);
         }
 
         string[] videos = {};
         foreach (var file in files) {
             if (file.query_file_type (0) == FileType.DIRECTORY) {
                 Audience.recurse_over_dir (file, (file_ret) => {
-                    player_page.append_to_playlist (file);
+                    PlaybackManager.get_default ().append_to_playlist (file);
                     videos += file_ret.get_uri ();
                 });
             } else {
-                player_page.append_to_playlist (file);
+                PlaybackManager.get_default ().append_to_playlist (file);
                 videos += file.get_uri ();
             }
         }
@@ -445,15 +449,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         deck.add (library_page);
         deck.visible_child = library_page;
-    }
-
-    public void add_to_playlist (string uri, bool preserve_playlist) {
-        if (!preserve_playlist) {
-            clear_playlist ();
-        }
-
-        player_page.append_to_playlist (File.new_for_uri (uri));
-        settings.set_string ("current-video", uri);
     }
 
     public void run_open_file (bool clear_playlist = false, bool force_play = true) {
@@ -490,11 +485,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
         file.destroy ();
     }
 
-    public bool is_privacy_mode_enabled () {
-        var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
-        return !privacy_settings.get_boolean ("remember-recent-files") || !privacy_settings.get_boolean ("remember-app-usage");
-    }
-
     private async void read_first_disk () {
         var disk_manager = DiskManager.get_default ();
         if (disk_manager.get_volumes ().is_empty) {
@@ -529,14 +519,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
         if (is_maximized) {
             fullscreen ();
         }
-    }
-
-    public void clear_playlist (bool should_stop = true) {
-        player_page.get_playlist_widget ().clear_items (should_stop);
-    }
-
-    public void append_to_playlist (File file) {
-        player_page.append_to_playlist (file);
     }
 
     private void update_navigation () {

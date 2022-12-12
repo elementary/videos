@@ -96,8 +96,13 @@ public class Audience.LibraryPage : Gtk.Stack {
             bool playback_complete = settings.get_double ("last-stopped") == 0.0;
             bool from_beginning = !same_video || playback_complete;
 
+            if (from_beginning) {
+                PlaybackManager.get_default ().clear_playlist ();
+            }
+
+            PlaybackManager.get_default ().append_to_playlist (File.new_for_uri (uri));
+
             var window = (Audience.Window) ((Gtk.Application) Application.get_default ()).active_window;
-            window.add_to_playlist (uri, !from_beginning);
             window.play_file (uri, Window.NavigationPage.LIBRARY, from_beginning);
         } else {
             last_filter = query;

@@ -11,6 +11,7 @@ executable(
     'DBus/MprisRoot.vala',
     'Services/DirectoryMonitoring.vala',
     'Services/LibraryManager.vala',
+    'Services/PlaybackManager.vala',
     'Services/Thumbnailer.vala',
     'Widgets/UnsupportedFileDialog.vala',
     'Widgets/WelcomePage.vala',

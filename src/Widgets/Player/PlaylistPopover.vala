@@ -18,8 +18,6 @@
  */
 
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
-    public Playlist playlist { get; private set; }
-
     private Gtk.Button dvd;
     private const int HEIGHT_OFFSET = 300;
 
@@ -47,7 +45,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             propagate_natural_height = true
         };
 
-        playlist = new Playlist ();
+        var playlist = new Playlist ();
         playlist_scrolled.add (playlist);
 
         var grid = new Gtk.Grid () {
@@ -75,7 +73,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         });
 
         clear_playlist_button.clicked.connect (() => {
-            playlist.clear_items ();
+            PlaybackManager.get_default ().clear_playlist ();
         });
 
         rep.toggled.connect ( () => {
