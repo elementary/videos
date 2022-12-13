@@ -167,21 +167,6 @@ namespace Audience {
                 return update_pointer_position (event.y, allocation.height);
             });
 
-            playback_manager.stop.connect (() => {
-                settings.set_double ("last-stopped", 0);
-                settings.set_strv ("last-played-videos", {});
-                settings.set_string ("current-video", "");
-
-                /* We do not want to emit an "ended" signal if already ended - it can cause premature
-                 * ending of next video and other side-effects
-                 */
-                if (playback_manager.playback.playing) {
-                    playback_manager.playback.playing = false;
-                    playback_manager.playback.progress = 1.0;
-                    playback_manager.ended ();
-                }
-            });
-
             playback_manager.notify["subtitle-uri"].connect (() => {
                 set_subtitle (playback_manager.subtitle_uri);
             });

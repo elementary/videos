@@ -79,6 +79,21 @@ public class Audience.PlaybackManager : Object {
                 return false;
             });
         });
+
+        stop.connect (() => {
+            settings.set_double ("last-stopped", 0);
+            settings.set_strv ("last-played-videos", {});
+            settings.set_string ("current-video", "");
+
+            /* We do not want to emit an "ended" signal if already ended - it can cause premature
+             * ending of next video and other side-effects
+             */
+            if (playback.playing) {
+                playback.playing = false;
+                playback.progress = 1.0;
+                ended ();
+            }
+        });
     }
 
     ~PlaybackManager () {
