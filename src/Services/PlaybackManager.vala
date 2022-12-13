@@ -16,7 +16,6 @@ public class Audience.PlaybackManager : Object {
     public signal void queue_file (File file);
     public signal void save_playlist ();
     public signal void set_current (string current_file);
-    public signal void stop ();
 
     public ClutterGst.Playback playback { get; private set; }
     public string? subtitle_uri;
@@ -79,21 +78,6 @@ public class Audience.PlaybackManager : Object {
                 return false;
             });
         });
-
-        stop.connect (() => {
-            settings.set_double ("last-stopped", 0);
-            settings.set_strv ("last-played-videos", {});
-            settings.set_string ("current-video", "");
-
-            /* We do not want to emit an "ended" signal if already ended - it can cause premature
-             * ending of next video and other side-effects
-             */
-            if (playback.playing) {
-                playback.playing = false;
-                playback.progress = 1.0;
-                ended ();
-            }
-        });
     }
 
     ~PlaybackManager () {
@@ -116,6 +100,21 @@ public class Audience.PlaybackManager : Object {
 
     public double get_progress () {
         return playback.progress;
+    }
+
+    public void stop () {
+        settings.set_double ("last-stopped", 0);
+        settings.set_strv ("last-played-videos", {});
+        settings.set_string ("current-video", "");
+
+        /* We do not want to emit an "ended" signal if already ended - it can cause premature
+         * ending of next video and other side-effects
+         */
+        if (playback.playing) {
+            playback.playing = false;
+            playback.progress = 1.0;
+            ended ();
+        }
     }
 
     public void append_to_playlist (File file) {
