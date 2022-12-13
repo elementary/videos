@@ -61,6 +61,24 @@ public class Audience.PlaybackManager : Object {
                 inhibit_token = 0;
             }
         });
+
+        playback.eos.connect (() => {
+            Idle.add (() => {
+                playback.progress = 0;
+                if (!next ()) {
+                    var repeat_action = Application.get_default ().lookup_action (Audience.App.ACTION_REPEAT);
+                    if (repeat_action.get_state ().get_boolean ()) {
+                        var file = get_first_item ();
+                        ((Audience.Window) App.get_instance ().active_window).open_files ({ file });
+                    } else {
+                        playback.playing = false;
+                        settings.set_double ("last-stopped", 0);
+                        ended ();
+                    }
+                }
+                return false;
+            });
+        });
     }
 
     ~PlaybackManager () {

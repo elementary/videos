@@ -167,25 +167,6 @@ namespace Audience {
                 return update_pointer_position (event.y, allocation.height);
             });
 
-            //end
-            playback_manager.playback.eos.connect (() => {
-                Idle.add (() => {
-                    playback_manager.playback.progress = 0;
-                    if (!playback_manager.next ()) {
-                        var repeat_action = Application.get_default ().lookup_action (Audience.App.ACTION_REPEAT);
-                        if (repeat_action.get_state ().get_boolean ()) {
-                            var file = playback_manager.get_first_item ();
-                            ((Audience.Window) App.get_instance ().active_window).open_files ({ file });
-                        } else {
-                            playback_manager.playback.playing = false;
-                            settings.set_double ("last-stopped", 0);
-                            playback_manager.ended ();
-                        }
-                    }
-                    return false;
-                });
-            });
-
             playback_manager.stop.connect (() => {
                 settings.set_double ("last-stopped", 0);
                 settings.set_strv ("last-played-videos", {});
