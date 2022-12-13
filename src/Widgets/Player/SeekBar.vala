@@ -5,17 +5,12 @@
 
 public class Videos.SeekBar : Gtk.Box {
     public Audience.Widgets.PreviewPopover preview_popover { get; private set; }
-    public ClutterGst.Playback main_playback { get; construct; }
 
     private Gtk.Label progression_label;
     private Gtk.Label duration_label;
     private Gtk.Scale scale;
     private double playback_duration;
     private bool is_grabbing = false;
-
-    public SeekBar (ClutterGst.Playback main_playback) {
-        Object (main_playback: main_playback);
-    }
 
     construct {
         get_style_context ().add_class (Granite.STYLE_CLASS_SEEKBAR);
@@ -41,6 +36,8 @@ public class Videos.SeekBar : Gtk.Box {
         add (progression_label);
         add (scale);
         add (duration_label);
+
+        var main_playback = Audience.PlaybackManager.get_default ().playback;
 
         main_playback.notify["progress"].connect (() => {
             if (!is_grabbing) {

@@ -525,7 +525,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     private void update_navigation () {
-        double progress = player_page.get_progress ();
+        double progress = PlaybackManager.get_default ().get_progress ();
         if (progress > 0) {
             settings.set_double ("last-stopped", progress);
         }

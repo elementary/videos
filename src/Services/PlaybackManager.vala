@@ -18,7 +18,10 @@ public class Audience.PlaybackManager : Object {
     public signal void set_current (string current_file);
     public signal void stop ();
 
-    public string? subtitle_uri { get; set; }
+    public ClutterGst.Playback playback { get; private set; }
+    public string? subtitle_uri;
+
+    private uint inhibit_token = 0;
 
     private static GLib.Once<PlaybackManager> instance;
     public static unowned PlaybackManager get_default () {
@@ -26,6 +29,61 @@ public class Audience.PlaybackManager : Object {
     }
 
     private PlaybackManager () {}
+
+    construct {
+        playback = new ClutterGst.Playback ();
+        playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
+
+        GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
+            if (name == Audience.App.ACTION_PLAY_PAUSE) {
+                playback.playing = new_state.get_boolean ();
+            }
+        });
+
+        playback.notify["playing"].connect (() => {
+            unowned var app = (Gtk.Application) Application.get_default ();
+
+            var play_pause_action = app.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+            ((SimpleAction) play_pause_action).set_state (playback.playing);
+
+            if (playback.playing) {
+                if (inhibit_token != 0) {
+                    app.uninhibit (inhibit_token);
+                }
+
+                inhibit_token = app.inhibit (
+                    app.get_active_window (),
+                    Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND,
+                    _("A video is playing")
+                );
+            } else if (inhibit_token != 0) {
+                app.uninhibit (inhibit_token);
+                inhibit_token = 0;
+            }
+        });
+    }
+
+    ~PlaybackManager () {
+        // FIXME:should find better way to decide if its end of playlist
+        if (playback.progress > 0.99) {
+            settings.set_double ("last-stopped", 0);
+        } else if (playback.uri != "") {
+            /* The progress is only valid if the uri has not been reset as the current video setting is not
+             * updated.  The playback.uri has been reset when the window is destroyed from the Welcome page */
+            settings.set_double ("last-stopped", playback.progress);
+        }
+
+        save_playlist ();
+
+        if (inhibit_token != 0) {
+            ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
+            inhibit_token = 0;
+        }
+    }
+
+    public double get_progress () {
+        return playback.progress;
+    }
 
     public void append_to_playlist (File file) {
         if (is_subtitle (file.get_uri ())) {

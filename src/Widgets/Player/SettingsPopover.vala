@@ -18,16 +18,11 @@
  */
 
 public class Audience.Widgets.SettingsPopover : Gtk.Popover {
-    public ClutterGst.Playback playback { get; construct; }
     public bool is_setup = false;
 
     private Gtk.ComboBoxText languages;
     private Gtk.ComboBoxText subtitles;
     private Gtk.FileChooserButton external_subtitle_file;
-
-    public SettingsPopover (ClutterGst.Playback playback) {
-        Object (playback: playback);
-    }
 
     construct {
         languages = new Gtk.ComboBoxText ();
@@ -79,7 +74,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         playback_manager.next_text.connect (next_text);
 
         external_subtitle_file.file_set.connect (() => {
-            PlaybackManager.get_default ().subtitle_uri = external_subtitle_file.get_uri ();
+            playback_manager.subtitle_uri = external_subtitle_file.get_uri ();
         });
 
         playback_manager.notify["subtitle-uri"].connect (() => {
@@ -111,9 +106,9 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         }
 
         if (subtitles.active_id == "none") {
-            playback.subtitle_track = -1;
+            PlaybackManager.get_default ().playback.subtitle_track = -1;
         } else {
-            playback.subtitle_track = subtitles.active;
+            PlaybackManager.get_default ().playback.subtitle_track = subtitles.active;
         }
     }
 
@@ -122,7 +117,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             return;
         }
 
-        playback.audio_stream = languages.active;
+        PlaybackManager.get_default ().playback.audio_stream = languages.active;
     }
 
     private void setup_text () {
@@ -131,6 +126,8 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         if (subtitles.model.iter_n_children (null) > 0) {
             subtitles.remove_all ();
         }
+
+        var playback = PlaybackManager.get_default ().playback;
 
         uint track = 1;
         playback.get_subtitle_tracks ().foreach ((lang) => {
@@ -156,6 +153,8 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         if (languages.model.iter_n_children (null) > 0) {
             languages.remove_all ();
         }
+
+        var playback = PlaybackManager.get_default ().playback;
 
         var languages_names = get_audio_track_names ();
         uint track = 1;
@@ -203,7 +202,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     private GLib.List<string?> get_audio_track_names () {
         GLib.List<string?> audio_languages = null;
 
-        var discoverer_info = Audience.get_discoverer_info (playback.uri);
+        var discoverer_info = Audience.get_discoverer_info (PlaybackManager.get_default ().playback.uri);
         if (discoverer_info != null) {
             var audio_streams = discoverer_info.get_audio_streams ();
 
