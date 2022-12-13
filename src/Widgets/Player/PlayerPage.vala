@@ -26,8 +26,6 @@ namespace Audience {
     };
 
     public class PlayerPage : Gtk.EventBox {
-        public signal void ended ();
-
         private Audience.Widgets.BottomBar bottom_bar;
         private GtkClutter.Actor bottom_actor;
         private GtkClutter.Embed clutter;
@@ -212,7 +210,7 @@ namespace Audience {
                         } else {
                             playback.playing = false;
                             settings.set_double ("last-stopped", 0);
-                            ended ();
+                            playback_manager.ended ();
                         }
                     }
                     return false;
@@ -230,7 +228,7 @@ namespace Audience {
                 if (playback.playing) {
                     playback.playing = false;
                     playback.progress = 1.0;
-                    ended ();
+                    playback_manager.ended ();
                 }
             });
 
@@ -300,9 +298,10 @@ namespace Audience {
 
                     unsupported_file_dialog.response.connect (type => {
                         if (type == Gtk.ResponseType.CANCEL) {
+                            var playback_manager = PlaybackManager.get_default ();
                             // Play next video if available or else go to welcome page
-                            if (!PlaybackManager.get_default ().next ()) {
-                                ended ();
+                            if (!playback_manager.next ()) {
+                                playback_manager.ended ();
                             }
                         }
 
