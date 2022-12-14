@@ -42,7 +42,7 @@ public class Audience.PlaybackManager : Object {
         playback = new ClutterGst.Playback ();
         playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
 
-        GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
+        default_application.action_state_changed.connect ((name, new_state) => {
             if (name == Audience.App.ACTION_PLAY_PAUSE) {
                 playback.playing = new_state.get_boolean ();
             }
