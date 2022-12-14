@@ -121,7 +121,7 @@ public class Audience.PlaybackManager : Object {
         pipeline.set_state (Gst.State.NULL);
         var file = File.new_for_uri (uri);
         try {
-            FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
+            var info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
             unowned string content_type = info.get_content_type ();
 
             if (!GLib.ContentType.is_a (content_type, "video/*")) {
@@ -155,15 +155,12 @@ public class Audience.PlaybackManager : Object {
             set_progress (settings.get_double ("last-stopped"));
         }
 
-        string sub_uri = "";
         if (!from_beginning) { //We are resuming the current video - fetch the current subtitles
             /* Should not bind to this setting else may cause loop */
-            sub_uri = settings.get_string ("current-external-subtitles-uri");
+            set_subtitle (settings.get_string ("current-external-subtitles-uri"));
         } else {
-            sub_uri = get_subtitle_for_uri (uri);
+            set_subtitle (get_subtitle_for_uri (uri));
         }
-
-        set_subtitle (sub_uri);
 
         playback.playing = true;
         Gtk.RecentManager.get_default ().add_item (uri);
