@@ -86,7 +86,7 @@ public class Audience.PlaybackManager : Object {
             });
         });
 
-        /* playback.subtitle_uri does not seem to notify so connect directly to the playback_manager.pipeline */
+        /* playback.subtitle_uri does not seem to notify so connect directly to the pipeline */
         pipeline.notify["suburi"].connect (() => {
             if (subtitle_uri != playback.subtitle_uri) {
                 subtitle_uri = playback.subtitle_uri;
