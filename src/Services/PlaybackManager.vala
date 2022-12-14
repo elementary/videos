@@ -77,7 +77,7 @@ public class Audience.PlaybackManager : Object {
                         var file = get_first_item ();
                         ((Audience.Window) default_application.active_window).open_files ({ file });
                     } else {
-                        playback.playing = false;
+                        pipeline.set_state (Gst.State.NULL);
                         settings.set_double ("last-stopped", 0);
                         ended ();
                     }
@@ -150,7 +150,7 @@ public class Audience.PlaybackManager : Object {
 
         /* Set progress before subtitle uri else it gets reset to zero */
         if (from_beginning) {
-            set_progress (0.0);
+            pipeline.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, 0);
         } else {
             set_progress (settings.get_double ("last-stopped"));
         }
@@ -162,7 +162,7 @@ public class Audience.PlaybackManager : Object {
             set_subtitle (get_subtitle_for_uri (uri));
         }
 
-        playback.playing = true;
+        pipeline.set_state (Gst.State.PLAYING);
         Gtk.RecentManager.get_default ().add_item (uri);
 
         settings.set_string ("current-video", uri);
@@ -177,7 +177,7 @@ public class Audience.PlaybackManager : Object {
          * ending of next video and other side-effects
          */
         if (playback.playing) {
-            playback.playing = false;
+            pipeline.set_state (Gst.State.NULL);
             playback.progress = 1.0;
             ended ();
         }
@@ -218,7 +218,11 @@ public class Audience.PlaybackManager : Object {
     }
 
     public bool get_playing () {
-        return playback.playing;
+         var state = Gst.State.NULL;
+         var pending = Gst.State.NULL;
+         pipeline.get_state (out state, out pending, 300);
+
+         return state == Gst.State.PLAYING;
     }
 
     public double get_duration () {
