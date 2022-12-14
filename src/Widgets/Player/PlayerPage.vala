@@ -29,7 +29,6 @@ namespace Audience {
         private Audience.Widgets.BottomBar bottom_bar;
         private GtkClutter.Actor bottom_actor;
         private GtkClutter.Embed clutter;
-        private unowned Gst.Pipeline pipeline;
         private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_revealer;
         private GtkClutter.Actor unfullscreen_actor;
@@ -62,7 +61,6 @@ namespace Audience {
             events |= Gdk.EventMask.POINTER_MOTION_MASK;
             events |= Gdk.EventMask.KEY_PRESS_MASK;
             events |= Gdk.EventMask.KEY_RELEASE_MASK;
-            pipeline = (Gst.Pipeline)(playback_manager.playback.get_pipeline ());
 
             clutter = new GtkClutter.Embed ();
             stage = (Clutter.Stage)clutter.get_stage ();
@@ -167,17 +165,6 @@ namespace Audience {
                 return update_pointer_position (event.y, allocation.height);
             });
 
-            playback_manager.notify["subtitle-uri"].connect (() => {
-                set_subtitle (playback_manager.subtitle_uri);
-            });
-
-            /* playback.subtitle_uri does not seem to notify so connect directly to the pipeline */
-            pipeline.notify["suburi"].connect (() => {
-                if (playback_manager.subtitle_uri != playback_manager.playback.subtitle_uri) {
-                    playback_manager.subtitle_uri = playback_manager.playback.subtitle_uri;
-                }
-            });
-
             bottom_bar.notify["child-revealed"].connect (() => {
                 if (bottom_bar.child_revealed == true) {
                     ((Audience.Window) App.get_instance ().active_window).show_mouse_cursor ();
@@ -192,7 +179,8 @@ namespace Audience {
 
         public void play_file (string uri, bool from_beginning = true) {
             debug ("Opening %s", uri);
-            pipeline.set_state (Gst.State.NULL);
+            var playback_manager = PlaybackManager.get_default ();
+            playback_manager.pipeline.set_state (Gst.State.NULL);
             var file = File.new_for_uri (uri);
             try {
                 FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
@@ -205,7 +193,6 @@ namespace Audience {
 
                     unsupported_file_dialog.response.connect (type => {
                         if (type == Gtk.ResponseType.CANCEL) {
-                            var playback_manager = PlaybackManager.get_default ();
                             // Play next video if available or else go to welcome page
                             if (!playback_manager.next ()) {
                                 playback_manager.ended ();
@@ -219,7 +206,6 @@ namespace Audience {
                 debug (e.message);
             }
 
-            var playback_manager = PlaybackManager.get_default ();
             playback_manager.set_current (uri);
             playback_manager.playback.uri = uri;
 
@@ -240,7 +226,7 @@ namespace Audience {
                 sub_uri = get_subtitle_for_uri (uri);
             }
 
-            set_subtitle (sub_uri);
+            playback_manager.set_subtitle (sub_uri);
 
             playback_manager.playback.playing = true;
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
@@ -290,31 +276,6 @@ namespace Audience {
             }
 
             return "";
-        }
-
-        private ulong ready_handler_id = 0;
-        private void set_subtitle (string uri) {
-            var playback_manager = PlaybackManager.get_default ();
-            var progress = playback_manager.playback.progress;
-            var is_playing = playback_manager.playback.playing;
-
-            /* Temporarily connect to the ready signal so that we can restore the progress setting
-             * after resetting the pipeline in order to set the subtitle uri */
-            ready_handler_id = playback_manager.playback.ready.connect (() => {
-                playback_manager.playback.progress = progress;
-                // Pause video if it was in Paused state before adding the subtitle
-                if (!is_playing) {
-                    pipeline.set_state (Gst.State.PAUSED);
-                }
-
-                playback_manager.playback.disconnect (ready_handler_id);
-            });
-
-            pipeline.set_state (Gst.State.NULL); // Does not work otherwise
-            playback_manager.playback.set_subtitle_uri (uri);
-            pipeline.set_state (Gst.State.PLAYING);
-
-            settings.set_string ("current-external-subtitles-uri", uri);
         }
 
         private bool update_pointer_position (double y, int window_height) {

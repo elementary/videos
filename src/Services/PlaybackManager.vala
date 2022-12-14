@@ -18,9 +18,16 @@ public class Audience.PlaybackManager : Object {
     public signal void set_current (string current_file);
 
     public ClutterGst.Playback playback { get; private set; }
-    public string? subtitle_uri;
+    public string? subtitle_uri { get; private set; }
+
+    public unowned Gst.Pipeline pipeline {
+        get {
+            return (Gst.Pipeline) playback.get_pipeline ();
+        }
+    }
 
     private uint inhibit_token = 0;
+    private ulong ready_handler_id = 0;
 
     private static GLib.Once<PlaybackManager> instance;
     public static unowned PlaybackManager get_default () {
@@ -77,6 +84,13 @@ public class Audience.PlaybackManager : Object {
                 }
                 return false;
             });
+        });
+
+        /* playback.subtitle_uri does not seem to notify so connect directly to the playback_manager.pipeline */
+        pipeline.notify["suburi"].connect (() => {
+            if (subtitle_uri != playback.subtitle_uri) {
+                subtitle_uri = playback.subtitle_uri;
+            }
         });
     }
 
@@ -137,5 +151,28 @@ public class Audience.PlaybackManager : Object {
         }
 
         return false;
+    }
+
+    public void set_subtitle (string uri) {
+        var progress = playback.progress;
+        var is_playing = playback.playing;
+
+        /* Temporarily connect to the ready signal so that we can restore the progress setting
+         * after resetting the pipeline in order to set the subtitle uri */
+        ready_handler_id = playback.ready.connect (() => {
+            playback.progress = progress;
+            // Pause video if it was in Paused state before adding the subtitle
+            if (!is_playing) {
+                pipeline.set_state (Gst.State.PAUSED);
+            }
+
+            playback.disconnect (ready_handler_id);
+        });
+
+        pipeline.set_state (Gst.State.NULL); // Does not work otherwise
+        playback.set_subtitle_uri (uri);
+        pipeline.set_state (Gst.State.PLAYING);
+
+        settings.set_string ("current-external-subtitles-uri", uri);
     }
 }
