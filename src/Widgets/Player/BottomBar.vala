@@ -22,10 +22,10 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     private const string PULSE_CLASS = "pulse";
     private const string PULSE_TYPE = "attention";
 
-    public SettingsPopover preferences_popover { get; private set; }
     public PlaylistPopover playlist_popover { get; private set; }
     public Videos.SeekBar time_widget { get; private set; }
 
+    private SettingsPopover preferences_popover;
     private Gtk.Button play_button;
     private Gtk.MenuButton playlist_button;
     private uint hiding_timer = 0;
