@@ -20,7 +20,7 @@ public class Audience.PlaybackManager : Object {
     public ClutterGst.Playback playback { get; private set; }
     public string? subtitle_uri { get; private set; }
 
-    public unowned Gst.Pipeline pipeline {
+    private unowned Gst.Pipeline pipeline {
         get {
             return (Gst.Pipeline) playback.get_pipeline ();
         }
