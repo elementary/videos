@@ -518,7 +518,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
         deck.add (player_page);
         deck.visible_child = player_page;
 
-        player_page.play_file (uri, from_beginning);
+        PlaybackManager.get_default ().play_file (uri, from_beginning);
         if (is_maximized) {
             fullscreen ();
         }

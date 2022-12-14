@@ -177,65 +177,6 @@ namespace Audience {
             show_all ();
         }
 
-        public void play_file (string uri, bool from_beginning = true) {
-            debug ("Opening %s", uri);
-            var playback_manager = PlaybackManager.get_default ();
-            playback_manager.pipeline.set_state (Gst.State.NULL);
-            var file = File.new_for_uri (uri);
-            try {
-                FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
-                unowned string content_type = info.get_content_type ();
-
-                if (!GLib.ContentType.is_a (content_type, "video/*")) {
-                    debug ("Unrecognized file format: %s", content_type);
-                    var unsupported_file_dialog = new UnsupportedFileDialog (uri, info.get_name (), content_type);
-                    unsupported_file_dialog.present ();
-
-                    unsupported_file_dialog.response.connect (type => {
-                        if (type == Gtk.ResponseType.CANCEL) {
-                            // Play next video if available or else go to welcome page
-                            if (!playback_manager.next ()) {
-                                playback_manager.ended ();
-                            }
-                        }
-
-                        unsupported_file_dialog.destroy ();
-                    });
-                }
-            } catch (Error e) {
-                debug (e.message);
-            }
-
-            playback_manager.set_uri (uri);
-
-            App.get_instance ().active_window.title = get_title (uri);
-
-            /* Set progress before subtitle uri else it gets reset to zero */
-            if (from_beginning) {
-                playback_manager.set_progress (0.0);
-            } else {
-                playback_manager.set_progress (settings.get_double ("last-stopped"));
-            }
-
-            string sub_uri = "";
-            if (!from_beginning) { //We are resuming the current video - fetch the current subtitles
-                /* Should not bind to this setting else may cause loop */
-                sub_uri = settings.get_string ("current-external-subtitles-uri");
-            } else {
-                sub_uri = get_subtitle_for_uri (uri);
-            }
-
-            playback_manager.set_subtitle (sub_uri);
-
-            playback_manager.set_playing (true);
-            Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
-            recent_manager.add_item (uri);
-
-            bottom_bar.preferences_popover.is_setup = false;
-
-            settings.set_string ("current-video", uri);
-        }
-
         public void seek_jump_seconds (int seconds) {
             var playback_manager = PlaybackManager.get_default ();
             var duration = playback_manager.get_duration ();
@@ -252,29 +193,6 @@ namespace Audience {
             if (popover != null) {
                 popover.schedule_hide ();
             }
-        }
-
-        private string get_subtitle_for_uri (string uri) {
-            /* This assumes that the subtitle file has the same basename as the video file but with
-             * one of the subtitle extensions, and is in the same folder. */
-            string without_ext;
-            int last_dot = uri.last_index_of (".", 0);
-            int last_slash = uri.last_index_of ("/", 0);
-
-            if (last_dot < last_slash) {//we dont have extension
-                without_ext = uri;
-            } else {
-                without_ext = uri.slice (0, last_dot);
-            }
-
-            foreach (string ext in SUBTITLE_EXTENSIONS) {
-                string sub_uri = without_ext + "." + ext;
-                if (File.new_for_uri (sub_uri).query_exists ()) {
-                    return sub_uri;
-                }
-            }
-
-            return "";
         }
 
         private bool update_pointer_position (double y, int window_height) {

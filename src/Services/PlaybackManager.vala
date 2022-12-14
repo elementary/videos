@@ -116,6 +116,61 @@ public class Audience.PlaybackManager : Object {
         }
     }
 
+    public void play_file (string uri, bool from_beginning = true) {
+        debug ("Opening %s", uri);
+        pipeline.set_state (Gst.State.NULL);
+        var file = File.new_for_uri (uri);
+        try {
+            FileInfo info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
+            unowned string content_type = info.get_content_type ();
+
+            if (!GLib.ContentType.is_a (content_type, "video/*")) {
+                debug ("Unrecognized file format: %s", content_type);
+                var unsupported_file_dialog = new UnsupportedFileDialog (uri, info.get_name (), content_type);
+                unsupported_file_dialog.present ();
+
+                unsupported_file_dialog.response.connect (type => {
+                    if (type == Gtk.ResponseType.CANCEL) {
+                        // Play next video if available or else go to welcome page
+                        if (!next ()) {
+                            ended ();
+                        }
+                    }
+
+                    unsupported_file_dialog.destroy ();
+                });
+            }
+        } catch (Error e) {
+            debug (e.message);
+        }
+
+        playback.uri = uri;
+
+        ((Gtk.Application) Application.get_default ()).active_window.title = get_title (uri);
+
+        /* Set progress before subtitle uri else it gets reset to zero */
+        if (from_beginning) {
+            set_progress (0.0);
+        } else {
+            set_progress (settings.get_double ("last-stopped"));
+        }
+
+        string sub_uri = "";
+        if (!from_beginning) { //We are resuming the current video - fetch the current subtitles
+            /* Should not bind to this setting else may cause loop */
+            sub_uri = settings.get_string ("current-external-subtitles-uri");
+        } else {
+            sub_uri = get_subtitle_for_uri (uri);
+        }
+
+        set_subtitle (sub_uri);
+
+        playback.playing = true;
+        Gtk.RecentManager.get_default ().add_item (uri);
+
+        settings.set_string ("current-video", uri);
+    }
+
     public void stop () {
         settings.set_double ("last-stopped", 0);
         settings.set_strv ("last-played-videos", {});
@@ -165,16 +220,8 @@ public class Audience.PlaybackManager : Object {
         return playback.uri;
     }
 
-    public void set_uri (string uri) {
-        playback.uri = uri;
-    }
-
     public bool get_playing () {
         return playback.playing;
-    }
-
-    public void set_playing (bool playing) {
-        playback.playing = playing;
     }
 
     public double get_duration () {
@@ -226,5 +273,28 @@ public class Audience.PlaybackManager : Object {
         pipeline.set_state (Gst.State.PLAYING);
 
         settings.set_string ("current-external-subtitles-uri", uri);
+    }
+
+    private string get_subtitle_for_uri (string uri) {
+        /* This assumes that the subtitle file has the same basename as the video file but with
+         * one of the subtitle extensions, and is in the same folder. */
+        string without_ext;
+        int last_dot = uri.last_index_of (".", 0);
+        int last_slash = uri.last_index_of ("/", 0);
+
+        if (last_dot < last_slash) {//we dont have extension
+            without_ext = uri;
+        } else {
+            without_ext = uri.slice (0, last_dot);
+        }
+
+        foreach (string ext in SUBTITLE_EXTENSIONS) {
+            string sub_uri = without_ext + "." + ext;
+            if (File.new_for_uri (sub_uri).query_exists ()) {
+                return sub_uri;
+            }
+        }
+
+        return "";
     }
 }
