@@ -206,16 +206,15 @@ namespace Audience {
                 debug (e.message);
             }
 
-            playback_manager.set_current (uri);
-            playback_manager.playback.uri = uri;
+            playback_manager.set_uri (uri);
 
             App.get_instance ().active_window.title = get_title (uri);
 
             /* Set progress before subtitle uri else it gets reset to zero */
             if (from_beginning) {
-                playback_manager.playback.progress = 0.0;
+                playback_manager.set_progress (0.0);
             } else {
-                playback_manager.playback.progress = settings.get_double ("last-stopped");
+                playback_manager.set_progress (settings.get_double ("last-stopped"));
             }
 
             string sub_uri = "";
@@ -228,7 +227,7 @@ namespace Audience {
 
             playback_manager.set_subtitle (sub_uri);
 
-            playback_manager.playback.playing = true;
+            playback_manager.set_playing (true);
             Gtk.RecentManager recent_manager = Gtk.RecentManager.get_default ();
             recent_manager.add_item (uri);
 
@@ -239,10 +238,10 @@ namespace Audience {
 
         public void seek_jump_seconds (int seconds) {
             var playback_manager = PlaybackManager.get_default ();
-            var duration = playback_manager.playback.duration;
-            var progress = playback_manager.playback.progress;
+            var duration = playback_manager.get_duration ();
+            var progress = playback_manager.get_progress ();
             var new_progress = ((duration * progress) + (double)seconds) / duration;
-            playback_manager.playback.progress = new_progress.clamp (0.0, 1.0);
+            playback_manager.set_progress (new_progress.clamp (0.0, 1.0));
             bottom_bar.reveal_control ();
         }
 

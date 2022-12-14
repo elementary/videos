@@ -52,7 +52,7 @@ public class Audience.Widgets.Playlist : Gtk.ListBox {
         playback_manager.previous.connect (previous);
         playback_manager.queue_file.connect (add_item);
         playback_manager.save_playlist.connect (save_playlist);
-        playback_manager.set_current.connect (set_current);
+        playback_manager.uri_changed.connect (set_current);
     }
 
     ~Playlist () {

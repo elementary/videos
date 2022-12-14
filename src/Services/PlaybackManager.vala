@@ -15,7 +15,7 @@ public class Audience.PlaybackManager : Object {
     public signal void previous ();
     public signal void queue_file (File file);
     public signal void save_playlist ();
-    public signal void set_current (string current_file);
+    public signal void uri_changed (string uri);
 
     public ClutterGst.Playback playback { get; private set; }
     public string? subtitle_uri { get; private set; }
@@ -92,6 +92,10 @@ public class Audience.PlaybackManager : Object {
                 subtitle_uri = playback.subtitle_uri;
             }
         });
+
+        playback.notify ["uri"].connect (() => {
+            uri_changed (playback.uri);
+        });
     }
 
     ~PlaybackManager () {
@@ -110,10 +114,6 @@ public class Audience.PlaybackManager : Object {
             ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
             inhibit_token = 0;
         }
-    }
-
-    public double get_progress () {
-        return playback.progress;
     }
 
     public void stop () {
@@ -151,6 +151,58 @@ public class Audience.PlaybackManager : Object {
         }
 
         return false;
+    }
+
+    public unowned List<string> get_audio_tracks () {
+        return playback.get_audio_streams ();
+    }
+
+    public unowned List<string> get_subtitle_tracks () {
+        return playback.get_subtitle_tracks ();
+    }
+
+    public string get_uri () {
+        return playback.uri;
+    }
+
+    public void set_uri (string uri) {
+        playback.uri = uri;
+    }
+
+    public bool get_playing () {
+        return playback.playing;
+    }
+
+    public void set_playing (bool playing) {
+        playback.playing = playing;
+    }
+
+    public double get_duration () {
+        return playback.duration;
+    }
+
+    public int get_audio_track () {
+        return playback.audio_stream;
+    }
+
+    public void set_audio_track (int track) {
+        playback.audio_stream = track;
+    }
+
+    public double get_progress () {
+        return playback.progress;
+    }
+
+    public void set_progress (double progress) {
+        playback.progress = progress;
+    }
+
+    public int get_subtitle_track () {
+        return playback.subtitle_track;
+    }
+
+    public void set_subtitle_track (int track) {
+        playback.subtitle_track = track;
     }
 
     public void set_subtitle (string uri) {
