@@ -37,6 +37,8 @@ public class Audience.PlaybackManager : Object {
     private PlaybackManager () {}
 
     construct {
+        unowned var default_application = (Gtk.Application) Application.get_default ();
+
         playback = new ClutterGst.Playback ();
         playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
 
@@ -47,23 +49,21 @@ public class Audience.PlaybackManager : Object {
         });
 
         playback.notify["playing"].connect (() => {
-            unowned var app = (Gtk.Application) Application.get_default ();
-
-            var play_pause_action = app.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+            var play_pause_action = default_application.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
             ((SimpleAction) play_pause_action).set_state (playback.playing);
 
             if (playback.playing) {
                 if (inhibit_token != 0) {
-                    app.uninhibit (inhibit_token);
+                    default_application.uninhibit (inhibit_token);
                 }
 
-                inhibit_token = app.inhibit (
-                    app.get_active_window (),
+                inhibit_token = default_application.inhibit (
+                    default_application.active_window,
                     Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND,
                     _("A video is playing")
                 );
             } else if (inhibit_token != 0) {
-                app.uninhibit (inhibit_token);
+                default_application.uninhibit (inhibit_token);
                 inhibit_token = 0;
             }
         });
@@ -72,10 +72,10 @@ public class Audience.PlaybackManager : Object {
             Idle.add (() => {
                 playback.progress = 0;
                 if (!next ()) {
-                    var repeat_action = Application.get_default ().lookup_action (Audience.App.ACTION_REPEAT);
+                    var repeat_action = default_application.lookup_action (Audience.App.ACTION_REPEAT);
                     if (repeat_action.get_state ().get_boolean ()) {
                         var file = get_first_item ();
-                        ((Audience.Window) App.get_instance ().active_window).open_files ({ file });
+                        ((Audience.Window) default_application.active_window).open_files ({ file });
                     } else {
                         playback.playing = false;
                         settings.set_double ("last-stopped", 0);
