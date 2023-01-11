@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 17:53+0000\n"
+"POT-Creation-Date: 2023-01-11 17:48+0000\n"
 "PO-Revision-Date: 2018-10-24 14:12+0000\n"
 "Last-Translator: Fredrik B <frbo9002@gmail.com>\n"
 "Language-Team: Swedish <https://weblate.elementary.io/projects/videos/videos/"
@@ -20,62 +20,62 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:96 src/Window.vala:559
+#: src/Application.vala:98 src/Window.vala:541
 msgid "Videos"
 msgstr "Videor"
 
 #. For better translation
-#: src/Window.vala:39
+#: src/Window.vala:38
 msgid "Back"
 msgstr "Tillbaka"
 
-#: src/Window.vala:40 src/Window.vala:562
+#: src/Window.vala:39 src/Window.vala:544
 msgid "Library"
 msgstr "Bibliotek"
 
-#: src/Window.vala:41
+#: src/Window.vala:40
 msgid "Episodes"
 msgstr "Avsnitt"
 
-#: src/Window.vala:106
+#: src/Window.vala:105
 msgid "Search Videos"
 msgstr "Sök filmer"
 
-#: src/Window.vala:119
+#: src/Window.vala:118
 #, fuzzy
 msgid "Play one video"
 msgstr "Upprepa senaste videon"
 
-#: src/Window.vala:120
+#: src/Window.vala:119
 msgid "Automatically play next videos"
 msgstr ""
 
-#: src/Window.vala:180
+#: src/Window.vala:179
 msgid "Restore"
 msgstr "Återställ"
 
-#: src/Window.vala:199
+#: src/Window.vala:198
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Filmen '%s' togs bort."
 
-#: src/Window.vala:461 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:456 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Alla filer"
 
-#: src/Window.vala:465
+#: src/Window.vala:460
 msgid "Video files"
 msgstr "Videofiler"
 
-#: src/Window.vala:469 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:464 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Öppna"
 
-#: src/Window.vala:472 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:467 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Öppna"
 
-#: src/Window.vala:473 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:468 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Avbryt"
 
@@ -107,7 +107,7 @@ msgstr "Inga videor öppna"
 msgid "Select a source to begin playing."
 msgstr "Välj en källa för att starta uppspelning."
 
-#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:29
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:26
 msgid "Open file"
 msgstr "Öppna fil"
 
@@ -115,11 +115,11 @@ msgstr "Öppna fil"
 msgid "Open a saved file."
 msgstr "Öppna en sparad fil."
 
-#: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:108
+#: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:109
 msgid "Replay last video"
 msgstr "Upprepa senaste videon"
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:33
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:30
 msgid "Play from Disc"
 msgstr "Spela upp från skiva"
 
@@ -135,7 +135,7 @@ msgstr "Bläddra i bibliotek"
 msgid "Watch a movie from your library"
 msgstr "Se  en film från ditt bibliotek"
 
-#: src/Widgets/WelcomePage.vala:111
+#: src/Widgets/WelcomePage.vala:112
 msgid "Resume last video"
 msgstr "Återställ senaste videon"
 
@@ -144,8 +144,8 @@ msgstr "Återställ senaste videon"
 msgid "Try changing search terms."
 msgstr "Försök med att ändra söktermer."
 
-#: src/Widgets/Library/EpisodesPage.vala:132
-#: src/Widgets/Library/LibraryPage.vala:189
+#: src/Widgets/Library/EpisodesPage.vala:136
+#: src/Widgets/Library/LibraryPage.vala:194
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Inga resultat för \"%s\""
@@ -162,19 +162,19 @@ msgstr "Ange omslagsbild"
 msgid "Image files"
 msgstr "Bildfiler"
 
-#: src/Widgets/Player/BottomBar.vala:64 src/Widgets/Player/BottomBar.vala:123
+#: src/Widgets/Player/BottomBar.vala:55 src/Widgets/Player/BottomBar.vala:114
 msgid "Play"
 msgstr "Spela"
 
-#: src/Widgets/Player/BottomBar.vala:72
+#: src/Widgets/Player/BottomBar.vala:63
 msgid "Playlist"
 msgstr "Spellista"
 
-#: src/Widgets/Player/BottomBar.vala:80
+#: src/Widgets/Player/BottomBar.vala:71
 msgid "Settings"
 msgstr "Inställningar"
 
-#: src/Widgets/Player/BottomBar.vala:127
+#: src/Widgets/Player/BottomBar.vala:118
 msgid "Pause"
 msgstr "Pausa"
 
@@ -182,21 +182,21 @@ msgstr "Pausa"
 msgid "Unfullscreen"
 msgstr "Stäng fullskärm"
 
-#: src/Widgets/Player/PlayerPage.vala:267
+#: src/Widgets/Player/PlayerPage.vala:276
 msgid "A video is playing"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/Player/PlaylistPopover.vala:34
 #, fuzzy
 msgid "Clear Playlist"
 msgstr "Spellista"
 
-#: src/Widgets/Player/PlaylistPopover.vala:41
-#: src/Widgets/Player/PlaylistPopover.vala:88
+#: src/Widgets/Player/PlaylistPopover.vala:39
+#: src/Widgets/Player/PlaylistPopover.vala:86
 msgid "Enable Repeat"
 msgstr "Aktivera upprepning"
 
-#: src/Widgets/Player/PlaylistPopover.vala:85
+#: src/Widgets/Player/PlaylistPopover.vala:83
 msgid "Disable Repeat"
 msgstr "Inaktivera upprepning"
 
@@ -226,17 +226,17 @@ msgid "External Subtitles:"
 msgstr "Externa undertexter:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:137
-#: src/Widgets/Player/SettingsPopover.vala:166
+#: src/Widgets/Player/SettingsPopover.vala:138
+#: src/Widgets/Player/SettingsPopover.vala:167
 #, c-format
 msgid "Track %u"
 msgstr "Spår %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:139
+#: src/Widgets/Player/SettingsPopover.vala:140
 msgid "None"
 msgstr "Ingen"
 
-#: src/Widgets/Player/SettingsPopover.vala:179
+#: src/Widgets/Player/SettingsPopover.vala:180
 msgid "Default"
 msgstr "Standard"
 

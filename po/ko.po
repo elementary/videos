@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 17:53+0000\n"
+"POT-Creation-Date: 2023-01-11 17:48+0000\n"
 "PO-Revision-Date: 2022-08-06 09:31+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/videos/videos/ko/"
@@ -20,61 +20,61 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:96 src/Window.vala:559
+#: src/Application.vala:98 src/Window.vala:541
 msgid "Videos"
 msgstr "비디오"
 
 #. For better translation
-#: src/Window.vala:39
+#: src/Window.vala:38
 msgid "Back"
 msgstr "뒤로"
 
-#: src/Window.vala:40 src/Window.vala:562
+#: src/Window.vala:39 src/Window.vala:544
 msgid "Library"
 msgstr "라이브러리"
 
-#: src/Window.vala:41
+#: src/Window.vala:40
 msgid "Episodes"
 msgstr "에피소드"
 
-#: src/Window.vala:106
+#: src/Window.vala:105
 msgid "Search Videos"
 msgstr "비디오 검색"
 
-#: src/Window.vala:119
+#: src/Window.vala:118
 msgid "Play one video"
 msgstr "동영상 하나 재생"
 
-#: src/Window.vala:120
+#: src/Window.vala:119
 msgid "Automatically play next videos"
 msgstr "다음 비디오 자동 재생"
 
-#: src/Window.vala:180
+#: src/Window.vala:179
 msgid "Restore"
 msgstr "복원하기"
 
-#: src/Window.vala:199
+#: src/Window.vala:198
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "비디오 '%s'를 지웠습니다."
 
-#: src/Window.vala:461 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:456 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "모든 파일"
 
-#: src/Window.vala:465
+#: src/Window.vala:460
 msgid "Video files"
 msgstr "비디오 파일"
 
-#: src/Window.vala:469 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:464 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "열기"
 
-#: src/Window.vala:472 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:467 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_열기"
 
-#: src/Window.vala:473 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:468 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_취소"
 
@@ -108,7 +108,7 @@ msgstr "비디오를 실행 중이지 않음"
 msgid "Select a source to begin playing."
 msgstr "보고 싶은 비디오를 선택하세요."
 
-#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:29
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:26
 msgid "Open file"
 msgstr "파일 열기"
 
@@ -116,11 +116,11 @@ msgstr "파일 열기"
 msgid "Open a saved file."
 msgstr "저장된 파일을 엽니다."
 
-#: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:108
+#: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:109
 msgid "Replay last video"
 msgstr "마지막 비디오 다시 재생"
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:33
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:30
 msgid "Play from Disc"
 msgstr "디스크 롬 재생하기"
 
@@ -136,7 +136,7 @@ msgstr "라이브러리 탐색"
 msgid "Watch a movie from your library"
 msgstr "라이브러리에 있는 영화 보기"
 
-#: src/Widgets/WelcomePage.vala:111
+#: src/Widgets/WelcomePage.vala:112
 msgid "Resume last video"
 msgstr "마지막으로 재생한 비디오를 계속 재생하기"
 
@@ -145,8 +145,8 @@ msgstr "마지막으로 재생한 비디오를 계속 재생하기"
 msgid "Try changing search terms."
 msgstr "검색어를 바꿔보세요."
 
-#: src/Widgets/Library/EpisodesPage.vala:132
-#: src/Widgets/Library/LibraryPage.vala:189
+#: src/Widgets/Library/EpisodesPage.vala:136
+#: src/Widgets/Library/LibraryPage.vala:194
 #, c-format
 msgid "No Results for “%s”"
 msgstr "“%s”에 대한 검색 결과가 없습니다"
@@ -163,19 +163,19 @@ msgstr "표지 설정"
 msgid "Image files"
 msgstr "이미지 파일"
 
-#: src/Widgets/Player/BottomBar.vala:64 src/Widgets/Player/BottomBar.vala:123
+#: src/Widgets/Player/BottomBar.vala:55 src/Widgets/Player/BottomBar.vala:114
 msgid "Play"
 msgstr "재생"
 
-#: src/Widgets/Player/BottomBar.vala:72
+#: src/Widgets/Player/BottomBar.vala:63
 msgid "Playlist"
 msgstr "재생목록"
 
-#: src/Widgets/Player/BottomBar.vala:80
+#: src/Widgets/Player/BottomBar.vala:71
 msgid "Settings"
 msgstr "설정"
 
-#: src/Widgets/Player/BottomBar.vala:127
+#: src/Widgets/Player/BottomBar.vala:118
 msgid "Pause"
 msgstr "일시정지"
 
@@ -183,20 +183,20 @@ msgstr "일시정지"
 msgid "Unfullscreen"
 msgstr "전체화면 해제"
 
-#: src/Widgets/Player/PlayerPage.vala:267
+#: src/Widgets/Player/PlayerPage.vala:276
 msgid "A video is playing"
 msgstr "비디오 재생 중"
 
-#: src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/Player/PlaylistPopover.vala:34
 msgid "Clear Playlist"
 msgstr "재생목록 비우기"
 
-#: src/Widgets/Player/PlaylistPopover.vala:41
-#: src/Widgets/Player/PlaylistPopover.vala:88
+#: src/Widgets/Player/PlaylistPopover.vala:39
+#: src/Widgets/Player/PlaylistPopover.vala:86
 msgid "Enable Repeat"
 msgstr "반복 설정"
 
-#: src/Widgets/Player/PlaylistPopover.vala:85
+#: src/Widgets/Player/PlaylistPopover.vala:83
 msgid "Disable Repeat"
 msgstr "반복 해제"
 
@@ -226,17 +226,17 @@ msgid "External Subtitles:"
 msgstr "외부 자막:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:137
-#: src/Widgets/Player/SettingsPopover.vala:166
+#: src/Widgets/Player/SettingsPopover.vala:138
+#: src/Widgets/Player/SettingsPopover.vala:167
 #, c-format
 msgid "Track %u"
 msgstr "트랙 %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:139
+#: src/Widgets/Player/SettingsPopover.vala:140
 msgid "None"
 msgstr "없음"
 
-#: src/Widgets/Player/SettingsPopover.vala:179
+#: src/Widgets/Player/SettingsPopover.vala:180
 msgid "Default"
 msgstr "기본"
 
