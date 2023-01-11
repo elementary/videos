@@ -6,17 +6,17 @@ on:
     types: closed
 jobs:
   release:
-     runs-on: ubuntu-latest
-     if: github.event.pull_request.merged == true && true == contains(join(github.event.pull_request.labels.*.name), 'Release')
-     steps:
-     - uses: actions/checkout@v1
-     - uses: elementary/actions/release@master
-       env:
-         GIT_USER_TOKEN: "${{ secrets.GIT_USER_TOKEN }}"
-         GIT_USER_NAME: "elementaryBot"
-         GIT_USER_EMAIL: "builds@elementary.io"
-       with:
-         release_branch: 'odin'
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true && true == contains(join(github.event.pull_request.labels.*.name), 'Release')
+    steps:
+      - uses: actions/checkout@v3
+      - uses: elementary/actions/release@master
+        env:
+          GIT_USER_TOKEN: "${{ secrets.GIT_USER_TOKEN }}"
+          GIT_USER_NAME: "elementaryBot"
+          GIT_USER_EMAIL: "builds@elementary.io"
+        with:
+          release_branch: "odin"
 
   deploy_flatpak:
     name: Deploy Flatpak
@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up QEMU for aarch64 emulation
         if: ${{ matrix.arch != 'x86_64' }}
