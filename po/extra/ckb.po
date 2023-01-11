@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 17:53+0000\n"
+"POT-Creation-Date: 2023-01-11 17:48+0000\n"
 "PO-Revision-Date: 2022-10-07 13:03+0000\n"
 "Last-Translator: Aga Ismael <agaesmaeel@gmail.com>\n"
 "Language-Team: Kurdish (Central) <https://l10n.elementary.io/projects/videos/"
@@ -259,8 +259,4 @@ msgstr ""
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
-msgstr ""
-
-#: data/io.elementary.videos.desktop.in:8
-msgid "io.elementary.videos"
 msgstr ""
