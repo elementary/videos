@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 17:53+0000\n"
+"POT-Creation-Date: 2023-01-11 17:48+0000\n"
 "PO-Revision-Date: 2020-05-04 08:10+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
@@ -263,10 +263,6 @@ msgstr ""
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "影片播放器"
-
-#: data/io.elementary.videos.desktop.in:8
-msgid "io.elementary.videos"
-msgstr ""
 
 #~ msgid "Audience"
 #~ msgstr "Audience"

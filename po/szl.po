@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 17:53+0000\n"
+"POT-Creation-Date: 2023-01-11 17:48+0000\n"
 "PO-Revision-Date: 2020-02-23 10:08+0000\n"
 "Last-Translator: gkkulik <g.kulik@o2.pl>\n"
 "Language-Team: Silesian <https://l10n.elementary.io/projects/videos/videos/"
@@ -14,61 +14,61 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#: src/Application.vala:96 src/Window.vala:559
+#: src/Application.vala:98 src/Window.vala:541
 msgid "Videos"
 msgstr "Filmy"
 
 #. For better translation
-#: src/Window.vala:39
+#: src/Window.vala:38
 msgid "Back"
 msgstr "Nazod"
 
-#: src/Window.vala:40 src/Window.vala:562
+#: src/Window.vala:39 src/Window.vala:544
 msgid "Library"
 msgstr "Bibliotyka"
 
-#: src/Window.vala:41
+#: src/Window.vala:40
 msgid "Episodes"
 msgstr "Ôdcinki"
 
-#: src/Window.vala:106
+#: src/Window.vala:105
 msgid "Search Videos"
 msgstr "Szukanie filmōw"
 
-#: src/Window.vala:119
+#: src/Window.vala:118
 msgid "Play one video"
 msgstr "Grej jedyn film"
 
-#: src/Window.vala:120
+#: src/Window.vala:119
 msgid "Automatically play next videos"
 msgstr "Autōmatycznie grej nastympne filmy"
 
-#: src/Window.vala:180
+#: src/Window.vala:179
 msgid "Restore"
 msgstr "Prziwrōć"
 
-#: src/Window.vala:199
+#: src/Window.vala:198
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Film '%s' bōł skasowany."
 
-#: src/Window.vala:461 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:456 src/Widgets/Player/SettingsPopover.vala:37
 msgid "All files"
 msgstr "Wszyjske zbiory"
 
-#: src/Window.vala:465
+#: src/Window.vala:460
 msgid "Video files"
 msgstr "Zbiory filmōw"
 
-#: src/Window.vala:469 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:464 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Ôtwōrz"
 
-#: src/Window.vala:472 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:467 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Ôtwōrz"
 
-#: src/Window.vala:473 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:468 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Pociep"
 
@@ -102,7 +102,7 @@ msgstr "Brak ôtwartych filmōw"
 msgid "Select a source to begin playing."
 msgstr "Ôbier zdrzōdło do granio."
 
-#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:29
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:26
 msgid "Open file"
 msgstr "Ôtwōrz zbiōr"
 
@@ -110,11 +110,11 @@ msgstr "Ôtwōrz zbiōr"
 msgid "Open a saved file."
 msgstr "Ôtwōrz zapisany zbiōr."
 
-#: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:108
+#: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:109
 msgid "Replay last video"
 msgstr "Grej na nowo ôstatni film"
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:33
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:30
 msgid "Play from Disc"
 msgstr "Grej z dysku"
 
@@ -130,7 +130,7 @@ msgstr "Przeglōndej bibliotyka"
 msgid "Watch a movie from your library"
 msgstr "Patrz film ze swojij bibliotyki"
 
-#: src/Widgets/WelcomePage.vala:111
+#: src/Widgets/WelcomePage.vala:112
 msgid "Resume last video"
 msgstr "Znōw ôstatni film"
 
@@ -139,8 +139,8 @@ msgstr "Znōw ôstatni film"
 msgid "Try changing search terms."
 msgstr "Sprōbuj zmiynić wyszukowane słowa."
 
-#: src/Widgets/Library/EpisodesPage.vala:132
-#: src/Widgets/Library/LibraryPage.vala:189
+#: src/Widgets/Library/EpisodesPage.vala:136
+#: src/Widgets/Library/LibraryPage.vala:194
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Brak wynikōw do „%s”"
@@ -157,19 +157,19 @@ msgstr "Nasztaluj ôbkłodka"
 msgid "Image files"
 msgstr "Zbiory ôbrazōw"
 
-#: src/Widgets/Player/BottomBar.vala:64 src/Widgets/Player/BottomBar.vala:123
+#: src/Widgets/Player/BottomBar.vala:55 src/Widgets/Player/BottomBar.vala:114
 msgid "Play"
 msgstr "Ôdgrowanie"
 
-#: src/Widgets/Player/BottomBar.vala:72
+#: src/Widgets/Player/BottomBar.vala:63
 msgid "Playlist"
 msgstr "Playlista"
 
-#: src/Widgets/Player/BottomBar.vala:80
+#: src/Widgets/Player/BottomBar.vala:71
 msgid "Settings"
 msgstr "Sztelōnki"
 
-#: src/Widgets/Player/BottomBar.vala:127
+#: src/Widgets/Player/BottomBar.vala:118
 msgid "Pause"
 msgstr "Pauza"
 
@@ -177,20 +177,20 @@ msgstr "Pauza"
 msgid "Unfullscreen"
 msgstr "Zastow połny ekran"
 
-#: src/Widgets/Player/PlayerPage.vala:267
+#: src/Widgets/Player/PlayerPage.vala:276
 msgid "A video is playing"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/Player/PlaylistPopover.vala:34
 msgid "Clear Playlist"
 msgstr "Wysnoż playlista"
 
-#: src/Widgets/Player/PlaylistPopover.vala:41
-#: src/Widgets/Player/PlaylistPopover.vala:88
+#: src/Widgets/Player/PlaylistPopover.vala:39
+#: src/Widgets/Player/PlaylistPopover.vala:86
 msgid "Enable Repeat"
 msgstr "Powtorzej"
 
-#: src/Widgets/Player/PlaylistPopover.vala:85
+#: src/Widgets/Player/PlaylistPopover.vala:83
 msgid "Disable Repeat"
 msgstr "Niy powtorzej"
 
@@ -220,17 +220,17 @@ msgid "External Subtitles:"
 msgstr "Zewnyntrzne nopisy:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:137
-#: src/Widgets/Player/SettingsPopover.vala:166
+#: src/Widgets/Player/SettingsPopover.vala:138
+#: src/Widgets/Player/SettingsPopover.vala:167
 #, c-format
 msgid "Track %u"
 msgstr "Drōga %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:139
+#: src/Widgets/Player/SettingsPopover.vala:140
 msgid "None"
 msgstr "Brak"
 
-#: src/Widgets/Player/SettingsPopover.vala:179
+#: src/Widgets/Player/SettingsPopover.vala:180
 msgid "Default"
 msgstr "Wychodne"
 

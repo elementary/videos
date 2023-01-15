@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 17:53+0000\n"
-"PO-Revision-Date: 2022-09-30 22:40+0000\n"
+"POT-Creation-Date: 2023-01-11 17:48+0000\n"
+"PO-Revision-Date: 2022-12-26 20:25+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/videos/extra/sk/"
 ">\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.14.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/io.elementary.videos.appdata.xml.in:9
@@ -66,7 +66,7 @@ msgstr "Nové funkcie:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Control playback from the sound indicator"
-msgstr ""
+msgstr "Ovládanie prehrávania z indikátora zvuku"
 
 #: data/io.elementary.videos.appdata.xml.in:45
 #: data/io.elementary.videos.appdata.xml.in:55
@@ -83,7 +83,7 @@ msgstr "Ostatné aktualizácie:"
 
 #: data/io.elementary.videos.appdata.xml.in:47
 msgid "Make playback duration more accurate"
-msgstr ""
+msgstr "Presnejšie zobrazenie trvania prehrávania"
 
 #: data/io.elementary.videos.appdata.xml.in:48
 #: data/io.elementary.videos.appdata.xml.in:58
@@ -273,10 +273,6 @@ msgstr "elementary, Inc."
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Prehrávač videa"
-
-#: data/io.elementary.videos.desktop.in:8
-msgid "io.elementary.videos"
-msgstr ""
 
 #~ msgid "Audience"
 #~ msgstr "Audience"

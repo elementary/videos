@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 17:53+0000\n"
+"POT-Creation-Date: 2023-01-11 17:48+0000\n"
 "PO-Revision-Date: 2016-10-16 08:05+0000\n"
 "Last-Translator: Waqar Ahmed <waqar.17a@gmail.com>\n"
 "Language-Team: Urdu <ur@li.org>\n"
@@ -259,10 +259,6 @@ msgstr ""
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "ویڈیو پلیئر"
-
-#: data/io.elementary.videos.desktop.in:8
-msgid "io.elementary.videos"
-msgstr ""
 
 #~ msgid "Audience"
 #~ msgstr "آڈینس"
