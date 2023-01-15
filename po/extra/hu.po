@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 17:53+0000\n"
+"POT-Creation-Date: 2023-01-11 17:48+0000\n"
 "PO-Revision-Date: 2021-12-22 15:02+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/extra/"
@@ -263,7 +263,3 @@ msgstr "elementary, Inc."
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Videólejátszó"
-
-#: data/io.elementary.videos.desktop.in:8
-msgid "io.elementary.videos"
-msgstr ""
