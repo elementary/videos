@@ -5,17 +5,12 @@
 
 public class Videos.SeekBar : Gtk.Box {
     public Audience.Widgets.PreviewPopover preview_popover { get; private set; }
-    public ClutterGst.Playback main_playback { get; construct; }
 
     private Gtk.Label progression_label;
     private Gtk.Label duration_label;
     private Gtk.Scale scale;
     private double playback_duration;
     private bool is_grabbing = false;
-
-    public SeekBar (ClutterGst.Playback main_playback) {
-        Object (main_playback: main_playback);
-    }
 
     construct {
         get_style_context ().add_class (Granite.STYLE_CLASS_SEEKBAR);
@@ -42,19 +37,21 @@ public class Videos.SeekBar : Gtk.Box {
         add (scale);
         add (duration_label);
 
-        main_playback.notify["progress"].connect (() => {
+        var playback_manager = Audience.PlaybackManager.get_default ();
+
+        playback_manager.playback.notify["progress"].connect (() => {
             if (!is_grabbing) {
-                progression_label.label = Granite.DateTime.seconds_to_time ((int) main_playback.get_position ());
-                scale.set_value (main_playback.progress);
+                progression_label.label = Granite.DateTime.seconds_to_time ((int) playback_manager.playback.get_position ());
+                scale.set_value (playback_manager.get_progress ());
             }
         });
 
-        main_playback.notify["duration"].connect (() => {
+        playback_manager.playback.notify["duration"].connect (() => {
             if (preview_popover != null) {
                 preview_popover.destroy ();
             }
 
-            playback_duration = main_playback.duration;
+            playback_duration = playback_manager.playback.duration;
             if (playback_duration < 0.0) {
                 debug ("Duration value less than zero, duration set to 0.0");
                 playback_duration = 0.0;
@@ -63,13 +60,13 @@ public class Videos.SeekBar : Gtk.Box {
             duration_label.label = Granite.DateTime.seconds_to_time ((int) playback_duration);
 
             if (!is_grabbing) {
-                scale.set_value (main_playback.progress);
+                scale.set_value (playback_manager.get_progress ());
             }
 
             // Don't allow to change the time if there is none.
-            sensitive = (main_playback.duration != 0);
+            sensitive = (playback_manager.playback.duration != 0);
             if (sensitive) {
-                preview_popover = new Audience.Widgets.PreviewPopover (main_playback.uri);
+                preview_popover = new Audience.Widgets.PreviewPopover (playback_manager.playback.uri);
                 preview_popover.relative_to = scale;
             }
         });
@@ -101,7 +98,7 @@ public class Videos.SeekBar : Gtk.Box {
             );
 
             preview_popover.update_pointing ((int) event.x);
-            preview_popover.set_preview_progress (event.x / ((double) event.window.get_width ()), !main_playback.playing);
+            preview_popover.set_preview_progress (event.x / ((double) event.window.get_width ()), !playback_manager.get_playing ());
             return false;
         });
 
@@ -119,7 +116,7 @@ public class Videos.SeekBar : Gtk.Box {
             // the video player
             scale.set_value (event.x / scale.get_range_rect ().width);
 
-            main_playback.progress = scale.get_value ();
+            playback_manager.set_progress (scale.get_value ());
             return false;
         });
     }

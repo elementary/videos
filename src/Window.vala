@@ -153,7 +153,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
         welcome_page = new WelcomePage ();
 
         player_page = new PlayerPage ();
-        player_page.ended.connect (on_player_ended);
 
         player_page.map.connect (() => {
             app_notification.visible = false;
@@ -242,10 +241,14 @@ public class Audience.Window : Gtk.ApplicationWindow {
             return Gdk.EVENT_PROPAGATE;
         });
 
+        var playback_manager = PlaybackManager.get_default ();
+
         //playlist wants us to open a file
-        PlaybackManager.get_default ().play.connect ((file) => {
+        playback_manager.play.connect ((file) => {
             open_files ({ File.new_for_uri (file.get_uri ()) });
         });
+
+        playback_manager.ended.connect (on_player_ended);
 
         window_state_event.connect ((e) => {
             if (Gdk.WindowState.FULLSCREEN in e.changed_mask) {
@@ -515,14 +518,14 @@ public class Audience.Window : Gtk.ApplicationWindow {
         deck.add (player_page);
         deck.visible_child = player_page;
 
-        player_page.play_file (uri, from_beginning);
+        PlaybackManager.get_default ().play_file (uri, from_beginning);
         if (is_maximized) {
             fullscreen ();
         }
     }
 
     private void update_navigation () {
-        double progress = player_page.get_progress ();
+        double progress = PlaybackManager.get_default ().get_progress ();
         if (progress > 0) {
             settings.set_double ("last-stopped", progress);
         }

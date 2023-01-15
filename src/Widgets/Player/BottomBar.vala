@@ -22,10 +22,10 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     private const string PULSE_CLASS = "pulse";
     private const string PULSE_TYPE = "attention";
 
-    public SettingsPopover preferences_popover { get; private set; }
     public PlaylistPopover playlist_popover { get; private set; }
     public Videos.SeekBar time_widget { get; private set; }
 
+    private SettingsPopover preferences_popover;
     private Gtk.Button play_button;
     private Gtk.MenuButton playlist_button;
     private uint hiding_timer = 0;
@@ -49,7 +49,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
         }
     }
 
-    public BottomBar (ClutterGst.Playback playback) {
+    public BottomBar () {
         play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON) {
             action_name = App.ACTION_PREFIX + App.ACTION_PLAY_PAUSE,
             tooltip_text = _("Play")
@@ -63,7 +63,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
             tooltip_text = _("Playlist")
         };
 
-        preferences_popover = new SettingsPopover (playback);
+        preferences_popover = new SettingsPopover ();
 
         var preferences_button = new Gtk.MenuButton () {
             image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
@@ -71,7 +71,7 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
             tooltip_text = _("Settings")
         };
 
-        time_widget = new Videos.SeekBar (playback);
+        time_widget = new Videos.SeekBar ();
 
         var main_actionbar = new Gtk.ActionBar ();
         main_actionbar.pack_start (play_button);
