@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-11 17:48+0000\n"
+"POT-Creation-Date: 2023-01-15 04:43+0000\n"
 "PO-Revision-Date: 2019-11-19 22:24+0000\n"
 "Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/videos/videos/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.7.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 
-#: src/Application.vala:98 src/Window.vala:541
+#: src/Application.vala:98 src/Window.vala:544
 msgid "Videos"
 msgstr "Videoj"
 
@@ -29,7 +29,7 @@ msgstr "Videoj"
 msgid "Back"
 msgstr "Reen"
 
-#: src/Window.vala:39 src/Window.vala:544
+#: src/Window.vala:39 src/Window.vala:547
 msgid "Library"
 msgstr "Biblioteko"
 
@@ -50,34 +50,38 @@ msgstr "Ludi unu videon"
 msgid "Automatically play next videos"
 msgstr "Aŭtomate ludi la sekvajn videojn"
 
-#: src/Window.vala:179
+#: src/Window.vala:178
 msgid "Restore"
 msgstr "Restaŭri"
 
-#: src/Window.vala:198
+#: src/Window.vala:197
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Video „%s“ estis forigita."
 
-#: src/Window.vala:456 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:459 src/Widgets/Player/SettingsPopover.vala:32
 msgid "All files"
 msgstr "Ĉiuj dosieroj"
 
-#: src/Window.vala:460
+#: src/Window.vala:463
 msgid "Video files"
 msgstr "Videaj dosieroj"
 
-#: src/Window.vala:464 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:467 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Malfermi"
 
-#: src/Window.vala:467 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:470 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Malfermi"
 
-#: src/Window.vala:468 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:471 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Rezigni"
+
+#: src/Services/PlaybackManager.vala:63
+msgid "A video is playing"
+msgstr ""
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
@@ -180,13 +184,9 @@ msgstr "Agordoj"
 msgid "Pause"
 msgstr "Paŭzigi"
 
-#: src/Widgets/Player/PlayerPage.vala:109
+#: src/Widgets/Player/PlayerPage.vala:94
 msgid "Unfullscreen"
 msgstr "Malplenekranigi"
-
-#: src/Widgets/Player/PlayerPage.vala:276
-msgid "A video is playing"
-msgstr ""
 
 #: src/Widgets/Player/PlaylistPopover.vala:34
 msgid "Clear Playlist"
@@ -201,7 +201,7 @@ msgstr "Ebligi ripeton"
 msgid "Disable Repeat"
 msgstr "Malebligi ripeton"
 
-#: src/Widgets/Player/SettingsPopover.vala:41
+#: src/Widgets/Player/SettingsPopover.vala:36
 msgid "Subtitle files"
 msgstr "Subtekstaj dosieroj"
 
@@ -210,34 +210,34 @@ msgstr "Subtekstaj dosieroj"
 #. .sub
 #. .ssa & .ass
 #. exclude .asc, mimetype is generic "application/pgp-encrypted"
-#: src/Widgets/Player/SettingsPopover.vala:48
+#: src/Widgets/Player/SettingsPopover.vala:43
 msgid "External Subtitles"
 msgstr "Eksteraj subtekstoj"
 
-#: src/Widgets/Player/SettingsPopover.vala:52
+#: src/Widgets/Player/SettingsPopover.vala:47
 msgid "Audio:"
 msgstr "Sono:"
 
-#: src/Widgets/Player/SettingsPopover.vala:56
+#: src/Widgets/Player/SettingsPopover.vala:51
 msgid "Subtitles:"
 msgstr "Subtekstoj:"
 
-#: src/Widgets/Player/SettingsPopover.vala:60
+#: src/Widgets/Player/SettingsPopover.vala:55
 msgid "External Subtitles:"
 msgstr "Eksteraj subtekstoj:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:138
-#: src/Widgets/Player/SettingsPopover.vala:167
+#: src/Widgets/Player/SettingsPopover.vala:139
+#: src/Widgets/Player/SettingsPopover.vala:170
 #, c-format
 msgid "Track %u"
 msgstr "Trako %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:140
+#: src/Widgets/Player/SettingsPopover.vala:141
 msgid "None"
 msgstr "Neniu"
 
-#: src/Widgets/Player/SettingsPopover.vala:180
+#: src/Widgets/Player/SettingsPopover.vala:183
 msgid "Default"
 msgstr "Apriora"
 

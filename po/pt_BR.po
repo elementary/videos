@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-11 17:48+0000\n"
+"POT-Creation-Date: 2023-01-15 04:43+0000\n"
 "PO-Revision-Date: 2021-07-12 01:15+0000\n"
 "Last-Translator: lucaspifonseca <lucaspifonseca@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:98 src/Window.vala:541
+#: src/Application.vala:98 src/Window.vala:544
 msgid "Videos"
 msgstr "Vídeos"
 
@@ -29,7 +29,7 @@ msgstr "Vídeos"
 msgid "Back"
 msgstr "Voltar"
 
-#: src/Window.vala:39 src/Window.vala:544
+#: src/Window.vala:39 src/Window.vala:547
 msgid "Library"
 msgstr "Biblioteca"
 
@@ -49,34 +49,38 @@ msgstr "Reproduzir um vídeo"
 msgid "Automatically play next videos"
 msgstr "Reproduzir automaticamente os próximos vídeos"
 
-#: src/Window.vala:179
+#: src/Window.vala:178
 msgid "Restore"
 msgstr "Recuperar"
 
-#: src/Window.vala:198
+#: src/Window.vala:197
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Video '%s' Removido."
 
-#: src/Window.vala:456 src/Widgets/Player/SettingsPopover.vala:37
+#: src/Window.vala:459 src/Widgets/Player/SettingsPopover.vala:32
 msgid "All files"
 msgstr "Todos os arquivos"
 
-#: src/Window.vala:460
+#: src/Window.vala:463
 msgid "Video files"
 msgstr "Arquivos de vídeo"
 
-#: src/Window.vala:464 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:467 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Abrir"
 
-#: src/Window.vala:467 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:470 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Abrir"
 
-#: src/Window.vala:468 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:471 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Cancelar"
+
+#: src/Services/PlaybackManager.vala:63
+msgid "A video is playing"
+msgstr "Um vídeo está sendo reproduzido"
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
@@ -179,13 +183,9 @@ msgstr "Configurações"
 msgid "Pause"
 msgstr "Pausar"
 
-#: src/Widgets/Player/PlayerPage.vala:109
+#: src/Widgets/Player/PlayerPage.vala:94
 msgid "Unfullscreen"
 msgstr "Sair da tela cheia"
-
-#: src/Widgets/Player/PlayerPage.vala:276
-msgid "A video is playing"
-msgstr "Um vídeo está sendo reproduzido"
 
 #: src/Widgets/Player/PlaylistPopover.vala:34
 msgid "Clear Playlist"
@@ -200,7 +200,7 @@ msgstr "Ligar repetição"
 msgid "Disable Repeat"
 msgstr "Desligar repetição"
 
-#: src/Widgets/Player/SettingsPopover.vala:41
+#: src/Widgets/Player/SettingsPopover.vala:36
 msgid "Subtitle files"
 msgstr "Arquivo de legendas"
 
@@ -209,34 +209,34 @@ msgstr "Arquivo de legendas"
 #. .sub
 #. .ssa & .ass
 #. exclude .asc, mimetype is generic "application/pgp-encrypted"
-#: src/Widgets/Player/SettingsPopover.vala:48
+#: src/Widgets/Player/SettingsPopover.vala:43
 msgid "External Subtitles"
 msgstr "Legendas externas"
 
-#: src/Widgets/Player/SettingsPopover.vala:52
+#: src/Widgets/Player/SettingsPopover.vala:47
 msgid "Audio:"
 msgstr "Áudio:"
 
-#: src/Widgets/Player/SettingsPopover.vala:56
+#: src/Widgets/Player/SettingsPopover.vala:51
 msgid "Subtitles:"
 msgstr "Legendas:"
 
-#: src/Widgets/Player/SettingsPopover.vala:60
+#: src/Widgets/Player/SettingsPopover.vala:55
 msgid "External Subtitles:"
 msgstr "Legendas externas:"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:138
-#: src/Widgets/Player/SettingsPopover.vala:167
+#: src/Widgets/Player/SettingsPopover.vala:139
+#: src/Widgets/Player/SettingsPopover.vala:170
 #, c-format
 msgid "Track %u"
 msgstr "Faixa %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:140
+#: src/Widgets/Player/SettingsPopover.vala:141
 msgid "None"
 msgstr "Nenhum"
 
-#: src/Widgets/Player/SettingsPopover.vala:180
+#: src/Widgets/Player/SettingsPopover.vala:183
 msgid "Default"
 msgstr "Padrão"
 
