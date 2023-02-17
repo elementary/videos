@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-15 04:43+0000\n"
-"PO-Revision-Date: 2021-11-03 08:35+0000\n"
-"Last-Translator: Ciarán Ainsworth <ciaranainsworth@outlook.com>\n"
+"PO-Revision-Date: 2023-02-18 13:25+0000\n"
+"Last-Translator: David Hewitt <davidmhewitt@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
 "videos/extra/en_GB/>\n"
 "Language: en_GB\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.14.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/io.elementary.videos.appdata.xml.in:9
@@ -65,7 +65,7 @@ msgstr "New features:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Control playback from the sound indicator"
-msgstr ""
+msgstr "Control playback from the sound indicator"
 
 #: data/io.elementary.videos.appdata.xml.in:45
 #: data/io.elementary.videos.appdata.xml.in:55
@@ -82,7 +82,7 @@ msgstr "Other updates:"
 
 #: data/io.elementary.videos.appdata.xml.in:47
 msgid "Make playback duration more accurate"
-msgstr ""
+msgstr "Make playback duration more accurate"
 
 #: data/io.elementary.videos.appdata.xml.in:48
 #: data/io.elementary.videos.appdata.xml.in:58
@@ -104,29 +104,27 @@ msgstr "Translation updates"
 
 #: data/io.elementary.videos.appdata.xml.in:57
 msgid "Update to Flatpak Platform 7"
-msgstr ""
+msgstr "Update to Flatpak Platform 7"
 
 #: data/io.elementary.videos.appdata.xml.in:64
 msgid "Fixes:"
-msgstr ""
+msgstr "Fixes:"
 
 #: data/io.elementary.videos.appdata.xml.in:66
 msgid "Fix a crash with certain video codecs"
-msgstr ""
+msgstr "Fix a crash with certain video codecs"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 msgid "Update to 6.1 Flatpak runtime"
-msgstr ""
+msgstr "Update to 6.1 Flatpak runtime"
 
 #: data/io.elementary.videos.appdata.xml.in:79
 msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-msgstr ""
+msgstr "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
 
 #: data/io.elementary.videos.appdata.xml.in:87
-#, fuzzy
-#| msgid "Fix an issue with accessing library view"
 msgid "Fix an issue with removing videos from library"
-msgstr "Fix an issue with accessing library view"
+msgstr "Fix an issue with removing videos from library"
 
 #: data/io.elementary.videos.appdata.xml.in:95
 msgid "Two-finger swipe to go back"
