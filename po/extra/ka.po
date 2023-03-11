@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-15 04:43+0000\n"
-"PO-Revision-Date: 2023-03-11 08:37+0000\n"
+"PO-Revision-Date: 2023-03-12 09:25+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementary.io/projects/videos/extra/ka/"
 ">\n"
@@ -27,7 +27,7 @@ msgstr "ვიდეოები"
 #: data/io.elementary.videos.appdata.xml.in:10
 #: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "უყურეთ ვიდეოებს და ფილმებს"
 
 #: data/io.elementary.videos.appdata.xml.in:12
 msgid ""
@@ -38,30 +38,30 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:17
 msgid "Additional features include:"
-msgstr ""
+msgstr "დამატებითი მახასიათებლებია:"
 
 #: data/io.elementary.videos.appdata.xml.in:21
 msgid "Subtitle support"
-msgstr ""
+msgstr "სუბტიტრების მხარდაჭერა"
 
 #: data/io.elementary.videos.appdata.xml.in:22
 msgid "Play queue"
-msgstr ""
+msgstr "დაკვრის რიგი"
 
 #: data/io.elementary.videos.appdata.xml.in:23
 msgid "Thumbnail previews on the seek bar"
-msgstr ""
+msgstr "მინიატურები ძიების ზოლზე"
 
 #: data/io.elementary.videos.appdata.xml.in:41
 #: data/io.elementary.videos.appdata.xml.in:93
 #: data/io.elementary.videos.appdata.xml.in:130
 #: data/io.elementary.videos.appdata.xml.in:145
 msgid "New features:"
-msgstr ""
+msgstr "ახალი ფუნქციები:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Control playback from the sound indicator"
-msgstr ""
+msgstr "აკონტროლეთ დაკვრა ხმის ინდიკატორიდან"
 
 #: data/io.elementary.videos.appdata.xml.in:45
 #: data/io.elementary.videos.appdata.xml.in:55
@@ -74,11 +74,11 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:134
 #: data/io.elementary.videos.appdata.xml.in:153
 msgid "Other updates:"
-msgstr ""
+msgstr "სხვა განახლებები:"
 
 #: data/io.elementary.videos.appdata.xml.in:47
 msgid "Make playback duration more accurate"
-msgstr ""
+msgstr "გახადეთ დაკვრის ხანგრძლივობა უფრო ზუსტი"
 
 #: data/io.elementary.videos.appdata.xml.in:48
 #: data/io.elementary.videos.appdata.xml.in:58
@@ -96,7 +96,7 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:228
 #: data/io.elementary.videos.appdata.xml.in:244
 msgid "Translation updates"
-msgstr ""
+msgstr "თარგმანის განახლებები"
 
 #: data/io.elementary.videos.appdata.xml.in:57
 msgid "Update to Flatpak Platform 7"
@@ -104,7 +104,7 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:64
 msgid "Fixes:"
-msgstr ""
+msgstr "შეცდომების გასწორებები:"
 
 #: data/io.elementary.videos.appdata.xml.in:66
 msgid "Fix a crash with certain video codecs"
@@ -141,7 +141,7 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:116
 msgid "Improvements:"
-msgstr ""
+msgstr "გაუმჯობესებები:"
 
 #: data/io.elementary.videos.appdata.xml.in:118
 msgid "Start up faster with large libraries"
@@ -157,7 +157,7 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:132
 msgid "Load external subtitles"
-msgstr ""
+msgstr "გარე სუბტიტრების ჩატვირთვა"
 
 #: data/io.elementary.videos.appdata.xml.in:136
 msgid "Reliably update the replay button description and file"
@@ -206,11 +206,11 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:165
 #: data/io.elementary.videos.appdata.xml.in:173
 msgid "Build fixes"
-msgstr ""
+msgstr "აგების გასწორებები"
 
 #: data/io.elementary.videos.appdata.xml.in:188
 msgid "Window behavior improvements"
-msgstr ""
+msgstr "ფანჯრის ქცევის გაუმჯობესება"
 
 #: data/io.elementary.videos.appdata.xml.in:189
 msgid "Fix disappearing subtitle tracks"
@@ -230,12 +230,12 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:211
 msgid "Remove About dialog"
-msgstr ""
+msgstr "შესახებ ფანჯრის წაშლა"
 
 #: data/io.elementary.videos.appdata.xml.in:212
 #: data/io.elementary.videos.appdata.xml.in:251
 msgid "Minor bug fixes"
-msgstr ""
+msgstr "მცირე შეცდომების გამოსწორება"
 
 #: data/io.elementary.videos.appdata.xml.in:220
 msgid "Preview popover now closely follows cursor position"
@@ -243,7 +243,7 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:235
 msgid "Fix appstream date format"
-msgstr ""
+msgstr "Appstream-ის თარიღის ფორმატის გასწორება"
 
 #: data/io.elementary.videos.appdata.xml.in:242
 msgid "Added a library view with search"
@@ -255,8 +255,8 @@ msgstr ""
 
 #: data/io.elementary.videos.appdata.xml.in:256
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
-msgstr ""
+msgstr "ვიდეო დამკვრელი"
