@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-15 04:43+0000\n"
-"PO-Revision-Date: 2022-01-16 08:18+0000\n"
+"PO-Revision-Date: 2023-03-21 18:59+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/videos/extra/mr/"
-">\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/videos/extra/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.16.4\n"
 
 #: data/io.elementary.videos.appdata.xml.in:9
 #: data/io.elementary.videos.desktop.in:4
@@ -63,7 +63,7 @@ msgstr "नवीन वैशिष्ट्ये:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Control playback from the sound indicator"
-msgstr ""
+msgstr "वनी निर्देशकावरून प्लेबॅक नियंत्रित करा"
 
 #: data/io.elementary.videos.appdata.xml.in:45
 #: data/io.elementary.videos.appdata.xml.in:55
@@ -80,7 +80,7 @@ msgstr "इतर अद्यतने:"
 
 #: data/io.elementary.videos.appdata.xml.in:47
 msgid "Make playback duration more accurate"
-msgstr ""
+msgstr "प्लेबॅक कालावधी अधिक अचूक करा"
 
 #: data/io.elementary.videos.appdata.xml.in:48
 #: data/io.elementary.videos.appdata.xml.in:58
@@ -102,23 +102,23 @@ msgstr "भाषांतर अपडेट्स"
 
 #: data/io.elementary.videos.appdata.xml.in:57
 msgid "Update to Flatpak Platform 7"
-msgstr ""
+msgstr "Flatpak प्लॅटफॉर्म 7 वर अपडेट करा"
 
 #: data/io.elementary.videos.appdata.xml.in:64
 msgid "Fixes:"
-msgstr ""
+msgstr "निराकारणे:"
 
 #: data/io.elementary.videos.appdata.xml.in:66
 msgid "Fix a crash with certain video codecs"
-msgstr ""
+msgstr "विशिष्ट व्हिडिओ कोडेक्ससह क्रॅशचे निराकरण करा"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 msgid "Update to 6.1 Flatpak runtime"
-msgstr ""
+msgstr "6.1 Flatpak रनटाइम वर अपडेट करा"
 
 #: data/io.elementary.videos.appdata.xml.in:79
 msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-msgstr ""
+msgstr "org.freedesktop.Platfrom.ffmpeg-पूर्ण विस्तारासाठी समर्थन जोडले"
 
 #: data/io.elementary.videos.appdata.xml.in:87
 msgid "Fix an issue with removing videos from library"
@@ -126,7 +126,7 @@ msgstr "लायब्ररीतून व्हिडिओ काढता�
 
 #: data/io.elementary.videos.appdata.xml.in:95
 msgid "Two-finger swipe to go back"
-msgstr "मागे जाण्यासाठी दोन-बोटे स्वाईप"
+msgstr "मागे जाण्यासाठी दोन बोटांनी स्वाईप करा"
 
 #: data/io.elementary.videos.appdata.xml.in:107
 msgid "Fix an issue with accessing library view"
