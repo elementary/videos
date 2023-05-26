@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-15 04:43+0000\n"
-"PO-Revision-Date: 2023-05-23 19:06+0000\n"
+"PO-Revision-Date: 2023-05-27 18:06+0000\n"
 "Last-Translator: Faisal Rachmadin <frachmadin@users.noreply.l10n.elementary."
 "io>\n"
 "Language-Team: Indonesian <https://l10n.elementary.io/projects/videos/extra/"
@@ -28,7 +28,7 @@ msgstr "Video"
 #: data/io.elementary.videos.appdata.xml.in:10
 #: data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Menonton video dan film"
 
 #: data/io.elementary.videos.appdata.xml.in:12
 msgid ""
@@ -36,33 +36,36 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
+"Pemutar video modern yang berfokus pada menampilkan konten video bukan "
+"kontrol pemutar. Ia mengingat video terakhir yang Anda putar dan posisi "
+"pemutaran sehingga Anda dapat melanjutkan dari mana Anda tinggalkan."
 
 #: data/io.elementary.videos.appdata.xml.in:17
 msgid "Additional features include:"
-msgstr ""
+msgstr "Fitur tambahan meliputi:"
 
 #: data/io.elementary.videos.appdata.xml.in:21
 msgid "Subtitle support"
-msgstr ""
+msgstr "Dukungan sub judul"
 
 #: data/io.elementary.videos.appdata.xml.in:22
 msgid "Play queue"
-msgstr ""
+msgstr "Antrean putar"
 
 #: data/io.elementary.videos.appdata.xml.in:23
 msgid "Thumbnail previews on the seek bar"
-msgstr ""
+msgstr "Pratinjau gambar mini pada bilah pencarian"
 
 #: data/io.elementary.videos.appdata.xml.in:41
 #: data/io.elementary.videos.appdata.xml.in:93
 #: data/io.elementary.videos.appdata.xml.in:130
 #: data/io.elementary.videos.appdata.xml.in:145
 msgid "New features:"
-msgstr ""
+msgstr "Fitur baru:"
 
 #: data/io.elementary.videos.appdata.xml.in:43
 msgid "Control playback from the sound indicator"
-msgstr ""
+msgstr "Kontrol pemutaran dari indikator suara"
 
 #: data/io.elementary.videos.appdata.xml.in:45
 #: data/io.elementary.videos.appdata.xml.in:55
@@ -75,11 +78,11 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:134
 #: data/io.elementary.videos.appdata.xml.in:153
 msgid "Other updates:"
-msgstr ""
+msgstr "Pembaruan lainnya:"
 
 #: data/io.elementary.videos.appdata.xml.in:47
 msgid "Make playback duration more accurate"
-msgstr ""
+msgstr "Membuat durasi pemutaran lebih akurat"
 
 #: data/io.elementary.videos.appdata.xml.in:48
 #: data/io.elementary.videos.appdata.xml.in:58
@@ -97,167 +100,172 @@ msgstr ""
 #: data/io.elementary.videos.appdata.xml.in:228
 #: data/io.elementary.videos.appdata.xml.in:244
 msgid "Translation updates"
-msgstr ""
+msgstr "Pembaruan terjemahan"
 
 #: data/io.elementary.videos.appdata.xml.in:57
 msgid "Update to Flatpak Platform 7"
-msgstr ""
+msgstr "Pembaruan ke Flatform Flatpak 7"
 
 #: data/io.elementary.videos.appdata.xml.in:64
 msgid "Fixes:"
-msgstr ""
+msgstr "Perbaikan:"
 
 #: data/io.elementary.videos.appdata.xml.in:66
 msgid "Fix a crash with certain video codecs"
-msgstr ""
+msgstr "Memperbaiki kemogokkan dengan codec video tertentu"
 
 #: data/io.elementary.videos.appdata.xml.in:70
 msgid "Update to 6.1 Flatpak runtime"
-msgstr ""
+msgstr "Pembaruan ke runtime Flatpak 6.1"
 
 #: data/io.elementary.videos.appdata.xml.in:79
 msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
 msgstr ""
+"Menambahkan dukungan untuk ekstensi org.freedesktop.Platfrom.ffmpeg-full"
 
 #: data/io.elementary.videos.appdata.xml.in:87
 msgid "Fix an issue with removing videos from library"
-msgstr ""
+msgstr "Memperbaiki masalah penghapusan video dari pustaka"
 
 #: data/io.elementary.videos.appdata.xml.in:95
 msgid "Two-finger swipe to go back"
-msgstr ""
+msgstr "Gesek dua jari untuk kembali"
 
 #: data/io.elementary.videos.appdata.xml.in:107
 msgid "Fix an issue with accessing library view"
-msgstr ""
+msgstr "Memperbaiki masalah saat mengakses tampilan pustaka"
 
 #: data/io.elementary.videos.appdata.xml.in:108
 msgid ""
 "Fix an issue with returning to the welcome page while playing multiple videos"
 msgstr ""
+"Memperbaiki masalah saat kembali ke halaman selamat datang saat memutar "
+"beberapa video"
 
 #: data/io.elementary.videos.appdata.xml.in:109
 msgid "Prevent sleep while playing a video"
-msgstr ""
+msgstr "Mencegah tidur saat memutar video"
 
 #: data/io.elementary.videos.appdata.xml.in:116
 msgid "Improvements:"
-msgstr ""
+msgstr "Peningkatan:"
 
 #: data/io.elementary.videos.appdata.xml.in:118
 msgid "Start up faster with large libraries"
-msgstr ""
+msgstr "Memulai lebih cepat dengan pustaka besar"
 
 #: data/io.elementary.videos.appdata.xml.in:122
 msgid "Fix cases where subtitles refused to load"
-msgstr ""
+msgstr "Memperbaiki kasus ketika sub judul menolak dimuat"
 
 #: data/io.elementary.videos.appdata.xml.in:123
 msgid "Handle if library folder is deleted or moved"
-msgstr ""
+msgstr "Menangani jika folder pustaka dihapus atau dipindahkan"
 
 #: data/io.elementary.videos.appdata.xml.in:132
 msgid "Load external subtitles"
-msgstr ""
+msgstr "Memuat sub judul eksternal"
 
 #: data/io.elementary.videos.appdata.xml.in:136
 msgid "Reliably update the replay button description and file"
-msgstr ""
+msgstr "Memperbarui deskripsi dan berkas tombol putar ulang dengan andal"
 
 #: data/io.elementary.videos.appdata.xml.in:137
 msgid "More consistently remember the last playing video and its play position"
 msgstr ""
+"Lebih konsisten mengingat video yang terakhir diputar dan posisi pemutarannya"
 
 #: data/io.elementary.videos.appdata.xml.in:138
 msgid "Fix missing icon in episode view"
-msgstr ""
+msgstr "Memperbaiki ikon yang hilang dalam tampilan episode"
 
 #: data/io.elementary.videos.appdata.xml.in:147
 msgid "Option to automatically play next videos"
-msgstr ""
+msgstr "Opsi untuk memutar video berikutnya secara otomatis"
 
 #: data/io.elementary.videos.appdata.xml.in:148
 msgid "Navigate the playlist with the keyboard"
-msgstr ""
+msgstr "Menavigasi daftar putar dengan papan ketik"
 
 #: data/io.elementary.videos.appdata.xml.in:149
 msgid "Add a button to clear the playlist"
-msgstr ""
+msgstr "Menambahkan tombol untuk menghapus daftar putar"
 
 #: data/io.elementary.videos.appdata.xml.in:150
 msgid "Show audio track language in settings"
-msgstr ""
+msgstr "Tampilkan bahasa trek audio di pengaturan"
 
 #: data/io.elementary.videos.appdata.xml.in:151
 msgid "Show playlist item titles in their tooltips"
-msgstr ""
+msgstr "Menampilkan judul item daftar putar di tooltips mereka"
 
 #: data/io.elementary.videos.appdata.xml.in:155
 msgid "Show an error for unsupported files"
-msgstr ""
+msgstr "Menampilkan kesalahan untuk berkas yang tidak didukung"
 
 #: data/io.elementary.videos.appdata.xml.in:156
 msgid "Fix disappearing cursor on headerbar"
-msgstr ""
+msgstr "Memperbaiki kursor yang menghilang pada bilah kepala"
 
 #: data/io.elementary.videos.appdata.xml.in:157
 msgid "Hide seekbar preview when switching windows with Alt + Tab"
 msgstr ""
+"Menyembunyikan pratinjau pencarian saat beralih jendela dengan Alt + Tab"
 
 #: data/io.elementary.videos.appdata.xml.in:165
 #: data/io.elementary.videos.appdata.xml.in:173
 msgid "Build fixes"
-msgstr ""
+msgstr "Perbaikan build"
 
 #: data/io.elementary.videos.appdata.xml.in:188
 msgid "Window behavior improvements"
-msgstr ""
+msgstr "Peningkatan perilaku jendela"
 
 #: data/io.elementary.videos.appdata.xml.in:189
 msgid "Fix disappearing subtitle tracks"
-msgstr ""
+msgstr "Memperbaiki trek sub judul yang menghilang"
 
 #: data/io.elementary.videos.appdata.xml.in:196
 msgid "Disallow setting playback before start"
-msgstr ""
+msgstr "Larang pengaturan pemutaran sebelum memulai"
 
 #: data/io.elementary.videos.appdata.xml.in:203
 msgid "Limit consecutive spacebar pauses"
-msgstr ""
+msgstr "Membatasi jeda bilah spasi berturut-turut"
 
 #: data/io.elementary.videos.appdata.xml.in:210
 msgid "Crash fixes"
-msgstr ""
+msgstr "Perbaikan Kemogokkan"
 
 #: data/io.elementary.videos.appdata.xml.in:211
 msgid "Remove About dialog"
-msgstr ""
+msgstr "Menghapus dialog Tentang"
 
 #: data/io.elementary.videos.appdata.xml.in:212
 #: data/io.elementary.videos.appdata.xml.in:251
 msgid "Minor bug fixes"
-msgstr ""
+msgstr "Perbaikan bug kecil"
 
 #: data/io.elementary.videos.appdata.xml.in:220
 msgid "Preview popover now closely follows cursor position"
-msgstr ""
+msgstr "Popover pratinjau sekarang mengikuti posisi kursor dengan cermat"
 
 #: data/io.elementary.videos.appdata.xml.in:235
 msgid "Fix appstream date format"
-msgstr ""
+msgstr "Memperbaiki format tanggal appstream"
 
 #: data/io.elementary.videos.appdata.xml.in:242
 msgid "Added a library view with search"
-msgstr ""
+msgstr "Menambahkan tampilan pustaka dengan pencarian"
 
 #: data/io.elementary.videos.appdata.xml.in:243
 msgid "Fixed a bug that prevents keyboard navigation"
-msgstr ""
+msgstr "Memperbaiki bug yang mencegah navigasi papan ketik"
 
 #: data/io.elementary.videos.appdata.xml.in:256
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
-msgstr ""
+msgstr "Pemutar Video"
