@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2015-2023 elementary, Inc <contact@elementary.io> -->
-<component type="desktop">
+<component type="desktop-application">
   <id>io.elementary.videos</id>
   <launchable type="desktop-id">io.elementary.videos.desktop</launchable>
   <translation type="gettext">io.elementary.videos</translation>
