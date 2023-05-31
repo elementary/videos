@@ -28,10 +28,11 @@ i18n.merge_file (
     type: 'desktop'
 )
 
-i18n.merge_file (
-    input: meson.project_name() + '.appdata.xml.in',
-    output: meson.project_name() + '.appdata.xml',
+i18n.merge_file(
+    input: 'videos.metainfo.xml.in',
+    output: meson.project_name() + '.metainfo.xml',
+    po_dir: meson.project_source_root() / 'po' / 'extra',
+    type: 'xml',
     install: true,
-    install_dir: join_paths(get_option('datadir'), 'metainfo'),
-    po_dir: join_paths(meson.source_root (), 'po', 'extra')
+    install_dir: get_option('datadir') / 'metainfo',
 )
