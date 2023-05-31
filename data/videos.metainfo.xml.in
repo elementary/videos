@@ -10,14 +10,8 @@
   <name>Videos</name>
   <summary>Watch videos and movies</summary>
   <description>
-    <p>
-      A modern video player that focuses on displaying video content instead of
-      player controls. It remembers your last played video and playback position
-      so you can pick up from where you left off.
-    </p>
-    <p>
-      Additional features include:
-    </p>
+    <p>A modern video player that focuses on displaying video content instead of player controls. It remembers your last played video and playback position so you can pick up from where you left off.</p>
+    <p>Additional features include:</p>
     <ul>
       <li>Subtitle support</li>
       <li>Play queue</li>
