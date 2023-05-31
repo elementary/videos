@@ -52,6 +52,15 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="2.9.1" date="2023-05-30" urgency="medium">
+      <description>
+        <p>Other updates:</p>
+        <ul>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
+
     <release version="2.9.0" date="2022-12-06" urgency="medium">
       <description>
         <p>New features:</p>
