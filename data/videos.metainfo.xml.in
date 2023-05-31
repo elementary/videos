@@ -21,10 +21,10 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/elementary/videos/master/data/screenshot.png</image>
+      <image>https://raw.githubusercontent.com/elementary/videos/2.9.1/data/screenshot.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/elementary/videos/master/data/screenshot-library.png</image>
+      <image>https://raw.githubusercontent.com/elementary/videos/2.9.1/data/screenshot-library.png</image>
     </screenshot>
   </screenshots>
 
@@ -52,7 +52,7 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
-    <release version="2.9.1" date="2023-05-30" urgency="medium">
+    <release version="2.9.1" date="2023-05-31" urgency="medium">
       <description>
         <p>Other updates:</p>
         <ul>
