@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-15 04:43+0000\n"
+"POT-Creation-Date: 2023-05-31 17:33+0000\n"
 "PO-Revision-Date: 2021-11-04 11:20+0000\n"
 "Last-Translator: supaeasy <ismo+github@wolffson.ch>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/videos/extra/de/"
@@ -20,17 +20,15 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: data/io.elementary.videos.appdata.xml.in:9
-#: data/io.elementary.videos.desktop.in:4
+#: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
 msgid "Videos"
 msgstr "Videos"
 
-#: data/io.elementary.videos.appdata.xml.in:10
-#: data/io.elementary.videos.desktop.in:6
+#: data/videos.metainfo.xml.in:11 data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
 msgstr "Videos und Filme ansehen"
 
-#: data/io.elementary.videos.appdata.xml.in:12
+#: data/videos.metainfo.xml.in:13
 msgid ""
 "A modern video player that focuses on displaying video content instead of "
 "player controls. It remembers your last played video and playback position "
@@ -42,237 +40,185 @@ msgstr ""
 "wurde sowie die letzte Wiedergabeposition, so dass Sie umstandslos ab dort "
 "weitersehen können, wo Sie die Wiedergabe unterbrochen hatten."
 
-#: data/io.elementary.videos.appdata.xml.in:17
+#: data/videos.metainfo.xml.in:14
 msgid "Additional features include:"
 msgstr "Weitere Funktionen:"
 
-#: data/io.elementary.videos.appdata.xml.in:21
+#: data/videos.metainfo.xml.in:16
 msgid "Subtitle support"
 msgstr "Unterstützung von Untertiteln"
 
-#: data/io.elementary.videos.appdata.xml.in:22
+#: data/videos.metainfo.xml.in:17
 msgid "Play queue"
 msgstr "Wiedergabeliste"
 
-#: data/io.elementary.videos.appdata.xml.in:23
+#: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
 msgstr "Vorschau in der Suchleiste"
 
-#: data/io.elementary.videos.appdata.xml.in:41
-#: data/io.elementary.videos.appdata.xml.in:93
-#: data/io.elementary.videos.appdata.xml.in:130
-#: data/io.elementary.videos.appdata.xml.in:145
-msgid "New features:"
-msgstr "Neue Funktionen:"
+#: data/videos.metainfo.xml.in:50
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
 
-#: data/io.elementary.videos.appdata.xml.in:43
-msgid "Control playback from the sound indicator"
-msgstr ""
-
-#: data/io.elementary.videos.appdata.xml.in:45
-#: data/io.elementary.videos.appdata.xml.in:55
-#: data/io.elementary.videos.appdata.xml.in:68
-#: data/io.elementary.videos.appdata.xml.in:77
-#: data/io.elementary.videos.appdata.xml.in:85
-#: data/io.elementary.videos.appdata.xml.in:97
-#: data/io.elementary.videos.appdata.xml.in:105
-#: data/io.elementary.videos.appdata.xml.in:120
-#: data/io.elementary.videos.appdata.xml.in:134
-#: data/io.elementary.videos.appdata.xml.in:153
+#: data/videos.metainfo.xml.in:57 data/videos.metainfo.xml.in:70
+#: data/videos.metainfo.xml.in:80 data/videos.metainfo.xml.in:94
+#: data/videos.metainfo.xml.in:104 data/videos.metainfo.xml.in:113
 msgid "Other updates:"
 msgstr "Weitere Updates:"
 
-#: data/io.elementary.videos.appdata.xml.in:47
-msgid "Make playback duration more accurate"
-msgstr ""
-
-#: data/io.elementary.videos.appdata.xml.in:48
-#: data/io.elementary.videos.appdata.xml.in:58
-#: data/io.elementary.videos.appdata.xml.in:71
-#: data/io.elementary.videos.appdata.xml.in:99
-#: data/io.elementary.videos.appdata.xml.in:110
-#: data/io.elementary.videos.appdata.xml.in:124
-#: data/io.elementary.videos.appdata.xml.in:139
-#: data/io.elementary.videos.appdata.xml.in:158
-#: data/io.elementary.videos.appdata.xml.in:166
-#: data/io.elementary.videos.appdata.xml.in:174
-#: data/io.elementary.videos.appdata.xml.in:181
-#: data/io.elementary.videos.appdata.xml.in:213
-#: data/io.elementary.videos.appdata.xml.in:221
-#: data/io.elementary.videos.appdata.xml.in:228
-#: data/io.elementary.videos.appdata.xml.in:244
+#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:73
+#: data/videos.metainfo.xml.in:83 data/videos.metainfo.xml.in:97
 msgid "Translation updates"
 msgstr "Übersetzungsaktualisierungen"
 
-#: data/io.elementary.videos.appdata.xml.in:57
+#: data/videos.metainfo.xml.in:66
+msgid "New features:"
+msgstr "Neue Funktionen:"
+
+#: data/videos.metainfo.xml.in:68
+msgid "Control playback from the sound indicator"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:72
+msgid "Make playback duration more accurate"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:82
 msgid "Update to Flatpak Platform 7"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:64
+#: data/videos.metainfo.xml.in:90
 msgid "Fixes:"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:66
+#: data/videos.metainfo.xml.in:92
 msgid "Fix a crash with certain video codecs"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:70
+#: data/videos.metainfo.xml.in:96
 msgid "Update to 6.1 Flatpak runtime"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:79
+#: data/videos.metainfo.xml.in:106
 msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
 msgstr ""
 
-#: data/io.elementary.videos.appdata.xml.in:87
+#: data/videos.metainfo.xml.in:115
 #, fuzzy
 #| msgid "Fix an issue with accessing library view"
 msgid "Fix an issue with removing videos from library"
 msgstr "Behebt einen Fehler im Zusammenhang mit dem Aufrufen von library view"
 
-#: data/io.elementary.videos.appdata.xml.in:95
-msgid "Two-finger swipe to go back"
-msgstr "Zwei-Finger-Wisch um zurück zu navigieren"
-
-#: data/io.elementary.videos.appdata.xml.in:107
-msgid "Fix an issue with accessing library view"
-msgstr "Behebt einen Fehler im Zusammenhang mit dem Aufrufen von library view"
-
-#: data/io.elementary.videos.appdata.xml.in:108
-msgid ""
-"Fix an issue with returning to the welcome page while playing multiple videos"
-msgstr ""
-"Behebt einen Fehler, der auftrat, wenn mehrere Videos abgespielt wurden und "
-"zur Willkommensseite gewechselt wurde"
-
-#: data/io.elementary.videos.appdata.xml.in:109
-msgid "Prevent sleep while playing a video"
-msgstr ""
-"Verhindert, dass der Ruhezustand des Rechners bei Videowiedergabe aktiviert "
-"wird"
-
-#: data/io.elementary.videos.appdata.xml.in:116
-msgid "Improvements:"
-msgstr "Verbesserungen:"
-
-#: data/io.elementary.videos.appdata.xml.in:118
-msgid "Start up faster with large libraries"
-msgstr "Beschleunigter Start bei umfangreichen Bibliotheken"
-
-#: data/io.elementary.videos.appdata.xml.in:122
-msgid "Fix cases where subtitles refused to load"
-msgstr "Behebt Fehler, bei denen Untertitel nicht geladen wurden"
-
-#: data/io.elementary.videos.appdata.xml.in:123
-msgid "Handle if library folder is deleted or moved"
-msgstr "Verhalten falls der Ordner gelöscht oder verschoben wurde"
-
-#: data/io.elementary.videos.appdata.xml.in:132
-msgid "Load external subtitles"
-msgstr "Externe Untertitel laden"
-
-#: data/io.elementary.videos.appdata.xml.in:136
-msgid "Reliably update the replay button description and file"
-msgstr "Beschreibung der Replay-Taste und der Datei zuverlässig aktualisieren"
-
-#: data/io.elementary.videos.appdata.xml.in:137
-msgid "More consistently remember the last playing video and its play position"
-msgstr "Letzte Wiedergabeposition und -datei werden zuverlässiger erinnert"
-
-#: data/io.elementary.videos.appdata.xml.in:138
-msgid "Fix missing icon in episode view"
-msgstr "Behebt einen Fehler, bei dem ein Icon in der Episodenübersicht fehlte"
-
-#: data/io.elementary.videos.appdata.xml.in:147
-msgid "Option to automatically play next videos"
-msgstr "Option für Autoplay folgender Videos"
-
-#: data/io.elementary.videos.appdata.xml.in:148
-msgid "Navigate the playlist with the keyboard"
-msgstr "Tastaturunterstützung für Playlistnavigation"
-
-#: data/io.elementary.videos.appdata.xml.in:149
-msgid "Add a button to clear the playlist"
-msgstr "Füge einen Button hinzu, um die Playlist zu löschen"
-
-#: data/io.elementary.videos.appdata.xml.in:150
-msgid "Show audio track language in settings"
-msgstr "Zeige Sprachspurauswahl in den Einstellungen"
-
-#: data/io.elementary.videos.appdata.xml.in:151
-msgid "Show playlist item titles in their tooltips"
-msgstr "Zeige die Titel von Playlistelementen in deren Tooltips"
-
-#: data/io.elementary.videos.appdata.xml.in:155
-msgid "Show an error for unsupported files"
-msgstr "Gibt eine Fehlermeldung für nicht unterstützte Dateien aus"
-
-#: data/io.elementary.videos.appdata.xml.in:156
-msgid "Fix disappearing cursor on headerbar"
-msgstr ""
-"Behebt einen Fehler, bei dem der Mauszeiger in der Headerbar verschwand"
-
-#: data/io.elementary.videos.appdata.xml.in:157
-msgid "Hide seekbar preview when switching windows with Alt + Tab"
-msgstr "Verstecke Suchfeld-Vorschau beim Benutzen von Alt + Tab"
-
-#: data/io.elementary.videos.appdata.xml.in:165
-#: data/io.elementary.videos.appdata.xml.in:173
-msgid "Build fixes"
-msgstr "Build-Fixes"
-
-#: data/io.elementary.videos.appdata.xml.in:188
-msgid "Window behavior improvements"
-msgstr "Verhalten der Fenster verbessert"
-
-#: data/io.elementary.videos.appdata.xml.in:189
-msgid "Fix disappearing subtitle tracks"
-msgstr "Verschwindende Untertitelspuren korrigiert"
-
-#: data/io.elementary.videos.appdata.xml.in:196
-msgid "Disallow setting playback before start"
-msgstr "Playback vor Start einstellen verbieten"
-
-#: data/io.elementary.videos.appdata.xml.in:203
-msgid "Limit consecutive spacebar pauses"
-msgstr "Limitiert aufeinander folgende Pausen mittels Leertaste"
-
-#: data/io.elementary.videos.appdata.xml.in:210
-msgid "Crash fixes"
-msgstr "Behebung von Problemen, welche zum Absturz geführt haben"
-
-#: data/io.elementary.videos.appdata.xml.in:211
-msgid "Remove About dialog"
-msgstr "Über.. Dialog entfernt"
-
-#: data/io.elementary.videos.appdata.xml.in:212
-#: data/io.elementary.videos.appdata.xml.in:251
-msgid "Minor bug fixes"
-msgstr "Kleinere Fehlerbehebungen"
-
-#: data/io.elementary.videos.appdata.xml.in:220
-msgid "Preview popover now closely follows cursor position"
-msgstr "Das Preview-Popover folgt nun besser der Position des Mauszeigers"
-
-#: data/io.elementary.videos.appdata.xml.in:235
-msgid "Fix appstream date format"
-msgstr "Fehler im appstream Datumsformat behoben"
-
-#: data/io.elementary.videos.appdata.xml.in:242
-msgid "Added a library view with search"
-msgstr "Bibliotheksansicht mit Suche hinzugefügt"
-
-#: data/io.elementary.videos.appdata.xml.in:243
-msgid "Fixed a bug that prevents keyboard navigation"
-msgstr "Es wurde ein Fehler behoben, der die Tastaturnavigation verhinderte"
-
-#: data/io.elementary.videos.appdata.xml.in:256
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
-
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Videoplayer"
+
+#~ msgid "Two-finger swipe to go back"
+#~ msgstr "Zwei-Finger-Wisch um zurück zu navigieren"
+
+#~ msgid "Fix an issue with accessing library view"
+#~ msgstr ""
+#~ "Behebt einen Fehler im Zusammenhang mit dem Aufrufen von library view"
+
+#~ msgid ""
+#~ "Fix an issue with returning to the welcome page while playing multiple "
+#~ "videos"
+#~ msgstr ""
+#~ "Behebt einen Fehler, der auftrat, wenn mehrere Videos abgespielt wurden "
+#~ "und zur Willkommensseite gewechselt wurde"
+
+#~ msgid "Prevent sleep while playing a video"
+#~ msgstr ""
+#~ "Verhindert, dass der Ruhezustand des Rechners bei Videowiedergabe "
+#~ "aktiviert wird"
+
+#~ msgid "Improvements:"
+#~ msgstr "Verbesserungen:"
+
+#~ msgid "Start up faster with large libraries"
+#~ msgstr "Beschleunigter Start bei umfangreichen Bibliotheken"
+
+#~ msgid "Fix cases where subtitles refused to load"
+#~ msgstr "Behebt Fehler, bei denen Untertitel nicht geladen wurden"
+
+#~ msgid "Handle if library folder is deleted or moved"
+#~ msgstr "Verhalten falls der Ordner gelöscht oder verschoben wurde"
+
+#~ msgid "Load external subtitles"
+#~ msgstr "Externe Untertitel laden"
+
+#~ msgid "Reliably update the replay button description and file"
+#~ msgstr ""
+#~ "Beschreibung der Replay-Taste und der Datei zuverlässig aktualisieren"
+
+#~ msgid ""
+#~ "More consistently remember the last playing video and its play position"
+#~ msgstr "Letzte Wiedergabeposition und -datei werden zuverlässiger erinnert"
+
+#~ msgid "Fix missing icon in episode view"
+#~ msgstr ""
+#~ "Behebt einen Fehler, bei dem ein Icon in der Episodenübersicht fehlte"
+
+#~ msgid "Option to automatically play next videos"
+#~ msgstr "Option für Autoplay folgender Videos"
+
+#~ msgid "Navigate the playlist with the keyboard"
+#~ msgstr "Tastaturunterstützung für Playlistnavigation"
+
+#~ msgid "Add a button to clear the playlist"
+#~ msgstr "Füge einen Button hinzu, um die Playlist zu löschen"
+
+#~ msgid "Show audio track language in settings"
+#~ msgstr "Zeige Sprachspurauswahl in den Einstellungen"
+
+#~ msgid "Show playlist item titles in their tooltips"
+#~ msgstr "Zeige die Titel von Playlistelementen in deren Tooltips"
+
+#~ msgid "Show an error for unsupported files"
+#~ msgstr "Gibt eine Fehlermeldung für nicht unterstützte Dateien aus"
+
+#~ msgid "Fix disappearing cursor on headerbar"
+#~ msgstr ""
+#~ "Behebt einen Fehler, bei dem der Mauszeiger in der Headerbar verschwand"
+
+#~ msgid "Hide seekbar preview when switching windows with Alt + Tab"
+#~ msgstr "Verstecke Suchfeld-Vorschau beim Benutzen von Alt + Tab"
+
+#~ msgid "Build fixes"
+#~ msgstr "Build-Fixes"
+
+#~ msgid "Window behavior improvements"
+#~ msgstr "Verhalten der Fenster verbessert"
+
+#~ msgid "Fix disappearing subtitle tracks"
+#~ msgstr "Verschwindende Untertitelspuren korrigiert"
+
+#~ msgid "Disallow setting playback before start"
+#~ msgstr "Playback vor Start einstellen verbieten"
+
+#~ msgid "Limit consecutive spacebar pauses"
+#~ msgstr "Limitiert aufeinander folgende Pausen mittels Leertaste"
+
+#~ msgid "Crash fixes"
+#~ msgstr "Behebung von Problemen, welche zum Absturz geführt haben"
+
+#~ msgid "Remove About dialog"
+#~ msgstr "Über.. Dialog entfernt"
+
+#~ msgid "Minor bug fixes"
+#~ msgstr "Kleinere Fehlerbehebungen"
+
+#~ msgid "Preview popover now closely follows cursor position"
+#~ msgstr "Das Preview-Popover folgt nun besser der Position des Mauszeigers"
+
+#~ msgid "Fix appstream date format"
+#~ msgstr "Fehler im appstream Datumsformat behoben"
+
+#~ msgid "Added a library view with search"
+#~ msgstr "Bibliotheksansicht mit Suche hinzugefügt"
+
+#~ msgid "Fixed a bug that prevents keyboard navigation"
+#~ msgstr "Es wurde ein Fehler behoben, der die Tastaturnavigation verhinderte"
 
 #~ msgid "io.elementary.videos"
 #~ msgstr "io.elementary.videos"

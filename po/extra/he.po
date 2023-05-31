@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-15 04:43+0000\n"
+"POT-Creation-Date: 2023-05-31 17:33+0000\n"
 "PO-Revision-Date: 2022-10-24 05:57+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/videos/extra/he/"
@@ -19,17 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Weblate 4.4.2\n"
 
-#: data/io.elementary.videos.appdata.xml.in:9
-#: data/io.elementary.videos.desktop.in:4
+#: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
 msgid "Videos"
 msgstr "סרטונים"
 
-#: data/io.elementary.videos.appdata.xml.in:10
-#: data/io.elementary.videos.desktop.in:6
+#: data/videos.metainfo.xml.in:11 data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
 msgstr "צפייה בסרטונים ובסרטים"
 
-#: data/io.elementary.videos.appdata.xml.in:12
+#: data/videos.metainfo.xml.in:13
 msgid ""
 "A modern video player that focuses on displaying video content instead of "
 "player controls. It remembers your last played video and playback position "
@@ -39,231 +37,176 @@ msgstr ""
 "הסרטון האחרון ואת המיקום בו היית בנגינה האחרונה כדי לאפשר לך לחזור למקום בו "
 "עצרת."
 
-#: data/io.elementary.videos.appdata.xml.in:17
+#: data/videos.metainfo.xml.in:14
 msgid "Additional features include:"
 msgstr "תכונות נוספות לרבות:"
 
-#: data/io.elementary.videos.appdata.xml.in:21
+#: data/videos.metainfo.xml.in:16
 msgid "Subtitle support"
 msgstr "תמיכה בכתוביות"
 
-#: data/io.elementary.videos.appdata.xml.in:22
+#: data/videos.metainfo.xml.in:17
 msgid "Play queue"
 msgstr "תור נגינה"
 
-#: data/io.elementary.videos.appdata.xml.in:23
+#: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
 msgstr "תצוגה מקדימה בפס הנגינה"
 
-#: data/io.elementary.videos.appdata.xml.in:41
-#: data/io.elementary.videos.appdata.xml.in:93
-#: data/io.elementary.videos.appdata.xml.in:130
-#: data/io.elementary.videos.appdata.xml.in:145
-msgid "New features:"
-msgstr "תכונות חדשות:"
+#: data/videos.metainfo.xml.in:50
+msgid "elementary, Inc."
+msgstr "elementary בע״מ."
 
-#: data/io.elementary.videos.appdata.xml.in:43
-msgid "Control playback from the sound indicator"
-msgstr "שליטה בנגינה ממחוון השמע"
-
-#: data/io.elementary.videos.appdata.xml.in:45
-#: data/io.elementary.videos.appdata.xml.in:55
-#: data/io.elementary.videos.appdata.xml.in:68
-#: data/io.elementary.videos.appdata.xml.in:77
-#: data/io.elementary.videos.appdata.xml.in:85
-#: data/io.elementary.videos.appdata.xml.in:97
-#: data/io.elementary.videos.appdata.xml.in:105
-#: data/io.elementary.videos.appdata.xml.in:120
-#: data/io.elementary.videos.appdata.xml.in:134
-#: data/io.elementary.videos.appdata.xml.in:153
+#: data/videos.metainfo.xml.in:57 data/videos.metainfo.xml.in:70
+#: data/videos.metainfo.xml.in:80 data/videos.metainfo.xml.in:94
+#: data/videos.metainfo.xml.in:104 data/videos.metainfo.xml.in:113
 msgid "Other updates:"
 msgstr "עדכונים אחרים:"
 
-#: data/io.elementary.videos.appdata.xml.in:47
-msgid "Make playback duration more accurate"
-msgstr "משך נגינת הסרטון דויק"
-
-#: data/io.elementary.videos.appdata.xml.in:48
-#: data/io.elementary.videos.appdata.xml.in:58
-#: data/io.elementary.videos.appdata.xml.in:71
-#: data/io.elementary.videos.appdata.xml.in:99
-#: data/io.elementary.videos.appdata.xml.in:110
-#: data/io.elementary.videos.appdata.xml.in:124
-#: data/io.elementary.videos.appdata.xml.in:139
-#: data/io.elementary.videos.appdata.xml.in:158
-#: data/io.elementary.videos.appdata.xml.in:166
-#: data/io.elementary.videos.appdata.xml.in:174
-#: data/io.elementary.videos.appdata.xml.in:181
-#: data/io.elementary.videos.appdata.xml.in:213
-#: data/io.elementary.videos.appdata.xml.in:221
-#: data/io.elementary.videos.appdata.xml.in:228
-#: data/io.elementary.videos.appdata.xml.in:244
+#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:73
+#: data/videos.metainfo.xml.in:83 data/videos.metainfo.xml.in:97
 msgid "Translation updates"
 msgstr "תרגומים עודכנו"
 
-#: data/io.elementary.videos.appdata.xml.in:57
+#: data/videos.metainfo.xml.in:66
+msgid "New features:"
+msgstr "תכונות חדשות:"
+
+#: data/videos.metainfo.xml.in:68
+msgid "Control playback from the sound indicator"
+msgstr "שליטה בנגינה ממחוון השמע"
+
+#: data/videos.metainfo.xml.in:72
+msgid "Make playback duration more accurate"
+msgstr "משך נגינת הסרטון דויק"
+
+#: data/videos.metainfo.xml.in:82
 msgid "Update to Flatpak Platform 7"
 msgstr "עדכון לפלטפורמת Flatpak 7"
 
-#: data/io.elementary.videos.appdata.xml.in:64
+#: data/videos.metainfo.xml.in:90
 msgid "Fixes:"
 msgstr "תיקונים:"
 
-#: data/io.elementary.videos.appdata.xml.in:66
+#: data/videos.metainfo.xml.in:92
 msgid "Fix a crash with certain video codecs"
 msgstr "תוקנה קריסה עם מפענחים של קובצי וידאו מסוימים"
 
-#: data/io.elementary.videos.appdata.xml.in:70
+#: data/videos.metainfo.xml.in:96
 msgid "Update to 6.1 Flatpak runtime"
 msgstr "סביבת הריצה של Flatpak עודכנה ל־6.1"
 
-#: data/io.elementary.videos.appdata.xml.in:79
+#: data/videos.metainfo.xml.in:106
 msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
 msgstr "נוספה תמיכה בהרחבה org.freedesktop.Platform.ffmpeg-full"
 
-#: data/io.elementary.videos.appdata.xml.in:87
+#: data/videos.metainfo.xml.in:115
 msgid "Fix an issue with removing videos from library"
 msgstr "תוקנה תקלה בהסרת סרטונים מהספרייה"
-
-#: data/io.elementary.videos.appdata.xml.in:95
-msgid "Two-finger swipe to go back"
-msgstr "החלקה בשתי אצבעות כדי לחזור אחורה"
-
-#: data/io.elementary.videos.appdata.xml.in:107
-msgid "Fix an issue with accessing library view"
-msgstr "תוקנה תקלה בגישה לתצוגת הספרייה"
-
-#: data/io.elementary.videos.appdata.xml.in:108
-msgid ""
-"Fix an issue with returning to the welcome page while playing multiple videos"
-msgstr "תוקנה תקלה בהחזרה למסך קבלת הפנים בעת נגינה של מספר סרטונים"
-
-#: data/io.elementary.videos.appdata.xml.in:109
-msgid "Prevent sleep while playing a video"
-msgstr "מניעת שינה בעת נגינת סרטון"
-
-#: data/io.elementary.videos.appdata.xml.in:116
-msgid "Improvements:"
-msgstr "שיפורים:"
-
-#: data/io.elementary.videos.appdata.xml.in:118
-msgid "Start up faster with large libraries"
-msgstr "התחלה מהירה יותר עם ספריות גדולות"
-
-#: data/io.elementary.videos.appdata.xml.in:122
-msgid "Fix cases where subtitles refused to load"
-msgstr "תוקנו מצבים בהם הכתוביות סרבו להיטען"
-
-#: data/io.elementary.videos.appdata.xml.in:123
-msgid "Handle if library folder is deleted or moved"
-msgstr "יבוצע טיפול אם תיקיית הספרייה נמחקה או שהועברה"
-
-#: data/io.elementary.videos.appdata.xml.in:132
-msgid "Load external subtitles"
-msgstr "טעינת כתוביות חיצוניות"
-
-#: data/io.elementary.videos.appdata.xml.in:136
-msgid "Reliably update the replay button description and file"
-msgstr "עדכון אמין של תיאור וקובץ כפתור הנגינה מחדש"
-
-#: data/io.elementary.videos.appdata.xml.in:137
-msgid "More consistently remember the last playing video and its play position"
-msgstr ""
-"לזכור את הסרטון האחרון שהתנגן והמקום שבו הופסקה הנגינה בצורה יותר עקבית"
-
-#: data/io.elementary.videos.appdata.xml.in:138
-msgid "Fix missing icon in episode view"
-msgstr "תיקון סמל חסר בתצוגת פרק"
-
-#: data/io.elementary.videos.appdata.xml.in:147
-msgid "Option to automatically play next videos"
-msgstr "אפשרות לנגן את הסרטונים הבאים אוטומטית"
-
-#: data/io.elementary.videos.appdata.xml.in:148
-msgid "Navigate the playlist with the keyboard"
-msgstr "ניווט ברשימת הנגינה עם המקלדת"
-
-#: data/io.elementary.videos.appdata.xml.in:149
-msgid "Add a button to clear the playlist"
-msgstr "הוספת כפתור לפינוי רשימת הנגינה"
-
-#: data/io.elementary.videos.appdata.xml.in:150
-msgid "Show audio track language in settings"
-msgstr "הצגת שפת רצועת שמע בהגדרות"
-
-#: data/io.elementary.videos.appdata.xml.in:151
-msgid "Show playlist item titles in their tooltips"
-msgstr "הצגת כותרות פריטים ברשימת הנגינה בחלונית הקופצת שלהם"
-
-#: data/io.elementary.videos.appdata.xml.in:155
-msgid "Show an error for unsupported files"
-msgstr "הצגת שגיאה לקבצים בלתי נתמכים"
-
-#: data/io.elementary.videos.appdata.xml.in:156
-msgid "Fix disappearing cursor on headerbar"
-msgstr "תיקון סמן נעלם בסרגל הכותרת"
-
-#: data/io.elementary.videos.appdata.xml.in:157
-msgid "Hide seekbar preview when switching windows with Alt + Tab"
-msgstr "הסתרת תצוגה מקדימה בפס הניגון בעת החלפה בין חלונות עם Alt + Tab"
-
-#: data/io.elementary.videos.appdata.xml.in:165
-#: data/io.elementary.videos.appdata.xml.in:173
-msgid "Build fixes"
-msgstr "תיקונים בבנייה"
-
-#: data/io.elementary.videos.appdata.xml.in:188
-msgid "Window behavior improvements"
-msgstr "שיפורי התנהגות חלונות"
-
-#: data/io.elementary.videos.appdata.xml.in:189
-msgid "Fix disappearing subtitle tracks"
-msgstr "תיקון רצועות כתוביות שנעלמות"
-
-#: data/io.elementary.videos.appdata.xml.in:196
-msgid "Disallow setting playback before start"
-msgstr "ביטול האפשרות להגדיר נגינה לפני שמתחילים"
-
-#: data/io.elementary.videos.appdata.xml.in:203
-msgid "Limit consecutive spacebar pauses"
-msgstr "הגבלת השהייה בלחיצה מקוטעת על רווח"
-
-#: data/io.elementary.videos.appdata.xml.in:210
-msgid "Crash fixes"
-msgstr "תיקוני קריסות"
-
-#: data/io.elementary.videos.appdata.xml.in:211
-msgid "Remove About dialog"
-msgstr "הסרת דו־שיח על אודות"
-
-#: data/io.elementary.videos.appdata.xml.in:212
-#: data/io.elementary.videos.appdata.xml.in:251
-msgid "Minor bug fixes"
-msgstr "תיקוני תקלות משניות"
-
-#: data/io.elementary.videos.appdata.xml.in:220
-msgid "Preview popover now closely follows cursor position"
-msgstr "חלונית התצוגה המקדימה הצפה עוקבת בצורה אדוקה אחרי מיקום סמן העכבר"
-
-#: data/io.elementary.videos.appdata.xml.in:235
-msgid "Fix appstream date format"
-msgstr "תיקון תבנית תאריך appstream"
-
-#: data/io.elementary.videos.appdata.xml.in:242
-msgid "Added a library view with search"
-msgstr "נוספה תצוגת ספרייה עם חיפוש"
-
-#: data/io.elementary.videos.appdata.xml.in:243
-msgid "Fixed a bug that prevents keyboard navigation"
-msgstr "תוקנה תקלה שמונעת ניווט באמצעות המקלדת"
-
-#: data/io.elementary.videos.appdata.xml.in:256
-msgid "elementary, Inc."
-msgstr "elementary בע״מ."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "נגן וידאו"
+
+#~ msgid "Two-finger swipe to go back"
+#~ msgstr "החלקה בשתי אצבעות כדי לחזור אחורה"
+
+#~ msgid "Fix an issue with accessing library view"
+#~ msgstr "תוקנה תקלה בגישה לתצוגת הספרייה"
+
+#~ msgid ""
+#~ "Fix an issue with returning to the welcome page while playing multiple "
+#~ "videos"
+#~ msgstr "תוקנה תקלה בהחזרה למסך קבלת הפנים בעת נגינה של מספר סרטונים"
+
+#~ msgid "Prevent sleep while playing a video"
+#~ msgstr "מניעת שינה בעת נגינת סרטון"
+
+#~ msgid "Improvements:"
+#~ msgstr "שיפורים:"
+
+#~ msgid "Start up faster with large libraries"
+#~ msgstr "התחלה מהירה יותר עם ספריות גדולות"
+
+#~ msgid "Fix cases where subtitles refused to load"
+#~ msgstr "תוקנו מצבים בהם הכתוביות סרבו להיטען"
+
+#~ msgid "Handle if library folder is deleted or moved"
+#~ msgstr "יבוצע טיפול אם תיקיית הספרייה נמחקה או שהועברה"
+
+#~ msgid "Load external subtitles"
+#~ msgstr "טעינת כתוביות חיצוניות"
+
+#~ msgid "Reliably update the replay button description and file"
+#~ msgstr "עדכון אמין של תיאור וקובץ כפתור הנגינה מחדש"
+
+#~ msgid ""
+#~ "More consistently remember the last playing video and its play position"
+#~ msgstr ""
+#~ "לזכור את הסרטון האחרון שהתנגן והמקום שבו הופסקה הנגינה בצורה יותר עקבית"
+
+#~ msgid "Fix missing icon in episode view"
+#~ msgstr "תיקון סמל חסר בתצוגת פרק"
+
+#~ msgid "Option to automatically play next videos"
+#~ msgstr "אפשרות לנגן את הסרטונים הבאים אוטומטית"
+
+#~ msgid "Navigate the playlist with the keyboard"
+#~ msgstr "ניווט ברשימת הנגינה עם המקלדת"
+
+#~ msgid "Add a button to clear the playlist"
+#~ msgstr "הוספת כפתור לפינוי רשימת הנגינה"
+
+#~ msgid "Show audio track language in settings"
+#~ msgstr "הצגת שפת רצועת שמע בהגדרות"
+
+#~ msgid "Show playlist item titles in their tooltips"
+#~ msgstr "הצגת כותרות פריטים ברשימת הנגינה בחלונית הקופצת שלהם"
+
+#~ msgid "Show an error for unsupported files"
+#~ msgstr "הצגת שגיאה לקבצים בלתי נתמכים"
+
+#~ msgid "Fix disappearing cursor on headerbar"
+#~ msgstr "תיקון סמן נעלם בסרגל הכותרת"
+
+#~ msgid "Hide seekbar preview when switching windows with Alt + Tab"
+#~ msgstr "הסתרת תצוגה מקדימה בפס הניגון בעת החלפה בין חלונות עם Alt + Tab"
+
+#~ msgid "Build fixes"
+#~ msgstr "תיקונים בבנייה"
+
+#~ msgid "Window behavior improvements"
+#~ msgstr "שיפורי התנהגות חלונות"
+
+#~ msgid "Fix disappearing subtitle tracks"
+#~ msgstr "תיקון רצועות כתוביות שנעלמות"
+
+#~ msgid "Disallow setting playback before start"
+#~ msgstr "ביטול האפשרות להגדיר נגינה לפני שמתחילים"
+
+#~ msgid "Limit consecutive spacebar pauses"
+#~ msgstr "הגבלת השהייה בלחיצה מקוטעת על רווח"
+
+#~ msgid "Crash fixes"
+#~ msgstr "תיקוני קריסות"
+
+#~ msgid "Remove About dialog"
+#~ msgstr "הסרת דו־שיח על אודות"
+
+#~ msgid "Minor bug fixes"
+#~ msgstr "תיקוני תקלות משניות"
+
+#~ msgid "Preview popover now closely follows cursor position"
+#~ msgstr "חלונית התצוגה המקדימה הצפה עוקבת בצורה אדוקה אחרי מיקום סמן העכבר"
+
+#~ msgid "Fix appstream date format"
+#~ msgstr "תיקון תבנית תאריך appstream"
+
+#~ msgid "Added a library view with search"
+#~ msgstr "נוספה תצוגת ספרייה עם חיפוש"
+
+#~ msgid "Fixed a bug that prevents keyboard navigation"
+#~ msgstr "תוקנה תקלה שמונעת ניווט באמצעות המקלדת"
 
 #~ msgid "io.elementary.videos"
 #~ msgstr "io.elementary.videos"
