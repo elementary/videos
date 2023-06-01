@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-15 04:43+0000\n"
+"POT-Creation-Date: 2023-05-31 17:33+0000\n"
 "PO-Revision-Date: 2022-12-26 20:25+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/videos/extra/sk/"
@@ -21,17 +21,15 @@ msgstr ""
 "X-Generator: Weblate 4.14.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: data/io.elementary.videos.appdata.xml.in:9
-#: data/io.elementary.videos.desktop.in:4
+#: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
 msgid "Videos"
 msgstr "Videá"
 
-#: data/io.elementary.videos.appdata.xml.in:10
-#: data/io.elementary.videos.desktop.in:6
+#: data/videos.metainfo.xml.in:11 data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
 msgstr "Sledujte videá a filmy"
 
-#: data/io.elementary.videos.appdata.xml.in:12
+#: data/videos.metainfo.xml.in:13
 msgid ""
 "A modern video player that focuses on displaying video content instead of "
 "player controls. It remembers your last played video and playback position "
@@ -41,238 +39,183 @@ msgstr ""
 "namiesto ovládania prehrávača. Pamätá si naposledy prehrávané video a "
 "pozíciu prehrávania, takže môžete pokračovať tam, kde ste prestali."
 
-#: data/io.elementary.videos.appdata.xml.in:17
+#: data/videos.metainfo.xml.in:14
 msgid "Additional features include:"
 msgstr "Medzi ďalšie funkcie patria:"
 
-#: data/io.elementary.videos.appdata.xml.in:21
+#: data/videos.metainfo.xml.in:16
 msgid "Subtitle support"
 msgstr "Podporu titulkov"
 
-#: data/io.elementary.videos.appdata.xml.in:22
+#: data/videos.metainfo.xml.in:17
 msgid "Play queue"
 msgstr "Frontu prehrávania"
 
-#: data/io.elementary.videos.appdata.xml.in:23
+#: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
 msgstr "Náhľadové obrázky na posuvníku prehrávania"
 
-#: data/io.elementary.videos.appdata.xml.in:41
-#: data/io.elementary.videos.appdata.xml.in:93
-#: data/io.elementary.videos.appdata.xml.in:130
-#: data/io.elementary.videos.appdata.xml.in:145
-msgid "New features:"
-msgstr "Nové funkcie:"
+#: data/videos.metainfo.xml.in:50
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
 
-#: data/io.elementary.videos.appdata.xml.in:43
-msgid "Control playback from the sound indicator"
-msgstr "Ovládanie prehrávania z indikátora zvuku"
-
-#: data/io.elementary.videos.appdata.xml.in:45
-#: data/io.elementary.videos.appdata.xml.in:55
-#: data/io.elementary.videos.appdata.xml.in:68
-#: data/io.elementary.videos.appdata.xml.in:77
-#: data/io.elementary.videos.appdata.xml.in:85
-#: data/io.elementary.videos.appdata.xml.in:97
-#: data/io.elementary.videos.appdata.xml.in:105
-#: data/io.elementary.videos.appdata.xml.in:120
-#: data/io.elementary.videos.appdata.xml.in:134
-#: data/io.elementary.videos.appdata.xml.in:153
+#: data/videos.metainfo.xml.in:57 data/videos.metainfo.xml.in:70
+#: data/videos.metainfo.xml.in:80 data/videos.metainfo.xml.in:94
+#: data/videos.metainfo.xml.in:104 data/videos.metainfo.xml.in:113
 msgid "Other updates:"
 msgstr "Ostatné aktualizácie:"
 
-#: data/io.elementary.videos.appdata.xml.in:47
-msgid "Make playback duration more accurate"
-msgstr "Presnejšie zobrazenie trvania prehrávania"
-
-#: data/io.elementary.videos.appdata.xml.in:48
-#: data/io.elementary.videos.appdata.xml.in:58
-#: data/io.elementary.videos.appdata.xml.in:71
-#: data/io.elementary.videos.appdata.xml.in:99
-#: data/io.elementary.videos.appdata.xml.in:110
-#: data/io.elementary.videos.appdata.xml.in:124
-#: data/io.elementary.videos.appdata.xml.in:139
-#: data/io.elementary.videos.appdata.xml.in:158
-#: data/io.elementary.videos.appdata.xml.in:166
-#: data/io.elementary.videos.appdata.xml.in:174
-#: data/io.elementary.videos.appdata.xml.in:181
-#: data/io.elementary.videos.appdata.xml.in:213
-#: data/io.elementary.videos.appdata.xml.in:221
-#: data/io.elementary.videos.appdata.xml.in:228
-#: data/io.elementary.videos.appdata.xml.in:244
+#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:73
+#: data/videos.metainfo.xml.in:83 data/videos.metainfo.xml.in:97
 msgid "Translation updates"
 msgstr "Aktualizované preklady"
 
-#: data/io.elementary.videos.appdata.xml.in:57
+#: data/videos.metainfo.xml.in:66
+msgid "New features:"
+msgstr "Nové funkcie:"
+
+#: data/videos.metainfo.xml.in:68
+msgid "Control playback from the sound indicator"
+msgstr "Ovládanie prehrávania z indikátora zvuku"
+
+#: data/videos.metainfo.xml.in:72
+msgid "Make playback duration more accurate"
+msgstr "Presnejšie zobrazenie trvania prehrávania"
+
+#: data/videos.metainfo.xml.in:82
 msgid "Update to Flatpak Platform 7"
 msgstr "Aktualizácia pre Flatpak Platform 7"
 
-#: data/io.elementary.videos.appdata.xml.in:64
+#: data/videos.metainfo.xml.in:90
 msgid "Fixes:"
 msgstr "Opravy:"
 
-#: data/io.elementary.videos.appdata.xml.in:66
+#: data/videos.metainfo.xml.in:92
 msgid "Fix a crash with certain video codecs"
 msgstr "Opravený pád pri niektorých video kodekoch"
 
-#: data/io.elementary.videos.appdata.xml.in:70
+#: data/videos.metainfo.xml.in:96
 msgid "Update to 6.1 Flatpak runtime"
 msgstr "Aktualizácia pre beh programov Flatpak 6.1"
 
-#: data/io.elementary.videos.appdata.xml.in:79
+#: data/videos.metainfo.xml.in:106
 msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
 msgstr "Pridaná podpora pre rozšírenie org.freedesktop.Platfrom.ffmpeg-full"
 
-#: data/io.elementary.videos.appdata.xml.in:87
+#: data/videos.metainfo.xml.in:115
 msgid "Fix an issue with removing videos from library"
 msgstr "Opravený problém pri odstraňovaní videí z knižnice"
-
-#: data/io.elementary.videos.appdata.xml.in:95
-msgid "Two-finger swipe to go back"
-msgstr "Posunutím dvoch prstov sa vrátite späť"
-
-#: data/io.elementary.videos.appdata.xml.in:107
-msgid "Fix an issue with accessing library view"
-msgstr "Opravený problém s pristupovaním do zobrazenia knižnice"
-
-#: data/io.elementary.videos.appdata.xml.in:108
-msgid ""
-"Fix an issue with returning to the welcome page while playing multiple videos"
-msgstr ""
-"Opravený problém pri návrate na uvítaciu obrazovku pri prehrávaní viacerých "
-"videí"
-
-#: data/io.elementary.videos.appdata.xml.in:109
-msgid "Prevent sleep while playing a video"
-msgstr "Zabránenie uspania pri prehrávaní videa"
-
-#: data/io.elementary.videos.appdata.xml.in:116
-msgid "Improvements:"
-msgstr "Vylepšenia:"
-
-#: data/io.elementary.videos.appdata.xml.in:118
-msgid "Start up faster with large libraries"
-msgstr "Rýchlejšie spustenie v prípade prítomnosti veľkých knižníc videí"
-
-#: data/io.elementary.videos.appdata.xml.in:122
-msgid "Fix cases where subtitles refused to load"
-msgstr "Opravené prípady, kedy sa titulky odmietali načítať"
-
-#: data/io.elementary.videos.appdata.xml.in:123
-msgid "Handle if library folder is deleted or moved"
-msgstr "Upravené presúvanie a odstraňovanie priečinkov knižnice"
-
-#: data/io.elementary.videos.appdata.xml.in:132
-msgid "Load external subtitles"
-msgstr "Načítanie externých tituliek"
-
-#: data/io.elementary.videos.appdata.xml.in:136
-msgid "Reliably update the replay button description and file"
-msgstr ""
-"Zlepšenie spoľahlivosti pri aktualizácii popisu tlačidla opätovného "
-"prehrania a súboru"
-
-#: data/io.elementary.videos.appdata.xml.in:137
-msgid "More consistently remember the last playing video and its play position"
-msgstr ""
-"Jednotnejšie zapamätanie naposledy prehrávaného videa a v akej pozícii sa "
-"prehrávanie skončilo"
-
-#: data/io.elementary.videos.appdata.xml.in:138
-msgid "Fix missing icon in episode view"
-msgstr "Opravená chýbajúca ikonka v zobrazení epizód"
-
-#: data/io.elementary.videos.appdata.xml.in:147
-msgid "Option to automatically play next videos"
-msgstr "Možnosť automatického prehrávania nasledujúcich videí"
-
-#: data/io.elementary.videos.appdata.xml.in:148
-msgid "Navigate the playlist with the keyboard"
-msgstr "Umožnený pohyb v zozname videí pomocou klávesnice"
-
-#: data/io.elementary.videos.appdata.xml.in:149
-msgid "Add a button to clear the playlist"
-msgstr "Pridané tlačidlo na vymazanie zoznamu videí"
-
-#: data/io.elementary.videos.appdata.xml.in:150
-msgid "Show audio track language in settings"
-msgstr "Zobrazovať jazyk zvukovej stopy v nastaveniach"
-
-#: data/io.elementary.videos.appdata.xml.in:151
-msgid "Show playlist item titles in their tooltips"
-msgstr "Zobrazovať názvy položiek v popisoch v zozname videí"
-
-#: data/io.elementary.videos.appdata.xml.in:155
-msgid "Show an error for unsupported files"
-msgstr "Pridané zobrazenie chyby ak sa vyskytnú nepodporované súbory"
-
-#: data/io.elementary.videos.appdata.xml.in:156
-msgid "Fix disappearing cursor on headerbar"
-msgstr "Opravené miznutie kurzoru na hornej lište"
-
-#: data/io.elementary.videos.appdata.xml.in:157
-msgid "Hide seekbar preview when switching windows with Alt + Tab"
-msgstr "Skrývať panel s posuvníkom pri prepínaní okien pomocou Alt + Tab"
-
-#: data/io.elementary.videos.appdata.xml.in:165
-#: data/io.elementary.videos.appdata.xml.in:173
-msgid "Build fixes"
-msgstr "Opravy zostavovania"
-
-#: data/io.elementary.videos.appdata.xml.in:188
-msgid "Window behavior improvements"
-msgstr "Zlepšenie správania okna"
-
-#: data/io.elementary.videos.appdata.xml.in:189
-msgid "Fix disappearing subtitle tracks"
-msgstr "Opravené miznutie stôp titulkov"
-
-#: data/io.elementary.videos.appdata.xml.in:196
-msgid "Disallow setting playback before start"
-msgstr "Znemožnenie nastavenia prehrávania pred spustením"
-
-#: data/io.elementary.videos.appdata.xml.in:203
-msgid "Limit consecutive spacebar pauses"
-msgstr ""
-"Obmedzenie pozastavenia / prehrávania pri rýchlom stláčaní medzerníka za "
-"sebou"
-
-#: data/io.elementary.videos.appdata.xml.in:210
-msgid "Crash fixes"
-msgstr "Opravené pády"
-
-#: data/io.elementary.videos.appdata.xml.in:211
-msgid "Remove About dialog"
-msgstr "Odstránenie dialógu O aplikácii"
-
-#: data/io.elementary.videos.appdata.xml.in:212
-#: data/io.elementary.videos.appdata.xml.in:251
-msgid "Minor bug fixes"
-msgstr "Menšie opravy chýb"
-
-#: data/io.elementary.videos.appdata.xml.in:220
-msgid "Preview popover now closely follows cursor position"
-msgstr "Vyskakujúce okno náhľadu teraz presnejšie nasleduje pozíciu kurzora"
-
-#: data/io.elementary.videos.appdata.xml.in:235
-msgid "Fix appstream date format"
-msgstr "Opravený formát dátumu v appstreame"
-
-#: data/io.elementary.videos.appdata.xml.in:242
-msgid "Added a library view with search"
-msgstr "Pridané zobrazenie knižnice s vyhľadávaním"
-
-#: data/io.elementary.videos.appdata.xml.in:243
-msgid "Fixed a bug that prevents keyboard navigation"
-msgstr "Opravená chyba, ktorá bránila v navigácii klávesnicou"
-
-#: data/io.elementary.videos.appdata.xml.in:256
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Prehrávač videa"
+
+#~ msgid "Two-finger swipe to go back"
+#~ msgstr "Posunutím dvoch prstov sa vrátite späť"
+
+#~ msgid "Fix an issue with accessing library view"
+#~ msgstr "Opravený problém s pristupovaním do zobrazenia knižnice"
+
+#~ msgid ""
+#~ "Fix an issue with returning to the welcome page while playing multiple "
+#~ "videos"
+#~ msgstr ""
+#~ "Opravený problém pri návrate na uvítaciu obrazovku pri prehrávaní "
+#~ "viacerých videí"
+
+#~ msgid "Prevent sleep while playing a video"
+#~ msgstr "Zabránenie uspania pri prehrávaní videa"
+
+#~ msgid "Improvements:"
+#~ msgstr "Vylepšenia:"
+
+#~ msgid "Start up faster with large libraries"
+#~ msgstr "Rýchlejšie spustenie v prípade prítomnosti veľkých knižníc videí"
+
+#~ msgid "Fix cases where subtitles refused to load"
+#~ msgstr "Opravené prípady, kedy sa titulky odmietali načítať"
+
+#~ msgid "Handle if library folder is deleted or moved"
+#~ msgstr "Upravené presúvanie a odstraňovanie priečinkov knižnice"
+
+#~ msgid "Load external subtitles"
+#~ msgstr "Načítanie externých tituliek"
+
+#~ msgid "Reliably update the replay button description and file"
+#~ msgstr ""
+#~ "Zlepšenie spoľahlivosti pri aktualizácii popisu tlačidla opätovného "
+#~ "prehrania a súboru"
+
+#~ msgid ""
+#~ "More consistently remember the last playing video and its play position"
+#~ msgstr ""
+#~ "Jednotnejšie zapamätanie naposledy prehrávaného videa a v akej pozícii sa "
+#~ "prehrávanie skončilo"
+
+#~ msgid "Fix missing icon in episode view"
+#~ msgstr "Opravená chýbajúca ikonka v zobrazení epizód"
+
+#~ msgid "Option to automatically play next videos"
+#~ msgstr "Možnosť automatického prehrávania nasledujúcich videí"
+
+#~ msgid "Navigate the playlist with the keyboard"
+#~ msgstr "Umožnený pohyb v zozname videí pomocou klávesnice"
+
+#~ msgid "Add a button to clear the playlist"
+#~ msgstr "Pridané tlačidlo na vymazanie zoznamu videí"
+
+#~ msgid "Show audio track language in settings"
+#~ msgstr "Zobrazovať jazyk zvukovej stopy v nastaveniach"
+
+#~ msgid "Show playlist item titles in their tooltips"
+#~ msgstr "Zobrazovať názvy položiek v popisoch v zozname videí"
+
+#~ msgid "Show an error for unsupported files"
+#~ msgstr "Pridané zobrazenie chyby ak sa vyskytnú nepodporované súbory"
+
+#~ msgid "Fix disappearing cursor on headerbar"
+#~ msgstr "Opravené miznutie kurzoru na hornej lište"
+
+#~ msgid "Hide seekbar preview when switching windows with Alt + Tab"
+#~ msgstr "Skrývať panel s posuvníkom pri prepínaní okien pomocou Alt + Tab"
+
+#~ msgid "Build fixes"
+#~ msgstr "Opravy zostavovania"
+
+#~ msgid "Window behavior improvements"
+#~ msgstr "Zlepšenie správania okna"
+
+#~ msgid "Fix disappearing subtitle tracks"
+#~ msgstr "Opravené miznutie stôp titulkov"
+
+#~ msgid "Disallow setting playback before start"
+#~ msgstr "Znemožnenie nastavenia prehrávania pred spustením"
+
+#~ msgid "Limit consecutive spacebar pauses"
+#~ msgstr ""
+#~ "Obmedzenie pozastavenia / prehrávania pri rýchlom stláčaní medzerníka za "
+#~ "sebou"
+
+#~ msgid "Crash fixes"
+#~ msgstr "Opravené pády"
+
+#~ msgid "Remove About dialog"
+#~ msgstr "Odstránenie dialógu O aplikácii"
+
+#~ msgid "Minor bug fixes"
+#~ msgstr "Menšie opravy chýb"
+
+#~ msgid "Preview popover now closely follows cursor position"
+#~ msgstr "Vyskakujúce okno náhľadu teraz presnejšie nasleduje pozíciu kurzora"
+
+#~ msgid "Fix appstream date format"
+#~ msgstr "Opravený formát dátumu v appstreame"
+
+#~ msgid "Added a library view with search"
+#~ msgstr "Pridané zobrazenie knižnice s vyhľadávaním"
+
+#~ msgid "Fixed a bug that prevents keyboard navigation"
+#~ msgstr "Opravená chyba, ktorá bránila v navigácii klávesnicou"
 
 #~ msgid "Audience"
 #~ msgstr "Audience"

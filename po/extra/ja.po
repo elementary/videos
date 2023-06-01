@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-15 04:43+0000\n"
+"POT-Creation-Date: 2023-05-31 17:33+0000\n"
 "PO-Revision-Date: 2022-10-29 04:49+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
@@ -20,17 +20,15 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: data/io.elementary.videos.appdata.xml.in:9
-#: data/io.elementary.videos.desktop.in:4
+#: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
 msgid "Videos"
 msgstr "ビデオ"
 
-#: data/io.elementary.videos.appdata.xml.in:10
-#: data/io.elementary.videos.desktop.in:6
+#: data/videos.metainfo.xml.in:11 data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
 msgstr "動画や映画を見ます"
 
-#: data/io.elementary.videos.appdata.xml.in:12
+#: data/videos.metainfo.xml.in:13
 msgid ""
 "A modern video player that focuses on displaying video content instead of "
 "player controls. It remembers your last played video and playback position "
@@ -40,233 +38,179 @@ msgstr ""
 "レイヤーです。最後に再生した動画と再生位置を記憶するので、前回中断したところ"
 "から再生を再開できます。"
 
-#: data/io.elementary.videos.appdata.xml.in:17
+#: data/videos.metainfo.xml.in:14
 msgid "Additional features include:"
 msgstr "そのほかの機能:"
 
-#: data/io.elementary.videos.appdata.xml.in:21
+#: data/videos.metainfo.xml.in:16
 msgid "Subtitle support"
 msgstr "字幕に対応"
 
-#: data/io.elementary.videos.appdata.xml.in:22
+#: data/videos.metainfo.xml.in:17
 msgid "Play queue"
 msgstr "再生キュー"
 
-#: data/io.elementary.videos.appdata.xml.in:23
+#: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
 msgstr "シークバー上のサムネイルプレビュー"
 
-#: data/io.elementary.videos.appdata.xml.in:41
-#: data/io.elementary.videos.appdata.xml.in:93
-#: data/io.elementary.videos.appdata.xml.in:130
-#: data/io.elementary.videos.appdata.xml.in:145
-msgid "New features:"
-msgstr "新機能:"
+#: data/videos.metainfo.xml.in:50
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
 
-#: data/io.elementary.videos.appdata.xml.in:43
-msgid "Control playback from the sound indicator"
-msgstr "サウンドインジケーターから停止／再生できるように修正"
-
-#: data/io.elementary.videos.appdata.xml.in:45
-#: data/io.elementary.videos.appdata.xml.in:55
-#: data/io.elementary.videos.appdata.xml.in:68
-#: data/io.elementary.videos.appdata.xml.in:77
-#: data/io.elementary.videos.appdata.xml.in:85
-#: data/io.elementary.videos.appdata.xml.in:97
-#: data/io.elementary.videos.appdata.xml.in:105
-#: data/io.elementary.videos.appdata.xml.in:120
-#: data/io.elementary.videos.appdata.xml.in:134
-#: data/io.elementary.videos.appdata.xml.in:153
+#: data/videos.metainfo.xml.in:57 data/videos.metainfo.xml.in:70
+#: data/videos.metainfo.xml.in:80 data/videos.metainfo.xml.in:94
+#: data/videos.metainfo.xml.in:104 data/videos.metainfo.xml.in:113
 msgid "Other updates:"
 msgstr "そのほかのアップデート:"
 
-#: data/io.elementary.videos.appdata.xml.in:47
-msgid "Make playback duration more accurate"
-msgstr "再生時間の表示がより正確になるように修正"
-
-#: data/io.elementary.videos.appdata.xml.in:48
-#: data/io.elementary.videos.appdata.xml.in:58
-#: data/io.elementary.videos.appdata.xml.in:71
-#: data/io.elementary.videos.appdata.xml.in:99
-#: data/io.elementary.videos.appdata.xml.in:110
-#: data/io.elementary.videos.appdata.xml.in:124
-#: data/io.elementary.videos.appdata.xml.in:139
-#: data/io.elementary.videos.appdata.xml.in:158
-#: data/io.elementary.videos.appdata.xml.in:166
-#: data/io.elementary.videos.appdata.xml.in:174
-#: data/io.elementary.videos.appdata.xml.in:181
-#: data/io.elementary.videos.appdata.xml.in:213
-#: data/io.elementary.videos.appdata.xml.in:221
-#: data/io.elementary.videos.appdata.xml.in:228
-#: data/io.elementary.videos.appdata.xml.in:244
+#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:73
+#: data/videos.metainfo.xml.in:83 data/videos.metainfo.xml.in:97
 msgid "Translation updates"
 msgstr "翻訳の更新"
 
-#: data/io.elementary.videos.appdata.xml.in:57
+#: data/videos.metainfo.xml.in:66
+msgid "New features:"
+msgstr "新機能:"
+
+#: data/videos.metainfo.xml.in:68
+msgid "Control playback from the sound indicator"
+msgstr "サウンドインジケーターから停止／再生できるように修正"
+
+#: data/videos.metainfo.xml.in:72
+msgid "Make playback duration more accurate"
+msgstr "再生時間の表示がより正確になるように修正"
+
+#: data/videos.metainfo.xml.in:82
 msgid "Update to Flatpak Platform 7"
 msgstr "Flatpak プラットフォームをバージョン 7 にアップデート"
 
-#: data/io.elementary.videos.appdata.xml.in:64
+#: data/videos.metainfo.xml.in:90
 msgid "Fixes:"
 msgstr "修正点:"
 
-#: data/io.elementary.videos.appdata.xml.in:66
+#: data/videos.metainfo.xml.in:92
 msgid "Fix a crash with certain video codecs"
 msgstr "特定のビデオコーデックでクラッシュする不具合を修正"
 
-#: data/io.elementary.videos.appdata.xml.in:70
+#: data/videos.metainfo.xml.in:96
 msgid "Update to 6.1 Flatpak runtime"
 msgstr "Flatpak ランタイムをバージョン 6.1 にアップデート"
 
-#: data/io.elementary.videos.appdata.xml.in:79
+#: data/videos.metainfo.xml.in:106
 msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
 msgstr "拡張機能“org.freedesktop.Platfrom.ffmpeg-full”に対応"
 
-#: data/io.elementary.videos.appdata.xml.in:87
+#: data/videos.metainfo.xml.in:115
 msgid "Fix an issue with removing videos from library"
 msgstr "ライブラリーからの動画の削除に関する不具合を修正"
-
-#: data/io.elementary.videos.appdata.xml.in:95
-msgid "Two-finger swipe to go back"
-msgstr "2本指のスワイプで前の画面に戻れるように変更"
-
-#: data/io.elementary.videos.appdata.xml.in:107
-msgid "Fix an issue with accessing library view"
-msgstr "ライブラリービューへの切り替えに関する不具合を修正"
-
-#: data/io.elementary.videos.appdata.xml.in:108
-msgid ""
-"Fix an issue with returning to the welcome page while playing multiple videos"
-msgstr "複数の動画を再生している際にようこそ画面に戻ると発生する不具合を修正"
-
-#: data/io.elementary.videos.appdata.xml.in:109
-msgid "Prevent sleep while playing a video"
-msgstr "動画の再生中にスリープしないように修正"
-
-#: data/io.elementary.videos.appdata.xml.in:116
-msgid "Improvements:"
-msgstr "改善点:"
-
-#: data/io.elementary.videos.appdata.xml.in:118
-msgid "Start up faster with large libraries"
-msgstr "ライブラリのサイズが大きい環境での起動を高速化"
-
-#: data/io.elementary.videos.appdata.xml.in:122
-msgid "Fix cases where subtitles refused to load"
-msgstr "字幕の読み込みが拒否される不具合を修正"
-
-#: data/io.elementary.videos.appdata.xml.in:123
-msgid "Handle if library folder is deleted or moved"
-msgstr ""
-"ライブラリフォルダーが削除または移動された場合に正しく処理できるように修正"
-
-#: data/io.elementary.videos.appdata.xml.in:132
-msgid "Load external subtitles"
-msgstr "外部字幕の読み込みに対応"
-
-#: data/io.elementary.videos.appdata.xml.in:136
-msgid "Reliably update the replay button description and file"
-msgstr "再生ボタンの説明とファイルを確実に更新するように変更"
-
-#: data/io.elementary.videos.appdata.xml.in:137
-msgid "More consistently remember the last playing video and its play position"
-msgstr "最後に再生した動画と再生位置をより正確に保存"
-
-#: data/io.elementary.videos.appdata.xml.in:138
-msgid "Fix missing icon in episode view"
-msgstr "エピソードビューでアイコンが表示されていなかった不具合を修正"
-
-#: data/io.elementary.videos.appdata.xml.in:147
-msgid "Option to automatically play next videos"
-msgstr "次の動画を自動的に再生できるオプション"
-
-#: data/io.elementary.videos.appdata.xml.in:148
-msgid "Navigate the playlist with the keyboard"
-msgstr "キーボードでプレイリストを操作できるように修正"
-
-#: data/io.elementary.videos.appdata.xml.in:149
-msgid "Add a button to clear the playlist"
-msgstr "プレイリストを消去するボタンを追加"
-
-#: data/io.elementary.videos.appdata.xml.in:150
-msgid "Show audio track language in settings"
-msgstr "設定にオーディオトラックの言語を表示"
-
-#: data/io.elementary.videos.appdata.xml.in:151
-msgid "Show playlist item titles in their tooltips"
-msgstr "プレイリストの項目のタイトルをツールチップで表示するように修正"
-
-#: data/io.elementary.videos.appdata.xml.in:155
-msgid "Show an error for unsupported files"
-msgstr "非対応のファイルに対しエラーを表示するように修正"
-
-#: data/io.elementary.videos.appdata.xml.in:156
-msgid "Fix disappearing cursor on headerbar"
-msgstr "ヘッダーバーでカーソルが消える不具合を修正"
-
-#: data/io.elementary.videos.appdata.xml.in:157
-msgid "Hide seekbar preview when switching windows with Alt + Tab"
-msgstr ""
-"Alt + Tab キーでのウィンドウの切り替え時にシークバーのプレビューを表示しない"
-"ように修正"
-
-#: data/io.elementary.videos.appdata.xml.in:165
-#: data/io.elementary.videos.appdata.xml.in:173
-msgid "Build fixes"
-msgstr "ビルドの修正"
-
-#: data/io.elementary.videos.appdata.xml.in:188
-msgid "Window behavior improvements"
-msgstr "ウィンドウの挙動の改善"
-
-#: data/io.elementary.videos.appdata.xml.in:189
-msgid "Fix disappearing subtitle tracks"
-msgstr "字幕が消える不具合を修正"
-
-#: data/io.elementary.videos.appdata.xml.in:196
-msgid "Disallow setting playback before start"
-msgstr "開始前に再生の設定をできないように修正"
-
-#: data/io.elementary.videos.appdata.xml.in:203
-msgid "Limit consecutive spacebar pauses"
-msgstr "スペースキー連打時の一時停止を制限"
-
-#: data/io.elementary.videos.appdata.xml.in:210
-msgid "Crash fixes"
-msgstr "クラッシュの修正"
-
-#: data/io.elementary.videos.appdata.xml.in:211
-msgid "Remove About dialog"
-msgstr "情報ダイアログを削除"
-
-#: data/io.elementary.videos.appdata.xml.in:212
-#: data/io.elementary.videos.appdata.xml.in:251
-msgid "Minor bug fixes"
-msgstr "軽微なバグの修正"
-
-#: data/io.elementary.videos.appdata.xml.in:220
-msgid "Preview popover now closely follows cursor position"
-msgstr "プレビュー表示のポップオーバーがカーソルの位置に近くなるように修正"
-
-#: data/io.elementary.videos.appdata.xml.in:235
-msgid "Fix appstream date format"
-msgstr "AppStream の日付形式を修正"
-
-#: data/io.elementary.videos.appdata.xml.in:242
-msgid "Added a library view with search"
-msgstr "検索でライブラリービューを追加する"
-
-#: data/io.elementary.videos.appdata.xml.in:243
-msgid "Fixed a bug that prevents keyboard navigation"
-msgstr "キーボード操作を妨害するバグを修正"
-
-#: data/io.elementary.videos.appdata.xml.in:256
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "ビデオプレーヤー"
+
+#~ msgid "Two-finger swipe to go back"
+#~ msgstr "2本指のスワイプで前の画面に戻れるように変更"
+
+#~ msgid "Fix an issue with accessing library view"
+#~ msgstr "ライブラリービューへの切り替えに関する不具合を修正"
+
+#~ msgid ""
+#~ "Fix an issue with returning to the welcome page while playing multiple "
+#~ "videos"
+#~ msgstr ""
+#~ "複数の動画を再生している際にようこそ画面に戻ると発生する不具合を修正"
+
+#~ msgid "Prevent sleep while playing a video"
+#~ msgstr "動画の再生中にスリープしないように修正"
+
+#~ msgid "Improvements:"
+#~ msgstr "改善点:"
+
+#~ msgid "Start up faster with large libraries"
+#~ msgstr "ライブラリのサイズが大きい環境での起動を高速化"
+
+#~ msgid "Fix cases where subtitles refused to load"
+#~ msgstr "字幕の読み込みが拒否される不具合を修正"
+
+#~ msgid "Handle if library folder is deleted or moved"
+#~ msgstr ""
+#~ "ライブラリフォルダーが削除または移動された場合に正しく処理できるように修正"
+
+#~ msgid "Load external subtitles"
+#~ msgstr "外部字幕の読み込みに対応"
+
+#~ msgid "Reliably update the replay button description and file"
+#~ msgstr "再生ボタンの説明とファイルを確実に更新するように変更"
+
+#~ msgid ""
+#~ "More consistently remember the last playing video and its play position"
+#~ msgstr "最後に再生した動画と再生位置をより正確に保存"
+
+#~ msgid "Fix missing icon in episode view"
+#~ msgstr "エピソードビューでアイコンが表示されていなかった不具合を修正"
+
+#~ msgid "Option to automatically play next videos"
+#~ msgstr "次の動画を自動的に再生できるオプション"
+
+#~ msgid "Navigate the playlist with the keyboard"
+#~ msgstr "キーボードでプレイリストを操作できるように修正"
+
+#~ msgid "Add a button to clear the playlist"
+#~ msgstr "プレイリストを消去するボタンを追加"
+
+#~ msgid "Show audio track language in settings"
+#~ msgstr "設定にオーディオトラックの言語を表示"
+
+#~ msgid "Show playlist item titles in their tooltips"
+#~ msgstr "プレイリストの項目のタイトルをツールチップで表示するように修正"
+
+#~ msgid "Show an error for unsupported files"
+#~ msgstr "非対応のファイルに対しエラーを表示するように修正"
+
+#~ msgid "Fix disappearing cursor on headerbar"
+#~ msgstr "ヘッダーバーでカーソルが消える不具合を修正"
+
+#~ msgid "Hide seekbar preview when switching windows with Alt + Tab"
+#~ msgstr ""
+#~ "Alt + Tab キーでのウィンドウの切り替え時にシークバーのプレビューを表示しな"
+#~ "いように修正"
+
+#~ msgid "Build fixes"
+#~ msgstr "ビルドの修正"
+
+#~ msgid "Window behavior improvements"
+#~ msgstr "ウィンドウの挙動の改善"
+
+#~ msgid "Fix disappearing subtitle tracks"
+#~ msgstr "字幕が消える不具合を修正"
+
+#~ msgid "Disallow setting playback before start"
+#~ msgstr "開始前に再生の設定をできないように修正"
+
+#~ msgid "Limit consecutive spacebar pauses"
+#~ msgstr "スペースキー連打時の一時停止を制限"
+
+#~ msgid "Crash fixes"
+#~ msgstr "クラッシュの修正"
+
+#~ msgid "Remove About dialog"
+#~ msgstr "情報ダイアログを削除"
+
+#~ msgid "Minor bug fixes"
+#~ msgstr "軽微なバグの修正"
+
+#~ msgid "Preview popover now closely follows cursor position"
+#~ msgstr "プレビュー表示のポップオーバーがカーソルの位置に近くなるように修正"
+
+#~ msgid "Fix appstream date format"
+#~ msgstr "AppStream の日付形式を修正"
+
+#~ msgid "Added a library view with search"
+#~ msgstr "検索でライブラリービューを追加する"
+
+#~ msgid "Fixed a bug that prevents keyboard navigation"
+#~ msgstr "キーボード操作を妨害するバグを修正"
 
 #~ msgid "io.elementary.videos"
 #~ msgstr "io.elementary.videos"

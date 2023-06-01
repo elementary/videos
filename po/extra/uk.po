@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-15 04:43+0000\n"
+"POT-Creation-Date: 2023-05-31 17:33+0000\n"
 "PO-Revision-Date: 2022-10-21 23:57+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/videos/extra/"
@@ -21,17 +21,15 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: data/io.elementary.videos.appdata.xml.in:9
-#: data/io.elementary.videos.desktop.in:4
+#: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
 msgid "Videos"
 msgstr "Відео"
 
-#: data/io.elementary.videos.appdata.xml.in:10
-#: data/io.elementary.videos.desktop.in:6
+#: data/videos.metainfo.xml.in:11 data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
 msgstr "Переглядайте відео та фільми"
 
-#: data/io.elementary.videos.appdata.xml.in:12
+#: data/videos.metainfo.xml.in:13
 msgid ""
 "A modern video player that focuses on displaying video content instead of "
 "player controls. It remembers your last played video and playback position "
@@ -42,236 +40,182 @@ msgstr ""
 "відео та час відтворення, щоб ви могли продовжувати з того місця, де "
 "зупинилися."
 
-#: data/io.elementary.videos.appdata.xml.in:17
+#: data/videos.metainfo.xml.in:14
 msgid "Additional features include:"
 msgstr "Додаткові функції:"
 
-#: data/io.elementary.videos.appdata.xml.in:21
+#: data/videos.metainfo.xml.in:16
 msgid "Subtitle support"
 msgstr "Підтримка субтитрів"
 
-#: data/io.elementary.videos.appdata.xml.in:22
+#: data/videos.metainfo.xml.in:17
 msgid "Play queue"
 msgstr "Черга відтворення"
 
-#: data/io.elementary.videos.appdata.xml.in:23
+#: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
 msgstr "Попередній перегляд мініатюр на панелі прокрутки"
 
-#: data/io.elementary.videos.appdata.xml.in:41
-#: data/io.elementary.videos.appdata.xml.in:93
-#: data/io.elementary.videos.appdata.xml.in:130
-#: data/io.elementary.videos.appdata.xml.in:145
-msgid "New features:"
-msgstr "Нові функції:"
+#: data/videos.metainfo.xml.in:50
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
 
-#: data/io.elementary.videos.appdata.xml.in:43
-msgid "Control playback from the sound indicator"
-msgstr "Контроль відтворення з індикатора звуку"
-
-#: data/io.elementary.videos.appdata.xml.in:45
-#: data/io.elementary.videos.appdata.xml.in:55
-#: data/io.elementary.videos.appdata.xml.in:68
-#: data/io.elementary.videos.appdata.xml.in:77
-#: data/io.elementary.videos.appdata.xml.in:85
-#: data/io.elementary.videos.appdata.xml.in:97
-#: data/io.elementary.videos.appdata.xml.in:105
-#: data/io.elementary.videos.appdata.xml.in:120
-#: data/io.elementary.videos.appdata.xml.in:134
-#: data/io.elementary.videos.appdata.xml.in:153
+#: data/videos.metainfo.xml.in:57 data/videos.metainfo.xml.in:70
+#: data/videos.metainfo.xml.in:80 data/videos.metainfo.xml.in:94
+#: data/videos.metainfo.xml.in:104 data/videos.metainfo.xml.in:113
 msgid "Other updates:"
 msgstr "Інші оновлення:"
 
-#: data/io.elementary.videos.appdata.xml.in:47
-msgid "Make playback duration more accurate"
-msgstr "Тривалість відтворення стала точнішою"
-
-#: data/io.elementary.videos.appdata.xml.in:48
-#: data/io.elementary.videos.appdata.xml.in:58
-#: data/io.elementary.videos.appdata.xml.in:71
-#: data/io.elementary.videos.appdata.xml.in:99
-#: data/io.elementary.videos.appdata.xml.in:110
-#: data/io.elementary.videos.appdata.xml.in:124
-#: data/io.elementary.videos.appdata.xml.in:139
-#: data/io.elementary.videos.appdata.xml.in:158
-#: data/io.elementary.videos.appdata.xml.in:166
-#: data/io.elementary.videos.appdata.xml.in:174
-#: data/io.elementary.videos.appdata.xml.in:181
-#: data/io.elementary.videos.appdata.xml.in:213
-#: data/io.elementary.videos.appdata.xml.in:221
-#: data/io.elementary.videos.appdata.xml.in:228
-#: data/io.elementary.videos.appdata.xml.in:244
+#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:73
+#: data/videos.metainfo.xml.in:83 data/videos.metainfo.xml.in:97
 msgid "Translation updates"
 msgstr "Оновлено переклади"
 
-#: data/io.elementary.videos.appdata.xml.in:57
+#: data/videos.metainfo.xml.in:66
+msgid "New features:"
+msgstr "Нові функції:"
+
+#: data/videos.metainfo.xml.in:68
+msgid "Control playback from the sound indicator"
+msgstr "Контроль відтворення з індикатора звуку"
+
+#: data/videos.metainfo.xml.in:72
+msgid "Make playback duration more accurate"
+msgstr "Тривалість відтворення стала точнішою"
+
+#: data/videos.metainfo.xml.in:82
 msgid "Update to Flatpak Platform 7"
 msgstr "Flatpak оновлено до Platform 7"
 
-#: data/io.elementary.videos.appdata.xml.in:64
+#: data/videos.metainfo.xml.in:90
 msgid "Fixes:"
 msgstr "Виправлення:"
 
-#: data/io.elementary.videos.appdata.xml.in:66
+#: data/videos.metainfo.xml.in:92
 msgid "Fix a crash with certain video codecs"
 msgstr "Усунуто збої деяких відеокодеків"
 
-#: data/io.elementary.videos.appdata.xml.in:70
+#: data/videos.metainfo.xml.in:96
 msgid "Update to 6.1 Flatpak runtime"
 msgstr "Середовище виконання Flatpak оновлено до 6.1"
 
-#: data/io.elementary.videos.appdata.xml.in:79
+#: data/videos.metainfo.xml.in:106
 msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
 msgstr "Додана підтримка розширення org.freedesktop.Platfrom.ffmpeg-full"
 
-#: data/io.elementary.videos.appdata.xml.in:87
+#: data/videos.metainfo.xml.in:115
 msgid "Fix an issue with removing videos from library"
 msgstr "Виправлено проблему вилучення відео з бібліотеки"
-
-#: data/io.elementary.videos.appdata.xml.in:95
-msgid "Two-finger swipe to go back"
-msgstr "Перехід назад двопалим жестом"
-
-#: data/io.elementary.videos.appdata.xml.in:107
-msgid "Fix an issue with accessing library view"
-msgstr "Виправлено проблему доступу до перегляду бібліотеки"
-
-#: data/io.elementary.videos.appdata.xml.in:108
-msgid ""
-"Fix an issue with returning to the welcome page while playing multiple videos"
-msgstr ""
-"Виправлено проблему повернення на сторінку привітання під час відтворення "
-"кількох відео"
-
-#: data/io.elementary.videos.appdata.xml.in:109
-msgid "Prevent sleep while playing a video"
-msgstr "Запобігання засинанню під час відтворення відео"
-
-#: data/io.elementary.videos.appdata.xml.in:116
-msgid "Improvements:"
-msgstr "Вдосконалення:"
-
-#: data/io.elementary.videos.appdata.xml.in:118
-msgid "Start up faster with large libraries"
-msgstr "Пришвидшено запуск з великими бібліотеками"
-
-#: data/io.elementary.videos.appdata.xml.in:122
-msgid "Fix cases where subtitles refused to load"
-msgstr "Виправлено випадки відмови завантаження субтитрів"
-
-#: data/io.elementary.videos.appdata.xml.in:123
-msgid "Handle if library folder is deleted or moved"
-msgstr "Обробка, якщо теку бібліотеки видалено або переміщено"
-
-#: data/io.elementary.videos.appdata.xml.in:132
-msgid "Load external subtitles"
-msgstr "Завантаження зовнішніх субтитрів"
-
-#: data/io.elementary.videos.appdata.xml.in:136
-msgid "Reliably update the replay button description and file"
-msgstr "Оновлено опис кнопки відтворення і файлу"
-
-#: data/io.elementary.videos.appdata.xml.in:137
-msgid "More consistently remember the last playing video and its play position"
-msgstr ""
-"Послідовніше запам’ятовування останнього відтвореного відео та позицію його "
-"відтворення"
-
-#: data/io.elementary.videos.appdata.xml.in:138
-msgid "Fix missing icon in episode view"
-msgstr "Виправлено відсутність піктограм поданні епізодів"
-
-#: data/io.elementary.videos.appdata.xml.in:147
-msgid "Option to automatically play next videos"
-msgstr "Можливість автоматичного відтворення наступних відео"
-
-#: data/io.elementary.videos.appdata.xml.in:148
-msgid "Navigate the playlist with the keyboard"
-msgstr "Переходи списком відтворення за допомогою клавіатури"
-
-#: data/io.elementary.videos.appdata.xml.in:149
-msgid "Add a button to clear the playlist"
-msgstr "Додано кнопку очищення списку відтворення"
-
-#: data/io.elementary.videos.appdata.xml.in:150
-msgid "Show audio track language in settings"
-msgstr "Показ мови звукової доріжки в налаштуваннях"
-
-#: data/io.elementary.videos.appdata.xml.in:151
-msgid "Show playlist item titles in their tooltips"
-msgstr "Показ назв елементів списку відтворення в підказках"
-
-#: data/io.elementary.videos.appdata.xml.in:155
-msgid "Show an error for unsupported files"
-msgstr "Показ помилки для непідтримуваних файлів"
-
-#: data/io.elementary.videos.appdata.xml.in:156
-msgid "Fix disappearing cursor on headerbar"
-msgstr "Виправлено зникнення курсора на панелі заголовка"
-
-#: data/io.elementary.videos.appdata.xml.in:157
-msgid "Hide seekbar preview when switching windows with Alt + Tab"
-msgstr ""
-"Приховано попередній перегляд панелі прокрутки під час перемикання між "
-"вікнами за допомогою Alt + Tab"
-
-#: data/io.elementary.videos.appdata.xml.in:165
-#: data/io.elementary.videos.appdata.xml.in:173
-msgid "Build fixes"
-msgstr "Виправлення збірки"
-
-#: data/io.elementary.videos.appdata.xml.in:188
-msgid "Window behavior improvements"
-msgstr "Поліпшено поведінку вікон"
-
-#: data/io.elementary.videos.appdata.xml.in:189
-msgid "Fix disappearing subtitle tracks"
-msgstr "Виправлено зникнення доріжок субтитрів"
-
-#: data/io.elementary.videos.appdata.xml.in:196
-msgid "Disallow setting playback before start"
-msgstr "Заборона налаштування відтворення перед початком"
-
-#: data/io.elementary.videos.appdata.xml.in:203
-msgid "Limit consecutive spacebar pauses"
-msgstr "Обмежено послідовні паузи пробілом"
-
-#: data/io.elementary.videos.appdata.xml.in:210
-msgid "Crash fixes"
-msgstr "Виправлено помилки"
-
-#: data/io.elementary.videos.appdata.xml.in:211
-msgid "Remove About dialog"
-msgstr "Прибрано діалогове вікно Про"
-
-#: data/io.elementary.videos.appdata.xml.in:212
-#: data/io.elementary.videos.appdata.xml.in:251
-msgid "Minor bug fixes"
-msgstr "Незначні виправлення"
-
-#: data/io.elementary.videos.appdata.xml.in:220
-msgid "Preview popover now closely follows cursor position"
-msgstr "Попередній перегляд тепер уважніше стежить за позицією курсора"
-
-#: data/io.elementary.videos.appdata.xml.in:235
-msgid "Fix appstream date format"
-msgstr "Виправлено формат дати appstream"
-
-#: data/io.elementary.videos.appdata.xml.in:242
-msgid "Added a library view with search"
-msgstr "Додано подання бібліотеки в пошуку"
-
-#: data/io.elementary.videos.appdata.xml.in:243
-msgid "Fixed a bug that prevents keyboard navigation"
-msgstr "Виправлено помилку, яка перешкоджала переходам за допомогою клавіатури"
-
-#: data/io.elementary.videos.appdata.xml.in:256
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Програвач відео"
+
+#~ msgid "Two-finger swipe to go back"
+#~ msgstr "Перехід назад двопалим жестом"
+
+#~ msgid "Fix an issue with accessing library view"
+#~ msgstr "Виправлено проблему доступу до перегляду бібліотеки"
+
+#~ msgid ""
+#~ "Fix an issue with returning to the welcome page while playing multiple "
+#~ "videos"
+#~ msgstr ""
+#~ "Виправлено проблему повернення на сторінку привітання під час відтворення "
+#~ "кількох відео"
+
+#~ msgid "Prevent sleep while playing a video"
+#~ msgstr "Запобігання засинанню під час відтворення відео"
+
+#~ msgid "Improvements:"
+#~ msgstr "Вдосконалення:"
+
+#~ msgid "Start up faster with large libraries"
+#~ msgstr "Пришвидшено запуск з великими бібліотеками"
+
+#~ msgid "Fix cases where subtitles refused to load"
+#~ msgstr "Виправлено випадки відмови завантаження субтитрів"
+
+#~ msgid "Handle if library folder is deleted or moved"
+#~ msgstr "Обробка, якщо теку бібліотеки видалено або переміщено"
+
+#~ msgid "Load external subtitles"
+#~ msgstr "Завантаження зовнішніх субтитрів"
+
+#~ msgid "Reliably update the replay button description and file"
+#~ msgstr "Оновлено опис кнопки відтворення і файлу"
+
+#~ msgid ""
+#~ "More consistently remember the last playing video and its play position"
+#~ msgstr ""
+#~ "Послідовніше запам’ятовування останнього відтвореного відео та позицію "
+#~ "його відтворення"
+
+#~ msgid "Fix missing icon in episode view"
+#~ msgstr "Виправлено відсутність піктограм поданні епізодів"
+
+#~ msgid "Option to automatically play next videos"
+#~ msgstr "Можливість автоматичного відтворення наступних відео"
+
+#~ msgid "Navigate the playlist with the keyboard"
+#~ msgstr "Переходи списком відтворення за допомогою клавіатури"
+
+#~ msgid "Add a button to clear the playlist"
+#~ msgstr "Додано кнопку очищення списку відтворення"
+
+#~ msgid "Show audio track language in settings"
+#~ msgstr "Показ мови звукової доріжки в налаштуваннях"
+
+#~ msgid "Show playlist item titles in their tooltips"
+#~ msgstr "Показ назв елементів списку відтворення в підказках"
+
+#~ msgid "Show an error for unsupported files"
+#~ msgstr "Показ помилки для непідтримуваних файлів"
+
+#~ msgid "Fix disappearing cursor on headerbar"
+#~ msgstr "Виправлено зникнення курсора на панелі заголовка"
+
+#~ msgid "Hide seekbar preview when switching windows with Alt + Tab"
+#~ msgstr ""
+#~ "Приховано попередній перегляд панелі прокрутки під час перемикання між "
+#~ "вікнами за допомогою Alt + Tab"
+
+#~ msgid "Build fixes"
+#~ msgstr "Виправлення збірки"
+
+#~ msgid "Window behavior improvements"
+#~ msgstr "Поліпшено поведінку вікон"
+
+#~ msgid "Fix disappearing subtitle tracks"
+#~ msgstr "Виправлено зникнення доріжок субтитрів"
+
+#~ msgid "Disallow setting playback before start"
+#~ msgstr "Заборона налаштування відтворення перед початком"
+
+#~ msgid "Limit consecutive spacebar pauses"
+#~ msgstr "Обмежено послідовні паузи пробілом"
+
+#~ msgid "Crash fixes"
+#~ msgstr "Виправлено помилки"
+
+#~ msgid "Remove About dialog"
+#~ msgstr "Прибрано діалогове вікно Про"
+
+#~ msgid "Minor bug fixes"
+#~ msgstr "Незначні виправлення"
+
+#~ msgid "Preview popover now closely follows cursor position"
+#~ msgstr "Попередній перегляд тепер уважніше стежить за позицією курсора"
+
+#~ msgid "Fix appstream date format"
+#~ msgstr "Виправлено формат дати appstream"
+
+#~ msgid "Added a library view with search"
+#~ msgstr "Додано подання бібліотеки в пошуку"
+
+#~ msgid "Fixed a bug that prevents keyboard navigation"
+#~ msgstr ""
+#~ "Виправлено помилку, яка перешкоджала переходам за допомогою клавіатури"
 
 #~ msgid "io.elementary.videos"
 #~ msgstr "io.elementary.videos"
