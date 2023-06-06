@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-31 17:33+0000\n"
-"PO-Revision-Date: 2021-12-22 15:02+0000\n"
+"PO-Revision-Date: 2023-06-08 00:07+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/extra/"
 "hu/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
 msgid "Videos"
@@ -74,31 +74,31 @@ msgstr "Újdonságok:"
 
 #: data/videos.metainfo.xml.in:68
 msgid "Control playback from the sound indicator"
-msgstr ""
+msgstr "Lejátszás vezérlése a hangindikátorról"
 
 #: data/videos.metainfo.xml.in:72
 msgid "Make playback duration more accurate"
-msgstr ""
+msgstr "A lejátszás hossza pontosabb lett"
 
 #: data/videos.metainfo.xml.in:82
 msgid "Update to Flatpak Platform 7"
-msgstr ""
+msgstr "Frissítve Flatpak Platform 7-re"
 
 #: data/videos.metainfo.xml.in:90
 msgid "Fixes:"
-msgstr ""
+msgstr "Javítások:"
 
 #: data/videos.metainfo.xml.in:92
 msgid "Fix a crash with certain video codecs"
-msgstr ""
+msgstr "Bizonyos videókodekek esetén történő összeomlás javítva"
 
 #: data/videos.metainfo.xml.in:96
 msgid "Update to 6.1 Flatpak runtime"
-msgstr ""
+msgstr "Frissítés 6.1-es Flatpak futtatókörnyezetre"
 
 #: data/videos.metainfo.xml.in:106
 msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-msgstr ""
+msgstr "Az org.freedesktop.Platfrom.ffmpeg-full kiterjesztés támogatása"
 
 #: data/videos.metainfo.xml.in:115
 msgid "Fix an issue with removing videos from library"
