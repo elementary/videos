@@ -39,7 +39,7 @@ public class Audience.EpisodesPage : Gtk.Grid {
             margin_end = 0,
             valign = Gtk.Align.START
         };
-        poster.get_style_context ().add_class (Granite.STYLE_CLASS_CARD);
+        poster.add_css_class (Granite.STYLE_CLASS_CARD);
 
         view_episodes = new Gtk.FlowBox () {
             homogeneous = true,
@@ -121,19 +121,19 @@ public class Audience.EpisodesPage : Gtk.Grid {
             bool from_beginning = uri != settings.get_string ("current-video");
 
             var playback_manager = PlaybackManager.get_default ();
-            // playback_manager.clear_playlist ();
-            // playback_manager.append_to_playlist (video.video_file);
+            playback_manager.clear_playlist ();
+            playback_manager.append_to_playlist (video.video_file);
 
             var window = (Audience.Window)get_root ();
             window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
 
-            // if (window.autoqueue_next_active ()) {
-            //     // Add next from the current view to the queue
-            //     int played_index = shown_episodes.index_of (video);
-            //     foreach (Audience.Objects.Video episode in shown_episodes.slice (played_index, shown_episodes.size)) {
-            //         playback_manager.append_to_playlist (episode.video_file);
-            //     }
-            // }
+            if (window.autoqueue_next_active ()) {
+                // Add next from the current view to the queue
+                int played_index = shown_episodes.index_of (video);
+                foreach (Audience.Objects.Video episode in shown_episodes.slice (played_index, shown_episodes.size)) {
+                    playback_manager.append_to_playlist (episode.video_file);
+                }
+            }
         }
     }
 

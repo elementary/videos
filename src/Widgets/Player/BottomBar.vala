@@ -19,15 +19,21 @@
  */
 
 public class Audience.Widgets.BottomBar : Gtk.Box {
+    public bool popover_open {
+        get {
+            return playlist_popover.visible;
+        }
+    }
+
     private const string PULSE_CLASS = "pulse";
     private const string PULSE_TYPE = "attention";
 
-    // public PlaylistPopover playlist_popover { get; private set; }
+    private PlaylistPopover playlist_popover;
     // public Videos.SeekBar time_widget { get; private set; }
 
     private Gtk.Button play_button;
     // private SettingsPopover preferences_popover;
-    // private Gtk.MenuButton playlist_button;
+    private Gtk.MenuButton playlist_button;
     private uint hiding_timer = 0;
     private bool playlist_glowing = false;
 
@@ -39,13 +45,13 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
             tooltip_text = _("Play")
         };
 
-        // playlist_popover = new PlaylistPopover ();
+        playlist_popover = new PlaylistPopover ();
 
-        // playlist_button = new Gtk.MenuButton () {
-        //     image = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
-        //     popover = playlist_popover,
-        //     tooltip_text = _("Playlist")
-        // };
+        playlist_button = new Gtk.MenuButton () {
+            icon_name = "view-list-symbolic",
+            popover = playlist_popover,
+            tooltip_text = _("Playlist")
+        };
 
         // preferences_popover = new SettingsPopover ();
 
@@ -61,7 +67,7 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
         append (play_button);
         // append (time_widget);
         // append (preferences_button);
-        // append (playlist_button);
+        append (playlist_button);
 
         // show_all ();
 

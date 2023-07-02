@@ -26,6 +26,7 @@ namespace Audience {
     };
 
     public class PlayerPage : Gtk.Box {
+        private Widgets.BottomBar bottom_bar;
         private Gtk.Revealer bottom_bar_revealer;
         private Gtk.Revealer unfullscreen_revealer;
         private Gtk.Picture picture;
@@ -74,7 +75,7 @@ namespace Audience {
                 vexpand = true
             };
 
-            var bottom_bar = new Widgets.BottomBar ();
+            bottom_bar = new Widgets.BottomBar ();
 
             var bottom_bar_motion_controller = new Gtk.EventControllerMotion ();
             bottom_bar.add_controller (bottom_bar_motion_controller);
@@ -278,10 +279,10 @@ namespace Audience {
             var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
 
             hiding_timer = GLib.Timeout.add (2000, () => {
-                // if (hovered || preferences_popover.visible || playlist_popover.visible || !play_pause_action.get_state ().get_boolean ()) {
-                //     hiding_timer = 0;
-                //     return false;
-                // }
+                if (bottom_bar_hovered || bottom_bar.popover_open || !play_pause_action.get_state ().get_boolean ()) {
+                    hiding_timer = 0;
+                    return false;
+                }
 
                 var cursor = new Gdk.Cursor.from_name ("none", null);
                 set_cursor (cursor);
