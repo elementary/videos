@@ -119,11 +119,11 @@ namespace Audience {
         }
 
         private void action_next () {
-            PlaybackManager.get_default ().next ();
+            // PlaybackManager.get_default ().next ();
         }
 
         private void action_previous () {
-            PlaybackManager.get_default ().previous ();
+            // PlaybackManager.get_default ().previous ();
         }
 
         private void on_bus_acquired (DBusConnection connection, string name) {
@@ -138,12 +138,12 @@ namespace Audience {
 }
 
 public static void main (string [] args) {
-    X.init_threads ();
+    // X.init_threads ();
 
-    var err = GtkClutter.init (ref args);
-    if (err != Clutter.InitError.SUCCESS) {
-        error ("Could not initialize clutter! %s", err.to_string ());
-    }
+    // var err = GtkClutter.init (ref args);
+    // if (err != Clutter.InitError.SUCCESS) {
+    //     error ("Could not initialize clutter! %s", err.to_string ());
+    // }
 
     Gst.init (ref args);
 

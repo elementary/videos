@@ -34,7 +34,7 @@ public class Videos.MprisPlayer : Object {
     }
 
     private GLib.Application application;
-    private Audience.Widgets.Playlist playlist;
+    // private Audience.Widgets.Playlist playlist;
 
     public MprisPlayer (DBusConnection connection) {
         Object (connection: connection);

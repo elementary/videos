@@ -34,7 +34,7 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
     private Audience.Services.LibraryManager manager;
     private Gtk.Grid spinner_container;
     private Gtk.Label title_label;
-    private Gtk.Menu context_menu;
+    // private Gtk.Menu context_menu;
     private Gtk.Spinner spinner;
     private string episode_poster_path;
     private string poster_cache_file;
@@ -71,7 +71,7 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
 
         title_label = new Gtk.Label ("");
 
-        context_menu = new Gtk.Menu ();
+        // context_menu = new Gtk.Menu ();
 
         var move_to_trash = new Gtk.MenuItem.with_label (_("Move to Trash"));
         move_to_trash.activate.connect ( move_video_to_trash );
@@ -87,8 +87,8 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
             grid.row_spacing = 12;
 
             var new_cover = new Gtk.MenuItem.with_label (_("Set Artwork"));
-            context_menu.append (new_cover);
-            context_menu.append (new Gtk.SeparatorMenuItem ());
+            // context_menu.append (new_cover);
+            // context_menu.append (new Gtk.SeparatorMenuItem ());
 
             poster = new Gtk.Image () {
                 margin = 12,
@@ -127,12 +127,12 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
             grid.margin = 12;
         }
 
-        context_menu.append (move_to_trash);
-        context_menu.show_all ();
+        // context_menu.append (move_to_trash);
+        // context_menu.show_all ();
 
-        var event_box = new Gtk.EventBox ();
-        event_box.button_press_event.connect (show_context_menu);
-        event_box.add (grid);
+        // var event_box = new Gtk.EventBox ();
+        // event_box.button_press_event.connect (show_context_menu);
+        // event_box.add (grid);
 
         add (event_box);
         show_all ();
@@ -166,13 +166,13 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
         }
     }
 
-    private bool show_context_menu (Gtk.Widget sender, Gdk.EventButton evt) {
-        if (evt.type == Gdk.EventType.BUTTON_PRESS && evt.button == 3) {
-            context_menu.popup_at_pointer (evt);
-            return true;
-        }
-        return false;
-    }
+    // private bool show_context_menu (Gtk.Widget sender, Gdk.EventButton evt) {
+    //     if (evt.type == Gdk.EventType.BUTTON_PRESS && evt.button == 3) {
+    //         context_menu.popup_at_pointer (evt);
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     private void set_new_cover () {
         var image_filter = new Gtk.FileFilter ();

@@ -31,7 +31,7 @@ public class Audience.LibraryPage : Gtk.Stack {
     }
 
     private Audience.Services.LibraryManager manager;
-    private Granite.Widgets.AlertView alert_view;
+    // private Granite.Widgets.AlertView alert_view;
     private Gtk.FlowBox view_movies;
     private bool posters_initialized = false;
     private string query = "";
@@ -59,14 +59,14 @@ public class Audience.LibraryPage : Gtk.Stack {
         };
         scrolled_window.add (view_movies);
 
-        alert_view = new Granite.Widgets.AlertView (
-            "",
-            _("Try changing search terms."),
-            "edit-find-symbolic"
-        );
+        // alert_view = new Granite.Widgets.AlertView (
+        //     "",
+        //     _("Try changing search terms."),
+        //     "edit-find-symbolic"
+        // );
 
         add (scrolled_window);
-        add (alert_view);
+        // add (alert_view);
 
         view_movies.child_activated.connect (play_video);
 
@@ -76,12 +76,12 @@ public class Audience.LibraryPage : Gtk.Stack {
 
         manager.begin_scan ();
 
-        map.connect (() => {
-            if (!posters_initialized) {
-                posters_initialized = true;
-                poster_initialisation.begin ();
-            }
-        });
+        // map.connect (() => {
+        //     if (!posters_initialized) {
+        //         posters_initialized = true;
+        //         poster_initialisation.begin ();
+        //     }
+        // });
 
         view_movies.set_sort_func (video_sort_func);
         view_movies.set_filter_func (video_filter_func);
@@ -144,9 +144,9 @@ public class Audience.LibraryPage : Gtk.Stack {
             }
         }
 
-        var deck = (Hdy.Deck) get_ancestor (typeof (Hdy.Deck));
-        if (deck.visible_child == this && view_movies.get_children ().length () == 0) {
-            deck.navigate (Hdy.NavigationDirection.BACK);
+        var leaflet = (Adw.Leaflet) get_ancestor (typeof (Adw.Leaflet));
+        if (leaflet.visible_child == this && view_movies.get_children ().length () == 0) {
+            leaflet.navigate (Hdy.NavigationDirection.BACK);
         }
     }
 

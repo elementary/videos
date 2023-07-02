@@ -22,7 +22,7 @@ public class Audience.EpisodesPage : Gtk.Grid {
     public Gtk.Image poster { get; private set; }
 
     private Gtk.FlowBox view_episodes;
-    private Granite.Widgets.AlertView alert_view;
+    // private Granite.Widgets.AlertView alert_view;
     private Gee.ArrayList<Audience.Objects.Video> shown_episodes;
 
     private string query;
@@ -54,18 +54,18 @@ public class Audience.EpisodesPage : Gtk.Grid {
         };
         scrolled_window.add (view_episodes);
 
-        alert_view = new Granite.Widgets.AlertView (
-            "",
-            _("Try changing search terms."),
-            "edit-find-symbolic"
-        );
-        alert_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
-        alert_view.no_show_all = true;
+        // alert_view = new Granite.Widgets.AlertView (
+        //     "",
+        //     _("Try changing search terms."),
+        //     "edit-find-symbolic"
+        // );
+        // alert_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
+        // alert_view.no_show_all = true;
 
         expand = true;
         attach (poster, 0, 1);
         attach (scrolled_window, 1, 1);
-        attach (alert_view, 1, 1);
+        // attach (alert_view, 1, 1);
 
         view_episodes.child_activated.connect (play_video);
 
@@ -182,9 +182,9 @@ public class Audience.EpisodesPage : Gtk.Grid {
             }
         }
 
-        var deck = (Hdy.Deck) get_ancestor (typeof (Hdy.Deck));
-        if (deck.visible_child == this && view_episodes.get_children ().length () == 0) {
-            deck.navigate (Hdy.NavigationDirection.BACK);
+        var leaflet = (Adw.Leaflet) get_ancestor (typeof (Adw.Leaflet));
+        if (leaflet.visible_child == this && view_episodes.get_children ().length () == 0) {
+            leaflet.navigate (Hdy.NavigationDirection.BACK);
         }
     }
 
