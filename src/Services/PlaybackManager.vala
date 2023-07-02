@@ -17,14 +17,14 @@ public class Audience.PlaybackManager : Object {
     public signal void save_playlist ();
     public signal void uri_changed (string uri);
 
-    // public ClutterGst.Playback playback { get; private set; }
+    public Gtk.MediaFile playback { get; private set; }
     public string? subtitle_uri { get; private set; }
 
-    private unowned Gst.Pipeline pipeline {
-        get {
-            return (Gst.Pipeline) playback.get_pipeline ();
-        }
-    }
+    // private unowned Gst.Pipeline pipeline {
+    //     get {
+    //         return (Gst.Pipeline) playback.get_pipeline ();
+    //     }
+    // }
 
     private uint inhibit_token = 0;
     private ulong ready_handler_id = 0;
@@ -38,6 +38,7 @@ public class Audience.PlaybackManager : Object {
 
     construct {
         unowned var default_application = (Gtk.Application) Application.get_default ();
+        playback = Gtk.MediaFile.empty ();
 
         // playback = new ClutterGst.Playback ();
         // playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
@@ -99,26 +100,25 @@ public class Audience.PlaybackManager : Object {
     }
 
     ~PlaybackManager () {
-        // FIXME:should find better way to decide if its end of playlist
-        if (playback.progress > 0.99) {
-            settings.set_double ("last-stopped", 0);
-        } else if (playback.uri != "") {
-            /* The progress is only valid if the uri has not been reset as the current video setting is not
-             * updated.  The playback.uri has been reset when the window is destroyed from the Welcome page */
-            settings.set_double ("last-stopped", playback.progress);
-        }
+        // // FIXME:should find better way to decide if its end of playlist
+        // if (playback.progress > 0.99) {
+        //     settings.set_double ("last-stopped", 0);
+        // } else if (playback.uri != "") {
+        //     /* The progress is only valid if the uri has not been reset as the current video setting is not
+        //      * updated.  The playback.uri has been reset when the window is destroyed from the Welcome page */
+        //     settings.set_double ("last-stopped", playback.progress);
+        // }
 
-        save_playlist ();
+        // save_playlist ();
 
-        if (inhibit_token != 0) {
-            ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
-            inhibit_token = 0;
-        }
+        // if (inhibit_token != 0) {
+        //     ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
+        //     inhibit_token = 0;
+        // }
     }
 
     public void play_file (string uri, bool from_beginning = true) {
         debug ("Opening %s", uri);
-        pipeline.set_state (Gst.State.NULL);
         var file = File.new_for_uri (uri);
         try {
             var info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
@@ -144,15 +144,15 @@ public class Audience.PlaybackManager : Object {
             debug (e.message);
         }
 
-        playback.uri = uri;
+        playback.set_file (file);
 
         ((Gtk.Application) Application.get_default ()).active_window.title = get_title (uri);
 
         /* Set progress before subtitle uri else it gets reset to zero */
         if (from_beginning) {
-            pipeline.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, 0);
+            playback.seek (0);
         } else {
-            set_progress (settings.get_double ("last-stopped"));
+            set_progress (settings.get_int64 ("last-stopped"));
         }
 
         if (!from_beginning) { //We are resuming the current video - fetch the current subtitles
@@ -162,7 +162,7 @@ public class Audience.PlaybackManager : Object {
             set_subtitle (get_subtitle_for_uri (uri));
         }
 
-        pipeline.set_state (Gst.State.PLAYING);
+        playback.play_now ();
         Gtk.RecentManager.get_default ().add_item (uri);
 
         settings.set_string ("current-video", uri);
@@ -177,8 +177,8 @@ public class Audience.PlaybackManager : Object {
          * ending of next video and other side-effects
          */
         if (playback.playing) {
-            pipeline.set_state (Gst.State.NULL);
-            playback.progress = 1.0;
+            playback.pause ();
+            // playback.progress = 1.0;
             ended ();
         }
     }
@@ -192,109 +192,105 @@ public class Audience.PlaybackManager : Object {
     }
 
     private bool is_subtitle (string uri) {
-        if (uri.length < 4 || uri.get_char (uri.length - 4) != '.') {
-            return false;
-        }
+        // if (uri.length < 4 || uri.get_char (uri.length - 4) != '.') {
+        //     return false;
+        // }
 
-        foreach (unowned string ext in SUBTITLE_EXTENSIONS) {
-            if (uri.down ().has_suffix (ext)) {
-                return true;
-            }
-        }
+        // foreach (unowned string ext in SUBTITLE_EXTENSIONS) {
+        //     if (uri.down ().has_suffix (ext)) {
+        //         return true;
+        //     }
+        // }
 
         return false;
     }
 
-    public unowned List<string> get_audio_tracks () {
-        return playback.get_audio_streams ();
-    }
+    // public unowned List<string> get_audio_tracks () {
+    //     return playback.get_audio_streams ();
+    // }
 
-    public unowned List<string> get_subtitle_tracks () {
-        return playback.get_subtitle_tracks ();
-    }
+    // public unowned List<string> get_subtitle_tracks () {
+    //     return playback.get_subtitle_tracks ();
+    // }
 
-    public string get_uri () {
-        return playback.uri;
-    }
+    // public string get_uri () {
+    //     return playback.uri;
+    // }
 
     public bool get_playing () {
-         var state = Gst.State.NULL;
-         var pending = Gst.State.NULL;
-         pipeline.get_state (out state, out pending, 300);
-
-         return state == Gst.State.PLAYING;
+         return playback.playing;
     }
 
-    public double get_duration () {
+    public int64 get_duration () {
         return playback.duration;
     }
 
-    public int get_audio_track () {
-        return playback.audio_stream;
+    // public int get_audio_track () {
+    //     return playback.audio_stream;
+    // }
+
+    // public void set_audio_track (int track) {
+    //     playback.audio_stream = track;
+    // }
+
+    public int64 get_progress () {
+        return playback.timestamp;
     }
 
-    public void set_audio_track (int track) {
-        playback.audio_stream = track;
+    public void set_progress (int64 timestamp) {
+        playback.seek (timestamp);
     }
 
-    public double get_progress () {
-        return playback.progress;
-    }
+    // public int get_subtitle_track () {
+    //     return playback.subtitle_track;
+    // }
 
-    public void set_progress (double progress) {
-        playback.progress = progress;
-    }
-
-    public int get_subtitle_track () {
-        return playback.subtitle_track;
-    }
-
-    public void set_subtitle_track (int track) {
-        playback.subtitle_track = track;
-    }
+    // public void set_subtitle_track (int track) {
+    //     playback.subtitle_track = track;
+    // }
 
     public void set_subtitle (string uri) {
-        var progress = playback.progress;
-        var is_playing = playback.playing;
+        // var progress = playback.progress;
+        // var is_playing = playback.playing;
 
-        /* Temporarily connect to the ready signal so that we can restore the progress setting
-         * after resetting the pipeline in order to set the subtitle uri */
-        ready_handler_id = playback.ready.connect (() => {
-            playback.progress = progress;
-            // Pause video if it was in Paused state before adding the subtitle
-            if (!is_playing) {
-                pipeline.set_state (Gst.State.PAUSED);
-            }
+        // /* Temporarily connect to the ready signal so that we can restore the progress setting
+        //  * after resetting the pipeline in order to set the subtitle uri */
+        // ready_handler_id = playback.ready.connect (() => {
+        //     playback.progress = progress;
+        //     // Pause video if it was in Paused state before adding the subtitle
+        //     if (!is_playing) {
+        //         pipeline.set_state (Gst.State.PAUSED);
+        //     }
 
-            playback.disconnect (ready_handler_id);
-        });
+        //     playback.disconnect (ready_handler_id);
+        // });
 
-        pipeline.set_state (Gst.State.NULL); // Does not work otherwise
-        playback.set_subtitle_uri (uri);
-        pipeline.set_state (Gst.State.PLAYING);
+        // pipeline.set_state (Gst.State.NULL); // Does not work otherwise
+        // playback.set_subtitle_uri (uri);
+        // pipeline.set_state (Gst.State.PLAYING);
 
-        settings.set_string ("current-external-subtitles-uri", uri);
+        // settings.set_string ("current-external-subtitles-uri", uri);
     }
 
     private string get_subtitle_for_uri (string uri) {
         /* This assumes that the subtitle file has the same basename as the video file but with
          * one of the subtitle extensions, and is in the same folder. */
-        string without_ext;
-        int last_dot = uri.last_index_of (".", 0);
-        int last_slash = uri.last_index_of ("/", 0);
+        // string without_ext;
+        // int last_dot = uri.last_index_of (".", 0);
+        // int last_slash = uri.last_index_of ("/", 0);
 
-        if (last_dot < last_slash) {//we dont have extension
-            without_ext = uri;
-        } else {
-            without_ext = uri.slice (0, last_dot);
-        }
+        // if (last_dot < last_slash) {//we dont have extension
+        //     without_ext = uri;
+        // } else {
+        //     without_ext = uri.slice (0, last_dot);
+        // }
 
-        foreach (string ext in SUBTITLE_EXTENSIONS) {
-            string sub_uri = without_ext + "." + ext;
-            if (File.new_for_uri (sub_uri).query_exists ()) {
-                return sub_uri;
-            }
-        }
+        // foreach (string ext in SUBTITLE_EXTENSIONS) {
+        //     string sub_uri = without_ext + "." + ext;
+        //     if (File.new_for_uri (sub_uri).query_exists ()) {
+        //         return sub_uri;
+        //     }
+        // }
 
         return "";
     }

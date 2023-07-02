@@ -30,16 +30,17 @@ public class Audience.WelcomePage : Granite.Placeholder {
         append_button (new ThemedIcon ("document-open"), _("Open file"), _("Open a saved file."));
         replay_button = append_button (new ThemedIcon ("media-playlist-repeat"), _("Replay last video"), "");
         append_button (new ThemedIcon ("media-cdrom"), _("Play from Disc"), _("Watch a DVD or open a file from disc"));
-        append_button (new ThemedIcon ("folder-videos"), _("Browse Library"), _("Watch a movie from your library"));
+        var browse_library = append_button (new ThemedIcon ("folder-videos"), _("Browse Library"), _("Watch a movie from your library"));
 
         var disk_manager = DiskManager.get_default ();
         // set_item_visible (2, disk_manager.has_media_volumes ());
 
-        // var library_manager = Services.LibraryManager.get_instance ();
-        // set_item_visible (3, library_manager.has_items);
+        var library_manager = Services.LibraryManager.get_instance ();
+        // browse_library.visible = library_manager.has_items;
 
         update_replay_button ();
         update_replay_title ();
+
 
         // activated.connect ((index) => {
         //     var window = (Audience.Window) ((Gtk.Application) Application.get_default ()).active_window;
@@ -61,6 +62,11 @@ public class Audience.WelcomePage : Granite.Placeholder {
         //     }
         // });
 
+        browse_library.clicked.connect (() => {
+            var window = (Audience.Window)get_root ();
+            window.show_library ();
+        });
+
         settings.changed["current-video"].connect (() => {
             update_replay_button ();
         });
@@ -77,13 +83,13 @@ public class Audience.WelcomePage : Granite.Placeholder {
             // set_item_visible (2, disk_manager.has_media_volumes ());
         });
 
-        // library_manager.video_file_detected.connect ((vid) => {
-            // set_item_visible (3, true);
-        // });
+        library_manager.video_file_detected.connect ((vid) => {
+            // browse_library.visible = library_manager.has_items;
+        });
 
-        // library_manager.video_file_deleted.connect ((vid) => {
-            // set_item_visible (3, LibraryPage.get_instance ().has_items);
-        // });
+        library_manager.video_file_deleted.connect ((vid) => {
+            // browse_library.visible = library_manager.has_items;
+        });
     }
 
     private void update_replay_button () {
@@ -99,7 +105,7 @@ public class Audience.WelcomePage : Granite.Placeholder {
             }
         }
 
-        // set_item_visible (1, show_replay_button);
+        replay_button.visible = show_replay_button;
     }
 
     private void update_replay_title () {

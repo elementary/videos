@@ -33,7 +33,9 @@ public class Audience.EpisodesPage : Gtk.Grid {
         poster_source = null;
 
         poster = new Gtk.Image () {
-            margin = 24,
+            margin_top = 24,
+            margin_bottom = 24,
+            margin_start = 24,
             margin_end = 0,
             valign = Gtk.Align.START
         };
@@ -41,7 +43,10 @@ public class Audience.EpisodesPage : Gtk.Grid {
 
         view_episodes = new Gtk.FlowBox () {
             homogeneous = true,
-            margin = 24,
+            margin_top = 24,
+            margin_bottom = 24,
+            margin_start = 24,
+            margin_end = 24,
             max_children_per_line = 1,
             selection_mode = Gtk.SelectionMode.NONE,
             valign = Gtk.Align.START
@@ -49,10 +54,11 @@ public class Audience.EpisodesPage : Gtk.Grid {
         view_episodes.set_sort_func (episode_sort_func);
         view_episodes.set_filter_func (episodes_filter_func);
 
-        var scrolled_window = new Gtk.ScrolledWindow (null, null) {
-            expand = true
+        var scrolled_window = new Gtk.ScrolledWindow () {
+            hexpand = true,
+            vexpand = true,
+            child = view_episodes
         };
-        scrolled_window.add (view_episodes);
 
         // alert_view = new Granite.Widgets.AlertView (
         //     "",
@@ -62,7 +68,8 @@ public class Audience.EpisodesPage : Gtk.Grid {
         // alert_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
         // alert_view.no_show_all = true;
 
-        expand = true;
+        hexpand = true;
+        vexpand = true;
         attach (poster, 0, 1);
         attach (scrolled_window, 1, 1);
         // attach (alert_view, 1, 1);
@@ -75,12 +82,15 @@ public class Audience.EpisodesPage : Gtk.Grid {
     }
 
     public void set_episodes_items (Gee.ArrayList<Audience.Objects.Video> episodes) {
-        view_episodes.forall ((item) => {
-            item.dispose ();
-        });
+        var child = view_episodes.get_first_child ();
+        while (child != null) {
+            view_episodes.remove (child);
+            child = child.get_next_sibling ();
+        }
+
         shown_episodes = new Gee.ArrayList<Audience.Objects.Video> ();
         foreach (Audience.Objects.Video episode in episodes) {
-            view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
+            view_episodes.append (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
             shown_episodes.add (episode);
         }
         shown_episodes.sort ((a, b) => {
@@ -100,43 +110,43 @@ public class Audience.EpisodesPage : Gtk.Grid {
     }
 
     private void update_poster (Objects.Video episode) {
-        poster.pixbuf = episode.poster;
+        poster.set_from_pixbuf (episode.poster);
     }
 
     private void play_video (Gtk.FlowBoxChild item) {
-        var selected = (item as Audience.LibraryItem);
-        var video = selected.episodes.first ();
-        if (video.video_file.query_exists ()) {
-            string uri = video.video_file.get_uri ();
-            bool from_beginning = uri != settings.get_string ("current-video");
+        // var selected = (item as Audience.LibraryItem);
+        // var video = selected.episodes.first ();
+        // if (video.video_file.query_exists ()) {
+        //     string uri = video.video_file.get_uri ();
+        //     bool from_beginning = uri != settings.get_string ("current-video");
 
-            var playback_manager = PlaybackManager.get_default ();
-            playback_manager.clear_playlist ();
-            playback_manager.append_to_playlist (video.video_file);
+        //     var playback_manager = PlaybackManager.get_default ();
+        //     playback_manager.clear_playlist ();
+        //     playback_manager.append_to_playlist (video.video_file);
 
-            var window = App.get_instance ().mainwindow;
-            window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
+        //     var window = App.get_instance ().mainwindow;
+        //     window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
 
-            if (window.autoqueue_next_active ()) {
-                // Add next from the current view to the queue
-                int played_index = shown_episodes.index_of (video);
-                foreach (Audience.Objects.Video episode in shown_episodes.slice (played_index, shown_episodes.size)) {
-                    playback_manager.append_to_playlist (episode.video_file);
-                }
-            }
-        }
+        //     if (window.autoqueue_next_active ()) {
+        //         // Add next from the current view to the queue
+        //         int played_index = shown_episodes.index_of (video);
+        //         foreach (Audience.Objects.Video episode in shown_episodes.slice (played_index, shown_episodes.size)) {
+        //             playback_manager.append_to_playlist (episode.video_file);
+        //         }
+        //     }
+        // }
     }
 
     public void filter (string text) {
          query = text.strip ();
          view_episodes.invalidate_filter ();
          if (!has_child ()) {
-            alert_view.no_show_all = false;
-            alert_view.show_all ();
-            alert_view.title = _("No Results for “%s”").printf (text);
-            alert_view.show ();
+            // alert_view.no_show_all = false;
+            // alert_view.show_all ();
+            // alert_view.title = _("No Results for “%s”").printf (text);
+            // alert_view.show ();
          } else {
-            alert_view.hide ();
+            // alert_view.hide ();
          }
     }
 
@@ -166,36 +176,41 @@ public class Audience.EpisodesPage : Gtk.Grid {
     }
 
     private void add_item (Audience.Objects.Video episode) {
-        if (view_episodes.get_children ().length () > 0 ) {
-            var first = (view_episodes.get_children ().first ().data as Audience.LibraryItem);
+        if (view_episodes.get_first_child () != null) {
+            var first = (view_episodes.get_first_child () as Audience.LibraryItem);
             if (first != null && first.episodes.first ().video_file.get_parent ().get_path () == episode.video_file.get_parent ().get_path ()) {
-                view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
+                view_episodes.append (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
             }
         }
     }
 
     private async void remove_item_from_path (string path ) {
-        foreach (var child in view_episodes.get_children ()) {
+        var child = view_episodes.get_first_child ();
+        while (child != null) {
             if (((LibraryItem)(child)).episodes.size == 0 ||
                 ((LibraryItem)(child)).episodes.first ().video_file.get_path ().has_prefix (path)) {
                 child.dispose ();
             }
+
+            child = child.get_next_sibling ();
         }
 
         var leaflet = (Adw.Leaflet) get_ancestor (typeof (Adw.Leaflet));
-        if (leaflet.visible_child == this && view_episodes.get_children ().length () == 0) {
-            leaflet.navigate (Hdy.NavigationDirection.BACK);
+        if (leaflet.visible_child == this && view_episodes.get_first_child () == null) {
+            leaflet.navigate (Adw.NavigationDirection.BACK);
         }
     }
 
     private bool has_child () {
-        if (view_episodes.get_children ().length () > 0) {
-           foreach (unowned Gtk.Widget child in view_episodes.get_children ()) {
-               if (child.get_child_visible ()) {
-                   return true;
-               }
+        var child = view_episodes.get_first_child ();
+        while (child != null) {
+            if (child.get_child_visible ()) {
+                return true;
             }
+
+            child = child.get_next_sibling ();
         }
+
         return false;
     }
 }

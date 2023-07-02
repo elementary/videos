@@ -25,220 +25,187 @@ namespace Audience {
         "asc"
     };
 
-    public class PlayerPage : Gtk.EventBox {
-        private Audience.Widgets.BottomBar bottom_bar;
-        private GtkClutter.Actor bottom_actor;
-        private GtkClutter.Embed clutter;
-        private Clutter.Stage stage;
+    public class PlayerPage : Gtk.Box {
+        // private Audience.Widgets.BottomBar bottom_bar;
         private Gtk.Revealer unfullscreen_revealer;
-        private GtkClutter.Actor unfullscreen_actor;
-        private Clutter.Actor video_actor;
+        private Gtk.Picture picture;
 
         private bool mouse_primary_down = false;
 
         private bool _fullscreened = false;
-        public bool fullscreened {
-            get {
-                return _fullscreened;
-            }
-            set {
-                _fullscreened = value;
+        // public bool fullscreened {
+        //     get {
+        //         return _fullscreened;
+        //     }
+        //     set {
+        //         _fullscreened = value;
 
-                if (value && bottom_bar.child_revealed) {
-                    unfullscreen_revealer.reveal_child = true;
-                } else if (!value && bottom_bar.child_revealed) {
-                    unfullscreen_revealer.reveal_child = false;
-                }
-            }
-        }
+        //         if (value && bottom_bar.child_revealed) {
+        //             unfullscreen_revealer.reveal_child = true;
+        //         } else if (!value && bottom_bar.child_revealed) {
+        //             unfullscreen_revealer.reveal_child = false;
+        //         }
+        //     }
+        // }
 
         public PlayerPage () {
         }
 
         construct {
             var playback_manager = PlaybackManager.get_default ();
+            var picture = new Gtk.Picture.for_paintable (playback_manager.playback);
+            append (picture);
 
-            events |= Gdk.EventMask.POINTER_MOTION_MASK;
-            events |= Gdk.EventMask.KEY_PRESS_MASK;
-            events |= Gdk.EventMask.KEY_RELEASE_MASK;
+            // bottom_bar = new Widgets.BottomBar ();
 
-            clutter = new GtkClutter.Embed ();
-            stage = (Clutter.Stage)clutter.get_stage ();
-            stage.background_color = {0, 0, 0, 0};
+            // var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic", Gtk.IconSize.BUTTON) {
+            //     tooltip_text = _("Unfullscreen")
+            // };
 
-            video_actor = new Clutter.Actor ();
-#if VALA_0_34
-            var aspect_ratio = new ClutterGst.Aspectratio ();
-#else
-            var aspect_ratio = ClutterGst.Aspectratio.@new ();
-#endif
-            ((ClutterGst.Aspectratio) aspect_ratio).paint_borders = false;
-            ((ClutterGst.Content) aspect_ratio).player = playback_manager.playback;
+            // unfullscreen_revealer = new Gtk.Revealer () {
+            //     transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN
+            // };
+            // unfullscreen_revealer.set_child (unfullscreen_button);
 
-            video_actor.content = aspect_ratio;
+            // bottom_actor = new GtkClutter.Actor.with_contents (bottom_bar);
+            // bottom_actor.opacity = GLOBAL_OPACITY;
+            // bottom_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
+            // bottom_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 1));
+            // stage.add_child (bottom_actor);
 
-            video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
-            video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
+            // unfullscreen_actor = new GtkClutter.Actor.with_contents (unfullscreen_revealer);
+            // unfullscreen_actor.opacity = GLOBAL_OPACITY;
+            // unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.X_AXIS, 1));
+            // unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 0));
+            // stage.add_child (unfullscreen_actor);
 
-            Signal.connect (clutter, "button-press-event", (GLib.Callback) navigation_event, this);
-            Signal.connect (clutter, "button-release-event", (GLib.Callback) navigation_event, this);
-            Signal.connect (clutter, "key-press-event", (GLib.Callback) navigation_event, this);
-            Signal.connect (clutter, "key-release-event", (GLib.Callback) navigation_event, this);
-            Signal.connect (clutter, "motion-notify-event", (GLib.Callback) navigation_event, this);
+            // motion_notify_event.connect (event => {
+            //     if (mouse_primary_down) {
+            //         mouse_primary_down = false;
+            //         App.get_instance ().active_window.begin_move_drag (Gdk.BUTTON_PRIMARY,
+            //             (int)event.x_root, (int)event.y_root, event.time);
+            //     }
 
-            stage.add_child (video_actor);
+            //     Gtk.Allocation allocation;
+            //     clutter.get_allocation (out allocation);
+            //     return update_pointer_position (event.y, allocation.height);
+            // });
 
-            bottom_bar = new Widgets.BottomBar ();
+            // button_press_event.connect (event => {
+            //     if (event.button == Gdk.BUTTON_PRIMARY) {
+            //         mouse_primary_down = true;
+            //     }
 
-            var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic", Gtk.IconSize.BUTTON) {
-                tooltip_text = _("Unfullscreen")
-            };
+            //     return false;
+            // });
 
-            unfullscreen_revealer = new Gtk.Revealer () {
-                transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN
-            };
-            unfullscreen_revealer.add (unfullscreen_button);
-            unfullscreen_revealer.show_all ();
+            // button_release_event.connect (event => {
+            //     if (event.button == Gdk.BUTTON_PRIMARY) {
+            //         mouse_primary_down = false;
+            //     }
 
-            bottom_actor = new GtkClutter.Actor.with_contents (bottom_bar);
-            bottom_actor.opacity = GLOBAL_OPACITY;
-            bottom_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
-            bottom_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 1));
-            stage.add_child (bottom_actor);
+            //     return false;
+            // });
 
-            unfullscreen_actor = new GtkClutter.Actor.with_contents (unfullscreen_revealer);
-            unfullscreen_actor.opacity = GLOBAL_OPACITY;
-            unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.X_AXIS, 1));
-            unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 0));
-            stage.add_child (unfullscreen_actor);
+            // bottom_bar.notify["child-revealed"].connect (() => {
+            //     if (bottom_bar.child_revealed && fullscreened) {
+            //         unfullscreen_revealer.reveal_child = bottom_bar.child_revealed;
+            //     } else if (!bottom_bar.child_revealed) {
+            //         unfullscreen_revealer.reveal_child = bottom_bar.child_revealed;
+            //     }
+            // });
 
-            motion_notify_event.connect (event => {
-                if (mouse_primary_down) {
-                    mouse_primary_down = false;
-                    App.get_instance ().active_window.begin_move_drag (Gdk.BUTTON_PRIMARY,
-                        (int)event.x_root, (int)event.y_root, event.time);
-                }
+            // unfullscreen_button.clicked.connect (() => {
+            //     ((Gtk.Window) get_toplevel ()).unfullscreen ();
+            // });
 
-                Gtk.Allocation allocation;
-                clutter.get_allocation (out allocation);
-                return update_pointer_position (event.y, allocation.height);
-            });
+            // leave_notify_event.connect (event => {
+            //     Gtk.Allocation allocation;
+            //     clutter.get_allocation (out allocation);
 
-            button_press_event.connect (event => {
-                if (event.button == Gdk.BUTTON_PRIMARY) {
-                    mouse_primary_down = true;
-                }
+            //     if (event.x == event.window.get_width ()) {
+            //         return update_pointer_position (event.window.get_height (), allocation.height);
+            //     } else if (event.x == 0) {
+            //         return update_pointer_position (event.window.get_height (), allocation.height);
+            //     }
 
-                return false;
-            });
+            //     return update_pointer_position (event.y, allocation.height);
+            // });
 
-            button_release_event.connect (event => {
-                if (event.button == Gdk.BUTTON_PRIMARY) {
-                    mouse_primary_down = false;
-                }
+            // bottom_bar.notify["child-revealed"].connect (() => {
+            //     if (bottom_bar.child_revealed == true) {
+            //         ((Audience.Window) App.get_instance ().active_window).show_mouse_cursor ();
+            //     } else {
+            //         ((Audience.Window) App.get_instance ().active_window).hide_mouse_cursor ();
+            //     }
+            // });
 
-                return false;
-            });
-
-            bottom_bar.notify["child-revealed"].connect (() => {
-                if (bottom_bar.child_revealed && fullscreened) {
-                    unfullscreen_revealer.reveal_child = bottom_bar.child_revealed;
-                } else if (!bottom_bar.child_revealed) {
-                    unfullscreen_revealer.reveal_child = bottom_bar.child_revealed;
-                }
-            });
-
-            unfullscreen_button.clicked.connect (() => {
-                ((Gtk.Window) get_toplevel ()).unfullscreen ();
-            });
-
-            leave_notify_event.connect (event => {
-                Gtk.Allocation allocation;
-                clutter.get_allocation (out allocation);
-
-                if (event.x == event.window.get_width ()) {
-                    return update_pointer_position (event.window.get_height (), allocation.height);
-                } else if (event.x == 0) {
-                    return update_pointer_position (event.window.get_height (), allocation.height);
-                }
-
-                return update_pointer_position (event.y, allocation.height);
-            });
-
-            bottom_bar.notify["child-revealed"].connect (() => {
-                if (bottom_bar.child_revealed == true) {
-                    ((Audience.Window) App.get_instance ().active_window).show_mouse_cursor ();
-                } else {
-                    ((Audience.Window) App.get_instance ().active_window).hide_mouse_cursor ();
-                }
-            });
-
-            add (clutter);
-            show_all ();
+            // add (clutter);
+            // show_all ();
         }
 
-        public void seek_jump_seconds (int seconds) {
-            var playback_manager = PlaybackManager.get_default ();
-            var duration = playback_manager.get_duration ();
-            var progress = playback_manager.get_progress ();
-            var new_progress = ((duration * progress) + (double)seconds) / duration;
-            playback_manager.set_progress (new_progress.clamp (0.0, 1.0));
-            bottom_bar.reveal_control ();
-        }
+        // public void seek_jump_seconds (int seconds) {
+            // var playback_manager = PlaybackManager.get_default ();
+            // var duration = playback_manager.get_duration ();
+            // var progress = playback_manager.get_progress ();
+            // var new_progress = ((duration * progress) + (int64)seconds) / duration;
+            // playback_manager.set_progress (new_progress.clamp (0.0, 1.0));
+            // bottom_bar.reveal_control ();
+        // }
 
-        public void hide_popovers () {
-            bottom_bar.playlist_popover.popdown ();
+        // public void hide_popovers () {
+            // bottom_bar.playlist_popover.popdown ();
 
-            var popover = bottom_bar.time_widget.preview_popover;
-            if (popover != null) {
-                popover.schedule_hide ();
-            }
-        }
+            // var popover = bottom_bar.time_widget.preview_popover;
+            // if (popover != null) {
+            //     popover.schedule_hide ();
+            // }
+        // }
 
-        private bool update_pointer_position (double y, int window_height) {
-            App.get_instance ().active_window.get_window ().set_cursor (null);
+        // private bool update_pointer_position (double y, int window_height) {
+        //     App.get_instance ().active_window.get_window ().set_cursor (null);
 
-            bottom_bar.reveal_control ();
+        //     bottom_bar.reveal_control ();
 
-            return false;
-        }
+        //     return false;
+        // }
 
-        [CCode (instance_pos = -1)]
-        private bool navigation_event (GtkClutter.Embed embed, Clutter.Event event) {
-            var video_sink = PlaybackManager.get_default ().playback.get_video_sink ();
-            var frame = video_sink.get_frame ();
-            if (frame == null) {
-                return true;
-            }
+        // [CCode (instance_pos = -1)]
+        // private bool navigation_event (GtkClutter.Embed embed, Clutter.Event event) {
+        //     var video_sink = PlaybackManager.get_default ().playback.get_video_sink ();
+        //     var frame = video_sink.get_frame ();
+        //     if (frame == null) {
+        //         return true;
+        //     }
 
-            float x, y;
-            event.get_coords (out x, out y);
-            // Transform event coordinates into the actor's coordinates
-            video_actor.transform_stage_point (x, y, out x, out y);
-            float actor_width, actor_height;
-            video_actor.get_size (out actor_width, out actor_height);
+        //     float x, y;
+        //     event.get_coords (out x, out y);
+        //     // Transform event coordinates into the actor's coordinates
+        //     video_actor.transform_stage_point (x, y, out x, out y);
+        //     float actor_width, actor_height;
+        //     video_actor.get_size (out actor_width, out actor_height);
 
-            /* Convert event's coordinates into the frame's coordinates. */
-            x = x * frame.resolution.width / actor_width;
-            y = y * frame.resolution.height / actor_height;
+        //     /* Convert event's coordinates into the frame's coordinates. */
+        //     x = x * frame.resolution.width / actor_width;
+        //     y = y * frame.resolution.height / actor_height;
 
-            switch (event.type) {
-                case Clutter.EventType.MOTION:
-                    ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-move", 0, x, y);
-                    break;
-                case Clutter.EventType.BUTTON_PRESS:
-                    ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-button-press", (int)event.button.button, x, y);
-                    break;
-                case Clutter.EventType.KEY_PRESS:
-                    warning (X.keysym_to_string (event.key.keyval));
-                    ((Gst.Video.Navigation) video_sink).send_key_event ("key-press", X.keysym_to_string (event.key.keyval));
-                    break;
-                case Clutter.EventType.KEY_RELEASE:
-                    ((Gst.Video.Navigation) video_sink).send_key_event ("key-release", X.keysym_to_string (event.key.keyval));
-                    break;
-            }
+        //     switch (event.type) {
+        //         case Clutter.EventType.MOTION:
+        //             ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-move", 0, x, y);
+        //             break;
+        //         case Clutter.EventType.BUTTON_PRESS:
+        //             ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-button-press", (int)event.button.button, x, y);
+        //             break;
+        //         case Clutter.EventType.KEY_PRESS:
+        //             warning (X.keysym_to_string (event.key.keyval));
+        //             ((Gst.Video.Navigation) video_sink).send_key_event ("key-press", X.keysym_to_string (event.key.keyval));
+        //             break;
+        //         case Clutter.EventType.KEY_RELEASE:
+        //             ((Gst.Video.Navigation) video_sink).send_key_event ("key-release", X.keysym_to_string (event.key.keyval));
+        //             break;
+        //     }
 
-            return false;
-        }
+        //     return false;
+        // }
     }
 }

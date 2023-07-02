@@ -24,13 +24,13 @@ public class Audience.Window : Gtk.ApplicationWindow {
     private Adw.Leaflet leaflet;
     private Granite.Toast app_notification;
     private Granite.ModeSwitch autoqueue_next;
-    // private EpisodesPage episodes_page;
+    private EpisodesPage episodes_page;
     private Gtk.HeaderBar header;
-    // private LibraryPage library_page;
+    private LibraryPage library_page;
     private Gtk.Button navigation_button;
     private Gtk.SearchEntry search_entry;
     private WelcomePage welcome_page;
-    // private PlayerPage player_page;
+    private PlayerPage player_page;
 
     public enum NavigationPage { WELCOME, LIBRARY, EPISODES }
 
@@ -89,7 +89,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
         header = new Gtk.HeaderBar () {
             show_title_buttons = true
         };
-        header.add_css_class ("compact");
+        header.add_css_class (Granite.STYLE_CLASS_FLAT);
 
         navigation_button = new Gtk.Button.with_label (NAVIGATION_BUTTON_WELCOMESCREEN) {
             valign = Gtk.Align.CENTER
@@ -106,11 +106,11 @@ public class Audience.Window : Gtk.ApplicationWindow {
         search_entry.placeholder_text = _("Search Videos");
         search_entry.valign = Gtk.Align.CENTER;
         search_entry.search_changed.connect (() => {
-            // if (leaflet.visible_child == episodes_page ) {
-            //     episodes_page.filter (search_entry.text);
-            // } else {
-            //     library_page.filter (search_entry.text);
-            // }
+            if (leaflet.visible_child == episodes_page ) {
+                episodes_page.filter (search_entry.text);
+            } else {
+                library_page.filter (search_entry.text);
+            }
         });
 
         header.pack_end (search_entry);
@@ -125,63 +125,62 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         set_titlebar (header);
 
-        // library_page = LibraryPage.get_instance ();
-        // library_page.map.connect (() => {
-        //     if (search_entry.text != "" && !library_page.has_child ()) {
-        //         search_entry.text = "";
-        //     }
-        //     if (library_page.last_filter != "") {
-        //         search_entry.text = library_page.last_filter;
-        //         library_page.last_filter = "";
-        //     }
-        // });
+        library_page = LibraryPage.get_instance ();
+        library_page.map.connect (() => {
+            if (search_entry.text != "" && !library_page.has_child ()) {
+                search_entry.text = "";
+            }
+            if (library_page.last_filter != "") {
+                search_entry.text = library_page.last_filter;
+                library_page.last_filter = "";
+            }
+        });
 
-        // library_page.show_episodes.connect ((item, setup_only) => {
-        //     episodes_page.set_episodes_items (item.episodes);
-        //     episodes_page.poster.pixbuf = item.poster.pixbuf;
-        //     if (!setup_only) {
-        //         episodes_page.show_all ();
+        library_page.show_episodes.connect ((item, setup_only) => {
+            episodes_page.set_episodes_items (item.episodes);
+            episodes_page.poster.set_from_paintable (item.poster.paintable);
+            if (!setup_only) {
+                leaflet.append (episodes_page);
+                leaflet.visible_child = episodes_page;
 
-        //         leaflet.add (episodes_page);
-        //         leaflet.visible_child = episodes_page;
-
-        //         title = item.get_title ();
-        //         search_entry.text = "";
-        //         autoqueue_next.visible = true;
-        //     }
-        // });
+                title = item.get_title ();
+                search_entry.text = "";
+                autoqueue_next.visible = true;
+            }
+        });
 
         welcome_page = new WelcomePage ();
 
-        // player_page = new PlayerPage ();
+        player_page = new PlayerPage ();
 
-        // player_page.map.connect (() => {
-        //     app_notification.visible = false;
-        // });
-        // player_page.unmap.connect (() => {
-        //     app_notification.visible = true;
-        // });
+        player_page.map.connect (() => {
+            app_notification.visible = false;
+        });
+        player_page.unmap.connect (() => {
+            app_notification.visible = true;
+        });
 
-        // episodes_page = new EpisodesPage ();
+        episodes_page = new EpisodesPage ();
 
         leaflet = new Adw.Leaflet () {
-            can_navigate_back = true
+            can_navigate_back = true,
+            can_unfold = false
         };
         leaflet.append (welcome_page);
 
-        // var manager = Audience.Services.LibraryManager.get_instance ();
+        var manager = Audience.Services.LibraryManager.get_instance ();
         app_notification = new Granite.Toast ("");
 
         /* we don't have access to trash when inside an flatpak sandbox
          * so we don't allow the user to restore in this case.
          */
-        if (!is_sandboxed ()) {
-            app_notification.set_default_action (_("Restore"));
+        // if (!is_sandboxed ()) {
+        //     app_notification.set_default_action (_("Restore"));
 
-            app_notification.default_action.connect (() => {
-                action_undo ();
-            });
-        }
+        //     app_notification.default_action.connect (() => {
+        //         action_undo ();
+        //     });
+        // }
 
         var overlay = new Gtk.Overlay () {
             child = leaflet
@@ -195,16 +194,16 @@ public class Audience.Window : Gtk.ApplicationWindow {
         search_entry.visible = false;
         autoqueue_next.visible = false;
 
-        // manager.video_moved_to_trash.connect ((video) => {
-        //     app_notification.title = _("Video '%s' Removed.").printf (Path.get_basename (video));
-        //     app_notification.send_notification ();
-        // });
+        manager.video_moved_to_trash.connect ((video) => {
+            app_notification.title = _("Video '%s' Removed.").printf (Path.get_basename (video));
+            app_notification.send_notification ();
+        });
 
         leaflet.notify["visible-child"].connect (() => {
             update_navigation ();
         });
 
-        leaflet.notify["transition-running"].connect (() => {
+        leaflet.notify["child-transition-running"].connect (() => {
             update_navigation ();
         });
 
@@ -243,14 +242,14 @@ public class Audience.Window : Gtk.ApplicationWindow {
         //     return Gdk.EVENT_PROPAGATE;
         // });
 
-        // var playback_manager = PlaybackManager.get_default ();
+        var playback_manager = PlaybackManager.get_default ();
 
         //playlist wants us to open a file
-        // playback_manager.play.connect ((file) => {
-        //     open_files ({ File.new_for_uri (file.get_uri ()) });
-        // });
+        playback_manager.play.connect ((file) => {
+            open_files ({ File.new_for_uri (file.get_uri ()) });
+        });
 
-        // playback_manager.ended.connect (on_player_ended);
+        playback_manager.ended.connect (on_player_ended);
 
         // window_state_event.connect ((e) => {
         //     if (Gdk.WindowState.FULLSCREEN in e.changed_mask) {
@@ -429,8 +428,8 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         if (force_play && videos.length > 0) {
             string videofile = videos [0];
-            // NavigationPage page = library_page.prepare_to_play (videofile);
-            // play_file (videofile, page);
+            NavigationPage page = library_page.prepare_to_play (videofile);
+            play_file (videofile, page);
         }
     }
 
@@ -450,10 +449,8 @@ public class Audience.Window : Gtk.ApplicationWindow {
         navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
         navigation_button.visible = true;
 
-        // library_page.show_all ();
-
-        // leaflet.append (library_page);
-        // leaflet.visible_child = library_page;
+        leaflet.append (library_page);
+        leaflet.visible_child = library_page;
     }
 
     public void run_open_file (bool clear_playlist = false, bool force_play = true) {
@@ -519,12 +516,10 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     public void play_file (string uri, NavigationPage origin, bool from_beginning = true) {
-        // player_page.show_all ();
+        leaflet.append (player_page);
+        leaflet.visible_child = player_page;
 
-        // leaflet.add (player_page);
-        // leaflet.visible_child = player_page;
-
-        // PlaybackManager.get_default ().play_file (uri, from_beginning);
+        PlaybackManager.get_default ().play_file (uri, from_beginning);
         if (maximized) {
             fullscreen ();
         }
@@ -536,55 +531,55 @@ public class Audience.Window : Gtk.ApplicationWindow {
         //     settings.set_double ("last-stopped", progress);
         // }
 
-        // var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-        // ((SimpleAction) play_pause_action).set_state (false);
+        var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+        ((SimpleAction) play_pause_action).set_state (false);
 
-        // if (!leaflet.transition_running) {
-        //     /* Changing the player_page playing properties triggers a number of signals/bindings and
-        //      * pipeline needs time to react so wrap subsequent code in an Idle loop.
-        //      */
-        //     Idle.add (() => {
-        //         get_window ().set_cursor (null);
+        if (!leaflet.child_transition_running) {
+            /* Changing the player_page playing properties triggers a number of signals/bindings and
+             * pipeline needs time to react so wrap subsequent code in an Idle loop.
+             */
+            // Idle.add (() => {
+                set_cursor (null);
 
-        //         if (leaflet.visible_child == welcome_page) {
-        //             title = _("Videos");
-        //             search_entry.visible = false;
-        //         } else if (leaflet.visible_child == library_page) {
-        //             title = _("Library");
-        //             search_entry.visible = true;
-        //         } else if (leaflet.visible_child == episodes_page) {
-        //             search_entry.visible = true;
-        //         } //else if (leaflet.visible_child == player_page) {
-        //         //     search_entry.visible = false;
-        //         //     navigation_button.visible = true;
+                if (leaflet.visible_child == welcome_page) {
+                    title = _("Videos");
+                    search_entry.visible = false;
+                } else if (leaflet.visible_child == library_page) {
+                    title = _("Library");
+                    search_entry.visible = true;
+                } else if (leaflet.visible_child == episodes_page) {
+                    search_entry.visible = true;
+                } else if (leaflet.visible_child == player_page) {
+                    search_entry.visible = false;
+                    navigation_button.visible = true;
 
-        //         //     ((SimpleAction) play_pause_action).set_state (true);
-        //         // }
+                    ((SimpleAction) play_pause_action).set_state (true);
+                }
 
-        //         var previous_child = leaflet.get_adjacent_child (Hdy.NavigationDirection.BACK);
-        //         if (previous_child == welcome_page) {
-        //             navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
-        //             autoqueue_next.visible = false;
-        //         } else if (previous_child == library_page) {
-        //             navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
-        //             autoqueue_next.visible = true;
-        //         } else if (previous_child == episodes_page) {
-        //             navigation_button.label = _(NAVIGATION_BUTTON_EPISODES);
-        //             autoqueue_next.visible = true;
-        //         } else {
-        //             navigation_button.hide ();
-        //             search_entry.visible = false;
-        //             autoqueue_next.visible = false;
-        //         }
+                var previous_child = leaflet.get_adjacent_child (Adw.NavigationDirection.BACK);
+                if (previous_child == welcome_page) {
+                    navigation_button.label = _(NAVIGATION_BUTTON_WELCOMESCREEN);
+                    autoqueue_next.visible = false;
+                } else if (previous_child == library_page) {
+                    navigation_button.label = _(NAVIGATION_BUTTON_LIBRARY);
+                    autoqueue_next.visible = true;
+                } else if (previous_child == episodes_page) {
+                    navigation_button.label = _(NAVIGATION_BUTTON_EPISODES);
+                    autoqueue_next.visible = true;
+                } else {
+                    navigation_button.visible = false;
+                    search_entry.visible = false;
+                    autoqueue_next.visible = false;
+                }
 
-        //         var next_child = leaflet.get_adjacent_child (Hdy.NavigationDirection.FORWARD);
-        //         if (next_child != null) {
-        //             leaflet.remove (next_child);
-        //         }
+                var next_child = leaflet.get_adjacent_child (Adw.NavigationDirection.FORWARD);
+                if (next_child != null) {
+                    leaflet.remove (next_child);
+                }
 
-        //         return Source.REMOVE;
-        //     });
-        // }
+            //     return Source.REMOVE;
+            // });
+        }
     }
 
     public void hide_mouse_cursor () {
