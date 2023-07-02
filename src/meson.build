@@ -18,7 +18,7 @@ executable(
     'Widgets/Library/EpisodesPage.vala',
     'Widgets/Library/LibraryItem.vala',
     'Widgets/Library/LibraryPage.vala',
-    # 'Widgets/Player/BottomBar.vala',
+    'Widgets/Player/BottomBar.vala',
     'Widgets/Player/PlayerPage.vala',
     # 'Widgets/Player/Playlist.vala',
     # 'Widgets/Player/PlaylistItem.vala',

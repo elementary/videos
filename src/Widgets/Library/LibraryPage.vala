@@ -80,12 +80,12 @@ public class Audience.LibraryPage : Gtk.Box {
 
         manager.begin_scan ();
 
-        // map.connect (() => {
-        //     if (!posters_initialized) {
-        //         posters_initialized = true;
-        //         poster_initialisation.begin ();
-        //     }
-        // });
+        map.connect (() => {
+            if (!posters_initialized) {
+                posters_initialized = true;
+                poster_initialisation.begin ();
+            }
+        });
 
         view_movies.set_sort_func (video_sort_func);
         view_movies.set_filter_func (video_filter_func);

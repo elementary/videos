@@ -20,12 +20,6 @@ public class Audience.PlaybackManager : Object {
     public Gtk.MediaFile playback { get; private set; }
     public string? subtitle_uri { get; private set; }
 
-    // private unowned Gst.Pipeline pipeline {
-    //     get {
-    //         return (Gst.Pipeline) playback.get_pipeline ();
-    //     }
-    // }
-
     private uint inhibit_token = 0;
     private ulong ready_handler_id = 0;
 
@@ -40,34 +34,48 @@ public class Audience.PlaybackManager : Object {
         unowned var default_application = (Gtk.Application) Application.get_default ();
         playback = Gtk.MediaFile.empty ();
 
-        // playback = new ClutterGst.Playback ();
-        // playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
+        default_application.action_state_changed.connect ((name, new_state) => {
+            if (name == Audience.App.ACTION_PLAY_PAUSE) {
+                playback.playing = new_state.get_boolean ();
+            }
+        });
 
-        // default_application.action_state_changed.connect ((name, new_state) => {
-        //     if (name == Audience.App.ACTION_PLAY_PAUSE) {
-        //         playback.playing = new_state.get_boolean ();
-        //     }
-        // });
+        playback.notify["playing"].connect (() => {
+            var play_pause_action = default_application.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+            ((SimpleAction) play_pause_action).set_state (playback.playing);
 
-        // playback.notify["playing"].connect (() => {
-        //     var play_pause_action = default_application.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-        //     ((SimpleAction) play_pause_action).set_state (playback.playing);
+            if (playback.playing) {
+                if (inhibit_token != 0) {
+                    default_application.uninhibit (inhibit_token);
+                }
 
-        //     if (playback.playing) {
-        //         if (inhibit_token != 0) {
-        //             default_application.uninhibit (inhibit_token);
-        //         }
+                inhibit_token = default_application.inhibit (
+                    default_application.active_window,
+                    Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND,
+                    _("A video is playing")
+                );
+            } else if (inhibit_token != 0) {
+                default_application.uninhibit (inhibit_token);
+                inhibit_token = 0;
+            }
+        });
 
-        //         inhibit_token = default_application.inhibit (
-        //             default_application.active_window,
-        //             Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND,
-        //             _("A video is playing")
-        //         );
-        //     } else if (inhibit_token != 0) {
-        //         default_application.uninhibit (inhibit_token);
-        //         inhibit_token = 0;
-        //     }
-        // });
+        playback.notify["ended"].connect (() => {
+            if (!playback.ended) {
+                return;
+            }
+
+            if (!next ()) {
+                var repeat_action = default_application.lookup_action (Audience.App.ACTION_REPEAT);
+                if (repeat_action.get_state ().get_boolean ()) {
+                    var file = get_first_item ();
+                    ((Audience.Window) default_application.active_window).open_files ({ file });
+                } else {
+                    settings.set_int64 ("last-stopped", 0);
+                    ended ();
+                }
+            }
+        });
 
         // playback.eos.connect (() => {
         //     Idle.add (() => {

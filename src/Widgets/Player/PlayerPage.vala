@@ -26,11 +26,30 @@ namespace Audience {
     };
 
     public class PlayerPage : Gtk.Box {
-        // private Audience.Widgets.BottomBar bottom_bar;
+        private Gtk.Revealer bottom_bar_revealer;
         private Gtk.Revealer unfullscreen_revealer;
         private Gtk.Picture picture;
 
+        private uint hiding_timer = 0;
         private bool mouse_primary_down = false;
+
+        private bool _hovered = false;
+        private bool bottom_bar_hovered {
+            get {
+                return _hovered;
+            }
+            set {
+                _hovered = value;
+                if (value) {
+                    if (hiding_timer != 0) {
+                        Source.remove (hiding_timer);
+                        hiding_timer = 0;
+                    }
+                } else {
+                    reveal_control ();
+                }
+            }
+        }
 
         private bool _fullscreened = false;
         // public bool fullscreened {
@@ -48,13 +67,53 @@ namespace Audience {
         //     }
         // }
 
-        public PlayerPage () {
-        }
-
         construct {
             var playback_manager = PlaybackManager.get_default ();
-            var picture = new Gtk.Picture.for_paintable (playback_manager.playback);
-            append (picture);
+            var picture = new Gtk.Picture.for_paintable (playback_manager.playback) {
+                hexpand = true,
+                vexpand = true
+            };
+
+            var bottom_bar = new Widgets.BottomBar ();
+
+            var bottom_bar_motion_controller = new Gtk.EventControllerMotion ();
+            bottom_bar.add_controller (bottom_bar_motion_controller);
+
+            bottom_bar_revealer = new Gtk.Revealer () {
+                child = bottom_bar,
+                transition_type = SLIDE_UP,
+                valign = END,
+                hexpand = true
+            };
+
+            var overlay = new Gtk.Overlay () {
+                child = picture
+            };
+            overlay.add_overlay (bottom_bar_revealer);
+
+            orientation = VERTICAL;
+            append (overlay);
+
+            var motion_controller = new Gtk.EventControllerMotion ();
+            add_controller (motion_controller);
+
+            double last_x = 0;
+            double last_y = 0;
+            motion_controller.motion.connect ((x, y) => {
+                if (x != last_x || y != last_y) {
+                    last_x = x;
+                    last_y = y;
+                    reveal_control ();
+                }
+            });
+
+            bottom_bar_motion_controller.enter.connect (() => {
+                bottom_bar_hovered = true;
+            });
+
+            bottom_bar_motion_controller.leave.connect (() => {
+                bottom_bar_hovered = false;
+            });
 
             // bottom_bar = new Widgets.BottomBar ();
 
@@ -207,5 +266,30 @@ namespace Audience {
 
         //     return false;
         // }
+
+        public void reveal_control () {
+            bottom_bar_revealer.set_reveal_child (true);
+            set_cursor (null);
+
+            if (hiding_timer != 0) {
+                Source.remove (hiding_timer);
+            }
+
+            var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+
+            hiding_timer = GLib.Timeout.add (2000, () => {
+                // if (hovered || preferences_popover.visible || playlist_popover.visible || !play_pause_action.get_state ().get_boolean ()) {
+                //     hiding_timer = 0;
+                //     return false;
+                // }
+
+                var cursor = new Gdk.Cursor.from_name ("none", null);
+                set_cursor (cursor);
+
+                bottom_bar_revealer.set_reveal_child (false);
+                hiding_timer = 0;
+                return Source.REMOVE;
+            });
+        }
     }
 }

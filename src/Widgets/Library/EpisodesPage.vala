@@ -114,27 +114,27 @@ public class Audience.EpisodesPage : Gtk.Grid {
     }
 
     private void play_video (Gtk.FlowBoxChild item) {
-        // var selected = (item as Audience.LibraryItem);
-        // var video = selected.episodes.first ();
-        // if (video.video_file.query_exists ()) {
-        //     string uri = video.video_file.get_uri ();
-        //     bool from_beginning = uri != settings.get_string ("current-video");
+        var selected = (item as Audience.LibraryItem);
+        var video = selected.episodes.first ();
+        if (video.video_file.query_exists ()) {
+            string uri = video.video_file.get_uri ();
+            bool from_beginning = uri != settings.get_string ("current-video");
 
-        //     var playback_manager = PlaybackManager.get_default ();
-        //     playback_manager.clear_playlist ();
-        //     playback_manager.append_to_playlist (video.video_file);
+            var playback_manager = PlaybackManager.get_default ();
+            // playback_manager.clear_playlist ();
+            // playback_manager.append_to_playlist (video.video_file);
 
-        //     var window = App.get_instance ().mainwindow;
-        //     window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
+            var window = (Audience.Window)get_root ();
+            window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
 
-        //     if (window.autoqueue_next_active ()) {
-        //         // Add next from the current view to the queue
-        //         int played_index = shown_episodes.index_of (video);
-        //         foreach (Audience.Objects.Video episode in shown_episodes.slice (played_index, shown_episodes.size)) {
-        //             playback_manager.append_to_playlist (episode.video_file);
-        //         }
-        //     }
-        // }
+            // if (window.autoqueue_next_active ()) {
+            //     // Add next from the current view to the queue
+            //     int played_index = shown_episodes.index_of (video);
+            //     foreach (Audience.Objects.Video episode in shown_episodes.slice (played_index, shown_episodes.size)) {
+            //         playback_manager.append_to_playlist (episode.video_file);
+            //     }
+            // }
+        }
     }
 
     public void filter (string text) {

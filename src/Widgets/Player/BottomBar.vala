@@ -18,144 +18,102 @@
  *              Artem Anufrij <artem.anufrij@live.de>
  */
 
-public class Audience.Widgets.BottomBar : Gtk.Revealer {
+public class Audience.Widgets.BottomBar : Gtk.Box {
     private const string PULSE_CLASS = "pulse";
     private const string PULSE_TYPE = "attention";
 
-    public PlaylistPopover playlist_popover { get; private set; }
-    public Videos.SeekBar time_widget { get; private set; }
+    // public PlaylistPopover playlist_popover { get; private set; }
+    // public Videos.SeekBar time_widget { get; private set; }
 
-    private SettingsPopover preferences_popover;
     private Gtk.Button play_button;
-    private Gtk.MenuButton playlist_button;
+    // private SettingsPopover preferences_popover;
+    // private Gtk.MenuButton playlist_button;
     private uint hiding_timer = 0;
     private bool playlist_glowing = false;
 
-    private bool _hovered = false;
-    private bool hovered {
-        get {
-            return _hovered;
-        }
-        set {
-            _hovered = value;
-            if (value) {
-                if (hiding_timer != 0) {
-                    Source.remove (hiding_timer);
-                    hiding_timer = 0;
-                }
-            } else {
-                reveal_control ();
-            }
-        }
-    }
-
     public BottomBar () {
-        play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON) {
+        var playback_manager = PlaybackManager.get_default ();
+
+        play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic") {
             action_name = App.ACTION_PREFIX + App.ACTION_PLAY_PAUSE,
             tooltip_text = _("Play")
         };
 
-        playlist_popover = new PlaylistPopover ();
+        // playlist_popover = new PlaylistPopover ();
 
-        playlist_button = new Gtk.MenuButton () {
-            image = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
-            popover = playlist_popover,
-            tooltip_text = _("Playlist")
-        };
+        // playlist_button = new Gtk.MenuButton () {
+        //     image = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
+        //     popover = playlist_popover,
+        //     tooltip_text = _("Playlist")
+        // };
 
-        preferences_popover = new SettingsPopover ();
+        // preferences_popover = new SettingsPopover ();
 
-        var preferences_button = new Gtk.MenuButton () {
-            image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
-            popover = preferences_popover,
-            tooltip_text = _("Settings")
-        };
+        // var preferences_button = new Gtk.MenuButton () {
+        //     image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
+        //     popover = preferences_popover,
+        //     tooltip_text = _("Settings")
+        // };
 
-        time_widget = new Videos.SeekBar ();
+        // time_widget = new Videos.SeekBar ();
 
-        var main_actionbar = new Gtk.ActionBar ();
-        main_actionbar.pack_start (play_button);
-        main_actionbar.set_center_widget (time_widget);
-        main_actionbar.pack_end (preferences_button);
-        main_actionbar.pack_end (playlist_button);
+        // var main_actionbar = new Gtk.ActionBar ();
+        append (play_button);
+        // append (time_widget);
+        // append (preferences_button);
+        // append (playlist_button);
 
-        add (main_actionbar);
+        // show_all ();
 
-        show_all ();
+        // transition_type = Gtk.RevealerTransitionType.SLIDE_UP;
 
-        transition_type = Gtk.RevealerTransitionType.SLIDE_UP;
+        // events |= Gdk.EventMask.POINTER_MOTION_MASK;
+        // events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
+        // events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
 
-        events |= Gdk.EventMask.POINTER_MOTION_MASK;
-        events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
-        events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
+        // enter_notify_event.connect ((event) => {
+        //     if (event.window == get_window ()) {
+        //         hovered = true;
+        //     }
+        //     return false;
+        // });
 
-        enter_notify_event.connect ((event) => {
-            if (event.window == get_window ()) {
-                hovered = true;
-            }
-            return false;
-        });
+        // leave_notify_event.connect ((event) => {
+        //     if (event.window == get_window ()) {
+        //         hovered = false;
+        //     }
+        //     return false;
+        // });
 
-        leave_notify_event.connect ((event) => {
-            if (event.window == get_window ()) {
-                hovered = false;
-            }
-            return false;
-        });
-
-        PlaybackManager.get_default ().item_added.connect (() => {
-            playlist_item_added ();
-        });
+        // PlaybackManager.get_default ().item_added.connect (() => {
+        //     playlist_item_added ();
+        // });
 
         GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
             if (name == Audience.App.ACTION_PLAY_PAUSE) {
-                if (new_state.get_boolean () == false) {
-                    ((Gtk.Image) play_button.image).icon_name = "media-playback-start-symbolic";
+                if (!new_state.get_boolean ()) {
+                    play_button.icon_name = "media-playback-start-symbolic";
                     play_button.tooltip_text = _("Play");
-                    reveal_child = true;
                 } else {
-                    ((Gtk.Image) play_button.image).icon_name = "media-playback-pause-symbolic";
+                    play_button.icon_name = "media-playback-pause-symbolic";
                     play_button.tooltip_text = _("Pause");
-                    reveal_control ();
                 }
             }
         });
     }
 
-    private void playlist_item_added () {
-        if (!playlist_glowing) {
-            playlist_glowing = true;
-            playlist_button.get_child ().get_style_context ().add_class (PULSE_CLASS);
-            playlist_button.get_child ().get_style_context ().add_class (PULSE_TYPE);
+    // private void playlist_item_added () {
+    //     if (!playlist_glowing) {
+    //         playlist_glowing = true;
+    //         playlist_button.get_child ().add_css_class (PULSE_CLASS);
+    //         playlist_button.get_child ().add_css_class (PULSE_TYPE);
 
-            Timeout.add (6000, () => {
-                playlist_button.get_child ().get_style_context ().remove_class (PULSE_CLASS);
-                playlist_button.get_child ().get_style_context ().remove_class (PULSE_TYPE);
-                playlist_glowing = false;
-                return false;
-            });
-        }
-    }
-
-    public void reveal_control () {
-        if (child_revealed == false) {
-            set_reveal_child (true);
-        }
-
-        if (hiding_timer != 0) {
-            Source.remove (hiding_timer);
-        }
-
-        var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-
-        hiding_timer = GLib.Timeout.add (2000, () => {
-            if (hovered || preferences_popover.visible || playlist_popover.visible || !play_pause_action.get_state ().get_boolean ()) {
-                hiding_timer = 0;
-                return false;
-            }
-            set_reveal_child (false);
-            hiding_timer = 0;
-            return false;
-        });
-    }
+    //         Timeout.add (6000, () => {
+    //             playlist_button.get_child ().remove_css_class (PULSE_CLASS);
+    //             playlist_button.get_child ().remove_css_class (PULSE_TYPE);
+    //             playlist_glowing = false;
+    //             return false;
+    //         });
+    //     }
+    // }
 }

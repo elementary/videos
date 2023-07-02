@@ -288,13 +288,11 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     private void action_fullscreen () {
-        // if (leaflet.visible_child == player_page) {
-        //     if (player_page.fullscreened) {
-        //         unfullscreen ();
-        //     } else {
-        //         fullscreen ();
-        //     }
-        // }
+        if (fullscreened) {
+            unfullscreen ();
+        } else {
+            fullscreen ();
+        }
     }
 
     private void action_open_file () {
@@ -580,15 +578,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
             //     return Source.REMOVE;
             // });
         }
-    }
-
-    public void hide_mouse_cursor () {
-        var cursor = new Gdk.Cursor.from_name ("blank", null);
-        set_cursor (cursor);
-    }
-
-    public void show_mouse_cursor () {
-        set_cursor (null);
     }
 
     public bool autoqueue_next_active () {
