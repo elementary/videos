@@ -27,12 +27,7 @@ namespace Audience {
 
     public class PlayerPage : Gtk.EventBox {
         private Audience.Widgets.BottomBar bottom_bar;
-        private GtkClutter.Actor bottom_actor;
-        private GtkClutter.Embed clutter;
-        private Clutter.Stage stage;
         private Gtk.Revealer unfullscreen_revealer;
-        private GtkClutter.Actor unfullscreen_actor;
-        private Clutter.Actor video_actor;
 
         private bool mouse_primary_down = false;
 
@@ -62,55 +57,66 @@ namespace Audience {
             events |= Gdk.EventMask.KEY_PRESS_MASK;
             events |= Gdk.EventMask.KEY_RELEASE_MASK;
 
-            clutter = new GtkClutter.Embed ();
-            stage = (Clutter.Stage)clutter.get_stage ();
-            stage.background_color = {0, 0, 0, 0};
+//             clutter = new GtkClutter.Embed ();
+//             stage = (Clutter.Stage)clutter.get_stage ();
+//             stage.background_color = {0, 0, 0, 0};
 
-            video_actor = new Clutter.Actor ();
-#if VALA_0_34
-            var aspect_ratio = new ClutterGst.Aspectratio ();
-#else
-            var aspect_ratio = ClutterGst.Aspectratio.@new ();
-#endif
-            ((ClutterGst.Aspectratio) aspect_ratio).paint_borders = false;
-            ((ClutterGst.Content) aspect_ratio).player = playback_manager.playback;
+//             video_actor = new Clutter.Actor ();
+// #if VALA_0_34
+//             var aspect_ratio = new ClutterGst.Aspectratio ();
+// #else
+//             var aspect_ratio = ClutterGst.Aspectratio.@new ();
+// #endif
+//             ((ClutterGst.Aspectratio) aspect_ratio).paint_borders = false;
+//             ((ClutterGst.Content) aspect_ratio).player = playback_manager.playback;
 
-            video_actor.content = aspect_ratio;
+//             video_actor.content = aspect_ratio;
 
-            video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
-            video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
+//             video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
+//             video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
 
-            Signal.connect (clutter, "button-press-event", (GLib.Callback) navigation_event, this);
-            Signal.connect (clutter, "button-release-event", (GLib.Callback) navigation_event, this);
-            Signal.connect (clutter, "key-press-event", (GLib.Callback) navigation_event, this);
-            Signal.connect (clutter, "key-release-event", (GLib.Callback) navigation_event, this);
-            Signal.connect (clutter, "motion-notify-event", (GLib.Callback) navigation_event, this);
+//             stage.add_child (video_actor);
 
-            stage.add_child (video_actor);
-
-            bottom_bar = new Widgets.BottomBar ();
+            bottom_bar = new Widgets.BottomBar () {
+                valign = END
+            };
 
             var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic", Gtk.IconSize.BUTTON) {
                 tooltip_text = _("Unfullscreen")
             };
 
             unfullscreen_revealer = new Gtk.Revealer () {
-                transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN
+                transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN,
+                valign = START
             };
             unfullscreen_revealer.add (unfullscreen_button);
             unfullscreen_revealer.show_all ();
 
-            bottom_actor = new GtkClutter.Actor.with_contents (bottom_bar);
-            bottom_actor.opacity = GLOBAL_OPACITY;
-            bottom_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
-            bottom_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 1));
-            stage.add_child (bottom_actor);
+            var overlay = new Gtk.Overlay () {
+                child = playback_manager.gst_video_widget
+            };
+            overlay.add_overlay (unfullscreen_revealer);
+            overlay.add_overlay (bottom_bar);
 
-            unfullscreen_actor = new GtkClutter.Actor.with_contents (unfullscreen_revealer);
-            unfullscreen_actor.opacity = GLOBAL_OPACITY;
-            unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.X_AXIS, 1));
-            unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 0));
-            stage.add_child (unfullscreen_actor);
+            add (overlay);
+
+            // Signal.connect (playback_manager.gst_video_widget, "button-press-event", (GLib.Callback) navigation_event, this);
+            // Signal.connect (playback_manager.gst_video_widget, "button-release-event", (GLib.Callback) navigation_event, this);
+            // Signal.connect (playback_manager.gst_video_widget, "key-press-event", (GLib.Callback) navigation_event, this);
+            // Signal.connect (playback_manager.gst_video_widget, "key-release-event", (GLib.Callback) navigation_event, this);
+            // Signal.connect (playback_manager.gst_video_widget, "motion-notify-event", (GLib.Callback) navigation_event, this);
+
+            // bottom_actor = new GtkClutter.Actor.with_contents (bottom_bar);
+            // bottom_actor.opacity = GLOBAL_OPACITY;
+            // bottom_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
+            // bottom_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 1));
+            // stage.add_child (bottom_actor);
+
+            // unfullscreen_actor = new GtkClutter.Actor.with_contents (unfullscreen_revealer);
+            // unfullscreen_actor.opacity = GLOBAL_OPACITY;
+            // unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.X_AXIS, 1));
+            // unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 0));
+            // stage.add_child (unfullscreen_actor);
 
             motion_notify_event.connect (event => {
                 if (mouse_primary_down) {
@@ -120,7 +126,7 @@ namespace Audience {
                 }
 
                 Gtk.Allocation allocation;
-                clutter.get_allocation (out allocation);
+                get_allocation (out allocation);
                 return update_pointer_position (event.y, allocation.height);
             });
 
@@ -154,7 +160,7 @@ namespace Audience {
 
             leave_notify_event.connect (event => {
                 Gtk.Allocation allocation;
-                clutter.get_allocation (out allocation);
+                get_allocation (out allocation);
 
                 if (event.x == event.window.get_width ()) {
                     return update_pointer_position (event.window.get_height (), allocation.height);
@@ -173,26 +179,22 @@ namespace Audience {
                 }
             });
 
-            add (clutter);
             show_all ();
         }
 
         public void seek_jump_seconds (int seconds) {
             var playback_manager = PlaybackManager.get_default ();
-            var duration = playback_manager.get_duration ();
-            var progress = playback_manager.get_progress ();
-            var new_progress = ((duration * progress) + (double)seconds) / duration;
-            playback_manager.set_progress (new_progress.clamp (0.0, 1.0));
+            playback_manager.position = playback_manager.position + (seconds * 1000000000);
             bottom_bar.reveal_control ();
         }
 
         public void hide_popovers () {
             bottom_bar.playlist_popover.popdown ();
 
-            var popover = bottom_bar.time_widget.preview_popover;
-            if (popover != null) {
-                popover.schedule_hide ();
-            }
+            // var popover = bottom_bar.time_widget.preview_popover;
+            // if (popover != null) {
+            //     popover.schedule_hide ();
+            // }
         }
 
         private bool update_pointer_position (double y, int window_height) {
@@ -203,42 +205,42 @@ namespace Audience {
             return false;
         }
 
-        [CCode (instance_pos = -1)]
-        private bool navigation_event (GtkClutter.Embed embed, Clutter.Event event) {
-            var video_sink = PlaybackManager.get_default ().playback.get_video_sink ();
-            var frame = video_sink.get_frame ();
-            if (frame == null) {
-                return true;
-            }
+        // [CCode (instance_pos = -1)]
+        // private bool navigation_event (GtkClutter.Embed embed, Clutter.Event event) {
+        //     var video_sink = PlaybackManager.get_default ().playback.get_video_sink ();
+        //     var frame = video_sink.get_frame ();
+        //     if (frame == null) {
+        //         return true;
+        //     }
 
-            float x, y;
-            event.get_coords (out x, out y);
-            // Transform event coordinates into the actor's coordinates
-            video_actor.transform_stage_point (x, y, out x, out y);
-            float actor_width, actor_height;
-            video_actor.get_size (out actor_width, out actor_height);
+        //     float x, y;
+        //     event.get_coords (out x, out y);
+        //     // Transform event coordinates into the actor's coordinates
+        //     video_actor.transform_stage_point (x, y, out x, out y);
+        //     float actor_width, actor_height;
+        //     video_actor.get_size (out actor_width, out actor_height);
 
-            /* Convert event's coordinates into the frame's coordinates. */
-            x = x * frame.resolution.width / actor_width;
-            y = y * frame.resolution.height / actor_height;
+        //     /* Convert event's coordinates into the frame's coordinates. */
+        //     x = x * frame.resolution.width / actor_width;
+        //     y = y * frame.resolution.height / actor_height;
 
-            switch (event.type) {
-                case Clutter.EventType.MOTION:
-                    ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-move", 0, x, y);
-                    break;
-                case Clutter.EventType.BUTTON_PRESS:
-                    ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-button-press", (int)event.button.button, x, y);
-                    break;
-                case Clutter.EventType.KEY_PRESS:
-                    warning (X.keysym_to_string (event.key.keyval));
-                    ((Gst.Video.Navigation) video_sink).send_key_event ("key-press", X.keysym_to_string (event.key.keyval));
-                    break;
-                case Clutter.EventType.KEY_RELEASE:
-                    ((Gst.Video.Navigation) video_sink).send_key_event ("key-release", X.keysym_to_string (event.key.keyval));
-                    break;
-            }
+        //     switch (event.type) {
+        //         case Clutter.EventType.MOTION:
+        //             ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-move", 0, x, y);
+        //             break;
+        //         case Clutter.EventType.BUTTON_PRESS:
+        //             ((Gst.Video.Navigation) video_sink).send_mouse_event ("mouse-button-press", (int)event.button.button, x, y);
+        //             break;
+        //         case Clutter.EventType.KEY_PRESS:
+        //             warning (X.keysym_to_string (event.key.keyval));
+        //             ((Gst.Video.Navigation) video_sink).send_key_event ("key-press", X.keysym_to_string (event.key.keyval));
+        //             break;
+        //         case Clutter.EventType.KEY_RELEASE:
+        //             ((Gst.Video.Navigation) video_sink).send_key_event ("key-release", X.keysym_to_string (event.key.keyval));
+        //             break;
+        //     }
 
-            return false;
-        }
+        //     return false;
+        // }
     }
 }
