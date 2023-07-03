@@ -117,12 +117,12 @@ public class Audience.PlaybackManager : Object {
         //     settings.set_double ("last-stopped", playback.progress);
         // }
 
-        // save_playlist ();
+        save_playlist ();
 
-        // if (inhibit_token != 0) {
-        //     ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
-        //     inhibit_token = 0;
-        // }
+        if (inhibit_token != 0) {
+            ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
+            inhibit_token = 0;
+        }
     }
 
     public void play_file (string uri, bool from_beginning = true) {
@@ -177,7 +177,7 @@ public class Audience.PlaybackManager : Object {
     }
 
     public void stop () {
-        settings.set_double ("last-stopped", 0);
+        settings.set_int64 ("last-stopped", 0);
         settings.set_strv ("last-played-videos", {});
         settings.set_string ("current-video", "");
 
@@ -185,9 +185,7 @@ public class Audience.PlaybackManager : Object {
          * ending of next video and other side-effects
          */
         if (playback.playing) {
-            playback.pause ();
-            // playback.progress = 1.0;
-            ended ();
+            playback.stream_ended ();
         }
     }
 

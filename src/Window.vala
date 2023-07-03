@@ -408,18 +408,18 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
     public void open_files (File[] files, bool clear_playlist_items = false, bool force_play = true) {
         if (clear_playlist_items) {
-            // PlaybackManager.get_default ().clear_playlist (false);
+            PlaybackManager.get_default ().clear_playlist (false);
         }
 
         string[] videos = {};
         foreach (var file in files) {
             if (file.query_file_type (0) == FileType.DIRECTORY) {
-                // Audience.recurse_over_dir (file, (file_ret) => {
-                //     PlaybackManager.get_default ().append_to_playlist (file);
-                //     videos += file_ret.get_uri ();
-                // });
+                Audience.recurse_over_dir (file, (file_ret) => {
+                    PlaybackManager.get_default ().append_to_playlist (file);
+                    videos += file_ret.get_uri ();
+                });
             } else {
-                // PlaybackManager.get_default ().append_to_playlist (file);
+                PlaybackManager.get_default ().append_to_playlist (file);
                 videos += file.get_uri ();
             }
         }
@@ -468,16 +468,23 @@ public class Audience.Window : Gtk.ApplicationWindow {
             _("_Cancel")
         );
         file.select_multiple = true;
-        file.set_current_folder (File.new_for_uri (settings.get_string ("last-folder")));
         file.add_filter (video_filter);
         file.add_filter (all_files_filter);
+
+        try {
+            file.set_current_folder (File.new_for_uri (settings.get_string ("last-folder")));
+        } catch (Error e) {
+            warning ("Failed to set last folder as current folder: %s", e.message);
+        }
 
         file.response.connect((response) => {
             if (response == Gtk.ResponseType.ACCEPT) {
                 File[] files = {};
-                // foreach (File item in file.get_files ()) {
-                //     files += item;
-                // }
+
+                var files_list = file.get_files ();
+                for (int i = 0; i < files_list.get_n_items (); i++) {
+                    files += (File)files_list.get_item (i);
+                }
 
                 open_files (files, clear_playlist, force_play);
                 settings.set_string ("last-folder", file.get_current_folder ().get_uri ());
@@ -510,7 +517,10 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
     private void on_player_ended () {
         leaflet.navigate (Adw.NavigationDirection.BACK);
-        unfullscreen ();
+        print ("on ended");
+        if (fullscreened) {
+            unfullscreen ();
+        }
     }
 
     public void play_file (string uri, NavigationPage origin, bool from_beginning = true) {
