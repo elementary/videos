@@ -17,39 +17,15 @@ public class Audience.PlaybackManager : Object {
     public signal void save_playlist ();
     public signal void uri_changed (string uri);
 
-    private Gtk.Widget _gst_video_widget;
-    public Gtk.Widget gst_video_widget {
-        get {
-            return _gst_video_widget;
-        }
-    }
-
-    private string _uri;
+    public Gtk.Widget gst_video_widget { get; construct; }
     public string? subtitle_uri { get; private set; }
     public bool playing { get; private set; }
     public int64 duration { get; private set; default = -1; }
-    public int64 position {
-        get {
-            int64 _position = 0;
-
-            if (!playbin.query_position (Gst.Format.TIME, out _position)) {
-                warning ("Failed to get position of stream.");
-            }
-
-            return _position;
-        } set {
-            if (value > duration || value < 0) {
-                return;
-            }
-
-            playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, value);
-        }
-    }
+    public int64 position { get; private set; default = 0; }
 
     private dynamic Gst.Element playbin;
 
     private uint inhibit_token = 0;
-    private ulong ready_handler_id = 0;
 
     private static GLib.Once<PlaybackManager> instance;
     public static unowned PlaybackManager get_default () {
@@ -58,7 +34,9 @@ public class Audience.PlaybackManager : Object {
 
     construct {
         var gtksink = Gst.ElementFactory.make ("gtksink", "sink");
+        Gtk.Widget _gst_video_widget;
         gtksink.get ("widget", out _gst_video_widget);
+        gst_video_widget = _gst_video_widget;
 
         playbin = Gst.ElementFactory.make ("playbin", "bin");
         playbin.video_sink = gtksink;
@@ -76,7 +54,6 @@ public class Audience.PlaybackManager : Object {
 
         playbin.notify["uri"].connect (() => {
             uri_changed (playbin.uri);
-            _uri = playbin.uri;
         });
 
         unowned var default_application = (Gtk.Application) Application.get_default ();
@@ -88,16 +65,11 @@ public class Audience.PlaybackManager : Object {
         });
 
         Timeout.add (500, () => {
-            if (duration == -1) {
-                int64 _duration;
-                if (!playbin.query_duration (Gst.Format.TIME, out _duration)) {
-					warning ("Failed to get duration of stream.");
-				} else {
-				    duration = _duration;
-				}
-			}
+            int64 _position;
+            if (playbin.query_position (Gst.Format.TIME, out _position)) {
+                position = _position;
+            }
 
-            notify_property ("position");
             return Source.CONTINUE;
         });
     }
@@ -150,7 +122,17 @@ public class Audience.PlaybackManager : Object {
                 var play_pause_action = default_application.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
                 // ((SimpleAction) play_pause_action).set_state (playing);
 
+                if (new_state == Gst.State.READY) {
+                    if (duration == -1) {
+                        int64 _duration;
+                        if (playbin.query_duration (Gst.Format.TIME, out _duration)) {
+                            duration = _duration;
+                        }
+                    }
+                }
+
                 if (playing) {
+                    get_audio_tracks ();
                     if (inhibit_token != 0) {
                         default_application.uninhibit (inhibit_token);
                     }
@@ -210,9 +192,9 @@ public class Audience.PlaybackManager : Object {
 
         /* Set progress before subtitle uri else it gets reset to zero */
         if (from_beginning) {
-            playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, 0);
+            seek (0);
         } else {
-            position = settings.get_int64 ("last-stopped");
+            seek (settings.get_int64 ("last-stopped"));
         }
 
         if (!from_beginning) { //We are resuming the current video - fetch the current subtitles
@@ -238,7 +220,7 @@ public class Audience.PlaybackManager : Object {
          */
         if (playing) {
             playbin.set_state (Gst.State.NULL);
-            position = duration;
+            seek (duration);
             ended ();
         }
     }
@@ -248,6 +230,22 @@ public class Audience.PlaybackManager : Object {
             subtitle_uri = file.get_uri ();
         } else {
             queue_file (file);
+        }
+    }
+
+    public bool seek (int64 position) {
+        if (position > duration || position < 0) {
+            print (duration.to_string ());
+            warning ("WRONG POSITIOn");
+            return false;
+        }
+
+        if (!playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, position)) {
+            warning ("FAILED TO SEEk");
+            return false;
+        } else {
+            warning ("FINISHED SEEK");
+            return true;
         }
     }
 
@@ -266,7 +264,15 @@ public class Audience.PlaybackManager : Object {
     }
 
     public List<string> get_audio_tracks () {
-        return new List<string> ();
+        var list = new List<string> ();
+
+        for (int i = 0; i < (int)playbin.n_audio; i++) {
+            Gst.TagList tag_list;
+            Signal.emit_by_name (playbin, "get-audio-tags", i, out tag_list);
+            list.prepend (tag_list.to_string ());
+        }
+
+        return list;
     }
 
     public List<string> get_subtitle_tracks () {
@@ -274,8 +280,7 @@ public class Audience.PlaybackManager : Object {
     }
 
     public string get_uri () {
-        print (playbin.uri);
-        return _uri;
+        return playbin.current_uri;
     }
 
     public int get_audio_track () {
@@ -295,19 +300,27 @@ public class Audience.PlaybackManager : Object {
     }
 
     public void set_subtitle (string uri) {
-        // var progress = playbin.progress;
-        // var is_playing = playbin.playing;
+        // var temp_playing = playing;
+        // var temp_position = position;
 
         // /* Temporarily connect to the ready signal so that we can restore the progress setting
         //  * after resetting the playbin in order to set the subtitle uri */
-        // ready_handler_id = playbin.ready.connect (() => {
-        //     playbin.progress = progress;
-        //     // Pause video if it was in Paused state before adding the subtitle
-        //     if (!is_playing) {
-        //         playbin.set_state (Gst.State.PAUSED);
+        // ulong ready_handler_id = 0;
+        // ready_handler_id = notify["playing"].connect (() => {
+        //     if (!playing) {
+        //         return;
         //     }
 
-        //     playbin.disconnect (ready_handler_id);
+        //     disconnect (ready_handler_id);
+
+        //     seek (temp_position);
+        //     print (temp_position.to_string ());
+
+        //     // Pause video if it was in Paused state before adding the subtitle
+        //     if (!temp_playing) {
+        //         playbin.set_state (Gst.State.PAUSED);
+        //     }
+        //     print ("ready handler ran");
         // });
 
         playbin.set_state (Gst.State.NULL); // Does not work otherwise

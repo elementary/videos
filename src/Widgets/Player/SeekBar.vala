@@ -115,9 +115,9 @@ public class Videos.SeekBar : Gtk.Box {
             // This isn't necessarily a bug with the slider widget,
             // but this is the desired behavior for this slider in
             // the video player
-            scale.set_value (event.x / scale.get_range_rect ().width);
+            scale.set_value (event.x / scale.get_range_rect ().width * playback_duration);
 
-            playback_manager.position = (int64)scale.get_value ();
+            playback_manager.seek ((int64)scale.get_value ());
             return false;
         });
     }

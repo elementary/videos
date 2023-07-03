@@ -184,7 +184,7 @@ namespace Audience {
 
         public void seek_jump_seconds (int seconds) {
             var playback_manager = PlaybackManager.get_default ();
-            playback_manager.position = playback_manager.position + (seconds * 1000000000);
+            playback_manager.seek (playback_manager.position + (seconds * 1000000000));
             bottom_bar.reveal_control ();
         }
 
