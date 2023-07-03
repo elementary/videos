@@ -17,8 +17,16 @@ public class Audience.PlaybackManager : Object {
     public signal void save_playlist ();
     public signal void uri_changed (string uri);
 
-    public Gtk.MediaFile playback { get; private set; }
-    public string? subtitle_uri { get; private set; }
+    public Gdk.Paintable paintable {
+        get {
+            return _paintable;
+        }
+    }
+
+    private Gdk.Paintable _paintable;
+    private dynamic Gst.Element playbin;
+    private string? subtitle_uri;
+    private bool playing = false;
 
     private uint inhibit_token = 0;
     private ulong ready_handler_id = 0;
@@ -28,94 +36,105 @@ public class Audience.PlaybackManager : Object {
         return instance.once (() => { return new PlaybackManager (); });
     }
 
-    private PlaybackManager () {}
-
     construct {
         unowned var default_application = (Gtk.Application) Application.get_default ();
-        playback = Gtk.MediaFile.empty ();
+
+        var gtksink = Gst.ElementFactory.make ("gtk4paintablesink", "sink");
+        gtksink.get ("paintable", out _paintable);
+
+        playbin = (Gst.Pipeline)Gst.ElementFactory.make ("playbin", "playbin");
+        playbin.video_sink = gtksink;
+
+        if (playbin != null) {
+            print ("success");
+            if (paintable != null) {
+                print ("paintalb success");
+            } else {
+                print ("paintalb Failed");
+            }
+        } else {
+            print ("Failed");
+        }
+
+        var bus = playbin.get_bus ();
+        bus.add_signal_watch ();
+
+        bus.message.connect ((message) => {
+            switch (message.type) {
+                case EOS:
+                    if (!next ()) {
+                        var repeat_action = default_application.lookup_action (Audience.App.ACTION_REPEAT);
+                        if (repeat_action.get_state ().get_boolean ()) {
+                            var file = get_first_item ();
+                            ((Audience.Window) default_application.active_window).open_files ({ file });
+                        } else {
+                            playbin.set_state (Gst.State.NULL);
+                            settings.set_int64 ("last-stopped", 0);
+                            ended ();
+                        }
+                    }
+                    break;
+
+                case STATE_CHANGED:
+                    Gst.State old_state;
+                	Gst.State new_state;
+                	Gst.State pending_state;
+
+                	message.parse_state_changed (out old_state, out new_state, out pending_state);
+
+                    playing = new_state == Gst.State.PLAYING;
+
+                    var play_pause_action = default_application.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+                    // ((SimpleAction) play_pause_action).set_state (playing);
+
+                    if (playing) {
+                        if (inhibit_token != 0) {
+                            default_application.uninhibit (inhibit_token);
+                        }
+
+                        inhibit_token = default_application.inhibit (
+                            default_application.active_window,
+                            Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND,
+                            _("A video is playing")
+                        );
+                    } else if (inhibit_token != 0) {
+                        default_application.uninhibit (inhibit_token);
+                        inhibit_token = 0;
+                    }
+                    break;
+
+                default:
+                    print ("default");
+                    break;
+            }
+        });
+
+        playbin.notify ["suburi"].connect (() => {
+            if (subtitle_uri != (string)playbin.suburi) {
+                subtitle_uri = playbin.suburi;
+            }
+        });
+
+        playbin.notify ["uri"].connect (() => {
+            uri_changed (playbin.uri);
+        });
 
         default_application.action_state_changed.connect ((name, new_state) => {
             if (name == Audience.App.ACTION_PLAY_PAUSE) {
-                playback.playing = new_state.get_boolean ();
+                playbin.set_state (new_state.get_boolean () ? Gst.State.PLAYING : Gst.State.PAUSED);
             }
         });
-
-        playback.notify["playing"].connect (() => {
-            var play_pause_action = default_application.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-            ((SimpleAction) play_pause_action).set_state (playback.playing);
-
-            if (playback.playing) {
-                if (inhibit_token != 0) {
-                    default_application.uninhibit (inhibit_token);
-                }
-
-                inhibit_token = default_application.inhibit (
-                    default_application.active_window,
-                    Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND,
-                    _("A video is playing")
-                );
-            } else if (inhibit_token != 0) {
-                default_application.uninhibit (inhibit_token);
-                inhibit_token = 0;
-            }
-        });
-
-        playback.notify["ended"].connect (() => {
-            if (!playback.ended) {
-                return;
-            }
-
-            if (!next ()) {
-                var repeat_action = default_application.lookup_action (Audience.App.ACTION_REPEAT);
-                if (repeat_action.get_state ().get_boolean ()) {
-                    var file = get_first_item ();
-                    ((Audience.Window) default_application.active_window).open_files ({ file });
-                } else {
-                    settings.set_int64 ("last-stopped", 0);
-                    ended ();
-                }
-            }
-        });
-
-        // playback.eos.connect (() => {
-        //     Idle.add (() => {
-        //         playback.progress = 0;
-        //         if (!next ()) {
-        //             var repeat_action = default_application.lookup_action (Audience.App.ACTION_REPEAT);
-        //             if (repeat_action.get_state ().get_boolean ()) {
-        //                 var file = get_first_item ();
-        //                 ((Audience.Window) default_application.active_window).open_files ({ file });
-        //             } else {
-        //                 pipeline.set_state (Gst.State.NULL);
-        //                 settings.set_double ("last-stopped", 0);
-        //                 ended ();
-        //             }
-        //         }
-        //         return false;
-        //     });
-        // });
-
-        // /* playback.subtitle_uri does not seem to notify so connect directly to the pipeline */
-        // pipeline.notify["suburi"].connect (() => {
-        //     if (subtitle_uri != playback.subtitle_uri) {
-        //         subtitle_uri = playback.subtitle_uri;
-        //     }
-        // });
-
-        // playback.notify ["uri"].connect (() => {
-        //     uri_changed (playback.uri);
-        // });
     }
 
     ~PlaybackManager () {
-        // // FIXME:should find better way to decide if its end of playlist
-        // if (playback.progress > 0.99) {
-        //     settings.set_double ("last-stopped", 0);
-        // } else if (playback.uri != "") {
-        //     /* The progress is only valid if the uri has not been reset as the current video setting is not
-        //      * updated.  The playback.uri has been reset when the window is destroyed from the Welcome page */
-        //     settings.set_double ("last-stopped", playback.progress);
-        // }
+        // FIXME:should find better way to decide if its end of playlist
+        if (get_position () == get_duration ()) {
+            settings.set_int64 ("last-stopped", 0);
+        } else if ((string)playbin.uri != "") {
+            /* The progress is only valid if the uri has not been reset as the current video setting is not
+             * updated.  The playbin.uri has been reset when the window is destroyed from the Welcome page */
+            settings.set_int64 ("last-stopped", get_position ());
+        }
 
         save_playlist ();
 
@@ -126,7 +145,9 @@ public class Audience.PlaybackManager : Object {
     }
 
     public void play_file (string uri, bool from_beginning = true) {
+        print ("play");
         debug ("Opening %s", uri);
+        playbin.set_state (Gst.State.NULL);
         var file = File.new_for_uri (uri);
         try {
             var info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
@@ -152,15 +173,15 @@ public class Audience.PlaybackManager : Object {
             debug (e.message);
         }
 
-        playback.set_file (file);
+        playbin.uri = uri;
 
         ((Gtk.Application) Application.get_default ()).active_window.title = get_title (uri);
 
         /* Set progress before subtitle uri else it gets reset to zero */
         if (from_beginning) {
-            playback.seek (0);
+            playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, 0);
         } else {
-            set_progress (settings.get_int64 ("last-stopped"));
+            set_position (settings.get_int64 ("last-stopped"));
         }
 
         if (!from_beginning) { //We are resuming the current video - fetch the current subtitles
@@ -170,7 +191,7 @@ public class Audience.PlaybackManager : Object {
             set_subtitle (get_subtitle_for_uri (uri));
         }
 
-        playback.play_now ();
+        playbin.set_state (Gst.State.PLAYING);
         Gtk.RecentManager.get_default ().add_item (uri);
 
         settings.set_string ("current-video", uri);
@@ -184,8 +205,10 @@ public class Audience.PlaybackManager : Object {
         /* We do not want to emit an "ended" signal if already ended - it can cause premature
          * ending of next video and other side-effects
          */
-        if (playback.playing) {
-            playback.stream_ended ();
+        if (playing) {
+            playbin.set_state (Gst.State.NULL);
+            set_position (get_duration ());
+            ended ();
         }
     }
 
@@ -198,105 +221,117 @@ public class Audience.PlaybackManager : Object {
     }
 
     private bool is_subtitle (string uri) {
-        // if (uri.length < 4 || uri.get_char (uri.length - 4) != '.') {
-        //     return false;
-        // }
+        if (uri.length < 4 || uri.get_char (uri.length - 4) != '.') {
+            return false;
+        }
 
-        // foreach (unowned string ext in SUBTITLE_EXTENSIONS) {
-        //     if (uri.down ().has_suffix (ext)) {
-        //         return true;
-        //     }
-        // }
+        foreach (unowned string ext in SUBTITLE_EXTENSIONS) {
+            if (uri.down ().has_suffix (ext)) {
+                return true;
+            }
+        }
 
         return false;
     }
 
     // public unowned List<string> get_audio_tracks () {
-    //     return playback.get_audio_streams ();
+    //     return playbin.get_audio_streams ();
     // }
 
     // public unowned List<string> get_subtitle_tracks () {
-    //     return playback.get_subtitle_tracks ();
+    //     return playbin.get_subtitle_tracks ();
     // }
 
-    // public string get_uri () {
-    //     return playback.uri;
-    // }
+    public string get_uri () {
+        return playbin.uri;
+    }
 
     public bool get_playing () {
-         return playback.playing;
+        return playing;
     }
 
     public int64 get_duration () {
-        return playback.duration;
+        int64 duration = 0;
+
+        if (!playbin.query_duration (Gst.Format.TIME, out duration)) {
+            warning ("Failed to get duration of stream.");
+        }
+
+        return duration;
     }
 
-    // public int get_audio_track () {
-    //     return playback.audio_stream;
-    // }
-
-    // public void set_audio_track (int track) {
-    //     playback.audio_stream = track;
-    // }
-
-    public int64 get_progress () {
-        return playback.timestamp;
+    public int get_audio_track () {
+        return playbin.current_audio;
     }
 
-    public void set_progress (int64 timestamp) {
-        playback.seek (timestamp);
+    public void set_audio_track (int track) {
+        playbin.current_audio = track;
     }
 
-    // public int get_subtitle_track () {
-    //     return playback.subtitle_track;
-    // }
+    public int64 get_position () {
+        int64 position = 0;
 
-    // public void set_subtitle_track (int track) {
-    //     playback.subtitle_track = track;
-    // }
+        if (!playbin.query_position (Gst.Format.TIME, out position)) {
+            warning ("Failed to get duration of stream.");
+        }
+
+        return position;
+    }
+
+    public void set_position (int64 position) {
+        playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.ACCURATE, position);
+    }
+
+    public int get_subtitle_track () {
+        return playbin.current_text;
+    }
+
+    public void set_subtitle_track (int track) {
+        playbin.current_text = track;
+    }
 
     public void set_subtitle (string uri) {
-        // var progress = playback.progress;
-        // var is_playing = playback.playing;
+        // var progress = playbin.progress;
+        // var is_playing = playbin.playing;
 
-        // /* Temporarily connect to the ready signal so that we can restore the progress setting
-        //  * after resetting the pipeline in order to set the subtitle uri */
-        // ready_handler_id = playback.ready.connect (() => {
-        //     playback.progress = progress;
+        /* Temporarily connect to the ready signal so that we can restore the progress setting
+         * after resetting the playbin in order to set the subtitle uri */
+        // ready_handler_id = playbin.ready.connect (() => {
+        //     playbin.progress = progress;
         //     // Pause video if it was in Paused state before adding the subtitle
         //     if (!is_playing) {
-        //         pipeline.set_state (Gst.State.PAUSED);
+        //         playbin.set_state (Gst.State.PAUSED);
         //     }
 
-        //     playback.disconnect (ready_handler_id);
+        //     playbin.disconnect (ready_handler_id);
         // });
 
-        // pipeline.set_state (Gst.State.NULL); // Does not work otherwise
-        // playback.set_subtitle_uri (uri);
-        // pipeline.set_state (Gst.State.PLAYING);
+        playbin.set_state (Gst.State.NULL); // Does not work otherwise
+        playbin.suburi = uri;
+        playbin.set_state (Gst.State.PLAYING);
 
-        // settings.set_string ("current-external-subtitles-uri", uri);
+        settings.set_string ("current-external-subtitles-uri", uri);
     }
 
     private string get_subtitle_for_uri (string uri) {
         /* This assumes that the subtitle file has the same basename as the video file but with
          * one of the subtitle extensions, and is in the same folder. */
-        // string without_ext;
-        // int last_dot = uri.last_index_of (".", 0);
-        // int last_slash = uri.last_index_of ("/", 0);
+        string without_ext;
+        int last_dot = uri.last_index_of (".", 0);
+        int last_slash = uri.last_index_of ("/", 0);
 
-        // if (last_dot < last_slash) {//we dont have extension
-        //     without_ext = uri;
-        // } else {
-        //     without_ext = uri.slice (0, last_dot);
-        // }
+        if (last_dot < last_slash) {//we dont have extension
+            without_ext = uri;
+        } else {
+            without_ext = uri.slice (0, last_dot);
+        }
 
-        // foreach (string ext in SUBTITLE_EXTENSIONS) {
-        //     string sub_uri = without_ext + "." + ext;
-        //     if (File.new_for_uri (sub_uri).query_exists ()) {
-        //         return sub_uri;
-        //     }
-        // }
+        foreach (string ext in SUBTITLE_EXTENSIONS) {
+            string sub_uri = without_ext + "." + ext;
+            if (File.new_for_uri (sub_uri).query_exists ()) {
+                return sub_uri;
+            }
+        }
 
         return "";
     }

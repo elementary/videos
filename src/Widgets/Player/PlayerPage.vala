@@ -70,7 +70,7 @@ namespace Audience {
 
         construct {
             var playback_manager = PlaybackManager.get_default ();
-            var picture = new Gtk.Picture.for_paintable (playback_manager.playback) {
+            var picture = new Gtk.Picture.for_paintable (playback_manager.paintable) {
                 hexpand = true,
                 vexpand = true
             };
