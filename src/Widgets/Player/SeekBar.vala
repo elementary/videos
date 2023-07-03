@@ -4,16 +4,15 @@
  */
 
 public class Videos.SeekBar : Gtk.Box {
-    public Audience.Widgets.PreviewPopover preview_popover { get; private set; }
+    // public Audience.Widgets.PreviewPopover preview_popover { get; private set; }
 
     private Gtk.Label progression_label;
     private Gtk.Label duration_label;
     private Gtk.Scale scale;
-    private double playback_duration;
     private bool is_grabbing = false;
 
     construct {
-        get_style_context ().add_class (Granite.STYLE_CLASS_SEEKBAR);
+        // add_css_class (Granite.STYLE_CLASS_SEEKBAR);
 
         progression_label = new Gtk.Label (Granite.DateTime.seconds_to_time (0)) {
             margin_start = 3
@@ -23,119 +22,121 @@ public class Videos.SeekBar : Gtk.Box {
             margin_end = 3
         };
 
-        scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 0.1) {
+        scale = new Gtk.Scale (Gtk.Orientation.HORIZONTAL, null) {
             hexpand = true,
             draw_value = false,
             can_focus = false
         };
-        scale.events |= Gdk.EventMask.POINTER_MOTION_MASK;
-        scale.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
-        scale.events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
 
         spacing = 6;
-        add (progression_label);
-        add (scale);
-        add (duration_label);
+        append (progression_label);
+        append (scale);
+        append (duration_label);
 
         var playback_manager = Audience.PlaybackManager.get_default ();
 
-        playback_manager.playback.notify["progress"].connect (() => {
-            if (!is_grabbing) {
-                progression_label.label = Granite.DateTime.seconds_to_time ((int) playback_manager.playback.get_position ());
-                scale.set_value (playback_manager.get_progress ());
-            }
-        });
-
-        playback_manager.playback.notify["duration"].connect (() => {
-            if (preview_popover != null) {
-                preview_popover.destroy ();
+        Timeout.add (100, () => {
+            if (!playback_manager.get_playing ()) {
+                return Source.CONTINUE;
             }
 
-            playback_duration = playback_manager.playback.duration;
-            if (playback_duration < 0.0) {
-                debug ("Duration value less than zero, duration set to 0.0");
-                playback_duration = 0.0;
-            }
-
-            duration_label.label = Granite.DateTime.seconds_to_time ((int) playback_duration);
+            duration_label.label = Granite.DateTime.seconds_to_time ((int)(playback_manager.get_duration () / 1000000000));
+            scale.set_range (0, (double)playback_manager.get_duration ());
 
             if (!is_grabbing) {
-                scale.set_value (playback_manager.get_progress ());
+                progression_label.label = Granite.DateTime.seconds_to_time ((int)(playback_manager.get_position () / 1000000000));
+                scale.set_value (playback_manager.get_position ());
             }
 
-            // Don't allow to change the time if there is none.
-            sensitive = (playback_manager.playback.duration != 0);
-            if (sensitive) {
-                preview_popover = new Audience.Widgets.PreviewPopover (playback_manager.playback.uri);
-                preview_popover.relative_to = scale;
-            }
+            return Source.CONTINUE;
         });
 
-        /* signal property setting */
-        scale.button_press_event.connect (() => {
+        scale.change_value.connect ((scroll, new_value) => {
+            playback_manager.set_position ((int64)new_value);
+        });
+
+        var scale_gesture_click = new Gtk.GestureClick ();
+        scale.add_controller (scale_gesture_click);
+
+        scale_gesture_click.pressed.connect (() => {
             is_grabbing = true;
-            return false;
         });
 
-        scale.button_release_event.connect (() => {
+        scale_gesture_click.released.connect (() => {
             is_grabbing = false;
-            return false;
         });
 
-        scale.enter_notify_event.connect (() => {
-            preview_popover.schedule_show ();
-            return false;
+        scale_gesture_click.stopped.connect (() => {
+            is_grabbing = false;
         });
 
-        scale.leave_notify_event.connect (() => {
-            preview_popover.schedule_hide ();
-            return false;
-        });
+        var scale_motion_controller = new Gtk.EventControllerMotion ();
+        scale.add_controller (scale_motion_controller);
 
-        scale.motion_notify_event.connect ((event) => {
+        // scale_motion_controller.enter.connect (() => preview_popover.schedule_show ());
+
+        // scale_motion_controller.leave.connect (() => preview_popover.schedule_hide ());
+
+        scale_motion_controller.motion.connect ((x, y) => {
             progression_label.label = Granite.DateTime.seconds_to_time (
-                (int) (scale.get_value () * playback_duration)
+                (int) (scale.get_value () / 1000000000)
             );
 
-            preview_popover.update_pointing ((int) event.x);
-            preview_popover.set_preview_progress (event.x / ((double) event.window.get_width ()), !playback_manager.get_playing ());
-            return false;
+            // preview_popover.update_pointing ((int) x);
+            // preview_popover.set_preview_progress (x / ((double) ((Gtk.Window)get_toplevel ()).get_width ()), !playback_manager.get_playing ());
         });
 
-        scale.size_allocate.connect ((alloc_rect) => {
-            if (preview_popover != null)
-                preview_popover.realign_pointing (alloc_rect.width);
-        });
+        // playback_manager.playback.notify["duration"].connect (() => {
+        //     if (preview_popover != null) {
+        //         preview_popover.destroy ();
+        //     }
 
-        button_release_event.connect ((event) => {
-            // Manually set the slider value using the click event
-            // dimensions. The slider widget doesn't set itself
-            // when clicked too much above/below the slider itself.
-            // This isn't necessarily a bug with the slider widget,
-            // but this is the desired behavior for this slider in
-            // the video player
-            scale.set_value (event.x / scale.get_range_rect ().width);
+        //     playback_duration = playback_manager.playback.duration;
+        //     if (playback_duration < 0.0) {
+        //         debug ("Duration value less than zero, duration set to 0.0");
+        //         playback_duration = 0.0;
+        //     }
 
-            playback_manager.set_progress (scale.get_value ());
-            return false;
-        });
-    }
+        //     duration_label.label = Granite.DateTime.seconds_to_time ((int) playback_duration);
 
-    public override void get_preferred_width (out int minimum_width, out int natural_width) {
-        base.get_preferred_width (out minimum_width, out natural_width);
+        //     if (!is_grabbing) {
+        //         scale.set_value (playback_manager.get_progress ());
+        //     }
 
-        if (parent == null) {
-            return;
-        }
+        //     // Don't allow to change the time if there is none.
+        //     sensitive = (playback_manager.playback.duration != 0);
+        //     if (sensitive) {
+        //         preview_popover = new Audience.Widgets.PreviewPopover (playback_manager.playback.uri);
+        //         preview_popover.relative_to = scale;
+        //     }
+        // });
 
-        var window = parent.get_window ();
-        if (window == null) {
-            return;
-        }
+        // scale.motion_notify_event.connect ((event) => {
+            // progression_label.label = Granite.DateTime.seconds_to_time (
+            //     (int) (scale.get_value () * playback_duration)
+            // );
 
-        var width = parent.get_window ().get_width ();
-        if (width > 0 && width >= minimum_width) {
-            natural_width = width;
-        }
+            // preview_popover.update_pointing ((int) event.x);
+            // preview_popover.set_preview_progress (event.x / ((double) event.window.get_width ()), !playback_manager.get_playing ());
+            // return false;
+        // });
+
+        // scale.size_allocate.connect ((alloc_rect) => {
+        //     if (preview_popover != null)
+        //         preview_popover.realign_pointing (alloc_rect.width);
+        // });
+
+        // button_release_event.connect ((event) => {
+        //     // Manually set the slider value using the click event
+        //     // dimensions. The slider widget doesn't set itself
+        //     // when clicked too much above/below the slider itself.
+        //     // This isn't necessarily a bug with the slider widget,
+        //     // but this is the desired behavior for this slider in
+        //     // the video player
+        //     scale.set_value (event.x / scale.get_range_rect ().width);
+
+        //     playback_manager.set_progress (scale.get_value ());
+        //     return false;
+        // });
     }
 }

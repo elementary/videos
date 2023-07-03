@@ -22,27 +22,13 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
     private Gtk.ComboBoxText languages;
     private Gtk.ComboBoxText subtitles;
-    private Gtk.FileChooserButton external_subtitle_file;
+    private Gtk.Button external_subtitle_file;
 
     construct {
         languages = new Gtk.ComboBoxText ();
         subtitles = new Gtk.ComboBoxText ();
 
-        var all_files_filter = new Gtk.FileFilter ();
-        all_files_filter.set_filter_name (_("All files"));
-        all_files_filter.add_pattern ("*");
-
-        var subtitle_files_filter = new Gtk.FileFilter ();
-        subtitle_files_filter.set_filter_name (_("Subtitle files"));
-        subtitle_files_filter.add_mime_type ("application/smil"); // .smi
-        subtitle_files_filter.add_mime_type ("application/x-subrip"); // .srt
-        subtitle_files_filter.add_mime_type ("text/x-microdvd"); // .sub
-        subtitle_files_filter.add_mime_type ("text/x-ssa"); // .ssa & .ass
-        // exclude .asc, mimetype is generic "application/pgp-encrypted"
-
-        external_subtitle_file = new Gtk.FileChooserButton (_("External Subtitles"), Gtk.FileChooserAction.OPEN);
-        external_subtitle_file.add_filter (subtitle_files_filter);
-        external_subtitle_file.add_filter (all_files_filter);
+        external_subtitle_file = new Gtk.Button.with_label (_("External Subtitles"));
 
         var lang_label = new Gtk.Label (_("Audio:")) {
             halign = Gtk.Align.END
@@ -59,7 +45,10 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         var setupgrid = new Gtk.Grid () {
             column_spacing = 12,
             row_spacing = 6,
-            margin = 6
+            margin_top = 6,
+            margin_bottom = 6,
+            margin_start = 6,
+            margin_end = 6
         };
         setupgrid.attach (lang_label, 0, 1);
         setupgrid.attach (languages, 1, 1);
@@ -67,18 +56,13 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.attach (subtitles, 1, 2);
         setupgrid.attach (sub_ext_label, 0, 3);
         setupgrid.attach (external_subtitle_file, 1, 3);
-        setupgrid.show_all ();
 
         var playback_manager = PlaybackManager.get_default ();
         playback_manager.next_audio.connect (next_audio);
         playback_manager.next_text.connect (next_text);
 
-        external_subtitle_file.file_set.connect (() => {
-            playback_manager.set_subtitle (external_subtitle_file.get_uri ());
-        });
-
-        playback_manager.notify["subtitle-uri"].connect (() => {
-            external_subtitle_file.select_uri (playback_manager.subtitle_uri ?? "");
+        external_subtitle_file.clicked.connect (() => {
+            get_external_subtitle_file ();
         });
 
         playback_manager.uri_changed.connect (() => {
@@ -89,11 +73,46 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
         languages.changed.connect (on_languages_changed);
 
-        add (setupgrid);
+        child = setupgrid;
 
         map.connect (() => {
             setup ();
         });
+    }
+
+    private void get_external_subtitle_file () {
+        var all_files_filter = new Gtk.FileFilter ();
+        all_files_filter.set_filter_name (_("All files"));
+        all_files_filter.add_pattern ("*");
+
+        var subtitle_files_filter = new Gtk.FileFilter ();
+        subtitle_files_filter.set_filter_name (_("Subtitle files"));
+        subtitle_files_filter.add_mime_type ("application/smil"); // .smi
+        subtitle_files_filter.add_mime_type ("application/x-subrip"); // .srt
+        subtitle_files_filter.add_mime_type ("text/x-microdvd"); // .sub
+        subtitle_files_filter.add_mime_type ("text/x-ssa"); // .ssa & .ass
+        // exclude .asc, mimetype is generic "application/pgp-encrypted"
+
+        var file = new Gtk.FileChooserNative (
+            _("Open"),
+            (Gtk.Window)get_root (),
+            Gtk.FileChooserAction.OPEN,
+            _("_Open"),
+            _("_Cancel")
+        );
+        file.select_multiple = false;
+        file.add_filter (subtitle_files_filter);
+        file.add_filter (all_files_filter);
+
+        file.response.connect((response) => {
+            if (response == Gtk.ResponseType.ACCEPT) {
+                PlaybackManager.get_default ().set_subtitle (file.get_file ().get_uri ());
+            }
+
+            file.destroy ();
+        });
+
+        file.show ();
     }
 
     private void setup () {
@@ -134,10 +153,10 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         var playback_manager = PlaybackManager.get_default ();
 
         uint track = 1;
-        playback_manager.get_subtitle_tracks ().foreach ((lang) => {
-            // FIXME: Using Track since lang is actually a bad pointer :/
-            subtitles.append (lang, _("Track %u").printf (track++));
-        });
+        // playback_manager.get_subtitle_tracks ().foreach ((lang) => {
+        //     // FIXME: Using Track since lang is actually a bad pointer :/
+        //     subtitles.append (lang, _("Track %u").printf (track++));
+        // });
         subtitles.append ("none", _("None"));
 
         int count = subtitles.model.iter_n_children (null);
@@ -162,15 +181,15 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
         var languages_names = get_audio_track_names ();
         uint track = 1;
-        playback_manager.get_audio_tracks ().foreach ((lang) => {
-            var audio_stream_lang = languages_names.nth_data (track - 1);
-            if (audio_stream_lang != null) {
-                languages.append (lang, audio_stream_lang);
-            } else {
-                languages.append (lang, _("Track %u").printf (track));
-            }
-            track++;
-        });
+        // playback_manager.get_audio_tracks ().foreach ((lang) => {
+        //     var audio_stream_lang = languages_names.nth_data (track - 1);
+        //     if (audio_stream_lang != null) {
+        //         languages.append (lang, audio_stream_lang);
+        //     } else {
+        //         languages.append (lang, _("Track %u").printf (track));
+        //     }
+        //     track++;
+        // });
 
         int count = languages.model.iter_n_children (null);
         languages.sensitive = count > 1;

@@ -29,10 +29,10 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
     private const string PULSE_TYPE = "attention";
 
     private PlaylistPopover playlist_popover;
-    // public Videos.SeekBar time_widget { get; private set; }
+    public Videos.SeekBar time_widget { get; private set; }
 
     private Gtk.Button play_button;
-    // private SettingsPopover preferences_popover;
+    private SettingsPopover preferences_popover;
     private Gtk.MenuButton playlist_button;
     private uint hiding_timer = 0;
     private bool playlist_glowing = false;
@@ -53,20 +53,20 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
             tooltip_text = _("Playlist")
         };
 
-        // preferences_popover = new SettingsPopover ();
+        preferences_popover = new SettingsPopover ();
 
-        // var preferences_button = new Gtk.MenuButton () {
-        //     image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
-        //     popover = preferences_popover,
-        //     tooltip_text = _("Settings")
-        // };
+        var preferences_button = new Gtk.MenuButton () {
+            icon_name = "open-menu-symbolic",
+            popover = preferences_popover,
+            tooltip_text = _("Settings")
+        };
 
-        // time_widget = new Videos.SeekBar ();
+        time_widget = new Videos.SeekBar ();
 
         // var main_actionbar = new Gtk.ActionBar ();
         append (play_button);
-        // append (time_widget);
-        // append (preferences_button);
+        append (time_widget);
+        append (preferences_button);
         append (playlist_button);
 
         // show_all ();
@@ -91,9 +91,9 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
         //     return false;
         // });
 
-        // PlaybackManager.get_default ().item_added.connect (() => {
-        //     playlist_item_added ();
-        // });
+        PlaybackManager.get_default ().item_added.connect (() => {
+            playlist_item_added ();
+        });
 
         GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
             if (name == Audience.App.ACTION_PLAY_PAUSE) {
@@ -108,18 +108,18 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
         });
     }
 
-    // private void playlist_item_added () {
-    //     if (!playlist_glowing) {
-    //         playlist_glowing = true;
-    //         playlist_button.get_child ().add_css_class (PULSE_CLASS);
-    //         playlist_button.get_child ().add_css_class (PULSE_TYPE);
+    private void playlist_item_added () {
+        if (!playlist_glowing) {
+            playlist_glowing = true;
+            playlist_button.get_child ().add_css_class (PULSE_CLASS);
+            playlist_button.get_child ().add_css_class (PULSE_TYPE);
 
-    //         Timeout.add (6000, () => {
-    //             playlist_button.get_child ().remove_css_class (PULSE_CLASS);
-    //             playlist_button.get_child ().remove_css_class (PULSE_TYPE);
-    //             playlist_glowing = false;
-    //             return false;
-    //         });
-    //     }
-    // }
+            Timeout.add (6000, () => {
+                playlist_button.get_child ().remove_css_class (PULSE_CLASS);
+                playlist_button.get_child ().remove_css_class (PULSE_TYPE);
+                playlist_glowing = false;
+                return false;
+            });
+        }
+    }
 }

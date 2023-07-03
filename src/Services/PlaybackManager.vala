@@ -16,6 +16,7 @@ public class Audience.PlaybackManager : Object {
     public signal void queue_file (File file);
     public signal void save_playlist ();
     public signal void uri_changed (string uri);
+    public signal void duration_changed ();
 
     public Gdk.Paintable paintable {
         get {
@@ -101,6 +102,10 @@ public class Audience.PlaybackManager : Object {
                         default_application.uninhibit (inhibit_token);
                         inhibit_token = 0;
                     }
+                    break;
+
+                case DURATION_CHANGED:
+                    duration_changed ();
                     break;
 
                 default:
