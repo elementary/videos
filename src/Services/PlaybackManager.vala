@@ -54,7 +54,7 @@ public class Audience.PlaybackManager : Object {
             }
         });
 
-        playbin.notify["current-uri"].connect (() => {
+        playbin.notify["uri"].connect (() => {
             uri_changed (playbin.uri);
         });
 
