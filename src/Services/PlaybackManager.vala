@@ -123,10 +123,10 @@ public class Audience.PlaybackManager : Object {
 
             case STATE_CHANGED:
                 Gst.State old_state;
-            	Gst.State new_state;
-            	Gst.State pending_state;
+                Gst.State new_state;
+                Gst.State pending_state;
 
-            	message.parse_state_changed (out old_state, out new_state, out pending_state);
+                message.parse_state_changed (out old_state, out new_state, out pending_state);
 
                 playing = new_state == Gst.State.PLAYING;
 
