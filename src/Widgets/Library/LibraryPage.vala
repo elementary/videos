@@ -18,11 +18,8 @@
  *
  */
 
-public class Audience.LibraryPage : Gtk.Stack {
+public class Audience.LibraryPage : Gtk.Box {
     public signal void show_episodes (Audience.LibraryItem item, bool setup_only = false);
-
-    public Gtk.ScrolledWindow scrolled_window { get; private set; }
-    public string last_filter { get; set; default = ""; }
 
     public bool has_items {
         get {
@@ -31,10 +28,12 @@ public class Audience.LibraryPage : Gtk.Stack {
     }
 
     private Audience.Services.LibraryManager manager;
+    private Gtk.SearchEntry search_entry;
     private Granite.Widgets.AlertView alert_view;
+    private Gtk.ScrolledWindow scrolled_window;
     private Gtk.FlowBox view_movies;
+    private Gtk.Stack stack;
     private bool posters_initialized = false;
-    private string query = "";
 
     public static LibraryPage instance = null;
     public static LibraryPage get_instance () {
@@ -45,19 +44,48 @@ public class Audience.LibraryPage : Gtk.Stack {
     }
 
     construct {
-        scrolled_window = new Gtk.ScrolledWindow (null, null) {
-            expand = true
+        var navigation_button = new Gtk.Button.with_label (_("Back")) {
+            valign = Gtk.Align.CENTER
         };
+        navigation_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
+
+        search_entry = new Gtk.SearchEntry () {
+            placeholder_text = _("Search Videos"),
+            valign = CENTER
+        };
+
+        var autoqueue_next = new Granite.ModeSwitch.from_icon_name ("media-playlist-repeat-one-symbolic", "media-playlist-consecutive-symbolic");
+        autoqueue_next.primary_icon_tooltip_text = _("Play one video");
+        autoqueue_next.secondary_icon_tooltip_text = _("Automatically play next videos");
+        autoqueue_next.valign = Gtk.Align.CENTER;
+        settings.bind ("autoqueue-next", autoqueue_next, "active", SettingsBindFlags.DEFAULT);
+
+        var header_bar = new Hdy.HeaderBar () {
+            show_close_button = true,
+            title = _("Library")
+        };
+        header_bar.pack_start (navigation_button);
+        header_bar.pack_end (search_entry);
+        header_bar.pack_end (autoqueue_next);
+        header_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
         view_movies = new Gtk.FlowBox () {
             column_spacing = 12,
             row_spacing = 12,
             homogeneous = true,
-            margin = 24,
+            margin_top = 24,
+            margin_bottom = 24,
+            margin_start = 24,
+            margin_end = 24,
             selection_mode = Gtk.SelectionMode.NONE,
             valign = Gtk.Align.START
         };
-        scrolled_window.add (view_movies);
+
+        scrolled_window = new Gtk.ScrolledWindow (null, null) {
+            hexpand = true,
+            vexpand = true,
+            child = view_movies
+        };
 
         alert_view = new Granite.Widgets.AlertView (
             "",
@@ -65,8 +93,13 @@ public class Audience.LibraryPage : Gtk.Stack {
             "edit-find-symbolic"
         );
 
-        add (scrolled_window);
-        add (alert_view);
+        stack = new Gtk.Stack ();
+        stack.add (scrolled_window);
+        stack.add (alert_view);
+
+        orientation = VERTICAL;
+        add (header_bar);
+        add (stack);
 
         view_movies.child_activated.connect (play_video);
 
@@ -81,10 +114,27 @@ public class Audience.LibraryPage : Gtk.Stack {
                 posters_initialized = true;
                 poster_initialisation.begin ();
             }
+            if (search_entry.text != "" && !has_child ()) {
+                search_entry.text = "";
+            }
         });
 
         view_movies.set_sort_func (video_sort_func);
         view_movies.set_filter_func (video_filter_func);
+
+        navigation_button.clicked.connect (() => {
+            ((Hdy.Deck)get_ancestor (typeof (Hdy.Deck))).navigate (Hdy.NavigationDirection.BACK);
+        });
+
+        search_entry.search_changed.connect (() => filter ());
+
+        search_entry.key_press_event.connect ((event) => {
+            if (event.keyval == Gdk.Key.Escape) {
+                search_entry.text = "";
+            }
+
+            return Gdk.EVENT_PROPAGATE;
+        });
     }
 
     private void play_video (Gtk.FlowBoxChild item) {
@@ -105,7 +155,6 @@ public class Audience.LibraryPage : Gtk.Stack {
             var window = (Audience.Window) ((Gtk.Application) Application.get_default ()).active_window;
             window.play_file (uri, Window.NavigationPage.LIBRARY, from_beginning);
         } else {
-            last_filter = query;
             show_episodes (selected);
         }
     }
@@ -160,11 +209,11 @@ public class Audience.LibraryPage : Gtk.Stack {
     }
 
     private bool video_filter_func (Gtk.FlowBoxChild child) {
-        if (query.length == 0) {
+        if (search_entry.text.length == 0) {
             return true;
         }
 
-        string[] filter_elements = query.split (" ");
+        string[] filter_elements = search_entry.text.split (" ");
         var video_title = ((LibraryItem)(child)).get_title ();
 
         foreach (string filter_element in filter_elements) {
@@ -185,15 +234,14 @@ public class Audience.LibraryPage : Gtk.Stack {
         return 0;
     }
 
-    public void filter (string text) {
-        query = text.strip ();
+    public void filter () {
         view_movies.invalidate_filter ();
 
         if (!has_child ()) {
-            visible_child = alert_view;
-            alert_view.title = _("No Results for “%s”").printf (text);
+            stack.visible_child = alert_view;
+            alert_view.title = _("No Results for “%s”").printf (search_entry.text);
         } else {
-            visible_child = scrolled_window;
+            stack.visible_child = scrolled_window;
         }
     }
 

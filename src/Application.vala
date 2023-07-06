@@ -63,6 +63,12 @@ namespace Audience {
             return app;
         }
 
+        public override void startup () {
+            base.startup ();
+
+            Hdy.init ();
+        }
+
         public override void activate () {
             if (mainwindow == null) {
                 add_action_entries (ACTION_ENTRIES, this);

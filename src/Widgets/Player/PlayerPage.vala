@@ -25,7 +25,8 @@ namespace Audience {
         "asc"
     };
 
-    public class PlayerPage : Gtk.EventBox {
+    public class PlayerPage : Gtk.Box {
+        private Hdy.HeaderBar header_bar;
         private Audience.Widgets.BottomBar bottom_bar;
         private GtkClutter.Actor bottom_actor;
         private GtkClutter.Embed clutter;
@@ -44,6 +45,12 @@ namespace Audience {
             set {
                 _fullscreened = value;
 
+                if (value) {
+                    header_bar.hide ();
+                } else {
+                    header_bar.show ();
+                }
+
                 if (value && bottom_bar.child_revealed) {
                     unfullscreen_revealer.reveal_child = true;
                 } else if (!value && bottom_bar.child_revealed) {
@@ -58,9 +65,24 @@ namespace Audience {
         construct {
             var playback_manager = PlaybackManager.get_default ();
 
-            events |= Gdk.EventMask.POINTER_MOTION_MASK;
-            events |= Gdk.EventMask.KEY_PRESS_MASK;
-            events |= Gdk.EventMask.KEY_RELEASE_MASK;
+            var navigation_button = new Gtk.Button.with_label ("") {
+                valign = Gtk.Align.CENTER
+            };
+            navigation_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
+
+            var autoqueue_next = new Granite.ModeSwitch.from_icon_name ("media-playlist-repeat-one-symbolic", "media-playlist-consecutive-symbolic");
+            autoqueue_next.primary_icon_tooltip_text = _("Play one video");
+            autoqueue_next.secondary_icon_tooltip_text = _("Automatically play next videos");
+            autoqueue_next.valign = Gtk.Align.CENTER;
+            settings.bind ("autoqueue-next", autoqueue_next, "active", SettingsBindFlags.DEFAULT);
+
+            header_bar = new Hdy.HeaderBar () {
+                show_close_button = true,
+                title = _("Library")
+            };
+            header_bar.pack_start (navigation_button);
+            header_bar.pack_end (autoqueue_next);
+            header_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
             clutter = new GtkClutter.Embed ();
             stage = (Clutter.Stage)clutter.get_stage ();
@@ -112,7 +134,27 @@ namespace Audience {
             unfullscreen_actor.add_constraint (new Clutter.AlignConstraint (stage, Clutter.AlignAxis.Y_AXIS, 0));
             stage.add_child (unfullscreen_actor);
 
-            motion_notify_event.connect (event => {
+            var event_box = new Gtk.EventBox () {
+                child = clutter
+            };
+            event_box.events |= Gdk.EventMask.POINTER_MOTION_MASK;
+            event_box.events |= Gdk.EventMask.KEY_PRESS_MASK;
+            event_box.events |= Gdk.EventMask.KEY_RELEASE_MASK;
+
+            orientation = VERTICAL;
+            add (header_bar);
+            add (event_box);
+            show_all ();
+
+            map.connect (() => {
+                navigation_button.label = ((Window)get_toplevel ()).get_adjacent_page_name ();
+            });
+
+            navigation_button.clicked.connect (() => {
+                ((Hdy.Deck)get_ancestor (typeof (Hdy.Deck))).navigate (Hdy.NavigationDirection.BACK);
+            });
+
+            event_box.motion_notify_event.connect (event => {
                 if (mouse_primary_down) {
                     mouse_primary_down = false;
                     App.get_instance ().active_window.begin_move_drag (Gdk.BUTTON_PRIMARY,
@@ -124,7 +166,7 @@ namespace Audience {
                 return update_pointer_position (event.y, allocation.height);
             });
 
-            button_press_event.connect (event => {
+            event_box.button_press_event.connect (event => {
                 if (event.button == Gdk.BUTTON_PRIMARY) {
                     mouse_primary_down = true;
                 }
@@ -132,7 +174,7 @@ namespace Audience {
                 return false;
             });
 
-            button_release_event.connect (event => {
+            event_box.button_release_event.connect (event => {
                 if (event.button == Gdk.BUTTON_PRIMARY) {
                     mouse_primary_down = false;
                 }
@@ -152,7 +194,7 @@ namespace Audience {
                 ((Gtk.Window) get_toplevel ()).unfullscreen ();
             });
 
-            leave_notify_event.connect (event => {
+            event_box.leave_notify_event.connect (event => {
                 Gtk.Allocation allocation;
                 clutter.get_allocation (out allocation);
 
@@ -172,9 +214,6 @@ namespace Audience {
                     ((Audience.Window) App.get_instance ().active_window).hide_mouse_cursor ();
                 }
             });
-
-            add (clutter);
-            show_all ();
         }
 
         public void seek_jump_seconds (int seconds) {

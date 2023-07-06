@@ -18,19 +18,43 @@
  *
  */
 
-public class Audience.EpisodesPage : Gtk.Grid {
+public class Audience.EpisodesPage : Gtk.Box {
     public Gtk.Image poster { get; private set; }
 
+    private Gtk.SearchEntry search_entry;
+    private Hdy.HeaderBar header_bar;
     private Gtk.FlowBox view_episodes;
     private Granite.Widgets.AlertView alert_view;
     private Gee.ArrayList<Audience.Objects.Video> shown_episodes;
 
-    private string query;
     private Objects.Video poster_source;
 
     construct {
-        query = "";
         poster_source = null;
+
+        var navigation_button = new Gtk.Button.with_label (_("Library")) {
+            valign = Gtk.Align.CENTER
+        };
+        navigation_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
+
+        search_entry = new Gtk.SearchEntry () {
+            placeholder_text = _("Search Videos"),
+            valign = CENTER
+        };
+
+        var autoqueue_next = new Granite.ModeSwitch.from_icon_name ("media-playlist-repeat-one-symbolic", "media-playlist-consecutive-symbolic");
+        autoqueue_next.primary_icon_tooltip_text = _("Play one video");
+        autoqueue_next.secondary_icon_tooltip_text = _("Automatically play next videos");
+        autoqueue_next.valign = Gtk.Align.CENTER;
+        settings.bind ("autoqueue-next", autoqueue_next, "active", SettingsBindFlags.DEFAULT);
+
+        header_bar = new Hdy.HeaderBar () {
+            show_close_button = true
+        };
+        header_bar.pack_start (navigation_button);
+        header_bar.pack_end (search_entry);
+        header_bar.pack_end (autoqueue_next);
+        header_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
         poster = new Gtk.Image () {
             margin = 24,
@@ -60,18 +84,41 @@ public class Audience.EpisodesPage : Gtk.Grid {
             "edit-find-symbolic"
         );
         alert_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
+        alert_view.show_all ();
         alert_view.no_show_all = true;
+        alert_view.hide ();
 
-        expand = true;
-        attach (poster, 0, 1);
-        attach (scrolled_window, 1, 1);
-        attach (alert_view, 1, 1);
+        var grid = new Gtk.Grid () {
+            hexpand = true,
+            vexpand = true
+        };
+        grid.attach (poster, 0, 1);
+        grid.attach (scrolled_window, 1, 1);
+        grid.attach (alert_view, 1, 1);
+
+        orientation = VERTICAL;
+        add (header_bar);
+        add (grid);
+
+        navigation_button.clicked.connect (() => {
+            ((Hdy.Deck)get_ancestor (typeof (Hdy.Deck))).navigate (Hdy.NavigationDirection.BACK);
+        });
 
         view_episodes.child_activated.connect (play_video);
 
         var manager = Audience.Services.LibraryManager.get_instance ();
         manager.video_file_deleted.connect (remove_item_from_path);
         manager.video_file_detected.connect (add_item);
+
+        search_entry.search_changed.connect (filter);
+
+        search_entry.key_press_event.connect ((event) => {
+            if (event.keyval == Gdk.Key.Escape) {
+                search_entry.text = "";
+            }
+
+            return Gdk.EVENT_PROPAGATE;
+        });
     }
 
     public void set_episodes_items (Gee.ArrayList<Audience.Objects.Video> episodes) {
@@ -97,6 +144,9 @@ public class Audience.EpisodesPage : Gtk.Grid {
         poster_source = episodes.first ();
         update_poster (poster_source);
         poster_source.poster_changed.connect (update_poster);
+
+        search_entry.text = "";
+        header_bar.title = episodes.first ().container;
     }
 
     private void update_poster (Objects.Video episode) {
@@ -117,7 +167,7 @@ public class Audience.EpisodesPage : Gtk.Grid {
             var window = App.get_instance ().mainwindow;
             window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
 
-            if (window.autoqueue_next_active ()) {
+            if (settings.get_boolean ("autoqueue-next")) {
                 // Add next from the current view to the queue
                 int played_index = shown_episodes.index_of (video);
                 foreach (Audience.Objects.Video episode in shown_episodes.slice (played_index, shown_episodes.size)) {
@@ -127,13 +177,10 @@ public class Audience.EpisodesPage : Gtk.Grid {
         }
     }
 
-    public void filter (string text) {
-         query = text.strip ();
+    private void filter () {
          view_episodes.invalidate_filter ();
          if (!has_child ()) {
-            alert_view.no_show_all = false;
-            alert_view.show_all ();
-            alert_view.title = _("No Results for “%s”").printf (text);
+            alert_view.title = _("No Results for “%s”").printf (search_entry.text);
             alert_view.show ();
          } else {
             alert_view.hide ();
@@ -141,11 +188,11 @@ public class Audience.EpisodesPage : Gtk.Grid {
     }
 
     private bool episodes_filter_func (Gtk.FlowBoxChild child) {
-        if (query.length == 0) {
+        if (search_entry.text.length == 0) {
             return true;
         }
 
-        string[] filter_elements = query.split (" ");
+        string[] filter_elements = search_entry.text.split (" ");
         var video_title = ((LibraryItem)(child)).get_title ();
 
         foreach (string filter_element in filter_elements) {
