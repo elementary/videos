@@ -64,7 +64,8 @@ namespace Audience {
 
             unfullscreen_revealer = new Gtk.Revealer () {
                 transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN,
-                valign = START
+                valign = START,
+                halign = END
             };
             unfullscreen_revealer.add (unfullscreen_button);
             unfullscreen_revealer.show_all ();
