@@ -16,6 +16,7 @@ public class Audience.PlaybackManager : Object {
     public signal void queue_file (File file);
     public signal void save_playlist ();
     public signal void uri_changed (string uri);
+    public signal void ready ();
 
     public Gtk.Widget gst_video_widget { get; construct; }
     public string? subtitle_uri { get; private set; }
@@ -24,6 +25,8 @@ public class Audience.PlaybackManager : Object {
     public int64 position { get; private set; default = 0; }
 
     private dynamic Gst.Element playbin;
+    private bool is_seeking = false;
+    private int64 queued_seek = -1;
 
     private uint inhibit_token = 0;
 
@@ -65,6 +68,10 @@ public class Audience.PlaybackManager : Object {
         });
 
         Timeout.add (500, () => {
+            if (is_seeking) {
+                return Source.CONTINUE;
+            }
+
             int64 _position;
             if (playbin.query_position (Gst.Format.TIME, out _position)) {
                 position = _position;
@@ -75,10 +82,9 @@ public class Audience.PlaybackManager : Object {
     }
 
     ~PlaybackManager () {
-        // FIXME:should find better way to decide if its end of playlist
         if (duration == position) {
             settings.set_int64 ("last-stopped", 0);
-        } else if ((string)playbin.uri != "") {
+        } else if ((string)playbin.current_uri != "") {
             /* The progress is only valid if the uri has not been reset as the current video setting is not
              * updated.  The playbin.uri has been reset when the window is destroyed from the Welcome page */
             settings.set_int64 ("last-stopped", position);
@@ -116,6 +122,7 @@ public class Audience.PlaybackManager : Object {
             	Gst.State pending_state;
 
             	message.parse_state_changed (out old_state, out new_state, out pending_state);
+                warning ("old_state: %s; new_state: %s \n", old_state.to_string (), new_state.to_string ());
 
                 playing = new_state == Gst.State.PLAYING;
 
@@ -128,6 +135,12 @@ public class Audience.PlaybackManager : Object {
                         if (playbin.query_duration (Gst.Format.TIME, out _duration)) {
                             duration = _duration;
                         }
+                    }
+                }
+
+                if (old_state == Gst.State.READY && new_state == Gst.State.PAUSED) {
+                    if (queued_seek >= 0) {
+                        seek (queued_seek);
                     }
                 }
 
@@ -145,6 +158,15 @@ public class Audience.PlaybackManager : Object {
                 } else if (inhibit_token != 0) {
                     default_application.uninhibit (inhibit_token);
                     inhibit_token = 0;
+                }
+                break;
+
+            case ASYNC_DONE:
+                if (is_seeking) {
+                    is_seeking = false;
+                    if (queued_seek >= 0) {
+                        seek (queued_seek);
+                    }
                 }
                 break;
 
@@ -211,7 +233,7 @@ public class Audience.PlaybackManager : Object {
     }
 
     public void stop () {
-        settings.set_double ("last-stopped", 0);
+        settings.set_int64 ("last-stopped", 0);
         settings.set_strv ("last-played-videos", {});
         settings.set_string ("current-video", "");
 
@@ -233,20 +255,29 @@ public class Audience.PlaybackManager : Object {
         }
     }
 
+    private Gst.State get_state () {
+        Gst.State state, pending;
+        playbin.get_state (out state, out pending, 0);
+        return state;
+    }
+
     public bool seek (int64 position) {
-        if (position > duration || position < 0) {
-            print (duration.to_string ());
-            warning ("WRONG POSITIOn");
-            return false;
+        if (is_seeking || (get_state () != Gst.State.PAUSED && get_state () != Gst.State.PLAYING)) {
+            queued_seek = position;
+            return true;
         }
 
         if (!playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, position)) {
             warning ("FAILED TO SEEk");
-            return false;
         } else {
+            is_seeking = true;
             warning ("FINISHED SEEK");
+            queued_seek = -1;
             return true;
         }
+
+        queued_seek = -1;
+        return false;
     }
 
     private bool is_subtitle (string uri) {
@@ -276,7 +307,15 @@ public class Audience.PlaybackManager : Object {
     }
 
     public List<string> get_subtitle_tracks () {
-        return new List<string> ();
+        var list = new List<string> ();
+
+        for (int i = 0; i < (int)playbin.n_text; i++) {
+            Gst.TagList tag_list;
+            Signal.emit_by_name (playbin, "get-text-tags", i, out tag_list);
+            list.prepend (tag_list.to_string ());
+        }
+
+        return list;
     }
 
     public string get_uri () {
@@ -284,19 +323,19 @@ public class Audience.PlaybackManager : Object {
     }
 
     public int get_audio_track () {
-        return playbin.audio_stream;
+        return playbin.current_audio;
     }
 
     public void set_audio_track (int track) {
-        playbin.audio_stream = track;
+        playbin.current_audio = track;
     }
 
     public int get_subtitle_track () {
-        return playbin.subtitle_track;
+        return playbin.current_text;
     }
 
     public void set_subtitle_track (int track) {
-        playbin.subtitle_track = track;
+        playbin.current_text = track;
     }
 
     public void set_subtitle (string uri) {
