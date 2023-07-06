@@ -16,12 +16,11 @@ public class Audience.PlaybackManager : Object {
     public signal void queue_file (File file);
     public signal void save_playlist ();
     public signal void uri_changed (string uri);
-    public signal void ready ();
 
     public Gtk.Widget gst_video_widget { get; construct; }
     public string? subtitle_uri { get; private set; }
     public bool playing { get; private set; }
-    public int64 duration { get; private set; default = -1; }
+    public int64 duration { get; private set; default = 0; }
     public int64 position { get; private set; default = 0; }
 
     private dynamic Gst.Element playbin;
@@ -55,7 +54,7 @@ public class Audience.PlaybackManager : Object {
             }
         });
 
-        playbin.notify["uri"].connect (() => {
+        playbin.notify["current-uri"].connect (() => {
             uri_changed (playbin.uri);
         });
 
@@ -63,8 +62,17 @@ public class Audience.PlaybackManager : Object {
 
         default_application.action_state_changed.connect ((name, new_state) => {
             if (name == Audience.App.ACTION_PLAY_PAUSE) {
-                playbin.set_state (new_state.get_boolean () ? Gst.State.PLAYING : Gst.State.PAUSED);
+                var should_play = new_state.get_boolean ();
+
+                if (playing != should_play) {
+                    playbin.set_state (should_play ? Gst.State.PLAYING : Gst.State.PAUSED);
+                }
             }
+        });
+
+        notify["playing"].connect (() => {
+            var play_pause_action = default_application.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+            ((SimpleAction) play_pause_action).set_state (playing);
         });
 
         Timeout.add (500, () => {
@@ -124,23 +132,15 @@ public class Audience.PlaybackManager : Object {
             	Gst.State pending_state;
 
             	message.parse_state_changed (out old_state, out new_state, out pending_state);
-                // warning ("old_state: %s; new_state: %s \n", old_state.to_string (), new_state.to_string ());
 
                 playing = new_state == Gst.State.PLAYING;
 
-                var play_pause_action = default_application.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-                // ((SimpleAction) play_pause_action).set_state (playing);
-
-                if (new_state == Gst.State.READY) {
-                    if (duration == -1) {
-                        int64 _duration;
-                        if (playbin.query_duration (Gst.Format.TIME, out _duration)) {
-                            duration = _duration;
-                        }
-                    }
-                }
-
                 if (old_state == Gst.State.READY && new_state == Gst.State.PAUSED) {
+                    int64 _duration;
+                    if (playbin.query_duration (Gst.Format.TIME, out _duration)) {
+                        duration = _duration;
+                    }
+
                     if (queued_seek >= 0) {
                         seek (queued_seek);
                     }
@@ -164,17 +164,12 @@ public class Audience.PlaybackManager : Object {
                 break;
 
             case ASYNC_DONE:
-                warning ("ASYNC DONE");
                 if (is_seeking) {
                     is_seeking = false;
                     if (queued_seek >= 0) {
                         seek (queued_seek);
                     }
                 }
-                break;
-
-            case DURATION_CHANGED:
-                duration = -1;
                 break;
 
             default:
