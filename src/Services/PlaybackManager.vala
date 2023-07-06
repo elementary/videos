@@ -17,95 +17,82 @@ public class Audience.PlaybackManager : Object {
     public signal void save_playlist ();
     public signal void uri_changed (string uri);
 
-    public ClutterGst.Playback playback { get; private set; }
+    public Gtk.Widget gst_video_widget { get; construct; }
     public string? subtitle_uri { get; private set; }
+    public bool playing { get; private set; }
+    public int64 duration { get; private set; default = 0; }
+    public int64 position { get; private set; default = 0; }
 
-    private unowned Gst.Pipeline pipeline {
-        get {
-            return (Gst.Pipeline) playback.get_pipeline ();
-        }
-    }
+    private dynamic Gst.Element playbin;
+    private bool is_seeking = false;
+    private int64 queued_seek = -1;
 
     private uint inhibit_token = 0;
-    private ulong ready_handler_id = 0;
 
     private static GLib.Once<PlaybackManager> instance;
     public static unowned PlaybackManager get_default () {
         return instance.once (() => { return new PlaybackManager (); });
     }
 
-    private PlaybackManager () {}
-
     construct {
-        unowned var default_application = (Gtk.Application) Application.get_default ();
+        var gtksink = Gst.ElementFactory.make ("gtksink", "sink");
+        Gtk.Widget _gst_video_widget;
+        gtksink.get ("widget", out _gst_video_widget);
+        gst_video_widget = _gst_video_widget;
 
-        playback = new ClutterGst.Playback ();
-        playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
+        playbin = Gst.ElementFactory.make ("playbin", "bin");
+        playbin.video_sink = gtksink;
+
+        var bus = playbin.get_bus ();
+        bus.add_signal_watch ();
+        bus.message.connect (handle_bus_message);
+
+        playbin.notify["suburi"].connect (() => {
+            if (subtitle_uri != (string)playbin.suburi) {
+                subtitle_uri = playbin.suburi;
+            }
+        });
+
+        playbin.notify["uri"].connect (() => {
+            uri_changed (playbin.uri);
+        });
+
+        unowned var default_application = (Gtk.Application) Application.get_default ();
 
         default_application.action_state_changed.connect ((name, new_state) => {
             if (name == Audience.App.ACTION_PLAY_PAUSE) {
-                playback.playing = new_state.get_boolean ();
+                var should_play = new_state.get_boolean ();
+
+                if (playing != should_play) {
+                    playbin.set_state (should_play ? Gst.State.PLAYING : Gst.State.PAUSED);
+                }
             }
         });
 
-        playback.notify["playing"].connect (() => {
+        notify["playing"].connect (() => {
             var play_pause_action = default_application.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-            ((SimpleAction) play_pause_action).set_state (playback.playing);
+            ((SimpleAction) play_pause_action).set_state (playing);
+        });
 
-            if (playback.playing) {
-                if (inhibit_token != 0) {
-                    default_application.uninhibit (inhibit_token);
-                }
-
-                inhibit_token = default_application.inhibit (
-                    default_application.active_window,
-                    Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND,
-                    _("A video is playing")
-                );
-            } else if (inhibit_token != 0) {
-                default_application.uninhibit (inhibit_token);
-                inhibit_token = 0;
+        Timeout.add (500, () => {
+            int64 _position;
+            if (playbin.query_position (Gst.Format.TIME, out _position)) {
+                position = _position;
+            } else {
+                position = 0;
             }
-        });
 
-        playback.eos.connect (() => {
-            Idle.add (() => {
-                playback.progress = 0;
-                if (!next ()) {
-                    var repeat_action = default_application.lookup_action (Audience.App.ACTION_REPEAT);
-                    if (repeat_action.get_state ().get_boolean ()) {
-                        var file = get_first_item ();
-                        ((Audience.Window) default_application.active_window).open_files ({ file });
-                    } else {
-                        pipeline.set_state (Gst.State.NULL);
-                        settings.set_double ("last-stopped", 0);
-                        ended ();
-                    }
-                }
-                return false;
-            });
-        });
-
-        /* playback.subtitle_uri does not seem to notify so connect directly to the pipeline */
-        pipeline.notify["suburi"].connect (() => {
-            if (subtitle_uri != playback.subtitle_uri) {
-                subtitle_uri = playback.subtitle_uri;
-            }
-        });
-
-        playback.notify ["uri"].connect (() => {
-            uri_changed (playback.uri);
+            return Source.CONTINUE;
         });
     }
 
     ~PlaybackManager () {
-        // FIXME:should find better way to decide if its end of playlist
-        if (playback.progress > 0.99) {
-            settings.set_double ("last-stopped", 0);
-        } else if (playback.uri != "") {
+        if (duration == position) {
+            settings.set_int64 ("last-stopped", 0);
+        } else if ((string)playbin.current_uri != "") {
             /* The progress is only valid if the uri has not been reset as the current video setting is not
-             * updated.  The playback.uri has been reset when the window is destroyed from the Welcome page */
-            settings.set_double ("last-stopped", playback.progress);
+             * updated.  The playbin.uri has been reset when the window is destroyed from the Welcome page */
+            settings.set_int64 ("last-stopped", position);
         }
 
         save_playlist ();
@@ -116,9 +103,79 @@ public class Audience.PlaybackManager : Object {
         }
     }
 
+    private void handle_bus_message (Gst.Message message) {
+        unowned var default_application = (Gtk.Application) Application.get_default ();
+
+        switch (message.type) {
+            case EOS:
+                if (!next ()) {
+                    var repeat_action = default_application.lookup_action (Audience.App.ACTION_REPEAT);
+                    if (repeat_action.get_state ().get_boolean ()) {
+                        var file = get_first_item ();
+                        ((Audience.Window) default_application.active_window).open_files ({ file });
+                    } else {
+                        playbin.set_state (Gst.State.NULL);
+                        settings.set_int64 ("last-stopped", 0);
+                        ended ();
+                    }
+                }
+                break;
+
+            case STATE_CHANGED:
+                Gst.State old_state;
+                Gst.State new_state;
+                Gst.State pending_state;
+
+                message.parse_state_changed (out old_state, out new_state, out pending_state);
+
+                playing = new_state == Gst.State.PLAYING;
+
+                if (old_state == Gst.State.READY && new_state == Gst.State.PAUSED) {
+                    int64 _duration;
+                    if (playbin.query_duration (Gst.Format.TIME, out _duration)) {
+                        duration = _duration;
+                    }
+
+                    if (queued_seek >= 0) {
+                        seek (queued_seek);
+                    }
+                }
+
+                if (playing) {
+                    if (inhibit_token != 0) {
+                        default_application.uninhibit (inhibit_token);
+                    }
+
+                    inhibit_token = default_application.inhibit (
+                        default_application.active_window,
+                        Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND,
+                        _("A video is playing")
+                    );
+                } else if (inhibit_token != 0) {
+                    default_application.uninhibit (inhibit_token);
+                    inhibit_token = 0;
+                }
+                break;
+
+            case ASYNC_DONE:
+                if (is_seeking) {
+                    is_seeking = false;
+                    if (queued_seek >= 0) {
+                        seek (queued_seek);
+                    }
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
     public void play_file (string uri, bool from_beginning = true) {
         debug ("Opening %s", uri);
-        pipeline.set_state (Gst.State.NULL);
+
+        playbin.set_state (Gst.State.NULL);
+
         var file = File.new_for_uri (uri);
         try {
             var info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
@@ -144,15 +201,15 @@ public class Audience.PlaybackManager : Object {
             debug (e.message);
         }
 
-        playback.uri = uri;
+        playbin.uri = uri;
 
         ((Gtk.Application) Application.get_default ()).active_window.title = get_title (uri);
 
         /* Set progress before subtitle uri else it gets reset to zero */
         if (from_beginning) {
-            pipeline.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, 0);
+            seek (0);
         } else {
-            set_progress (settings.get_double ("last-stopped"));
+            seek (settings.get_int64 ("last-stopped"));
         }
 
         if (!from_beginning) { //We are resuming the current video - fetch the current subtitles
@@ -162,23 +219,23 @@ public class Audience.PlaybackManager : Object {
             set_subtitle (get_subtitle_for_uri (uri));
         }
 
-        pipeline.set_state (Gst.State.PLAYING);
+        playbin.set_state (Gst.State.PLAYING);
         Gtk.RecentManager.get_default ().add_item (uri);
 
         settings.set_string ("current-video", uri);
     }
 
     public void stop () {
-        settings.set_double ("last-stopped", 0);
+        settings.set_int64 ("last-stopped", 0);
         settings.set_strv ("last-played-videos", {});
         settings.set_string ("current-video", "");
 
         /* We do not want to emit an "ended" signal if already ended - it can cause premature
          * ending of next video and other side-effects
          */
-        if (playback.playing) {
-            pipeline.set_state (Gst.State.NULL);
-            playback.progress = 1.0;
+        if (playing) {
+            playbin.set_state (Gst.State.NULL);
+            seek (duration);
             ended ();
         }
     }
@@ -189,6 +246,24 @@ public class Audience.PlaybackManager : Object {
         } else {
             queue_file (file);
         }
+    }
+
+    public void seek (int64 position) {
+        Gst.State state, pending;
+        playbin.get_state (out state, out pending, 0);
+
+        if (is_seeking || (state != Gst.State.PAUSED && state != Gst.State.PLAYING)) {
+            queued_seek = position;
+            return;
+        }
+
+        if (playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, position)) {
+            is_seeking = true;
+        } else {
+            warning ("Failed to seek.");
+        }
+
+        queued_seek = -1;
     }
 
     private bool is_subtitle (string uri) {
@@ -205,73 +280,87 @@ public class Audience.PlaybackManager : Object {
         return false;
     }
 
-    public unowned List<string> get_audio_tracks () {
-        return playback.get_audio_streams ();
+    public List<string> get_audio_tracks () {
+        var list = new List<string> ();
+
+        for (int i = 0; i < (int)playbin.n_audio; i++) {
+            Gst.TagList tag_list;
+            Signal.emit_by_name (playbin, "get-audio-tags", i, out tag_list);
+
+            string lang_code;
+            tag_list.get_string ("language-code", out lang_code);
+
+            list.append (lang_code);
+        }
+
+        return list;
     }
 
-    public unowned List<string> get_subtitle_tracks () {
-        return playback.get_subtitle_tracks ();
+    public List<string> get_subtitle_tracks () {
+        var list = new List<string> ();
+
+        for (int i = 0; i < (int)playbin.n_text; i++) {
+            Gst.TagList tag_list;
+            Signal.emit_by_name (playbin, "get-text-tags", i, out tag_list);
+
+            string lang_code;
+            tag_list.get_string ("language-code", out lang_code);
+
+            list.append (lang_code);
+        }
+
+        return list;
     }
 
     public string get_uri () {
-        return playback.uri;
-    }
-
-    public bool get_playing () {
-         var state = Gst.State.NULL;
-         var pending = Gst.State.NULL;
-         pipeline.get_state (out state, out pending, 300);
-
-         return state == Gst.State.PLAYING;
-    }
-
-    public double get_duration () {
-        return playback.duration;
+        return playbin.current_uri;
     }
 
     public int get_audio_track () {
-        return playback.audio_stream;
+        return playbin.current_audio;
     }
 
     public void set_audio_track (int track) {
-        playback.audio_stream = track;
-    }
-
-    public double get_progress () {
-        return playback.progress;
-    }
-
-    public void set_progress (double progress) {
-        playback.progress = progress;
+        playbin.current_audio = track;
     }
 
     public int get_subtitle_track () {
-        return playback.subtitle_track;
+        return playbin.current_text;
     }
 
     public void set_subtitle_track (int track) {
-        playback.subtitle_track = track;
+        playbin.current_text = track;
     }
 
     public void set_subtitle (string uri) {
-        var progress = playback.progress;
-        var is_playing = playback.playing;
+        Gst.State state, pending;
+        playbin.get_state (out state, out pending, 0);
+        if (state == Gst.State.PAUSED || state == Gst.State.PLAYING) {
+            var temp_playing = playing;
+            var temp_position = position;
 
-        /* Temporarily connect to the ready signal so that we can restore the progress setting
-         * after resetting the pipeline in order to set the subtitle uri */
-        ready_handler_id = playback.ready.connect (() => {
-            playback.progress = progress;
-            // Pause video if it was in Paused state before adding the subtitle
-            if (!is_playing) {
-                pipeline.set_state (Gst.State.PAUSED);
-            }
+            /* Temporarily connect to the playing change so that we can restore the progress setting
+             * after resetting the playbin in order to set the subtitle uri */
+            ulong ready_handler_id = 0;
+            ready_handler_id = notify["playing"].connect (() => {
+                if (!playing) {
+                    return;
+                }
 
-            playback.disconnect (ready_handler_id);
-        });
+                disconnect (ready_handler_id);
 
-        pipeline.set_state (Gst.State.NULL); // Does not work otherwise
-        playback.set_subtitle_uri (uri);
-        pipeline.set_state (Gst.State.PLAYING);
+                seek (temp_position);
+
+                // Pause video if it was in Paused state before adding the subtitle
+                if (!temp_playing) {
+                    playbin.set_state (Gst.State.PAUSED);
+                }
+            });
+        }
+
+        playbin.set_state (Gst.State.NULL); // Does not work otherwise
+        playbin.suburi = uri;
+        playbin.set_state (Gst.State.PLAYING);
 
         settings.set_string ("current-external-subtitles-uri", uri);
     }
