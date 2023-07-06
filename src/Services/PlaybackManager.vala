@@ -45,7 +45,6 @@ public class Audience.PlaybackManager : Object {
 
         var bus = playbin.get_bus ();
         bus.add_signal_watch ();
-
         bus.message.connect (handle_bus_message);
 
         playbin.notify["suburi"].connect (() => {
@@ -76,10 +75,6 @@ public class Audience.PlaybackManager : Object {
         });
 
         Timeout.add (500, () => {
-            if (is_seeking) {
-                return Source.CONTINUE;
-            }
-
             int64 _position;
             if (playbin.query_position (Gst.Format.TIME, out _position)) {
                 position = _position;
@@ -147,7 +142,6 @@ public class Audience.PlaybackManager : Object {
                 }
 
                 if (playing) {
-                    get_audio_tracks ();
                     if (inhibit_token != 0) {
                         default_application.uninhibit (inhibit_token);
                     }
@@ -181,6 +175,7 @@ public class Audience.PlaybackManager : Object {
         debug ("Opening %s", uri);
 
         playbin.set_state (Gst.State.NULL);
+
         var file = File.new_for_uri (uri);
         try {
             var info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE + "," + GLib.FileAttribute.STANDARD_NAME, 0);
