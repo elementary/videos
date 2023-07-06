@@ -75,6 +75,8 @@ public class Audience.PlaybackManager : Object {
             int64 _position;
             if (playbin.query_position (Gst.Format.TIME, out _position)) {
                 position = _position;
+            } else {
+                position = 0;
             }
 
             return Source.CONTINUE;
@@ -122,7 +124,7 @@ public class Audience.PlaybackManager : Object {
             	Gst.State pending_state;
 
             	message.parse_state_changed (out old_state, out new_state, out pending_state);
-                warning ("old_state: %s; new_state: %s \n", old_state.to_string (), new_state.to_string ());
+                // warning ("old_state: %s; new_state: %s \n", old_state.to_string (), new_state.to_string ());
 
                 playing = new_state == Gst.State.PLAYING;
 
@@ -162,6 +164,7 @@ public class Audience.PlaybackManager : Object {
                 break;
 
             case ASYNC_DONE:
+                warning ("ASYNC DONE");
                 if (is_seeking) {
                     is_seeking = false;
                     if (queued_seek >= 0) {
@@ -261,23 +264,19 @@ public class Audience.PlaybackManager : Object {
         return state;
     }
 
-    public bool seek (int64 position) {
+    public void seek (int64 position) {
         if (is_seeking || (get_state () != Gst.State.PAUSED && get_state () != Gst.State.PLAYING)) {
             queued_seek = position;
-            return true;
+            return;
         }
 
-        if (!playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, position)) {
-            warning ("FAILED TO SEEk");
-        } else {
+        if (playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, position)) {
             is_seeking = true;
-            warning ("FINISHED SEEK");
-            queued_seek = -1;
-            return true;
+        } else {
+            warning ("Failed to seek.");
         }
 
         queued_seek = -1;
-        return false;
     }
 
     private bool is_subtitle (string uri) {
