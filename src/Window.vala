@@ -251,11 +251,13 @@ public class Audience.Window : Hdy.ApplicationWindow {
     }
 
     private void action_search () {
-        // if (search_entry.visible) {
-        //     search_entry.grab_focus ();
-        // } else {
-        //     Gdk.beep ();
-        // }
+        if (deck.visible_child == library_page) {
+            library_page.search ();
+        } else if (deck.visible_child == episodes_page) {
+            episodes_page.search ();
+        } else {
+            Gdk.beep ();
+        }
     }
 
     private void action_undo () {

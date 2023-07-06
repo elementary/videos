@@ -137,6 +137,10 @@ public class Audience.LibraryPage : Gtk.Box {
         });
     }
 
+    public void search () {
+        search_entry.grab_focus ();
+    }
+
     private void play_video (Gtk.FlowBoxChild item) {
         var selected = (item as Audience.LibraryItem);
 

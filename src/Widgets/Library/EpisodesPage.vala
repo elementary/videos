@@ -121,6 +121,10 @@ public class Audience.EpisodesPage : Gtk.Box {
         });
     }
 
+    public void search () {
+        search_entry.grab_focus ();
+    }
+
     public void set_episodes_items (Gee.ArrayList<Audience.Objects.Video> episodes) {
         view_episodes.forall ((item) => {
             item.dispose ();
