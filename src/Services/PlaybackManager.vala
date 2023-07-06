@@ -258,14 +258,11 @@ public class Audience.PlaybackManager : Object {
         }
     }
 
-    private Gst.State get_state () {
+    public void seek (int64 position) {
         Gst.State state, pending;
         playbin.get_state (out state, out pending, 0);
-        return state;
-    }
 
-    public void seek (int64 position) {
-        if (is_seeking || (get_state () != Gst.State.PAUSED && get_state () != Gst.State.PLAYING)) {
+        if (is_seeking || (state != Gst.State.PAUSED && state != Gst.State.PLAYING)) {
             queued_seek = position;
             return;
         }
@@ -299,7 +296,11 @@ public class Audience.PlaybackManager : Object {
         for (int i = 0; i < (int)playbin.n_audio; i++) {
             Gst.TagList tag_list;
             Signal.emit_by_name (playbin, "get-audio-tags", i, out tag_list);
-            list.prepend (tag_list.to_string ());
+
+            string lang_code;
+            tag_list.get_string ("language-code", out lang_code);
+
+            list.append (lang_code);
         }
 
         return list;
@@ -311,7 +312,11 @@ public class Audience.PlaybackManager : Object {
         for (int i = 0; i < (int)playbin.n_text; i++) {
             Gst.TagList tag_list;
             Signal.emit_by_name (playbin, "get-text-tags", i, out tag_list);
-            list.prepend (tag_list.to_string ());
+
+            string lang_code;
+            tag_list.get_string ("language-code", out lang_code);
+
+            list.append (lang_code);
         }
 
         return list;
@@ -338,28 +343,30 @@ public class Audience.PlaybackManager : Object {
     }
 
     public void set_subtitle (string uri) {
-        // var temp_playing = playing;
-        // var temp_position = position;
+        Gst.State state, pending;
+        playbin.get_state (out state, out pending, 0);
+        if (state == Gst.State.PAUSED || state == Gst.State.PLAYING) {
+            var temp_playing = playing;
+            var temp_position = position;
 
-        // /* Temporarily connect to the ready signal so that we can restore the progress setting
-        //  * after resetting the playbin in order to set the subtitle uri */
-        // ulong ready_handler_id = 0;
-        // ready_handler_id = notify["playing"].connect (() => {
-        //     if (!playing) {
-        //         return;
-        //     }
+            /* Temporarily connect to the playing change so that we can restore the progress setting
+             * after resetting the playbin in order to set the subtitle uri */
+            ulong ready_handler_id = 0;
+            ready_handler_id = notify["playing"].connect (() => {
+                if (!playing) {
+                    return;
+                }
 
-        //     disconnect (ready_handler_id);
+                disconnect (ready_handler_id);
 
-        //     seek (temp_position);
-        //     print (temp_position.to_string ());
+                seek (temp_position);
 
-        //     // Pause video if it was in Paused state before adding the subtitle
-        //     if (!temp_playing) {
-        //         playbin.set_state (Gst.State.PAUSED);
-        //     }
-        //     print ("ready handler ran");
-        // });
+                // Pause video if it was in Paused state before adding the subtitle
+                if (!temp_playing) {
+                    playbin.set_state (Gst.State.PAUSED);
+                }
+            });
+        }
 
         playbin.set_state (Gst.State.NULL); // Does not work otherwise
         playbin.suburi = uri;
