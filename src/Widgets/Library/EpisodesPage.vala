@@ -42,10 +42,14 @@ public class Audience.EpisodesPage : Gtk.Box {
             valign = CENTER
         };
 
-        var autoqueue_next = new Granite.ModeSwitch.from_icon_name ("media-playlist-repeat-one-symbolic", "media-playlist-consecutive-symbolic");
-        autoqueue_next.primary_icon_tooltip_text = _("Play one video");
-        autoqueue_next.secondary_icon_tooltip_text = _("Automatically play next videos");
-        autoqueue_next.valign = Gtk.Align.CENTER;
+        var autoqueue_next = new Granite.ModeSwitch.from_icon_name (
+            "media-playlist-repeat-one-symbolic",
+            "media-playlist-consecutive-symbolic"
+        ) {
+            primary_icon_tooltip_text = _("Play one video"),
+            secondary_icon_tooltip_text = _("Automatically play next videos"),
+            valign = Gtk.Align.CENTER
+        };
         settings.bind ("autoqueue-next", autoqueue_next, "active", SettingsBindFlags.DEFAULT);
 
         header_bar = new Hdy.HeaderBar () {
@@ -57,7 +61,9 @@ public class Audience.EpisodesPage : Gtk.Box {
         header_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
         poster = new Gtk.Image () {
-            margin = 24,
+            margin_top = 24,
+            margin_bottom = 24,
+            margin_start = 24,
             margin_end = 0,
             valign = Gtk.Align.START
         };
@@ -65,7 +71,10 @@ public class Audience.EpisodesPage : Gtk.Box {
 
         view_episodes = new Gtk.FlowBox () {
             homogeneous = true,
-            margin = 24,
+            margin_top = 24,
+            margin_bottom = 24,
+            margin_start = 24,
+            margin_end = 24,
             max_children_per_line = 1,
             selection_mode = Gtk.SelectionMode.NONE,
             valign = Gtk.Align.START
@@ -74,9 +83,10 @@ public class Audience.EpisodesPage : Gtk.Box {
         view_episodes.set_filter_func (episodes_filter_func);
 
         var scrolled_window = new Gtk.ScrolledWindow (null, null) {
-            expand = true
+            hexpand = true,
+            vexpand = true,
+            child = view_episodes
         };
-        scrolled_window.add (view_episodes);
 
         alert_view = new Granite.Widgets.AlertView (
             "",
