@@ -41,8 +41,9 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             tooltip_text = _("Play from Disc")
         };
 
-        var clear_playlist_button = new Gtk.Button.from_icon_name ("edit-delete-symbolic", Gtk.IconSize.BUTTON);
-        clear_playlist_button.tooltip_text = _("Clear Playlist");
+        var clear_playlist_button = new Gtk.Button.from_icon_name ("edit-delete-symbolic", Gtk.IconSize.BUTTON) {
+            tooltip_text = _("Clear Playlist")
+        };
 
         var rep = new Gtk.ToggleButton () {
             action_name = App.ACTION_PREFIX + App.ACTION_REPEAT,
@@ -52,7 +53,8 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
 
         playlist = new Gtk.ListBox () {
             can_focus = true,
-            expand = true,
+            hexpand = true,
+            vexpand = true,
             selection_mode = Gtk.SelectionMode.BROWSE
         };
 
@@ -66,7 +68,10 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         var grid = new Gtk.Grid () {
             column_spacing = 12,
             row_spacing = 6,
-            margin = 6
+            margin_top = 6,
+            margin_bottom = 6,
+            margin_start = 6,
+            margin_end = 6,
         };
         grid.attach (playlist_scrolled, 0, 0, 7);
         grid.attach (fil, 0, 1);
