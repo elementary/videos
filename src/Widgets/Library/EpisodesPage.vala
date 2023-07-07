@@ -21,15 +21,16 @@
 public class Audience.EpisodesPage : Gtk.Box {
     public Gtk.Image poster { get; private set; }
 
+    private ListStore items;
     private Gtk.SearchEntry search_entry;
     private Hdy.HeaderBar header_bar;
     private Gtk.FlowBox view_episodes;
     private Granite.Widgets.AlertView alert_view;
-    private Gee.ArrayList<Audience.Objects.Video> shown_episodes;
 
     private Objects.Video poster_source;
 
     construct {
+        items = new ListStore (typeof (LibraryItem));
         poster_source = null;
 
         var navigation_button = new Gtk.Button.with_label (_("Library")) {
@@ -79,8 +80,12 @@ public class Audience.EpisodesPage : Gtk.Box {
             selection_mode = Gtk.SelectionMode.NONE,
             valign = Gtk.Align.START
         };
-        view_episodes.set_sort_func (episode_sort_func);
         view_episodes.set_filter_func (episodes_filter_func);
+        view_episodes.bind_model (items, (item) => {
+            var library_item = (LibraryItem)item;
+            library_item.show_all ();
+            return library_item;
+        });
 
         var scrolled_window = new Gtk.ScrolledWindow (null, null) {
             hexpand = true,
@@ -136,22 +141,12 @@ public class Audience.EpisodesPage : Gtk.Box {
     }
 
     public void set_episodes_items (Gee.ArrayList<Audience.Objects.Video> episodes) {
-        view_episodes.forall ((item) => {
-            item.dispose ();
-        });
-        shown_episodes = new Gee.ArrayList<Audience.Objects.Video> ();
+        items.remove_all ();
+
         foreach (Audience.Objects.Video episode in episodes) {
-            view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
-            shown_episodes.add (episode);
+            items.insert_sorted (new Audience.LibraryItem (episode, LibraryItemStyle.ROW), episode_sort_func);
         }
-        shown_episodes.sort ((a, b) => {
-            var item1 = (Audience.Objects.Video)a;
-            var item2 = (Audience.Objects.Video)b;
-            if (item1 != null && item2 != null) {
-                return item1.file.collate (item2.file);
-            }
-            return 0;
-        });
+
         if (poster_source != null) {
             poster_source.poster_changed.disconnect (update_poster);
         }
@@ -183,9 +178,11 @@ public class Audience.EpisodesPage : Gtk.Box {
 
             if (settings.get_boolean ("autoqueue-next")) {
                 // Add next from the current view to the queue
-                int played_index = shown_episodes.index_of (video);
-                foreach (Audience.Objects.Video episode in shown_episodes.slice (played_index, shown_episodes.size)) {
-                    playback_manager.append_to_playlist (episode.video_file);
+                uint played_index;
+                items.find (selected, out played_index);
+                for (played_index++; played_index < items.get_n_items (); played_index++) {
+                    var library_item = (LibraryItem)items.get_item (played_index);
+                    playback_manager.append_to_playlist (library_item.video.video_file);
                 }
             }
         }
@@ -217,44 +214,43 @@ public class Audience.EpisodesPage : Gtk.Box {
         return true;
     }
 
-    private int episode_sort_func (Gtk.FlowBoxChild child1, Gtk.FlowBoxChild child2) {
-        var item1 = (LibraryItem)child1;
-        var item2 = (LibraryItem)child2;
-        if (item1 != null && item2 != null) {
-            return item1.episodes.first ().file.collate (item2.episodes.first ().file);
+    private int episode_sort_func (Object item1, Object item2) {
+        var library_item1 = (LibraryItem)item1;
+        var library_item2 = (LibraryItem)item2;
+        if (library_item1 != null && library_item2 != null) {
+            return library_item1.episodes.first ().file.collate (library_item2.episodes.first ().file);
         }
         return 0;
     }
 
     private void add_item (Audience.Objects.Video episode) {
-        if (view_episodes.get_children ().length () > 0 ) {
-            var first = (view_episodes.get_children ().first ().data as Audience.LibraryItem);
+        if (items.get_n_items () > 0 ) {
+            var first = (LibraryItem)items.get_item (0);
             if (first != null && first.episodes.first ().video_file.get_parent ().get_path () == episode.video_file.get_parent ().get_path ()) {
-                view_episodes.add (new Audience.LibraryItem (episode, LibraryItemStyle.ROW));
+                items.insert_sorted (new Audience.LibraryItem (episode, LibraryItemStyle.ROW), episode_sort_func);
             }
         }
     }
 
     private async void remove_item_from_path (string path ) {
-        foreach (var child in view_episodes.get_children ()) {
-            if (((LibraryItem)(child)).episodes.size == 0 ||
-                ((LibraryItem)(child)).episodes.first ().video_file.get_path ().has_prefix (path)) {
-                child.dispose ();
+        for (int i = 0; i < items.get_n_items (); i++) {
+            var item = (LibraryItem)items.get_item (i);
+            if (item.episodes.size == 0 || item.episodes.first ().video_file.get_path ().has_prefix (path)) {
+                item.dispose ();
             }
         }
 
         var deck = (Hdy.Deck) get_ancestor (typeof (Hdy.Deck));
-        if (deck.visible_child == this && view_episodes.get_children ().length () == 0) {
+        if (deck.visible_child == this && items.get_n_items () == 0) {
             deck.navigate (Hdy.NavigationDirection.BACK);
         }
     }
 
     private bool has_child () {
-        if (view_episodes.get_children ().length () > 0) {
-           foreach (unowned Gtk.Widget child in view_episodes.get_children ()) {
-               if (child.get_child_visible ()) {
-                   return true;
-               }
+        for (int i = 0; i < items.get_n_items (); i++) {
+            var item = (LibraryItem)items.get_item (i);
+            if (item.get_child_visible ()) {
+                return true;
             }
         }
         return false;
