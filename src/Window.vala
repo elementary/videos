@@ -138,9 +138,8 @@ public class Audience.Window : Hdy.ApplicationWindow {
             if (!is_sandboxed ()) {
                 app_notification.set_default_action (_("Restore"));
 
-                app_notification.default_action.connect (() => {
-                    action_undo ();
-                });
+                app_notification.default_action.disconnect (action_undo);
+                app_notification.default_action.connect (action_undo);
             }
 
             app_notification.send_notification ();
