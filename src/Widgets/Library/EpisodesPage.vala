@@ -236,7 +236,7 @@ public class Audience.EpisodesPage : Gtk.Box {
         for (int i = 0; i < items.get_n_items (); i++) {
             var item = (LibraryItem)items.get_item (i);
             if (item.episodes.size == 0 || item.episodes.first ().video_file.get_path ().has_prefix (path)) {
-                item.dispose ();
+                items.remove (i);
             }
         }
 
