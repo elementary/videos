@@ -76,6 +76,7 @@ public class Audience.LibraryPage : Gtk.Box {
             selection_mode = Gtk.SelectionMode.NONE,
             valign = Gtk.Align.START
         };
+        view_movies.set_filter_func (video_filter_func);
         view_movies.bind_model (items, (item) => {
             var library_item = (LibraryItem)item;
             library_item.show_all ();
@@ -119,9 +120,6 @@ public class Audience.LibraryPage : Gtk.Box {
                 search_entry.text = "";
             }
         });
-
-        view_movies.set_sort_func (video_sort_func);
-        view_movies.set_filter_func (video_filter_func);
 
         navigation_button.clicked.connect (() => {
             ((Hdy.Deck)get_ancestor (typeof (Hdy.Deck))).navigate (Hdy.NavigationDirection.BACK);
@@ -174,7 +172,7 @@ public class Audience.LibraryPage : Gtk.Box {
         }
 
         var new_container = new Audience.LibraryItem (video, LibraryItemStyle.THUMBNAIL);
-        items.append (new_container);
+        items.insert_sorted (new_container, video_sort_func);
 
         if (posters_initialized) {
             video.initialize_poster.begin ();
@@ -232,13 +230,13 @@ public class Audience.LibraryPage : Gtk.Box {
         return true;
     }
 
-    private int video_sort_func (Gtk.FlowBoxChild child1, Gtk.FlowBoxChild child2) {
-        var item1 = (LibraryItem)child1;
-        var item2 = (LibraryItem)child2;
-        if (item1 != null && item2 != null) {
-            return item1.get_title ().collate (item2.get_title ());
-
+    private int video_sort_func (Object item1, Object item2) {
+        var library_item1 = (LibraryItem)item1;
+        var library_item2 = (LibraryItem)item2;
+        if (library_item1 != null && library_item2 != null) {
+            return library_item1.get_title ().collate (library_item2.get_title ());
         }
+
         return 0;
     }
 
