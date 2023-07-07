@@ -196,8 +196,8 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         current = 0;
         foreach (var item in items) {
             playlist.remove (item);
-            items.remove (item);
         }
+        items.clear ();
 
         if (should_stop) {
             PlaybackManager.get_default ().stop ();
