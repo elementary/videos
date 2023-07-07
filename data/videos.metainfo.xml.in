@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2015-2023 elementary, Inc <contact@elementary.io> -->
+<component type="desktop-application">
+  <id>io.elementary.videos</id>
+  <launchable type="desktop-id">io.elementary.videos.desktop</launchable>
+  <translation type="gettext">io.elementary.videos</translation>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+
+  <name>Videos</name>
+  <summary>Watch videos and movies</summary>
+  <description>
+    <p>A modern video player that focuses on displaying video content instead of player controls. It remembers your last played video and playback position so you can pick up from where you left off.</p>
+    <p>Additional features include:</p>
+    <ul>
+      <li>Subtitle support</li>
+      <li>Play queue</li>
+      <li>Thumbnail previews on the seek bar</li>
+    </ul>
+  </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/elementary/videos/2.9.1/data/screenshot.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/elementary/videos/2.9.1/data/screenshot-library.png</image>
+    </screenshot>
+  </screenshots>
+
+  <branding>
+    <color type="primary">#2b63a0</color>
+  </branding>
+  <custom>
+    <value key="x-appcenter-color-primary">#2b63a0</value>
+  </custom>
+
+  <content_rating type="oars-1.1" />
+
+  <provides>
+    <binary>io.elementary.videos</binary>
+  </provides>
+
+  <url type="bugtracker">https://github.com/elementary/videos/issues</url>
+  <url type="donation">https://elementary.io/get-involved#funding</url>
+  <url type="help">https://github.com/elementary/videos/discussions</url>
+  <url type="homepage">https://elementary.io/</url>
+  <url type="translate">https://l10n.elementary.io/projects/videos</url>
+
+  <developer_name>elementary, Inc.</developer_name>
+  <project_group>elementary</project_group>
+  <update_contact>contact_at_elementary.io</update_contact>
+
+  <releases>
+    <release version="2.9.1" date="2023-05-31" urgency="medium">
+      <description>
+        <p>Other updates:</p>
+        <ul>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
+
+    <release version="2.9.0" date="2022-12-06" urgency="medium">
+      <description>
+        <p>New features:</p>
+        <ul>
+          <li>Control playback from the sound indicator</li>
+        </ul>
+        <p>Other updates:</p>
+        <ul>
+          <li>Make playback duration more accurate</li>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
+
+    <release version="2.8.4" date="2022-06-03" urgency="medium">
+      <description>
+        <p>Other updates:</p>
+        <ul>
+          <li>Update to Flatpak Platform 7</li>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
+
+    <release version="2.8.3" date="2022-01-10" urgency="medium">
+      <description>
+        <p>Fixes:</p>
+        <ul>
+          <li>Fix a crash with certain video codecs</li>
+        </ul>
+        <p>Other updates:</p>
+        <ul>
+          <li>Update to 6.1 Flatpak runtime</li>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
+
+    <release version="2.8.2" date="2021-12-17" urgency="medium">
+      <description>
+        <p>Other updates:</p>
+        <ul>
+          <li>Added support for the org.freedesktop.Platfrom.ffmpeg-full extension</li>
+        </ul>
+      </description>
+    </release>
+
+    <release version="2.8.1" date="2021-12-17" urgency="medium">
+      <description>
+        <p>Other updates:</p>
+        <ul>
+          <li>Fix an issue with removing videos from library</li>
+        </ul>
+      </description>
+    </release>
+
+    <release version="2.8.0" date="2021-10-28" urgency="medium" />
+    <release version="2.7.3" date="2021-07-14" urgency="medium" />
+    <release version="2.7.2" date="2020-06-30" urgency="medium" />
+    <release version="2.7.1" date="2020-04-14" urgency="medium" />
+    <release version="2.7.0" date="2019-11-25" urgency="medium" />
+    <release version="2.6.3" date="2019-01-08" urgency="medium" />
+    <release version="2.6.2" date="2018-10-01" urgency="medium" />
+    <release version="2.6.1" date="2018-07-31" urgency="medium" />
+    <release version="0.2.6" date="2018-06-20" urgency="medium" />
+    <release version="0.2.5" date="2018-01-08" urgency="medium" />
+    <release version="0.2.4" date="2017-08-11" urgency="medium" />
+    <release version="0.2.3" date="2017-08-02" urgency="medium" />
+    <release version="0.2.2" date="2017-04-13" urgency="medium" />
+    <release version="0.2.1" date="2016-10-31" urgency="medium" />
+    <release version="0.2.0" date="2016-05-05" urgency="medium" />
+  </releases>
+</component>

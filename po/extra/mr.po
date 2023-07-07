@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-09 20:38+0000\n"
-"PO-Revision-Date: 2021-09-15 15:47+0000\n"
+"POT-Creation-Date: 2023-07-07 15:35+0000\n"
+"PO-Revision-Date: 2023-03-21 18:59+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/videos/extra/mr/"
 ">\n"
@@ -16,19 +16,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.16.4\n"
 
-#: data/io.elementary.videos.appdata.xml.in:9
-#: data/io.elementary.videos.desktop.in:4
+#: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
 msgid "Videos"
 msgstr "व्हिडीओ"
 
-#: data/io.elementary.videos.appdata.xml.in:10
-#: data/io.elementary.videos.desktop.in:6
+#: data/videos.metainfo.xml.in:11 data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
 msgstr "व्हिडिओ आणि चित्रपट पहा"
 
-#: data/io.elementary.videos.appdata.xml.in:12
+#: data/videos.metainfo.xml.in:13
 msgid ""
 "A modern video player that focuses on displaying video content instead of "
 "player controls. It remembers your last played video and playback position "
@@ -38,187 +36,180 @@ msgstr ""
 "केंद्रित करतो. आपल्या शेवटच्या प्ले केलेल्या व्हिडिओ आणि प्लेबॅकची स्थिती लक्षात ठेवते जेणेकरून "
 "आपण जिथे सोडले होते तिथून पुन्हा सुरु करू शकता."
 
-#: data/io.elementary.videos.appdata.xml.in:17
+#: data/videos.metainfo.xml.in:14
 msgid "Additional features include:"
 msgstr "समाविष्ट असलेली अतिरिक्त वैशिष्ट्ये :"
 
-#: data/io.elementary.videos.appdata.xml.in:21
+#: data/videos.metainfo.xml.in:16
 msgid "Subtitle support"
 msgstr "उपशीर्षक समर्थन"
 
-#: data/io.elementary.videos.appdata.xml.in:22
+#: data/videos.metainfo.xml.in:17
 msgid "Play queue"
 msgstr "ओळीने चालवा"
 
-#: data/io.elementary.videos.appdata.xml.in:23
+#: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
 msgstr "शोध बारवर लघुप्रतिमा पूर्वावलोकने"
 
-#: data/io.elementary.videos.appdata.xml.in:69
-#: data/io.elementary.videos.appdata.xml.in:84
-#: data/io.elementary.videos.appdata.xml.in:98
-#: data/io.elementary.videos.appdata.xml.in:117
+#: data/videos.metainfo.xml.in:50
+msgid "elementary, Inc."
+msgstr "एलिमेंटरी, Inc."
+
+#: data/videos.metainfo.xml.in:57 data/videos.metainfo.xml.in:70
+#: data/videos.metainfo.xml.in:80 data/videos.metainfo.xml.in:94
+#: data/videos.metainfo.xml.in:104 data/videos.metainfo.xml.in:113
 msgid "Other updates:"
 msgstr "इतर अद्यतने:"
 
-#: data/io.elementary.videos.appdata.xml.in:71
-msgid "Fix an issue with accessing library view"
-msgstr "लायब्ररी व्ह्यूमध्ये प्रवेश करण्याशी संबंधित समस्येचे निराकरण करा"
-
-#: data/io.elementary.videos.appdata.xml.in:72
-msgid ""
-"Fix an issue with returning to the welcome page while playing multiple videos"
-msgstr ""
-"एकाधिक व्हिडिओ प्ले करताना स्वागत पृष्ठावर परत येण्याशी संबंधित समस्येचे निराकरण करा"
-
-#: data/io.elementary.videos.appdata.xml.in:73
-msgid "Prevent sleep while playing a video"
-msgstr "व्हिडिओ प्ले करताना स्लीप मोडमध्ये जाण्यापासून प्रतिबंधित करा"
-
-#: data/io.elementary.videos.appdata.xml.in:74
-#: data/io.elementary.videos.appdata.xml.in:88
-#: data/io.elementary.videos.appdata.xml.in:103
-#: data/io.elementary.videos.appdata.xml.in:122
-#: data/io.elementary.videos.appdata.xml.in:130
-#: data/io.elementary.videos.appdata.xml.in:138
-#: data/io.elementary.videos.appdata.xml.in:145
-#: data/io.elementary.videos.appdata.xml.in:177
-#: data/io.elementary.videos.appdata.xml.in:185
-#: data/io.elementary.videos.appdata.xml.in:192
-#: data/io.elementary.videos.appdata.xml.in:208
+#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:73
+#: data/videos.metainfo.xml.in:83 data/videos.metainfo.xml.in:97
 msgid "Translation updates"
 msgstr "भाषांतर अपडेट्स"
 
-#: data/io.elementary.videos.appdata.xml.in:80
-msgid "Improvements:"
-msgstr "सुधारणा:"
-
-#: data/io.elementary.videos.appdata.xml.in:82
-msgid "Start up faster with large libraries"
-msgstr "मोठ्या लायब्ररीद्वारे जलद प्रारंभ करा"
-
-#: data/io.elementary.videos.appdata.xml.in:86
-msgid "Fix cases where subtitles refused to load"
-msgstr "उपशीर्षके लोड करण्यास नकार दिलेली प्रकरणे निश्चित करा"
-
-#: data/io.elementary.videos.appdata.xml.in:87
-msgid "Handle if library folder is deleted or moved"
-msgstr "लायब्ररी फोल्डर हटविले किंवा हलविले असल्यास हाताळा"
-
-#: data/io.elementary.videos.appdata.xml.in:94
-#: data/io.elementary.videos.appdata.xml.in:109
+#: data/videos.metainfo.xml.in:66
 msgid "New features:"
 msgstr "नवीन वैशिष्ट्ये:"
 
-#: data/io.elementary.videos.appdata.xml.in:96
-msgid "Load external subtitles"
-msgstr "बाह्य उपशीर्षके लोड करा"
+#: data/videos.metainfo.xml.in:68
+msgid "Control playback from the sound indicator"
+msgstr "वनी निर्देशकावरून प्लेबॅक नियंत्रित करा"
 
-#: data/io.elementary.videos.appdata.xml.in:100
-msgid "Reliably update the replay button description and file"
-msgstr "रीप्ले बटणाचे वर्णन आणि फाइल विश्वसनीयरित्या अद्यतनित करा"
+#: data/videos.metainfo.xml.in:72
+msgid "Make playback duration more accurate"
+msgstr "प्लेबॅक कालावधी अधिक अचूक करा"
 
-#: data/io.elementary.videos.appdata.xml.in:101
-msgid "More consistently remember the last playing video and its play position"
-msgstr "शेवटचा प्ले होत असलेला व्हिडिओ आणि त्याच्या प्लेची स्थिती अधिक सातत्याने लक्षात ठेवा"
+#: data/videos.metainfo.xml.in:82
+msgid "Update to Flatpak Platform 7"
+msgstr "Flatpak प्लॅटफॉर्म 7 वर अपडेट करा"
 
-#: data/io.elementary.videos.appdata.xml.in:102
-msgid "Fix missing icon in episode view"
-msgstr "भाग दृश्यात हरवलेल्या चिन्हाशी संबंधित समस्यांचे निराकरण करा"
+#: data/videos.metainfo.xml.in:90
+msgid "Fixes:"
+msgstr "निराकारणे:"
 
-#: data/io.elementary.videos.appdata.xml.in:111
-msgid "Option to automatically play next videos"
-msgstr "पुढील व्हिडिओ स्वयंचलितपणे प्ले करण्याचा पर्याय"
+#: data/videos.metainfo.xml.in:92
+msgid "Fix a crash with certain video codecs"
+msgstr "विशिष्ट व्हिडिओ कोडेक्ससह क्रॅशचे निराकरण करा"
 
-#: data/io.elementary.videos.appdata.xml.in:112
-msgid "Navigate the playlist with the keyboard"
-msgstr "कीबोर्डसह प्लेलिस्ट नॅव्हिगेट करा"
+#: data/videos.metainfo.xml.in:96
+msgid "Update to 6.1 Flatpak runtime"
+msgstr "6.1 Flatpak रनटाइम वर अपडेट करा"
 
-#: data/io.elementary.videos.appdata.xml.in:113
-msgid "Add a button to clear the playlist"
-msgstr "प्लेलिस्ट साफ करण्यासाठी बटण जोडा"
+#: data/videos.metainfo.xml.in:106
+msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
+msgstr "org.freedesktop.Platfrom.ffmpeg-पूर्ण विस्तारासाठी समर्थन जोडले"
 
-#: data/io.elementary.videos.appdata.xml.in:114
-msgid "Show audio track language in settings"
-msgstr "सेटिंग्जमध्ये ऑडिओ ट्रॅक भाषा दाखवा"
-
-#: data/io.elementary.videos.appdata.xml.in:115
-msgid "Show playlist item titles in their tooltips"
-msgstr "त्यांच्या टूलटिपमध्ये प्लेलिस्ट आयटम शीर्षक दर्शवा"
-
-#: data/io.elementary.videos.appdata.xml.in:119
-msgid "Show an error for unsupported files"
-msgstr "असमर्थित फायलींसाठी त्रुटी दाखवा"
-
-#: data/io.elementary.videos.appdata.xml.in:120
-msgid "Fix disappearing cursor on headerbar"
-msgstr "हेडरबारवरील अदृश्य होणाऱ्या कर्सरचे निराकरण करा"
-
-#: data/io.elementary.videos.appdata.xml.in:121
-msgid "Hide seekbar preview when switching windows with Alt + Tab"
-msgstr "Alt + Tab सह विंडो स्विच करताना शोध बार पूर्वावलोकन लपवा"
-
-#: data/io.elementary.videos.appdata.xml.in:129
-#: data/io.elementary.videos.appdata.xml.in:137
-msgid "Build fixes"
-msgstr "निराकारणे बिल्ड करा"
-
-#: data/io.elementary.videos.appdata.xml.in:152
-msgid "Window behavior improvements"
-msgstr "विंडो वर्तन सुधारणा"
-
-#: data/io.elementary.videos.appdata.xml.in:153
-msgid "Fix disappearing subtitle tracks"
-msgstr "अदृश्य होणाऱ्या उपशीर्षक ट्रॅकचे निराकरण करा"
-
-#: data/io.elementary.videos.appdata.xml.in:160
-msgid "Disallow setting playback before start"
-msgstr "प्रारंभ करण्यापूर्वी प्लेबॅक सेट करण्याची अनुमती काढा"
-
-#: data/io.elementary.videos.appdata.xml.in:167
-msgid "Limit consecutive spacebar pauses"
-msgstr "स्पेसबार विराम मर्यादित करा"
-
-#: data/io.elementary.videos.appdata.xml.in:174
-msgid "Crash fixes"
-msgstr "क्रॅश फिक्स"
-
-#: data/io.elementary.videos.appdata.xml.in:175
-msgid "Remove About dialog"
-msgstr "बद्दल संवाद काढा"
-
-#: data/io.elementary.videos.appdata.xml.in:176
-#: data/io.elementary.videos.appdata.xml.in:215
-msgid "Minor bug fixes"
-msgstr "किरकोळ दोष निराकरणे"
-
-#: data/io.elementary.videos.appdata.xml.in:184
-msgid "Preview popover now closely follows cursor position"
-msgstr "पूर्वावलोकन पॉपओव्हर आता कर्सर स्थानाचे बारकाईने अनुसरण करतो"
-
-#: data/io.elementary.videos.appdata.xml.in:199
-msgid "Fix appstream date format"
-msgstr "अ‍ॅपस्ट्रीम तारीख स्वरूप निश्चित करा"
-
-#: data/io.elementary.videos.appdata.xml.in:206
-msgid "Added a library view with search"
-msgstr "शोधामध्ये लायब्ररी दृश्य जोडले"
-
-#: data/io.elementary.videos.appdata.xml.in:207
-msgid "Fixed a bug that prevents keyboard navigation"
-msgstr "कीबोर्ड नेव्हिगेशनला प्रतिबंधित करणाऱ्या दोषाचे निराकरण केले"
-
-#: data/io.elementary.videos.appdata.xml.in:220
-msgid "elementary, Inc."
-msgstr "एलिमेंटरी, Inc."
+#: data/videos.metainfo.xml.in:115
+msgid "Fix an issue with removing videos from library"
+msgstr "लायब्ररीतून व्हिडिओ काढताना येणाऱ्या समस्येचे निराकरण करा"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "व्हिडिओ प्लेयर"
 
-#: data/io.elementary.videos.desktop.in:8
-msgid "io.elementary.videos"
-msgstr "io.elementary.videos"
+#~ msgid "Two-finger swipe to go back"
+#~ msgstr "मागे जाण्यासाठी दोन बोटांनी स्वाईप करा"
+
+#~ msgid "Fix an issue with accessing library view"
+#~ msgstr "लायब्ररी व्ह्यूमध्ये प्रवेश करण्याशी संबंधित समस्येचे निराकरण करा"
+
+#~ msgid ""
+#~ "Fix an issue with returning to the welcome page while playing multiple "
+#~ "videos"
+#~ msgstr ""
+#~ "एकाधिक व्हिडिओ प्ले करताना स्वागत पृष्ठावर परत येण्याशी संबंधित समस्येचे निराकरण करा"
+
+#~ msgid "Prevent sleep while playing a video"
+#~ msgstr "व्हिडिओ प्ले करताना स्लीप मोडमध्ये जाण्यापासून प्रतिबंधित करा"
+
+#~ msgid "Improvements:"
+#~ msgstr "सुधारणा:"
+
+#~ msgid "Start up faster with large libraries"
+#~ msgstr "मोठ्या लायब्ररीद्वारे जलद प्रारंभ करा"
+
+#~ msgid "Fix cases where subtitles refused to load"
+#~ msgstr "उपशीर्षके लोड करण्यास नकार दिलेली प्रकरणे निश्चित करा"
+
+#~ msgid "Handle if library folder is deleted or moved"
+#~ msgstr "लायब्ररी फोल्डर हटविले किंवा हलविले असल्यास हाताळा"
+
+#~ msgid "Load external subtitles"
+#~ msgstr "बाह्य उपशीर्षके लोड करा"
+
+#~ msgid "Reliably update the replay button description and file"
+#~ msgstr "रीप्ले बटणाचे वर्णन आणि फाइल विश्वसनीयरित्या अद्यतनित करा"
+
+#~ msgid ""
+#~ "More consistently remember the last playing video and its play position"
+#~ msgstr ""
+#~ "शेवटचा प्ले होत असलेला व्हिडिओ आणि त्याच्या प्लेची स्थिती अधिक सातत्याने लक्षात ठेवा"
+
+#~ msgid "Fix missing icon in episode view"
+#~ msgstr "भाग दृश्यात हरवलेल्या चिन्हाशी संबंधित समस्यांचे निराकरण करा"
+
+#~ msgid "Option to automatically play next videos"
+#~ msgstr "पुढील व्हिडिओ स्वयंचलितपणे प्ले करण्याचा पर्याय"
+
+#~ msgid "Navigate the playlist with the keyboard"
+#~ msgstr "कीबोर्डसह प्लेलिस्ट नॅव्हिगेट करा"
+
+#~ msgid "Add a button to clear the playlist"
+#~ msgstr "प्लेलिस्ट साफ करण्यासाठी बटण जोडा"
+
+#~ msgid "Show audio track language in settings"
+#~ msgstr "सेटिंग्जमध्ये ऑडिओ ट्रॅक भाषा दाखवा"
+
+#~ msgid "Show playlist item titles in their tooltips"
+#~ msgstr "त्यांच्या टूलटिपमध्ये प्लेलिस्ट आयटम शीर्षक दर्शवा"
+
+#~ msgid "Show an error for unsupported files"
+#~ msgstr "असमर्थित फायलींसाठी त्रुटी दाखवा"
+
+#~ msgid "Fix disappearing cursor on headerbar"
+#~ msgstr "हेडरबारवरील अदृश्य होणाऱ्या कर्सरचे निराकरण करा"
+
+#~ msgid "Hide seekbar preview when switching windows with Alt + Tab"
+#~ msgstr "Alt + Tab सह विंडो स्विच करताना शोध बार पूर्वावलोकन लपवा"
+
+#~ msgid "Build fixes"
+#~ msgstr "निराकारणे बिल्ड करा"
+
+#~ msgid "Window behavior improvements"
+#~ msgstr "विंडो वर्तन सुधारणा"
+
+#~ msgid "Fix disappearing subtitle tracks"
+#~ msgstr "अदृश्य होणाऱ्या उपशीर्षक ट्रॅकचे निराकरण करा"
+
+#~ msgid "Disallow setting playback before start"
+#~ msgstr "प्रारंभ करण्यापूर्वी प्लेबॅक सेट करण्याची अनुमती काढा"
+
+#~ msgid "Limit consecutive spacebar pauses"
+#~ msgstr "स्पेसबार विराम मर्यादित करा"
+
+#~ msgid "Crash fixes"
+#~ msgstr "क्रॅश फिक्स"
+
+#~ msgid "Remove About dialog"
+#~ msgstr "बद्दल संवाद काढा"
+
+#~ msgid "Minor bug fixes"
+#~ msgstr "किरकोळ दोष निराकरणे"
+
+#~ msgid "Preview popover now closely follows cursor position"
+#~ msgstr "पूर्वावलोकन पॉपओव्हर आता कर्सर स्थानाचे बारकाईने अनुसरण करतो"
+
+#~ msgid "Fix appstream date format"
+#~ msgstr "अ‍ॅपस्ट्रीम तारीख स्वरूप निश्चित करा"
+
+#~ msgid "Added a library view with search"
+#~ msgstr "शोधामध्ये लायब्ररी दृश्य जोडले"
+
+#~ msgid "Fixed a bug that prevents keyboard navigation"
+#~ msgstr "कीबोर्ड नेव्हिगेशनला प्रतिबंधित करणाऱ्या दोषाचे निराकरण केले"
+
+#~ msgid "io.elementary.videos"
+#~ msgstr "io.elementary.videos"
 
 #~ msgid "multimedia-video-player"
 #~ msgstr "multimedia-video-player"

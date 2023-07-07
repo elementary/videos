@@ -50,7 +50,8 @@ public class Audience.WelcomePage : Granite.Widgets.Welcome {
                     window.run_open_file (true);
                     break;
                 case 1:
-                    window.add_to_playlist (current_video, true);
+                    PlaybackManager.get_default ().append_to_playlist (File.new_for_uri (current_video));
+                    settings.set_string ("current-video", current_video);
                     window.resume_last_videos ();
                     break;
                 case 2:
@@ -104,7 +105,7 @@ public class Audience.WelcomePage : Granite.Widgets.Welcome {
     }
 
     private void update_replay_title () {
-        if (settings.get_double ("last-stopped") == 0.0 || !settings.get_boolean ("resume-videos")) {
+        if (settings.get_int64 ("last-stopped") == 0.0) {
             replay_button.title = _("Replay last video");
             replay_button.icon.icon_name = ("media-playlist-repeat");
         } else {

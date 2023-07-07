@@ -18,16 +18,11 @@
  */
 
 public class Audience.Widgets.SettingsPopover : Gtk.Popover {
-    public ClutterGst.Playback playback { get; construct; }
     public bool is_setup = false;
 
     private Gtk.ComboBoxText languages;
     private Gtk.ComboBoxText subtitles;
     private Gtk.FileChooserButton external_subtitle_file;
-
-    public SettingsPopover (ClutterGst.Playback playback) {
-        Object (playback: playback);
-    }
 
     construct {
         languages = new Gtk.ComboBoxText ();
@@ -74,15 +69,20 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.attach (external_subtitle_file, 1, 3);
         setupgrid.show_all ();
 
+        var playback_manager = PlaybackManager.get_default ();
+        playback_manager.next_audio.connect (next_audio);
+        playback_manager.next_text.connect (next_text);
+
         external_subtitle_file.file_set.connect (() => {
-            ((Audience.Window)((Gtk.Application) Application.get_default ()).active_window).player_page.set_subtitle (external_subtitle_file.get_uri ());
+            playback_manager.set_subtitle (external_subtitle_file.get_uri ());
         });
 
-        unowned Gst.Pipeline pipeline = playback.get_pipeline () as Gst.Pipeline;
-        /* playback.subtitle_uri does not seem to notify so connect directly to the pipeline */
-        pipeline.notify["suburi"].connect (() => {
-            /* Easier to retrieve the uri from the playback than the pipeline */
-            external_subtitle_file.select_uri (playback.subtitle_uri ?? "");
+        playback_manager.notify["subtitle-uri"].connect (() => {
+            external_subtitle_file.select_uri (playback_manager.subtitle_uri ?? "");
+        });
+
+        playback_manager.uri_changed.connect (() => {
+            is_setup = false;
         });
 
         subtitles.changed.connect (on_subtitles_changed);
@@ -110,9 +110,9 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         }
 
         if (subtitles.active_id == "none") {
-            playback.subtitle_track = -1;
+            PlaybackManager.get_default ().set_subtitle_track (-1);
         } else {
-            playback.subtitle_track = subtitles.active;
+            PlaybackManager.get_default ().set_subtitle_track (subtitles.active);
         }
     }
 
@@ -121,7 +121,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             return;
         }
 
-        playback.audio_stream = languages.active;
+        PlaybackManager.get_default ().set_audio_track (languages.active);
     }
 
     private void setup_text () {
@@ -131,8 +131,10 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             subtitles.remove_all ();
         }
 
+        var playback_manager = PlaybackManager.get_default ();
+
         uint track = 1;
-        playback.get_subtitle_tracks ().foreach ((lang) => {
+        playback_manager.get_subtitle_tracks ().foreach ((lang) => {
             // FIXME: Using Track since lang is actually a bad pointer :/
             subtitles.append (lang, _("Track %u").printf (track++));
         });
@@ -140,8 +142,8 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
         int count = subtitles.model.iter_n_children (null);
         subtitles.sensitive = count > 1;
-        if (subtitles.sensitive && (playback.subtitle_track >= 0)) {
-            subtitles.active = playback.subtitle_track;
+        if (subtitles.sensitive && (playback_manager.get_subtitle_track () >= 0)) {
+            subtitles.active = playback_manager.get_subtitle_track ();
         } else {
             subtitles.active = count - 1;
         }
@@ -156,14 +158,15 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             languages.remove_all ();
         }
 
-        var languages_names = get_audio_track_names ();
+        var playback_manager = PlaybackManager.get_default ();
+
         uint track = 1;
-        playback.get_audio_streams ().foreach ((lang) => {
-            var audio_stream_lang = languages_names.nth_data (track - 1);
+        playback_manager.get_audio_tracks ().foreach ((language_code) => {
+            var audio_stream_lang = Gst.Tag.get_language_name (language_code);
             if (audio_stream_lang != null) {
-                languages.append (lang, audio_stream_lang);
+                languages.append (language_code, audio_stream_lang);
             } else {
-                languages.append (lang, _("Track %u").printf (track));
+                languages.append (language_code, _("Track %u").printf (track));
             }
             track++;
         });
@@ -171,7 +174,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         int count = languages.model.iter_n_children (null);
         languages.sensitive = count > 1;
         if (languages.sensitive) {
-            languages.active = playback.audio_stream;
+            languages.active = playback_manager.get_audio_track ();
         } else {
             if (count != 0) {
                 languages.remove_all ();
@@ -183,7 +186,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         languages.changed.connect (on_languages_changed);
     }
 
-    public void next_audio () {
+    private void next_audio () {
         setup ();
         int count = languages.model.iter_n_children (null);
         if (count > 0) {
@@ -191,35 +194,11 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         }
     }
 
-    public void next_text () {
+    private void next_text () {
         setup ();
         int count = subtitles.model.iter_n_children (null);
         if (count > 0) {
             subtitles.active = (subtitles.active + 1) % count;
         }
-    }
-
-    private GLib.List<string?> get_audio_track_names () {
-        GLib.List<string?> audio_languages = null;
-
-        var discoverer_info = Audience.get_discoverer_info (playback.uri);
-        if (discoverer_info != null) {
-            var audio_streams = discoverer_info.get_audio_streams ();
-
-            foreach (var audio_stream in audio_streams) {
-                unowned string language_code = ((Gst.PbUtils.DiscovererAudioInfo)(audio_stream)).get_language ();
-                if (language_code != null) {
-                    var language_name = Gst.Tag.get_language_name (language_code);
-                    audio_languages.append (language_name);
-                } else {
-                    audio_languages.append (null);
-                }
-            }
-
-            // Both ClutterGst and DiscovererAudioInfo return tracks in opposite order.
-            audio_languages.reverse ();
-        }
-
-        return audio_languages;
     }
 }

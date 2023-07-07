@@ -7,8 +7,11 @@ executable(
     'Utils.vala',
     'Window.vala',
     'Objects/Video.vala',
+    'DBus/MprisPlayer.vala',
+    'DBus/MprisRoot.vala',
     'Services/DirectoryMonitoring.vala',
     'Services/LibraryManager.vala',
+    'Services/PlaybackManager.vala',
     'Services/Thumbnailer.vala',
     'Widgets/UnsupportedFileDialog.vala',
     'Widgets/WelcomePage.vala',
@@ -21,8 +24,8 @@ executable(
     'Widgets/Player/PlaylistItem.vala',
     'Widgets/Player/PlaylistPopover.vala',
     'Widgets/Player/PreviewPopover.vala',
+    'Widgets/Player/SeekBar.vala',
     'Widgets/Player/SettingsPopover.vala',
-    'Widgets/Player/TimeWidget.vala',
 
     vala_args: [
         '--enable-experimental',
@@ -42,6 +45,7 @@ executable(
         dependency('gstreamer-video-1.0'),
         dependency('gstreamer-tag-1.0'),
         dependency('gtk+-3.0', version: '>=3.22'),
+        dependency('libhandy-1'),
 
         meson.get_compiler('vala').find_library('posix'),
         meson.get_compiler('c').find_library('m', required : false)

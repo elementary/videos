@@ -18,9 +18,6 @@
  */
 
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
-    public Playlist playlist { get; private set; }
-    public Gtk.ToggleButton rep { get; private set; }
-
     private Gtk.Button dvd;
     private const int HEIGHT_OFFSET = 300;
 
@@ -36,7 +33,8 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         var clear_playlist_button = new Gtk.Button.from_icon_name ("edit-delete-symbolic", Gtk.IconSize.BUTTON);
         clear_playlist_button.tooltip_text = _("Clear Playlist");
 
-        rep = new Gtk.ToggleButton () {
+        var rep = new Gtk.ToggleButton () {
+            action_name = App.ACTION_PREFIX + App.ACTION_REPEAT,
             image = new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON),
             tooltip_text = _("Enable Repeat")
         };
@@ -47,7 +45,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             propagate_natural_height = true
         };
 
-        playlist = new Playlist ();
+        var playlist = new Playlist ();
         playlist_scrolled.add (playlist);
 
         var grid = new Gtk.Grid () {
@@ -75,7 +73,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         });
 
         clear_playlist_button.clicked.connect (() => {
-            playlist.clear_items ();
+            PlaybackManager.get_default ().clear_playlist ();
         });
 
         rep.toggled.connect ( () => {
@@ -102,14 +100,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         map.connect (() => {
             var window_height = ((Gtk.Application) Application.get_default ()).active_window.get_window ().get_height ();
             playlist_scrolled.set_max_content_height (window_height - HEIGHT_OFFSET);
-        });
-
-        playlist.item_added.connect ((item_title) => {
-            var window = (Audience.Window) ((Gtk.Application) Application.get_default ()).active_window;
-
-            window.app_notification.title = _("“%s” added to playlist").printf (item_title);
-            window.app_notification.set_default_action (null);
-            window.app_notification.send_notification ();
         });
     }
 
