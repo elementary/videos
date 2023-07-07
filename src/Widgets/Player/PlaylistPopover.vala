@@ -18,10 +18,21 @@
  */
 
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
-    private Gtk.Button dvd;
     private const int HEIGHT_OFFSET = 300;
 
+    private const Gtk.TargetEntry[] TARGET_ENTRIES = {
+        {"PLAYLIST_ITEM", Gtk.TargetFlags.SAME_APP, 0}
+    };
+
+    private Gee.ArrayList<PlaylistItem> items;
+    private Gtk.ListBox playlist;
+    private Gtk.Button dvd;
+
+    private int current = 0;
+
     construct {
+        items = new Gee.ArrayList<PlaylistItem> ();
+
         var fil = new Gtk.Button.from_icon_name ("document-open-symbolic", Gtk.IconSize.BUTTON) {
             tooltip_text = _("Open file")
         };
@@ -39,14 +50,18 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             tooltip_text = _("Enable Repeat")
         };
 
+        playlist = new Gtk.ListBox () {
+            can_focus = true,
+            expand = true,
+            selection_mode = Gtk.SelectionMode.BROWSE
+        };
+
         var playlist_scrolled = new Gtk.ScrolledWindow (null, null) {
             min_content_height = 100,
             min_content_width = 260,
-            propagate_natural_height = true
+            propagate_natural_height = true,
+            child = playlist
         };
-
-        var playlist = new Playlist ();
-        playlist_scrolled.add (playlist);
 
         var grid = new Gtk.Grid () {
             column_spacing = 12,
@@ -61,6 +76,21 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         grid.show_all ();
 
         add (grid);
+
+        Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, TARGET_ENTRIES, Gdk.DragAction.MOVE);
+        drag_data_received.connect (on_drag_data_received);
+
+        for (int i = 0; i < settings.get_strv ("last-played-videos").length; i++) {
+            if (settings.get_strv ("last-played-videos")[i] == settings.get_string ("current-video")) {
+                current = i;
+            }
+            add_item (File.new_for_uri (settings.get_strv ("last-played-videos")[i]));
+        }
+
+        playlist.row_activated.connect ((item) => {
+            string filename = ((PlaylistItem)(item)).filename;
+            PlaybackManager.get_default ().play (File.new_for_commandline_arg (filename));
+        });
 
         fil.clicked.connect (() => {
             popdown ();
@@ -87,6 +117,15 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             }
         });
 
+        var playback_manager = PlaybackManager.get_default ();
+        playback_manager.clear_playlist.connect (clear_items);
+        playback_manager.get_first_item.connect (get_first_item);
+        playback_manager.next.connect (next);
+        playback_manager.previous.connect (previous);
+        playback_manager.queue_file.connect (add_item);
+        playback_manager.save_playlist.connect (save_playlist);
+        playback_manager.uri_changed.connect (set_current);
+
         var disk_manager = DiskManager.get_default ();
         set_dvd_visibility (disk_manager.has_media_volumes ());
         disk_manager.volume_found.connect ((vol) => {
@@ -103,8 +142,133 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         });
     }
 
+    ~PlaylistPopover () {
+        save_playlist ();
+    }
+
     private void set_dvd_visibility (bool visible) {
         dvd.no_show_all = !visible;
         dvd.visible = visible;
+    }
+
+    private bool next () {
+        current++;
+        if (current >= items.size) {
+            current = 0;
+            return false;
+        }
+
+        PlaybackManager.get_default ().play (File.new_for_commandline_arg (items[current].filename));
+        return true;
+    }
+
+    private void previous () {
+        current--;
+        if (current < 0) {
+            PlaybackManager.get_default ().play (File.new_for_commandline_arg (items[0].filename));
+            return;
+        }
+
+        PlaybackManager.get_default ().play (File.new_for_commandline_arg (items[current].filename));
+    }
+
+    private void add_item (File path) {
+        if (!path.query_exists ()) {
+            return;
+        }
+
+        var file_name = path.get_uri ();
+
+        foreach (var item in items) {
+            if (item.filename == file_name) {
+                return;
+            }
+        }
+
+        var row = new PlaylistItem (Audience.get_title (path.get_basename ()), path.get_uri ());
+        items.add (row);
+        playlist.add (row);
+        playlist.show_all ();
+        PlaybackManager.get_default ().item_added ();
+    }
+
+    private void clear_items (bool should_stop = true) {
+        current = 0;
+        foreach (var item in items) {
+            playlist.remove (item);
+            items.remove (item);
+        }
+
+        if (should_stop) {
+            PlaybackManager.get_default ().stop ();
+        }
+    }
+
+    private File? get_first_item () {
+        if (items.size > 0) {
+            return File.new_for_commandline_arg (items[0].filename);
+        }
+
+        return null;
+    }
+
+    private void set_current (string current_file) {
+        int count = 0;
+        int current_played = 0;
+
+        foreach (var item in items) {
+            if (item.filename == current_file) {
+                current_played = count;
+                item.is_playing = true;
+            } else {
+                item.is_playing = false;
+            }
+            count++;
+        }
+
+        this.current = current_played;
+    }
+
+    private void save_playlist () {
+        var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
+        if (!privacy_settings.get_boolean ("remember-recent-files") || !privacy_settings.get_boolean ("remember-app-usage")) {
+            return;
+        }
+
+        string[] videos = {};
+        foreach (var item in items) {
+            videos += item.filename;
+        }
+
+        settings.set_strv ("last-played-videos", videos);
+    }
+
+    private void on_drag_data_received (Gdk.DragContext context, int x, int y,
+        Gtk.SelectionData selection_data, uint target_type, uint time) {
+        PlaylistItem target;
+        Gtk.Widget row;
+        PlaylistItem source;
+        int new_position;
+        int old_position;
+
+        target = (PlaylistItem) playlist.get_row_at_y (y);
+        if (target == null) {
+            return;
+        }
+
+        new_position = target.get_index ();
+        row = ((Gtk.Widget[]) selection_data.get_data ())[0];
+        source = (PlaylistItem) row.get_ancestor (typeof (PlaylistItem));
+        old_position = source.get_index ();
+
+        if (source == target) {
+            return;
+        }
+
+        items.remove (source);
+        items.insert (new_position, source);
+
+        playlist.remove (source);
+        playlist.insert (source, new_position);
     }
 }
