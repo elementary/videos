@@ -54,23 +54,12 @@ public class Audience.LibraryPage : Gtk.Box {
             valign = CENTER
         };
 
-        var autoqueue_next = new Granite.ModeSwitch.from_icon_name (
-            "media-playlist-repeat-one-symbolic",
-            "media-playlist-consecutive-symbolic"
-        ) {
-            primary_icon_tooltip_text = _("Play one video"),
-            secondary_icon_tooltip_text = _("Automatically play next videos"),
-            valign = Gtk.Align.CENTER
-        };
-        settings.bind ("autoqueue-next", autoqueue_next, "active", SettingsBindFlags.DEFAULT);
-
         var header_bar = new Hdy.HeaderBar () {
             show_close_button = true,
             title = _("Library")
         };
         header_bar.pack_start (navigation_button);
         header_bar.pack_end (search_entry);
-        header_bar.pack_end (autoqueue_next);
         header_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
         view_movies = new Gtk.FlowBox () {
