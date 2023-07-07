@@ -76,11 +76,10 @@ public class Audience.LibraryPage : Gtk.Box {
             selection_mode = Gtk.SelectionMode.NONE,
             valign = Gtk.Align.START
         };
+        view_movies.set_sort_func (video_sort_func);
         view_movies.set_filter_func (video_filter_func);
         view_movies.bind_model (items, (item) => {
-            var library_item = (LibraryItem)item;
-            library_item.show_all ();
-            return library_item;
+            return (LibraryItem)item;
         });
 
         scrolled_window = new Gtk.ScrolledWindow (null, null) {
@@ -165,14 +164,15 @@ public class Audience.LibraryPage : Gtk.Box {
     public void add_item (Audience.Objects.Video video) {
         for (int i = 0; i < items.get_n_items (); i++) {
             var item = (LibraryItem)items.get_item (i);
-            if (video.container != null && item.episodes.first ().container == video.container) {
+            if (video.container != "" && item.episodes.first ().container == video.container) {
                 item.add_episode (video);
+                view_movies.invalidate_sort ();
                 return;
             }
         }
 
         var new_container = new Audience.LibraryItem (video, LibraryItemStyle.THUMBNAIL);
-        items.insert_sorted (new_container, video_sort_func);
+        items.append (new_container);
 
         if (posters_initialized) {
             video.initialize_poster.begin ();
