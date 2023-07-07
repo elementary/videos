@@ -19,10 +19,10 @@
  */
 
 public class Audience.Widgets.BottomBar : Gtk.Revealer {
-    public SettingsPopover preferences_popover { get; private set; }
     public PlaylistPopover playlist_popover { get; private set; }
     public Videos.SeekBar time_widget { get; private set; }
 
+    private SettingsPopover preferences_popove
     private Gtk.Button play_button;
     private Gtk.MenuButton playlist_button;
     private uint hiding_timer = 0;
