@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-07 15:35+0000\n"
+"POT-Creation-Date: 2023-07-07 17:02+0000\n"
 "PO-Revision-Date: 2022-01-09 23:13+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/videos/videos/cs/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 
-#: src/Application.vala:104 src/Window.vala:102 src/Window.vala:499
+#: src/Application.vala:104 src/Window.vala:102 src/Window.vala:498
 msgid "Videos"
 msgstr "Videa"
 
@@ -29,7 +29,7 @@ msgstr "Videa"
 msgid "Back"
 msgstr "Zpět"
 
-#: src/Window.vala:35 src/Window.vala:501
+#: src/Window.vala:35 src/Window.vala:500
 #: src/Widgets/Library/EpisodesPage.vala:35
 #: src/Widgets/Library/LibraryPage.vala:59
 #: src/Widgets/Player/PlayerPage.vala:67
@@ -40,32 +40,37 @@ msgstr "Knihovna"
 msgid "Episodes"
 msgstr "Epizody"
 
-#: src/Window.vala:136
-msgid "Restore"
-msgstr "Obnovit"
-
-#: src/Window.vala:151
+#: src/Window.vala:133
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Video „%s“ odstraněno."
 
-#: src/Window.vala:403 src/Widgets/Player/SettingsPopover.vala:32
+#: src/Window.vala:139
+msgid "Restore"
+msgstr "Obnovit"
+
+#: src/Window.vala:193
+#, c-format
+msgid "“%s” added to playlist"
+msgstr ""
+
+#: src/Window.vala:402 src/Widgets/Player/SettingsPopover.vala:32
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: src/Window.vala:407
+#: src/Window.vala:406
 msgid "Video files"
 msgstr "Video soubory"
 
-#: src/Window.vala:411 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:410 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Otevřít"
 
-#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:413 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Otevřít"
 
-#: src/Window.vala:415 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Storno"
 
@@ -103,7 +108,7 @@ msgstr "Žádná otevřená videa"
 msgid "Select a source to begin playing."
 msgstr "Pro začátek přehrávání zvolte zdroj."
 
-#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:26
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:37
 msgid "Open file"
 msgstr "Otevřít soubor"
 
@@ -115,7 +120,7 @@ msgstr "Otevřít uložený soubor."
 msgid "Replay last video"
 msgstr "Přehrát poslední video"
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:30
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:41
 msgid "Play from Disc"
 msgstr "Přehrávat z disku"
 
@@ -171,19 +176,19 @@ msgstr "Nastavit obrázek"
 msgid "Image files"
 msgstr "Obrázkové soubory"
 
-#: src/Widgets/Player/BottomBar.vala:55 src/Widgets/Player/BottomBar.vala:114
+#: src/Widgets/Player/BottomBar.vala:51 src/Widgets/Player/BottomBar.vala:106
 msgid "Play"
 msgstr "Přehrát"
 
-#: src/Widgets/Player/BottomBar.vala:63
+#: src/Widgets/Player/BottomBar.vala:59
 msgid "Playlist"
 msgstr "Seznam souborů"
 
-#: src/Widgets/Player/BottomBar.vala:71
+#: src/Widgets/Player/BottomBar.vala:67
 msgid "Settings"
 msgstr "Nastavení"
 
-#: src/Widgets/Player/BottomBar.vala:118
+#: src/Widgets/Player/BottomBar.vala:110
 msgid "Pause"
 msgstr "Pozastavit"
 
@@ -191,16 +196,16 @@ msgstr "Pozastavit"
 msgid "Unfullscreen"
 msgstr "Opustit režim Celé obrazovky"
 
-#: src/Widgets/Player/PlaylistPopover.vala:34
+#: src/Widgets/Player/PlaylistPopover.vala:45
 msgid "Clear Playlist"
 msgstr "Vyčistit seznam stop"
 
-#: src/Widgets/Player/PlaylistPopover.vala:39
-#: src/Widgets/Player/PlaylistPopover.vala:86
+#: src/Widgets/Player/PlaylistPopover.vala:51
+#: src/Widgets/Player/PlaylistPopover.vala:121
 msgid "Enable Repeat"
 msgstr "Zapnout opakování"
 
-#: src/Widgets/Player/PlaylistPopover.vala:83
+#: src/Widgets/Player/PlaylistPopover.vala:118
 msgid "Disable Repeat"
 msgstr "Vypnout opakování"
 
