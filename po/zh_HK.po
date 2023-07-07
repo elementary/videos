@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-07 15:35+0000\n"
+"POT-Creation-Date: 2023-07-07 17:02+0000\n"
 "PO-Revision-Date: 2017-04-20 00:32+0000\n"
 "Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Chinese (Hong Kong) <zh_HK@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-21 06:09+0000\n"
 "X-Generator: Launchpad (build 18359)\n"
 
-#: src/Application.vala:104 src/Window.vala:102 src/Window.vala:499
+#: src/Application.vala:104 src/Window.vala:102 src/Window.vala:498
 msgid "Videos"
 msgstr ""
 
@@ -27,7 +27,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: src/Window.vala:35 src/Window.vala:501
+#: src/Window.vala:35 src/Window.vala:500
 #: src/Widgets/Library/EpisodesPage.vala:35
 #: src/Widgets/Library/LibraryPage.vala:59
 #: src/Widgets/Player/PlayerPage.vala:67
@@ -38,32 +38,37 @@ msgstr ""
 msgid "Episodes"
 msgstr ""
 
-#: src/Window.vala:136
-msgid "Restore"
-msgstr ""
-
-#: src/Window.vala:151
+#: src/Window.vala:133
 #, c-format
 msgid "Video '%s' Removed."
 msgstr ""
 
-#: src/Window.vala:403 src/Widgets/Player/SettingsPopover.vala:32
+#: src/Window.vala:139
+msgid "Restore"
+msgstr ""
+
+#: src/Window.vala:193
+#, c-format
+msgid "“%s” added to playlist"
+msgstr ""
+
+#: src/Window.vala:402 src/Widgets/Player/SettingsPopover.vala:32
 msgid "All files"
 msgstr ""
 
-#: src/Window.vala:407
+#: src/Window.vala:406
 msgid "Video files"
 msgstr ""
 
-#: src/Window.vala:411 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:410 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr ""
 
-#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:413 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr ""
 
-#: src/Window.vala:415 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr ""
 
@@ -99,7 +104,7 @@ msgstr ""
 msgid "Select a source to begin playing."
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:26
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:37
 msgid "Open file"
 msgstr ""
 
@@ -111,7 +116,7 @@ msgstr ""
 msgid "Replay last video"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:30
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:41
 msgid "Play from Disc"
 msgstr ""
 
@@ -167,19 +172,19 @@ msgstr ""
 msgid "Image files"
 msgstr ""
 
-#: src/Widgets/Player/BottomBar.vala:55 src/Widgets/Player/BottomBar.vala:114
+#: src/Widgets/Player/BottomBar.vala:51 src/Widgets/Player/BottomBar.vala:106
 msgid "Play"
 msgstr ""
 
-#: src/Widgets/Player/BottomBar.vala:63
+#: src/Widgets/Player/BottomBar.vala:59
 msgid "Playlist"
 msgstr ""
 
-#: src/Widgets/Player/BottomBar.vala:71
+#: src/Widgets/Player/BottomBar.vala:67
 msgid "Settings"
 msgstr ""
 
-#: src/Widgets/Player/BottomBar.vala:118
+#: src/Widgets/Player/BottomBar.vala:110
 msgid "Pause"
 msgstr ""
 
@@ -187,16 +192,16 @@ msgstr ""
 msgid "Unfullscreen"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:34
+#: src/Widgets/Player/PlaylistPopover.vala:45
 msgid "Clear Playlist"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:39
-#: src/Widgets/Player/PlaylistPopover.vala:86
+#: src/Widgets/Player/PlaylistPopover.vala:51
+#: src/Widgets/Player/PlaylistPopover.vala:121
 msgid "Enable Repeat"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:83
+#: src/Widgets/Player/PlaylistPopover.vala:118
 msgid "Disable Repeat"
 msgstr ""
 

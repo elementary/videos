@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-07 15:35+0000\n"
+"POT-Creation-Date: 2023-07-07 17:02+0000\n"
 "PO-Revision-Date: 2019-12-20 21:07+0000\n"
 "Last-Translator: Marko <marko.dolar@gmail.com>\n"
 "Language-Team: Slovenian <https://l10n.elementary.io/projects/videos/videos/"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:104 src/Window.vala:102 src/Window.vala:499
+#: src/Application.vala:104 src/Window.vala:102 src/Window.vala:498
 msgid "Videos"
 msgstr "Video predvajalnik"
 
@@ -30,7 +30,7 @@ msgstr "Video predvajalnik"
 msgid "Back"
 msgstr "Nazaj"
 
-#: src/Window.vala:35 src/Window.vala:501
+#: src/Window.vala:35 src/Window.vala:500
 #: src/Widgets/Library/EpisodesPage.vala:35
 #: src/Widgets/Library/LibraryPage.vala:59
 #: src/Widgets/Player/PlayerPage.vala:67
@@ -41,32 +41,37 @@ msgstr "Knjižnica"
 msgid "Episodes"
 msgstr "Epizode"
 
-#: src/Window.vala:136
-msgid "Restore"
-msgstr "Obnovi"
-
-#: src/Window.vala:151
+#: src/Window.vala:133
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Video '%s' je bil odstranjen."
 
-#: src/Window.vala:403 src/Widgets/Player/SettingsPopover.vala:32
+#: src/Window.vala:139
+msgid "Restore"
+msgstr "Obnovi"
+
+#: src/Window.vala:193
+#, c-format
+msgid "“%s” added to playlist"
+msgstr ""
+
+#: src/Window.vala:402 src/Widgets/Player/SettingsPopover.vala:32
 msgid "All files"
 msgstr "Vse datoteke"
 
-#: src/Window.vala:407
+#: src/Window.vala:406
 msgid "Video files"
 msgstr "Video datoteke"
 
-#: src/Window.vala:411 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:410 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Odpri"
 
-#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:413 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Odpri"
 
-#: src/Window.vala:415 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Prekliči"
 
@@ -102,7 +107,7 @@ msgstr "Ni odprtega posnetka"
 msgid "Select a source to begin playing."
 msgstr "Izberite vir za začetek predvajanja."
 
-#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:26
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:37
 msgid "Open file"
 msgstr "Odpri datoteko"
 
@@ -114,7 +119,7 @@ msgstr "Odpri datoteko na disku."
 msgid "Replay last video"
 msgstr "Predvajaj zadnji video"
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:30
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:41
 msgid "Play from Disc"
 msgstr "Predvajaj s CDja"
 
@@ -170,19 +175,19 @@ msgstr "Nastavi sliko"
 msgid "Image files"
 msgstr "Slikovne datoteke"
 
-#: src/Widgets/Player/BottomBar.vala:55 src/Widgets/Player/BottomBar.vala:114
+#: src/Widgets/Player/BottomBar.vala:51 src/Widgets/Player/BottomBar.vala:106
 msgid "Play"
 msgstr "Predvajaj"
 
-#: src/Widgets/Player/BottomBar.vala:63
+#: src/Widgets/Player/BottomBar.vala:59
 msgid "Playlist"
 msgstr "Seznam predvajanja"
 
-#: src/Widgets/Player/BottomBar.vala:71
+#: src/Widgets/Player/BottomBar.vala:67
 msgid "Settings"
 msgstr "Nastavitve"
 
-#: src/Widgets/Player/BottomBar.vala:118
+#: src/Widgets/Player/BottomBar.vala:110
 msgid "Pause"
 msgstr "Premor"
 
@@ -190,16 +195,16 @@ msgstr "Premor"
 msgid "Unfullscreen"
 msgstr "V okno"
 
-#: src/Widgets/Player/PlaylistPopover.vala:34
+#: src/Widgets/Player/PlaylistPopover.vala:45
 msgid "Clear Playlist"
 msgstr "Počisti seznam predvajanja"
 
-#: src/Widgets/Player/PlaylistPopover.vala:39
-#: src/Widgets/Player/PlaylistPopover.vala:86
+#: src/Widgets/Player/PlaylistPopover.vala:51
+#: src/Widgets/Player/PlaylistPopover.vala:121
 msgid "Enable Repeat"
 msgstr "Omogoči ponavljanje"
 
-#: src/Widgets/Player/PlaylistPopover.vala:83
+#: src/Widgets/Player/PlaylistPopover.vala:118
 msgid "Disable Repeat"
 msgstr "Onemogoči ponavljanje"
 

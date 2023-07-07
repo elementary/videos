@@ -8,7 +8,7 @@ public class Audience.PlaybackManager : Object {
     public signal File? get_first_item ();
     public signal void clear_playlist (bool should_stop = true);
     public signal void ended ();
-    public signal void item_added ();
+    public signal void item_added (string item_title);
     public signal void next_audio ();
     public signal void next_text ();
     public signal void play (File file);

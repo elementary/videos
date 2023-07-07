@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-07 15:35+0000\n"
+"POT-Creation-Date: 2023-07-07 17:02+0000\n"
 "PO-Revision-Date: 2020-11-12 18:15+0000\n"
 "Last-Translator: Uwe S <saabisto@gmx.de>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/videos/videos/de/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:104 src/Window.vala:102 src/Window.vala:499
+#: src/Application.vala:104 src/Window.vala:102 src/Window.vala:498
 msgid "Videos"
 msgstr "Videos"
 
@@ -29,7 +29,7 @@ msgstr "Videos"
 msgid "Back"
 msgstr "Zurück"
 
-#: src/Window.vala:35 src/Window.vala:501
+#: src/Window.vala:35 src/Window.vala:500
 #: src/Widgets/Library/EpisodesPage.vala:35
 #: src/Widgets/Library/LibraryPage.vala:59
 #: src/Widgets/Player/PlayerPage.vala:67
@@ -40,32 +40,37 @@ msgstr "Sammlung"
 msgid "Episodes"
 msgstr "Folgen"
 
-#: src/Window.vala:136
-msgid "Restore"
-msgstr "Wiederherstellen"
-
-#: src/Window.vala:151
+#: src/Window.vala:133
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Video »%s« wurde entfernt."
 
-#: src/Window.vala:403 src/Widgets/Player/SettingsPopover.vala:32
+#: src/Window.vala:139
+msgid "Restore"
+msgstr "Wiederherstellen"
+
+#: src/Window.vala:193
+#, c-format
+msgid "“%s” added to playlist"
+msgstr ""
+
+#: src/Window.vala:402 src/Widgets/Player/SettingsPopover.vala:32
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: src/Window.vala:407
+#: src/Window.vala:406
 msgid "Video files"
 msgstr "Videodateien"
 
-#: src/Window.vala:411 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:410 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Öffnen"
 
-#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:413 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Öffnen"
 
-#: src/Window.vala:415 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Abbrechen"
 
@@ -103,7 +108,7 @@ msgstr "Kein Video geöffnet"
 msgid "Select a source to begin playing."
 msgstr "Quelle zur Wiedergabe wählen."
 
-#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:26
+#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:37
 msgid "Open file"
 msgstr "Datei öffnen"
 
@@ -115,7 +120,7 @@ msgstr "Gespeicherte Datei öffnen."
 msgid "Replay last video"
 msgstr "Video erneut wiedergeben"
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:30
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:41
 msgid "Play from Disc"
 msgstr "Von DVD/CD wiedergeben"
 
@@ -171,19 +176,19 @@ msgstr "Grafiken wählen"
 msgid "Image files"
 msgstr "Bilddateien"
 
-#: src/Widgets/Player/BottomBar.vala:55 src/Widgets/Player/BottomBar.vala:114
+#: src/Widgets/Player/BottomBar.vala:51 src/Widgets/Player/BottomBar.vala:106
 msgid "Play"
 msgstr "Wiedergeben"
 
-#: src/Widgets/Player/BottomBar.vala:63
+#: src/Widgets/Player/BottomBar.vala:59
 msgid "Playlist"
 msgstr "Wiedergabeliste"
 
-#: src/Widgets/Player/BottomBar.vala:71
+#: src/Widgets/Player/BottomBar.vala:67
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: src/Widgets/Player/BottomBar.vala:118
+#: src/Widgets/Player/BottomBar.vala:110
 msgid "Pause"
 msgstr "Pause"
 
@@ -191,16 +196,16 @@ msgstr "Pause"
 msgid "Unfullscreen"
 msgstr "Vollbild verlassen"
 
-#: src/Widgets/Player/PlaylistPopover.vala:34
+#: src/Widgets/Player/PlaylistPopover.vala:45
 msgid "Clear Playlist"
 msgstr "Wiedergabeliste leeren"
 
-#: src/Widgets/Player/PlaylistPopover.vala:39
-#: src/Widgets/Player/PlaylistPopover.vala:86
+#: src/Widgets/Player/PlaylistPopover.vala:51
+#: src/Widgets/Player/PlaylistPopover.vala:121
 msgid "Enable Repeat"
 msgstr "Wiederholung aktivieren"
 
-#: src/Widgets/Player/PlaylistPopover.vala:83
+#: src/Widgets/Player/PlaylistPopover.vala:118
 msgid "Disable Repeat"
 msgstr "Wiederholung deaktivieren"
 

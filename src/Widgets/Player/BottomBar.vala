@@ -19,9 +19,6 @@
  */
 
 public class Audience.Widgets.BottomBar : Gtk.Revealer {
-    private const string PULSE_CLASS = "pulse";
-    private const string PULSE_TYPE = "attention";
-
     public PlaylistPopover playlist_popover { get; private set; }
     public Videos.SeekBar time_widget { get; private set; }
 
@@ -29,7 +26,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
     private Gtk.Button play_button;
     private Gtk.MenuButton playlist_button;
     private uint hiding_timer = 0;
-    private bool playlist_glowing = false;
 
     private bool _hovered = false;
     private bool hovered {
@@ -103,10 +99,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
             return false;
         });
 
-        PlaybackManager.get_default ().item_added.connect (() => {
-            playlist_item_added ();
-        });
-
         GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
             if (name == Audience.App.ACTION_PLAY_PAUSE) {
                 if (new_state.get_boolean () == false) {
@@ -120,21 +112,6 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
                 }
             }
         });
-    }
-
-    private void playlist_item_added () {
-        if (!playlist_glowing) {
-            playlist_glowing = true;
-            playlist_button.get_child ().get_style_context ().add_class (PULSE_CLASS);
-            playlist_button.get_child ().get_style_context ().add_class (PULSE_TYPE);
-
-            Timeout.add (6000, () => {
-                playlist_button.get_child ().get_style_context ().remove_class (PULSE_CLASS);
-                playlist_button.get_child ().get_style_context ().remove_class (PULSE_TYPE);
-                playlist_glowing = false;
-                return false;
-            });
-        }
     }
 
     public void reveal_control () {
