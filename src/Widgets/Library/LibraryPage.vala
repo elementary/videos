@@ -151,7 +151,7 @@ public class Audience.LibraryPage : Gtk.Box {
         if (selected.episodes.size == 1) {
             string uri = selected.episodes.first ().video_file.get_uri ();
             bool same_video = uri == settings.get_string ("current-video");
-            bool playback_complete = settings.get_double ("last-stopped") == 0.0;
+            bool playback_complete = settings.get_int64 ("last-stopped") == 0.0;
             bool from_beginning = !same_video || playback_complete;
 
             if (from_beginning) {

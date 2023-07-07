@@ -15,7 +15,7 @@
             <summary>External subtitle file for the current video</summary>
             <description></description>
         </key>
-        <key name="last-stopped" type="d">
+        <key name="last-stopped" type="x">
             <default>0</default>
             <summary>Last stopped time of last played video</summary>
             <description>Last stopped time of last played video</description>

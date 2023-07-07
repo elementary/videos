@@ -480,9 +480,9 @@ public class Audience.Window : Hdy.ApplicationWindow {
     }
 
     private void update_navigation () {
-        double progress = PlaybackManager.get_default ().get_progress ();
-        if (progress > 0) {
-            settings.set_double ("last-stopped", progress);
+        int64 position = PlaybackManager.get_default ().position;
+        if (position > 0) {
+            settings.set_int64 ("last-stopped", position);
         }
 
         var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);

@@ -160,14 +160,13 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
         var playback_manager = PlaybackManager.get_default ();
 
-        var languages_names = get_audio_track_names ();
         uint track = 1;
-        playback_manager.get_audio_tracks ().foreach ((lang) => {
-            var audio_stream_lang = languages_names.nth_data (track - 1);
+        playback_manager.get_audio_tracks ().foreach ((language_code) => {
+            var audio_stream_lang = Gst.Tag.get_language_name (language_code);
             if (audio_stream_lang != null) {
-                languages.append (lang, audio_stream_lang);
+                languages.append (language_code, audio_stream_lang);
             } else {
-                languages.append (lang, _("Track %u").printf (track));
+                languages.append (language_code, _("Track %u").printf (track));
             }
             track++;
         });
@@ -201,29 +200,5 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         if (count > 0) {
             subtitles.active = (subtitles.active + 1) % count;
         }
-    }
-
-    private GLib.List<string?> get_audio_track_names () {
-        GLib.List<string?> audio_languages = null;
-
-        var discoverer_info = Audience.get_discoverer_info (PlaybackManager.get_default ().get_uri ());
-        if (discoverer_info != null) {
-            var audio_streams = discoverer_info.get_audio_streams ();
-
-            foreach (var audio_stream in audio_streams) {
-                unowned string language_code = ((Gst.PbUtils.DiscovererAudioInfo)(audio_stream)).get_language ();
-                if (language_code != null) {
-                    var language_name = Gst.Tag.get_language_name (language_code);
-                    audio_languages.append (language_name);
-                } else {
-                    audio_languages.append (null);
-                }
-            }
-
-            // Both ClutterGst and DiscovererAudioInfo return tracks in opposite order.
-            audio_languages.reverse ();
-        }
-
-        return audio_languages;
     }
 }
