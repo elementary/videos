@@ -190,11 +190,12 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             }
         }
 
-        var row = new PlaylistItem (Audience.get_title (path.get_basename ()), path.get_uri ());
+        var item_title = Audience.get_title (path.get_basename ());
+        var row = new PlaylistItem (item_title, path.get_uri ());
         items.add (row);
         playlist.add (row);
         playlist.show_all ();
-        PlaybackManager.get_default ().item_added ();
+        PlaybackManager.get_default ().item_added (item_title);
     }
 
     private void clear_items (bool should_stop = true) {

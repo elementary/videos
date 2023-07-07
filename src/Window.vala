@@ -112,13 +112,6 @@ public class Audience.Window : Hdy.ApplicationWindow {
 
         player_page = new PlayerPage ();
 
-        player_page.map.connect (() => {
-            app_notification.visible = false;
-        });
-        player_page.unmap.connect (() => {
-            app_notification.visible = true;
-        });
-
         episodes_page = new EpisodesPage ();
 
         deck = new Hdy.Deck () {
@@ -129,17 +122,6 @@ public class Audience.Window : Hdy.ApplicationWindow {
         var manager = Audience.Services.LibraryManager.get_instance ();
         app_notification = new Granite.Widgets.Toast ("");
 
-        /* we don't have access to trash when inside an flatpak sandbox
-         * so we don't allow the user to restore in this case.
-         */
-        if (!is_sandboxed ()) {
-            app_notification.set_default_action (_("Restore"));
-
-            app_notification.default_action.connect (() => {
-                action_undo ();
-            });
-        }
-
         var overlay = new Gtk.Overlay ();
         overlay.add (deck);
         overlay.add_overlay (app_notification);
@@ -149,6 +131,17 @@ public class Audience.Window : Hdy.ApplicationWindow {
 
         manager.video_moved_to_trash.connect ((video) => {
             app_notification.title = _("Video '%s' Removed.").printf (Path.get_basename (video));
+
+            /* we don't have access to trash when inside an flatpak sandbox
+             * so we don't allow the user to restore in this case.
+             */
+            if (!is_sandboxed ()) {
+                app_notification.set_default_action (_("Restore"));
+
+                app_notification.default_action.disconnect (action_undo);
+                app_notification.default_action.connect (action_undo);
+            }
+
             app_notification.send_notification ();
         });
 
@@ -195,6 +188,12 @@ public class Audience.Window : Hdy.ApplicationWindow {
         });
 
         playback_manager.ended.connect (on_player_ended);
+
+        playback_manager.item_added.connect ((item_title) => {
+            app_notification.title = _("“%s” added to playlist").printf (item_title);
+            app_notification.set_default_action (null);
+            app_notification.send_notification ();
+        });
 
         window_state_event.connect ((e) => {
             if (Gdk.WindowState.FULLSCREEN in e.changed_mask) {
