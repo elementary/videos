@@ -37,12 +37,14 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
     construct {
         var play_icon = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON);
 
-        var play_revealer = new Gtk.Revealer ();
-        play_revealer.transition_type = Gtk.RevealerTransitionType.CROSSFADE;
-        play_revealer.add (play_icon);
+        var play_revealer = new Gtk.Revealer () {
+            child = play_icon,
+            transition_type = CROSSFADE
+        };
 
-        var track_name_label = new Gtk.Label (title);
-        track_name_label.ellipsize = Pango.EllipsizeMode.MIDDLE;
+        var track_name_label = new Gtk.Label (title) {
+            ellipsize = MIDDLE
+        };
 
         var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
         box.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUITEM);
@@ -59,7 +61,7 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
 
         set_tooltip_text (title);
 
-        add (dnd_event_box);
+        child = dnd_event_box;
 
         bind_property ("is-playing", play_revealer, "reveal-child");
     }
