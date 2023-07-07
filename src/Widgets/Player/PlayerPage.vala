@@ -103,7 +103,9 @@ namespace Audience {
             overlay.add_overlay (bottom_bar);
 
             var event_box = new Gtk.EventBox () {
-                child = overlay
+                child = overlay,
+                hexpand = true,
+                vexpand = true
             };
             event_box.events |= Gdk.EventMask.POINTER_MOTION_MASK;
             event_box.events |= Gdk.EventMask.KEY_PRESS_MASK;
