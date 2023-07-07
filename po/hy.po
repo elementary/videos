@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 17:33+0000\n"
+"POT-Creation-Date: 2023-07-07 15:35+0000\n"
 "PO-Revision-Date: 2016-07-30 14:30+0000\n"
 "Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Armenian <hy@li.org>\n"
@@ -18,66 +18,56 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
-#: src/Application.vala:98 src/Window.vala:544
+#: src/Application.vala:104 src/Window.vala:102 src/Window.vala:499
 msgid "Videos"
 msgstr "Videos"
 
 #. For better translation
-#: src/Window.vala:38
+#: src/Window.vala:34 src/Widgets/Library/LibraryPage.vala:47
 msgid "Back"
 msgstr ""
 
-#: src/Window.vala:39 src/Window.vala:547
+#: src/Window.vala:35 src/Window.vala:501
+#: src/Widgets/Library/EpisodesPage.vala:35
+#: src/Widgets/Library/LibraryPage.vala:59
+#: src/Widgets/Player/PlayerPage.vala:67
 msgid "Library"
 msgstr ""
 
-#: src/Window.vala:40
+#: src/Window.vala:36
 msgid "Episodes"
 msgstr ""
 
-#: src/Window.vala:105
-msgid "Search Videos"
-msgstr ""
-
-#: src/Window.vala:118
-#, fuzzy
-msgid "Play one video"
-msgstr "Վերանվագարկել վերջին վիդեոն"
-
-#: src/Window.vala:119
-msgid "Automatically play next videos"
-msgstr ""
-
-#: src/Window.vala:178
+#: src/Window.vala:136
 msgid "Restore"
 msgstr ""
 
-#: src/Window.vala:197
+#: src/Window.vala:151
 #, c-format
 msgid "Video '%s' Removed."
 msgstr ""
 
-#: src/Window.vala:459 src/Widgets/Player/SettingsPopover.vala:32
+#: src/Window.vala:403 src/Widgets/Player/SettingsPopover.vala:32
 msgid "All files"
 msgstr "Բոլոր ֆայլերը"
 
-#: src/Window.vala:463
+#: src/Window.vala:407
 msgid "Video files"
 msgstr "Վիդեո ֆայլեր"
 
-#: src/Window.vala:467 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:411 src/Widgets/Library/LibraryItem.vala:183
 msgid "Open"
 msgstr "Բացել"
 
-#: src/Window.vala:470 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:186
 msgid "_Open"
 msgstr "_Բացել"
 
-#: src/Window.vala:471 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:415 src/Widgets/Library/LibraryItem.vala:187
 msgid "_Cancel"
 msgstr "_Չեղյալ համարել"
 
-#: src/Services/PlaybackManager.vala:63
+#: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr ""
 
@@ -141,13 +131,27 @@ msgstr ""
 msgid "Resume last video"
 msgstr ""
 
-#: src/Widgets/Library/EpisodesPage.vala:59
-#: src/Widgets/Library/LibraryPage.vala:64
+#: src/Widgets/Library/EpisodesPage.vala:41
+#: src/Widgets/Library/LibraryPage.vala:53
+msgid "Search Videos"
+msgstr ""
+
+#: src/Widgets/Library/EpisodesPage.vala:49
+#, fuzzy
+msgid "Play one video"
+msgstr "Վերանվագարկել վերջին վիդեոն"
+
+#: src/Widgets/Library/EpisodesPage.vala:50
+msgid "Automatically play next videos"
+msgstr ""
+
+#: src/Widgets/Library/EpisodesPage.vala:93
+#: src/Widgets/Library/LibraryPage.vala:85
 msgid "Try changing search terms."
 msgstr ""
 
-#: src/Widgets/Library/EpisodesPage.vala:136
-#: src/Widgets/Library/LibraryPage.vala:194
+#: src/Widgets/Library/EpisodesPage.vala:197
+#: src/Widgets/Library/LibraryPage.vala:239
 #, c-format
 msgid "No Results for “%s”"
 msgstr ""
@@ -180,7 +184,7 @@ msgstr "Կարգավորումներ"
 msgid "Pause"
 msgstr "Դադար"
 
-#: src/Widgets/Player/PlayerPage.vala:94
+#: src/Widgets/Player/PlayerPage.vala:77
 msgid "Unfullscreen"
 msgstr ""
 
@@ -225,7 +229,7 @@ msgstr ""
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
 #: src/Widgets/Player/SettingsPopover.vala:139
-#: src/Widgets/Player/SettingsPopover.vala:170
+#: src/Widgets/Player/SettingsPopover.vala:169
 #, c-format
 msgid "Track %u"
 msgstr ""
@@ -234,7 +238,7 @@ msgstr ""
 msgid "None"
 msgstr "Ոչ մեկը"
 
-#: src/Widgets/Player/SettingsPopover.vala:183
+#: src/Widgets/Player/SettingsPopover.vala:182
 msgid "Default"
 msgstr "Լռելյայն"
 
