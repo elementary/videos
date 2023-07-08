@@ -102,7 +102,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
             var file = File.new_for_uri (playback_manager.subtitle_uri);
             external_subtitle_file_label.label = file.get_basename ();
         } else {
-            external_subtitle_file_label.label = _("External Subtitles");
+            external_subtitle_file_label.label = _("None");
         }
     }
 
