@@ -130,7 +130,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         file.add_filter (subtitle_files_filter);
         file.add_filter (all_files_filter);
 
-        file.response.connect((response) => {
+        file.response.connect ((response) => {
             if (response == Gtk.ResponseType.ACCEPT) {
                 PlaybackManager.get_default ().set_subtitle (file.get_file ().get_uri ());
             }
