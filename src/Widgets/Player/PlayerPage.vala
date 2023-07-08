@@ -29,7 +29,9 @@ namespace Audience {
         private Hdy.HeaderBar header_bar;
         private Audience.Widgets.BottomBar bottom_bar;
         private Gtk.Revealer unfullscreen_revealer;
+        private Gtk.Revealer bottom_bar_revealer;
 
+        private uint hiding_timer = 0;
         private bool mouse_primary_down = false;
 
         private bool _fullscreened = false;
@@ -46,10 +48,8 @@ namespace Audience {
                     header_bar.show ();
                 }
 
-                if (value && bottom_bar.child_revealed) {
-                    unfullscreen_revealer.reveal_child = true;
-                } else if (!value && bottom_bar.child_revealed) {
-                    unfullscreen_revealer.reveal_child = false;
+                if (bottom_bar_revealer.child_revealed) {
+                    reveal_control ();
                 }
             }
         }
@@ -69,10 +69,6 @@ namespace Audience {
             header_bar.pack_start (navigation_button);
             header_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
-            bottom_bar = new Widgets.BottomBar () {
-                valign = END
-            };
-
             var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic", Gtk.IconSize.BUTTON) {
                 tooltip_text = _("Unfullscreen")
             };
@@ -85,11 +81,19 @@ namespace Audience {
             unfullscreen_revealer.add (unfullscreen_button);
             unfullscreen_revealer.show_all ();
 
+            bottom_bar = new Widgets.BottomBar ();
+
+            bottom_bar_revealer = new Gtk.Revealer () {
+                transition_type = SLIDE_UP,
+                valign = END,
+                child = bottom_bar
+            };
+
             var overlay = new Gtk.Overlay () {
                 child = playback_manager.gst_video_widget
             };
             overlay.add_overlay (unfullscreen_revealer);
-            overlay.add_overlay (bottom_bar);
+            overlay.add_overlay (bottom_bar_revealer);
 
             var event_box = new Gtk.EventBox () {
                 child = overlay,
@@ -120,9 +124,9 @@ namespace Audience {
                         (int)event.x_root, (int)event.y_root, event.time);
                 }
 
-                Gtk.Allocation allocation;
-                get_allocation (out allocation);
-                return update_pointer_position (event.y, allocation.height);
+                reveal_control ();
+
+                return false;
             });
 
             event_box.button_press_event.connect (event => {
@@ -141,37 +145,10 @@ namespace Audience {
                 return false;
             });
 
-            bottom_bar.notify["child-revealed"].connect (() => {
-                if (bottom_bar.child_revealed && fullscreened) {
-                    unfullscreen_revealer.reveal_child = bottom_bar.child_revealed;
-                } else if (!bottom_bar.child_revealed) {
-                    unfullscreen_revealer.reveal_child = bottom_bar.child_revealed;
-                }
-            });
+            bottom_bar.notify["should-stay-revealed"].connect (reveal_control);
 
             unfullscreen_button.clicked.connect (() => {
                 ((Gtk.Window) get_toplevel ()).unfullscreen ();
-            });
-
-            event_box.leave_notify_event.connect (event => {
-                Gtk.Allocation allocation;
-                get_allocation (out allocation);
-
-                if (event.x == event.window.get_width ()) {
-                    return update_pointer_position (event.window.get_height (), allocation.height);
-                } else if (event.x == 0) {
-                    return update_pointer_position (event.window.get_height (), allocation.height);
-                }
-
-                return update_pointer_position (event.y, allocation.height);
-            });
-
-            bottom_bar.notify["child-revealed"].connect (() => {
-                if (bottom_bar.child_revealed == true) {
-                    ((Audience.Window) App.get_instance ().active_window).show_mouse_cursor ();
-                } else {
-                    ((Audience.Window) App.get_instance ().active_window).hide_mouse_cursor ();
-                }
             });
         }
 
@@ -182,24 +159,38 @@ namespace Audience {
                 new_position = 0;
             }
             playback_manager.seek (new_position);
-            bottom_bar.reveal_control ();
+            reveal_control ();
         }
 
         public void hide_popovers () {
-            bottom_bar.playlist_popover.popdown ();
-
-            var popover = bottom_bar.time_widget.preview_popover;
-            if (popover != null) {
-                popover.schedule_hide ();
-            }
+            bottom_bar.hide_popovers ();
         }
 
-        private bool update_pointer_position (double y, int window_height) {
-            App.get_instance ().active_window.get_window ().set_cursor (null);
+        private void reveal_control () {
+            if (hiding_timer != 0) {
+                Source.remove (hiding_timer);
+                hiding_timer = 0;
+            }
 
-            bottom_bar.reveal_control ();
+            bottom_bar_revealer.reveal_child = true;
+            ((Audience.Window) App.get_instance ().active_window).show_mouse_cursor ();
+            if (fullscreened) {
+                unfullscreen_revealer.reveal_child = true;
+            }
 
-            return false;
+            if (bottom_bar.should_stay_revealed) {
+                return;
+            }
+
+            hiding_timer = Timeout.add (2000, () => {
+                hiding_timer = 0;
+
+                unfullscreen_revealer.reveal_child = false;
+                bottom_bar_revealer.reveal_child = false;
+                ((Audience.Window) App.get_instance ().active_window).hide_mouse_cursor ();
+
+                return Source.REMOVE;
+            });
         }
     }
 }
