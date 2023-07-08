@@ -18,7 +18,7 @@ public class Audience.PlaybackManager : Object {
     public signal void uri_changed (string uri);
 
     public Gtk.Widget gst_video_widget { get; construct; }
-    public string? subtitle_uri { get; private set; }
+    public string? subtitle_uri { get; private set; default = ""; }
     public bool playing { get; private set; }
     public int64 duration { get; private set; default = 0; }
     public int64 position { get; private set; default = 0; }

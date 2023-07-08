@@ -22,27 +22,24 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
     private Gtk.ComboBoxText languages;
     private Gtk.ComboBoxText subtitles;
-    private Gtk.FileChooserButton external_subtitle_file;
+    private Gtk.Label external_subtitle_file_label;
 
     construct {
         languages = new Gtk.ComboBoxText ();
         subtitles = new Gtk.ComboBoxText ();
 
-        var all_files_filter = new Gtk.FileFilter ();
-        all_files_filter.set_filter_name (_("All files"));
-        all_files_filter.add_pattern ("*");
+        external_subtitle_file_label = new Gtk.Label ("");
 
-        var subtitle_files_filter = new Gtk.FileFilter ();
-        subtitle_files_filter.set_filter_name (_("Subtitle files"));
-        subtitle_files_filter.add_mime_type ("application/smil"); // .smi
-        subtitle_files_filter.add_mime_type ("application/x-subrip"); // .srt
-        subtitle_files_filter.add_mime_type ("text/x-microdvd"); // .sub
-        subtitle_files_filter.add_mime_type ("text/x-ssa"); // .ssa & .ass
-        // exclude .asc, mimetype is generic "application/pgp-encrypted"
+        var external_subtitle_file_image = new Gtk.Image.from_icon_name ("folder-symbolic", BUTTON);
 
-        external_subtitle_file = new Gtk.FileChooserButton (_("External Subtitles"), Gtk.FileChooserAction.OPEN);
-        external_subtitle_file.add_filter (subtitle_files_filter);
-        external_subtitle_file.add_filter (all_files_filter);
+        var external_subtitle_file_box = new Gtk.Box (HORIZONTAL, 3);
+        external_subtitle_file_box.add (external_subtitle_file_label);
+        external_subtitle_file_box.add (new Gtk.Separator (VERTICAL));
+        external_subtitle_file_box.add (external_subtitle_file_image);
+
+        var external_subtitle_file = new Gtk.Button () {
+            child = external_subtitle_file_box
+        };
 
         var lang_label = new Gtk.Label (_("Audio:")) {
             halign = Gtk.Align.END
@@ -59,7 +56,10 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         var setupgrid = new Gtk.Grid () {
             column_spacing = 12,
             row_spacing = 6,
-            margin = 6
+            margin_top = 6,
+            margin_bottom = 6,
+            margin_start = 6,
+            margin_end = 6
         };
         setupgrid.attach (lang_label, 0, 1);
         setupgrid.attach (languages, 1, 1);
@@ -69,17 +69,19 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.attach (external_subtitle_file, 1, 3);
         setupgrid.show_all ();
 
+        child = setupgrid;
+
+        set_external_subtitel_label ();
+
         var playback_manager = PlaybackManager.get_default ();
         playback_manager.next_audio.connect (next_audio);
         playback_manager.next_text.connect (next_text);
 
-        external_subtitle_file.file_set.connect (() => {
-            playback_manager.set_subtitle (external_subtitle_file.get_uri ());
+        external_subtitle_file.clicked.connect (() => {
+            get_external_subtitle_file ();
         });
 
-        playback_manager.notify["subtitle-uri"].connect (() => {
-            external_subtitle_file.select_uri (playback_manager.subtitle_uri ?? "");
-        });
+        playback_manager.notify["subtitle-uri"].connect (set_external_subtitel_label);
 
         playback_manager.uri_changed.connect (() => {
             is_setup = false;
@@ -89,11 +91,54 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
         languages.changed.connect (on_languages_changed);
 
-        add (setupgrid);
-
         map.connect (() => {
             setup ();
         });
+    }
+
+    private void set_external_subtitel_label () {
+        var playback_manager = PlaybackManager.get_default ();
+        if (playback_manager.subtitle_uri != "") {
+            var file = File.new_for_uri (playback_manager.subtitle_uri);
+            external_subtitle_file_label.label = file.get_basename ();
+        } else {
+            external_subtitle_file_label.label = _("External Subtitles");
+        }
+    }
+
+    private void get_external_subtitle_file () {
+        var all_files_filter = new Gtk.FileFilter ();
+        all_files_filter.set_filter_name (_("All files"));
+        all_files_filter.add_pattern ("*");
+
+        var subtitle_files_filter = new Gtk.FileFilter ();
+        subtitle_files_filter.set_filter_name (_("Subtitle files"));
+        subtitle_files_filter.add_mime_type ("application/smil"); // .smi
+        subtitle_files_filter.add_mime_type ("application/x-subrip"); // .srt
+        subtitle_files_filter.add_mime_type ("text/x-microdvd"); // .sub
+        subtitle_files_filter.add_mime_type ("text/x-ssa"); // .ssa & .ass
+        // exclude .asc, mimetype is generic "application/pgp-encrypted"
+
+        var file = new Gtk.FileChooserNative (
+            _("Open"),
+            (Gtk.Window)get_toplevel (),
+            Gtk.FileChooserAction.OPEN,
+            _("_Open"),
+            _("_Cancel")
+        );
+        file.select_multiple = false;
+        file.add_filter (subtitle_files_filter);
+        file.add_filter (all_files_filter);
+
+        file.response.connect((response) => {
+            if (response == Gtk.ResponseType.ACCEPT) {
+                PlaybackManager.get_default ().set_subtitle (file.get_file ().get_uri ());
+            }
+
+            file.destroy ();
+        });
+
+        file.show ();
     }
 
     private void setup () {
