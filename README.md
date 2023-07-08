@@ -11,7 +11,7 @@ Run `flatpak-builder` to configure the build environment, download dependencies,
     flatpak-builder build io.elementary.videos.yml --user --install --force-clean --install-deps-from=appcenter
 ```
 
-execute with `io.elementary.videos`
+Then execute with
 
 ```bash
     flatpak run io.elementary.videos
