@@ -5,26 +5,14 @@
 
 ## Building, Testing, and Installation
 
-You'll need the following dependencies:
-* intltool
-* libclutter-gst-3.0-dev
-* libclutter-gtk-1.0-dev
-* libgranite-dev
-* libgstreamer-plugins-base1.0-dev
-* libgstreamer1.0-dev
-* libhandy-1-dev
-* meson
-* valac
+Run `flatpak-builder` to configure the build environment, download dependencies, build, and install
 
+```bash
+    flatpak-builder build io.elementary.videos.yml --user --install --force-clean --install-deps-from=appcenter
+```
 
-    
-Run `meson` to configure the build environment and then `ninja` to build
+execute with `io.elementary.videos`
 
-    meson build --prefix=/usr
-    cd build
-    ninja
-    
-To install, use `ninja install`, then execute with `io.elementary.videos`
-
-    sudo ninja install
-    io.elementary.videos
+```bash
+    flatpak run io.elementary.videos
+```
