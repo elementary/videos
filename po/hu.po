@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-07 17:02+0000\n"
+"POT-Creation-Date: 2023-07-09 18:33+0000\n"
 "PO-Revision-Date: 2022-01-11 00:56+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/videos/"
@@ -25,13 +25,13 @@ msgid "Videos"
 msgstr "Videók"
 
 #. For better translation
-#: src/Window.vala:34 src/Widgets/Library/LibraryPage.vala:47
+#: src/Window.vala:34 src/Widgets/Library/LibraryPage.vala:50
 msgid "Back"
 msgstr "Vissza"
 
 #: src/Window.vala:35 src/Window.vala:500
-#: src/Widgets/Library/EpisodesPage.vala:35
-#: src/Widgets/Library/LibraryPage.vala:59
+#: src/Widgets/Library/EpisodesPage.vala:36
+#: src/Widgets/Library/LibraryPage.vala:62
 #: src/Widgets/Player/PlayerPage.vala:67
 msgid "Library"
 msgstr "Videótár"
@@ -54,7 +54,7 @@ msgstr "Visszaállítás"
 msgid "“%s” added to playlist"
 msgstr ""
 
-#: src/Window.vala:402 src/Widgets/Player/SettingsPopover.vala:32
+#: src/Window.vala:402 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "Minden fájl"
 
@@ -62,15 +62,18 @@ msgstr "Minden fájl"
 msgid "Video files"
 msgstr "Videófájlok"
 
-#: src/Window.vala:410 src/Widgets/Library/LibraryItem.vala:183
+#: src/Window.vala:410 src/Widgets/Library/LibraryItem.vala:175
+#: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "Megnyitás"
 
-#: src/Window.vala:413 src/Widgets/Library/LibraryItem.vala:186
+#: src/Window.vala:413 src/Widgets/Library/LibraryItem.vala:178
+#: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "Meg_nyitás"
 
-#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:187
+#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:179
+#: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "_Mégse"
 
@@ -140,59 +143,59 @@ msgstr "Nézzen meg egy filmet a videótárából"
 msgid "Resume last video"
 msgstr "Utoljára lejátszott videó folytatása"
 
-#: src/Widgets/Library/EpisodesPage.vala:41
-#: src/Widgets/Library/LibraryPage.vala:53
+#: src/Widgets/Library/EpisodesPage.vala:42
+#: src/Widgets/Library/LibraryPage.vala:56
 msgid "Search Videos"
 msgstr "Videók keresése"
 
-#: src/Widgets/Library/EpisodesPage.vala:49
+#: src/Widgets/Library/EpisodesPage.vala:50
 msgid "Play one video"
 msgstr "Egy videó lejátszása"
 
-#: src/Widgets/Library/EpisodesPage.vala:50
+#: src/Widgets/Library/EpisodesPage.vala:51
 msgid "Automatically play next videos"
 msgstr "A következő videók automatikus lejátszása"
 
-#: src/Widgets/Library/EpisodesPage.vala:93
-#: src/Widgets/Library/LibraryPage.vala:85
+#: src/Widgets/Library/EpisodesPage.vala:98
+#: src/Widgets/Library/LibraryPage.vala:93
 msgid "Try changing search terms."
 msgstr "Próbálja megváltoztatni a keresési kifejezéseket."
 
-#: src/Widgets/Library/EpisodesPage.vala:197
-#: src/Widgets/Library/LibraryPage.vala:239
+#: src/Widgets/Library/EpisodesPage.vala:194
+#: src/Widgets/Library/LibraryPage.vala:248
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Nincs találat erre: \"%s\""
 
-#: src/Widgets/Library/LibraryItem.vala:76
+#: src/Widgets/Library/LibraryItem.vala:79
 msgid "Move to Trash"
 msgstr "Áthelyezés a Kukába"
 
-#: src/Widgets/Library/LibraryItem.vala:89
+#: src/Widgets/Library/LibraryItem.vala:87
 msgid "Set Artwork"
 msgstr "Kép beállítása"
 
-#: src/Widgets/Library/LibraryItem.vala:179
+#: src/Widgets/Library/LibraryItem.vala:171
 msgid "Image files"
 msgstr "Képfájlok"
 
-#: src/Widgets/Player/BottomBar.vala:51 src/Widgets/Player/BottomBar.vala:106
+#: src/Widgets/Player/BottomBar.vala:38 src/Widgets/Player/BottomBar.vala:94
 msgid "Play"
 msgstr "Lejátszás"
 
-#: src/Widgets/Player/BottomBar.vala:59
+#: src/Widgets/Player/BottomBar.vala:46
 msgid "Playlist"
 msgstr "Lejátszási lista"
 
-#: src/Widgets/Player/BottomBar.vala:67
+#: src/Widgets/Player/BottomBar.vala:54
 msgid "Settings"
 msgstr "Beállítások"
 
-#: src/Widgets/Player/BottomBar.vala:110
+#: src/Widgets/Player/BottomBar.vala:97
 msgid "Pause"
 msgstr "Szünet"
 
-#: src/Widgets/Player/PlayerPage.vala:77
+#: src/Widgets/Player/PlayerPage.vala:73
 msgid "Unfullscreen"
 msgstr "Teljesképernyős-mód bezárása"
 
@@ -209,45 +212,40 @@ msgstr "Ismétlés bekapcsolása"
 msgid "Disable Repeat"
 msgstr "Ismétlés kikapcsolása"
 
-#: src/Widgets/Player/SettingsPopover.vala:36
-msgid "Subtitle files"
-msgstr "Feliratfájlok"
-
-#. .smi
-#. .srt
-#. .sub
-#. .ssa & .ass
-#. exclude .asc, mimetype is generic "application/pgp-encrypted"
-#: src/Widgets/Player/SettingsPopover.vala:43
-msgid "External Subtitles"
-msgstr "Külső feliratok"
-
-#: src/Widgets/Player/SettingsPopover.vala:47
+#: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
 msgstr "Hang:"
 
-#: src/Widgets/Player/SettingsPopover.vala:51
+#: src/Widgets/Player/SettingsPopover.vala:48
 msgid "Subtitles:"
 msgstr "Feliratok:"
 
-#: src/Widgets/Player/SettingsPopover.vala:55
+#: src/Widgets/Player/SettingsPopover.vala:52
 msgid "External Subtitles:"
 msgstr "Külső feliratok:"
 
+#: src/Widgets/Player/SettingsPopover.vala:105
+#: src/Widgets/Player/SettingsPopover.vala:186
+msgid "None"
+msgstr "Nincs"
+
+#: src/Widgets/Player/SettingsPopover.vala:115
+msgid "Subtitle files"
+msgstr "Feliratfájlok"
+
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:139
-#: src/Widgets/Player/SettingsPopover.vala:169
+#: src/Widgets/Player/SettingsPopover.vala:184
+#: src/Widgets/Player/SettingsPopover.vala:214
 #, c-format
 msgid "Track %u"
 msgstr "Szám %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:141
-msgid "None"
-msgstr "Nincs"
-
-#: src/Widgets/Player/SettingsPopover.vala:182
+#: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "Alapértelmezett"
+
+#~ msgid "External Subtitles"
+#~ msgstr "Külső feliratok"
 
 #~ msgid "Audience;Video;Player;Movies;"
 #~ msgstr "Audience;Videó;Lejátszó;Filmek;"
