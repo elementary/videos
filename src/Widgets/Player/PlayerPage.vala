@@ -32,7 +32,6 @@ namespace Audience {
         private Gtk.Revealer bottom_bar_revealer;
 
         private uint hiding_timer = 0;
-        private bool mouse_primary_down = false;
 
         private bool _fullscreened = false;
         public bool fullscreened {
@@ -118,29 +117,7 @@ namespace Audience {
             });
 
             event_box.motion_notify_event.connect (event => {
-                if (mouse_primary_down) {
-                    mouse_primary_down = false;
-                    App.get_instance ().active_window.begin_move_drag (Gdk.BUTTON_PRIMARY,
-                        (int)event.x_root, (int)event.y_root, event.time);
-                }
-
                 reveal_control ();
-
-                return false;
-            });
-
-            event_box.button_press_event.connect (event => {
-                if (event.button == Gdk.BUTTON_PRIMARY) {
-                    mouse_primary_down = true;
-                }
-
-                return false;
-            });
-
-            event_box.button_release_event.connect (event => {
-                if (event.button == Gdk.BUTTON_PRIMARY) {
-                    mouse_primary_down = false;
-                }
 
                 return false;
             });
