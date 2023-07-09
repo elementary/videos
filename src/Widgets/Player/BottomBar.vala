@@ -18,83 +18,71 @@
  *              Artem Anufrij <artem.anufrij@live.de>
  */
 
-public class Audience.Widgets.BottomBar : Gtk.Revealer {
-    public PlaylistPopover playlist_popover { get; private set; }
-    public Videos.SeekBar time_widget { get; private set; }
-
-    private SettingsPopover preferences_popover;
-    private Gtk.Button play_button;
-    private Gtk.MenuButton playlist_button;
-    private uint hiding_timer = 0;
-
-    private bool _hovered = false;
-    private bool hovered {
+public class Audience.Widgets.BottomBar : Gtk.EventBox {
+    public bool should_stay_revealed {
         get {
-            return _hovered;
-        }
-        set {
-            _hovered = value;
-            if (value) {
-                if (hiding_timer != 0) {
-                    Source.remove (hiding_timer);
-                    hiding_timer = 0;
-                }
-            } else {
-                reveal_control ();
-            }
+            var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+            return hovered || playlist_popover.visible || settings_popover.visible ||
+                !play_pause_action.get_state ().get_boolean ();
         }
     }
 
-    public BottomBar () {
-        play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON) {
+    private Videos.SeekBar seek_bar;
+    private PlaylistPopover playlist_popover;
+    private SettingsPopover settings_popover;
+    private bool hovered;
+
+    construct {
+        var play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON) {
             action_name = App.ACTION_PREFIX + App.ACTION_PLAY_PAUSE,
             tooltip_text = _("Play")
         };
 
         playlist_popover = new PlaylistPopover ();
 
-        playlist_button = new Gtk.MenuButton () {
+        var playlist_button = new Gtk.MenuButton () {
             image = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
             popover = playlist_popover,
             tooltip_text = _("Playlist")
         };
 
-        preferences_popover = new SettingsPopover ();
+        settings_popover = new SettingsPopover ();
 
-        var preferences_button = new Gtk.MenuButton () {
+        var settings_button = new Gtk.MenuButton () {
             image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
-            popover = preferences_popover,
+            popover = settings_popover,
             tooltip_text = _("Settings")
         };
 
-        time_widget = new Videos.SeekBar ();
+        seek_bar = new Videos.SeekBar ();
 
         var main_actionbar = new Gtk.ActionBar ();
         main_actionbar.pack_start (play_button);
-        main_actionbar.set_center_widget (time_widget);
-        main_actionbar.pack_end (preferences_button);
+        main_actionbar.set_center_widget (seek_bar);
+        main_actionbar.pack_end (settings_button);
         main_actionbar.pack_end (playlist_button);
 
-        add (main_actionbar);
-
+        child = main_actionbar;
         show_all ();
 
-        transition_type = Gtk.RevealerTransitionType.SLIDE_UP;
-
-        events |= Gdk.EventMask.POINTER_MOTION_MASK;
         events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
         events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
+
+        playlist_popover.notify["visible"].connect (() => notify_property ("should-stay-revealed"));
+        settings_popover.notify["visible"].connect (() => notify_property ("should-stay-revealed"));
 
         enter_notify_event.connect ((event) => {
             if (event.window == get_window ()) {
                 hovered = true;
+                notify_property ("should-stay-revealed");
             }
             return false;
         });
 
         leave_notify_event.connect ((event) => {
-            if (event.window == get_window ()) {
+            if (event.window == get_window () && event.detail != INFERIOR) {
                 hovered = false;
+                notify_property ("should-stay-revealed");
             }
             return false;
         });
@@ -104,35 +92,21 @@ public class Audience.Widgets.BottomBar : Gtk.Revealer {
                 if (new_state.get_boolean () == false) {
                     ((Gtk.Image) play_button.image).icon_name = "media-playback-start-symbolic";
                     play_button.tooltip_text = _("Play");
-                    reveal_child = true;
                 } else {
                     ((Gtk.Image) play_button.image).icon_name = "media-playback-pause-symbolic";
                     play_button.tooltip_text = _("Pause");
-                    reveal_control ();
                 }
+                notify_property ("should-stay-revealed");
             }
         });
     }
 
-    public void reveal_control () {
-        if (child_revealed == false) {
-            set_reveal_child (true);
+    public void hide_popovers () {
+        playlist_popover.popdown ();
+
+        var popover = seek_bar.preview_popover;
+        if (popover != null) {
+            popover.schedule_hide ();
         }
-
-        if (hiding_timer != 0) {
-            Source.remove (hiding_timer);
-        }
-
-        var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-
-        hiding_timer = GLib.Timeout.add (2000, () => {
-            if (hovered || preferences_popover.visible || playlist_popover.visible || !play_pause_action.get_state ().get_boolean ()) {
-                hiding_timer = 0;
-                return false;
-            }
-            set_reveal_child (false);
-            hiding_timer = 0;
-            return false;
-        });
     }
 }
