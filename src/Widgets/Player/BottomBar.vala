@@ -18,7 +18,7 @@
  *              Artem Anufrij <artem.anufrij@live.de>
  */
 
-public class Audience.Widgets.BottomBar : Gtk.EventBox {
+public class Audience.Widgets.BottomBar : Gtk.Box {
     public bool should_stay_revealed {
         get {
             var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
@@ -62,29 +62,21 @@ public class Audience.Widgets.BottomBar : Gtk.EventBox {
         main_actionbar.pack_end (settings_button);
         main_actionbar.pack_end (playlist_button);
 
-        child = main_actionbar;
+        add (main_actionbar);
         show_all ();
-
-        events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
-        events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
 
         playlist_popover.notify["visible"].connect (() => notify_property ("should-stay-revealed"));
         settings_popover.notify["visible"].connect (() => notify_property ("should-stay-revealed"));
 
-        enter_notify_event.connect ((event) => {
-            if (event.window == get_window ()) {
-                hovered = true;
-                notify_property ("should-stay-revealed");
-            }
-            return false;
+        var motion_controller = new Gtk.EventControllerMotion (this);
+        motion_controller.enter.connect (() => {
+            hovered = true;
+            notify_property ("should-stay-revealed");
         });
 
-        leave_notify_event.connect ((event) => {
-            if (event.window == get_window () && event.detail != INFERIOR) {
-                hovered = false;
-                notify_property ("should-stay-revealed");
-            }
-            return false;
+        motion_controller.leave.connect (() => {
+            hovered = false;
+            notify_property ("should-stay-revealed");
         });
 
         GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
