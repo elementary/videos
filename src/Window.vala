@@ -122,8 +122,6 @@ public class Audience.Window : Hdy.ApplicationWindow {
         var window_handle = new Hdy.WindowHandle () {
             child = deck
         };
-
-        var manager = Audience.Services.LibraryManager.get_instance ();
         app_notification = new Granite.Widgets.Toast ("");
 
         var overlay = new Gtk.Overlay () {
@@ -131,8 +129,10 @@ public class Audience.Window : Hdy.ApplicationWindow {
         };
         overlay.add_overlay (app_notification);
 
-        add (overlay);
+        child = overlay;
         show_all ();
+
+        var manager = Audience.Services.LibraryManager.get_instance ();
 
         manager.video_moved_to_trash.connect ((video) => {
             app_notification.title = _("Video '%s' Removed.").printf (Path.get_basename (video));
@@ -259,7 +259,7 @@ public class Audience.Window : Hdy.ApplicationWindow {
         } else if (deck.visible_child == episodes_page) {
             episodes_page.search ();
         } else {
-            Gdk.beep ();
+            Gdk.Display.get_default ().beep ();
         }
     }
 
@@ -423,17 +423,22 @@ public class Audience.Window : Hdy.ApplicationWindow {
         file.add_filter (video_filter);
         file.add_filter (all_files_filter);
 
-        if (file.run () == Gtk.ResponseType.ACCEPT) {
-            File[] files = {};
-            foreach (File item in file.get_files ()) {
-                files += item;
+        file.response.connect ((response) => {
+            if (response == Gtk.ResponseType.ACCEPT) {
+                File[] files = {};
+
+                foreach (File item in file.get_files ()) {
+                    files += item;
+                }
+
+                open_files (files, clear_playlist, force_play);
+                settings.set_string ("last-folder", file.get_current_folder ());
             }
 
-            open_files (files, clear_playlist, force_play);
-            settings.set_string ("last-folder", file.get_current_folder ());
-        }
+            file.destroy ();
+        });
 
-        file.destroy ();
+        file.show ();
     }
 
     private async void read_first_disk () {
