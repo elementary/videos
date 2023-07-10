@@ -72,16 +72,11 @@ public class Audience.PlaybackManager : Object {
         notify["playing"].connect (() => {
             var play_pause_action = default_application.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
             ((SimpleAction) play_pause_action).set_state (playing);
+            update_position ();
         });
 
         Timeout.add (500, () => {
-            int64 _position;
-            if (playbin.query_position (Gst.Format.TIME, out _position)) {
-                position = _position;
-            } else {
-                position = 0;
-            }
-
+            update_position ();
             return Source.CONTINUE;
         });
     }
@@ -160,6 +155,9 @@ public class Audience.PlaybackManager : Object {
             case ASYNC_DONE:
                 if (is_seeking) {
                     is_seeking = false;
+
+                    update_position ();
+
                     if (queued_seek >= 0) {
                         seek (queued_seek);
                     }
@@ -264,6 +262,15 @@ public class Audience.PlaybackManager : Object {
         }
 
         queued_seek = -1;
+    }
+
+    private void update_position () {
+        int64 _position;
+        if (playbin.query_position (Gst.Format.TIME, out _position)) {
+            position = _position;
+        } else {
+            position = 0;
+        }
     }
 
     private bool is_subtitle (string uri) {
