@@ -15,51 +15,56 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Audience.WelcomePage : Granite.Widgets.Welcome {
+public class Audience.WelcomePage : Granite.Placeholder {
     private string current_video;
-    private Granite.Widgets.WelcomeButton replay_button;
+    private Gtk.Button replay_button;
 
     public WelcomePage () {
         Object (
             title: _("No Videos Open"),
-            subtitle: _("Select a source to begin playing.")
+            description: _("Select a source to begin playing.")
         );
     }
 
     construct {
-        append ("document-open", _("Open file"), _("Open a saved file."));
-        append ("media-playlist-repeat", _("Replay last video"), "");
-        append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
-        append ("folder-videos", _("Browse Library"), _("Watch a movie from your library"));
+        append_button (new ThemedIcon ("document-open"), _("Open file"), _("Open a saved file."));
+        replay_button = append_button (new ThemedIcon ("media-playlist-repeat"), _("Replay last video"), "");
+        append_button (new ThemedIcon ("media-cdrom"), _("Play from Disc"), _("Watch a DVD or open a file from disc"));
+        var browse_library = append_button (new ThemedIcon ("folder-videos"), _("Browse Library"), _("Watch a movie from your library"));
 
         var disk_manager = DiskManager.get_default ();
-        set_item_visible (2, disk_manager.has_media_volumes ());
+        // set_item_visible (2, disk_manager.has_media_volumes ());
 
         var library_manager = Services.LibraryManager.get_instance ();
-        set_item_visible (3, library_manager.has_items);
+        // browse_library.visible = library_manager.has_items;
 
-        replay_button = get_button_from_index (1);
         update_replay_button ();
         update_replay_title ();
 
-        activated.connect ((index) => {
-            var window = (Audience.Window) ((Gtk.Application) Application.get_default ()).active_window;
-            switch (index) {
-                case 0:
-                    // Open file
-                    window.run_open_file (true);
-                    break;
-                case 1:
-                    PlaybackManager.get_default ().append_to_playlist (File.new_for_uri (current_video));
-                    settings.set_string ("current-video", current_video);
-                    window.resume_last_videos ();
-                    break;
-                case 2:
-                    window.run_open_dvd ();
-                    break;
-                case 3:
-                    window.show_library ();
-            }
+
+        // activated.connect ((index) => {
+        //     var window = (Audience.Window) ((Gtk.Application) Application.get_default ()).active_window;
+        //     switch (index) {
+        //         case 0:
+        //             // Open file
+        //             window.run_open_file (true);
+        //             break;
+        //         case 1:
+        //             PlaybackManager.get_default ().append_to_playlist (File.new_for_uri (current_video));
+        //             settings.set_string ("current-video", current_video);
+        //             window.resume_last_videos ();
+        //             break;
+        //         case 2:
+        //             window.run_open_dvd ();
+        //             break;
+        //         case 3:
+        //             window.show_library ();
+        //     }
+        // });
+
+        browse_library.clicked.connect (() => {
+            var window = (Audience.Window)get_root ();
+            window.show_library ();
         });
 
         settings.changed["current-video"].connect (() => {
@@ -71,20 +76,19 @@ public class Audience.WelcomePage : Granite.Widgets.Welcome {
         });
 
         disk_manager.volume_found.connect ((vol) => {
-            set_item_visible (2, disk_manager.has_media_volumes ());
+            // set_item_visible (2, disk_manager.has_media_volumes ());
         });
 
         disk_manager.volume_removed.connect ((vol) => {
-            set_item_visible (2, disk_manager.has_media_volumes ());
+            // set_item_visible (2, disk_manager.has_media_volumes ());
         });
 
         library_manager.video_file_detected.connect ((vid) => {
-            set_item_visible (3, true);
-            show_all ();
+            // browse_library.visible = library_manager.has_items;
         });
 
         library_manager.video_file_deleted.connect ((vid) => {
-            set_item_visible (3, LibraryPage.get_instance ().has_items);
+            // browse_library.visible = library_manager.has_items;
         });
     }
 
@@ -95,22 +99,22 @@ public class Audience.WelcomePage : Granite.Widgets.Welcome {
         if (current_video != "") {
             var last_file = File.new_for_uri (current_video);
             if (last_file.query_exists () == true) {
-                replay_button.description = get_title (last_file.get_basename ());
+                // replay_button.description = get_title (last_file.get_basename ());
 
                 show_replay_button = true;
             }
         }
 
-        set_item_visible (1, show_replay_button);
+        replay_button.visible = show_replay_button;
     }
 
     private void update_replay_title () {
-        if (settings.get_int64 ("last-stopped") == 0.0) {
-            replay_button.title = _("Replay last video");
-            replay_button.icon.icon_name = ("media-playlist-repeat");
+        if (settings.get_double ("last-stopped") == 0.0) {
+            replay_button.label = _("Replay last video");
+            replay_button.icon_name = ("media-playlist-repeat");
         } else {
-            replay_button.title = _("Resume last video");
-            replay_button.icon.icon_name = ("media-playback-start");
+            replay_button.label = _("Resume last video");
+            replay_button.icon_name = ("media-playback-start");
         }
     }
 }

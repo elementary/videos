@@ -18,7 +18,7 @@
  *              Artem Anufrij <artem.anufrij@live.de>
  */
 
-public class Audience.Widgets.BottomBar : Gtk.EventBox {
+public class Audience.Widgets.BottomBar : Gtk.Box {
     public bool should_stay_revealed {
         get {
             var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
@@ -33,7 +33,7 @@ public class Audience.Widgets.BottomBar : Gtk.EventBox {
     private bool hovered;
 
     construct {
-        var play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.BUTTON) {
+        var play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic") {
             action_name = App.ACTION_PREFIX + App.ACTION_PLAY_PAUSE,
             tooltip_text = _("Play")
         };
@@ -41,7 +41,7 @@ public class Audience.Widgets.BottomBar : Gtk.EventBox {
         playlist_popover = new PlaylistPopover ();
 
         var playlist_button = new Gtk.MenuButton () {
-            image = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
+            icon_name = "view-list-symbolic",
             popover = playlist_popover,
             tooltip_text = _("Playlist")
         };
@@ -49,51 +49,47 @@ public class Audience.Widgets.BottomBar : Gtk.EventBox {
         settings_popover = new SettingsPopover ();
 
         var settings_button = new Gtk.MenuButton () {
-            image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
+            icon_name = "open-menu-symbolic",
             popover = settings_popover,
             tooltip_text = _("Settings")
         };
 
         seek_bar = new Videos.SeekBar ();
 
-        var main_actionbar = new Gtk.ActionBar ();
+        var main_actionbar = new Gtk.ActionBar () {
+            hexpand = true
+        };
         main_actionbar.pack_start (play_button);
         main_actionbar.set_center_widget (seek_bar);
         main_actionbar.pack_end (settings_button);
         main_actionbar.pack_end (playlist_button);
 
-        child = main_actionbar;
-        show_all ();
+        hexpand = true;
+        append (main_actionbar);
 
-        events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
-        events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
+        var motion_controller = new Gtk.EventControllerMotion ();
+        add_controller (motion_controller);
+
+        motion_controller.enter.connect (() => {
+            hovered = true;
+            notify_property ("should-stay-revealed");
+        });
+
+        motion_controller.leave.connect (() => {
+            hovered = false;
+            notify_property ("should-stay-revealed");
+        });
 
         playlist_popover.notify["visible"].connect (() => notify_property ("should-stay-revealed"));
         settings_popover.notify["visible"].connect (() => notify_property ("should-stay-revealed"));
 
-        enter_notify_event.connect ((event) => {
-            if (event.window == get_window ()) {
-                hovered = true;
-                notify_property ("should-stay-revealed");
-            }
-            return false;
-        });
-
-        leave_notify_event.connect ((event) => {
-            if (event.window == get_window () && event.detail != INFERIOR) {
-                hovered = false;
-                notify_property ("should-stay-revealed");
-            }
-            return false;
-        });
-
         GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
             if (name == Audience.App.ACTION_PLAY_PAUSE) {
                 if (new_state.get_boolean () == false) {
-                    ((Gtk.Image) play_button.image).icon_name = "media-playback-start-symbolic";
+                    play_button.icon_name = "media-playback-start-symbolic";
                     play_button.tooltip_text = _("Play");
                 } else {
-                    ((Gtk.Image) play_button.image).icon_name = "media-playback-pause-symbolic";
+                    play_button.icon_name = "media-playback-pause-symbolic";
                     play_button.tooltip_text = _("Pause");
                 }
                 notify_property ("should-stay-revealed");

@@ -63,12 +63,6 @@ namespace Audience {
             return app;
         }
 
-        public override void startup () {
-            base.startup ();
-
-            Hdy.init ();
-        }
-
         public override void activate () {
             if (mainwindow == null) {
                 add_action_entries (ACTION_ENTRIES, this);
@@ -144,13 +138,6 @@ namespace Audience {
 }
 
 public static void main (string [] args) {
-    X.init_threads ();
-
-    var err = GtkClutter.init (ref args);
-    if (err != Clutter.InitError.SUCCESS) {
-        error ("Could not initialize clutter! %s", err.to_string ());
-    }
-
     Gst.init (ref args);
 
     var app = Audience.App.get_instance ();

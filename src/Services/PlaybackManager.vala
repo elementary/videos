@@ -17,7 +17,7 @@ public class Audience.PlaybackManager : Object {
     public signal void save_playlist ();
     public signal void uri_changed (string uri);
 
-    public Gtk.Widget gst_video_widget { get; construct; }
+    public Gdk.Paintable gst_video_widget { get; construct; }
     public string? subtitle_uri { get; private set; default = ""; }
     public bool playing { get; private set; }
     public int64 duration { get; private set; default = 0; }
@@ -35,9 +35,9 @@ public class Audience.PlaybackManager : Object {
     }
 
     construct {
-        var gtksink = Gst.ElementFactory.make ("gtksink", "sink");
-        Gtk.Widget _gst_video_widget;
-        gtksink.get ("widget", out _gst_video_widget);
+        var gtksink = Gst.ElementFactory.make ("gtk4paintablesink", "sink");
+        Gdk.Paintable _gst_video_widget;
+        gtksink.get ("paintable", out _gst_video_widget);
         gst_video_widget = _gst_video_widget;
 
         playbin = Gst.ElementFactory.make ("playbin", "bin");

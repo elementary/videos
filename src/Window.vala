@@ -20,9 +20,9 @@
  *              Corentin Noël <corentin@elementary.io>
  */
 
-public class Audience.Window : Hdy.ApplicationWindow {
-    private Hdy.Deck deck;
-    private Granite.Widgets.Toast app_notification;
+public class Audience.Window : Gtk.ApplicationWindow {
+    private Adw.Leaflet leaflet;
+    private Granite.Toast app_notification;
     private EpisodesPage episodes_page;
     private LibraryPage library_page;
     private Gtk.Box welcome_page_box;
@@ -78,59 +78,60 @@ public class Audience.Window : Hdy.ApplicationWindow {
             );
         }
 
-        window_position = Gtk.WindowPosition.CENTER;
-        gravity = Gdk.Gravity.CENTER;
+        // window_position = Gtk.WindowPosition.CENTER;
+        // gravity = Gdk.Gravity.CENTER;
         set_default_size (1000, 680);
 
         library_page = LibraryPage.get_instance ();
 
         library_page.show_episodes.connect ((item, setup_only) => {
             episodes_page.set_episodes_items (item.episodes);
-            episodes_page.poster.pixbuf = item.poster.pixbuf;
+            // episodes_page.poster.set_from_pixbuf (item.poster.pixbuf);
             if (!setup_only) {
-                episodes_page.show_all ();
-
-                deck.add (episodes_page);
-                deck.visible_child = episodes_page;
+                leaflet.append (episodes_page);
+                leaflet.visible_child = episodes_page;
 
                 title = item.get_title ();
             }
         });
 
-        var welcome_page_header_bar = new Hdy.HeaderBar () {
-            show_close_button = true,
-            title = _("Videos")
+        var welcome_page_header_bar = new Gtk.HeaderBar () {
+            show_title_buttons = true
         };
-        welcome_page_header_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        welcome_page_header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
 
         var welcome_page = new WelcomePage ();
 
         welcome_page_box = new Gtk.Box (VERTICAL, 0);
-        welcome_page_box.add (welcome_page_header_bar);
-        welcome_page_box.add (welcome_page);
-        welcome_page_box.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
+        welcome_page_box.append (welcome_page_header_bar);
+        welcome_page_box.append (welcome_page);
+        welcome_page_box.add_css_class (Granite.STYLE_CLASS_VIEW);
 
         player_page = new PlayerPage ();
 
         episodes_page = new EpisodesPage ();
 
-        deck = new Hdy.Deck () {
-            can_swipe_back = true
+        leaflet = new Adw.Leaflet () {
+            can_navigate_back = true,
+            can_unfold = false
         };
-        deck.add (welcome_page_box);
+        leaflet.append (welcome_page_box);
 
-        var window_handle = new Hdy.WindowHandle () {
-            child = deck
+        var window_handle = new Gtk.WindowHandle () {
+            child = leaflet
         };
-        app_notification = new Granite.Widgets.Toast ("");
+        app_notification = new Granite.Toast ("");
 
         var overlay = new Gtk.Overlay () {
             child = window_handle
         };
         overlay.add_overlay (app_notification);
 
+        titlebar = new Gtk.Grid () {
+            visible = false
+        };
         child = overlay;
-        show_all ();
+        present ();
 
         var manager = Audience.Services.LibraryManager.get_instance ();
 
@@ -150,40 +151,40 @@ public class Audience.Window : Hdy.ApplicationWindow {
             app_notification.send_notification ();
         });
 
-        deck.notify["visible-child"].connect (() => {
+        leaflet.notify["visible-child"].connect (() => {
             update_navigation ();
         });
 
-        deck.notify["transition-running"].connect (() => {
+        leaflet.notify["transition-running"].connect (() => {
             update_navigation ();
         });
 
-        Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
-        Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
-        drag_data_received.connect ((ctx, x, y, sel, info, time) => {
-            var files = new Array<File> ();
-            foreach (var uri in sel.get_uris ()) {
-                var file = File.new_for_uri (uri);
-                files.append_val (file);
-            }
+        // Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
+        // Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
+        // drag_data_received.connect ((ctx, x, y, sel, info, time) => {
+        //     var files = new Array<File> ();
+        //     foreach (var uri in sel.get_uris ()) {
+        //         var file = File.new_for_uri (uri);
+        //         files.append_val (file);
+        //     }
 
-            open_files (files.data, false, false);
-        });
+        //     open_files (files.data, false, false);
+        // });
 
-        player_page.button_press_event.connect ((event) => {
-            // double left click
-            if (event.button == Gdk.BUTTON_PRIMARY && event.type == Gdk.EventType.2BUTTON_PRESS) {
-                action_fullscreen ();
-            }
+        // player_page.button_press_event.connect ((event) => {
+        //     // double left click
+        //     if (event.button == Gdk.BUTTON_PRIMARY && event.type == Gdk.EventType.2BUTTON_PRESS) {
+        //         action_fullscreen ();
+        //     }
 
-            // right click
-            if (event.button == Gdk.BUTTON_SECONDARY) {
-                var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-                ((SimpleAction) play_pause_action).activate (null);
-            }
+        //     // right click
+        //     if (event.button == Gdk.BUTTON_SECONDARY) {
+        //         var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+        //         ((SimpleAction) play_pause_action).activate (null);
+        //     }
 
-            return base.button_press_event (event);
-        });
+        //     return base.button_press_event (event);
+        // });
 
         var playback_manager = PlaybackManager.get_default ();
 
@@ -200,43 +201,43 @@ public class Audience.Window : Hdy.ApplicationWindow {
             app_notification.send_notification ();
         });
 
-        window_state_event.connect ((e) => {
-            if (Gdk.WindowState.FULLSCREEN in e.changed_mask) {
-                player_page.fullscreened = Gdk.WindowState.FULLSCREEN in e.new_window_state;
+        // window_state_event.connect ((e) => {
+        //     if (Gdk.WindowState.FULLSCREEN in e.changed_mask) {
+        //         player_page.fullscreened = Gdk.WindowState.FULLSCREEN in e.new_window_state;
 
-                if (!player_page.fullscreened) {
-                    unmaximize ();
-                }
-            }
+        //         if (!player_page.fullscreened) {
+        //             unmaximize ();
+        //         }
+        //     }
 
-            if (Gdk.WindowState.MAXIMIZED in e.changed_mask) {
-                bool currently_maximixed = Gdk.WindowState.MAXIMIZED in e.new_window_state;
+        //     if (Gdk.WindowState.MAXIMIZED in e.changed_mask) {
+        //         bool currently_maximixed = Gdk.WindowState.MAXIMIZED in e.new_window_state;
 
-                if (deck.visible_child == player_page && currently_maximixed) {
-                   fullscreen ();
-                }
-            }
+        //         if (leaflet.visible_child == player_page && currently_maximixed) {
+        //            fullscreen ();
+        //         }
+        //     }
 
-            return false;
-        });
+        //     return false;
+        // });
 
-        configure_event.connect (event => {
-            player_page.hide_popovers ();
-            return Gdk.EVENT_PROPAGATE;
-        });
+        // configure_event.connect (event => {
+        //     player_page.hide_popovers ();
+        //     return Gdk.EVENT_PROPAGATE;
+        // });
 
-        motion_notify_event.connect (event => {
-            show_mouse_cursor ();
-            return Gdk.EVENT_PROPAGATE;
-        });
+        // motion_notify_event.connect (event => {
+        //     show_mouse_cursor ();
+        //     return Gdk.EVENT_PROPAGATE;
+        // });
     }
 
     private void action_back () {
-        deck.navigate (Hdy.NavigationDirection.BACK);
+        leaflet.navigate (Adw.NavigationDirection.BACK);
     }
 
     private void action_fullscreen () {
-        if (deck.visible_child == player_page) {
+        if (leaflet.visible_child == player_page) {
             if (player_page.fullscreened) {
                 unfullscreen ();
             } else {
@@ -254,9 +255,9 @@ public class Audience.Window : Hdy.ApplicationWindow {
     }
 
     private void action_search () {
-        if (deck.visible_child == library_page) {
+        if (leaflet.visible_child == library_page) {
             library_page.search ();
-        } else if (deck.visible_child == episodes_page) {
+        } else if (leaflet.visible_child == episodes_page) {
             episodes_page.search ();
         } else {
             Gdk.Display.get_default ().beep ();
@@ -269,94 +270,94 @@ public class Audience.Window : Hdy.ApplicationWindow {
          */
         if (!is_sandboxed ()) {
             Audience.Services.LibraryManager.get_instance ().undo_delete_item ();
-            app_notification.reveal_child = false;
+            // app_notification.reveal_child = false;
 
-            if (deck.visible_child != episodes_page) {
-                deck.visible_child = library_page;
+            if (leaflet.visible_child != episodes_page) {
+                leaflet.visible_child = library_page;
             }
         }
     }
 
     /** Returns true if the code parameter matches the keycode of the keyval parameter for
     * any keyboard group or level (in order to allow for non-QWERTY keyboards) **/
-#if VALA_0_42
-    public bool match_keycode (uint keyval, uint code) {
-#else
-    public bool match_keycode (int keyval, uint code) {
-#endif
-        Gdk.KeymapKey [] keys;
-        Gdk.Keymap keymap = Gdk.Keymap.get_for_display (Gdk.Display.get_default ());
-        if (keymap.get_entries_for_keyval (keyval, out keys)) {
-            foreach (var key in keys) {
-                if (code == key.keycode) {
-                    return true;
-                }
-            }
-        }
+// #if VALA_0_42
+//     public bool match_keycode (uint keyval, uint code) {
+// #else
+//     public bool match_keycode (int keyval, uint code) {
+// #endif
+//         Gdk.KeymapKey [] keys;
+//         Gdk.Keymap keymap = Gdk.Keymap.get_for_display (Gdk.Display.get_default ());
+//         if (keymap.get_entries_for_keyval (keyval, out keys)) {
+//             foreach (var key in keys) {
+//                 if (code == key.keycode) {
+//                     return true;
+//                 }
+//             }
+//         }
 
-        return false;
-    }
+//         return false;
+//     }
 
-    public override bool key_press_event (Gdk.EventKey e) {
-        uint keycode = e.hardware_keycode;
+//     public override bool key_press_event (Gdk.EventKey e) {
+//         uint keycode = e.hardware_keycode;
 
-        if (deck.visible_child == player_page) {
-            if (match_keycode (Gdk.Key.space, keycode)) {
-                var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-                ((SimpleAction) play_pause_action).activate (null);
-                return true;
-            } else if (match_keycode (Gdk.Key.p, keycode)) {
-                var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-                ((SimpleAction) play_pause_action).activate (null);
-            } else if (match_keycode (Gdk.Key.a, keycode)) {
-                PlaybackManager.get_default ().next_audio ();
-            } else if (match_keycode (Gdk.Key.s, keycode)) {
-                PlaybackManager.get_default ().next_text ();
-            }
+//         if (leaflet.visible_child == player_page) {
+//             if (match_keycode (Gdk.Key.space, keycode)) {
+//                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+//                 ((SimpleAction) play_pause_action).activate (null);
+//                 return true;
+//             } else if (match_keycode (Gdk.Key.p, keycode)) {
+//                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+//                 ((SimpleAction) play_pause_action).activate (null);
+//             } else if (match_keycode (Gdk.Key.a, keycode)) {
+//                 PlaybackManager.get_default ().next_audio ();
+//             } else if (match_keycode (Gdk.Key.s, keycode)) {
+//                 PlaybackManager.get_default ().next_text ();
+//             }
 
-            bool shift_pressed = Gdk.ModifierType.SHIFT_MASK in e.state;
-            switch (e.keyval) {
-                case Gdk.Key.Escape:
-                    if (player_page.fullscreened) {
-                        unfullscreen ();
-                    } else {
-                        destroy ();
-                    }
-                    return true;
-                case Gdk.Key.Down:
-                    player_page.seek_jump_seconds (shift_pressed ? -5 : -60);
-                    break;
-                case Gdk.Key.Left:
-                    player_page.seek_jump_seconds (shift_pressed ? -1 : -10);
-                    break;
-                case Gdk.Key.Right:
-                    player_page.seek_jump_seconds (shift_pressed ? 1 : 10);
-                    break;
-                case Gdk.Key.Up:
-                    player_page.seek_jump_seconds (shift_pressed ? 5 : 60);
-                    break;
-                case Gdk.Key.Page_Down:
-                    player_page.seek_jump_seconds (-600); // 10 mins
-                    break;
-                case Gdk.Key.Page_Up:
-                    player_page.seek_jump_seconds (600); // 10 mins
-                    break;
-                default:
-                    break;
-            }
-        } else if (deck.visible_child == welcome_page_box) {
-            bool ctrl_pressed = (e.state & Gdk.ModifierType.CONTROL_MASK) != 0;
-            if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
-                resume_last_videos ();
-                return true;
-            } else if (ctrl_pressed && match_keycode (Gdk.Key.b, keycode)) {
-                show_library ();
-                return true;
-            }
-        }
+//             bool shift_pressed = Gdk.ModifierType.SHIFT_MASK in e.state;
+//             switch (e.keyval) {
+//                 case Gdk.Key.Escape:
+//                     if (player_page.fullscreened) {
+//                         unfullscreen ();
+//                     } else {
+//                         destroy ();
+//                     }
+//                     return true;
+//                 case Gdk.Key.Down:
+//                     player_page.seek_jump_seconds (shift_pressed ? -5 : -60);
+//                     break;
+//                 case Gdk.Key.Left:
+//                     player_page.seek_jump_seconds (shift_pressed ? -1 : -10);
+//                     break;
+//                 case Gdk.Key.Right:
+//                     player_page.seek_jump_seconds (shift_pressed ? 1 : 10);
+//                     break;
+//                 case Gdk.Key.Up:
+//                     player_page.seek_jump_seconds (shift_pressed ? 5 : 60);
+//                     break;
+//                 case Gdk.Key.Page_Down:
+//                     player_page.seek_jump_seconds (-600); // 10 mins
+//                     break;
+//                 case Gdk.Key.Page_Up:
+//                     player_page.seek_jump_seconds (600); // 10 mins
+//                     break;
+//                 default:
+//                     break;
+//             }
+//         } else if (leaflet.visible_child == welcome_page_box) {
+//             bool ctrl_pressed = (e.state & Gdk.ModifierType.CONTROL_MASK) != 0;
+//             if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
+//                 resume_last_videos ();
+//                 return true;
+//             } else if (ctrl_pressed && match_keycode (Gdk.Key.b, keycode)) {
+//                 show_library ();
+//                 return true;
+//             }
+//         }
 
-        return base.key_press_event (e);
-    }
+//         return base.key_press_event (e);
+//     }
 
     public void open_files (File[] files, bool clear_playlist_items = false, bool force_play = true) {
         if (clear_playlist_items) {
@@ -396,10 +397,8 @@ public class Audience.Window : Hdy.ApplicationWindow {
     }
 
     public void show_library () {
-        library_page.show_all ();
-
-        deck.add (library_page);
-        deck.visible_child = library_page;
+        leaflet.append (library_page);
+        leaflet.visible_child = library_page;
     }
 
     public void run_open_file (bool clear_playlist = false, bool force_play = true) {
@@ -419,20 +418,26 @@ public class Audience.Window : Hdy.ApplicationWindow {
             _("_Cancel")
         );
         file.select_multiple = true;
-        file.set_current_folder (settings.get_string ("last-folder"));
         file.add_filter (video_filter);
         file.add_filter (all_files_filter);
+
+        try {
+            file.set_current_folder (File.new_for_uri (settings.get_string ("last-folder")));
+        } catch (Error e) {
+            warning ("Failed to set last folder as current folder: %s", e.message);
+        }
 
         file.response.connect ((response) => {
             if (response == Gtk.ResponseType.ACCEPT) {
                 File[] files = {};
 
-                foreach (File item in file.get_files ()) {
-                    files += item;
+                var files_list = file.get_files ();
+                for (int i = 0; i < files_list.get_n_items (); i++) {
+                    files += (File)files_list.get_item (i);
                 }
 
                 open_files (files, clear_playlist, force_play);
-                settings.set_string ("last-folder", file.get_current_folder ());
+                settings.set_string ("last-folder", file.get_current_folder ().get_uri ());
             }
 
             file.destroy ();
@@ -461,24 +466,22 @@ public class Audience.Window : Hdy.ApplicationWindow {
     }
 
     private void on_player_ended () {
-        deck.navigate (Hdy.NavigationDirection.BACK);
+        leaflet.navigate (Adw.NavigationDirection.BACK);
         unfullscreen ();
     }
 
     public void play_file (string uri, NavigationPage origin, bool from_beginning = true) {
-        player_page.show_all ();
-
-        deck.add (player_page);
-        deck.visible_child = player_page;
+        leaflet.append (player_page);
+        leaflet.visible_child = player_page;
 
         PlaybackManager.get_default ().play_file (uri, from_beginning);
-        if (is_maximized) {
+        if (maximized) {
             fullscreen ();
         }
     }
 
     public string get_adjacent_page_name () {
-        var previous_child = deck.get_adjacent_child (Hdy.NavigationDirection.BACK);
+        var previous_child = leaflet.get_adjacent_child (Adw.NavigationDirection.BACK);
         if (previous_child == episodes_page) {
             return NAVIGATION_BUTTON_EPISODES;
         } else if (previous_child == library_page) {
@@ -497,24 +500,24 @@ public class Audience.Window : Hdy.ApplicationWindow {
         var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
         ((SimpleAction) play_pause_action).set_state (false);
 
-        if (!deck.transition_running) {
+        if (!leaflet.child_transition_running) {
             /* Changing the player_page playing properties triggers a number of signals/bindings and
              * pipeline needs time to react so wrap subsequent code in an Idle loop.
              */
             Idle.add (() => {
-                get_window ().set_cursor (null);
+                // get_window ().set_cursor (null);
 
-                if (deck.visible_child == welcome_page_box) {
+                if (leaflet.visible_child == welcome_page_box) {
                     title = _("Videos");
-                } else if (deck.visible_child == library_page) {
+                } else if (leaflet.visible_child == library_page) {
                     title = _("Library");
-                } else if (deck.visible_child == player_page) {
+                } else if (leaflet.visible_child == player_page) {
                     ((SimpleAction) play_pause_action).set_state (true);
                 }
 
-                var next_child = deck.get_adjacent_child (Hdy.NavigationDirection.FORWARD);
+                var next_child = leaflet.get_adjacent_child (Adw.NavigationDirection.FORWARD);
                 if (next_child != null) {
-                    deck.remove (next_child);
+                    leaflet.remove (next_child);
                 }
 
                 return Source.REMOVE;
@@ -523,11 +526,11 @@ public class Audience.Window : Hdy.ApplicationWindow {
     }
 
     public void hide_mouse_cursor () {
-        var cursor = new Gdk.Cursor.for_display (get_window ().get_display (), Gdk.CursorType.BLANK_CURSOR);
-        get_window ().set_cursor (cursor);
+        // var cursor = new Gdk.Cursor.for_display (get_window ().get_display (), Gdk.CursorType.BLANK_CURSOR);
+        // get_window ().set_cursor (cursor);
     }
 
     public void show_mouse_cursor () {
-        get_window ().set_cursor (null);
+        // get_window ().set_cursor (null);
     }
 }

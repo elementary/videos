@@ -23,9 +23,9 @@ public class Audience.EpisodesPage : Gtk.Box {
 
     private ListStore items;
     private Gtk.SearchEntry search_entry;
-    private Hdy.HeaderBar header_bar;
+    private Gtk.HeaderBar header_bar;
     private Gtk.FlowBox view_episodes;
-    private Granite.Widgets.AlertView alert_view;
+    private Granite.Placeholder alert_view;
 
     private Objects.Video poster_source;
 
@@ -36,7 +36,7 @@ public class Audience.EpisodesPage : Gtk.Box {
         var navigation_button = new Gtk.Button.with_label (_("Library")) {
             valign = Gtk.Align.CENTER
         };
-        navigation_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
+        navigation_button.add_css_class (Granite.STYLE_CLASS_BACK_BUTTON);
 
         search_entry = new Gtk.SearchEntry () {
             placeholder_text = _("Search Videos"),
@@ -53,22 +53,24 @@ public class Audience.EpisodesPage : Gtk.Box {
         };
         settings.bind ("autoqueue-next", autoqueue_next, "active", SettingsBindFlags.DEFAULT);
 
-        header_bar = new Hdy.HeaderBar () {
-            show_close_button = true
+        header_bar = new Gtk.HeaderBar () {
+            show_title_buttons = true
         };
         header_bar.pack_start (navigation_button);
         header_bar.pack_end (search_entry);
         header_bar.pack_end (autoqueue_next);
-        header_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
 
         poster = new Gtk.Image () {
+            height_request = Audience.Services.POSTER_HEIGHT,
+            width_request = Audience.Services.POSTER_WIDTH,
             margin_top = 24,
             margin_bottom = 24,
             margin_start = 24,
             margin_end = 0,
             valign = Gtk.Align.START
         };
-        poster.get_style_context ().add_class (Granite.STYLE_CLASS_CARD);
+        poster.add_css_class (Granite.STYLE_CLASS_CARD);
 
         view_episodes = new Gtk.FlowBox () {
             homogeneous = true,
@@ -82,26 +84,20 @@ public class Audience.EpisodesPage : Gtk.Box {
         };
         view_episodes.set_filter_func (episodes_filter_func);
         view_episodes.bind_model (items, (item) => {
-            var library_item = (LibraryItem)item;
-            library_item.show_all ();
-            return library_item;
+            return (LibraryItem)item;
         });
 
-        var scrolled_window = new Gtk.ScrolledWindow (null, null) {
+        var scrolled_window = new Gtk.ScrolledWindow () {
             hexpand = true,
             vexpand = true,
             child = view_episodes
         };
 
-        alert_view = new Granite.Widgets.AlertView (
-            "",
-            _("Try changing search terms."),
-            "edit-find-symbolic"
-        );
-        alert_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
-        alert_view.show_all ();
-        alert_view.no_show_all = true;
-        alert_view.hide ();
+        alert_view = new Granite.Placeholder ("") {
+            description = _("Try changing search terms."),
+            icon = new ThemedIcon ("edit-find-symbolic"),
+            visible = false
+        };
 
         var grid = new Gtk.Grid () {
             hexpand = true,
@@ -112,11 +108,11 @@ public class Audience.EpisodesPage : Gtk.Box {
         grid.attach (alert_view, 1, 1);
 
         orientation = VERTICAL;
-        add (header_bar);
-        add (grid);
+        append (header_bar);
+        append (grid);
 
         navigation_button.clicked.connect (() => {
-            ((Hdy.Deck)get_ancestor (typeof (Hdy.Deck))).navigate (Hdy.NavigationDirection.BACK);
+            ((Adw.Leaflet)get_ancestor (typeof (Adw.Leaflet))).navigate (Adw.NavigationDirection.BACK);
         });
 
         view_episodes.child_activated.connect (play_video);
@@ -127,13 +123,13 @@ public class Audience.EpisodesPage : Gtk.Box {
 
         search_entry.search_changed.connect (filter);
 
-        search_entry.key_press_event.connect ((event) => {
-            if (event.keyval == Gdk.Key.Escape) {
-                search_entry.text = "";
-            }
+        // search_entry.key_press_event.connect ((event) => {
+        //     if (event.keyval == Gdk.Key.Escape) {
+        //         search_entry.text = "";
+        //     }
 
-            return Gdk.EVENT_PROPAGATE;
-        });
+        //     return Gdk.EVENT_PROPAGATE;
+        // });
     }
 
     public void search () {
@@ -155,11 +151,11 @@ public class Audience.EpisodesPage : Gtk.Box {
         poster_source.poster_changed.connect (update_poster);
 
         search_entry.text = "";
-        header_bar.title = episodes.first ().container;
+        // header_bar.title = episodes.first ().container;
     }
 
     private void update_poster (Objects.Video episode) {
-        poster.pixbuf = episode.poster;
+        poster.set_from_pixbuf (episode.poster);
     }
 
     private void play_video (Gtk.FlowBoxChild item) {
@@ -192,9 +188,9 @@ public class Audience.EpisodesPage : Gtk.Box {
          view_episodes.invalidate_filter ();
          if (!has_child ()) {
             alert_view.title = _("No Results for “%s”").printf (search_entry.text);
-            alert_view.show ();
+            alert_view.visible = true;
          } else {
-            alert_view.hide ();
+            alert_view.visible = false;
          }
     }
 
@@ -240,9 +236,9 @@ public class Audience.EpisodesPage : Gtk.Box {
             }
         }
 
-        var deck = (Hdy.Deck) get_ancestor (typeof (Hdy.Deck));
-        if (deck.visible_child == this && items.get_n_items () == 0) {
-            deck.navigate (Hdy.NavigationDirection.BACK);
+        var Leaflet = (Adw.Leaflet) get_ancestor (typeof (Adw.Leaflet));
+        if (Leaflet.visible_child == this && items.get_n_items () == 0) {
+            Leaflet.navigate (Adw.NavigationDirection.BACK);
         }
     }
 

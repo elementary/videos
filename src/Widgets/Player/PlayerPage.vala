@@ -26,7 +26,7 @@ namespace Audience {
     };
 
     public class PlayerPage : Gtk.Box {
-        private Hdy.HeaderBar header_bar;
+        private Gtk.HeaderBar header_bar;
         private Audience.Widgets.BottomBar bottom_bar;
         private Gtk.Revealer unfullscreen_revealer;
         private Gtk.Revealer bottom_bar_revealer;
@@ -41,11 +41,7 @@ namespace Audience {
             set {
                 _fullscreened = value;
 
-                if (value) {
-                    header_bar.hide ();
-                } else {
-                    header_bar.show ();
-                }
+                header_bar.visible = !value;
 
                 if (bottom_bar_revealer.child_revealed) {
                     reveal_control ();
@@ -61,71 +57,71 @@ namespace Audience {
             };
             navigation_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
 
-            header_bar = new Hdy.HeaderBar () {
-                show_close_button = true,
-                title = _("Library")
+            header_bar = new Gtk.HeaderBar () {
+                show_title_buttons = true,
             };
             header_bar.pack_start (navigation_button);
-            header_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+            header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
 
-            var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic", Gtk.IconSize.BUTTON) {
+            var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic") {
                 tooltip_text = _("Unfullscreen")
             };
 
             unfullscreen_revealer = new Gtk.Revealer () {
                 transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN,
                 valign = START,
-                halign = END
+                halign = END,
+                child = unfullscreen_button
             };
-            unfullscreen_revealer.add (unfullscreen_button);
-            unfullscreen_revealer.show_all ();
 
             bottom_bar = new Widgets.BottomBar ();
 
             bottom_bar_revealer = new Gtk.Revealer () {
                 transition_type = SLIDE_UP,
                 valign = END,
-                child = bottom_bar
+                child = bottom_bar,
+                hexpand = true
+            };
+
+            var picture = new Gtk.Picture.for_paintable (playback_manager.gst_video_widget) {
+                hexpand = true,
+                vexpand = true
             };
 
             var overlay = new Gtk.Overlay () {
-                child = playback_manager.gst_video_widget
+                child = picture
             };
             overlay.add_overlay (unfullscreen_revealer);
             overlay.add_overlay (bottom_bar_revealer);
 
-            var event_box = new Gtk.EventBox () {
-                child = overlay,
-                hexpand = true,
-                vexpand = true
-            };
-            event_box.events |= Gdk.EventMask.POINTER_MOTION_MASK;
-            event_box.events |= Gdk.EventMask.KEY_PRESS_MASK;
-            event_box.events |= Gdk.EventMask.KEY_RELEASE_MASK;
-
             orientation = VERTICAL;
-            add (header_bar);
-            add (event_box);
-            show_all ();
+            append (header_bar);
+            append (overlay);
 
             map.connect (() => {
-                navigation_button.label = ((Window)get_toplevel ()).get_adjacent_page_name ();
+                navigation_button.label = ((Window)get_root ()).get_adjacent_page_name ();
             });
 
             navigation_button.clicked.connect (() => {
-                ((Hdy.Deck)get_ancestor (typeof (Hdy.Deck))).navigate (Hdy.NavigationDirection.BACK);
+                ((Adw.Leaflet)get_ancestor (typeof (Adw.Leaflet))).navigate (Adw.NavigationDirection.BACK);
             });
 
-            event_box.motion_notify_event.connect (event => {
-                reveal_control ();
+            var motion_controller = new Gtk.EventControllerMotion ();
+            add_controller (motion_controller);
 
-                return false;
+            double prev_x, prev_y;
+            motion_controller.motion.connect ((x, y) => {
+                if (x != prev_x || y != prev_y) {
+                    prev_x = x;
+                    prev_y = y;
+                    reveal_control ();
+                }
             });
 
             bottom_bar.notify["should-stay-revealed"].connect (reveal_control);
 
             unfullscreen_button.clicked.connect (() => {
-                ((Gtk.Window) get_toplevel ()).unfullscreen ();
+                ((Gtk.Window) get_root ()).unfullscreen ();
             });
         }
 
@@ -150,7 +146,7 @@ namespace Audience {
             }
 
             bottom_bar_revealer.reveal_child = true;
-            ((Audience.Window) App.get_instance ().active_window).show_mouse_cursor ();
+            set_cursor (null);
             if (fullscreened) {
                 unfullscreen_revealer.reveal_child = true;
             }
@@ -164,7 +160,7 @@ namespace Audience {
 
                 unfullscreen_revealer.reveal_child = false;
                 bottom_bar_revealer.reveal_child = false;
-                ((Audience.Window) App.get_instance ().active_window).hide_mouse_cursor ();
+                set_cursor (new Gdk.Cursor.from_name ("none", null));
 
                 return Source.REMOVE;
             });

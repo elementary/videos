@@ -20,9 +20,9 @@
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     private const int HEIGHT_OFFSET = 300;
 
-    private const Gtk.TargetEntry[] TARGET_ENTRIES = {
-        {"PLAYLIST_ITEM", Gtk.TargetFlags.SAME_APP, 0}
-    };
+    // private const Gtk.TargetEntry[] TARGET_ENTRIES = {
+    //     {"PLAYLIST_ITEM", Gtk.TargetFlags.SAME_APP, 0}
+    // };
 
     private Gee.ArrayList<PlaylistItem> items;
     private Gtk.ListBox playlist;
@@ -33,21 +33,21 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     construct {
         items = new Gee.ArrayList<PlaylistItem> ();
 
-        var fil = new Gtk.Button.from_icon_name ("document-open-symbolic", Gtk.IconSize.BUTTON) {
+        var fil = new Gtk.Button.from_icon_name ("document-open-symbolic") {
             tooltip_text = _("Open file")
         };
 
-        dvd = new Gtk.Button.from_icon_name ("media-optical-symbolic", Gtk.IconSize.BUTTON) {
+        dvd = new Gtk.Button.from_icon_name ("media-optical-symbolic") {
             tooltip_text = _("Play from Disc")
         };
 
-        var clear_playlist_button = new Gtk.Button.from_icon_name ("edit-delete-symbolic", Gtk.IconSize.BUTTON) {
+        var clear_playlist_button = new Gtk.Button.from_icon_name ("edit-delete-symbolic") {
             tooltip_text = _("Clear Playlist")
         };
 
         var rep = new Gtk.ToggleButton () {
             action_name = App.ACTION_PREFIX + App.ACTION_REPEAT,
-            image = new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.BUTTON),
+            icon_name = "media-playlist-no-repeat-symbolic",
             tooltip_text = _("Enable Repeat")
         };
 
@@ -58,7 +58,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             selection_mode = Gtk.SelectionMode.BROWSE
         };
 
-        var playlist_scrolled = new Gtk.ScrolledWindow (null, null) {
+        var playlist_scrolled = new Gtk.ScrolledWindow () {
             min_content_height = 100,
             min_content_width = 260,
             propagate_natural_height = true,
@@ -78,12 +78,12 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         grid.attach (clear_playlist_button, 1, 1);
         grid.attach (dvd, 2, 1);
         grid.attach (rep, 6, 1);
-        grid.show_all ();
 
-        add (grid);
+        position = TOP;
+        child = grid;
 
-        Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, TARGET_ENTRIES, Gdk.DragAction.MOVE);
-        drag_data_received.connect (on_drag_data_received);
+        // Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, TARGET_ENTRIES, Gdk.DragAction.MOVE);
+        // drag_data_received.connect (on_drag_data_received);
 
         for (int i = 0; i < settings.get_strv ("last-played-videos").length; i++) {
             if (settings.get_strv ("last-played-videos")[i] == settings.get_string ("current-video")) {
@@ -114,10 +114,10 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         rep.toggled.connect ( () => {
             /* app.repeat = rep.active; */
             if (rep.active) {
-                ((Gtk.Image) rep.image).icon_name = "media-playlist-repeat-symbolic";
+                rep.icon_name = "media-playlist-repeat-symbolic";
                 rep.tooltip_text = _("Disable Repeat");
             } else {
-                ((Gtk.Image) rep.image).icon_name = "media-playlist-no-repeat-symbolic";
+                rep.icon_name = "media-playlist-no-repeat-symbolic";
                 rep.tooltip_text = _("Enable Repeat");
             }
         });
@@ -142,7 +142,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         });
 
         map.connect (() => {
-            var window_height = ((Gtk.Application) Application.get_default ()).active_window.get_window ().get_height ();
+            var window_height = ((Gtk.Application) Application.get_default ()).active_window.default_height;
             playlist_scrolled.set_max_content_height (window_height - HEIGHT_OFFSET);
         });
     }
@@ -152,7 +152,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     }
 
     private void set_dvd_visibility (bool visible) {
-        dvd.no_show_all = !visible;
         dvd.visible = visible;
     }
 
@@ -193,8 +192,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         var item_title = Audience.get_title (path.get_basename ());
         var row = new PlaylistItem (item_title, path.get_uri ());
         items.add (row);
-        playlist.add (row);
-        playlist.show_all ();
+        playlist.append (row);
         PlaybackManager.get_default ().item_added (item_title);
     }
 
@@ -249,32 +247,32 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         settings.set_strv ("last-played-videos", videos);
     }
 
-    private void on_drag_data_received (Gdk.DragContext context, int x, int y,
-        Gtk.SelectionData selection_data, uint target_type, uint time) {
-        PlaylistItem target;
-        Gtk.Widget row;
-        PlaylistItem source;
-        int new_position;
-        int old_position;
+    // private void on_drag_data_received (Gdk.DragContext context, int x, int y,
+    //     Gtk.SelectionData selection_data, uint target_type, uint time) {
+    //     PlaylistItem target;
+    //     Gtk.Widget row;
+    //     PlaylistItem source;
+    //     int new_position;
+    //     int old_position;
 
-        target = (PlaylistItem) playlist.get_row_at_y (y);
-        if (target == null) {
-            return;
-        }
+    //     target = (PlaylistItem) playlist.get_row_at_y (y);
+    //     if (target == null) {
+    //         return;
+    //     }
 
-        new_position = target.get_index ();
-        row = ((Gtk.Widget[]) selection_data.get_data ())[0];
-        source = (PlaylistItem) row.get_ancestor (typeof (PlaylistItem));
-        old_position = source.get_index ();
+    //     new_position = target.get_index ();
+    //     row = ((Gtk.Widget[]) selection_data.get_data ())[0];
+    //     source = (PlaylistItem) row.get_ancestor (typeof (PlaylistItem));
+    //     old_position = source.get_index ();
 
-        if (source == target) {
-            return;
-        }
+    //     if (source == target) {
+    //         return;
+    //     }
 
-        items.remove (source);
-        items.insert (new_position, source);
+    //     items.remove (source);
+    //     items.insert (new_position, source);
 
-        playlist.remove (source);
-        playlist.insert (source, new_position);
-    }
+    //     playlist.remove (source);
+    //     playlist.insert (source, new_position);
+    // }
 }

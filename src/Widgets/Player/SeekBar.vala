@@ -13,8 +13,6 @@ public class Videos.SeekBar : Gtk.Box {
     private bool is_grabbing = false;
 
     construct {
-        get_style_context ().add_class (Granite.STYLE_CLASS_SEEKBAR);
-
         progression_label = new Gtk.Label (Granite.DateTime.seconds_to_time (0)) {
             margin_start = 3
         };
@@ -28,18 +26,15 @@ public class Videos.SeekBar : Gtk.Box {
             draw_value = false,
             can_focus = false
         };
-        scale.events |= Gdk.EventMask.POINTER_MOTION_MASK;
-        scale.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
-        scale.events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
 
-        preview_popover = new Audience.Widgets.PreviewPopover () {
-            relative_to = scale
-        };
+        preview_popover = new Audience.Widgets.PreviewPopover ();
+        preview_popover.set_parent (scale);
 
+        hexpand = true;
         spacing = 6;
-        add (progression_label);
-        add (scale);
-        add (duration_label);
+        append (progression_label);
+        append (scale);
+        append (duration_label);
 
         var playback_manager = Audience.PlaybackManager.get_default ();
 
@@ -71,69 +66,51 @@ public class Videos.SeekBar : Gtk.Box {
             }
         });
 
-        /* signal property setting */
-        scale.button_press_event.connect (() => {
-            is_grabbing = true;
-            return false;
-        });
+        var scale_motion_controller = new Gtk.EventControllerMotion ();
+        scale.add_controller (scale_motion_controller);
 
-        scale.button_release_event.connect (() => {
-            is_grabbing = false;
-            return false;
-        });
+        scale_motion_controller.enter.connect (preview_popover.schedule_show);
 
-        scale.enter_notify_event.connect (() => {
-            preview_popover.schedule_show ();
-            return false;
-        });
+        scale_motion_controller.leave.connect (preview_popover.schedule_hide);
 
-        scale.leave_notify_event.connect (() => {
-            preview_popover.schedule_hide ();
-            return false;
-        });
-
-        scale.motion_notify_event.connect ((event) => {
+        scale_motion_controller.motion.connect ((x, y) => {
             progression_label.label = Granite.DateTime.seconds_to_time (
                 (int) (scale.get_value () / 1000000000)
             );
 
-            preview_popover.update_pointing ((int) event.x);
+            preview_popover.update_pointing ((int) x);
             preview_popover.set_preview_position (
-                (int64)(event.x / scale.get_range_rect ().width * playback_duration),
+                (int64)(x / scale.get_range_rect ().width * playback_duration),
                 !playback_manager.playing
             );
-            return false;
         });
 
-        button_release_event.connect ((event) => {
+        var scale_button_press_controller = new Gtk.GestureClick () {
+            button = Gdk.BUTTON_PRIMARY
+        };
+        scale.add_controller (scale_button_press_controller);
+
+        scale_button_press_controller.pressed.connect (() => {
+            is_grabbing = true;
+        });
+
+        scale_button_press_controller.released.connect ((n_press, x, y) => {
             // Manually set the slider value using the click event
             // dimensions. The slider widget doesn't set itself
             // when clicked too much above/below the slider itself.
             // This isn't necessarily a bug with the slider widget,
             // but this is the desired behavior for this slider in
-            // the video player
-            scale.set_value (event.x / scale.get_range_rect ().width * playback_duration);
+            // the video player. Also this makes sure the PreviewPopover
+            // and the actual seek position are in sync.
+            scale.set_value (x / scale.get_range_rect ().width * playback_duration);
 
             playback_manager.seek ((int64)scale.get_value ());
-            return false;
+
+            is_grabbing = false;
         });
-    }
 
-    public override void get_preferred_width (out int minimum_width, out int natural_width) {
-        base.get_preferred_width (out minimum_width, out natural_width);
-
-        if (parent == null) {
-            return;
-        }
-
-        var window = parent.get_window ();
-        if (window == null) {
-            return;
-        }
-
-        var width = parent.get_window ().get_width ();
-        if (width > 0 && width >= minimum_width) {
-            natural_width = width;
-        }
+        scale_button_press_controller.stopped.connect (() => {
+            is_grabbing = false;
+        });
     }
 }

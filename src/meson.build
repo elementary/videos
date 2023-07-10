@@ -32,19 +32,20 @@ executable(
     ],
 
     dependencies: [
-        dependency('clutter-gst-3.0'),
-        dependency('clutter-gtk-1.0'),
-        dependency('gdk-x11-3.0'),
+        # dependency('clutter-gst-3.0'),
+        # dependency('clutter-gtk-1.0'),
+        # dependency('gdk-x11-3.0'),
+        dependency('gdk-pixbuf-2.0'),
         dependency('gee-0.8'),
         dependency('glib-2.0'),
         dependency('gobject-2.0'),
-        dependency('granite'),
+        dependency('granite-7'),
         dependency('gstreamer-1.0'),
         dependency('gstreamer-pbutils-1.0'),
         dependency('gstreamer-video-1.0'),
         dependency('gstreamer-tag-1.0'),
-        dependency('gtk+-3.0', version: '>=3.22'),
-        dependency('libhandy-1'),
+        dependency('gtk4'),
+        dependency('libadwaita-1'),
 
         meson.get_compiler('vala').find_library('posix'),
         meson.get_compiler('c').find_library('m', required : false)
