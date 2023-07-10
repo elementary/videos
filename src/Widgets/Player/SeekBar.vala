@@ -82,8 +82,6 @@ public class Videos.SeekBar : Gtk.Box {
             return false;
         });
 
-        // var scale_motion_controller = new Gtk.EventControllerMotion (scale);
-
         scale.enter_notify_event.connect (() => {
             preview_popover.schedule_show ();
             return false;
