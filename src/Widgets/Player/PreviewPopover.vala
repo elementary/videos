@@ -19,7 +19,7 @@
  */
 
 public class Audience.Widgets.PreviewPopover : Gtk.Popover {
-    public string playback_uri { get; construct; }
+    public string playback_uri { get; set; }
 
     private enum PlayFlags {
         VIDEO = (1 << 0),
@@ -35,86 +35,70 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         SOFT_COLORBALANCE = (1 << 10)
     }
 
-    ClutterGst.Playback playback;
-    GtkClutter.Embed clutter;
+    private dynamic Gst.Element playbin;
+
     uint loop_timer_id = 0;
     uint show_timer_id = 0;
     uint hide_timer_id = 0;
     uint idle_id = 0;
-    double req_progress = -1;
+    int64 req_position = -1;
     bool req_loop = false;
 
-    public PreviewPopover (string playback_uri) {
-         Object (playback_uri: playback_uri);
-     }
-
     construct {
-        opacity = GLOBAL_OPACITY;
+        var gtksink = Gst.ElementFactory.make ("gtksink", "sink");
+        Gtk.Widget gst_video_widget;
+        gtksink.get ("widget", out gst_video_widget);
+
+        playbin = Gst.ElementFactory.make ("playbin", "bin");
+        playbin.video_sink = gtksink;
+
+        int flags;
+        playbin.get ("flags", out flags);
+        flags &= ~PlayFlags.TEXT;   //disable subtitle
+        flags &= ~PlayFlags.AUDIO;  //disable audio sink
+        playbin.set ("flags", flags);
+
+        var clampv = new Hdy.Clamp () {
+            child = gst_video_widget,
+            maximum_size = 200,
+            orientation = VERTICAL
+        };
+
+        var clamph = new Hdy.Clamp () {
+            child = clampv,
+            maximum_size = 200,
+            orientation = HORIZONTAL
+        };
+
         can_focus = false;
         sensitive = false;
         modal = false;
+        child = clamph;
 
-        playback = new ClutterGst.Playback ();
-        playback.ready.connect (() => {
-            unowned Gst.Element pipeline = playback.get_pipeline ();
-            int flags;
-            pipeline.get ("flags", out flags);
-            flags &= ~PlayFlags.TEXT;   //disable subtitle
-            flags &= ~PlayFlags.AUDIO;  //disable audio sink
-            pipeline.set ("flags", flags);
+        notify["playback-uri"].connect (() => {
+            playbin.uri = playback_uri;
         });
-
-        playback.set_seek_flags (ClutterGst.SeekFlags.ACCURATE);
-        playback.uri = playback_uri;
-        playback.playing = false;
-        clutter = new GtkClutter.Embed ();
-        clutter.margin = 3;
-        var stage = (Clutter.Stage)clutter.get_stage ();
-        stage.background_color = {0, 0, 0, 0};
-
-        var video_actor = new Clutter.Actor ();
-#if VALA_0_34
-        var aspect_ratio = new ClutterGst.Aspectratio ();
-#else
-        var aspect_ratio = ClutterGst.Aspectratio.@new ();
-#endif
-        ((ClutterGst.Aspectratio) aspect_ratio).paint_borders = false;
-        ((ClutterGst.Content) aspect_ratio).player = playback;
-        video_actor.content = aspect_ratio;
-        ((ClutterGst.Content) aspect_ratio).size_change.connect ((width, height) => {
-            if (width > 0 && height > 0) {
-                double diagonal = Math.sqrt ((width * width) + (height * height));
-                double k = 230 / diagonal; // for 16:9 ratio it produces width of ~200px
-                clutter.set_size_request ((int)(width * k), (int)(height * k));
-            }
-        });
-
-        video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
-        video_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.HEIGHT, 0));
-
-        stage.add_child (video_actor);
-        add (clutter);
 
         closed.connect (() => {
-            playback.playing = false;
+            playbin.set_state (Gst.State.NULL);
             cancel_loop_timer ();
             cancel_timer (ref show_timer_id);
             cancel_timer (ref hide_timer_id);
         });
 
         hide.connect (() => {
-            playback.playing = false;
+            playbin.set_state (Gst.State.NULL);
             cancel_loop_timer ();
         });
     }
 
     ~PreviewPopover () {
-        playback.playing = false;
+        playbin.set_state (Gst.State.NULL);
         cancel_loop_timer ();
     }
 
-    public void set_preview_progress (double progress, bool loop = false) {
-        req_progress = progress;
+    public void set_preview_position (int64 position, bool loop = false) {
+        req_position = position;
         req_loop = loop;
 
         if (!visible || idle_id > 0) {
@@ -126,12 +110,12 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         }
 
         idle_id = Idle.add_full (GLib.Priority.LOW, () => {
-            playback.playing = true;
-            playback.progress = progress;
-            playback.playing = loop;
+            playbin.set_state (Gst.State.PAUSED);
+            playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH | Gst.SeekFlags.ACCURATE, position);
             if (loop) {
+                playbin.set_state (Gst.State.PLAYING);
                 loop_timer_id = Timeout.add_seconds (5, () => {
-                    set_preview_progress (progress, true);
+                    set_preview_position (position, true);
                     loop_timer_id = 0;
                     return false;
                 });
@@ -156,12 +140,6 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         set_pointing_to (pointing);
     }
 
-    public void realign_pointing (int parent_width) {
-        if (visible) {
-            update_pointing ((int)(req_progress * parent_width));
-        }
-    }
-
     public void schedule_show () {
         if (show_timer_id > 0) {
             return;
@@ -170,8 +148,9 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
 
         show_timer_id = Timeout.add (300, () => {
             show_all ();
-            if (req_progress >= 0) {
-                set_preview_progress (req_progress, req_loop);
+            popup ();
+            if (req_position >= 0) {
+                set_preview_position (req_position, req_loop);
             }
             show_timer_id = 0;
             return false;
@@ -185,7 +164,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         cancel_timer (ref show_timer_id);
 
         hide_timer_id = Timeout.add (300, () => {
-            hide ();
+            popdown ();
             hide_timer_id = 0;
             return false;
         });
