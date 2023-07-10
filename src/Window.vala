@@ -119,11 +119,16 @@ public class Audience.Window : Hdy.ApplicationWindow {
         };
         deck.add (welcome_page_box);
 
+        var window_handle = new Hdy.WindowHandle () {
+            child = deck
+        };
+
         var manager = Audience.Services.LibraryManager.get_instance ();
         app_notification = new Granite.Widgets.Toast ("");
 
-        var overlay = new Gtk.Overlay ();
-        overlay.add (deck);
+        var overlay = new Gtk.Overlay () {
+            child = window_handle
+        };
         overlay.add_overlay (app_notification);
 
         add (overlay);
