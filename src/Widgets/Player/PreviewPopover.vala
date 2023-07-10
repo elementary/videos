@@ -36,6 +36,9 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     }
 
     private dynamic Gst.Element playbin;
+    private Gtk.Widget gst_video_widget;
+    private Hdy.Clamp v_clamp;
+    private Hdy.Clamp h_clamp;
 
     uint loop_timer_id = 0;
     uint show_timer_id = 0;
@@ -46,8 +49,11 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
 
     construct {
         var gtksink = Gst.ElementFactory.make ("gtksink", "sink");
-        Gtk.Widget gst_video_widget;
         gtksink.get ("widget", out gst_video_widget);
+        gst_video_widget.margin_top = 3;
+        gst_video_widget.margin_bottom = 3;
+        gst_video_widget.margin_start = 3;
+        gst_video_widget.margin_end = 3;
 
         playbin = Gst.ElementFactory.make ("playbin", "bin");
         playbin.video_sink = gtksink;
@@ -58,22 +64,24 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         flags &= ~PlayFlags.AUDIO;  //disable audio sink
         playbin.set ("flags", flags);
 
-        var clampv = new Hdy.Clamp () {
+        v_clamp = new Hdy.Clamp () {
             child = gst_video_widget,
             maximum_size = 200,
             orientation = VERTICAL
         };
 
-        var clamph = new Hdy.Clamp () {
-            child = clampv,
+        h_clamp = new Hdy.Clamp () {
+            child = v_clamp,
             maximum_size = 200,
             orientation = HORIZONTAL
         };
 
+        h_clamp.show_all ();
+
         can_focus = false;
         sensitive = false;
         modal = false;
-        child = clamph;
+        child = h_clamp;
 
         notify["playback-uri"].connect (() => {
             playbin.uri = playback_uri;
@@ -147,7 +155,18 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         cancel_timer (ref hide_timer_id);
 
         show_timer_id = Timeout.add (300, () => {
-            show_all ();
+            Gtk.Requisition min, nat;
+            gst_video_widget.get_preferred_size (out min, out nat);
+            var width = nat.width;
+            var height = nat.height;
+            if (width > 0 && height > 0) {
+                double diagonal = Math.sqrt ((width * width) + (height * height));
+                double k = 230 / diagonal; // for 16:9 ratio it produces width of ~200px
+                gst_video_widget.set_size_request ((int)(width * k), (int)(height * k));
+                v_clamp.maximum_size = (int)(height * k);
+                h_clamp.maximum_size = (int)(width * k);
+            }
+
             popup ();
             if (req_position >= 0) {
                 set_preview_position (req_position, req_loop);
