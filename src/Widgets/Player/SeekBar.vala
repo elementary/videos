@@ -23,7 +23,7 @@ public class Videos.SeekBar : Gtk.Box {
             margin_end = 3
         };
 
-        scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 0.1) {
+        scale = new Gtk.Scale (Gtk.Orientation.HORIZONTAL, null) {
             hexpand = true,
             draw_value = false,
             can_focus = false
@@ -31,6 +31,10 @@ public class Videos.SeekBar : Gtk.Box {
         scale.events |= Gdk.EventMask.POINTER_MOTION_MASK;
         scale.events |= Gdk.EventMask.LEAVE_NOTIFY_MASK;
         scale.events |= Gdk.EventMask.ENTER_NOTIFY_MASK;
+
+        preview_popover = new Audience.Widgets.PreviewPopover () {
+            relative_to = scale
+        };
 
         spacing = 6;
         add (progression_label);
@@ -47,10 +51,6 @@ public class Videos.SeekBar : Gtk.Box {
         });
 
         playback_manager.notify["duration"].connect (() => {
-            if (preview_popover != null) {
-                preview_popover.destroy ();
-            }
-
             playback_duration = playback_manager.duration;
             if (playback_duration < 0) {
                 debug ("Duration value less than zero, duration set to 0.0");
@@ -67,8 +67,7 @@ public class Videos.SeekBar : Gtk.Box {
             // Don't allow to change the time if there is none.
             sensitive = (playback_duration > 0);
             if (sensitive) {
-                preview_popover = new Audience.Widgets.PreviewPopover (playback_manager.get_uri ());
-                preview_popover.relative_to = scale;
+                preview_popover.playback_uri = playback_manager.get_uri ();
             }
         });
 
@@ -99,13 +98,11 @@ public class Videos.SeekBar : Gtk.Box {
             );
 
             preview_popover.update_pointing ((int) event.x);
-            preview_popover.set_preview_progress (event.x / ((double) event.window.get_width ()), !playback_manager.playing);
+            preview_popover.set_preview_position (
+                (int64)(event.x / scale.get_range_rect ().width * playback_duration),
+                !playback_manager.playing
+            );
             return false;
-        });
-
-        scale.size_allocate.connect ((alloc_rect) => {
-            if (preview_popover != null)
-                preview_popover.realign_pointing (alloc_rect.width);
         });
 
         button_release_event.connect ((event) => {
