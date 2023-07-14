@@ -50,7 +50,6 @@ namespace Audience {
         }
 
         public App () {
-            Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
 
             settings = new GLib.Settings (SCHEMA);
@@ -67,6 +66,8 @@ namespace Audience {
             base.startup ();
 
             Hdy.init ();
+
+            Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
         }
 
         public override void activate () {
@@ -144,13 +145,6 @@ namespace Audience {
 }
 
 public static void main (string [] args) {
-    X.init_threads ();
-
-    var err = GtkClutter.init (ref args);
-    if (err != Clutter.InitError.SUCCESS) {
-        error ("Could not initialize clutter! %s", err.to_string ());
-    }
-
     Gst.init (ref args);
 
     var app = Audience.App.get_instance ();
