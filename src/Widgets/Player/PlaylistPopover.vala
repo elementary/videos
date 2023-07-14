@@ -141,6 +141,10 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
 
         var drop_target = new Gtk.DropTarget (typeof (PlaylistItem), COPY);
         grid.add_controller (drop_target);
+        // FIXME: After drag and drop the popover doesn't close. It even stays in foreground
+        // if another application gets focused. Really weird not sure whether that's a bug in
+        // GTK/mutter/gala or videos though. Also it seems DND within popover is currently broken
+        // under wayland (see https://gitlab.gnome.org/GNOME/mutter/-/issues/1681).
         drop_target.drop.connect (on_drop);
     }
 

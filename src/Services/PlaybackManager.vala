@@ -111,6 +111,8 @@ public class Audience.PlaybackManager : Object {
                     } else {
                         playbin.set_state (Gst.State.NULL);
                         settings.set_int64 ("last-stopped", 0);
+                        position = 0;
+                        duration = 0;
                         ended ();
                     }
                 }
