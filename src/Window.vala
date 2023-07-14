@@ -149,10 +149,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
             update_navigation ();
         });
 
-        leaflet.notify["transition-running"].connect (() => {
-            update_navigation ();
-        });
-
         var playback_manager = PlaybackManager.get_default ();
 
         //playlist wants us to open a file
@@ -458,26 +454,17 @@ public class Audience.Window : Gtk.ApplicationWindow {
         var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
         ((SimpleAction) play_pause_action).set_state (false);
 
-        if (!leaflet.child_transition_running) {
-            /* Changing the player_page playing properties triggers a number of signals/bindings and
-             * pipeline needs time to react so wrap subsequent code in an Idle loop.
-             */
-            Idle.add (() => {
-                if (leaflet.visible_child == welcome_page_box) {
-                    title = _("Videos");
-                } else if (leaflet.visible_child == library_page) {
-                    title = _("Library");
-                } else if (leaflet.visible_child == player_page) {
-                    ((SimpleAction) play_pause_action).set_state (true);
-                }
+        if (leaflet.visible_child == welcome_page_box) {
+            title = _("Videos");
+        } else if (leaflet.visible_child == library_page) {
+            title = _("Library");
+        } else if (leaflet.visible_child == player_page) {
+            ((SimpleAction) play_pause_action).set_state (true);
+        }
 
-                var next_child = leaflet.get_adjacent_child (Adw.NavigationDirection.FORWARD);
-                if (next_child != null) {
-                    leaflet.remove (next_child);
-                }
-
-                return Source.REMOVE;
-            });
+        var next_child = leaflet.get_adjacent_child (Adw.NavigationDirection.FORWARD);
+        if (next_child != null) {
+            leaflet.remove (next_child);
         }
     }
 }
