@@ -87,6 +87,7 @@ namespace Audience {
                 hexpand = true,
                 vexpand = true
             };
+            picture.add_css_class ("black-background");
 
             var overlay = new Gtk.Overlay () {
                 child = picture

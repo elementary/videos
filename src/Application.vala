@@ -96,6 +96,10 @@ namespace Audience {
                 mainwindow = new Window ();
                 mainwindow.application = this;
                 mainwindow.title = _("Videos");
+
+                var provider = new Gtk.CssProvider ();
+                provider.load_from_data ((uint8[])".black-background {background-color: #000000;}"); //TODO: move into own file
+                Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             }
         }
 
