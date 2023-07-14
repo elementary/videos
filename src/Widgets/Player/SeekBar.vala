@@ -94,7 +94,7 @@ public class Videos.SeekBar : Gtk.Box {
             is_grabbing = true;
         });
 
-        scale_button_press_controller.released.connect ((n_press, x, y) => {
+        scale_button_press_controller.released.connect ((n_press, x, y) => { //FIXME: For some reason this signal isn't emitted
             // Manually set the slider value using the click event
             // dimensions. The slider widget doesn't set itself
             // when clicked too much above/below the slider itself.

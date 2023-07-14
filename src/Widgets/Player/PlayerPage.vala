@@ -120,6 +120,16 @@ namespace Audience {
 
             bottom_bar.notify["should-stay-revealed"].connect (reveal_control);
 
+            var gesture_click = new Gtk.GestureClick () {
+                button = Gdk.BUTTON_SECONDARY
+            };
+            add_controller (gesture_click);
+
+            gesture_click.pressed.connect (() => {
+                var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+                ((SimpleAction) play_pause_action).activate (null);
+            });
+
             unfullscreen_button.clicked.connect (() => {
                 ((Gtk.Window) get_root ()).unfullscreen ();
             });
