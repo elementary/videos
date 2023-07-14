@@ -120,12 +120,21 @@ namespace Audience {
 
             bottom_bar.notify["should-stay-revealed"].connect (reveal_control);
 
-            var gesture_click = new Gtk.GestureClick () {
+            var primary_gesture_click = new Gtk.GestureClick () {
+                button = Gdk.BUTTON_PRIMARY
+            };
+            add_controller (primary_gesture_click);
+            primary_gesture_click.pressed.connect ((n_press) => {
+                if (n_press == 2) {
+                    activate_action (Window.ACTION_PREFIX + Window.ACTION_FULLSCREEN, null);
+                }
+            });
+
+            var secondary_gesture_click = new Gtk.GestureClick () {
                 button = Gdk.BUTTON_SECONDARY
             };
-            add_controller (gesture_click);
-
-            gesture_click.pressed.connect (() => {
+            add_controller (secondary_gesture_click);
+            secondary_gesture_click.pressed.connect (() => {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
                 ((SimpleAction) play_pause_action).activate (null);
             });

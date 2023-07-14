@@ -165,15 +165,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
         //     open_files (files.data, false, false);
         // });
 
-        // player_page.button_press_event.connect ((event) => {
-        //     // double left click
-        //     if (event.button == Gdk.BUTTON_PRIMARY && event.type == Gdk.EventType.2BUTTON_PRESS) {
-        //         action_fullscreen ();
-        //     }
-
-        //     return base.button_press_event (event);
-        // });
-
         var playback_manager = PlaybackManager.get_default ();
 
         //playlist wants us to open a file
@@ -189,25 +180,19 @@ public class Audience.Window : Gtk.ApplicationWindow {
             app_notification.send_notification ();
         });
 
-        // window_state_event.connect ((e) => {
-        //     if (Gdk.WindowState.FULLSCREEN in e.changed_mask) {
-        //         player_page.fullscreened = Gdk.WindowState.FULLSCREEN in e.new_window_state;
+        notify["maximized"].connect (() => {
+            if (leaflet.visible_child == player_page && maximized) {
+                fullscreen ();
+            }
+        });
 
-        //         if (!player_page.fullscreened) {
-        //             unmaximize ();
-        //         }
-        //     }
+        notify["fullscreened"].connect (() => {
+            player_page.fullscreened = fullscreened;
 
-        //     if (Gdk.WindowState.MAXIMIZED in e.changed_mask) {
-        //         bool currently_maximixed = Gdk.WindowState.MAXIMIZED in e.new_window_state;
-
-        //         if (leaflet.visible_child == player_page && currently_maximixed) {
-        //            fullscreen ();
-        //         }
-        //     }
-
-        //     return false;
-        // });
+            if (!fullscreened) {
+                unmaximize ();
+            }
+        });
 
         var key_controller = new Gtk.EventControllerKey ();
         overlay.add_controller (key_controller);
