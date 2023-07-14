@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-09 18:33+0000\n"
-"PO-Revision-Date: 2022-01-11 00:56+0000\n"
+"PO-Revision-Date: 2023-07-11 17:07+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/videos/"
 "hu/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: src/Application.vala:104 src/Window.vala:102 src/Window.vala:498
@@ -52,7 +52,7 @@ msgstr "Visszaállítás"
 #: src/Window.vala:193
 #, c-format
 msgid "“%s” added to playlist"
-msgstr ""
+msgstr "\"%s\" hozzáadva a lejátszási listához"
 
 #: src/Window.vala:402 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
