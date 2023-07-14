@@ -50,7 +50,6 @@ namespace Audience {
         }
 
         public App () {
-            Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             this.flags |= GLib.ApplicationFlags.HANDLES_OPEN;
 
             settings = new GLib.Settings (SCHEMA);
@@ -61,6 +60,16 @@ namespace Audience {
             if (app == null)
                 app = new App ();
             return app;
+        }
+
+        public override void startup () {
+            base.startup ();
+
+            Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+
+            var provider = new Gtk.CssProvider ();
+            provider.load_from_data ((uint8[])".black-background {background-color: #000000;}"); //TODO: move into own file
+            Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
         }
 
         public override void activate () {
@@ -96,10 +105,6 @@ namespace Audience {
                 mainwindow = new Window ();
                 mainwindow.application = this;
                 mainwindow.title = _("Videos");
-
-                var provider = new Gtk.CssProvider ();
-                provider.load_from_data ((uint8[])".black-background {background-color: #000000;}"); //TODO: move into own file
-                Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             }
         }
 
