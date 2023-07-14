@@ -123,13 +123,15 @@ public class Audience.EpisodesPage : Gtk.Box {
 
         search_entry.search_changed.connect (filter);
 
-        // search_entry.key_press_event.connect ((event) => {
-        //     if (event.keyval == Gdk.Key.Escape) {
-        //         search_entry.text = "";
-        //     }
-
-        //     return Gdk.EVENT_PROPAGATE;
-        // });
+        var search_entry_key_controller = new Gtk.EventControllerKey ();
+        search_entry.add_controller (search_entry_key_controller);
+        search_entry_key_controller.key_pressed.connect ((keyval) => {
+            if (keyval == Gdk.Key.Escape) {
+                search_entry.text = "";
+                return true;
+            }
+            return false;
+        });
     }
 
     public void search () {
@@ -151,7 +153,6 @@ public class Audience.EpisodesPage : Gtk.Box {
         poster_source.poster_changed.connect (update_poster);
 
         search_entry.text = "";
-        // header_bar.title = episodes.first ().container;
     }
 
     private void update_poster (Objects.Video episode) {

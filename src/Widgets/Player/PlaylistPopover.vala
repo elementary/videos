@@ -249,7 +249,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     }
 
     private bool on_drop (Value val, double x, double y) {
-        print ("DROP");
         PlaylistItem target;
         PlaylistItem source;
         int new_position;

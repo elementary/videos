@@ -425,15 +425,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     public void play_file (string uri, NavigationPage origin, bool from_beginning = true) {
-        switch (origin) {
-            case NavigationPage.WELCOME:
-                break;
-            case NavigationPage.LIBRARY:
-            case NavigationPage.EPISODES:
-                leaflet.append (library_page);
-                break;
-        }
-
         leaflet.append (player_page);
         leaflet.visible_child = player_page;
 
