@@ -114,13 +114,10 @@ public class Audience.Window : Gtk.ApplicationWindow {
         };
         leaflet.append (welcome_page_box);
 
-        var window_handle = new Gtk.WindowHandle () {
-            child = leaflet
-        };
         app_notification = new Granite.Toast ("");
 
         var overlay = new Gtk.Overlay () {
-            child = window_handle
+            child = leaflet
         };
         overlay.add_overlay (app_notification);
 
