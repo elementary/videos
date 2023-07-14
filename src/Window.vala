@@ -153,18 +153,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
             update_navigation ();
         });
 
-        // Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
-        // Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.MOVE);
-        // drag_data_received.connect ((ctx, x, y, sel, info, time) => {
-        //     var files = new Array<File> ();
-        //     foreach (var uri in sel.get_uris ()) {
-        //         var file = File.new_for_uri (uri);
-        //         files.append_val (file);
-        //     }
-
-        //     open_files (files.data, false, false);
-        // });
-
         var playback_manager = PlaybackManager.get_default ();
 
         //playlist wants us to open a file
@@ -197,6 +185,24 @@ public class Audience.Window : Gtk.ApplicationWindow {
         var key_controller = new Gtk.EventControllerKey ();
         overlay.add_controller (key_controller);
         key_controller.key_released.connect (handle_key_press);
+
+        var drop_target = new Gtk.DropTarget (typeof (Gdk.FileList), COPY);
+        leaflet.add_controller (drop_target);
+        drop_target.drop.connect ((val) => {
+            if (val.type () != typeof (Gdk.FileList)) {
+                return false;
+            }
+
+            File[] files;
+            var file_list = ((Gdk.FileList) val.get_boxed ()).get_files ();
+            foreach (var file in file_list) {
+                files += file;
+            }
+
+            open_files (files);
+
+            return true;
+        });
     }
 
     private void action_back () {
@@ -237,7 +243,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
          */
         if (!is_sandboxed ()) {
             Audience.Services.LibraryManager.get_instance ().undo_delete_item ();
-            // app_notification.reveal_child = false;
 
             if (leaflet.visible_child != episodes_page) {
                 leaflet.visible_child = library_page;

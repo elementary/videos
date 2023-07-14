@@ -20,10 +20,6 @@
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     private const int HEIGHT_OFFSET = 300;
 
-    // private const Gtk.TargetEntry[] TARGET_ENTRIES = {
-    //     {"PLAYLIST_ITEM", Gtk.TargetFlags.SAME_APP, 0}
-    // };
-
     private Gee.ArrayList<PlaylistItem> items;
     private Gtk.ListBox playlist;
     private Gtk.Button dvd;
@@ -81,9 +77,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
 
         position = TOP;
         child = grid;
-
-        // Gtk.drag_dest_set (this, Gtk.DestDefaults.ALL, TARGET_ENTRIES, Gdk.DragAction.MOVE);
-        // drag_data_received.connect (on_drag_data_received);
 
         for (int i = 0; i < settings.get_strv ("last-played-videos").length; i++) {
             if (settings.get_strv ("last-played-videos")[i] == settings.get_string ("current-video")) {
@@ -145,6 +138,10 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             var window_height = ((Gtk.Application) Application.get_default ()).active_window.default_height;
             playlist_scrolled.set_max_content_height (window_height - HEIGHT_OFFSET);
         });
+
+        var drop_target = new Gtk.DropTarget (typeof (PlaylistItem), COPY);
+        grid.add_controller (drop_target);
+        drop_target.drop.connect (on_drop);
     }
 
     ~PlaylistPopover () {
@@ -247,32 +244,39 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         settings.set_strv ("last-played-videos", videos);
     }
 
-    // private void on_drag_data_received (Gdk.DragContext context, int x, int y,
-    //     Gtk.SelectionData selection_data, uint target_type, uint time) {
-    //     PlaylistItem target;
-    //     Gtk.Widget row;
-    //     PlaylistItem source;
-    //     int new_position;
-    //     int old_position;
+    private bool on_drop (Value val, double x, double y) {
+        print ("DROP");
+        PlaylistItem target;
+        PlaylistItem source;
+        int new_position;
+        int old_position;
 
-    //     target = (PlaylistItem) playlist.get_row_at_y (y);
-    //     if (target == null) {
-    //         return;
-    //     }
+        target = (PlaylistItem) playlist.get_row_at_y ((int)y);
+        if (target == null) {
+            target = items[items.size - 1];
+        }
 
-    //     new_position = target.get_index ();
-    //     row = ((Gtk.Widget[]) selection_data.get_data ())[0];
-    //     source = (PlaylistItem) row.get_ancestor (typeof (PlaylistItem));
-    //     old_position = source.get_index ();
+        new_position = target.get_index ();
 
-    //     if (source == target) {
-    //         return;
-    //     }
+        var obj = val.get_object ();
+        if (obj == null || !(obj is PlaylistItem)) {
+            return false;
+        } else {
+            source = (PlaylistItem)obj;
+        }
 
-    //     items.remove (source);
-    //     items.insert (new_position, source);
+        old_position = source.get_index ();
 
-    //     playlist.remove (source);
-    //     playlist.insert (source, new_position);
-    // }
+        if (source == target) {
+            return false;
+        }
+
+        items.remove (source);
+        items.insert (new_position, source);
+
+        playlist.remove (source);
+        playlist.insert (source, new_position);
+
+        return true;
+    }
 }

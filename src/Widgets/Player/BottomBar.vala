@@ -43,7 +43,8 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
         var playlist_button = new Gtk.MenuButton () {
             icon_name = "view-list-symbolic",
             popover = playlist_popover,
-            tooltip_text = _("Playlist")
+            tooltip_text = _("Playlist"),
+            direction = UP
         };
 
         settings_popover = new SettingsPopover ();
@@ -51,7 +52,8 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
         var settings_button = new Gtk.MenuButton () {
             icon_name = "open-menu-symbolic",
             popover = settings_popover,
-            tooltip_text = _("Settings")
+            tooltip_text = _("Settings"),
+            direction = UP
         };
 
         seek_bar = new Videos.SeekBar ();
