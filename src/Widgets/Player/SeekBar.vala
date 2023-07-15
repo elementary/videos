@@ -10,7 +10,6 @@ public class Videos.SeekBar : Gtk.Box {
     private Gtk.Label duration_label;
     private Gtk.Scale scale;
     private double playback_duration;
-    private bool is_grabbing = false;
 
     construct {
         progression_label = new Gtk.Label (Granite.DateTime.seconds_to_time (0)) {
@@ -39,10 +38,8 @@ public class Videos.SeekBar : Gtk.Box {
         var playback_manager = Audience.PlaybackManager.get_default ();
 
         playback_manager.notify["position"].connect (() => {
-            if (!is_grabbing) {
-                progression_label.label = Granite.DateTime.seconds_to_time ((int)(playback_manager.position / 1000000000));
-                scale.set_value (playback_manager.position);
-            }
+            progression_label.label = Granite.DateTime.seconds_to_time ((int)(playback_manager.position / 1000000000));
+            scale.set_value (playback_manager.position);
         });
 
         playback_manager.notify["duration"].connect (() => {
@@ -55,9 +52,7 @@ public class Videos.SeekBar : Gtk.Box {
             scale.set_range (0, playback_duration);
             duration_label.label = Granite.DateTime.seconds_to_time ((int)(playback_duration / 1000000000));
 
-            if (!is_grabbing) {
-                scale.set_value (playback_manager.position);
-            }
+            scale.set_value (playback_manager.position);
 
             // Don't allow to change the time if there is none.
             sensitive = (playback_duration > 0);
@@ -74,10 +69,6 @@ public class Videos.SeekBar : Gtk.Box {
         scale_motion_controller.leave.connect (preview_popover.schedule_hide);
 
         scale_motion_controller.motion.connect ((x, y) => {
-            progression_label.label = Granite.DateTime.seconds_to_time (
-                (int) (scale.get_value () / 1000000000)
-            );
-
             preview_popover.update_pointing ((int) x);
             preview_popover.set_preview_position (
                 (int64)(x / scale.get_range_rect ().width * playback_duration),
@@ -85,32 +76,9 @@ public class Videos.SeekBar : Gtk.Box {
             );
         });
 
-        var scale_button_press_controller = new Gtk.GestureClick () {
-            button = Gdk.BUTTON_PRIMARY
-        };
-        scale.add_controller (scale_button_press_controller);
-
-        scale_button_press_controller.pressed.connect (() => {
-            is_grabbing = true;
-        });
-
-        scale_button_press_controller.released.connect ((n_press, x, y) => { //FIXME: For some reason this signal isn't emitted
-            // Manually set the slider value using the click event
-            // dimensions. The slider widget doesn't set itself
-            // when clicked too much above/below the slider itself.
-            // This isn't necessarily a bug with the slider widget,
-            // but this is the desired behavior for this slider in
-            // the video player. Also this makes sure the PreviewPopover
-            // and the actual seek position are in sync.
-            scale.set_value (x / scale.get_range_rect ().width * playback_duration);
-
-            playback_manager.seek ((int64)scale.get_value ());
-
-            is_grabbing = false;
-        });
-
-        scale_button_press_controller.stopped.connect (() => {
-            is_grabbing = false;
+        scale.change_value.connect ((scroll, new_value) => {
+            playback_manager.seek ((int64)new_value);
+            return true;
         });
     }
 }
