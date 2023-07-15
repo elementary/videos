@@ -71,7 +71,7 @@ public class Videos.SeekBar : Gtk.Box {
         scale_motion_controller.motion.connect ((x, y) => {
             preview_popover.update_pointing ((int) x);
             preview_popover.set_preview_position (
-                (int64)(x / scale.get_range_rect ().width * playback_duration),
+                (int64)(x / scale.get_allocated_width () * playback_duration),
                 !playback_manager.playing
             );
         });
