@@ -376,7 +376,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
         file.add_filter (all_files_filter);
 
         try {
-            file.set_current_folder (File.new_for_uri (settings.get_string ("last-folder")));
+            file.set_current_folder (File.new_for_path (settings.get_string ("last-folder")));
         } catch (Error e) {
             warning ("Failed to set last folder as current folder: %s", e.message);
         }
@@ -391,7 +391,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
                 }
 
                 open_files (files, clear_playlist, force_play);
-                settings.set_string ("last-folder", file.get_current_folder ().get_uri ());
+                settings.set_string ("last-folder", file.get_current_folder ().get_path ());
             }
 
             file.destroy ();
