@@ -36,7 +36,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     }
 
     private dynamic Gst.Element playbin;
-    private Gtk.Picture picture;
+    private Gdk.Paintable paintable;
     private Adw.Clamp v_clamp;
     private Adw.Clamp h_clamp;
 
@@ -49,8 +49,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
 
     construct {
         var gtksink = Gst.ElementFactory.make ("gtk4paintablesink", "sink");
-        Gdk.Paintable gst_video_widget;
-        gtksink.get ("paintable", out gst_video_widget);
+        gtksink.get ("paintable", out paintable);
 
         playbin = Gst.ElementFactory.make ("playbin", "bin");
         playbin.video_sink = gtksink;
@@ -61,7 +60,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         flags &= ~PlayFlags.AUDIO;  //disable audio sink
         playbin.set ("flags", flags);
 
-        picture = new Gtk.Picture.for_paintable (gst_video_widget) {
+        var picture = new Gtk.Picture.for_paintable (paintable) {
             hexpand = true,
             vexpand = true,
             margin_top = 3,
@@ -90,6 +89,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
 
         notify["playback-uri"].connect (() => {
             playbin.uri = playback_uri;
+            print ("set uri");
         });
 
         closed.connect (() => {
@@ -155,15 +155,14 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         cancel_timer (ref hide_timer_id);
 
         show_timer_id = Timeout.add (300, () => {
-            Gtk.Requisition min, nat;
-            picture.get_preferred_size (out min, out nat);
-            var width = nat.width;
-            var height = nat.height;
+            var width = paintable.get_intrinsic_width ();
+            var height = paintable.get_intrinsic_height ();
             if (width > 0 && height > 0) {
                 double diagonal = Math.sqrt ((width * width) + (height * height));
                 double k = 230 / diagonal; // for 16:9 ratio it produces width of ~200px
                 v_clamp.maximum_size = (int)(height * k);
                 h_clamp.maximum_size = (int)(width * k);
+                print ("Diagonal: %s\n", diagonal.to_string ());
             }
 
             popup ();
