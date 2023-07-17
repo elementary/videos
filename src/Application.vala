@@ -68,7 +68,11 @@ namespace Audience {
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
 
             var provider = new Gtk.CssProvider ();
-            provider.load_from_data ((uint8[])".black-background {background-color: #000000;}"); //TODO: move into own file
+            provider.parsing_error.connect ((sec, e) => {
+                warning ("Failed to parse: %s",e.message);
+            });
+            provider.load_from_resource ("/io/elementary/videos/Application.css"); //TODO: move into own file
+            print (provider.to_string ());
             Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
         }
 
