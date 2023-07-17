@@ -89,7 +89,6 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
 
         notify["playback-uri"].connect (() => {
             playbin.uri = playback_uri;
-            print ("set uri");
         });
 
         closed.connect (() => {
@@ -162,7 +161,6 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
                 double k = 230 / diagonal; // for 16:9 ratio it produces width of ~200px
                 v_clamp.maximum_size = (int)(height * k);
                 h_clamp.maximum_size = (int)(width * k);
-                print ("Diagonal: %s\n", diagonal.to_string ());
             }
 
             popup ();
