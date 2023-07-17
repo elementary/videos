@@ -1,7 +1,6 @@
 executable(
     meson.project_name(),
     config_file,
-    gresource,
     'Application.vala',
     'Consts.vala',
     'DiskManager.vala',

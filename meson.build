@@ -5,7 +5,6 @@ project(
 )
 
 i18n = import('i18n')
-gnome = import('gnome')
 
 add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()), language:'c')
 
@@ -16,12 +15,6 @@ config_file = configure_file(
     input: 'src/Config.vala.in',
     output: '@BASENAME@',
     configuration: config_data
-)
-
-gresource = gnome.compile_resources(
-    'gresource',
-    'data/' + meson.project_name() + '.gresource.xml',
-    source_dir: 'data'
 )
 
 subdir('src')

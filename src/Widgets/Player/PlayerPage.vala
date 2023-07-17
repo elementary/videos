@@ -85,9 +85,9 @@ namespace Audience {
 
             var picture = new Gtk.Picture.for_paintable (playback_manager.gst_video_widget) {
                 hexpand = true,
-                vexpand = true
+                vexpand = true,
+                keep_aspect_ratio = false
             };
-            picture.add_css_class ("black-background");
 
             var overlay = new Gtk.Overlay () {
                 child = picture
