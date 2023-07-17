@@ -27,7 +27,7 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
     public Audience.Objects.Video video { get; construct; }
     public LibraryItemStyle item_style { get; construct; }
 
-    public Gtk.Image poster { get; set; }
+    public Gtk.Picture poster { get; set; }
     public Gee.ArrayList<Audience.Objects.Video> episodes { get; private set; }
 
 
@@ -100,7 +100,7 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
             context_menu_box.append (new Gtk.Separator (HORIZONTAL));
             context_menu_box.append (new_cover);
 
-            poster = new Gtk.Image () {
+            poster = new Gtk.Picture () {
                 hexpand = true,
                 vexpand = true
             };
@@ -121,7 +121,7 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
                 halign = CENTER,
                 valign = CENTER
             };
-            spinner_stack.get_style_context ().add_class (Granite.STYLE_CLASS_CARD);
+            spinner_stack.add_css_class (Granite.STYLE_CLASS_CARD);
             spinner_stack.add_named (spinner, "spinner");
             spinner_stack.add_named (poster, "poster");
 
@@ -163,7 +163,7 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
 
         video.poster_changed.connect (() => {
             if (item_style == LibraryItemStyle.THUMBNAIL && (episodes.size == 1 || poster.paintable == null)) {
-                poster.set_from_pixbuf (video.poster);
+                poster.set_pixbuf (video.poster);
             }
         });
     }
@@ -261,13 +261,13 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
     private void create_episode_poster () {
         if (FileUtils.test (poster_cache_file, FileTest.EXISTS)) {
             try {
-                poster.set_from_pixbuf (new Gdk.Pixbuf.from_file (poster_cache_file));
+                poster.set_pixbuf (new Gdk.Pixbuf.from_file (poster_cache_file));
             } catch (Error e) {
                 warning (e.message);
             }
         } else if (FileUtils.test (episode_poster_path, FileTest.EXISTS)) {
             var pixbuf = manager.get_poster_from_file (episode_poster_path);
-            poster.set_from_pixbuf (pixbuf);
+            poster.set_pixbuf (pixbuf);
             try {
                 pixbuf.save (poster_cache_file, "jpeg");
             } catch (Error e) {

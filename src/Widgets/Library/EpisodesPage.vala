@@ -19,7 +19,7 @@
  */
 
 public class Audience.EpisodesPage : Gtk.Box {
-    public Gtk.Image poster { get; private set; }
+    public Gtk.Picture poster { get; private set; }
 
     private ListStore items;
     private Gtk.SearchEntry search_entry;
@@ -61,7 +61,7 @@ public class Audience.EpisodesPage : Gtk.Box {
         header_bar.pack_end (autoqueue_next);
         header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
 
-        poster = new Gtk.Image () {
+        poster = new Gtk.Picture () {
             height_request = Audience.Services.POSTER_HEIGHT,
             width_request = Audience.Services.POSTER_WIDTH,
             margin_top = 24,
@@ -156,7 +156,7 @@ public class Audience.EpisodesPage : Gtk.Box {
     }
 
     private void update_poster (Objects.Video episode) {
-        poster.set_from_pixbuf (episode.poster);
+        poster.set_pixbuf (episode.poster);
     }
 
     private void play_video (Gtk.FlowBoxChild item) {
