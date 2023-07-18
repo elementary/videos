@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-09 18:33+0000\n"
-"PO-Revision-Date: 2023-03-12 09:25+0000\n"
+"PO-Revision-Date: 2023-07-18 21:29+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementary.io/projects/videos/extra/ka/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
 msgid "Videos"
@@ -33,6 +33,9 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
+"თანამედროვე ვიდეო-დამკვრელი, რომელიც ვიდეოს შემცველობას აქცევს ყურადღებას, "
+"კონტროლის მაგიერ. ის იმახსოვრებს ყველა ვიდეოს და თუ თავიდან ჩართავთ, დაკვრას "
+"იგივე ადგილიდან გააგრძელებს."
 
 #: data/videos.metainfo.xml.in:14
 msgid "Additional features include:"
@@ -79,7 +82,7 @@ msgstr "გახადეთ დაკვრის ხანგრძლივ�
 
 #: data/videos.metainfo.xml.in:82
 msgid "Update to Flatpak Platform 7"
-msgstr ""
+msgstr "განახლდა Flatpak 7-მდე"
 
 #: data/videos.metainfo.xml.in:90
 msgid "Fixes:"
@@ -87,19 +90,19 @@ msgstr "შეცდომების გასწორებები:"
 
 #: data/videos.metainfo.xml.in:92
 msgid "Fix a crash with certain video codecs"
-msgstr ""
+msgstr "გასწორდა ზოგიერთი კოდეკის დაკვრის შეცდომა"
 
 #: data/videos.metainfo.xml.in:96
 msgid "Update to 6.1 Flatpak runtime"
-msgstr ""
+msgstr "განახლდა Flatpak 6.1-მდე"
 
 #: data/videos.metainfo.xml.in:106
 msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-msgstr ""
+msgstr "დაემატა org.freedesktop.Platfrom.ffmpeg-full გაფართოების მხარდაჭერა"
 
 #: data/videos.metainfo.xml.in:115
 msgid "Fix an issue with removing videos from library"
-msgstr ""
+msgstr "გადაიჭრა ბიბლიოთეკებიდან ვიდეოების წაშლის პრობლემა"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
