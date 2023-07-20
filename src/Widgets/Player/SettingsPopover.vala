@@ -77,9 +77,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         playback_manager.next_audio.connect (next_audio);
         playback_manager.next_text.connect (next_text);
 
-        external_subtitle_file.clicked.connect (() => {
-            get_external_subtitle_file ();
-        });
+        external_subtitle_file.clicked.connect (get_external_subtitle_file);
 
         playback_manager.notify["subtitle-uri"].connect (set_external_subtitel_label);
 
@@ -107,6 +105,8 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     }
 
     private void get_external_subtitle_file () {
+        popdown ();
+
         var all_files_filter = new Gtk.FileFilter ();
         all_files_filter.set_filter_name (_("All files"));
         all_files_filter.add_pattern ("*");
