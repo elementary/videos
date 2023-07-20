@@ -237,9 +237,9 @@ public class Audience.EpisodesPage : Gtk.Box {
             }
         }
 
-        var Leaflet = (Adw.Leaflet) get_ancestor (typeof (Adw.Leaflet));
-        if (Leaflet.visible_child == this && items.get_n_items () == 0) {
-            Leaflet.navigate (Adw.NavigationDirection.BACK);
+        var leaflet = (Adw.Leaflet) get_ancestor (typeof (Adw.Leaflet));
+        if (leaflet.visible_child == this && items.get_n_items () == 0) {
+            leaflet.navigate (Adw.NavigationDirection.BACK);
         }
     }
 
