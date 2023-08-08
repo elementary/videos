@@ -1,9 +1,11 @@
 project(
     'io.elementary.videos',
     'vala', 'c',
-    version: '2.9.1'
+    version: '2.9.1',
+    meson_version: '>=0.58.0'
 )
 
+gnome = import('gnome')
 i18n = import('i18n')
 
 add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()), language:'c')
@@ -18,6 +20,6 @@ config_file = configure_file(
 )
 
 subdir('src')
-meson.add_install_script('meson/post_install.py')
+gnome.post_install(glib_compile_schemas: true)
 subdir('data')
 subdir('po')
