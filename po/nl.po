@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 18:33+0000\n"
+"POT-Creation-Date: 2023-08-10 16:37+0000\n"
 "PO-Revision-Date: 2020-09-21 11:14+0000\n"
 "Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/videos/videos/nl/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 
-#: src/Application.vala:104 src/Window.vala:102 src/Window.vala:498
+#: src/Application.vala:105 src/Window.vala:102 src/Window.vala:508
 msgid "Videos"
 msgstr "Video's"
 
@@ -29,10 +29,10 @@ msgstr "Video's"
 msgid "Back"
 msgstr "Terug"
 
-#: src/Window.vala:35 src/Window.vala:500
+#: src/Window.vala:35 src/Window.vala:510
 #: src/Widgets/Library/EpisodesPage.vala:36
 #: src/Widgets/Library/LibraryPage.vala:62
-#: src/Widgets/Player/PlayerPage.vala:67
+#: src/Widgets/Player/PlayerPage.vala:66
 msgid "Library"
 msgstr "Bibliotheek"
 
@@ -40,44 +40,44 @@ msgstr "Bibliotheek"
 msgid "Episodes"
 msgstr "Afleveringen"
 
-#: src/Window.vala:133
+#: src/Window.vala:138
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Video '%s' verwijderd."
 
-#: src/Window.vala:139
+#: src/Window.vala:144
 msgid "Restore"
 msgstr "Herstel"
 
-#: src/Window.vala:193
+#: src/Window.vala:198
 #, c-format
 msgid "“%s” added to playlist"
 msgstr ""
 
-#: src/Window.vala:402 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:407 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "Alle bestanden"
 
-#: src/Window.vala:406
+#: src/Window.vala:411
 msgid "Video files"
 msgstr "Videobestanden"
 
-#: src/Window.vala:410 src/Widgets/Library/LibraryItem.vala:175
+#: src/Window.vala:415 src/Widgets/Library/LibraryItem.vala:175
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "Openen"
 
-#: src/Window.vala:413 src/Widgets/Library/LibraryItem.vala:178
+#: src/Window.vala:418 src/Widgets/Library/LibraryItem.vala:178
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "_Open"
 
-#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:179
+#: src/Window.vala:419 src/Widgets/Library/LibraryItem.vala:179
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "_Annuleer"
 
-#: src/Services/PlaybackManager.vala:152
+#: src/Services/PlaybackManager.vala:147
 msgid "A video is playing"
 msgstr "Een video wordt afgespeeld"
 
@@ -195,7 +195,7 @@ msgstr "Instellingen"
 msgid "Pause"
 msgstr "Pauzeer"
 
-#: src/Widgets/Player/PlayerPage.vala:73
+#: src/Widgets/Player/PlayerPage.vala:72
 msgid "Unfullscreen"
 msgstr "Sluit volledig scherm"
 

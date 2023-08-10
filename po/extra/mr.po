@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 18:33+0000\n"
+"POT-Creation-Date: 2023-08-10 16:37+0000\n"
 "PO-Revision-Date: 2023-03-21 18:59+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/videos/extra/mr/"
@@ -56,56 +56,70 @@ msgstr "शोध बारवर लघुप्रतिमा पूर्व
 msgid "elementary, Inc."
 msgstr "एलिमेंटरी, Inc."
 
-#: data/videos.metainfo.xml.in:57 data/videos.metainfo.xml.in:70
-#: data/videos.metainfo.xml.in:80 data/videos.metainfo.xml.in:94
-#: data/videos.metainfo.xml.in:104 data/videos.metainfo.xml.in:113
-msgid "Other updates:"
-msgstr "इतर अद्यतने:"
+#: data/videos.metainfo.xml.in:57
+msgid "Improvements:"
+msgstr "सुधारणा:"
 
-#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:73
-#: data/videos.metainfo.xml.in:83 data/videos.metainfo.xml.in:97
+#: data/videos.metainfo.xml.in:59
+msgid "Updated flatter design"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:60
+msgid "Send an app notification when adding items to the play queue"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:61
+msgid "More accurate playback position save and restore"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
+#: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
+#: data/videos.metainfo.xml.in:112
 msgid "Translation updates"
 msgstr "भाषांतर अपडेट्स"
 
-#: data/videos.metainfo.xml.in:66
+#: data/videos.metainfo.xml.in:72 data/videos.metainfo.xml.in:85
+#: data/videos.metainfo.xml.in:95 data/videos.metainfo.xml.in:109
+msgid "Other updates:"
+msgstr "इतर अद्यतने:"
+
+#: data/videos.metainfo.xml.in:81
 msgid "New features:"
 msgstr "नवीन वैशिष्ट्ये:"
 
-#: data/videos.metainfo.xml.in:68
+#: data/videos.metainfo.xml.in:83
 msgid "Control playback from the sound indicator"
 msgstr "वनी निर्देशकावरून प्लेबॅक नियंत्रित करा"
 
-#: data/videos.metainfo.xml.in:72
+#: data/videos.metainfo.xml.in:87
 msgid "Make playback duration more accurate"
 msgstr "प्लेबॅक कालावधी अधिक अचूक करा"
 
-#: data/videos.metainfo.xml.in:82
+#: data/videos.metainfo.xml.in:97
 msgid "Update to Flatpak Platform 7"
 msgstr "Flatpak प्लॅटफॉर्म 7 वर अपडेट करा"
 
-#: data/videos.metainfo.xml.in:90
+#: data/videos.metainfo.xml.in:105
 msgid "Fixes:"
 msgstr "निराकारणे:"
 
-#: data/videos.metainfo.xml.in:92
+#: data/videos.metainfo.xml.in:107
 msgid "Fix a crash with certain video codecs"
 msgstr "विशिष्ट व्हिडिओ कोडेक्ससह क्रॅशचे निराकरण करा"
 
-#: data/videos.metainfo.xml.in:96
+#: data/videos.metainfo.xml.in:111
 msgid "Update to 6.1 Flatpak runtime"
 msgstr "6.1 Flatpak रनटाइम वर अपडेट करा"
-
-#: data/videos.metainfo.xml.in:106
-msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-msgstr "org.freedesktop.Platfrom.ffmpeg-पूर्ण विस्तारासाठी समर्थन जोडले"
-
-#: data/videos.metainfo.xml.in:115
-msgid "Fix an issue with removing videos from library"
-msgstr "लायब्ररीतून व्हिडिओ काढताना येणाऱ्या समस्येचे निराकरण करा"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "व्हिडिओ प्लेयर"
+
+#~ msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
+#~ msgstr "org.freedesktop.Platfrom.ffmpeg-पूर्ण विस्तारासाठी समर्थन जोडले"
+
+#~ msgid "Fix an issue with removing videos from library"
+#~ msgstr "लायब्ररीतून व्हिडिओ काढताना येणाऱ्या समस्येचे निराकरण करा"
 
 #~ msgid "Two-finger swipe to go back"
 #~ msgstr "मागे जाण्यासाठी दोन बोटांनी स्वाईप करा"
@@ -121,9 +135,6 @@ msgstr "व्हिडिओ प्लेयर"
 
 #~ msgid "Prevent sleep while playing a video"
 #~ msgstr "व्हिडिओ प्ले करताना स्लीप मोडमध्ये जाण्यापासून प्रतिबंधित करा"
-
-#~ msgid "Improvements:"
-#~ msgstr "सुधारणा:"
 
 #~ msgid "Start up faster with large libraries"
 #~ msgstr "मोठ्या लायब्ररीद्वारे जलद प्रारंभ करा"

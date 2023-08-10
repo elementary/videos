@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 18:33+0000\n"
+"POT-Creation-Date: 2023-08-10 16:37+0000\n"
 "PO-Revision-Date: 2023-05-27 18:06+0000\n"
 "Last-Translator: Faisal Rachmadin <frachmadin@users.noreply.l10n.elementary."
 "io>\n"
@@ -58,57 +58,71 @@ msgstr "Pratinjau gambar mini pada bilah pencarian"
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/videos.metainfo.xml.in:57 data/videos.metainfo.xml.in:70
-#: data/videos.metainfo.xml.in:80 data/videos.metainfo.xml.in:94
-#: data/videos.metainfo.xml.in:104 data/videos.metainfo.xml.in:113
-msgid "Other updates:"
-msgstr "Pembaruan lainnya:"
+#: data/videos.metainfo.xml.in:57
+msgid "Improvements:"
+msgstr "Peningkatan:"
 
-#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:73
-#: data/videos.metainfo.xml.in:83 data/videos.metainfo.xml.in:97
+#: data/videos.metainfo.xml.in:59
+msgid "Updated flatter design"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:60
+msgid "Send an app notification when adding items to the play queue"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:61
+msgid "More accurate playback position save and restore"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
+#: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
+#: data/videos.metainfo.xml.in:112
 msgid "Translation updates"
 msgstr "Pembaruan terjemahan"
 
-#: data/videos.metainfo.xml.in:66
+#: data/videos.metainfo.xml.in:72 data/videos.metainfo.xml.in:85
+#: data/videos.metainfo.xml.in:95 data/videos.metainfo.xml.in:109
+msgid "Other updates:"
+msgstr "Pembaruan lainnya:"
+
+#: data/videos.metainfo.xml.in:81
 msgid "New features:"
 msgstr "Fitur baru:"
 
-#: data/videos.metainfo.xml.in:68
+#: data/videos.metainfo.xml.in:83
 msgid "Control playback from the sound indicator"
 msgstr "Kontrol pemutaran dari indikator suara"
 
-#: data/videos.metainfo.xml.in:72
+#: data/videos.metainfo.xml.in:87
 msgid "Make playback duration more accurate"
 msgstr "Membuat durasi pemutaran lebih akurat"
 
-#: data/videos.metainfo.xml.in:82
+#: data/videos.metainfo.xml.in:97
 msgid "Update to Flatpak Platform 7"
 msgstr "Pembaruan ke Flatform Flatpak 7"
 
-#: data/videos.metainfo.xml.in:90
+#: data/videos.metainfo.xml.in:105
 msgid "Fixes:"
 msgstr "Perbaikan:"
 
-#: data/videos.metainfo.xml.in:92
+#: data/videos.metainfo.xml.in:107
 msgid "Fix a crash with certain video codecs"
 msgstr "Memperbaiki kemogokkan dengan codec video tertentu"
 
-#: data/videos.metainfo.xml.in:96
+#: data/videos.metainfo.xml.in:111
 msgid "Update to 6.1 Flatpak runtime"
 msgstr "Pembaruan ke runtime Flatpak 6.1"
-
-#: data/videos.metainfo.xml.in:106
-msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-msgstr ""
-"Menambahkan dukungan untuk ekstensi org.freedesktop.Platfrom.ffmpeg-full"
-
-#: data/videos.metainfo.xml.in:115
-msgid "Fix an issue with removing videos from library"
-msgstr "Memperbaiki masalah penghapusan video dari pustaka"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Pemutar Video"
+
+#~ msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
+#~ msgstr ""
+#~ "Menambahkan dukungan untuk ekstensi org.freedesktop.Platfrom.ffmpeg-full"
+
+#~ msgid "Fix an issue with removing videos from library"
+#~ msgstr "Memperbaiki masalah penghapusan video dari pustaka"
 
 #~ msgid "Two-finger swipe to go back"
 #~ msgstr "Gesek dua jari untuk kembali"
@@ -125,9 +139,6 @@ msgstr "Pemutar Video"
 
 #~ msgid "Prevent sleep while playing a video"
 #~ msgstr "Mencegah tidur saat memutar video"
-
-#~ msgid "Improvements:"
-#~ msgstr "Peningkatan:"
 
 #~ msgid "Start up faster with large libraries"
 #~ msgstr "Memulai lebih cepat dengan pustaka besar"
