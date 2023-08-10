@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 18:33+0000\n"
+"POT-Creation-Date: 2023-08-10 16:37+0000\n"
 "PO-Revision-Date: 2022-08-05 16:15+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/videos/extra/ko/"
@@ -59,51 +59,59 @@ msgstr "찾아보기에서 썸네일 미리보기"
 msgid "elementary, Inc."
 msgstr "elementary LLC."
 
-#: data/videos.metainfo.xml.in:57 data/videos.metainfo.xml.in:70
-#: data/videos.metainfo.xml.in:80 data/videos.metainfo.xml.in:94
-#: data/videos.metainfo.xml.in:104 data/videos.metainfo.xml.in:113
-msgid "Other updates:"
+#: data/videos.metainfo.xml.in:57
+msgid "Improvements:"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:73
-#: data/videos.metainfo.xml.in:83 data/videos.metainfo.xml.in:97
+#: data/videos.metainfo.xml.in:59
+msgid "Updated flatter design"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:60
+msgid "Send an app notification when adding items to the play queue"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:61
+msgid "More accurate playback position save and restore"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
+#: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
+#: data/videos.metainfo.xml.in:112
 msgid "Translation updates"
 msgstr "번역 업데이트"
 
-#: data/videos.metainfo.xml.in:66
+#: data/videos.metainfo.xml.in:72 data/videos.metainfo.xml.in:85
+#: data/videos.metainfo.xml.in:95 data/videos.metainfo.xml.in:109
+msgid "Other updates:"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:81
 msgid "New features:"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:68
+#: data/videos.metainfo.xml.in:83
 msgid "Control playback from the sound indicator"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:72
+#: data/videos.metainfo.xml.in:87
 msgid "Make playback duration more accurate"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:82
+#: data/videos.metainfo.xml.in:97
 msgid "Update to Flatpak Platform 7"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:90
+#: data/videos.metainfo.xml.in:105
 msgid "Fixes:"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:92
+#: data/videos.metainfo.xml.in:107
 msgid "Fix a crash with certain video codecs"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:96
+#: data/videos.metainfo.xml.in:111
 msgid "Update to 6.1 Flatpak runtime"
-msgstr ""
-
-#: data/videos.metainfo.xml.in:106
-msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-msgstr ""
-
-#: data/videos.metainfo.xml.in:115
-msgid "Fix an issue with removing videos from library"
 msgstr ""
 
 #: data/io.elementary.videos.desktop.in:5

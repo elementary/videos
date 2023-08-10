@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 18:33+0000\n"
+"POT-Creation-Date: 2023-08-10 16:37+0000\n"
 "PO-Revision-Date: 2021-09-29 22:11+0000\n"
 "Last-Translator: Reinaldo <reinaldoplacetas@tutanota.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/videos/extra/es/"
@@ -58,58 +58,69 @@ msgstr "Previsualizaciones en miniatura sobre la barra de posición"
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/videos.metainfo.xml.in:57 data/videos.metainfo.xml.in:70
-#: data/videos.metainfo.xml.in:80 data/videos.metainfo.xml.in:94
-#: data/videos.metainfo.xml.in:104 data/videos.metainfo.xml.in:113
-msgid "Other updates:"
-msgstr "Otras actualizaciones:"
+#: data/videos.metainfo.xml.in:57
+msgid "Improvements:"
+msgstr "Mejoras:"
 
-#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:73
-#: data/videos.metainfo.xml.in:83 data/videos.metainfo.xml.in:97
+#: data/videos.metainfo.xml.in:59
+msgid "Updated flatter design"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:60
+msgid "Send an app notification when adding items to the play queue"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:61
+msgid "More accurate playback position save and restore"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
+#: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
+#: data/videos.metainfo.xml.in:112
 msgid "Translation updates"
 msgstr "Traducciones actualizadas"
 
-#: data/videos.metainfo.xml.in:66
+#: data/videos.metainfo.xml.in:72 data/videos.metainfo.xml.in:85
+#: data/videos.metainfo.xml.in:95 data/videos.metainfo.xml.in:109
+msgid "Other updates:"
+msgstr "Otras actualizaciones:"
+
+#: data/videos.metainfo.xml.in:81
 msgid "New features:"
 msgstr "Funcionalidades nuevas:"
 
-#: data/videos.metainfo.xml.in:68
+#: data/videos.metainfo.xml.in:83
 msgid "Control playback from the sound indicator"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:72
+#: data/videos.metainfo.xml.in:87
 msgid "Make playback duration more accurate"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:82
+#: data/videos.metainfo.xml.in:97
 msgid "Update to Flatpak Platform 7"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:90
+#: data/videos.metainfo.xml.in:105
 msgid "Fixes:"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:92
+#: data/videos.metainfo.xml.in:107
 msgid "Fix a crash with certain video codecs"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:96
+#: data/videos.metainfo.xml.in:111
 msgid "Update to 6.1 Flatpak runtime"
 msgstr ""
-
-#: data/videos.metainfo.xml.in:106
-msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-msgstr ""
-
-#: data/videos.metainfo.xml.in:115
-#, fuzzy
-#| msgid "Fix an issue with accessing library view"
-msgid "Fix an issue with removing videos from library"
-msgstr "Solucionar un problema con el acceso a la vista de la biblioteca"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Reproductor de video"
+
+#, fuzzy
+#~| msgid "Fix an issue with accessing library view"
+#~ msgid "Fix an issue with removing videos from library"
+#~ msgstr "Solucionar un problema con el acceso a la vista de la biblioteca"
 
 #~ msgid "Fix an issue with accessing library view"
 #~ msgstr "Solucionar un problema con el acceso a la vista de la biblioteca"
@@ -123,9 +134,6 @@ msgstr "Reproductor de video"
 
 #~ msgid "Prevent sleep while playing a video"
 #~ msgstr "Prevenir la suspensión cuando se reproduce un vídeo"
-
-#~ msgid "Improvements:"
-#~ msgstr "Mejoras:"
 
 #~ msgid "Start up faster with large libraries"
 #~ msgstr "Inicio más rápido con videotecas grandes"
