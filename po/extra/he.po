@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-10 16:37+0000\n"
-"PO-Revision-Date: 2022-10-24 05:57+0000\n"
+"PO-Revision-Date: 2023-08-12 03:08+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <https://l10n.elementary.io/projects/videos/extra/he/"
-">\n"
+"Language-Team: Hebrew <https://l10n.elementary.io/projects/videos/extra/he/>"
+"\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
 msgid "Videos"
@@ -63,15 +63,15 @@ msgstr "שיפורים:"
 
 #: data/videos.metainfo.xml.in:59
 msgid "Updated flatter design"
-msgstr ""
+msgstr "העיצוב השטוח יותר עודכן"
 
 #: data/videos.metainfo.xml.in:60
 msgid "Send an app notification when adding items to the play queue"
-msgstr ""
+msgstr "שליחת התראת יישומון בעת הוספת פריטים לתור הנגינה"
 
 #: data/videos.metainfo.xml.in:61
 msgid "More accurate playback position save and restore"
-msgstr ""
+msgstr "שמירה ושחזור מיקום נגינה בצורה מדויקת יותר"
 
 #: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
 #: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
