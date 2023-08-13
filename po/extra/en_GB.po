@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-10 16:37+0000\n"
-"PO-Revision-Date: 2023-02-18 13:25+0000\n"
+"PO-Revision-Date: 2023-08-14 10:08+0000\n"
 "Last-Translator: David Hewitt <davidmhewitt@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
 "videos/extra/en_GB/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -64,15 +64,15 @@ msgstr "Improvements:"
 
 #: data/videos.metainfo.xml.in:59
 msgid "Updated flatter design"
-msgstr ""
+msgstr "Updated flatter design"
 
 #: data/videos.metainfo.xml.in:60
 msgid "Send an app notification when adding items to the play queue"
-msgstr ""
+msgstr "Send an app notification when adding items to the play queue"
 
 #: data/videos.metainfo.xml.in:61
 msgid "More accurate playback position save and restore"
-msgstr ""
+msgstr "More accurate playback position save and restore"
 
 #: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
 #: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
