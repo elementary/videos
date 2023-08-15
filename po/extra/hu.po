@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-10 16:37+0000\n"
-"PO-Revision-Date: 2023-06-08 00:07+0000\n"
+"PO-Revision-Date: 2023-08-15 14:37+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/extra/"
 "hu/>\n"
@@ -63,15 +63,15 @@ msgstr "Fejlesztések:"
 
 #: data/videos.metainfo.xml.in:59
 msgid "Updated flatter design"
-msgstr ""
+msgstr "Frissített, flat dizájn"
 
 #: data/videos.metainfo.xml.in:60
 msgid "Send an app notification when adding items to the play queue"
-msgstr ""
+msgstr "Alkalmazásértesítés megjelenítése elemek lejátszási listához adásakor"
 
 #: data/videos.metainfo.xml.in:61
 msgid "More accurate playback position save and restore"
-msgstr ""
+msgstr "A lejátszási pozíció pontosabb mentése/visszaállítása"
 
 #: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
 #: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
