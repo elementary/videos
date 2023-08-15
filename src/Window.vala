@@ -30,11 +30,6 @@ public class Audience.Window : Hdy.ApplicationWindow {
 
     public enum NavigationPage { WELCOME, LIBRARY, EPISODES }
 
-    // For better translation
-    const string NAVIGATION_BUTTON_WELCOMESCREEN = N_("Back");
-    const string NAVIGATION_BUTTON_LIBRARY = N_("Library");
-    const string NAVIGATION_BUTTON_EPISODES = N_("Episodes");
-
     public signal void media_volumes_changed ();
 
     public const string ACTION_GROUP_PREFIX = "win";
@@ -480,11 +475,11 @@ public class Audience.Window : Hdy.ApplicationWindow {
     public string get_adjacent_page_name () {
         var previous_child = deck.get_adjacent_child (Hdy.NavigationDirection.BACK);
         if (previous_child == episodes_page) {
-            return NAVIGATION_BUTTON_EPISODES;
+            return _("Episodes");
         } else if (previous_child == library_page) {
-            return NAVIGATION_BUTTON_LIBRARY;
+            return _("Library");
         } else {
-            return NAVIGATION_BUTTON_WELCOMESCREEN;
+            return _("Back");
         }
     }
 
