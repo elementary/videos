@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-10 16:37+0000\n"
+"POT-Creation-Date: 2023-08-15 14:37+0000\n"
 "PO-Revision-Date: 2023-08-14 10:08+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementary.io/projects/videos/extra/ka/"
@@ -67,7 +67,8 @@ msgstr "განახლებული ბრტყელი დიზაი�
 
 #: data/videos.metainfo.xml.in:60
 msgid "Send an app notification when adding items to the play queue"
-msgstr "დასაკრავ სიაში ელემენტების ჩამატებისთვის აპისთვის გაფრთხილების გაგზავნა"
+msgstr ""
+"დასაკრავ სიაში ელემენტების ჩამატებისთვის აპისთვის გაფრთხილების გაგზავნა"
 
 #: data/videos.metainfo.xml.in:61
 msgid "More accurate playback position save and restore"
