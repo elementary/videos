@@ -21,10 +21,10 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/elementary/videos/2.9.1/data/screenshot.png</image>
+      <image>https://raw.githubusercontent.com/elementary/videos/3.0.0/data/screenshot.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/elementary/videos/2.9.1/data/screenshot-library.png</image>
+      <image>https://raw.githubusercontent.com/elementary/videos/3.0.0/data/screenshot-library.png</image>
     </screenshot>
   </screenshots>
 
@@ -52,6 +52,21 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="3.0.0" date="2023-08-10" urgency="medium">
+      <description>
+        <p>Improvements:</p>
+        <ul>
+          <li>Updated flatter design</li>
+          <li>Send an app notification when adding items to the play queue</li>
+          <li>More accurate playback position save and restore</li>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/videos/issues/232">videos missing rounded window corners</issue>
+      </issues>
+    </release>
+
     <release version="2.9.1" date="2023-05-31" urgency="medium">
       <description>
         <p>Other updates:</p>
@@ -99,24 +114,8 @@
       </description>
     </release>
 
-    <release version="2.8.2" date="2021-12-17" urgency="medium">
-      <description>
-        <p>Other updates:</p>
-        <ul>
-          <li>Added support for the org.freedesktop.Platfrom.ffmpeg-full extension</li>
-        </ul>
-      </description>
-    </release>
-
-    <release version="2.8.1" date="2021-12-17" urgency="medium">
-      <description>
-        <p>Other updates:</p>
-        <ul>
-          <li>Fix an issue with removing videos from library</li>
-        </ul>
-      </description>
-    </release>
-
+    <release version="2.8.2" date="2021-12-17" urgency="medium" />
+    <release version="2.8.1" date="2021-12-17" urgency="medium" />
     <release version="2.8.0" date="2021-10-28" urgency="medium" />
     <release version="2.7.3" date="2021-07-14" urgency="medium" />
     <release version="2.7.2" date="2020-06-30" urgency="medium" />

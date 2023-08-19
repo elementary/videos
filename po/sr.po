@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 18:33+0000\n"
+"POT-Creation-Date: 2023-08-15 14:37+0000\n"
 "PO-Revision-Date: 2020-12-19 14:16+0000\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <https://l10n.elementary.io/projects/videos/videos/sr/"
@@ -21,25 +21,9 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:104 src/Window.vala:102 src/Window.vala:498
+#: src/Application.vala:105 src/Window.vala:97 src/Window.vala:503
 msgid "Videos"
 msgstr "Видео снимци"
-
-#. For better translation
-#: src/Window.vala:34 src/Widgets/Library/LibraryPage.vala:50
-msgid "Back"
-msgstr "Назад"
-
-#: src/Window.vala:35 src/Window.vala:500
-#: src/Widgets/Library/EpisodesPage.vala:36
-#: src/Widgets/Library/LibraryPage.vala:62
-#: src/Widgets/Player/PlayerPage.vala:67
-msgid "Library"
-msgstr "Збирка"
-
-#: src/Window.vala:36
-msgid "Episodes"
-msgstr "Епизоде"
 
 #: src/Window.vala:133
 #, c-format
@@ -78,7 +62,22 @@ msgstr "_Отвори"
 msgid "_Cancel"
 msgstr "_Откажи"
 
-#: src/Services/PlaybackManager.vala:152
+#: src/Window.vala:478
+msgid "Episodes"
+msgstr "Епизоде"
+
+#: src/Window.vala:480 src/Window.vala:505
+#: src/Widgets/Library/EpisodesPage.vala:36
+#: src/Widgets/Library/LibraryPage.vala:62
+#: src/Widgets/Player/PlayerPage.vala:66
+msgid "Library"
+msgstr "Збирка"
+
+#: src/Window.vala:482 src/Widgets/Library/LibraryPage.vala:50
+msgid "Back"
+msgstr "Назад"
+
+#: src/Services/PlaybackManager.vala:147
 msgid "A video is playing"
 msgstr "Видео снимак се пушта"
 
@@ -196,7 +195,7 @@ msgstr "Подешавања"
 msgid "Pause"
 msgstr "Застаните"
 
-#: src/Widgets/Player/PlayerPage.vala:73
+#: src/Widgets/Player/PlayerPage.vala:72
 msgid "Unfullscreen"
 msgstr "Поништите пун екран"
 

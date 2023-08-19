@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 18:33+0000\n"
-"PO-Revision-Date: 2023-02-18 13:25+0000\n"
+"POT-Creation-Date: 2023-08-15 14:37+0000\n"
+"PO-Revision-Date: 2023-08-14 10:08+0000\n"
 "Last-Translator: David Hewitt <davidmhewitt@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
 "videos/extra/en_GB/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -58,56 +58,71 @@ msgstr "Thumbnail previews on the seek bar"
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/videos.metainfo.xml.in:57 data/videos.metainfo.xml.in:70
-#: data/videos.metainfo.xml.in:80 data/videos.metainfo.xml.in:94
-#: data/videos.metainfo.xml.in:104 data/videos.metainfo.xml.in:113
-msgid "Other updates:"
-msgstr "Other updates:"
+#: data/videos.metainfo.xml.in:57
+msgid "Improvements:"
+msgstr "Improvements:"
 
-#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:73
-#: data/videos.metainfo.xml.in:83 data/videos.metainfo.xml.in:97
+#: data/videos.metainfo.xml.in:59
+msgid "Updated flatter design"
+msgstr "Updated flatter design"
+
+#: data/videos.metainfo.xml.in:60
+msgid "Send an app notification when adding items to the play queue"
+msgstr "Send an app notification when adding items to the play queue"
+
+#: data/videos.metainfo.xml.in:61
+msgid "More accurate playback position save and restore"
+msgstr "More accurate playback position save and restore"
+
+#: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
+#: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
+#: data/videos.metainfo.xml.in:112
 msgid "Translation updates"
 msgstr "Translation updates"
 
-#: data/videos.metainfo.xml.in:66
+#: data/videos.metainfo.xml.in:72 data/videos.metainfo.xml.in:85
+#: data/videos.metainfo.xml.in:95 data/videos.metainfo.xml.in:109
+msgid "Other updates:"
+msgstr "Other updates:"
+
+#: data/videos.metainfo.xml.in:81
 msgid "New features:"
 msgstr "New features:"
 
-#: data/videos.metainfo.xml.in:68
+#: data/videos.metainfo.xml.in:83
 msgid "Control playback from the sound indicator"
 msgstr "Control playback from the sound indicator"
 
-#: data/videos.metainfo.xml.in:72
+#: data/videos.metainfo.xml.in:87
 msgid "Make playback duration more accurate"
 msgstr "Make playback duration more accurate"
 
-#: data/videos.metainfo.xml.in:82
+#: data/videos.metainfo.xml.in:97
 msgid "Update to Flatpak Platform 7"
 msgstr "Update to Flatpak Platform 7"
 
-#: data/videos.metainfo.xml.in:90
+#: data/videos.metainfo.xml.in:105
 msgid "Fixes:"
 msgstr "Fixes:"
 
-#: data/videos.metainfo.xml.in:92
+#: data/videos.metainfo.xml.in:107
 msgid "Fix a crash with certain video codecs"
 msgstr "Fix a crash with certain video codecs"
 
-#: data/videos.metainfo.xml.in:96
+#: data/videos.metainfo.xml.in:111
 msgid "Update to 6.1 Flatpak runtime"
 msgstr "Update to 6.1 Flatpak runtime"
-
-#: data/videos.metainfo.xml.in:106
-msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-msgstr "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-
-#: data/videos.metainfo.xml.in:115
-msgid "Fix an issue with removing videos from library"
-msgstr "Fix an issue with removing videos from library"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Video Player"
+
+#~ msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
+#~ msgstr ""
+#~ "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
+
+#~ msgid "Fix an issue with removing videos from library"
+#~ msgstr "Fix an issue with removing videos from library"
 
 #~ msgid "Two-finger swipe to go back"
 #~ msgstr "Two-finger swipe to go back"
@@ -124,9 +139,6 @@ msgstr "Video Player"
 
 #~ msgid "Prevent sleep while playing a video"
 #~ msgstr "Prevent sleep while playing a video"
-
-#~ msgid "Improvements:"
-#~ msgstr "Improvements:"
 
 #~ msgid "Start up faster with large libraries"
 #~ msgstr "Start up faster with large libraries"

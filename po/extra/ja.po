@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 18:33+0000\n"
-"PO-Revision-Date: 2022-10-29 04:49+0000\n"
+"POT-Creation-Date: 2023-08-15 14:37+0000\n"
+"PO-Revision-Date: 2023-08-14 10:08+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -58,56 +58,70 @@ msgstr "シークバー上のサムネイルプレビュー"
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/videos.metainfo.xml.in:57 data/videos.metainfo.xml.in:70
-#: data/videos.metainfo.xml.in:80 data/videos.metainfo.xml.in:94
-#: data/videos.metainfo.xml.in:104 data/videos.metainfo.xml.in:113
-msgid "Other updates:"
-msgstr "そのほかのアップデート:"
+#: data/videos.metainfo.xml.in:57
+msgid "Improvements:"
+msgstr "改善点:"
 
-#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:73
-#: data/videos.metainfo.xml.in:83 data/videos.metainfo.xml.in:97
+#: data/videos.metainfo.xml.in:59
+msgid "Updated flatter design"
+msgstr "よりフラットなデザインに更新"
+
+#: data/videos.metainfo.xml.in:60
+msgid "Send an app notification when adding items to the play queue"
+msgstr "再生キューに項目を追加した際にアプリ内通知を送信するように変更"
+
+#: data/videos.metainfo.xml.in:61
+msgid "More accurate playback position save and restore"
+msgstr "より正確に再生位置を保存・復元するように修正"
+
+#: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
+#: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
+#: data/videos.metainfo.xml.in:112
 msgid "Translation updates"
 msgstr "翻訳の更新"
 
-#: data/videos.metainfo.xml.in:66
+#: data/videos.metainfo.xml.in:72 data/videos.metainfo.xml.in:85
+#: data/videos.metainfo.xml.in:95 data/videos.metainfo.xml.in:109
+msgid "Other updates:"
+msgstr "そのほかのアップデート:"
+
+#: data/videos.metainfo.xml.in:81
 msgid "New features:"
 msgstr "新機能:"
 
-#: data/videos.metainfo.xml.in:68
+#: data/videos.metainfo.xml.in:83
 msgid "Control playback from the sound indicator"
 msgstr "サウンドインジケーターから停止／再生できるように修正"
 
-#: data/videos.metainfo.xml.in:72
+#: data/videos.metainfo.xml.in:87
 msgid "Make playback duration more accurate"
 msgstr "再生時間の表示がより正確になるように修正"
 
-#: data/videos.metainfo.xml.in:82
+#: data/videos.metainfo.xml.in:97
 msgid "Update to Flatpak Platform 7"
 msgstr "Flatpak プラットフォームをバージョン 7 にアップデート"
 
-#: data/videos.metainfo.xml.in:90
+#: data/videos.metainfo.xml.in:105
 msgid "Fixes:"
 msgstr "修正点:"
 
-#: data/videos.metainfo.xml.in:92
+#: data/videos.metainfo.xml.in:107
 msgid "Fix a crash with certain video codecs"
 msgstr "特定のビデオコーデックでクラッシュする不具合を修正"
 
-#: data/videos.metainfo.xml.in:96
+#: data/videos.metainfo.xml.in:111
 msgid "Update to 6.1 Flatpak runtime"
 msgstr "Flatpak ランタイムをバージョン 6.1 にアップデート"
-
-#: data/videos.metainfo.xml.in:106
-msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-msgstr "拡張機能“org.freedesktop.Platfrom.ffmpeg-full”に対応"
-
-#: data/videos.metainfo.xml.in:115
-msgid "Fix an issue with removing videos from library"
-msgstr "ライブラリーからの動画の削除に関する不具合を修正"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "ビデオプレーヤー"
+
+#~ msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
+#~ msgstr "拡張機能“org.freedesktop.Platfrom.ffmpeg-full”に対応"
+
+#~ msgid "Fix an issue with removing videos from library"
+#~ msgstr "ライブラリーからの動画の削除に関する不具合を修正"
 
 #~ msgid "Two-finger swipe to go back"
 #~ msgstr "2本指のスワイプで前の画面に戻れるように変更"
@@ -123,9 +137,6 @@ msgstr "ビデオプレーヤー"
 
 #~ msgid "Prevent sleep while playing a video"
 #~ msgstr "動画の再生中にスリープしないように修正"
-
-#~ msgid "Improvements:"
-#~ msgstr "改善点:"
 
 #~ msgid "Start up faster with large libraries"
 #~ msgstr "ライブラリのサイズが大きい環境での起動を高速化"

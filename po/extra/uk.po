@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 18:33+0000\n"
-"PO-Revision-Date: 2022-10-21 23:57+0000\n"
+"POT-Creation-Date: 2023-08-15 14:37+0000\n"
+"PO-Revision-Date: 2023-08-14 10:08+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/videos/extra/"
 "uk/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -60,56 +60,72 @@ msgstr "Попередній перегляд мініатюр на панелі
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/videos.metainfo.xml.in:57 data/videos.metainfo.xml.in:70
-#: data/videos.metainfo.xml.in:80 data/videos.metainfo.xml.in:94
-#: data/videos.metainfo.xml.in:104 data/videos.metainfo.xml.in:113
-msgid "Other updates:"
-msgstr "Інші оновлення:"
+#: data/videos.metainfo.xml.in:57
+msgid "Improvements:"
+msgstr "Вдосконалення:"
 
-#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:73
-#: data/videos.metainfo.xml.in:83 data/videos.metainfo.xml.in:97
+#: data/videos.metainfo.xml.in:59
+msgid "Updated flatter design"
+msgstr "Оновлений дизайн flatter"
+
+#: data/videos.metainfo.xml.in:60
+msgid "Send an app notification when adding items to the play queue"
+msgstr ""
+"Надсилання сповіщення застосунку під час додавання елементів до черги "
+"відтворення"
+
+#: data/videos.metainfo.xml.in:61
+msgid "More accurate playback position save and restore"
+msgstr "Точніше збереження та відновлення позиції відтворення"
+
+#: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
+#: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
+#: data/videos.metainfo.xml.in:112
 msgid "Translation updates"
 msgstr "Оновлено переклади"
 
-#: data/videos.metainfo.xml.in:66
+#: data/videos.metainfo.xml.in:72 data/videos.metainfo.xml.in:85
+#: data/videos.metainfo.xml.in:95 data/videos.metainfo.xml.in:109
+msgid "Other updates:"
+msgstr "Інші оновлення:"
+
+#: data/videos.metainfo.xml.in:81
 msgid "New features:"
 msgstr "Нові функції:"
 
-#: data/videos.metainfo.xml.in:68
+#: data/videos.metainfo.xml.in:83
 msgid "Control playback from the sound indicator"
 msgstr "Контроль відтворення з індикатора звуку"
 
-#: data/videos.metainfo.xml.in:72
+#: data/videos.metainfo.xml.in:87
 msgid "Make playback duration more accurate"
 msgstr "Тривалість відтворення стала точнішою"
 
-#: data/videos.metainfo.xml.in:82
+#: data/videos.metainfo.xml.in:97
 msgid "Update to Flatpak Platform 7"
 msgstr "Flatpak оновлено до Platform 7"
 
-#: data/videos.metainfo.xml.in:90
+#: data/videos.metainfo.xml.in:105
 msgid "Fixes:"
 msgstr "Виправлення:"
 
-#: data/videos.metainfo.xml.in:92
+#: data/videos.metainfo.xml.in:107
 msgid "Fix a crash with certain video codecs"
 msgstr "Усунуто збої деяких відеокодеків"
 
-#: data/videos.metainfo.xml.in:96
+#: data/videos.metainfo.xml.in:111
 msgid "Update to 6.1 Flatpak runtime"
 msgstr "Середовище виконання Flatpak оновлено до 6.1"
-
-#: data/videos.metainfo.xml.in:106
-msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-msgstr "Додана підтримка розширення org.freedesktop.Platfrom.ffmpeg-full"
-
-#: data/videos.metainfo.xml.in:115
-msgid "Fix an issue with removing videos from library"
-msgstr "Виправлено проблему вилучення відео з бібліотеки"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Програвач відео"
+
+#~ msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
+#~ msgstr "Додана підтримка розширення org.freedesktop.Platfrom.ffmpeg-full"
+
+#~ msgid "Fix an issue with removing videos from library"
+#~ msgstr "Виправлено проблему вилучення відео з бібліотеки"
 
 #~ msgid "Two-finger swipe to go back"
 #~ msgstr "Перехід назад двопалим жестом"
@@ -126,9 +142,6 @@ msgstr "Програвач відео"
 
 #~ msgid "Prevent sleep while playing a video"
 #~ msgstr "Запобігання засинанню під час відтворення відео"
-
-#~ msgid "Improvements:"
-#~ msgstr "Вдосконалення:"
 
 #~ msgid "Start up faster with large libraries"
 #~ msgstr "Пришвидшено запуск з великими бібліотеками"

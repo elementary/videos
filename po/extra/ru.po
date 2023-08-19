@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 18:33+0000\n"
-"PO-Revision-Date: 2022-10-21 23:57+0000\n"
+"POT-Creation-Date: 2023-08-15 14:37+0000\n"
+"PO-Revision-Date: 2023-08-12 03:08+0000\n"
 "Last-Translator: lenemter <lenemter@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/videos/extra/ru/"
 ">\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -59,56 +59,70 @@ msgstr "Вывод превью на панели навигации"
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/videos.metainfo.xml.in:57 data/videos.metainfo.xml.in:70
-#: data/videos.metainfo.xml.in:80 data/videos.metainfo.xml.in:94
-#: data/videos.metainfo.xml.in:104 data/videos.metainfo.xml.in:113
-msgid "Other updates:"
-msgstr "Остальные обновления:"
+#: data/videos.metainfo.xml.in:57
+msgid "Improvements:"
+msgstr "Улучшения:"
 
-#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:73
-#: data/videos.metainfo.xml.in:83 data/videos.metainfo.xml.in:97
+#: data/videos.metainfo.xml.in:59
+msgid "Updated flatter design"
+msgstr "Обновлённый плоский дизайн"
+
+#: data/videos.metainfo.xml.in:60
+msgid "Send an app notification when adding items to the play queue"
+msgstr "Отправка уведомления о добавлении видео в очередь"
+
+#: data/videos.metainfo.xml.in:61
+msgid "More accurate playback position save and restore"
+msgstr "Более точное сохранение позиции воспроизведения"
+
+#: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
+#: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
+#: data/videos.metainfo.xml.in:112
 msgid "Translation updates"
 msgstr "Обновления перевода"
 
-#: data/videos.metainfo.xml.in:66
+#: data/videos.metainfo.xml.in:72 data/videos.metainfo.xml.in:85
+#: data/videos.metainfo.xml.in:95 data/videos.metainfo.xml.in:109
+msgid "Other updates:"
+msgstr "Остальные обновления:"
+
+#: data/videos.metainfo.xml.in:81
 msgid "New features:"
 msgstr "Новые возможности:"
 
-#: data/videos.metainfo.xml.in:68
+#: data/videos.metainfo.xml.in:83
 msgid "Control playback from the sound indicator"
 msgstr "Управление воспроизведением из индикатора звука"
 
-#: data/videos.metainfo.xml.in:72
+#: data/videos.metainfo.xml.in:87
 msgid "Make playback duration more accurate"
 msgstr "Время воспроизведения теперь более аккуратное"
 
-#: data/videos.metainfo.xml.in:82
+#: data/videos.metainfo.xml.in:97
 msgid "Update to Flatpak Platform 7"
 msgstr "Обновлено до Flatpak Platform 7"
 
-#: data/videos.metainfo.xml.in:90
+#: data/videos.metainfo.xml.in:105
 msgid "Fixes:"
 msgstr "Исправления:"
 
-#: data/videos.metainfo.xml.in:92
+#: data/videos.metainfo.xml.in:107
 msgid "Fix a crash with certain video codecs"
 msgstr "Исправлено падение программы с некоторыми видеокодеками"
 
-#: data/videos.metainfo.xml.in:96
+#: data/videos.metainfo.xml.in:111
 msgid "Update to 6.1 Flatpak runtime"
 msgstr "Обновлено до 6.1 Flatpak runtime"
-
-#: data/videos.metainfo.xml.in:106
-msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
-msgstr "Добавлена поддержка расширения org.freedesktop.Platfrom.ffmpeg-full"
-
-#: data/videos.metainfo.xml.in:115
-msgid "Fix an issue with removing videos from library"
-msgstr "Исправлена проблема с удалением видео из библиотеки"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Видеопроигрыватель"
+
+#~ msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
+#~ msgstr "Добавлена поддержка расширения org.freedesktop.Platfrom.ffmpeg-full"
+
+#~ msgid "Fix an issue with removing videos from library"
+#~ msgstr "Исправлена проблема с удалением видео из библиотеки"
 
 #~ msgid "Two-finger swipe to go back"
 #~ msgstr "Проведение двумя пальцами для возврата назад"
@@ -125,9 +139,6 @@ msgstr "Видеопроигрыватель"
 
 #~ msgid "Prevent sleep while playing a video"
 #~ msgstr "Предотвращено засыпание системы во время воспроизведения видео"
-
-#~ msgid "Improvements:"
-#~ msgstr "Улучшения:"
 
 #~ msgid "Start up faster with large libraries"
 #~ msgstr "Ускорен запуск с большими библиотеками"
