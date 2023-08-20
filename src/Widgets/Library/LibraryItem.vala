@@ -74,7 +74,9 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
             margin_end = 12
         };
 
-        var move_to_trash = new Gtk.Button.with_label (_("Move to Trash"));
+        var move_to_trash = new Gtk.Button () {
+            child = new Gtk.Label (_("Move to Trash")) { halign = START }
+        };
         move_to_trash.add_css_class (Granite.STYLE_CLASS_MENUITEM);
         move_to_trash.clicked.connect (move_video_to_trash);
 
@@ -95,7 +97,9 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
             title_label.max_width_chars = 0;
             title_label.justify = CENTER;
 
-            var new_cover = new Gtk.Button.with_label (_("Set Artwork"));
+            var new_cover = new Gtk.Button () {
+                child = new Gtk.Label (_("Set Artwork")) { halign = START }
+            };
             new_cover.add_css_class (Granite.STYLE_CLASS_MENUITEM);
             context_menu_box.append (new Gtk.Separator (HORIZONTAL));
             context_menu_box.append (new_cover);
@@ -149,6 +153,11 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
             context_menu.set_pointing_to (pointing_to);
 
             context_menu.popup ();
+
+            Idle.add (() => {
+                context_menu.set_offset (context_menu.get_allocated_width () / 2, 0);
+                return Source.REMOVE;
+            });
         });
 
         add_episode (video);
