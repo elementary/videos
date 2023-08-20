@@ -37,8 +37,6 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
 
     private dynamic Gst.Element playbin;
     private Gdk.Paintable paintable;
-    private Adw.Clamp v_clamp;
-    private Adw.Clamp h_clamp;
 
     uint loop_timer_id = 0;
     uint show_timer_id = 0;
@@ -62,30 +60,22 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
 
         var picture = new Gtk.Picture.for_paintable (paintable) {
             hexpand = true,
-            vexpand = true,
-            margin_top = 3,
-            margin_bottom = 3,
-            margin_start = 3,
-            margin_end = 3
+            vexpand = true
         };
 
-        v_clamp = new Adw.Clamp () {
+        var v_clamp = new Adw.Clamp () {
             child = picture,
-            maximum_size = 200,
+            maximum_size = 128,
             orientation = VERTICAL
         };
 
-        h_clamp = new Adw.Clamp () {
-            child = v_clamp,
-            maximum_size = 200,
-            orientation = HORIZONTAL
-        };
-
         can_focus = false;
+        has_arrow = false;
         sensitive = false;
         autohide = false;
         position = TOP;
-        child = h_clamp;
+        child = v_clamp;
+        add_css_class ("preview");
 
         notify["playback-uri"].connect (() => {
             playbin.uri = playback_uri;
@@ -154,14 +144,13 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         cancel_timer (ref hide_timer_id);
 
         show_timer_id = Timeout.add (300, () => {
-            var width = paintable.get_intrinsic_width ();
-            var height = paintable.get_intrinsic_height ();
-            if (width > 0 && height > 0) {
-                double diagonal = Math.sqrt ((width * width) + (height * height));
-                double k = 230 / diagonal; // for 16:9 ratio it produces width of ~200px
-                v_clamp.maximum_size = (int)(height * k);
-                h_clamp.maximum_size = (int)(width * k);
-            }
+            // var width = paintable.get_intrinsic_width ();
+            // var height = paintable.get_intrinsic_height ();
+            // if (width > 0 && height > 0) {
+            //     double diagonal = Math.sqrt ((width * width) + (height * height));
+            //     double k = 230 / diagonal; // for 16:9 ratio it produces width of ~200px
+            //     v_clamp.maximum_size = (int)(height * k);
+            // }
 
             popup ();
 

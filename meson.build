@@ -19,7 +19,7 @@ config_file = configure_file(
     configuration: config_data
 )
 
+subdir('data')
 subdir('src')
 gnome.post_install(glib_compile_schemas: true)
-subdir('data')
 subdir('po')
