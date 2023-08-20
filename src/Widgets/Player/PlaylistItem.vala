@@ -52,14 +52,5 @@ public class Audience.Widgets.PlaylistItem : Gtk.ListBoxRow {
         child = box;
 
         bind_property ("is-playing", play_revealer, "reveal-child");
-
-        var drag_source = new Gtk.DragSource ();
-        add_controller (drag_source);
-        drag_source.prepare.connect (() => {
-            var val = Value (typeof (PlaylistItem));
-            val.set_object (this);
-            var content_provider = new Gdk.ContentProvider.for_value (val);
-            return content_provider;
-        });
     }
 }

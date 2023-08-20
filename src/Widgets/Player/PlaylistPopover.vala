@@ -138,14 +138,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             var window_height = ((Gtk.Application) Application.get_default ()).active_window.default_height;
             playlist_scrolled.set_max_content_height (window_height - HEIGHT_OFFSET);
         });
-
-        var drop_target = new Gtk.DropTarget (typeof (PlaylistItem), COPY);
-        grid.add_controller (drop_target);
-        // FIXME: After drag and drop the popover doesn't close. It even stays in foreground
-        // if another application gets focused. Really weird not sure whether that's a bug in
-        // GTK/mutter/gala or videos though. Also it seems DND within popover is currently broken
-        // under wayland (see https://gitlab.gnome.org/GNOME/mutter/-/issues/1681).
-        drop_target.drop.connect (on_drop);
     }
 
     ~PlaylistPopover () {
@@ -246,40 +238,5 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         }
 
         settings.set_strv ("last-played-videos", videos);
-    }
-
-    private bool on_drop (Value val, double x, double y) {
-        PlaylistItem target;
-        PlaylistItem source;
-        int new_position;
-        int old_position;
-
-        target = (PlaylistItem) playlist.get_row_at_y ((int)y);
-        if (target == null) {
-            target = items[items.size - 1];
-        }
-
-        new_position = target.get_index ();
-
-        var obj = val.get_object ();
-        if (obj == null || !(obj is PlaylistItem)) {
-            return false;
-        } else {
-            source = (PlaylistItem)obj;
-        }
-
-        old_position = source.get_index ();
-
-        if (source == target) {
-            return false;
-        }
-
-        items.remove (source);
-        items.insert (new_position, source);
-
-        playlist.remove (source);
-        playlist.insert (source, new_position);
-
-        return true;
     }
 }
