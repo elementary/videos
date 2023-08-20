@@ -144,14 +144,6 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         cancel_timer (ref hide_timer_id);
 
         show_timer_id = Timeout.add (300, () => {
-            // var width = paintable.get_intrinsic_width ();
-            // var height = paintable.get_intrinsic_height ();
-            // if (width > 0 && height > 0) {
-            //     double diagonal = Math.sqrt ((width * width) + (height * height));
-            //     double k = 230 / diagonal; // for 16:9 ratio it produces width of ~200px
-            //     v_clamp.maximum_size = (int)(height * k);
-            // }
-
             popup ();
 
             if (req_position >= 0) {
