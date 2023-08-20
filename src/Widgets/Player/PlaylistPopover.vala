@@ -101,6 +101,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         });
 
         clear_playlist_button.clicked.connect (() => {
+            popdown ();
             PlaybackManager.get_default ().clear_playlist ();
         });
 
