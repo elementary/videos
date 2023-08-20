@@ -85,6 +85,7 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
 
         context_menu = new Gtk.Popover () {
             child = context_menu_box,
+            halign = START,
             has_arrow = false,
             position = BOTTOM
         };
@@ -147,17 +148,12 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
         };
         add_controller (gesture_click);
         gesture_click.released.connect ((n_press, x, y) => {
-            var pointing_to = context_menu.pointing_to;
-            pointing_to.x = (int)x;
-            pointing_to.y = (int)y;
-            context_menu.set_pointing_to (pointing_to);
+            context_menu.pointing_to = Gdk.Rectangle () {
+                x = (int) x,
+                y = (int) y
+            };
 
             context_menu.popup ();
-
-            Idle.add (() => {
-                context_menu.set_offset (context_menu.get_allocated_width () / 2, 0);
-                return Source.REMOVE;
-            });
         });
 
         add_episode (video);
