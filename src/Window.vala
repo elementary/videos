@@ -341,10 +341,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
         }
     }
 
-    public void run_open_dvd () {
-        read_first_disk.begin ();
-    }
-
     public void show_library () {
         leaflet.append (library_page);
         leaflet.visible_child = library_page;
@@ -393,25 +389,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
         });
 
         file.show ();
-    }
-
-    private async void read_first_disk () {
-        var disk_manager = DiskManager.get_default ();
-        if (disk_manager.get_volumes ().is_empty) {
-            return;
-        }
-
-        var volume = disk_manager.get_volumes ().first ();
-        if (volume.can_mount () == true && volume.get_mount ().can_unmount () == false) {
-            try {
-                yield volume.mount (MountMountFlags.NONE, null);
-            } catch (Error e) {
-                critical (e.message);
-            }
-        }
-
-        var root = volume.get_mount ().get_default_location ();
-        play_file (root.get_uri ().replace ("file:///", "dvd:///"), NavigationPage.WELCOME);
     }
 
     private void on_player_ended () {
