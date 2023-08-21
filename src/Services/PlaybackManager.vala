@@ -101,18 +101,16 @@ public class Audience.PlaybackManager : Object {
 
         switch (message.type) {
             case EOS:
-                if (!next ()) {
-                    var repeat_action = default_application.lookup_action (Audience.App.ACTION_REPEAT);
-                    if (repeat_action.get_state ().get_boolean ()) {
-                        var file = (File) play_queue.get_item (0);
-                        ((Audience.Window) default_application.active_window).open_files ({ file });
-                    } else {
-                        playbin.set_state (Gst.State.NULL);
-                        settings.set_int64 ("last-stopped", 0);
-                        position = 0;
-                        duration = 0;
-                        ended ();
-                    }
+                var repeat_action = default_application.lookup_action (Audience.App.ACTION_REPEAT);
+                if (repeat_action.get_state ().get_boolean ()) {
+                    var file = (File) play_queue.get_item (0);
+                    ((Audience.Window) default_application.active_window).open_files ({ file });
+                } else if (!next ()) {
+                    playbin.set_state (Gst.State.NULL);
+                    settings.set_int64 ("last-stopped", 0);
+                    position = 0;
+                    duration = 0;
+                    ended ();
                 }
                 break;
 
@@ -252,7 +250,7 @@ public class Audience.PlaybackManager : Object {
         foreach (var file in files) {
             if (is_subtitle (file.get_uri ())) {
                 subtitle_uri = file.get_uri ();
-            } else {
+            } else if (!play_queue.find_with_equal_func (file, file_equal_func, null)) {
                 files_to_queue += file;
             }
         }
@@ -266,6 +264,10 @@ public class Audience.PlaybackManager : Object {
             return;
         }
 
+        if (play_queue.get_n_items () == 0) {
+            return;
+        }
+
         string[] videos = {};
         for (int i = 0; i < play_queue.get_n_items () - 1; i++) {
             videos += ((File) play_queue.get_item (i)).get_uri ();
@@ -276,21 +278,19 @@ public class Audience.PlaybackManager : Object {
 
     public bool next () {
         uint position;
-        play_queue.find (File.new_for_uri (playbin.current_uri), out position);
+        play_queue.find_with_equal_func (File.new_for_uri (playbin.current_uri), file_equal_func, out position);
 
         if (position < play_queue.get_n_items () - 1) {
             play ((File) play_queue.get_item (position + 1));
             return true;
         } else {
             return false;
-            // play ((File) play_queue.get_item (0));
         }
     }
 
     public void previous () {
         uint position;
         play_queue.find_with_equal_func (File.new_for_uri (playbin.current_uri), file_equal_func, out position);
-        print (position.to_string ());
 
         if (position == 0) {
             seek (0);

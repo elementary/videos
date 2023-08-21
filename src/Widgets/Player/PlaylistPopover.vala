@@ -20,15 +20,12 @@
 public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     private const int HEIGHT_OFFSET = 300;
 
-    private Gee.ArrayList<PlaylistItem> items;
     private Gtk.ListBox playlist;
     private Gtk.Button dvd;
 
     private int current = 0;
 
     construct {
-        items = new Gee.ArrayList<PlaylistItem> ();
-
         var fil = new Gtk.Button.from_icon_name ("document-open-symbolic") {
             tooltip_text = _("Open file")
         };
@@ -47,12 +44,15 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             tooltip_text = _("Enable Repeat")
         };
 
+        var playback_manager = PlaybackManager.get_default ();
+
         playlist = new Gtk.ListBox () {
             can_focus = true,
             hexpand = true,
             vexpand = true,
             selection_mode = Gtk.SelectionMode.BROWSE
         };
+        playlist.bind_model (playback_manager.play_queue, widget_create_func);
 
         var playlist_scrolled = new Gtk.ScrolledWindow () {
             min_content_height = 100,
@@ -82,7 +82,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             if (settings.get_strv ("last-played-videos")[i] == settings.get_string ("current-video")) {
                 current = i;
             }
-            add_item (File.new_for_uri (settings.get_strv ("last-played-videos")[i]));
+            // add_item (File.new_for_uri (settings.get_strv ("last-played-videos")[i]));
         }
 
         playlist.row_activated.connect ((item) => {
@@ -116,13 +116,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             }
         });
 
-        var playback_manager = PlaybackManager.get_default ();
-        // playback_manager.clear_playlist.connect (clear_items);
-        // playback_manager.get_first_item.connect (get_first_item);
-        // playback_manager.next.connect (next);
-        // playback_manager.previous.connect (previous);
-        // playback_manager.queue_file.connect (add_item);
-        // playback_manager.save_playlist.connect (save_playlist);
         playback_manager.uri_changed.connect (set_current);
 
         var disk_manager = DiskManager.get_default ();
@@ -141,103 +134,40 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         });
     }
 
-    ~PlaylistPopover () {
-        save_playlist ();
-    }
-
     private void set_dvd_visibility (bool visible) {
         dvd.visible = visible;
     }
 
-    private bool next () {
-        current++;
-        if (current >= items.size) {
-            current = 0;
-            return false;
+    private Gtk.Widget widget_create_func (Object item) {
+        if (!(item is File)) {
+            return new Gtk.ListBoxRow ();
         }
 
-        PlaybackManager.get_default ().play (File.new_for_commandline_arg (items[current].filename));
-        return true;
-    }
+        var path = (File) item;
 
-    private void previous () {
-        current--;
-        if (current < 0) {
-            PlaybackManager.get_default ().play (File.new_for_commandline_arg (items[0].filename));
-            return;
-        }
-
-        PlaybackManager.get_default ().play (File.new_for_commandline_arg (items[current].filename));
-    }
-
-    private void add_item (File path) {
         if (!path.query_exists ()) {
-            return;
-        }
-
-        var file_name = path.get_uri ();
-
-        foreach (var item in items) {
-            if (item.filename == file_name) {
-                return;
-            }
+            return new Gtk.ListBoxRow ();
         }
 
         var item_title = Audience.get_title (path.get_basename ());
         var row = new PlaylistItem (item_title, path.get_uri ());
-        items.add (row);
-        playlist.append (row);
-        PlaybackManager.get_default ().item_added (item_title);
-    }
-
-    private void clear_items (bool should_stop = true) {
-        current = 0;
-        foreach (var item in items) {
-            playlist.remove (item);
-        }
-        items.clear ();
-
-        if (should_stop) {
-            PlaybackManager.get_default ().stop ();
-        }
-    }
-
-    private File? get_first_item () {
-        if (items.size > 0) {
-            return File.new_for_commandline_arg (items[0].filename);
-        }
-
-        return null;
+        return row;
     }
 
     private void set_current (string current_file) {
-        int count = 0;
-        int current_played = 0;
+        var playback_manager = PlaybackManager.get_default ();
 
-        foreach (var item in items) {
-            if (item.filename == current_file) {
-                current_played = count;
-                item.is_playing = true;
-            } else {
-                item.is_playing = false;
-            }
-            count++;
-        }
-
-        this.current = current_played;
-    }
-
-    private void save_playlist () {
-        var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
-        if (!privacy_settings.get_boolean ("remember-recent-files") || !privacy_settings.get_boolean ("remember-app-usage")) {
+        if (playback_manager.play_queue.get_n_items () == 0) {
             return;
         }
 
-        string[] videos = {};
-        foreach (var item in items) {
-            videos += item.filename;
+        for (int i = 0; i < playback_manager.play_queue.get_n_items () - 1; i++) {
+            var row = (PlaylistItem) playlist.get_row_at_index (i);
+            if (row.filename == current_file) {
+                row.is_playing = true;
+            } else {
+                row.is_playing = false;
+            }
         }
-
-        settings.set_strv ("last-played-videos", videos);
     }
 }
