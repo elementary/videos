@@ -159,20 +159,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
             app_notification.send_notification ();
         });
 
-        notify["maximized"].connect (() => {
-            if (leaflet.visible_child == player_page && maximized) {
-                fullscreen ();
-            }
-        });
-
-        notify["fullscreened"].connect (() => {
-            player_page.fullscreened = fullscreened;
-
-            if (!fullscreened) {
-                unmaximize ();
-            }
-        });
-
         var key_controller = new Gtk.EventControllerKey ();
         overlay.add_controller (key_controller);
         key_controller.key_released.connect (handle_key_press);
@@ -202,7 +188,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
     private void action_fullscreen () {
         if (leaflet.visible_child == player_page) {
-            if (player_page.fullscreened) {
+            if (fullscreened) {
                 unfullscreen ();
             } else {
                 fullscreen ();
@@ -271,7 +257,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
             bool shift_pressed = SHIFT_MASK in state;
             switch (keyval) {
                 case Gdk.Key.Escape:
-                    if (player_page.fullscreened) {
+                    if (fullscreened) {
                         unfullscreen ();
                     } else {
                         destroy ();
@@ -416,7 +402,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
     private void on_player_ended () {
         leaflet.navigate (Adw.NavigationDirection.BACK);
-        unfullscreen ();
     }
 
     public void play_file (string uri, NavigationPage origin, bool from_beginning = true) {
@@ -424,9 +409,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
         leaflet.visible_child = player_page;
 
         PlaybackManager.get_default ().play_file (uri, from_beginning);
-        if (maximized) {
-            fullscreen ();
-        }
     }
 
     public string get_adjacent_page_name () {
