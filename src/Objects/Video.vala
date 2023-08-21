@@ -34,14 +34,28 @@ public class Audience.Objects.Video : Object {
     public string hash_episode_poster { get; private set; }
     public string hash_file_poster { get; private set; }
     public string poster_cache_file { get; private set; }
+
+    public int show_episode_number { get; private set; }
+    public int show_season_number { get; private set; }
+    public string? show_name { get; private set; }
     public string title { get; private set; }
 
+    private static Gst.PbUtils.Discoverer discoverer;
     private Audience.Services.LibraryManager manager;
     private string thumbnail_large_path;
     private string thumbnail_normal_path;
 
     public Video (string directory, string file, string mime_type) {
         Object (directory: directory, file: file, mime_type: mime_type);
+    }
+
+    static construct {
+        try {
+            discoverer = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (5 * Gst.SECOND));
+            discoverer.finished.connect (discoverer.stop);
+        } catch (Error e) {
+            critical ("Could not create Gst discoverer object: %s", e.message);
+        }
     }
 
     construct {
@@ -69,12 +83,63 @@ public class Audience.Objects.Video : Object {
         thumbnail_normal_path = Path.build_filename (GLib.Environment.get_user_cache_dir (), "thumbnails", "normal", hash_file_poster + ".png");
         poster_cache_file = Path.build_filename (App.get_instance ().get_cache_directory (), hash_file_poster + ".jpg");
 
+        discoverer.start ();
+        discoverer.discovered.connect (update_metadata);
+        discoverer.discover_uri_async (video_file.get_uri ());
+
         notify["poster"].connect (() => {
             poster_changed (this);
         });
         notify["title"].connect (() => {
             title_changed (this);
         });
+    }
+
+    private void update_metadata (Gst.PbUtils.DiscovererInfo info, Error? err) {
+        if (info.get_uri () == video_file.get_uri ()) {
+            switch (info.get_result ()) {
+                case Gst.PbUtils.DiscovererResult.URI_INVALID:
+                    critical ("Couldn't read metadata for '%s': invalid URI.", info.get_uri ());
+                    return;
+                case Gst.PbUtils.DiscovererResult.ERROR:
+                    critical ("Couldn't read metadata for '%s': %s", info.get_uri (), err.message);
+                    return;
+                case Gst.PbUtils.DiscovererResult.TIMEOUT:
+                    critical ("Couldn't read metadata for '%s': Discovery timed out.", info.get_uri ());
+                    return;
+                case Gst.PbUtils.DiscovererResult.BUSY:
+                    critical ("Couldn't read metadata for '%s': Already discovering a file.", info.get_uri ());
+                    return;
+                case Gst.PbUtils.DiscovererResult.MISSING_PLUGINS:
+                    critical ("Couldn't read metadata for '%s': Missing plugins.", info.get_uri ());
+                    return;
+                default:
+                    break;
+            }
+
+            unowned Gst.TagList? tag_list = info.get_tags ();
+            if (tag_list == null) {
+                return;
+            }
+
+            string _show_name;
+            tag_list.get_string (Gst.Tags.SHOW_NAME, out _show_name);
+            show_name = _show_name;
+
+            int _show_episode_number;
+            tag_list.get_int (Gst.Tags.SHOW_EPISODE_NUMBER, out _show_episode_number);
+            show_episode_number = _show_episode_number;
+
+            int _show_season_number;
+            tag_list.get_int (Gst.Tags.SHOW_SEASON_NUMBER, out _show_season_number);
+            show_season_number = _show_season_number;
+
+            string _title;
+            tag_list.get_string (Gst.Tags.TITLE, out _title);
+            if (_title != null) {
+                title = _title;
+            }
+        }
     }
 
     public async void initialize_poster () {
