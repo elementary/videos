@@ -77,10 +77,9 @@ namespace Audience {
             bottom_bar = new Widgets.BottomBar ();
 
             bottom_bar_revealer = new Gtk.Revealer () {
-                transition_type = SLIDE_UP,
+                transition_type = CROSSFADE,
                 valign = END,
-                child = bottom_bar,
-                hexpand = true
+                child = bottom_bar
             };
 
             var picture = new Gtk.Picture.for_paintable (playback_manager.gst_video_widget) {

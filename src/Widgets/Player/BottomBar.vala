@@ -32,6 +32,10 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
     private SettingsPopover settings_popover;
     private bool hovered;
 
+    class construct {
+        set_css_name ("mediacontrols");
+    }
+
     construct {
         var play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic") {
             action_name = App.ACTION_PREFIX + App.ACTION_PLAY_PAUSE,
@@ -58,16 +62,10 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
 
         seek_bar = new Videos.SeekBar ();
 
-        var main_actionbar = new Gtk.ActionBar () {
-            hexpand = true
-        };
-        main_actionbar.pack_start (play_button);
-        main_actionbar.set_center_widget (seek_bar);
-        main_actionbar.pack_end (settings_button);
-        main_actionbar.pack_end (playlist_button);
-
-        hexpand = true;
-        append (main_actionbar);
+        append (play_button);
+        append (seek_bar);
+        append (settings_button);
+        append (playlist_button);
 
         var motion_controller = new Gtk.EventControllerMotion ();
         add_controller (motion_controller);
