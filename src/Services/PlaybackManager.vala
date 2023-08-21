@@ -240,11 +240,13 @@ public class Audience.PlaybackManager : Object {
         }
     }
 
-    public void append_to_playlist (File file) {
-        if (is_subtitle (file.get_uri ())) {
-            subtitle_uri = file.get_uri ();
-        } else {
-            queue_file (file);
+    public void append_to_playlist (File[] files) {
+        foreach (var file in files) {
+            if (is_subtitle (file.get_uri ())) {
+                subtitle_uri = file.get_uri ();
+            } else {
+                queue_file (file);
+            }
         }
     }
 

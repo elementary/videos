@@ -166,9 +166,11 @@ public class Audience.EpisodesPage : Gtk.Box {
             string uri = video.video_file.get_uri ();
             bool from_beginning = uri != settings.get_string ("current-video");
 
+            File[] files = {};
+
             var playback_manager = PlaybackManager.get_default ();
             playback_manager.clear_playlist ();
-            playback_manager.append_to_playlist (video.video_file);
+            files += video.video_file;
 
             var window = App.get_instance ().mainwindow;
             window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
@@ -179,9 +181,11 @@ public class Audience.EpisodesPage : Gtk.Box {
                 items.find (selected, out played_index);
                 for (played_index++; played_index < items.get_n_items (); played_index++) {
                     var library_item = (LibraryItem)items.get_item (played_index);
-                    playback_manager.append_to_playlist (library_item.video.video_file);
+                    files += library_item.video.video_file;
                 }
             }
+
+            playback_manager.append_to_playlist (files);
         }
     }
 
