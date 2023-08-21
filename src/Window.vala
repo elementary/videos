@@ -146,18 +146,24 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         var playback_manager = PlaybackManager.get_default ();
 
+        playback_manager.play_queue.items_changed.connect ((pos, removed, added) => {
+            app_notification.set_default_action (null);
+            if (added == 2) {
+                var title = Audience.get_title (((File) playback_manager.play_queue.get_item (pos + 1)).get_uri ());
+                app_notification.title = _("“%s” added to playlist").printf (title);
+                app_notification.send_notification ();
+            } else if (added > 2) {
+                app_notification.title = _("%u items added to playlist").printf (added);
+                app_notification.send_notification ();
+            }
+        });
+
         //playlist wants us to open a file
         playback_manager.play.connect ((file) => {
             open_files ({ file });
         });
 
         playback_manager.ended.connect (on_player_ended);
-
-        playback_manager.item_added.connect ((item_title) => {
-            app_notification.title = _("“%s” added to playlist").printf (item_title);
-            app_notification.set_default_action (null);
-            app_notification.send_notification ();
-        });
 
         notify["maximized"].connect (() => {
             if (leaflet.visible_child == player_page && maximized) {
