@@ -36,9 +36,7 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     }
 
     private dynamic Gst.Element playbin;
-    private Gtk.Widget gst_video_widget;
-    private Hdy.Clamp v_clamp;
-    private Hdy.Clamp h_clamp;
+    private Gdk.Paintable paintable;
 
     uint loop_timer_id = 0;
     uint show_timer_id = 0;
@@ -48,12 +46,8 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
     bool req_loop = false;
 
     construct {
-        var gtksink = Gst.ElementFactory.make ("gtksink", "sink");
-        gtksink.get ("widget", out gst_video_widget);
-        gst_video_widget.margin_top = 3;
-        gst_video_widget.margin_bottom = 3;
-        gst_video_widget.margin_start = 3;
-        gst_video_widget.margin_end = 3;
+        var gtksink = Gst.ElementFactory.make ("gtk4paintablesink", "sink");
+        gtksink.get ("paintable", out paintable);
 
         playbin = Gst.ElementFactory.make ("playbin", "bin");
         playbin.video_sink = gtksink;
@@ -64,24 +58,24 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         flags &= ~PlayFlags.AUDIO;  //disable audio sink
         playbin.set ("flags", flags);
 
-        v_clamp = new Hdy.Clamp () {
-            child = gst_video_widget,
-            maximum_size = 200,
+        var picture = new Gtk.Picture.for_paintable (paintable) {
+            hexpand = true,
+            vexpand = true
+        };
+
+        var v_clamp = new Adw.Clamp () {
+            child = picture,
+            maximum_size = 128,
             orientation = VERTICAL
         };
 
-        h_clamp = new Hdy.Clamp () {
-            child = v_clamp,
-            maximum_size = 200,
-            orientation = HORIZONTAL
-        };
-
-        h_clamp.show_all ();
-
         can_focus = false;
+        has_arrow = false;
         sensitive = false;
-        modal = false;
-        child = h_clamp;
+        autohide = false;
+        position = TOP;
+        child = v_clamp;
+        add_css_class ("preview");
 
         notify["playback-uri"].connect (() => {
             playbin.uri = playback_uri;
@@ -92,11 +86,6 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
             cancel_loop_timer ();
             cancel_timer (ref show_timer_id);
             cancel_timer (ref hide_timer_id);
-        });
-
-        hide.connect (() => {
-            playbin.set_state (Gst.State.NULL);
-            cancel_loop_timer ();
         });
     }
 
@@ -155,19 +144,8 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         cancel_timer (ref hide_timer_id);
 
         show_timer_id = Timeout.add (300, () => {
-            Gtk.Requisition min, nat;
-            gst_video_widget.get_preferred_size (out min, out nat);
-            var width = nat.width;
-            var height = nat.height;
-            if (width > 0 && height > 0) {
-                double diagonal = Math.sqrt ((width * width) + (height * height));
-                double k = 230 / diagonal; // for 16:9 ratio it produces width of ~200px
-                gst_video_widget.set_size_request ((int)(width * k), (int)(height * k));
-                v_clamp.maximum_size = (int)(height * k);
-                h_clamp.maximum_size = (int)(width * k);
-            }
-
             popup ();
+
             if (req_position >= 0) {
                 set_preview_position (req_position, req_loop);
             }

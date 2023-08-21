@@ -30,7 +30,7 @@ public class Audience.LibraryPage : Gtk.Box {
     private ListStore items;
     private Audience.Services.LibraryManager manager;
     private Gtk.SearchEntry search_entry;
-    private Granite.Widgets.AlertView alert_view;
+    private Granite.Placeholder alert_view;
     private Gtk.ScrolledWindow scrolled_window;
     private Gtk.FlowBox view_movies;
     private Gtk.Stack stack;
@@ -57,13 +57,12 @@ public class Audience.LibraryPage : Gtk.Box {
             valign = CENTER
         };
 
-        var header_bar = new Hdy.HeaderBar () {
-            show_close_button = true,
-            title = _("Library")
+        var header_bar = new Gtk.HeaderBar () {
+            show_title_buttons = true,
         };
         header_bar.pack_start (navigation_button);
         header_bar.pack_end (search_entry);
-        header_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
 
         view_movies = new Gtk.FlowBox () {
             column_spacing = 12,
@@ -82,25 +81,24 @@ public class Audience.LibraryPage : Gtk.Box {
             return (LibraryItem)item;
         });
 
-        scrolled_window = new Gtk.ScrolledWindow (null, null) {
+        scrolled_window = new Gtk.ScrolledWindow () {
             hexpand = true,
             vexpand = true,
             child = view_movies
         };
 
-        alert_view = new Granite.Widgets.AlertView (
-            "",
-            _("Try changing search terms."),
-            "edit-find-symbolic"
-        );
+        alert_view = new Granite.Placeholder ("") {
+            description = _("Try changing search terms."),
+            icon = new ThemedIcon ("edit-find-symbolic")
+        };
 
         stack = new Gtk.Stack ();
-        stack.add (scrolled_window);
-        stack.add (alert_view);
+        stack.add_child (scrolled_window);
+        stack.add_child (alert_view);
 
         orientation = VERTICAL;
-        add (header_bar);
-        add (stack);
+        append (header_bar);
+        append (stack);
 
         view_movies.child_activated.connect (play_video);
 
@@ -121,17 +119,19 @@ public class Audience.LibraryPage : Gtk.Box {
         });
 
         navigation_button.clicked.connect (() => {
-            ((Hdy.Deck)get_ancestor (typeof (Hdy.Deck))).navigate (Hdy.NavigationDirection.BACK);
+            ((Adw.Leaflet)get_ancestor (typeof (Adw.Leaflet))).navigate (Adw.NavigationDirection.BACK);
         });
 
         search_entry.search_changed.connect (() => filter ());
 
-        search_entry.key_press_event.connect ((event) => {
-            if (event.keyval == Gdk.Key.Escape) {
+        var search_entry_key_controller = new Gtk.EventControllerKey ();
+        search_entry.add_controller (search_entry_key_controller);
+        search_entry_key_controller.key_pressed.connect ((keyval) => {
+            if (keyval == Gdk.Key.Escape) {
                 search_entry.text = "";
+                return true;
             }
-
-            return Gdk.EVENT_PROPAGATE;
+            return false;
         });
     }
 
@@ -176,7 +176,6 @@ public class Audience.LibraryPage : Gtk.Box {
 
         if (posters_initialized) {
             video.initialize_poster.begin ();
-            new_container.show_all ();
         }
     }
 
@@ -198,9 +197,9 @@ public class Audience.LibraryPage : Gtk.Box {
             }
         }
 
-        var deck = (Hdy.Deck) get_ancestor (typeof (Hdy.Deck));
-        if (deck.visible_child == this && items.get_n_items () == 0) {
-            deck.navigate (Hdy.NavigationDirection.BACK);
+        var leaflet = (Adw.Leaflet) get_ancestor (typeof (Adw.Leaflet));
+        if (leaflet.visible_child == this && items.get_n_items () == 0) {
+            leaflet.navigate (Adw.NavigationDirection.BACK);
         }
     }
 

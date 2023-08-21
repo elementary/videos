@@ -15,76 +15,84 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Audience.WelcomePage : Granite.Widgets.Welcome {
+public class Audience.WelcomePage : Granite.Placeholder {
     private string current_video;
-    private Granite.Widgets.WelcomeButton replay_button;
+    private Gtk.Button replay_button;
+    private Gtk.Image replay_button_image;
+    private Gtk.Label replay_button_title;
+    private Gtk.Label replay_button_description;
 
     public WelcomePage () {
         Object (
             title: _("No Videos Open"),
-            subtitle: _("Select a source to begin playing.")
+            description: _("Select a source to begin playing.")
         );
     }
 
     construct {
-        append ("document-open", _("Open file"), _("Open a saved file."));
-        append ("media-playlist-repeat", _("Replay last video"), "");
-        append ("media-cdrom", _("Play from Disc"), _("Watch a DVD or open a file from disc"));
-        append ("folder-videos", _("Browse Library"), _("Watch a movie from your library"));
+        hexpand = true;
+        vexpand = true;
+
+        var open_button = append_button (new ThemedIcon ("document-open"), _("Open file"), _("Open a saved file."));
+        replay_button = append_button (new ThemedIcon ("media-playlist-repeat"), _("Replay last video"), "");
+        var disk_button = append_button (new ThemedIcon ("media-cdrom"), _("Play from Disc"), _("Watch a DVD or open a file from disc"));
+        var library_button = append_button (new ThemedIcon ("folder-videos"), _("Browse Library"), _("Watch a movie from your library"));
+
+        //A hacky way to update the labels and icon of the replay button
+        var replay_button_grid = (Gtk.Grid)replay_button.child;
+        replay_button_image = (Gtk.Image)replay_button_grid.get_first_child ();
+        replay_button_title = (Gtk.Label)replay_button_image.get_next_sibling ();
+        replay_button_description = (Gtk.Label)replay_button_title.get_next_sibling ();
 
         var disk_manager = DiskManager.get_default ();
-        set_item_visible (2, disk_manager.has_media_volumes ());
+        disk_button.visible = disk_manager.has_media_volumes ();
 
         var library_manager = Services.LibraryManager.get_instance ();
-        set_item_visible (3, library_manager.has_items);
+        library_button.visible = library_manager.has_items;
 
-        replay_button = get_button_from_index (1);
         update_replay_button ();
         update_replay_title ();
 
-        activated.connect ((index) => {
-            var window = (Audience.Window) ((Gtk.Application) Application.get_default ()).active_window;
-            switch (index) {
-                case 0:
-                    // Open file
-                    window.run_open_file (true);
-                    break;
-                case 1:
-                    PlaybackManager.get_default ().append_to_playlist (File.new_for_uri (current_video));
-                    settings.set_string ("current-video", current_video);
-                    window.resume_last_videos ();
-                    break;
-                case 2:
-                    window.run_open_dvd ();
-                    break;
-                case 3:
-                    window.show_library ();
-            }
+        open_button.clicked.connect (() => {
+            var window = (Audience.Window)get_root ();
+            window.run_open_file ();
         });
 
-        settings.changed["current-video"].connect (() => {
-            update_replay_button ();
+        replay_button.clicked.connect (() => {
+            var window = (Audience.Window)get_root ();
+            PlaybackManager.get_default ().append_to_playlist (File.new_for_uri (current_video));
+            settings.set_string ("current-video", current_video);
+            window.resume_last_videos ();
         });
 
-        settings.changed["last-stopped"].connect (() => {
-            update_replay_title ();
+        disk_button.clicked.connect (() => {
+            var window = (Audience.Window)get_root ();
+            window.run_open_dvd ();
         });
+
+        library_button.clicked.connect (() => {
+            var window = (Audience.Window)get_root ();
+            window.show_library ();
+        });
+
+        settings.changed["current-video"].connect (update_replay_button);
+
+        settings.changed["last-stopped"].connect (update_replay_title);
 
         disk_manager.volume_found.connect ((vol) => {
-            set_item_visible (2, disk_manager.has_media_volumes ());
+            disk_button.visible = disk_manager.has_media_volumes ();
         });
 
         disk_manager.volume_removed.connect ((vol) => {
-            set_item_visible (2, disk_manager.has_media_volumes ());
+            disk_button.visible = disk_manager.has_media_volumes ();
         });
 
         library_manager.video_file_detected.connect ((vid) => {
-            set_item_visible (3, true);
-            show_all ();
+            library_button.visible = library_manager.has_items;
         });
 
         library_manager.video_file_deleted.connect ((vid) => {
-            set_item_visible (3, LibraryPage.get_instance ().has_items);
+            library_button.visible = library_manager.has_items;
         });
     }
 
@@ -94,23 +102,23 @@ public class Audience.WelcomePage : Granite.Widgets.Welcome {
         current_video = settings.get_string ("current-video");
         if (current_video != "") {
             var last_file = File.new_for_uri (current_video);
-            if (last_file.query_exists () == true) {
-                replay_button.description = get_title (last_file.get_basename ());
+            if (last_file.query_exists ()) {
+                replay_button_description.label = get_title (last_file.get_basename ());
 
                 show_replay_button = true;
             }
         }
 
-        set_item_visible (1, show_replay_button);
+        replay_button.visible = show_replay_button;
     }
 
     private void update_replay_title () {
-        if (settings.get_int64 ("last-stopped") == 0.0) {
-            replay_button.title = _("Replay last video");
-            replay_button.icon.icon_name = ("media-playlist-repeat");
+        if (settings.get_int64 ("last-stopped") == 0) {
+            replay_button_title.label = _("Replay last video");
+            replay_button_image.set_from_icon_name ("media-playlist-repeat");
         } else {
-            replay_button.title = _("Resume last video");
-            replay_button.icon.icon_name = ("media-playback-start");
+            replay_button_title.label = _("Resume last video");
+            replay_button_image.set_from_icon_name ("media-playback-start");
         }
     }
 }

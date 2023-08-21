@@ -27,14 +27,14 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
     public Audience.Objects.Video video { get; construct; }
     public LibraryItemStyle item_style { get; construct; }
 
-    public Gtk.Image poster { get; set; }
+    public Gtk.Picture poster { get; set; }
     public Gee.ArrayList<Audience.Objects.Video> episodes { get; private set; }
 
 
     private Audience.Services.LibraryManager manager;
     private Gtk.Stack spinner_stack;
     private Gtk.Label title_label;
-    private Gtk.Menu context_menu;
+    private Gtk.Popover context_menu;
     private string episode_poster_path;
     private string poster_cache_file;
 
@@ -74,25 +74,44 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
             margin_end = 12
         };
 
-        context_menu = new Gtk.Menu ();
+        var move_to_trash = new Gtk.Button () {
+            child = new Gtk.Label (_("Move to Trash")) { halign = START }
+        };
+        move_to_trash.add_css_class (Granite.STYLE_CLASS_MENUITEM);
+        move_to_trash.clicked.connect (move_video_to_trash);
 
-        var move_to_trash = new Gtk.MenuItem.with_label (_("Move to Trash"));
-        move_to_trash.activate.connect ( move_video_to_trash );
+        var context_menu_box = new Gtk.Box (VERTICAL, 0);
+        context_menu_box.append (move_to_trash);
+
+        context_menu = new Gtk.Popover () {
+            child = context_menu_box,
+            halign = START,
+            has_arrow = false,
+            position = BOTTOM
+        };
+        context_menu.add_css_class (Granite.STYLE_CLASS_MENU);
+        context_menu.set_parent (this);
 
         if (item_style == LibraryItemStyle.THUMBNAIL) {
+            title_label.ellipsize = END;
             title_label.wrap = true;
             title_label.max_width_chars = 0;
             title_label.justify = CENTER;
 
-            var new_cover = new Gtk.MenuItem.with_label (_("Set Artwork"));
-            context_menu.append (new_cover);
-            context_menu.append (new Gtk.SeparatorMenuItem ());
+            var new_cover = new Gtk.Button () {
+                child = new Gtk.Label (_("Set Artwork")) { halign = START }
+            };
+            new_cover.add_css_class (Granite.STYLE_CLASS_MENUITEM);
+            context_menu_box.append (new Gtk.Separator (HORIZONTAL));
+            context_menu_box.append (new_cover);
 
-            poster = new Gtk.Image ();
-            poster.pixbuf = null;
+            poster = new Gtk.Picture () {
+                hexpand = true,
+                vexpand = true
+            };
 
             var spinner = new Gtk.Spinner () {
-                active = true,
+                spinning = true,
                 hexpand = true,
                 vexpand = true,
                 halign = Gtk.Align.CENTER,
@@ -104,33 +123,38 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
             spinner_stack = new Gtk.Stack () {
                 height_request = Audience.Services.POSTER_HEIGHT,
                 width_request = Audience.Services.POSTER_WIDTH,
-                halign = CENTER
+                halign = CENTER,
+                valign = CENTER
             };
-            spinner_stack.get_style_context ().add_class (Granite.STYLE_CLASS_CARD);
+            spinner_stack.add_css_class (Granite.STYLE_CLASS_CARD);
             spinner_stack.add_named (spinner, "spinner");
             spinner_stack.add_named (poster, "poster");
 
-            box.add (spinner_stack);
-            box.add (title_label);
+            box.append (spinner_stack);
+            box.append (title_label);
 
-            new_cover.activate.connect ( set_new_cover );
+            new_cover.clicked.connect (set_new_cover);
             map.connect (poster_visibility);
-            poster.notify ["pixbuf"].connect (poster_visibility);
+            poster.notify ["paintable"].connect (poster_visibility);
         } else {
-            box.add (title_label);
+            box.append (title_label);
             title_label.halign = START;
         }
 
-        context_menu.append (move_to_trash);
-        context_menu.show_all ();
+        child = box;
 
-        var event_box = new Gtk.EventBox () {
-            child = box
+        var gesture_click = new Gtk.GestureClick () {
+            button = Gdk.BUTTON_SECONDARY
         };
-        event_box.button_press_event.connect (show_context_menu);
+        add_controller (gesture_click);
+        gesture_click.released.connect ((n_press, x, y) => {
+            context_menu.pointing_to = Gdk.Rectangle () {
+                x = (int) x,
+                y = (int) y
+            };
 
-        child = event_box;
-        show_all ();
+            context_menu.popup ();
+        });
 
         add_episode (video);
 
@@ -143,30 +167,23 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
         });
 
         video.poster_changed.connect (() => {
-            if (item_style == LibraryItemStyle.THUMBNAIL && (episodes.size == 1 || poster.pixbuf == null)) {
-                poster.pixbuf = video.poster;
+            if (item_style == LibraryItemStyle.THUMBNAIL && (episodes.size == 1 || poster.paintable == null)) {
+                poster.set_pixbuf (video.poster);
             }
         });
     }
 
     private void poster_visibility () {
-        if (poster.pixbuf != null) {
+        if (poster.paintable != null) {
             spinner_stack.visible_child_name = "poster";
-            poster.show_all ();
         } else {
             spinner_stack.visible_child_name = "spinner";
         }
     }
 
-    private bool show_context_menu (Gtk.Widget sender, Gdk.EventButton evt) {
-        if (evt.type == Gdk.EventType.BUTTON_PRESS && evt.button == 3) {
-            context_menu.popup_at_pointer (evt);
-            return true;
-        }
-        return false;
-    }
-
     private void set_new_cover () {
+        context_menu.popdown ();
+
         var image_filter = new Gtk.FileFilter ();
         image_filter.set_filter_name (_("Image files"));
         image_filter.add_mime_type ("image/*");
@@ -182,7 +199,7 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
 
         filechooser.response.connect ((response) => {
             if (response == Gtk.ResponseType.ACCEPT) {
-                Gdk.Pixbuf? pixbuf = manager.get_poster_from_file (filechooser.get_filename ());
+                Gdk.Pixbuf? pixbuf = manager.get_poster_from_file (filechooser.get_file ().get_path ());
                 if (pixbuf != null) {
                     try {
                         if (episodes.size == 1) {
@@ -207,6 +224,8 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
     }
 
     private void move_video_to_trash () {
+        context_menu.popdown ();
+
         debug (episodes.size.to_string ());
         if (episodes.size == 1) {
             var video = episodes.first ();
@@ -247,13 +266,13 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
     private void create_episode_poster () {
         if (FileUtils.test (poster_cache_file, FileTest.EXISTS)) {
             try {
-                poster.pixbuf = new Gdk.Pixbuf.from_file (poster_cache_file);
+                poster.set_pixbuf (new Gdk.Pixbuf.from_file (poster_cache_file));
             } catch (Error e) {
                 warning (e.message);
             }
         } else if (FileUtils.test (episode_poster_path, FileTest.EXISTS)) {
             var pixbuf = manager.get_poster_from_file (episode_poster_path);
-            poster.pixbuf = pixbuf;
+            poster.set_pixbuf (pixbuf);
             try {
                 pixbuf.save (poster_cache_file, "jpeg");
             } catch (Error e) {

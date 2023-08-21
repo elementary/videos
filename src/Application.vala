@@ -65,7 +65,7 @@ namespace Audience {
         public override void startup () {
             base.startup ();
 
-            Hdy.init ();
+            Granite.init ();
 
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
         }

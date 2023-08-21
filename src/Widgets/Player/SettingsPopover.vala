@@ -30,12 +30,12 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
         external_subtitle_file_label = new Gtk.Label ("");
 
-        var external_subtitle_file_image = new Gtk.Image.from_icon_name ("folder-symbolic", BUTTON);
+        var external_subtitle_file_image = new Gtk.Image.from_icon_name ("folder-symbolic");
 
         var external_subtitle_file_box = new Gtk.Box (HORIZONTAL, 3);
-        external_subtitle_file_box.add (external_subtitle_file_label);
-        external_subtitle_file_box.add (new Gtk.Separator (VERTICAL));
-        external_subtitle_file_box.add (external_subtitle_file_image);
+        external_subtitle_file_box.append (external_subtitle_file_label);
+        external_subtitle_file_box.append (new Gtk.Separator (VERTICAL));
+        external_subtitle_file_box.append (external_subtitle_file_image);
 
         var external_subtitle_file = new Gtk.Button () {
             child = external_subtitle_file_box
@@ -67,8 +67,8 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         setupgrid.attach (subtitles, 1, 2);
         setupgrid.attach (sub_ext_label, 0, 3);
         setupgrid.attach (external_subtitle_file, 1, 3);
-        setupgrid.show_all ();
 
+        position = TOP;
         child = setupgrid;
 
         set_external_subtitel_label ();
@@ -77,9 +77,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         playback_manager.next_audio.connect (next_audio);
         playback_manager.next_text.connect (next_text);
 
-        external_subtitle_file.clicked.connect (() => {
-            get_external_subtitle_file ();
-        });
+        external_subtitle_file.clicked.connect (get_external_subtitle_file);
 
         playback_manager.notify["subtitle-uri"].connect (set_external_subtitel_label);
 
@@ -107,6 +105,8 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
     }
 
     private void get_external_subtitle_file () {
+        popdown ();
+
         var all_files_filter = new Gtk.FileFilter ();
         all_files_filter.set_filter_name (_("All files"));
         all_files_filter.add_pattern ("*");
@@ -121,7 +121,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
 
         var file = new Gtk.FileChooserNative (
             _("Open"),
-            (Gtk.Window)get_toplevel (),
+            (Gtk.Window)get_root (),
             Gtk.FileChooserAction.OPEN,
             _("_Open"),
             _("_Cancel")
