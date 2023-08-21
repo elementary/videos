@@ -78,13 +78,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         position = TOP;
         child = grid;
 
-        for (int i = 0; i < settings.get_strv ("last-played-videos").length; i++) {
-            if (settings.get_strv ("last-played-videos")[i] == settings.get_string ("current-video")) {
-                current = i;
-            }
-            // add_item (File.new_for_uri (settings.get_strv ("last-played-videos")[i]));
-        }
-
         playlist.row_activated.connect ((item) => {
             string filename = ((PlaylistItem)(item)).filename;
             PlaybackManager.get_default ().play (File.new_for_commandline_arg (filename));

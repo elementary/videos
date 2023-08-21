@@ -33,6 +33,12 @@ public class Audience.PlaybackManager : Object {
     construct {
         play_queue = new ListStore (typeof (File));
 
+        File[] files = {};
+        for (int i = 0; i < settings.get_strv ("last-played-videos").length; i++) {
+            files += File.new_for_uri (settings.get_strv ("last-played-videos")[i]);
+        }
+        append_to_playlist (files);
+
         var gtksink = Gst.ElementFactory.make ("gtk4paintablesink", "sink");
         Gdk.Paintable _gst_video_widget;
         gtksink.get ("paintable", out _gst_video_widget);
