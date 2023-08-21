@@ -117,12 +117,12 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         });
 
         var playback_manager = PlaybackManager.get_default ();
-        playback_manager.clear_playlist.connect (clear_items);
-        playback_manager.get_first_item.connect (get_first_item);
-        playback_manager.next.connect (next);
-        playback_manager.previous.connect (previous);
-        playback_manager.queue_file.connect (add_item);
-        playback_manager.save_playlist.connect (save_playlist);
+        // playback_manager.clear_playlist.connect (clear_items);
+        // playback_manager.get_first_item.connect (get_first_item);
+        // playback_manager.next.connect (next);
+        // playback_manager.previous.connect (previous);
+        // playback_manager.queue_file.connect (add_item);
+        // playback_manager.save_playlist.connect (save_playlist);
         playback_manager.uri_changed.connect (set_current);
 
         var disk_manager = DiskManager.get_default ();

@@ -4,17 +4,11 @@
  */
 
 public class Audience.PlaybackManager : Object {
-    public signal bool next ();
-    public signal File? get_first_item ();
-    public signal void clear_playlist (bool should_stop = true);
     public signal void ended ();
     public signal void item_added (string item_title);
     public signal void next_audio ();
     public signal void next_text ();
     public signal void play (File file);
-    public signal void previous ();
-    public signal void queue_file (File file);
-    public signal void save_playlist ();
     public signal void uri_changed (string uri);
 
     public Gdk.Paintable gst_video_widget { get; construct; }
@@ -22,6 +16,8 @@ public class Audience.PlaybackManager : Object {
     public bool playing { get; private set; }
     public int64 duration { get; private set; default = 0; }
     public int64 position { get; private set; default = 0; }
+
+    public ListStore play_queue { get; private set; }
 
     private dynamic Gst.Element playbin;
     private bool is_seeking = false;
@@ -35,6 +31,8 @@ public class Audience.PlaybackManager : Object {
     }
 
     construct {
+        play_queue = new ListStore (typeof (File));
+
         var gtksink = Gst.ElementFactory.make ("gtk4paintablesink", "sink");
         Gdk.Paintable _gst_video_widget;
         gtksink.get ("paintable", out _gst_video_widget);
@@ -106,7 +104,7 @@ public class Audience.PlaybackManager : Object {
                 if (!next ()) {
                     var repeat_action = default_application.lookup_action (Audience.App.ACTION_REPEAT);
                     if (repeat_action.get_state ().get_boolean ()) {
-                        var file = get_first_item ();
+                        var file = (File) play_queue.get_item (0);
                         ((Audience.Window) default_application.active_window).open_files ({ file });
                     } else {
                         playbin.set_state (Gst.State.NULL);
@@ -240,13 +238,64 @@ public class Audience.PlaybackManager : Object {
         }
     }
 
+    public void clear_playlist (bool should_stop = true) {
+        play_queue.remove_all ();
+
+        if (should_stop) {
+            stop ();
+        }
+    }
+
     public void append_to_playlist (File[] files) {
+        Object[] files_to_queue = {};
+
         foreach (var file in files) {
             if (is_subtitle (file.get_uri ())) {
                 subtitle_uri = file.get_uri ();
             } else {
-                queue_file (file);
+                files_to_queue += file;
             }
+        }
+
+        play_queue.splice (play_queue.get_n_items () > 0 ? play_queue.get_n_items () - 1 : 0, 0, files_to_queue);
+    }
+
+    public void save_playlist () {
+        var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
+        if (!privacy_settings.get_boolean ("remember-recent-files") || !privacy_settings.get_boolean ("remember-app-usage")) {
+            return;
+        }
+
+        string[] videos = {};
+        for (int i = 0; i < play_queue.get_n_items () - 1; i++) {
+            videos += ((File) play_queue.get_item (i)).get_uri ();
+        }
+
+        settings.set_strv ("last-played-videos", videos);
+    }
+
+    public bool next () {
+        uint position;
+        play_queue.find (File.new_for_uri (playbin.current_uri), out position);
+
+        if (position < play_queue.get_n_items () - 1) {
+            play ((File) play_queue.get_item (position + 1));
+            return true;
+        } else {
+            return false;
+            // play ((File) play_queue.get_item (0));
+        }
+    }
+
+    public void previous () {
+        uint position;
+        play_queue.find_with_equal_func (File.new_for_uri (playbin.current_uri), file_equal_func, out position);
+        print (position.to_string ());
+
+        if (position == 0) {
+            seek (0);
+        } else {
+            play ((File) play_queue.get_item (position - 1));
         }
     }
 

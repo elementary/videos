@@ -148,7 +148,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         //playlist wants us to open a file
         playback_manager.play.connect ((file) => {
-            open_files ({ File.new_for_uri (file.get_uri ()) });
+            open_files ({ file });
         });
 
         playback_manager.ended.connect (on_player_ended);
