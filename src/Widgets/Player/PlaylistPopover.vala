@@ -130,10 +130,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     }
 
     private Gtk.Widget widget_create_func (Object item) {
-        if (!(item is File)) {
-            return new Gtk.ListBoxRow ();
-        }
-
         var path = (File) item;
 
         if (!path.query_exists ()) {
