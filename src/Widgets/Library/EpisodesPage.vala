@@ -172,9 +172,6 @@ public class Audience.EpisodesPage : Gtk.Box {
             playback_manager.clear_playlist ();
             files += video.video_file;
 
-            var window = App.get_instance ().mainwindow;
-            window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
-
             if (settings.get_boolean ("autoqueue-next")) {
                 // Add next from the current view to the queue
                 uint played_index;
@@ -186,6 +183,9 @@ public class Audience.EpisodesPage : Gtk.Box {
             }
 
             playback_manager.append_to_playlist (files);
+
+            var window = App.get_instance ().mainwindow;
+            window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
         }
     }
 
