@@ -1,0 +1,9 @@
+popover.preview contents {
+    background: black;
+    border: none;
+    box-shadow:
+        0 0 0 1px alpha(black, 0.05),
+        0 3px 4px alpha(black, 0.15),
+        0 3px 3px -3px alpha(black, 0.35);
+    margin: 0 1em;
+}
