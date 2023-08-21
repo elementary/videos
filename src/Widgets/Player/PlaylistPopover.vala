@@ -23,8 +23,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     private Gtk.ListBox playlist;
     private Gtk.Button dvd;
 
-    private int current = 0;
-
     construct {
         var fil = new Gtk.Button.from_icon_name ("document-open-symbolic") {
             tooltip_text = _("Open file")
@@ -150,11 +148,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     private void set_current (string current_file) {
         var playback_manager = PlaybackManager.get_default ();
 
-        if (playback_manager.play_queue.get_n_items () == 0) {
-            return;
-        }
-
-        for (int i = 0; i < playback_manager.play_queue.get_n_items () - 1; i++) {
+        for (int i = 0; i < playback_manager.play_queue.get_n_items (); i++) {
             var row = (PlaylistItem) playlist.get_row_at_index (i);
             if (row.filename == current_file) {
                 row.is_playing = true;

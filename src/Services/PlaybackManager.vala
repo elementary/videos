@@ -270,12 +270,8 @@ public class Audience.PlaybackManager : Object {
             return;
         }
 
-        if (play_queue.get_n_items () == 0) {
-            return;
-        }
-
         string[] videos = {};
-        for (int i = 0; i < play_queue.get_n_items () - 1; i++) {
+        for (int i = 0; i < play_queue.get_n_items (); i++) {
             videos += ((File) play_queue.get_item (i)).get_uri ();
         }
 
