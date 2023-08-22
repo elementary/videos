@@ -4,13 +4,17 @@ mediacontrols {
         transparent,
         alpha(black, 0.1) 1.5em
     );
-    border-spacing: 0.25em;
-    font-weight: bold;
+    border-spacing: 0.5em;
     padding: 1em;
-    text-shadow:
+    -gtk-icon-shadow:
         0 1px 3px alpha(black, 0.4),
         0 0 1em alpha(black, 0.25);
-    -gtk-icon-shadow:
+}
+
+mediacontrols label {
+    font-weight: bold;
+    font-variant-numeric: tabular-nums;
+    text-shadow:
         0 1px 3px alpha(black, 0.4),
         0 0 1em alpha(black, 0.25);
 }

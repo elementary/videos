@@ -17,5 +17,4 @@ src/Widgets/Player/PlayerPage.vala
 src/Widgets/Player/PlaylistItem.vala
 src/Widgets/Player/PlaylistPopover.vala
 src/Widgets/Player/PreviewPopover.vala
-src/Widgets/Player/SeekBar.vala
 src/Widgets/Player/SettingsPopover.vala
