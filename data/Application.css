@@ -5,14 +5,18 @@ mediacontrols {
         alpha(black, 0.1) 1.5em
     );
     border-spacing: 0.5em;
+    font-weight: bold;
     padding: 1em;
+}
+
+mediacontrols > button,
+mediacontrols > menubutton {
     -gtk-icon-shadow:
         0 1px 3px alpha(black, 0.4),
         0 0 1em alpha(black, 0.25);
 }
 
-mediacontrols label {
-    font-weight: bold;
+mediacontrols > label {
     font-variant-numeric: tabular-nums;
     text-shadow:
         0 1px 3px alpha(black, 0.4),
