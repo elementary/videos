@@ -98,7 +98,7 @@ namespace Audience.Services {
                     }
                 } else if (is_file_valid (file_info)) {
                     string src_path = src.get_path ();
-                    create_video_object (file_info, Path.get_dirname (src_path), Path.get_basename (src_path));
+                    create_video_object (Path.get_dirname (src_path), file_info.get_name ());
                 }
             }
         }
@@ -135,7 +135,7 @@ namespace Audience.Services {
                         }
 
                         if (is_file_valid (file_info)) {
-                            create_video_object (file_info, source);
+                            create_video_object (source, file_info.get_name ());
                             videos_found = true;
                         }
                     }
@@ -156,11 +156,8 @@ namespace Audience.Services {
             return !file_info.get_is_hidden () && mime_type.contains ("video");
         }
 
-        private void create_video_object (FileInfo file_info, string source, string name = "") {
-            if (name == "") {
-                name = file_info.get_name ();
-            }
-            var video = new Audience.Objects.Video (source, name, file_info.get_content_type ());
+        private void create_video_object (string path, string basename) {
+            var video = new Audience.Objects.Video (path, basename);
             video_file_detected (video);
             poster_hash.add (video.hash_file_poster + ".jpg");
             poster_hash.add (video.hash_episode_poster + ".jpg");

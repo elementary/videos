@@ -46,7 +46,7 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
     }
 
     construct {
-        var video_file_parent = video.video_file.get_parent ();
+        var video_file_parent = video.file.get_parent ();
 
         episode_poster_path = Path.build_filename (
             video_file_parent.get_path (),
@@ -162,7 +162,7 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
              if (episodes.size == 1) {
                  title_label.label = video.title;
              } else {
-                 title_label.label = video.container;
+                 title_label.label = video.show_name;
              }
         });
 
@@ -203,7 +203,7 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
                 if (pixbuf != null) {
                     try {
                         if (episodes.size == 1) {
-                            pixbuf.save (episodes.first ().video_file.get_path () + ".jpg", "jpeg");
+                            pixbuf.save (episodes.first ().file.get_path () + ".jpg", "jpeg");
                             episodes.first ().set_new_poster (pixbuf);
                             episodes.first ().initialize_poster.begin ();
                         } else {
@@ -231,15 +231,15 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
             var video = episodes.first ();
             video.trashed ();
             try {
-                video.video_file.trash ();
-                manager.deleted_items (video.video_file.get_path ());
+                video.file.trash ();
+                manager.deleted_items (video.file.get_path ());
             } catch (Error e) {
                 warning (e.message);
             }
         } else {
             try {
-                episodes.first ().video_file.get_parent ().trash ();
-                manager.deleted_items (episodes.first ().video_file.get_parent ().get_path ());
+                episodes.first ().file.get_parent ().trash ();
+                manager.deleted_items (episodes.first ().file.get_parent ().get_path ());
             } catch (Error e) {
                 warning (e.message);
             }
@@ -254,7 +254,7 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
         if (episodes.size == 1) {
             title_label.label = episode.title;
         } else if (episodes.size == 2) {
-            title_label.label = episode.container;
+            title_label.label = episode.show_name;
             create_episode_poster ();
         }
     }

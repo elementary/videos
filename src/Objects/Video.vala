@@ -23,14 +23,14 @@ public class Audience.Objects.Video : Object {
     public signal void title_changed (Video sender);
     public signal void trashed ();
 
-    public string directory { get; construct; }
-    public string file { get; construct; }
-    public string mime_type { get; construct; }
+    public string path { get; construct; }
+    public string basename { get; construct; }
 
-    public File video_file { get; private set; }
     public bool poster_initialized { get; private set; default = false; }
+    public File file { get; private set; }
     public Gdk.Pixbuf? poster { get; private set; default = null; }
-    public string container { get; private set; default = ""; }
+    public string parent { get; private set; default = ""; }
+    public string show_name { get; private set; default = ""; }
     public string hash_episode_poster { get; private set; }
     public string hash_file_poster { get; private set; }
     public string poster_cache_file { get; private set; }
@@ -40,15 +40,18 @@ public class Audience.Objects.Video : Object {
     private string thumbnail_large_path;
     private string thumbnail_normal_path;
 
-    public Video (string directory, string file, string mime_type) {
-        Object (directory: directory, file: file, mime_type: mime_type);
+    public Video (string path, string basename) {
+        Object (
+            path: path,
+            basename: basename
+        );
     }
 
     construct {
         manager = Audience.Services.LibraryManager.get_instance ();
         manager.thumbler.finished.connect (set_pixbufs);
 
-        title = Audience.get_title (file);
+        title = Audience.get_title (basename);
 
         // exclude YEAR from Title
         MatchInfo info;
@@ -56,14 +59,14 @@ public class Audience.Objects.Video : Object {
             title = this.title.replace (info.fetch (0) + ")", "").strip ();
         }
 
-        video_file = File.new_for_path (Path.build_filename (directory, file));
+        file = File.new_for_path (Path.build_filename (path, basename));
 
-        if (directory != Environment.get_user_special_dir (UserDirectory.VIDEOS)) {
-            container = Path.get_basename (directory);
+        if (path != Environment.get_user_special_dir (UserDirectory.VIDEOS)) {
+            show_name = Path.get_basename (path);
         }
 
-        hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_uri (), video_file.get_uri ().length);
-        hash_episode_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_parent ().get_uri (), video_file.get_parent ().get_uri ().length);
+        hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, file.get_uri (), file.get_uri ().length);
+        hash_episode_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, file.get_parent ().get_uri (), file.get_parent ().get_uri ().length);
 
         thumbnail_large_path = Path.build_filename (GLib.Environment.get_user_cache_dir (), "thumbnails", "large", hash_file_poster + ".png");
         thumbnail_normal_path = Path.build_filename (GLib.Environment.get_user_cache_dir (), "thumbnails", "normal", hash_file_poster + ".png");
@@ -97,8 +100,10 @@ public class Audience.Objects.Video : Object {
                 Gee.ArrayList<string> uris = new Gee.ArrayList<string> ();
                 Gee.ArrayList<string> mimes = new Gee.ArrayList<string> ();
 
-                uris.add (video_file.get_uri ());
-                mimes.add (mime_type);
+                var file_info = file.query_info (FileAttribute.STANDARD_CONTENT_TYPE, 0);
+
+                uris.add (file.get_uri ());
+                mimes.add (file_info.get_content_type ());
 
                 manager.thumbler.instand (uris, mimes, "large");
                 manager.thumbler.instand (uris, mimes, "normal");
@@ -157,20 +162,21 @@ public class Audience.Objects.Video : Object {
     }
 
     private string? get_native_poster_path () {
-        string poster_path = Path.build_filename (directory, file) + ".jpg";
-        File file_poster = File.new_for_path (poster_path);
+        string poster_path = Path.build_filename (path, basename) + ".jpg";
+        var file_poster = File.new_for_path (poster_path);
 
-        if (file_poster.query_exists ())
+        if (file_poster.query_exists ()) {
             return poster_path;
+        }
 
-        poster_path = Path.build_filename (this.directory, Audience.get_title (file) + ".jpg");
+        poster_path = Path.build_filename (path, Audience.get_title (basename) + ".jpg");
         file_poster = File.new_for_path (poster_path);
 
         if (file_poster.query_exists ())
            return poster_path;
 
         foreach (string s in Audience.settings.get_strv ("poster-names")) {
-            poster_path = Path.build_filename (this.directory, s);
+            poster_path = Path.build_filename (path, s);
             file_poster = File.new_for_path (poster_path);
             if (file_poster.query_exists ())
                return poster_path;

@@ -143,7 +143,7 @@ public class Audience.LibraryPage : Gtk.Box {
         var selected = (item as Audience.LibraryItem);
 
         if (selected.episodes.size == 1) {
-            string uri = selected.episodes.first ().video_file.get_uri ();
+            string uri = selected.episodes.first ().file.get_uri ();
             bool same_video = uri == settings.get_string ("current-video");
             bool playback_complete = settings.get_int64 ("last-stopped") == 0.0;
             bool from_beginning = !same_video || playback_complete;
@@ -164,7 +164,7 @@ public class Audience.LibraryPage : Gtk.Box {
     public void add_item (Audience.Objects.Video video) {
         for (int i = 0; i < items.get_n_items (); i++) {
             var item = (LibraryItem)items.get_item (i);
-            if (video.container != "" && item.episodes.first ().container == video.container) {
+            if (video.show_name != "" && item.episodes.first ().show_name == video.show_name) {
                 item.add_episode (video);
                 view_movies.invalidate_sort ();
                 return;
@@ -192,7 +192,7 @@ public class Audience.LibraryPage : Gtk.Box {
     private async void remove_item_from_path (string path ) {
         for (int i = 0; i < items.get_n_items (); i++) {
             var item = (LibraryItem)items.get_item (i);
-            if (item.episodes.size == 0 || item.episodes.first ().video_file.get_path ().has_prefix (path)) {
+            if (item.episodes.size == 0 || item.episodes.first ().file.get_path ().has_prefix (path)) {
                 remove_item.begin (item);
             }
         }
@@ -270,7 +270,7 @@ public class Audience.LibraryPage : Gtk.Box {
             var item = (LibraryItem)items.get_item (i);
             var episodes = item.episodes;
             foreach (var episode in episodes) {
-                string ep_file = episode.video_file.get_uri ();
+                string ep_file = episode.file.get_uri ();
                 if (ep_file == file) {
                     if (episodes.size > 1) {
                         var first_episode = episodes.first ();
