@@ -158,7 +158,7 @@ public class Audience.LibraryItem : Gtk.FlowBoxChild {
 
         add_episode (video);
 
-        video.title_changed.connect (() => {
+        video.notify["title"].connect (() => {
              if (episodes.size == 1) {
                  title_label.label = video.title;
              } else {

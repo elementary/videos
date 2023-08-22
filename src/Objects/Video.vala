@@ -20,7 +20,6 @@
 
 public class Audience.Objects.Video : Object {
     public signal void poster_changed (Video sender);
-    public signal void title_changed (Video sender);
     public signal void trashed ();
 
     public string path { get; construct; }
@@ -29,11 +28,10 @@ public class Audience.Objects.Video : Object {
     public bool poster_initialized { get; private set; default = false; }
     public File file { get; private set; }
     public Gdk.Pixbuf? poster { get; private set; default = null; }
-    public string parent { get; private set; default = ""; }
-    public string show_name { get; private set; default = ""; }
     public string hash_episode_poster { get; private set; }
     public string hash_file_poster { get; private set; }
     public string poster_cache_file { get; private set; }
+    public string show_name { get; private set; default = ""; }
     public string title { get; private set; }
 
     private Audience.Services.LibraryManager manager;
@@ -74,9 +72,6 @@ public class Audience.Objects.Video : Object {
 
         notify["poster"].connect (() => {
             poster_changed (this);
-        });
-        notify["title"].connect (() => {
-            title_changed (this);
         });
     }
 
