@@ -144,7 +144,10 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
         scale_motion_controller.leave.connect (preview_popover.schedule_hide);
 
         scale_motion_controller.motion.connect ((x, y) => {
-            preview_popover.update_pointing ((int) x);
+            preview_popover.pointing_to = Gdk.Rectangle () {
+                x = (int) x
+            };
+
             preview_popover.set_preview_position (
                 (int64)(x / scale.get_allocated_width () * playback_duration),
                 !playback_manager.playing
