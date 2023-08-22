@@ -28,9 +28,6 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
     }
 
     private Audience.Widgets.PreviewPopover preview_popover;
-    private Gtk.Label progression_label;
-    private Gtk.Label duration_label;
-    private Gtk.Scale scale;
     private double playback_duration;
     private PlaylistPopover playlist_popover;
     private SettingsPopover settings_popover;
@@ -64,11 +61,11 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
             direction = UP
         };
 
-        progression_label = new Gtk.Label (Granite.DateTime.seconds_to_time (0));
+        var progression_label = new Gtk.Label (Granite.DateTime.seconds_to_time (0));
 
-        duration_label = new Gtk.Label (null);
+        var duration_label = new Gtk.Label (null);
 
-        scale = new Gtk.Scale (Gtk.Orientation.HORIZONTAL, null) {
+        var scale = new Gtk.Scale (Gtk.Orientation.HORIZONTAL, null) {
             hexpand = true,
             draw_value = false,
             can_focus = false
