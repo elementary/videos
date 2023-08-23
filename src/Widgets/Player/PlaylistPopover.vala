@@ -130,14 +130,8 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     }
 
     private Gtk.Widget widget_create_func (Object item) {
-        var path = (File) item;
-
-        if (!path.query_exists ()) {
-            return new Gtk.ListBoxRow ();
-        }
-
-        var item_title = Audience.get_title (path.get_basename ());
-        var row = new PlaylistItem (item_title, path.get_uri ());
+        var uri = (string) item.get ("string");
+        var row = new PlaylistItem (Audience.get_title (uri), uri);
         return row;
     }
 

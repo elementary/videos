@@ -75,12 +75,4 @@ namespace Audience {
     public static bool is_sandboxed () {
         return FileUtils.test ("/.flatpak-info", FileTest.EXISTS);
     }
-
-    private static bool file_equal_func (Object a, Object b) {
-        if (a is File && b is File) {
-            return ((File) a).get_uri () == ((File) b).get_uri ();
-        }
-
-        return false;
-    }
 }

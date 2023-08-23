@@ -319,22 +319,22 @@ public class Audience.Window : Gtk.ApplicationWindow {
             PlaybackManager.get_default ().clear_playlist (false);
         }
 
-        File[] videos = {};
+        string[] videos = {};
 
         foreach (var file in files) {
             if (file.query_file_type (0) == FileType.DIRECTORY) {
                 Audience.recurse_over_dir (file, (file_ret) => {
-                    videos += file_ret;
+                    videos += file_ret.get_uri ();
                 });
             } else {
-                videos += file;
+                videos += file.get_uri ();
             }
         }
 
         PlaybackManager.get_default ().append_to_playlist (videos);
 
         if (force_play && videos.length > 0) {
-            string videofile = videos [0].get_uri ();
+            string videofile = videos [0];
             NavigationPage page = library_page.prepare_to_play (videofile);
             play_file (videofile, page);
         }

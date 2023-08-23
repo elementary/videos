@@ -16,7 +16,7 @@ public class Audience.PlaybackManager : Object {
     public int64 duration { get; private set; default = 0; }
     public int64 position { get; private set; default = 0; }
 
-    public ListStore play_queue { get; private set; }
+    public Gtk.StringList play_queue { get; private set; }
 
     private dynamic Gst.Element playbin;
     private bool is_seeking = false;
@@ -30,13 +30,13 @@ public class Audience.PlaybackManager : Object {
     }
 
     construct {
-        play_queue = new ListStore (typeof (File));
+        play_queue = new Gtk.StringList (null);
 
-        File[] files = {};
-        for (int i = 0; i < settings.get_strv ("last-played-videos").length; i++) {
-            files += File.new_for_uri (settings.get_strv ("last-played-videos")[i]);
+        string[] last_played_uris = {};
+        foreach (var uri in settings.get_strv ("last-played-videos")) {
+            last_played_uris += uri;
         }
-        append_to_playlist (files);
+        append_to_playlist (last_played_uris);
 
         var gtksink = Gst.ElementFactory.make ("gtk4paintablesink", "sink");
         Gdk.Paintable _gst_video_widget;
@@ -108,7 +108,7 @@ public class Audience.PlaybackManager : Object {
             case EOS:
                 var repeat_action = default_application.lookup_action (Audience.App.ACTION_REPEAT);
                 if (repeat_action.get_state ().get_boolean ()) {
-                    var file = (File) play_queue.get_item (0);
+                    var file = File.new_for_uri (play_queue.get_string (0));
                     ((Audience.Window) default_application.active_window).open_files ({ file });
                 } else if (!next ()) {
                     playbin.set_state (Gst.State.NULL);
@@ -242,25 +242,25 @@ public class Audience.PlaybackManager : Object {
     }
 
     public void clear_playlist (bool should_stop = true) {
-        play_queue.remove_all ();
+        play_queue.strings = {};
 
         if (should_stop) {
             stop ();
         }
     }
 
-    public void append_to_playlist (File[] files) {
-        Object[] files_to_queue = {};
+    public void append_to_playlist (string[] uris) {
+        string[] uris_to_queue = {};
 
-        foreach (var file in files) {
-            if (is_subtitle (file.get_uri ())) {
-                subtitle_uri = file.get_uri ();
-            } else if (!play_queue.find_with_equal_func (file, file_equal_func, null)) {
-                files_to_queue += file;
+        foreach (var uri in uris) {
+            if (is_subtitle (uri)) {
+                subtitle_uri = uri;
+            } else if (!(uri in play_queue.strings)) {
+                uris_to_queue += uri;
             }
         }
 
-        play_queue.splice (play_queue.get_n_items () > 0 ? play_queue.get_n_items () - 1 : 0, 0, files_to_queue);
+        play_queue.splice (play_queue.get_n_items () > 0 ? play_queue.get_n_items () - 1 : 0, 0, uris_to_queue);
     }
 
     public void save_playlist () {
@@ -270,19 +270,23 @@ public class Audience.PlaybackManager : Object {
         }
 
         string[] videos = {};
-        for (int i = 0; i < play_queue.get_n_items (); i++) {
-            videos += ((File) play_queue.get_item (i)).get_uri ();
+        foreach (var uri in play_queue.strings) {
+            videos += uri;
         }
 
         settings.set_strv ("last-played-videos", videos);
     }
 
     public bool next () {
-        uint position;
-        play_queue.find_with_equal_func (File.new_for_uri (playbin.current_uri), file_equal_func, out position);
+        uint position = 0;
+        for (; position < play_queue.get_n_items (); position++) {
+            if (play_queue.get_string (position) == (string) playbin.current_uri) {
+                break;
+            }
+        }
 
         if (position < play_queue.get_n_items () - 1) {
-            play ((File) play_queue.get_item (position + 1));
+            play (File.new_for_uri (play_queue.get_string (position + 1)));
             return true;
         } else {
             return false;
@@ -290,13 +294,17 @@ public class Audience.PlaybackManager : Object {
     }
 
     public void previous () {
-        uint position;
-        play_queue.find_with_equal_func (File.new_for_uri (playbin.current_uri), file_equal_func, out position);
+        uint position = 0;
+        for (; position < play_queue.get_n_items (); position++) {
+            if (play_queue.get_string (position) == (string) playbin.current_uri) {
+                break;
+            }
+        }
 
         if (position == 0) {
             seek (0);
         } else {
-            play ((File) play_queue.get_item (position - 1));
+            play (File.new_for_uri (play_queue.get_string (position - 1)));
         }
     }
 
