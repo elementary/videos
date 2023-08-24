@@ -45,9 +45,10 @@ namespace Audience {
                 show_title_buttons = true
             };
             header_bar.pack_start (navigation_button);
+            header_bar.add_css_class (Granite.STYLE_CLASS_OSD);
 
             windowcontrols_revealer = new Gtk.Revealer () {
-                transition_type = SLIDE_DOWN,
+                transition_type = CROSSFADE,
                 valign = START,
                 child = header_bar
             };
