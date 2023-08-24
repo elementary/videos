@@ -7,7 +7,6 @@ public class Audience.PlaybackManager : Object {
     public signal void ended ();
     public signal void next_audio ();
     public signal void next_text ();
-    public signal void play (File file);
     public signal void uri_changed (string uri);
 
     public Gdk.Paintable gst_video_widget { get; construct; }
@@ -30,13 +29,7 @@ public class Audience.PlaybackManager : Object {
     }
 
     construct {
-        play_queue = new Gtk.StringList (null);
-
-        string[] last_played_uris = {};
-        foreach (var uri in settings.get_strv ("last-played-videos")) {
-            last_played_uris += uri;
-        }
-        append_to_playlist (last_played_uris);
+        play_queue = new Gtk.StringList (settings.get_strv ("last-played-videos"));
 
         var gtksink = Gst.ElementFactory.make ("gtk4paintablesink", "sink");
         Gdk.Paintable _gst_video_widget;
@@ -108,8 +101,7 @@ public class Audience.PlaybackManager : Object {
             case EOS:
                 var repeat_action = default_application.lookup_action (Audience.App.ACTION_REPEAT);
                 if (repeat_action.get_state ().get_boolean ()) {
-                    var file = File.new_for_uri (play_queue.get_string (0));
-                    ((Audience.Window) default_application.active_window).open_files ({ file });
+                    play_file (play_queue.get_string (0));
                 } else if (!next ()) {
                     playbin.set_state (Gst.State.NULL);
                     settings.set_int64 ("last-stopped", 0);
@@ -227,26 +219,12 @@ public class Audience.PlaybackManager : Object {
     }
 
     public void stop () {
-        settings.set_int64 ("last-stopped", 0);
-        settings.set_strv ("last-played-videos", {});
-        settings.set_string ("current-video", "");
-
-        /* We do not want to emit an "ended" signal if already ended - it can cause premature
-         * ending of next video and other side-effects
-         */
-        if (playing) {
-            playbin.set_state (Gst.State.NULL);
-            seek (duration);
-            ended ();
-        }
+        playbin.set_state (Gst.State.NULL);
+        ended ();
     }
 
-    public void clear_playlist (bool should_stop = true) {
-        play_queue.strings = {};
-
-        if (should_stop) {
-            stop ();
-        }
+    public void clear_playlist () {
+        play_queue.splice (0, play_queue.get_n_items (), null);
     }
 
     public void append_to_playlist (string[] uris) {
@@ -255,7 +233,7 @@ public class Audience.PlaybackManager : Object {
         foreach (var uri in uris) {
             if (is_subtitle (uri)) {
                 subtitle_uri = uri;
-            } else if (!(uri in play_queue.strings)) {
+            } else {
                 uris_to_queue += uri;
             }
         }
@@ -270,8 +248,8 @@ public class Audience.PlaybackManager : Object {
         }
 
         string[] videos = {};
-        foreach (var uri in play_queue.strings) {
-            videos += uri;
+        for (int i = 0; i < play_queue.get_n_items (); i++) {
+            videos += play_queue.get_string (i);
         }
 
         settings.set_strv ("last-played-videos", videos);
@@ -286,7 +264,7 @@ public class Audience.PlaybackManager : Object {
         }
 
         if (position < play_queue.get_n_items () - 1) {
-            play (File.new_for_uri (play_queue.get_string (position + 1)));
+            play_file (play_queue.get_string (position + 1));
             return true;
         } else {
             return false;
@@ -304,7 +282,7 @@ public class Audience.PlaybackManager : Object {
         if (position == 0) {
             seek (0);
         } else {
-            play (File.new_for_uri (play_queue.get_string (position - 1)));
+            play_file (play_queue.get_string (position - 1));
         }
     }
 

@@ -77,8 +77,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         child = grid;
 
         playlist.row_activated.connect ((item) => {
-            string filename = ((PlaylistItem)(item)).filename;
-            PlaybackManager.get_default ().play (File.new_for_commandline_arg (filename));
+            PlaybackManager.get_default ().play_file (((PlaylistItem)(item)).filename);
         });
 
         fil.clicked.connect (() => {
@@ -94,6 +93,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         clear_playlist_button.clicked.connect (() => {
             popdown ();
             PlaybackManager.get_default ().clear_playlist ();
+            PlaybackManager.get_default ().stop ();
         });
 
         rep.toggled.connect ( () => {
@@ -130,9 +130,8 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     }
 
     private Gtk.Widget widget_create_func (Object item) {
-        var uri = (string) item.get ("string");
-        var row = new PlaylistItem (Audience.get_title (uri), uri);
-        return row;
+        string uri = ((Gtk.StringObject)item).string;
+        return new PlaylistItem (Audience.get_title (uri), uri);
     }
 
     private void set_current (string current_file) {

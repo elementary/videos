@@ -143,6 +143,17 @@ namespace Audience {
             unfullscreen_button.clicked.connect (() => {
                 ((Gtk.Window) get_root ()).unfullscreen ();
             });
+
+            unowned var application = Application.get_default ();
+
+            var action_next = application.lookup_action (Audience.App.ACTION_NEXT);
+            bind_property ("visible", action_next, "enabled", BindingFlags.SYNC_CREATE);
+
+            var action_play_pause = application.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+            bind_property ("visible", action_play_pause, "enabled", BindingFlags.SYNC_CREATE);
+
+            var action_previous = application.lookup_action (Audience.App.ACTION_PREVIOUS);
+            bind_property ("visible", action_previous, "enabled", BindingFlags.SYNC_CREATE);
         }
 
         public void seek_jump_seconds (int seconds) {
