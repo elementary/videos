@@ -153,7 +153,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
                 app_notification.title = _("“%s” added to playlist").printf (title);
                 app_notification.send_notification ();
             } else if (added > 2) {
-                app_notification.title = _("%u items added to playlist").printf (added);
+                app_notification.title = ngettext ("%u item added to playlist", "%u items added to playlist", added);
                 app_notification.send_notification ();
             }
         });
