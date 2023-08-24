@@ -228,6 +228,9 @@ public class Audience.PlaybackManager : Object {
 
     public void clear_playlist () {
         play_queue.splice (0, play_queue.get_n_items (), null);
+
+        settings.set_string ("current-video", "");
+        settings.set_int64 ("last-stopped", 0);
     }
 
     public void append_to_playlist (string[] uris) {
