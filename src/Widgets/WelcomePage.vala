@@ -61,7 +61,6 @@ public class Audience.WelcomePage : Granite.Placeholder {
         replay_button.clicked.connect (() => {
             var window = (Audience.Window)get_root ();
             PlaybackManager.get_default ().append_to_playlist ({ current_video });
-            settings.set_string ("current-video", current_video);
             window.resume_last_videos ();
         });
 

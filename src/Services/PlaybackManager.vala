@@ -65,6 +65,8 @@ public class Audience.PlaybackManager : Object {
             }
         });
 
+        play_queue.items_changed.connect (save_playlist);
+
         notify["playing"].connect (() => {
             var play_pause_action = default_application.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
             ((SimpleAction) play_pause_action).set_state (playing);
@@ -85,8 +87,6 @@ public class Audience.PlaybackManager : Object {
              * updated.  The playbin.uri has been reset when the window is destroyed from the Welcome page */
             settings.set_int64 ("last-stopped", position);
         }
-
-        save_playlist ();
 
         if (inhibit_token != 0) {
             ((Gtk.Application) GLib.Application.get_default ()).uninhibit (inhibit_token);
@@ -237,7 +237,17 @@ public class Audience.PlaybackManager : Object {
             if (is_subtitle (uri)) {
                 subtitle_uri = uri;
             } else {
-                uris_to_queue += uri;
+                bool should_add = true;
+                for (int i = 0; i < play_queue.get_n_items (); i++) {
+                    if (play_queue.get_string (i) == uri) {
+                        should_add = false;
+                        break;
+                    }
+                }
+
+                if (should_add) {
+                    uris_to_queue += uri;
+                }
             }
         }
 
