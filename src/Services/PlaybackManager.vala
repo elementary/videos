@@ -219,18 +219,26 @@ public class Audience.PlaybackManager : Object {
     }
 
     public void stop () {
-        playbin.set_state (Gst.State.NULL);
+        settings.set_int64 ("last-stopped", 0);
+        settings.set_strv ("last-played-videos", {});
+        settings.set_string ("current-video", "");
 
+        /* We do not want to emit an "ended" signal if already ended - it can cause premature
+         * ending of next video and other side-effects
+         */
         if (playing) {
+            playbin.set_state (Gst.State.NULL);
+            seek (duration);
             ended ();
         }
     }
 
-    public void clear_playlist () {
+    public void clear_playlist (bool should_stop = true) {
         play_queue.splice (0, play_queue.get_n_items (), null);
 
-        settings.set_string ("current-video", "");
-        settings.set_int64 ("last-stopped", 0);
+        if (should_stop) {
+            stop ();
+        }
     }
 
     public void append_to_playlist (string[] uris) {

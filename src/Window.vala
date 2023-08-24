@@ -311,7 +311,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
     public void open_files (File[] files, bool clear_playlist_items = false, bool force_play = true) {
         if (clear_playlist_items) {
-            PlaybackManager.get_default ().clear_playlist ();
+            PlaybackManager.get_default ().clear_playlist (false);
         }
 
         string[] videos = {};
@@ -448,12 +448,14 @@ public class Audience.Window : Gtk.ApplicationWindow {
             settings.set_int64 ("last-stopped", position);
         }
 
+        var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
+        ((SimpleAction) play_pause_action).set_state (false);
+
         if (leaflet.visible_child == welcome_page_box) {
             title = _("Videos");
         } else if (leaflet.visible_child == library_page) {
             title = _("Library");
         } else if (leaflet.visible_child == player_page) {
-            var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
             ((SimpleAction) play_pause_action).set_state (true);
         }
 

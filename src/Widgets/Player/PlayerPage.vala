@@ -100,8 +100,11 @@ namespace Audience {
             append (overlay);
 
             map.connect (() => {
+                update_actions_enabled (true);
                 navigation_button.label = ((Window)get_root ()).get_adjacent_page_name ();
             });
+
+            unmap.connect (() => update_actions_enabled (false));
 
             navigation_button.clicked.connect (() => {
                 playback_manager.stop ();
@@ -144,17 +147,13 @@ namespace Audience {
             unfullscreen_button.clicked.connect (() => {
                 ((Gtk.Window) get_root ()).unfullscreen ();
             });
+        }
 
+        private void update_actions_enabled (bool enabled) {
             unowned var application = Application.get_default ();
-
-            var action_next = application.lookup_action (Audience.App.ACTION_NEXT);
-            bind_property ("visible", action_next, "enabled", BindingFlags.SYNC_CREATE);
-
-            var action_play_pause = application.lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-            bind_property ("visible", action_play_pause, "enabled", BindingFlags.SYNC_CREATE);
-
-            var action_previous = application.lookup_action (Audience.App.ACTION_PREVIOUS);
-            bind_property ("visible", action_previous, "enabled", BindingFlags.SYNC_CREATE);
+            ((SimpleAction) application.lookup_action (Audience.App.ACTION_NEXT)).set_enabled (enabled);
+            ((SimpleAction) application.lookup_action (Audience.App.ACTION_PLAY_PAUSE)).set_enabled (enabled);
+            ((SimpleAction) application.lookup_action (Audience.App.ACTION_PREVIOUS)).set_enabled (enabled);
         }
 
         public void seek_jump_seconds (int seconds) {
