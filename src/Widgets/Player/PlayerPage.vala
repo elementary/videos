@@ -107,7 +107,6 @@ namespace Audience {
             unmap.connect (() => update_actions_enabled (false));
 
             navigation_button.clicked.connect (() => {
-                playback_manager.stop ();
                 ((Adw.Leaflet)get_ancestor (typeof (Adw.Leaflet))).navigate (Adw.NavigationDirection.BACK);
             });
 
