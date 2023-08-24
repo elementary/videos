@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-15 14:37+0000\n"
-"PO-Revision-Date: 2023-07-09 18:33+0000\n"
+"PO-Revision-Date: 2023-08-23 13:08+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/videos/"
 "ja/>\n"
@@ -164,7 +164,7 @@ msgstr "検索用語を変更してみてください。"
 #: src/Widgets/Library/LibraryPage.vala:248
 #, c-format
 msgid "No Results for “%s”"
-msgstr "“%s” という検索結果はありません"
+msgstr "“%s” の検索結果はありません"
 
 #: src/Widgets/Library/LibraryItem.vala:79
 msgid "Move to Trash"
