@@ -45,6 +45,7 @@ public class Audience.PlaybackManager : Object {
         playbin.video_sink = gtksink;
 
         playbin.bind_property ("volume", this, "volume", BIDIRECTIONAL | SYNC_CREATE);
+        settings.bind ("volume", this, "volume", DEFAULT);
 
         var bus = playbin.get_bus ();
         bus.add_signal_watch ();

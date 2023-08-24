@@ -1,5 +1,10 @@
 <schemalist>
   <schema path="/io/elementary/videos/" id="io.elementary.videos" gettext-domain="audience">
+        <key name="volume" type="d">
+            <default>1</default>
+            <summary>Current volume</summary>
+            <description>Volume of the currently playing video.</description>
+        </key>
         <key name="last-played-videos" type="as">
             <default>[]</default>
             <summary>List of last played videos</summary>
