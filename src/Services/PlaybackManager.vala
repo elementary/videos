@@ -247,18 +247,8 @@ public class Audience.PlaybackManager : Object {
         foreach (var uri in uris) {
             if (is_subtitle (uri)) {
                 subtitle_uri = uri;
-            } else {
-                bool should_add = true;
-                for (int i = 0; i < play_queue.get_n_items (); i++) {
-                    if (play_queue.get_string (i) == uri) {
-                        should_add = false;
-                        break;
-                    }
-                }
-
-                if (should_add) {
-                    uris_to_queue += uri;
-                }
+            } else if (get_queue_position (uri) == Gtk.INVALID_LIST_POSITION) {
+                uris_to_queue += uri;
             }
         }
 
@@ -280,32 +270,22 @@ public class Audience.PlaybackManager : Object {
     }
 
     public bool next () {
-        uint position = 0;
-        for (; position < play_queue.get_n_items (); position++) {
-            if (play_queue.get_string (position) == (string) playbin.current_uri) {
-                break;
-            }
-        }
+        uint position = get_queue_position (playbin.current_uri);
 
         if (position < play_queue.get_n_items () - 1) {
             play_file (play_queue.get_string (position + 1));
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     public void previous () {
-        uint position = 0;
-        for (; position < play_queue.get_n_items (); position++) {
-            if (play_queue.get_string (position) == (string) playbin.current_uri) {
-                break;
-            }
-        }
+        uint position = get_queue_position (playbin.current_uri);
 
         if (position == 0) {
             seek (0);
-        } else {
+        } else if (position != Gtk.INVALID_LIST_POSITION) {
             play_file (play_queue.get_string (position - 1));
         }
     }
@@ -457,5 +437,17 @@ public class Audience.PlaybackManager : Object {
         }
 
         return "";
+    }
+
+    private uint get_queue_position (string uri) {
+        uint position = Gtk.INVALID_LIST_POSITION;
+        for (uint i = 0; i < play_queue.get_n_items (); i++) {
+            if (play_queue.get_string (i) == uri) {
+                position = i;
+                break;
+            }
+        }
+
+        return position;
     }
 }
