@@ -149,7 +149,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
         playback_manager.play_queue.items_changed.connect ((pos, removed, added) => {
             app_notification.set_default_action (null);
             if (added == 2) {
-                var title = Audience.get_title (((File) playback_manager.play_queue.get_item (pos + 1)).get_uri ());
+                var title = Audience.get_title (playback_manager.play_queue.get_string (pos + 1));
                 app_notification.title = _("“%s” added to playlist").printf (title);
                 app_notification.send_notification ();
             } else if (added > 2) {
@@ -447,8 +447,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
         if (position > 0) {
             settings.set_int64 ("last-stopped", position);
         }
-
-        PlaybackManager.get_default ().stop ();
 
         if (leaflet.visible_child == welcome_page_box) {
             title = _("Videos");

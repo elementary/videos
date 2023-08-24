@@ -220,7 +220,10 @@ public class Audience.PlaybackManager : Object {
 
     public void stop () {
         playbin.set_state (Gst.State.NULL);
-        ended ();
+
+        if (playing) {
+            ended ();
+        }
     }
 
     public void clear_playlist () {
