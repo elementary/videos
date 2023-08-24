@@ -28,26 +28,10 @@ namespace Audience {
     public class PlayerPage : Gtk.Box {
         private Gtk.HeaderBar header_bar;
         private Audience.Widgets.BottomBar bottom_bar;
-        private Gtk.Revealer unfullscreen_revealer;
+        private Gtk.Revealer windowcontrols_revealer;
         private Gtk.Revealer bottom_bar_revealer;
 
         private uint hiding_timer = 0;
-
-        private bool _fullscreened = false;
-        public bool fullscreened {
-            get {
-                return _fullscreened;
-            }
-            set {
-                _fullscreened = value;
-
-                header_bar.visible = !value;
-
-                if (bottom_bar_revealer.child_revealed) {
-                    reveal_control ();
-                }
-            }
-        }
 
         construct {
             var playback_manager = PlaybackManager.get_default ();
@@ -58,20 +42,14 @@ namespace Audience {
             navigation_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
 
             header_bar = new Gtk.HeaderBar () {
-                show_title_buttons = true,
+                show_title_buttons = true
             };
             header_bar.pack_start (navigation_button);
-            header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
 
-            var unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic") {
-                tooltip_text = _("Unfullscreen")
-            };
-
-            unfullscreen_revealer = new Gtk.Revealer () {
-                transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN,
+            windowcontrols_revealer = new Gtk.Revealer () {
+                transition_type = SLIDE_DOWN,
                 valign = START,
-                halign = END,
-                child = unfullscreen_button
+                child = header_bar
             };
 
             bottom_bar = new Widgets.BottomBar ();
@@ -92,11 +70,9 @@ namespace Audience {
             var overlay = new Gtk.Overlay () {
                 child = picture
             };
-            overlay.add_overlay (unfullscreen_revealer);
+            overlay.add_overlay (windowcontrols_revealer);
             overlay.add_overlay (bottom_bar_revealer);
 
-            orientation = VERTICAL;
-            append (header_bar);
             append (overlay);
 
             map.connect (() => {
@@ -142,10 +118,6 @@ namespace Audience {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
                 ((SimpleAction) play_pause_action).activate (null);
             });
-
-            unfullscreen_button.clicked.connect (() => {
-                ((Gtk.Window) get_root ()).unfullscreen ();
-            });
         }
 
         private void update_actions_enabled (bool enabled) {
@@ -176,10 +148,8 @@ namespace Audience {
             }
 
             bottom_bar_revealer.reveal_child = true;
+            windowcontrols_revealer.reveal_child = true;
             set_cursor (null);
-            if (fullscreened) {
-                unfullscreen_revealer.reveal_child = true;
-            }
 
             if (bottom_bar.should_stay_revealed) {
                 return;
@@ -188,7 +158,7 @@ namespace Audience {
             hiding_timer = Timeout.add (2000, () => {
                 hiding_timer = 0;
 
-                unfullscreen_revealer.reveal_child = false;
+                windowcontrols_revealer.reveal_child = false;
                 bottom_bar_revealer.reveal_child = false;
                 set_cursor (new Gdk.Cursor.from_name ("none", null));
 
