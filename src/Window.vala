@@ -83,7 +83,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
                 leaflet.append (episodes_page);
                 leaflet.visible_child = episodes_page;
 
-                title = item.get_title ();
+                title = item.title;
             }
         });
 

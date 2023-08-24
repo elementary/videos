@@ -24,13 +24,12 @@ public class Audience.EpisodesPage : Gtk.Box {
     private ListStore items;
     private Gtk.SearchEntry search_entry;
     private Gtk.HeaderBar header_bar;
-    private Gtk.FlowBox view_episodes;
+    private Gtk.ListView view_episodes;
     private Granite.Placeholder alert_view;
 
     private Objects.Video poster_source;
 
     construct {
-        items = new ListStore (typeof (LibraryItem));
         poster_source = null;
 
         var navigation_button = new Gtk.Button.with_label (_("Library")) {
@@ -72,20 +71,26 @@ public class Audience.EpisodesPage : Gtk.Box {
         };
         poster.add_css_class (Granite.STYLE_CLASS_CARD);
 
-        view_episodes = new Gtk.FlowBox () {
-            homogeneous = true,
+        items = new ListStore (typeof (LibraryItem));
+        var filter_model = new Gtk.FilterListModel (items, new Gtk.CustomFilter (episodes_filter_func));
+        var selection_model = new Gtk.NoSelection (filter_model);
+
+        var factory = new Gtk.SignalListItemFactory ();
+
+        factory.bind.connect ((obj) => {
+            var item = (Gtk.ListItem) obj;
+            item.child = (LibraryItem) item.item;
+        });
+
+        view_episodes = new Gtk.ListView (selection_model, factory) {
             margin_top = 24,
             margin_bottom = 24,
             margin_start = 24,
             margin_end = 24,
-            max_children_per_line = 1,
-            selection_mode = Gtk.SelectionMode.NONE,
+            single_click_activate = true,
             valign = Gtk.Align.START
         };
-        view_episodes.set_filter_func (episodes_filter_func);
-        view_episodes.bind_model (items, (item) => {
-            return (LibraryItem)item;
-        });
+        view_episodes.add_css_class (Granite.STYLE_CLASS_BACKGROUND);
 
         var scrolled_window = new Gtk.ScrolledWindow () {
             hexpand = true,
@@ -115,7 +120,7 @@ public class Audience.EpisodesPage : Gtk.Box {
             ((Adw.Leaflet)get_ancestor (typeof (Adw.Leaflet))).navigate (Adw.NavigationDirection.BACK);
         });
 
-        view_episodes.child_activated.connect (play_video);
+        view_episodes.activate.connect (play_video);
 
         var manager = Audience.Services.LibraryManager.get_instance ();
         manager.video_file_deleted.connect (remove_item_from_path);
@@ -159,8 +164,8 @@ public class Audience.EpisodesPage : Gtk.Box {
         poster.set_pixbuf (episode.poster);
     }
 
-    private void play_video (Gtk.FlowBoxChild item) {
-        var selected = (item as Audience.LibraryItem);
+    private void play_video (uint position) {
+        var selected = (LibraryItem) items.get_item (position);
         var video = selected.episodes.first ();
         if (video.video_file.query_exists ()) {
             string uri = video.video_file.get_uri ();
@@ -186,7 +191,7 @@ public class Audience.EpisodesPage : Gtk.Box {
     }
 
     private void filter () {
-         view_episodes.invalidate_filter ();
+         items.items_changed (0, items.get_n_items (), items.get_n_items ());
          if (!has_child ()) {
             alert_view.title = _("No Results for “%s”").printf (search_entry.text);
             alert_view.visible = true;
@@ -195,13 +200,13 @@ public class Audience.EpisodesPage : Gtk.Box {
          }
     }
 
-    private bool episodes_filter_func (Gtk.FlowBoxChild child) {
+    private bool episodes_filter_func (Object obj) {
         if (search_entry.text.length == 0) {
             return true;
         }
 
         string[] filter_elements = search_entry.text.split (" ");
-        var video_title = ((LibraryItem)(child)).get_title ();
+        var video_title = ((LibraryItem) obj).title;
 
         foreach (string filter_element in filter_elements) {
             if (!video_title.down ().contains (filter_element.down ())) {

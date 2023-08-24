@@ -32,7 +32,7 @@ public class Audience.LibraryPage : Gtk.Box {
     private Gtk.SearchEntry search_entry;
     private Granite.Placeholder alert_view;
     private Gtk.ScrolledWindow scrolled_window;
-    private Gtk.FlowBox view_movies;
+    private Gtk.GridView view_movies;
     private Gtk.Stack stack;
     private bool posters_initialized = false;
 
@@ -45,8 +45,6 @@ public class Audience.LibraryPage : Gtk.Box {
     }
 
     construct {
-        items = new ListStore (typeof (LibraryItem));
-
         var navigation_button = new Gtk.Button.with_label (_("Back")) {
             valign = Gtk.Align.CENTER
         };
@@ -64,22 +62,28 @@ public class Audience.LibraryPage : Gtk.Box {
         header_bar.pack_end (search_entry);
         header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
 
-        view_movies = new Gtk.FlowBox () {
-            column_spacing = 12,
-            row_spacing = 12,
-            homogeneous = true,
+        items = new ListStore (typeof (LibraryItem));
+        var filter_model = new Gtk.FilterListModel (items, new Gtk.CustomFilter (video_filter_func));
+        var selection_model = new Gtk.NoSelection (filter_model);
+
+        var factory = new Gtk.SignalListItemFactory ();
+
+        factory.bind.connect ((obj) => {
+            var item = (Gtk.ListItem) obj;
+            item.child = (LibraryItem) item.item;
+        });
+
+        view_movies = new Gtk.GridView (selection_model, factory) {
+            // column_spacing = 12,
+            // row_spacing = 12,
             margin_top = 24,
             margin_bottom = 24,
             margin_start = 24,
             margin_end = 24,
-            selection_mode = Gtk.SelectionMode.NONE,
+            single_click_activate = true,
             valign = Gtk.Align.START
         };
-        view_movies.set_sort_func (video_sort_func);
-        view_movies.set_filter_func (video_filter_func);
-        view_movies.bind_model (items, (item) => {
-            return (LibraryItem)item;
-        });
+        view_movies.add_css_class (Granite.STYLE_CLASS_BACKGROUND);
 
         scrolled_window = new Gtk.ScrolledWindow () {
             hexpand = true,
@@ -100,7 +104,7 @@ public class Audience.LibraryPage : Gtk.Box {
         append (header_bar);
         append (stack);
 
-        view_movies.child_activated.connect (play_video);
+        view_movies.activate.connect (play_video);
 
         manager = Audience.Services.LibraryManager.get_instance ();
         manager.video_file_detected.connect (add_item);
@@ -139,8 +143,8 @@ public class Audience.LibraryPage : Gtk.Box {
         search_entry.grab_focus ();
     }
 
-    private void play_video (Gtk.FlowBoxChild item) {
-        var selected = (item as Audience.LibraryItem);
+    private void play_video (uint position) {
+        var selected = (LibraryItem) items.get_item (position);
 
         if (selected.episodes.size == 1) {
             string uri = selected.episodes.first ().video_file.get_uri ();
@@ -166,13 +170,13 @@ public class Audience.LibraryPage : Gtk.Box {
             var item = (LibraryItem)items.get_item (i);
             if (video.container != "" && item.episodes.first ().container == video.container) {
                 item.add_episode (video);
-                view_movies.invalidate_sort ();
+                items.sort (video_sort_func);
                 return;
             }
         }
 
         var new_container = new Audience.LibraryItem (video, LibraryItemStyle.THUMBNAIL);
-        items.append (new_container);
+        items.insert_sorted (new_container, video_sort_func);
 
         if (posters_initialized) {
             video.initialize_poster.begin ();
@@ -213,13 +217,13 @@ public class Audience.LibraryPage : Gtk.Box {
         }
     }
 
-    private bool video_filter_func (Gtk.FlowBoxChild child) {
+    private bool video_filter_func (Object obj) {
         if (search_entry.text.length == 0) {
             return true;
         }
 
         string[] filter_elements = search_entry.text.split (" ");
-        var video_title = ((LibraryItem)(child)).get_title ();
+        var video_title = ((LibraryItem) obj).title;
 
         foreach (string filter_element in filter_elements) {
             if (!video_title.down ().contains (filter_element.down ())) {
@@ -233,14 +237,14 @@ public class Audience.LibraryPage : Gtk.Box {
         var library_item1 = (LibraryItem)item1;
         var library_item2 = (LibraryItem)item2;
         if (library_item1 != null && library_item2 != null) {
-            return library_item1.get_title ().collate (library_item2.get_title ());
+            return library_item1.title.collate (library_item2.title);
         }
 
         return 0;
     }
 
     public void filter () {
-        view_movies.invalidate_filter ();
+        items.items_changed (0, items.get_n_items (), items.get_n_items ());
 
         if (!has_child ()) {
             stack.visible_child = alert_view;
