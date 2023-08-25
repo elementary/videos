@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-24 15:10+0000\n"
+"POT-Creation-Date: 2023-08-25 16:52+0000\n"
 "PO-Revision-Date: 2019-10-16 15:23+0000\n"
 "Last-Translator: Daniel R. <riesp@pm.me>\n"
 "Language-Team: Galician <https://l10n.elementary.io/projects/videos/videos/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.7.1\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:105 src/Window.vala:435
+#: src/Application.vala:105 src/Window.vala:442
 msgid "Videos"
 msgstr "Vídeos"
 
@@ -33,48 +33,55 @@ msgstr "Vídeo “%s” eliminado."
 msgid "Restore"
 msgstr "Restaurar"
 
-#: src/Window.vala:157
+#: src/Window.vala:158
 #, c-format
 msgid "“%s” added to playlist"
 msgstr ""
 
-#: src/Window.vala:341 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:161
+#, c-format
+msgid "%u item added to playlist"
+msgid_plural "%u items added to playlist"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Window.vala:348 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "Todos os ficheiros"
 
-#: src/Window.vala:345
+#: src/Window.vala:352
 msgid "Video files"
 msgstr "Ficheiros de vídeo"
 
-#: src/Window.vala:349 src/Widgets/Library/LibraryItem.vala:192
+#: src/Window.vala:356 src/Widgets/Library/LibraryItem.vala:192
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "Aberto"
 
-#: src/Window.vala:352 src/Widgets/Library/LibraryItem.vala:195
+#: src/Window.vala:359 src/Widgets/Library/LibraryItem.vala:195
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "_Abrir"
 
-#: src/Window.vala:353 src/Widgets/Library/LibraryItem.vala:196
+#: src/Window.vala:360 src/Widgets/Library/LibraryItem.vala:196
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/Window.vala:417
+#: src/Window.vala:424
 msgid "Episodes"
 msgstr "Episodios"
 
-#: src/Window.vala:419 src/Window.vala:437
+#: src/Window.vala:426 src/Window.vala:444
 #: src/Widgets/Library/EpisodesPage.vala:36
 msgid "Library"
 msgstr "Libraría"
 
-#: src/Window.vala:421 src/Widgets/Library/LibraryPage.vala:50
+#: src/Window.vala:428 src/Widgets/Library/LibraryPage.vala:50
 msgid "Back"
 msgstr "Volver"
 
-#: src/Services/PlaybackManager.vala:149
+#: src/Services/PlaybackManager.vala:142
 msgid "A video is playing"
 msgstr ""
 
@@ -106,7 +113,7 @@ msgstr "Non hai ningún vídeo aberto"
 msgid "Select a source to begin playing."
 msgstr "Seleccione unha orixe para comezar a reproducir."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:33
+#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:28
 msgid "Open file"
 msgstr "Abrir un ficheiro"
 
@@ -114,11 +121,11 @@ msgstr "Abrir un ficheiro"
 msgid "Open a saved file."
 msgstr "Abrir un ficheiro gardado."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:117
+#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:116
 msgid "Replay last video"
 msgstr "Repetir o último vídeo"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:32
 msgid "Play from Disc"
 msgstr "Reproducir desde un disco"
 
@@ -134,7 +141,7 @@ msgstr "Explorar videoteca"
 msgid "Watch a movie from your library"
 msgstr "Ver unha película da súa videoteca"
 
-#: src/Widgets/WelcomePage.vala:120
+#: src/Widgets/WelcomePage.vala:119
 msgid "Resume last video"
 msgstr "Continuar reproducindo o último vídeo"
 
@@ -157,7 +164,7 @@ msgstr ""
 msgid "Try changing search terms."
 msgstr "Tente cambiar os termos de procura."
 
-#: src/Widgets/Library/EpisodesPage.vala:191
+#: src/Widgets/Library/EpisodesPage.vala:194
 #: src/Widgets/Library/LibraryPage.vala:247
 #, c-format
 msgid "No Results for “%s”"
@@ -191,17 +198,17 @@ msgstr "Axustes"
 msgid "Pause"
 msgstr "Deter"
 
-#: src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/Player/PlaylistPopover.vala:36
 #, fuzzy
 msgid "Clear Playlist"
 msgstr "Lista de reprodución"
 
-#: src/Widgets/Player/PlaylistPopover.vala:47
-#: src/Widgets/Player/PlaylistPopover.vala:115
+#: src/Widgets/Player/PlaylistPopover.vala:42
+#: src/Widgets/Player/PlaylistPopover.vala:105
 msgid "Enable Repeat"
 msgstr "Activar a repetición"
 
-#: src/Widgets/Player/PlaylistPopover.vala:112
+#: src/Widgets/Player/PlaylistPopover.vala:102
 msgid "Disable Repeat"
 msgstr "Desactivar a repetición"
 
