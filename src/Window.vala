@@ -154,7 +154,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
             app_notification.set_default_action (null);
 
             if (added == 1) {
-                var title = Audience.get_title (playback_manager.play_queue.get_string (pos + 1));
+                var title = Audience.get_title (playback_manager.play_queue.get_string (pos));
                 app_notification.title = _("“%s” added to playlist").printf (title);
                 app_notification.send_notification ();
             } else if (added > 1) {
