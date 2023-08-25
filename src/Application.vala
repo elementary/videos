@@ -29,12 +29,10 @@ namespace Audience {
         public const string ACTION_NEXT = "action-next";
         public const string ACTION_PLAY_PAUSE = "action-play-pause";
         public const string ACTION_PREVIOUS = "action-previous";
-        public const string ACTION_REPEAT = "action-repeat";
 
         private const ActionEntry[] ACTION_ENTRIES = {
             { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
             { ACTION_NEXT, action_next },
-            { ACTION_REPEAT, null, null, "false"},
             { ACTION_PREVIOUS, action_previous }
         };
 
