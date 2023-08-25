@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-24 15:10+0000\n"
+"POT-Creation-Date: 2023-08-25 16:52+0000\n"
 "PO-Revision-Date: 2022-05-30 03:37+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/videos/videos/mr/"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.4.2\n"
 
-#: src/Application.vala:105 src/Window.vala:435
+#: src/Application.vala:105 src/Window.vala:442
 msgid "Videos"
 msgstr "व्हिडीओ"
 
@@ -26,48 +26,55 @@ msgstr "व्हिडिओ '%s' काढला."
 msgid "Restore"
 msgstr "पुनर्संचयित करा"
 
-#: src/Window.vala:157
+#: src/Window.vala:158
 #, c-format
 msgid "“%s” added to playlist"
 msgstr ""
 
-#: src/Window.vala:341 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:161
+#, c-format
+msgid "%u item added to playlist"
+msgid_plural "%u items added to playlist"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Window.vala:348 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "सर्व फायली"
 
-#: src/Window.vala:345
+#: src/Window.vala:352
 msgid "Video files"
 msgstr "व्हिडिओ फायली"
 
-#: src/Window.vala:349 src/Widgets/Library/LibraryItem.vala:192
+#: src/Window.vala:356 src/Widgets/Library/LibraryItem.vala:192
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "उघडा"
 
-#: src/Window.vala:352 src/Widgets/Library/LibraryItem.vala:195
+#: src/Window.vala:359 src/Widgets/Library/LibraryItem.vala:195
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "(_O)उघडा"
 
-#: src/Window.vala:353 src/Widgets/Library/LibraryItem.vala:196
+#: src/Window.vala:360 src/Widgets/Library/LibraryItem.vala:196
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "(_C)रद्द करा"
 
-#: src/Window.vala:417
+#: src/Window.vala:424
 msgid "Episodes"
 msgstr "भाग"
 
-#: src/Window.vala:419 src/Window.vala:437
+#: src/Window.vala:426 src/Window.vala:444
 #: src/Widgets/Library/EpisodesPage.vala:36
 msgid "Library"
 msgstr "संग्रह"
 
-#: src/Window.vala:421 src/Widgets/Library/LibraryPage.vala:50
+#: src/Window.vala:428 src/Widgets/Library/LibraryPage.vala:50
 msgid "Back"
 msgstr "मागे"
 
-#: src/Services/PlaybackManager.vala:149
+#: src/Services/PlaybackManager.vala:142
 msgid "A video is playing"
 msgstr "एक व्हिडिओ चालू आहे"
 
@@ -101,7 +108,7 @@ msgstr "कोणतेही व्हिडिओ उघडलेले ना
 msgid "Select a source to begin playing."
 msgstr "व्हिडीओ सुरू करण्यासाठी स्त्रोत निवडा."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:33
+#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:28
 msgid "Open file"
 msgstr "फाईल उघडा"
 
@@ -109,11 +116,11 @@ msgstr "फाईल उघडा"
 msgid "Open a saved file."
 msgstr "एक सेव्ह केलेली फाइल उघडा."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:117
+#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:116
 msgid "Replay last video"
 msgstr "शेवटचा व्हिडिओ पुन्हा चालवा"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:32
 msgid "Play from Disc"
 msgstr "डिस्कवरून चालवा"
 
@@ -129,7 +136,7 @@ msgstr "लायब्ररी ब्राउझ करा"
 msgid "Watch a movie from your library"
 msgstr "आपल्या लायब्ररीमधून एक चित्रपट पहा"
 
-#: src/Widgets/WelcomePage.vala:120
+#: src/Widgets/WelcomePage.vala:119
 msgid "Resume last video"
 msgstr "शेवटचा व्हिडिओ पुन्हा सुरु करा"
 
@@ -151,7 +158,7 @@ msgstr "पुढील व्हिडिओ स्वयंचलितपण�
 msgid "Try changing search terms."
 msgstr "शोध संज्ञा बदलण्याचा प्रयत्न करा."
 
-#: src/Widgets/Library/EpisodesPage.vala:191
+#: src/Widgets/Library/EpisodesPage.vala:194
 #: src/Widgets/Library/LibraryPage.vala:247
 #, c-format
 msgid "No Results for “%s”"
@@ -185,16 +192,16 @@ msgstr "सेटिंग्ज"
 msgid "Pause"
 msgstr "थांबवा"
 
-#: src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/Player/PlaylistPopover.vala:36
 msgid "Clear Playlist"
 msgstr "प्लेलिस्ट साफ करा"
 
-#: src/Widgets/Player/PlaylistPopover.vala:47
-#: src/Widgets/Player/PlaylistPopover.vala:115
+#: src/Widgets/Player/PlaylistPopover.vala:42
+#: src/Widgets/Player/PlaylistPopover.vala:105
 msgid "Enable Repeat"
 msgstr "पुनरावृत्ती सक्षम करा"
 
-#: src/Widgets/Player/PlaylistPopover.vala:112
+#: src/Widgets/Player/PlaylistPopover.vala:102
 msgid "Disable Repeat"
 msgstr "पुनरावृत्ती अक्षम करा"
 

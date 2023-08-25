@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-24 15:10+0000\n"
+"POT-Creation-Date: 2023-08-25 16:52+0000\n"
 "PO-Revision-Date: 2017-01-27 19:25+0000\n"
 "Last-Translator: Christos Iatropoulos <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
-#: src/Application.vala:105 src/Window.vala:435
+#: src/Application.vala:105 src/Window.vala:442
 msgid "Videos"
 msgstr "Βίντεο"
 
@@ -31,48 +31,55 @@ msgstr "Το βίντεο '%s' αφαιρέθηκε."
 msgid "Restore"
 msgstr "Επαναφορά"
 
-#: src/Window.vala:157
+#: src/Window.vala:158
 #, c-format
 msgid "“%s” added to playlist"
 msgstr ""
 
-#: src/Window.vala:341 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:161
+#, c-format
+msgid "%u item added to playlist"
+msgid_plural "%u items added to playlist"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Window.vala:348 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "Όλα τα αρχεία"
 
-#: src/Window.vala:345
+#: src/Window.vala:352
 msgid "Video files"
 msgstr "Αρχεία βίντεο"
 
-#: src/Window.vala:349 src/Widgets/Library/LibraryItem.vala:192
+#: src/Window.vala:356 src/Widgets/Library/LibraryItem.vala:192
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "Άνοιγμα"
 
-#: src/Window.vala:352 src/Widgets/Library/LibraryItem.vala:195
+#: src/Window.vala:359 src/Widgets/Library/LibraryItem.vala:195
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "_Άνοιγμα"
 
-#: src/Window.vala:353 src/Widgets/Library/LibraryItem.vala:196
+#: src/Window.vala:360 src/Widgets/Library/LibraryItem.vala:196
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "_Ακύρωση"
 
-#: src/Window.vala:417
+#: src/Window.vala:424
 msgid "Episodes"
 msgstr "Επεισόδια"
 
-#: src/Window.vala:419 src/Window.vala:437
+#: src/Window.vala:426 src/Window.vala:444
 #: src/Widgets/Library/EpisodesPage.vala:36
 msgid "Library"
 msgstr "Βιβλιοθήκη"
 
-#: src/Window.vala:421 src/Widgets/Library/LibraryPage.vala:50
+#: src/Window.vala:428 src/Widgets/Library/LibraryPage.vala:50
 msgid "Back"
 msgstr "Πίσω"
 
-#: src/Services/PlaybackManager.vala:149
+#: src/Services/PlaybackManager.vala:142
 msgid "A video is playing"
 msgstr ""
 
@@ -104,7 +111,7 @@ msgstr "Κανένα Ανοιχτό Βίντεο"
 msgid "Select a source to begin playing."
 msgstr "Επιλέξτε μια πηγή για να αρχίσετε την αναπαραγωγή."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:33
+#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:28
 msgid "Open file"
 msgstr "Άνοιγμα αρχείου"
 
@@ -112,11 +119,11 @@ msgstr "Άνοιγμα αρχείου"
 msgid "Open a saved file."
 msgstr "Άνοιγμα αποθηκευμένου αρχείου"
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:117
+#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:116
 msgid "Replay last video"
 msgstr "Επανάληψη του τελευταίου Βίντεο"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:32
 msgid "Play from Disc"
 msgstr "Αναπαραγωγή από δίσκο"
 
@@ -132,7 +139,7 @@ msgstr "Πλοήγηση βιβλιοθήκης"
 msgid "Watch a movie from your library"
 msgstr "Παρακολουθείστε μια ταινία από τη βιβλιοθήκη σας"
 
-#: src/Widgets/WelcomePage.vala:120
+#: src/Widgets/WelcomePage.vala:119
 msgid "Resume last video"
 msgstr "Συνέχιση τελευταίου βίντεο"
 
@@ -155,7 +162,7 @@ msgstr ""
 msgid "Try changing search terms."
 msgstr "Δοκιμάστε να αλλάξετε τους όρους αναζήτησης,"
 
-#: src/Widgets/Library/EpisodesPage.vala:191
+#: src/Widgets/Library/EpisodesPage.vala:194
 #: src/Widgets/Library/LibraryPage.vala:247
 #, c-format
 msgid "No Results for “%s”"
@@ -189,17 +196,17 @@ msgstr "Ρυθμίσεις"
 msgid "Pause"
 msgstr "Παύση"
 
-#: src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/Player/PlaylistPopover.vala:36
 #, fuzzy
 msgid "Clear Playlist"
 msgstr "Λίστα αναπαραγωγής"
 
-#: src/Widgets/Player/PlaylistPopover.vala:47
-#: src/Widgets/Player/PlaylistPopover.vala:115
+#: src/Widgets/Player/PlaylistPopover.vala:42
+#: src/Widgets/Player/PlaylistPopover.vala:105
 msgid "Enable Repeat"
 msgstr "Ενεργοποίηση επανάληψης"
 
-#: src/Widgets/Player/PlaylistPopover.vala:112
+#: src/Widgets/Player/PlaylistPopover.vala:102
 msgid "Disable Repeat"
 msgstr ""
 
