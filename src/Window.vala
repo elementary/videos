@@ -147,13 +147,18 @@ public class Audience.Window : Gtk.ApplicationWindow {
         var playback_manager = PlaybackManager.get_default ();
 
         playback_manager.play_queue.items_changed.connect ((pos, removed, added) => {
+            if (playback_manager.play_queue.get_n_items () == 1) {
+                return;
+            }
+
             app_notification.set_default_action (null);
-            if (added == 2) {
+
+            if (added == 1) {
                 var title = Audience.get_title (playback_manager.play_queue.get_string (pos + 1));
                 app_notification.title = _("“%s” added to playlist").printf (title);
                 app_notification.send_notification ();
-            } else if (added > 2) {
-                app_notification.title = ngettext ("%u item added to playlist", "%u items added to playlist", added);
+            } else if (added > 1) {
+                app_notification.title = ngettext ("%u item added to playlist", "%u items added to playlist", added).printf (added);
                 app_notification.send_notification ();
             }
         });
