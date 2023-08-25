@@ -1,6 +1,8 @@
-/*-
- * Copyright 2023 elementary, Inc. (https://elementary.io)
+/*
  * SPDX-License-Identifier: LGPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2023 elementary, Inc. (https://elementary.io)
+ *
+ * Authored by: Leonhard Kargl <leo.kargl@proton.me>
  */
 
 public class Audience.HeaderBar : Gtk.Box {
