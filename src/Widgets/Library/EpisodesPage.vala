@@ -168,10 +168,8 @@ public class Audience.EpisodesPage : Gtk.Box {
 
             var playback_manager = PlaybackManager.get_default ();
             playback_manager.clear_playlist ();
-            playback_manager.append_to_playlist (video.video_file);
 
-            var window = App.get_instance ().mainwindow;
-            window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
+            string[] videos = { uri };
 
             if (settings.get_boolean ("autoqueue-next")) {
                 // Add next from the current view to the queue
@@ -179,9 +177,14 @@ public class Audience.EpisodesPage : Gtk.Box {
                 items.find (selected, out played_index);
                 for (played_index++; played_index < items.get_n_items (); played_index++) {
                     var library_item = (LibraryItem)items.get_item (played_index);
-                    playback_manager.append_to_playlist (library_item.video.video_file);
+                    videos += library_item.video.video_file.get_uri ();
                 }
             }
+
+            playback_manager.append_to_playlist (videos);
+
+            var window = App.get_instance ().mainwindow;
+            window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
         }
     }
 

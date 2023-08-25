@@ -76,8 +76,11 @@ namespace Audience {
             append (overlay);
 
             map.connect (() => {
+                update_actions_enabled (true);
                 navigation_button.label = ((Window)get_root ()).get_adjacent_page_name ();
             });
+
+            unmap.connect (() => update_actions_enabled (false));
 
             navigation_button.clicked.connect (() => {
                 ((Adw.Leaflet)get_ancestor (typeof (Adw.Leaflet))).navigate (Adw.NavigationDirection.BACK);
@@ -115,6 +118,13 @@ namespace Audience {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
                 ((SimpleAction) play_pause_action).activate (null);
             });
+        }
+
+        private void update_actions_enabled (bool enabled) {
+            unowned var application = Application.get_default ();
+            ((SimpleAction) application.lookup_action (Audience.App.ACTION_NEXT)).set_enabled (enabled);
+            ((SimpleAction) application.lookup_action (Audience.App.ACTION_PLAY_PAUSE)).set_enabled (enabled);
+            ((SimpleAction) application.lookup_action (Audience.App.ACTION_PREVIOUS)).set_enabled (enabled);
         }
 
         public void seek_jump_seconds (int seconds) {

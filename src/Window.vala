@@ -146,18 +146,24 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         var playback_manager = PlaybackManager.get_default ();
 
-        //playlist wants us to open a file
-        playback_manager.play.connect ((file) => {
-            open_files ({ File.new_for_uri (file.get_uri ()) });
+        playback_manager.play_queue.items_changed.connect ((pos, removed, added) => {
+            if (playback_manager.play_queue.get_n_items () == 1) {
+                return;
+            }
+
+            app_notification.set_default_action (null);
+
+            if (added == 1) {
+                var title = Audience.get_title (playback_manager.play_queue.get_string (pos));
+                app_notification.title = _("“%s” added to playlist").printf (title);
+                app_notification.send_notification ();
+            } else if (added > 1) {
+                app_notification.title = ngettext ("%u item added to playlist", "%u items added to playlist", added).printf (added);
+                app_notification.send_notification ();
+            }
         });
 
         playback_manager.ended.connect (on_player_ended);
-
-        playback_manager.item_added.connect ((item_title) => {
-            app_notification.title = _("“%s” added to playlist").printf (item_title);
-            app_notification.set_default_action (null);
-            app_notification.send_notification ();
-        });
 
         var key_controller = new Gtk.EventControllerKey ();
         overlay.add_controller (key_controller);
@@ -300,17 +306,18 @@ public class Audience.Window : Gtk.ApplicationWindow {
         }
 
         string[] videos = {};
+
         foreach (var file in files) {
             if (file.query_file_type (0) == FileType.DIRECTORY) {
                 Audience.recurse_over_dir (file, (file_ret) => {
-                    PlaybackManager.get_default ().append_to_playlist (file);
                     videos += file_ret.get_uri ();
                 });
             } else {
-                PlaybackManager.get_default ().append_to_playlist (file);
                 videos += file.get_uri ();
             }
         }
+
+        PlaybackManager.get_default ().append_to_playlist (videos);
 
         if (force_play && videos.length > 0) {
             string videofile = videos [0];
