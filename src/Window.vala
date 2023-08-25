@@ -87,15 +87,10 @@ public class Audience.Window : Gtk.ApplicationWindow {
             }
         });
 
-        var welcome_page_header_bar = new Gtk.HeaderBar () {
-            show_title_buttons = true
-        };
-        welcome_page_header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
-
         var welcome_page = new WelcomePage ();
 
         welcome_page_box = new Gtk.Box (VERTICAL, 0);
-        welcome_page_box.append (welcome_page_header_bar);
+        welcome_page_box.append (new HeaderBar ());
         welcome_page_box.append (welcome_page);
         welcome_page_box.add_css_class (Granite.STYLE_CLASS_VIEW);
 
@@ -187,12 +182,10 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     private void action_fullscreen () {
-        if (leaflet.visible_child == player_page) {
-            if (fullscreened) {
-                unfullscreen ();
-            } else {
-                fullscreen ();
-            }
+        if (fullscreened) {
+            unfullscreen ();
+        } else {
+            fullscreen ();
         }
     }
 
@@ -411,14 +404,16 @@ public class Audience.Window : Gtk.ApplicationWindow {
         PlaybackManager.get_default ().play_file (uri, from_beginning);
     }
 
-    public string get_adjacent_page_name () {
+    public string? get_adjacent_page_name () {
         var previous_child = leaflet.get_adjacent_child (Adw.NavigationDirection.BACK);
         if (previous_child == episodes_page) {
             return _("Episodes");
         } else if (previous_child == library_page) {
             return _("Library");
-        } else {
+        } else if (previous_child == welcome_page_box) {
             return _("Back");
+        } else {
+            return null;
         }
     }
 
