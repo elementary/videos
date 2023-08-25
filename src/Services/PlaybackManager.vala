@@ -252,7 +252,7 @@ public class Audience.PlaybackManager : Object {
             }
         }
 
-        play_queue.splice (play_queue.get_n_items () > 0 ? play_queue.get_n_items () - 1 : 0, 0, uris_to_queue);
+        play_queue.splice (play_queue.get_n_items (), 0, uris_to_queue);
     }
 
     public void save_playlist () {
