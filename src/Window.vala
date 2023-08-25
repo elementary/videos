@@ -237,6 +237,14 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     public void handle_key_press (uint keyval, uint keycode, Gdk.ModifierType state) {
+        if (keyval == Gdk.Key.Escape) {
+            if (fullscreened) {
+                unfullscreen ();
+            } else {
+                destroy ();
+            }
+        }
+
         if (leaflet.visible_child == player_page) {
             if (match_keycode (Gdk.Key.space, keycode) || match_keycode (Gdk.Key.p, keycode)) {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
@@ -249,13 +257,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
             bool shift_pressed = SHIFT_MASK in state;
             switch (keyval) {
-                case Gdk.Key.Escape:
-                    if (fullscreened) {
-                        unfullscreen ();
-                    } else {
-                        destroy ();
-                    }
-                    break;
                 case Gdk.Key.Down:
                     player_page.seek_jump_seconds (shift_pressed ? -5 : -60);
                     break;
