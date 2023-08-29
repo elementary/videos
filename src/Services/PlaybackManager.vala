@@ -17,6 +17,12 @@ public class Audience.PlaybackManager : Object {
 
     public Gtk.StringList play_queue { get; private set; }
 
+    public enum RepeatMode {
+        DISABLED,
+        ALL,
+        ONE
+    }
+
     private dynamic Gst.Element playbin;
     private bool is_seeking = false;
     private int64 queued_seek = -1;
@@ -99,15 +105,19 @@ public class Audience.PlaybackManager : Object {
 
         switch (message.type) {
             case EOS:
-                var repeat_action = default_application.lookup_action (Audience.App.ACTION_REPEAT);
-                if (repeat_action.get_state ().get_boolean ()) {
-                    play_file (play_queue.get_string (0));
+                var repeat_mode = (RepeatMode) settings.get_enum ("repeat-mode");
+                if (repeat_mode == ONE) {
+                    play_file (playbin.current_uri);
                 } else if (!next ()) {
-                    playbin.set_state (Gst.State.NULL);
-                    settings.set_int64 ("last-stopped", 0);
-                    position = 0;
-                    duration = 0;
-                    ended ();
+                    if (repeat_mode == ALL) {
+                        play_file (play_queue.get_string (0));
+                    } else {
+                        playbin.set_state (Gst.State.NULL);
+                        settings.set_int64 ("last-stopped", 0);
+                        position = 0;
+                        duration = 0;
+                        ended ();
+                    }
                 }
                 break;
 
