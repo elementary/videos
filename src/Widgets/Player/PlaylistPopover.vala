@@ -22,6 +22,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
 
     private Gtk.ListBox playlist;
     private Gtk.Button dvd;
+    private Gtk.Button repeat_button;
 
     construct {
         var fil = new Gtk.Button.from_icon_name ("document-open-symbolic") {
@@ -36,11 +37,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             tooltip_text = _("Clear Playlist")
         };
 
-        var rep = new Gtk.ToggleButton () {
-            action_name = App.ACTION_PREFIX + App.ACTION_REPEAT,
-            icon_name = "media-playlist-no-repeat-symbolic",
-            tooltip_text = _("Enable Repeat")
-        };
+        repeat_button = new Gtk.Button ();
 
         var playback_manager = PlaybackManager.get_default ();
 
@@ -71,7 +68,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         grid.attach (fil, 0, 1);
         grid.attach (clear_playlist_button, 1, 1);
         grid.attach (dvd, 2, 1);
-        grid.attach (rep, 6, 1);
+        grid.attach (repeat_button, 6, 1);
 
         position = TOP;
         child = grid;
@@ -95,15 +92,12 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             PlaybackManager.get_default ().clear_playlist ();
         });
 
-        rep.toggled.connect ( () => {
-            /* app.repeat = rep.active; */
-            if (rep.active) {
-                rep.icon_name = "media-playlist-repeat-symbolic";
-                rep.tooltip_text = _("Disable Repeat");
-            } else {
-                rep.icon_name = "media-playlist-no-repeat-symbolic";
-                rep.tooltip_text = _("Enable Repeat");
-            }
+        settings.changed["repeat-mode"].connect (update_repeat_button);
+        update_repeat_button ();
+
+        repeat_button.clicked.connect ( () => {
+            var current = settings.get_enum ("repeat-mode");
+            settings.set_enum ("repeat-mode", current > 1 ? 0 : current + 1);
         });
 
         playback_manager.uri_changed.connect (set_current);
@@ -122,6 +116,23 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
             var window_height = ((Gtk.Application) Application.get_default ()).active_window.default_height;
             playlist_scrolled.set_max_content_height (window_height - HEIGHT_OFFSET);
         });
+    }
+
+    private void update_repeat_button () {
+        switch ((PlaybackManager.RepeatMode) settings.get_enum ("repeat-mode")) {
+            case DISABLED:
+                repeat_button.icon_name = "media-playlist-no-repeat-symbolic";
+                repeat_button.tooltip_text = _("Repeat None");
+                break;
+            case ALL:
+                repeat_button.icon_name = "media-playlist-repeat-symbolic";
+                repeat_button.tooltip_text = _("Repeat All");
+                break;
+            case ONE:
+                repeat_button.icon_name = "media-playlist-repeat-song-symbolic";
+                repeat_button.tooltip_text = _("Repeat One");
+                break;
+        }
     }
 
     private void set_dvd_visibility (bool visible) {

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-25 16:52+0000\n"
+"POT-Creation-Date: 2023-08-29 17:07+0000\n"
 "PO-Revision-Date: 2017-05-30 19:54+0000\n"
 "Last-Translator: Sergiu <sergiup26@gmail.com>\n"
 "Language-Team: Romanian <https://l10n.elementary.io/projects/videos/videos/"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:105 src/Window.vala:442
+#: src/Application.vala:103 src/Window.vala:442
 msgid "Videos"
 msgstr "Fişiere video"
 
@@ -83,7 +83,7 @@ msgstr "Librărie"
 msgid "Back"
 msgstr "Înapoi"
 
-#: src/Services/PlaybackManager.vala:142
+#: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr ""
 
@@ -115,7 +115,7 @@ msgstr "Nici un video deschis"
 msgid "Select a source to begin playing."
 msgstr "Selectează o sursă pentru a începe redarea."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:28
+#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
 msgstr "Deschidere fișier"
 
@@ -127,7 +127,7 @@ msgstr "Deschide un fişier salvat."
 msgid "Replay last video"
 msgstr "Redă din nou ultimul video"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:32
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "Redă de pe disc"
 
@@ -200,19 +200,22 @@ msgstr "Setări"
 msgid "Pause"
 msgstr "Pauză"
 
-#: src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/Player/PlaylistPopover.vala:37
 #, fuzzy
 msgid "Clear Playlist"
 msgstr "Listă redare"
 
-#: src/Widgets/Player/PlaylistPopover.vala:42
-#: src/Widgets/Player/PlaylistPopover.vala:105
-msgid "Enable Repeat"
-msgstr "Acitvează Repetarea"
+#: src/Widgets/Player/PlaylistPopover.vala:125
+msgid "Repeat None"
+msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:102
-msgid "Disable Repeat"
-msgstr "Dezactivare repetare"
+#: src/Widgets/Player/PlaylistPopover.vala:129
+msgid "Repeat All"
+msgstr ""
+
+#: src/Widgets/Player/PlaylistPopover.vala:133
+msgid "Repeat One"
+msgstr ""
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
@@ -245,6 +248,12 @@ msgstr "Pista %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "Implicit"
+
+#~ msgid "Enable Repeat"
+#~ msgstr "Acitvează Repetarea"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "Dezactivare repetare"
 
 #~ msgid "Unfullscreen"
 #~ msgstr "Ieși din ecran complet"

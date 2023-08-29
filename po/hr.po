@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-25 16:52+0000\n"
+"POT-Creation-Date: 2023-08-29 17:07+0000\n"
 "PO-Revision-Date: 2017-01-20 11:38+0000\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
-#: src/Application.vala:105 src/Window.vala:442
+#: src/Application.vala:103 src/Window.vala:442
 msgid "Videos"
 msgstr "Snimke"
 
@@ -79,7 +79,7 @@ msgstr "Videoteka"
 msgid "Back"
 msgstr "Natrag"
 
-#: src/Services/PlaybackManager.vala:142
+#: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr ""
 
@@ -111,7 +111,7 @@ msgstr "Nema otvorenih video snimaka"
 msgid "Select a source to begin playing."
 msgstr "Odaberi izvor za početak reprodukcije."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:28
+#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
 msgstr "Otvori datoteku"
 
@@ -123,7 +123,7 @@ msgstr "Otvori spremljenu datoteku."
 msgid "Replay last video"
 msgstr "Reproduciraj posljednju video snimku"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:32
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "Reproduciraj s diska"
 
@@ -196,19 +196,22 @@ msgstr "Postavke"
 msgid "Pause"
 msgstr "Pauziraj"
 
-#: src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/Player/PlaylistPopover.vala:37
 #, fuzzy
 msgid "Clear Playlist"
 msgstr "Popis izvođenja"
 
-#: src/Widgets/Player/PlaylistPopover.vala:42
-#: src/Widgets/Player/PlaylistPopover.vala:105
-msgid "Enable Repeat"
-msgstr "Omogući ponavljanje"
+#: src/Widgets/Player/PlaylistPopover.vala:125
+msgid "Repeat None"
+msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:102
-msgid "Disable Repeat"
-msgstr "Onemogući ponavljanje"
+#: src/Widgets/Player/PlaylistPopover.vala:129
+msgid "Repeat All"
+msgstr ""
+
+#: src/Widgets/Player/PlaylistPopover.vala:133
+msgid "Repeat One"
+msgstr ""
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
@@ -241,6 +244,12 @@ msgstr "Zapis %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "Uobičajen"
+
+#~ msgid "Enable Repeat"
+#~ msgstr "Omogući ponavljanje"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "Onemogući ponavljanje"
 
 #~ msgid "Unfullscreen"
 #~ msgstr "Napusti cijelozaslonski prikaz"
