@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-25 16:52+0000\n"
-"PO-Revision-Date: 2023-07-20 03:14+0000\n"
+"PO-Revision-Date: 2023-08-28 00:08+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://l10n.elementary.io/projects/videos/videos/fi/"
 ">\n"
@@ -39,12 +39,11 @@ msgid "“%s” added to playlist"
 msgstr "“%s” lisätty soittolistalle"
 
 #: src/Window.vala:161
-#, fuzzy, c-format
-#| msgid "“%s” added to playlist"
+#, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
-msgstr[0] "“%s” lisätty soittolistalle"
-msgstr[1] "“%s” lisätty soittolistalle"
+msgstr[0] "%u kohde lisätty soittolistalle"
+msgstr[1] "%u kohdetta lisätty soittolistalle"
 
 #: src/Window.vala:348 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
