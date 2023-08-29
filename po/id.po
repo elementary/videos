@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-25 16:52+0000\n"
+"POT-Creation-Date: 2023-08-29 17:07+0000\n"
 "PO-Revision-Date: 2023-05-23 19:06+0000\n"
 "Last-Translator: Faisal Rachmadin <frachmadin@users.noreply.l10n.elementary."
 "io>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:105 src/Window.vala:442
+#: src/Application.vala:103 src/Window.vala:442
 msgid "Videos"
 msgstr "Video"
 
@@ -80,7 +80,7 @@ msgstr "Perpustakaan"
 msgid "Back"
 msgstr "Kembali"
 
-#: src/Services/PlaybackManager.vala:142
+#: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr "Sebuah video sedang diputar"
 
@@ -114,7 +114,7 @@ msgstr "Tidak Ada Video Terbuka"
 msgid "Select a source to begin playing."
 msgstr "Pilih sumber untuk mulai memutar."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:28
+#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
 msgstr "Buka berkas"
 
@@ -126,7 +126,7 @@ msgstr "Buka berkas tersimpan."
 msgid "Replay last video"
 msgstr "Putar ulang video terakhir"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:32
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "Putar dari Cakram"
 
@@ -198,18 +198,21 @@ msgstr "Pengaturan"
 msgid "Pause"
 msgstr "Jeda"
 
-#: src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/Player/PlaylistPopover.vala:37
 msgid "Clear Playlist"
 msgstr "Bersihkan Daftar Putar"
 
-#: src/Widgets/Player/PlaylistPopover.vala:42
-#: src/Widgets/Player/PlaylistPopover.vala:105
-msgid "Enable Repeat"
-msgstr "Aktifkan Ulangi"
+#: src/Widgets/Player/PlaylistPopover.vala:125
+msgid "Repeat None"
+msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:102
-msgid "Disable Repeat"
-msgstr "Nonaktifkan Ulangi"
+#: src/Widgets/Player/PlaylistPopover.vala:129
+msgid "Repeat All"
+msgstr ""
+
+#: src/Widgets/Player/PlaylistPopover.vala:133
+msgid "Repeat One"
+msgstr ""
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
@@ -242,6 +245,12 @@ msgstr "Trek %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "Bawaan"
+
+#~ msgid "Enable Repeat"
+#~ msgstr "Aktifkan Ulangi"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "Nonaktifkan Ulangi"
 
 #~ msgid "Unfullscreen"
 #~ msgstr "Tidak layar penuh"

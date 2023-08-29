@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-25 16:52+0000\n"
+"POT-Creation-Date: 2023-08-29 17:07+0000\n"
 "PO-Revision-Date: 2020-02-23 10:08+0000\n"
 "Last-Translator: gkkulik <g.kulik@o2.pl>\n"
 "Language-Team: Silesian <https://l10n.elementary.io/projects/videos/videos/"
@@ -14,7 +14,7 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#: src/Application.vala:105 src/Window.vala:442
+#: src/Application.vala:103 src/Window.vala:442
 msgid "Videos"
 msgstr "Filmy"
 
@@ -76,7 +76,7 @@ msgstr "Bibliotyka"
 msgid "Back"
 msgstr "Nazod"
 
-#: src/Services/PlaybackManager.vala:142
+#: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr ""
 
@@ -110,7 +110,7 @@ msgstr "Brak ôtwartych filmōw"
 msgid "Select a source to begin playing."
 msgstr "Ôbier zdrzōdło do granio."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:28
+#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
 msgstr "Ôtwōrz zbiōr"
 
@@ -122,7 +122,7 @@ msgstr "Ôtwōrz zapisany zbiōr."
 msgid "Replay last video"
 msgstr "Grej na nowo ôstatni film"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:32
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "Grej z dysku"
 
@@ -194,18 +194,21 @@ msgstr "Sztelōnki"
 msgid "Pause"
 msgstr "Pauza"
 
-#: src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/Player/PlaylistPopover.vala:37
 msgid "Clear Playlist"
 msgstr "Wysnoż playlista"
 
-#: src/Widgets/Player/PlaylistPopover.vala:42
-#: src/Widgets/Player/PlaylistPopover.vala:105
-msgid "Enable Repeat"
-msgstr "Powtorzej"
+#: src/Widgets/Player/PlaylistPopover.vala:125
+msgid "Repeat None"
+msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:102
-msgid "Disable Repeat"
-msgstr "Niy powtorzej"
+#: src/Widgets/Player/PlaylistPopover.vala:129
+msgid "Repeat All"
+msgstr ""
+
+#: src/Widgets/Player/PlaylistPopover.vala:133
+msgid "Repeat One"
+msgstr ""
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
@@ -238,6 +241,12 @@ msgstr "Drōga %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "Wychodne"
+
+#~ msgid "Enable Repeat"
+#~ msgstr "Powtorzej"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "Niy powtorzej"
 
 #~ msgid "Unfullscreen"
 #~ msgstr "Zastow połny ekran"
