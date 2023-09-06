@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-25 16:52+0000\n"
-"PO-Revision-Date: 2023-07-09 18:33+0000\n"
+"POT-Creation-Date: 2023-08-29 17:07+0000\n"
+"PO-Revision-Date: 2023-08-31 14:08+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/videos/videos/"
 "uk/>\n"
@@ -16,12 +16,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:105 src/Window.vala:442
+#: src/Application.vala:103 src/Window.vala:442
 msgid "Videos"
 msgstr "Відео"
 
@@ -40,13 +40,12 @@ msgid "“%s” added to playlist"
 msgstr "«%s» додано в добірку"
 
 #: src/Window.vala:161
-#, fuzzy, c-format
-#| msgid "“%s” added to playlist"
+#, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
-msgstr[0] "«%s» додано в добірку"
-msgstr[1] "«%s» додано в добірку"
-msgstr[2] "«%s» додано в добірку"
+msgstr[0] "%u елемент додано в добірку"
+msgstr[1] "%u елементи додано в добірку"
+msgstr[2] "%u елементів додано в добірку"
 
 #: src/Window.vala:348 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
@@ -84,7 +83,7 @@ msgstr "Бібліотека"
 msgid "Back"
 msgstr "Назад"
 
-#: src/Services/PlaybackManager.vala:142
+#: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr "Відео відтворюється"
 
@@ -118,7 +117,7 @@ msgstr "Немає відкритих відео"
 msgid "Select a source to begin playing."
 msgstr "Виберіть джерело для початку програвання."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:28
+#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
 msgstr "Відкрити файл"
 
@@ -130,7 +129,7 @@ msgstr "Відкрити збережений файл."
 msgid "Replay last video"
 msgstr "Повторити останнє відео"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:32
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "Відтворити з диску"
 
@@ -202,18 +201,21 @@ msgstr "Налаштування"
 msgid "Pause"
 msgstr "Пауза"
 
-#: src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/Player/PlaylistPopover.vala:37
 msgid "Clear Playlist"
 msgstr "Очистити добірку"
 
-#: src/Widgets/Player/PlaylistPopover.vala:42
-#: src/Widgets/Player/PlaylistPopover.vala:105
-msgid "Enable Repeat"
-msgstr "Увімкнути повторення"
+#: src/Widgets/Player/PlaylistPopover.vala:125
+msgid "Repeat None"
+msgstr "Не повторювати"
 
-#: src/Widgets/Player/PlaylistPopover.vala:102
-msgid "Disable Repeat"
-msgstr "Вимкнути повторення"
+#: src/Widgets/Player/PlaylistPopover.vala:129
+msgid "Repeat All"
+msgstr "Повторювати все"
+
+#: src/Widgets/Player/PlaylistPopover.vala:133
+msgid "Repeat One"
+msgstr "Повторювати одне"
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
@@ -246,6 +248,12 @@ msgstr "Доріжка %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "Типово"
+
+#~ msgid "Enable Repeat"
+#~ msgstr "Увімкнути повторення"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "Вимкнути повторення"
 
 #~ msgid "Unfullscreen"
 #~ msgstr "Вийти з повноекранного режиму"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-25 16:52+0000\n"
+"POT-Creation-Date: 2023-08-29 17:07+0000\n"
 "PO-Revision-Date: 2022-08-06 09:31+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/videos/videos/ko/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:105 src/Window.vala:442
+#: src/Application.vala:103 src/Window.vala:442
 msgid "Videos"
 msgstr "비디오"
 
@@ -80,7 +80,7 @@ msgstr "라이브러리"
 msgid "Back"
 msgstr "뒤로"
 
-#: src/Services/PlaybackManager.vala:142
+#: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr "비디오 재생 중"
 
@@ -114,7 +114,7 @@ msgstr "비디오를 실행 중이지 않음"
 msgid "Select a source to begin playing."
 msgstr "보고 싶은 비디오를 선택하세요."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:28
+#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
 msgstr "파일 열기"
 
@@ -126,7 +126,7 @@ msgstr "저장된 파일을 엽니다."
 msgid "Replay last video"
 msgstr "마지막 비디오 다시 재생"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:32
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "디스크 롬 재생하기"
 
@@ -198,18 +198,21 @@ msgstr "설정"
 msgid "Pause"
 msgstr "일시정지"
 
-#: src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/Player/PlaylistPopover.vala:37
 msgid "Clear Playlist"
 msgstr "재생목록 비우기"
 
-#: src/Widgets/Player/PlaylistPopover.vala:42
-#: src/Widgets/Player/PlaylistPopover.vala:105
-msgid "Enable Repeat"
-msgstr "반복 설정"
+#: src/Widgets/Player/PlaylistPopover.vala:125
+msgid "Repeat None"
+msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:102
-msgid "Disable Repeat"
-msgstr "반복 해제"
+#: src/Widgets/Player/PlaylistPopover.vala:129
+msgid "Repeat All"
+msgstr ""
+
+#: src/Widgets/Player/PlaylistPopover.vala:133
+msgid "Repeat One"
+msgstr ""
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
@@ -242,6 +245,12 @@ msgstr "트랙 %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "기본"
+
+#~ msgid "Enable Repeat"
+#~ msgstr "반복 설정"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "반복 해제"
 
 #~ msgid "Unfullscreen"
 #~ msgstr "전체화면 해제"

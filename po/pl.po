@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-25 16:52+0000\n"
-"PO-Revision-Date: 2023-07-09 18:33+0000\n"
+"POT-Creation-Date: 2023-08-29 17:07+0000\n"
+"PO-Revision-Date: 2023-08-29 17:11+0000\n"
 "Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/videos/videos/pl/"
 ">\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:105 src/Window.vala:442
+#: src/Application.vala:103 src/Window.vala:442
 msgid "Videos"
 msgstr "Filmy"
 
@@ -40,13 +40,12 @@ msgid "“%s” added to playlist"
 msgstr "„%s” dodane do playlisty"
 
 #: src/Window.vala:161
-#, fuzzy, c-format
-#| msgid "“%s” added to playlist"
+#, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
-msgstr[0] "„%s” dodane do playlisty"
-msgstr[1] "„%s” dodane do playlisty"
-msgstr[2] "„%s” dodane do playlisty"
+msgstr[0] "%u pozycja dodana playlisty"
+msgstr[1] "%u pozycje dodane do playlisty"
+msgstr[2] "%u pozycji dodanych do playlisty"
 
 #: src/Window.vala:348 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
@@ -84,7 +83,7 @@ msgstr "Biblioteka"
 msgid "Back"
 msgstr "Powrót"
 
-#: src/Services/PlaybackManager.vala:142
+#: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr "Film jest odtwarzany"
 
@@ -118,7 +117,7 @@ msgstr "Brak aktualnie otwartych plików wideo"
 msgid "Select a source to begin playing."
 msgstr "Wybierz źródło do odtworzenia."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:28
+#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
 msgstr "Otwórz plik"
 
@@ -130,7 +129,7 @@ msgstr "Otwórz zapisany plik."
 msgid "Replay last video"
 msgstr "Odtwórz ponownie ostatnie wideo"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:32
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "Odtwarzaj z dysku"
 
@@ -202,18 +201,21 @@ msgstr "Ustawienia"
 msgid "Pause"
 msgstr "Pauza"
 
-#: src/Widgets/Player/PlaylistPopover.vala:36
+#: src/Widgets/Player/PlaylistPopover.vala:37
 msgid "Clear Playlist"
 msgstr "Wyczyść listę odtwarzania"
 
-#: src/Widgets/Player/PlaylistPopover.vala:42
-#: src/Widgets/Player/PlaylistPopover.vala:105
-msgid "Enable Repeat"
-msgstr "Włącza powtarzanie nagrania"
+#: src/Widgets/Player/PlaylistPopover.vala:125
+msgid "Repeat None"
+msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:102
-msgid "Disable Repeat"
-msgstr "Wyłącza powtarzanie nagrania"
+#: src/Widgets/Player/PlaylistPopover.vala:129
+msgid "Repeat All"
+msgstr ""
+
+#: src/Widgets/Player/PlaylistPopover.vala:133
+msgid "Repeat One"
+msgstr ""
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
@@ -246,6 +248,12 @@ msgstr "Ścieżka %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "Domyślne"
+
+#~ msgid "Enable Repeat"
+#~ msgstr "Włącza powtarzanie nagrania"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "Wyłącza powtarzanie nagrania"
 
 #~ msgid "Unfullscreen"
 #~ msgstr "Wyłącz pełny ekran"
