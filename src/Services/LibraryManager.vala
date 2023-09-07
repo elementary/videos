@@ -36,6 +36,9 @@ namespace Audience.Services {
         public bool has_items { get; private set; }
         public bool is_scanning { get; private set; }
 
+        public ListStore library_items { get; construct; } // Has toplevel items i.e. shows and standalone videos
+
+        private HashTable<string, Objects.Show> shows;
         private Gee.ArrayList<string> poster_hash;
         private Gee.ArrayList<DirectoryMonitoring> monitoring_directories;
         private Gee.Queue<string> unchecked_directories;
@@ -51,10 +54,9 @@ namespace Audience.Services {
             return instance;
         }
 
-        private LibraryManager () {
-        }
-
         construct {
+            library_items = new ListStore (typeof (Objects.LibraryInterface));
+            shows = new HashTable<string, Objects.Show> (str_hash, str_equal);
             trashed_files = new Gee.ArrayList<string> ();
             poster_hash = new Gee.ArrayList<string> ();
             monitoring_directories = new Gee.ArrayList<DirectoryMonitoring> ();
@@ -160,7 +162,21 @@ namespace Audience.Services {
             if (name == "") {
                 name = file_info.get_name ();
             }
+
             var video = new Audience.Objects.Video (source, name, file_info.get_content_type ());
+
+            if (video.show_name != null) {
+                print ("Show name not null: %s\n", video.show_name);
+                if (!(video.show_name in shows)) {
+                    shows[video.show_name] = new Objects.Show (video.show_name);
+                    library_items.append (shows[video.show_name]);
+                }
+                shows[video.show_name].add_video (video);
+            } else {
+                print ("Show name is null!\n");
+                library_items.append (video);
+            }
+
             video_file_detected (video);
             poster_hash.add (video.hash_file_poster + ".jpg");
             poster_hash.add (video.hash_episode_poster + ".jpg");

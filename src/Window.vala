@@ -78,7 +78,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
         library_page = LibraryPage.get_instance ();
 
         library_page.show_episodes.connect ((item, setup_only) => {
-            episodes_page.set_episodes_items (item.episodes);
+            episodes_page.set_show (item);
             if (!setup_only) {
                 leaflet.append (episodes_page);
                 leaflet.visible_child = episodes_page;

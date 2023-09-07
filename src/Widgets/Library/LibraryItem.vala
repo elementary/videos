@@ -133,14 +133,15 @@ public class Audience.LibraryItem : Gtk.Box {
         //     title_label.halign = START;
         // }
 
-        // orientation = VERTICAL;
-        // spacing = 12;
-        // hexpand = true;
-        // vexpand = true;
-        // margin_top = 12;
-        // margin_bottom = 12;
-        // margin_start = 12;
-        // margin_end = 12;
+        orientation = VERTICAL;
+        spacing = 12;
+        hexpand = true;
+        vexpand = true;
+        margin_top = 12;
+        margin_bottom = 12;
+        margin_start = 12;
+        margin_end = 12;
+        append (new Gtk.Label ("test"));
 
         // var gesture_click = new Gtk.GestureClick () {
         //     button = Gdk.BUTTON_SECONDARY

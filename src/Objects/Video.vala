@@ -18,7 +18,7 @@
  *
  */
 
-public class Audience.Objects.Video : Object {
+public class Audience.Objects.Video : Object, LibraryInterface {
     public signal void poster_changed (Video sender);
     public signal void title_changed (Video sender);
     public signal void trashed ();
@@ -27,6 +27,9 @@ public class Audience.Objects.Video : Object {
     public string file { get; construct; }
     public string mime_type { get; construct; }
 
+    // public Gdk.Paintable poster { get; set; }
+    // public string uri { get; set; }
+
     public File video_file { get; private set; }
     public bool poster_initialized { get; private set; default = false; }
     public Gdk.Pixbuf? poster { get; private set; default = null; }
@@ -34,7 +37,8 @@ public class Audience.Objects.Video : Object {
     public string hash_episode_poster { get; private set; }
     public string hash_file_poster { get; private set; }
     public string poster_cache_file { get; private set; }
-    public string title { get; private set; }
+    public string title { get; construct; }
+    public string? show_name { get; construct; default = null; }
 
     private Audience.Services.LibraryManager manager;
     private string thumbnail_large_path;
@@ -60,6 +64,7 @@ public class Audience.Objects.Video : Object {
 
         if (directory != Environment.get_user_special_dir (UserDirectory.VIDEOS)) {
             container = Path.get_basename (directory);
+            show_name = container;
         }
 
         hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, video_file.get_uri (), video_file.get_uri ().length);

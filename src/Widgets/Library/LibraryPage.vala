@@ -19,7 +19,7 @@
  */
 
 public class Audience.LibraryPage : Gtk.Box {
-    public signal void show_episodes (Audience.LibraryItem item, bool setup_only = false);
+    public signal void show_episodes (Objects.Show show, bool setup_only = false);
 
     public bool has_items {
         get {
@@ -62,15 +62,20 @@ public class Audience.LibraryPage : Gtk.Box {
         header_bar.pack_end (search_entry);
         header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
 
-        items = new ListStore (typeof (LibraryItem));
-        var filter_model = new Gtk.FilterListModel (items, new Gtk.CustomFilter (video_filter_func));
+        items = new ListStore (typeof (Objects.Video));
+        var filter_model = new Gtk.FilterListModel (Services.LibraryManager.get_instance ().library_items, new Gtk.CustomFilter (video_filter_func));
         var selection_model = new Gtk.NoSelection (filter_model);
 
         var factory = new Gtk.SignalListItemFactory ();
 
+        factory.setup.connect ((obj) => {
+            var item = (Gtk.ListItem) obj;
+            item.child = new LibraryWidgetItem ();
+        });
+
         factory.bind.connect ((obj) => {
             var item = (Gtk.ListItem) obj;
-            item.child = (LibraryItem) item.item;
+            ((LibraryWidgetItem) item.child).bind_video ((Objects.LibraryInterface) item.item);
         });
 
         view_movies = new Gtk.GridView (selection_model, factory) {
@@ -144,10 +149,11 @@ public class Audience.LibraryPage : Gtk.Box {
     }
 
     private void play_video (uint position) {
-        var selected = (LibraryItem) items.get_item (position);
+        var selected = (Objects.LibraryInterface) Services.LibraryManager.get_instance ().library_items.get_item (position);
+        print (selected.get_type ().name ());
 
-        if (selected.episodes.size == 1) {
-            string uri = selected.episodes.first ().video_file.get_uri ();
+        if (selected.get_type () == typeof (Objects.Video)) {
+            string uri = ((Objects.Video) selected).video_file.get_uri ();
             bool same_video = uri == settings.get_string ("current-video");
             bool playback_complete = settings.get_int64 ("last-stopped") == 0.0;
             bool from_beginning = !same_video || playback_complete;
@@ -161,21 +167,37 @@ public class Audience.LibraryPage : Gtk.Box {
             var window = (Audience.Window) ((Gtk.Application) Application.get_default ()).active_window;
             window.play_file (uri, Window.NavigationPage.LIBRARY, from_beginning);
         } else {
-            show_episodes (selected);
+            show_episodes ((Objects.Show) selected);
         }
+        // if (selected.episodes.size == 1) {
+        //     string uri = selected.episodes.first ().video_file.get_uri ();
+        //     bool same_video = uri == settings.get_string ("current-video");
+        //     bool playback_complete = settings.get_int64 ("last-stopped") == 0.0;
+        //     bool from_beginning = !same_video || playback_complete;
+
+        //     if (from_beginning) {
+        //         PlaybackManager.get_default ().clear_playlist ();
+        //     }
+
+        //     PlaybackManager.get_default ().append_to_playlist (File.new_for_uri (uri));
+
+        //     var window = (Audience.Window) ((Gtk.Application) Application.get_default ()).active_window;
+        //     window.play_file (uri, Window.NavigationPage.LIBRARY, from_beginning);
+        // } else {
+        // }
     }
 
     public void add_item (Audience.Objects.Video video) {
-        for (int i = 0; i < items.get_n_items (); i++) {
-            var item = (LibraryItem)items.get_item (i);
-            if (video.container != "" && item.episodes.first ().container == video.container) {
-                item.add_episode (video);
-                items.sort (video_sort_func);
-                return;
-            }
-        }
+        // for (int i = 0; i < items.get_n_items (); i++) {
+        //     var item = (LibraryItem)items.get_item (i);
+        //     if (video.container != "" && item.episodes.first ().container == video.container) {
+        //         item.add_episode (video);
+        //         items.sort (video_sort_func);
+        //         return;
+        //     }
+        // }
 
-        var new_container = new Audience.LibraryItem (video, LibraryItemStyle.THUMBNAIL);
+        var new_container = video;
         items.insert_sorted (new_container, video_sort_func);
 
         if (posters_initialized) {
@@ -194,51 +216,51 @@ public class Audience.LibraryPage : Gtk.Box {
     }
 
     private async void remove_item_from_path (string path ) {
-        for (int i = 0; i < items.get_n_items (); i++) {
-            var item = (LibraryItem)items.get_item (i);
-            if (item.episodes.size == 0 || item.episodes.first ().video_file.get_path ().has_prefix (path)) {
-                remove_item.begin (item);
-            }
-        }
+        // for (int i = 0; i < items.get_n_items (); i++) {
+        //     var item = (LibraryItem)items.get_item (i);
+        //     if (item.episodes.size == 0 || item.episodes.first ().video_file.get_path ().has_prefix (path)) {
+        //         remove_item.begin (item);
+        //     }
+        // }
 
-        var leaflet = (Adw.Leaflet) get_ancestor (typeof (Adw.Leaflet));
-        if (leaflet.visible_child == this && items.get_n_items () == 0) {
-            leaflet.navigate (Adw.NavigationDirection.BACK);
-        }
+        // var leaflet = (Adw.Leaflet) get_ancestor (typeof (Adw.Leaflet));
+        // if (leaflet.visible_child == this && items.get_n_items () == 0) {
+        //     leaflet.navigate (Adw.NavigationDirection.BACK);
+        // }
     }
 
     private async void poster_initialisation () {
-        for (int i = 0; i < items.get_n_items (); i++) {
-            var item = (LibraryItem)items.get_item (i);
-            var first_episode = item.episodes.first ();
-            if (!first_episode.poster_initialized) {
-                first_episode.initialize_poster.begin ();
-            }
-        }
+        // for (int i = 0; i < items.get_n_items (); i++) {
+        //     var item = (LibraryItem)items.get_item (i);
+        //     var first_episode = item.episodes.first ();
+        //     if (!first_episode.poster_initialized) {
+        //         first_episode.initialize_poster.begin ();
+        //     }
+        // }
     }
 
     private bool video_filter_func (Object obj) {
-        if (search_entry.text.length == 0) {
-            return true;
-        }
+        // if (search_entry.text.length == 0) {
+        //     return true;
+        // }
 
-        string[] filter_elements = search_entry.text.split (" ");
-        var video_title = ((LibraryItem) obj).title;
+        // string[] filter_elements = search_entry.text.split (" ");
+        // var video_title = ((Video) obj).title;
 
-        foreach (string filter_element in filter_elements) {
-            if (!video_title.down ().contains (filter_element.down ())) {
-                return false;
-            }
-        }
+        // foreach (string filter_element in filter_elements) {
+        //     if (!video_title.down ().contains (filter_element.down ())) {
+        //         return false;
+        //     }
+        // }
         return true;
     }
 
     private int video_sort_func (Object item1, Object item2) {
-        var library_item1 = (LibraryItem)item1;
-        var library_item2 = (LibraryItem)item2;
-        if (library_item1 != null && library_item2 != null) {
-            return library_item1.title.collate (library_item2.title);
-        }
+        // var library_item1 = (LibraryItem)item1;
+        // var library_item2 = (LibraryItem)item2;
+        // if (library_item1 != null && library_item2 != null) {
+        //     return library_item1.title.collate (library_item2.title);
+        // }
 
         return 0;
     }
@@ -255,14 +277,14 @@ public class Audience.LibraryPage : Gtk.Box {
     }
 
     public bool has_child () {
-        for (int i = 0; i < items.get_n_items (); i++) {
-            var item = (LibraryItem)items.get_item (i);
-            if (item.get_child_visible ()) {
-                return true;
-            }
-        }
+        // for (int i = 0; i < items.get_n_items (); i++) {
+        //     var item = (LibraryItem)items.get_item (i);
+        //     if (item.get_child_visible ()) {
+        //         return true;
+        //     }
+        // }
 
-        return false;
+        return true;
     }
 
     public Audience.Window.NavigationPage prepare_to_play (string file) {
@@ -281,7 +303,7 @@ public class Audience.LibraryPage : Gtk.Box {
                         if (!first_episode.poster_initialized) {
                             first_episode.initialize_poster.begin ();
                         }
-                        show_episodes (item, true);
+                        // show_episodes (item, true);
                         return Window.NavigationPage.EPISODES;
                     } else {
                         return Window.NavigationPage.LIBRARY;
