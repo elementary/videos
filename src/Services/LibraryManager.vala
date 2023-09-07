@@ -59,7 +59,7 @@ namespace Audience.Services {
         construct {
             try {
                 discoverer = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (5 * Gst.SECOND));
-                discoverer.discovered.connect (create_new_video_object);
+                // discoverer.discovered.connect (create_new_video_object);
             } catch (Error e) {
                 warning (e.message);
             }
@@ -149,8 +149,7 @@ namespace Audience.Services {
 
                         if (is_file_valid (file_info)) {
                             var file = File.new_build_filename (source, file_info.get_name ());
-                            discoverer.discover_uri_async (file.get_uri ());
-                            // create_video_object (file_info, source);
+                            create_new_video_object (file);
                             videos_found = true;
                         }
                     }
@@ -164,6 +163,7 @@ namespace Audience.Services {
 
             finished ();
             is_scanning = false;
+            discoverer.stop ();
         }
 
         private bool is_file_valid (FileInfo file_info) {
@@ -171,21 +171,19 @@ namespace Audience.Services {
             return !file_info.get_is_hidden () && mime_type.contains ("video");
         }
 
-        private void create_new_video_object (Gst.PbUtils.DiscovererInfo info, Error? err) {
-            var file = File.new_for_uri (info.get_uri ());
-
+        private void create_new_video_object (File file) {
             var title = get_title (file.get_path ());
 
-            unowned Gst.TagList? tag_list = info.get_tags ();
-            if (tag_list == null) {
-                warning ("Tag list is null");
-            } else {
-                string? _title = null;
-                tag_list.get_string (Gst.Tags.TITLE, out _title);
-                if (_title != null) {
-                    title = _title;
-                }
-            }
+            // unowned Gst.TagList? tag_list = info.get_tags ();
+            // if (tag_list == null) {
+            //     warning ("Tag list is null");
+            // } else {
+            //     string? _title = null;
+            //     tag_list.get_string (Gst.Tags.TITLE, out _title);
+            //     if (_title != null) {
+            //         title = _title;
+            //     }
+            // }
 
             Objects.MediaItem? item = null;
             if (file.get_parent ().get_path () != Environment.get_user_special_dir (UserDirectory.VIDEOS)) {
