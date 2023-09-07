@@ -19,15 +19,14 @@
  */
 
 public class Audience.LibraryPage : Gtk.Box {
-    public signal void show_episodes (Objects.Show show, bool setup_only = false);
+    public signal void show_episodes (Objects.MediaItem item, bool setup_only = false);
 
     public bool has_items {
         get {
-            return items.get_n_items () > 0;
+            return view_movies.model.get_n_items () > 0;
         }
     }
 
-    private ListStore items;
     private Audience.Services.LibraryManager manager;
     private Gtk.SearchEntry search_entry;
     private Granite.Placeholder alert_view;
@@ -62,7 +61,6 @@ public class Audience.LibraryPage : Gtk.Box {
         header_bar.pack_end (search_entry);
         header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
 
-        items = new ListStore (typeof (Objects.Video));
         var filter_model = new Gtk.FilterListModel (Services.LibraryManager.get_instance ().library_items, new Gtk.CustomFilter (video_filter_func));
         var selection_model = new Gtk.NoSelection (filter_model);
 
@@ -70,12 +68,12 @@ public class Audience.LibraryPage : Gtk.Box {
 
         factory.setup.connect ((obj) => {
             var item = (Gtk.ListItem) obj;
-            item.child = new LibraryWidgetItem ();
+            item.child = new LibraryItem ();
         });
 
         factory.bind.connect ((obj) => {
             var item = (Gtk.ListItem) obj;
-            ((LibraryWidgetItem) item.child).bind_video ((Objects.LibraryInterface) item.item);
+            ((LibraryItem) item.child).bind ((Objects.MediaItem) item.item);
         });
 
         view_movies = new Gtk.GridView (selection_model, factory) {
@@ -149,11 +147,10 @@ public class Audience.LibraryPage : Gtk.Box {
     }
 
     private void play_video (uint position) {
-        var selected = (Objects.LibraryInterface) Services.LibraryManager.get_instance ().library_items.get_item (position);
-        print (selected.get_type ().name ());
+        var selected = (Objects.MediaItem) view_movies.model.get_item (position);
 
-        if (selected.get_type () == typeof (Objects.Video)) {
-            string uri = ((Objects.Video) selected).video_file.get_uri ();
+        if (selected.children.get_n_items () == 0) {
+            string uri = selected.uri;
             bool same_video = uri == settings.get_string ("current-video");
             bool playback_complete = settings.get_int64 ("last-stopped") == 0.0;
             bool from_beginning = !same_video || playback_complete;
@@ -167,7 +164,7 @@ public class Audience.LibraryPage : Gtk.Box {
             var window = (Audience.Window) ((Gtk.Application) Application.get_default ()).active_window;
             window.play_file (uri, Window.NavigationPage.LIBRARY, from_beginning);
         } else {
-            show_episodes ((Objects.Show) selected);
+            show_episodes (selected);
         }
         // if (selected.episodes.size == 1) {
         //     string uri = selected.episodes.first ().video_file.get_uri ();
@@ -197,22 +194,22 @@ public class Audience.LibraryPage : Gtk.Box {
         //     }
         // }
 
-        var new_container = video;
-        items.insert_sorted (new_container, video_sort_func);
+        // var new_container = video;
+        // items.insert_sorted (new_container, video_sort_func);
 
-        if (posters_initialized) {
-            video.initialize_poster.begin ();
-        }
+        // if (posters_initialized) {
+        //     video.initialize_poster.begin ();
+        // }
     }
 
     private async void remove_item (LibraryItem item) {
-        foreach (var video in item.episodes) {
-            manager.clear_cache.begin (video.poster_cache_file);
-        }
+        // foreach (var video in item.episodes) {
+        //     manager.clear_cache.begin (video.poster_cache_file);
+        // }
 
-        uint pos;
-        items.find (item, out pos);
-        items.remove (pos);
+        // uint pos;
+        // items.find (item, out pos);
+        // items.remove (pos);
     }
 
     private async void remove_item_from_path (string path ) {
@@ -240,35 +237,25 @@ public class Audience.LibraryPage : Gtk.Box {
     }
 
     private bool video_filter_func (Object obj) {
-        // if (search_entry.text.length == 0) {
-        //     return true;
-        // }
+        if (search_entry.text.length == 0) {
+            return true;
+        }
 
-        // string[] filter_elements = search_entry.text.split (" ");
-        // var video_title = ((Video) obj).title;
+        string[] filter_elements = search_entry.text.split (" ");
+        var video_title = ((Objects.MediaItem) obj).title;
 
-        // foreach (string filter_element in filter_elements) {
-        //     if (!video_title.down ().contains (filter_element.down ())) {
-        //         return false;
-        //     }
-        // }
+        foreach (string filter_element in filter_elements) {
+            if (!video_title.down ().contains (filter_element.down ())) {
+                return false;
+            }
+        }
         return true;
     }
 
-    private int video_sort_func (Object item1, Object item2) {
-        // var library_item1 = (LibraryItem)item1;
-        // var library_item2 = (LibraryItem)item2;
-        // if (library_item1 != null && library_item2 != null) {
-        //     return library_item1.title.collate (library_item2.title);
-        // }
-
-        return 0;
-    }
-
     public void filter () {
-        items.items_changed (0, items.get_n_items (), items.get_n_items ());
+        manager.library_items.items_changed (0, manager.library_items.get_n_items (), manager.library_items.get_n_items ());
 
-        if (!has_child ()) {
+        if (view_movies.model.get_n_items () == 0) {
             stack.visible_child = alert_view;
             alert_view.title = _("No Results for “%s”").printf (search_entry.text);
         } else {
@@ -284,33 +271,33 @@ public class Audience.LibraryPage : Gtk.Box {
         //     }
         // }
 
-        return true;
+        return view_movies.model.get_n_items () > 0;
     }
 
     public Audience.Window.NavigationPage prepare_to_play (string file) {
-        if (!File.new_for_uri (file).has_prefix (File.new_for_path (Environment.get_user_special_dir (UserDirectory.VIDEOS)))) {
-            return Window.NavigationPage.WELCOME;
-        }
+        // if (!File.new_for_uri (file).has_prefix (File.new_for_path (Environment.get_user_special_dir (UserDirectory.VIDEOS)))) {
+        //     return Window.NavigationPage.WELCOME;
+        // }
 
-        for (int i = 0; i < items.get_n_items (); i++) {
-            var item = (LibraryItem)items.get_item (i);
-            var episodes = item.episodes;
-            foreach (var episode in episodes) {
-                string ep_file = episode.video_file.get_uri ();
-                if (ep_file == file) {
-                    if (episodes.size > 1) {
-                        var first_episode = episodes.first ();
-                        if (!first_episode.poster_initialized) {
-                            first_episode.initialize_poster.begin ();
-                        }
-                        // show_episodes (item, true);
-                        return Window.NavigationPage.EPISODES;
-                    } else {
-                        return Window.NavigationPage.LIBRARY;
-                    }
-                }
-            }
-        }
+        // for (int i = 0; i < items.get_n_items (); i++) {
+        //     var item = (LibraryItem)items.get_item (i);
+        //     var episodes = item.episodes;
+        //     foreach (var episode in episodes) {
+        //         string ep_file = episode.video_file.get_uri ();
+        //         if (ep_file == file) {
+        //             if (episodes.size > 1) {
+        //                 var first_episode = episodes.first ();
+        //                 if (!first_episode.poster_initialized) {
+        //                     first_episode.initialize_poster.begin ();
+        //                 }
+        //                 // show_episodes (item, true);
+        //                 return Window.NavigationPage.EPISODES;
+        //             } else {
+        //                 return Window.NavigationPage.LIBRARY;
+        //             }
+        //         }
+        //     }
+        // }
         return Window.NavigationPage.WELCOME;
     }
 }

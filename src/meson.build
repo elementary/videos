@@ -8,6 +8,7 @@ executable(
     'Utils.vala',
     'Window.vala',
     'Objects/LibraryInterface.vala',
+    'Objects/MediaItem.vala',
     'Objects/Show.vala',
     'Objects/Video.vala',
     'DBus/MprisPlayer.vala',

@@ -83,7 +83,7 @@ public class Audience.EpisodesPage : Gtk.Box {
 
         factory.bind.connect ((obj) => {
             var item = (Gtk.ListItem) obj;
-            ((EpisodeItem) item.child).bind ((Objects.Video) item.item);
+            ((EpisodeItem) item.child).bind ((Objects.MediaItem) item.item);
         });
 
         view_episodes = new Gtk.ListView (selection_model, factory) {
@@ -143,8 +143,10 @@ public class Audience.EpisodesPage : Gtk.Box {
         search_entry.grab_focus ();
     }
 
-    public void set_show (Objects.Show show) {
-        filter_model.model = show.episodes;
+    public void set_show (Objects.MediaItem item) {
+        print ("Set show");
+        filter_model.model = item.children;
+        poster.set_pixbuf (item.poster);
     }
 
     private void update_poster (Objects.Video episode) {
@@ -152,28 +154,28 @@ public class Audience.EpisodesPage : Gtk.Box {
     }
 
     private void play_video (uint position) {
-        var video = (Objects.Video) filter_model.get_item (position);
+        var video = (Objects.MediaItem) filter_model.get_item (position);
 
-        if (video.video_file.query_exists ()) {
-            string uri = video.video_file.get_uri ();
+        // if (video.video_file.query_exists ()) {
+            string uri = video.uri;
             bool from_beginning = uri != settings.get_string ("current-video");
 
             var playback_manager = PlaybackManager.get_default ();
             playback_manager.clear_playlist ();
-            playback_manager.append_to_playlist (video.video_file);
+            // playback_manager.append_to_playlist (video.video_file);
 
             var window = App.get_instance ().mainwindow;
             window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
 
             //TODO: Causes crash
-            if (settings.get_boolean ("autoqueue-next")) {
-                // Add next from the current view to the queue
-                for (++position; position < filter_model.get_n_items (); position++) {
-                    var library_item = (LibraryItem)filter_model.get_item (position);
-                    playback_manager.append_to_playlist (library_item.video.video_file);
-                }
-            }
-        }
+            // if (settings.get_boolean ("autoqueue-next")) {
+            //     // Add next from the current view to the queue
+            //     for (++position; position < filter_model.get_n_items (); position++) {
+            //         var _video = (Objects.Video) filter_model.get_item (position);
+            //         playback_manager.append_to_playlist (_video.video_file);
+            //     }
+            // }
+        // }
     }
 
     private void filter () {
@@ -192,7 +194,7 @@ public class Audience.EpisodesPage : Gtk.Box {
         }
 
         string[] filter_elements = search_entry.text.split (" ");
-        var video_title = ((Objects.Video) obj).title;
+        var video_title = ((Objects.MediaItem) obj).title;
 
         foreach (string filter_element in filter_elements) {
             if (!video_title.down ().contains (filter_element.down ())) {

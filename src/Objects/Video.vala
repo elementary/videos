@@ -27,12 +27,9 @@ public class Audience.Objects.Video : Object, LibraryInterface {
     public string file { get; construct; }
     public string mime_type { get; construct; }
 
-    // public Gdk.Paintable poster { get; set; }
-    // public string uri { get; set; }
-
     public File video_file { get; private set; }
     public bool poster_initialized { get; private set; default = false; }
-    public Gdk.Pixbuf? poster { get; private set; default = null; }
+    public Gdk.Pixbuf? poster { get; protected set; default = null; }
     public string container { get; private set; default = ""; }
     public string hash_episode_poster { get; private set; }
     public string hash_file_poster { get; private set; }
@@ -51,6 +48,12 @@ public class Audience.Objects.Video : Object, LibraryInterface {
     construct {
         manager = Audience.Services.LibraryManager.get_instance ();
         manager.thumbler.finished.connect (set_pixbufs);
+
+        manager.video_file_deleted.connect ((path) => {
+            if (path == video_file.get_path ()) {
+                trashed ();
+            }
+        });
 
         title = Audience.get_title (file);
 
@@ -80,6 +83,8 @@ public class Audience.Objects.Video : Object, LibraryInterface {
         notify["title"].connect (() => {
             title_changed (this);
         });
+
+        initialize_poster.begin ();
     }
 
     public async void initialize_poster () {
@@ -187,5 +192,16 @@ public class Audience.Objects.Video : Object, LibraryInterface {
     public void set_new_poster (Gdk.Pixbuf? new_poster) {
         manager.clear_cache.begin (this.poster_cache_file);
         poster = new_poster;
+    }
+
+    public void trash () {
+        // trashed ();
+
+        // try {
+        //     video_file.trash ();
+        //     Services.LibraryManager.get_instance ().deleted_items (video.video_file.get_path ());
+        // } catch (Error e) {
+        //     warning (e.message);
+        // }
     }
 }

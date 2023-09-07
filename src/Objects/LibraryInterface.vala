@@ -1,5 +1,6 @@
 public interface Audience.Objects.LibraryInterface : Object {
     public abstract string title { get; construct; }
-    // public abstract Gdk.Paintable poster { get; set; }
-    // public abstract string uri { get; set; }
+    public abstract Gdk.Pixbuf? poster { get; protected set; default = null; }
+
+    public abstract void trash ();
 }
