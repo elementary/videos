@@ -144,7 +144,6 @@ public class Audience.EpisodesPage : Gtk.Box {
     }
 
     public void set_show (Objects.MediaItem item) {
-        print ("Set show");
         filter_model.model = item.children;
         poster.set_pixbuf (item.poster);
     }

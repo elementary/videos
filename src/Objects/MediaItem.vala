@@ -47,7 +47,7 @@ public class Audience.Objects.MediaItem : Object {
     construct {
         children = new ListStore (typeof (MediaItem));
         manager = Audience.Services.LibraryManager.get_instance ();
-        manager.thumbler.finished.connect (update_poster);
+        manager.thumbler.finished.connect (() => update_poster ());
 
         manager.video_file_deleted.connect ((_uri) => {
             if (uri == _uri) {
@@ -61,13 +61,16 @@ public class Audience.Objects.MediaItem : Object {
             title = this.title.replace (info.fetch (0) + ")", "").strip ();
         }
 
+        if (uri != null) {
+            hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, uri, uri.length);
+        } else {
+            hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, title, title.length);
+        }
+
         var poster_file = get_native_poster_file ();
         if (poster_file.query_exists ()) {
             poster = manager.get_poster_from_file (poster_file.get_path ());
-        }
-        if (uri != null) {
-            hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, uri, uri.length);
-
+        } else if (uri != null) {
             thumbnail_large_path = Path.build_filename (GLib.Environment.get_user_cache_dir (), "thumbnails", "large", hash_file_poster + ".png");
             thumbnail_normal_path = Path.build_filename (GLib.Environment.get_user_cache_dir (), "thumbnails", "normal", hash_file_poster + ".png");
 
@@ -103,23 +106,34 @@ public class Audience.Objects.MediaItem : Object {
         children.insert_sorted (item, Services.LibraryManager.library_item_sort_func);
     }
 
-    private void update_poster () {
-        if (poster == null && FileUtils.test (thumbnail_large_path, FileTest.EXISTS)) {
+    private void update_poster (Gdk.Pixbuf? new_poster = null) {
+        if (poster != null) {
+            return;
+        }
+
+        if (new_poster != null) {
+            poster = new_poster;
+        } else if (FileUtils.test (thumbnail_large_path, FileTest.EXISTS)) {
             poster = manager.get_poster_from_file (thumbnail_large_path);
             if (parent != null) {
-                parent.set_new_poster (poster);
+                parent.update_poster (poster);
             }
         }
     }
 
-    public void set_new_poster (Gdk.Pixbuf new_poster) {
-        if (poster == null) {
-            poster = new_poster;
-        }
-    }
+    public async void set_custom_poster (File new_poster_file) {
+        Gdk.Pixbuf? new_poster = manager.get_poster_from_file (new_poster_file.get_path ());
 
-    public void set_custom_poster (Gdk.Pixbuf new_poster) {
+        if (new_poster == null) {
+            return;
+        }
+
         poster = new_poster;
+        try {
+            yield new_poster_file.copy_async (get_native_poster_file (), OVERWRITE);
+        } catch (Error e) {
+            warning ("Failed to copy custom poster: %s", e.message);
+        }
     }
 
     private File get_native_poster_file () {

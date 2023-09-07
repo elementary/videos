@@ -32,7 +32,6 @@ public class Audience.LibraryItem : Gtk.Box {
             child = new Gtk.Label (_("Move to Trash")) { halign = START }
         };
         move_to_trash.add_css_class (Granite.STYLE_CLASS_MENUITEM);
-        move_to_trash.clicked.connect (() => item.trash ());
 
         var context_menu_box = new Gtk.Box (VERTICAL, 0);
         context_menu_box.append (move_to_trash);
@@ -86,7 +85,16 @@ public class Audience.LibraryItem : Gtk.Box {
         append (spinner_stack);
         append (title_label);
 
-        // new_cover.clicked.connect (set_new_cover);
+        move_to_trash.clicked.connect (() => {
+            context_menu.popdown ();
+            item.trash ();
+        });
+
+        new_cover.clicked.connect (() => {
+            context_menu.popdown ();
+            set_new_cover ();
+        });
+
         map.connect (poster_visibility);
         poster.notify ["paintable"].connect (poster_visibility);
 
@@ -133,67 +141,29 @@ public class Audience.LibraryItem : Gtk.Box {
         // }
     }
 
-    // private void move_video_to_trash () {
-    //     // debug (episodes.size.to_string ());
-    //     // if (episodes.size == 1) {
-    //     //     var video = episodes.first ();
-    //     //     video.trashed ();
-    //     //     try {
-    //     //         video.video_file.trash ();
-    //     //         manager.deleted_items (video.video_file.get_path ());
-    //     //     } catch (Error e) {
-    //     //         warning (e.message);
-    //     //     }
-    //TODO: Do this in Show and maybe don't use show?
-    //     // } else {
-    //     //     try {
-    //     //         episodes.first ().video_file.get_parent ().trash ();
-    //     //         manager.deleted_items (episodes.first ().video_file.get_parent ().get_path ());
-    //     //     } catch (Error e) {
-    //     //         warning (e.message);
-    //     //     }
-    //     // }
-    // }
-
     private void set_new_cover () {
-        // var image_filter = new Gtk.FileFilter ();
-        // image_filter.set_filter_name (_("Image files"));
-        // image_filter.add_mime_type ("image/*");
+        var image_filter = new Gtk.FileFilter ();
+        image_filter.set_filter_name (_("Image files"));
+        image_filter.add_mime_type ("image/*");
 
-        // var filechooser = new Gtk.FileChooserNative (
-        //     _("Open"),
-        //     Audience.App.get_instance ().mainwindow,
-        //     Gtk.FileChooserAction.OPEN,
-        //     _("_Open"),
-        //     _("_Cancel")
-        // );
-        // filechooser.add_filter (image_filter);
+        var filechooser = new Gtk.FileChooserNative (
+            _("Open"),
+            Audience.App.get_instance ().mainwindow,
+            Gtk.FileChooserAction.OPEN,
+            _("_Open"),
+            _("_Cancel")
+        );
+        filechooser.add_filter (image_filter);
 
-        // filechooser.response.connect ((response) => {
-        //     if (response == Gtk.ResponseType.ACCEPT) {
-        //         Gdk.Pixbuf? pixbuf = manager.get_poster_from_file (filechooser.get_file ().get_path ());
-        //         if (pixbuf != null) {
-        //             try {
-        //                 if (item.get_type () == typeof (Objects.Video)) {
-        //                     var video = (Objects.Video) item;
-        //                     pixbuf.save (video.video_file.get_path () + ".jpg", "jpeg");
-        //                     video.set_new_poster (pixbuf);
-        //                     video.initialize_poster.begin ();
-        //                 } else {
-        //                     // manager.clear_cache.begin (poster_cache_file);
-        //                     // pixbuf.save (episode_poster_path, "jpeg");
-        //                     // create_episode_poster ();
-        //                 }
-        //             } catch (Error e) {
-        //                 warning (e.message);
-        //             }
-        //         }
-        //     }
+        filechooser.response.connect ((response) => {
+            if (response == Gtk.ResponseType.ACCEPT) {
+                item.set_custom_poster.begin (filechooser.get_file ());
+            }
 
-        //     filechooser.destroy ();
-        // });
+            filechooser.destroy ();
+        });
 
-        // filechooser.show ();
+        filechooser.show ();
     }
 }
 
