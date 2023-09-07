@@ -109,7 +109,7 @@ namespace Audience.Services {
                     }
                 } else if (is_file_valid (file_info)) {
                     string src_path = src.get_path ();
-                    create_video_object (file_info, Path.get_dirname (src_path), Path.get_basename (src_path));
+                    // create_video_object (file_info, Path.get_dirname (src_path), Path.get_basename (src_path));
                 }
             }
         }
@@ -172,99 +172,36 @@ namespace Audience.Services {
         }
 
         private void create_new_video_object (Gst.PbUtils.DiscovererInfo info, Error? err) {
-            // if (name == "") {
-                // name = file_info.get_name ();
-            // }
             var file = File.new_for_uri (info.get_uri ());
+
+            var title = get_title (file.get_path ());
 
             unowned Gst.TagList? tag_list = info.get_tags ();
             if (tag_list == null) {
-                // return;
                 warning ("Tag list is null");
+            } else {
+                string? _title = null;
+                tag_list.get_string (Gst.Tags.TITLE, out _title);
+                if (_title != null) {
+                    title = _title;
+                }
             }
-
-            // string _show_name;
-            // tag_list.get_string (Gst.Tags.SHOW_NAME, out _show_name);
-            // show_name = _show_name;
-
-            // int _show_episode_number;
-            // tag_list.get_int (Gst.Tags.SHOW_EPISODE_NUMBER, out _show_episode_number);
-            // show_episode_number = _show_episode_number;
-
-            // int _show_season_number;
-            // tag_list.get_int (Gst.Tags.SHOW_SEASON_NUMBER, out _show_season_number);
-            // show_season_number = _show_season_number;
-
-            string _title;
-            tag_list.get_string (Gst.Tags.TITLE, out _title);
-            if (_title == null) {
-                _title = "_title";
-            }
-
-            // Gdk.Pixbuf? pixbuf = null;
-            // var sample = get_cover_sample (tag_list);
-            // if (sample != null) {
-            //     print ("sample not null!");
-            //     var buffer = sample.get_buffer ();
-
-            //     if (buffer != null) {
-            //         pixbuf = get_pixbuf_from_buffer (buffer);
-            //     }
-            // } else {
-
-            //     print ("sample is null!");
-            // }
 
             Objects.MediaItem? item = null;
             if (file.get_parent ().get_path () != Environment.get_user_special_dir (UserDirectory.VIDEOS)) {
                 var parent_file = file.get_parent ();
-                if (!(parent_file.get_uri () in shows)) {
-                    shows[parent_file.get_uri ()] = new Objects.MediaItem.show (parent_file.get_uri ());
-                    library_items.insert_sorted (shows[parent_file.get_uri ()], library_item_sort_func);
+                var parent_name = get_title (parent_file.get_path ());
+                if (!(parent_name in shows)) {
+                    shows[parent_name] = new Objects.MediaItem.show (parent_name);
+                    library_items.insert_sorted (shows[parent_name], library_item_sort_func);
                 }
-                item = new Audience.Objects.MediaItem.video (file.get_uri (), _title, shows[parent_file.get_uri ()]);
+                item = new Audience.Objects.MediaItem.video (file.get_uri (), title, shows[parent_name]);
             } else {
-                item = new Audience.Objects.MediaItem.video (file.get_uri (), _title, null);
+                item = new Audience.Objects.MediaItem.video (file.get_uri (), title, null);
                 library_items.insert_sorted (item, library_item_sort_func);
             }
 
             has_items = true;
-        }
-
-        private void create_video_object (FileInfo file_info, string source, string name = "") {
-            // // if (name == "") {
-            //     name = file_info.get_name ();
-            // // }
-            // var file = File.new_build_filename (source, name);
-
-            // Objects.MediaItem? item = null;
-            // if (source != Environment.get_user_special_dir (UserDirectory.VIDEOS)) {
-            //     var parent_file = File.new_for_path (source);
-            //     if (!(source in shows)) {
-            //         shows[source] = new Objects.MediaItem.show (parent_file.get_uri ());
-            //         library_items.insert_sorted (shows[source], library_item_sort_func);
-            //     }
-            //     item = new Audience.Objects.MediaItem.with_parent (file.get_uri (), shows[source]);
-            //     shows[source].add_item (item);
-            // } else {
-            //     item = new Audience.Objects.MediaItem (file.get_uri (), file_info.get_content_type ());
-            //     library_items.insert_sorted (item, library_item_sort_func);
-            // }
-
-            // // if (item.parent != null) {
-            // //     if (!(video.show_name in shows)) {
-            // //         shows[video.show_name] = new Objects.Show (video.show_name, video);
-            // //         library_items.insert_sorted (shows[video.show_name], library_item_sort_func);
-            // //     }
-            // //     shows[video.show_name].add_video (video);
-            // // } else {
-            // //     library_items.insert_sorted (video, library_item_sort_func);
-            // // }
-
-            // // video_file_detected (video);
-            // poster_hash.add (item.hash_file_poster + ".jpg");
-            // poster_hash.add (item.hash_episode_poster + ".jpg");
-            // has_items = true;
         }
 
         public static int library_item_sort_func (Object item1, Object item2) {
@@ -352,51 +289,6 @@ namespace Audience.Services {
                 }
             }
             return pixbuf;
-        }
-        private Gst.Sample? get_cover_sample (Gst.TagList tag_list) {
-            Gst.Sample cover_sample = null;
-            Gst.Sample sample;
-                print (tag_list.get_sample (Gst.Tags.PREVIEW_IMAGE, out sample).to_string ());
-            for (int i = 0; tag_list.get_sample_index (Gst.Tags.IMAGE, i, out sample); i++) {
-                print ("A foreach");
-                var caps = sample.get_caps ();
-                unowned Gst.Structure caps_struct = caps.get_structure (0);
-                int image_type = Gst.Tag.ImageType.UNDEFINED;
-                caps_struct.get_enum ("image-type", typeof (Gst.Tag.ImageType), out image_type);
-                print (image_type.to_string ());
-                if (image_type == Gst.Tag.ImageType.UNDEFINED && cover_sample == null) {
-                    cover_sample = sample;
-                } else if (image_type == Gst.Tag.ImageType.FRONT_COVER) {
-                    return sample;
-                }
-            }
-
-            return cover_sample;
-        }
-
-        private Gdk.Pixbuf? get_pixbuf_from_buffer (Gst.Buffer buffer) {
-            Gst.MapInfo map_info;
-
-            if (!buffer.map (out map_info, Gst.MapFlags.READ)) {
-                warning ("Could not map memory buffer");
-                return null;
-            }
-
-            Gdk.Pixbuf pix = null;
-
-            try {
-                var loader = new Gdk.PixbufLoader ();
-
-                if (loader.write (map_info.data) && loader.close ()) {
-                    pix = loader.get_pixbuf ();
-                }
-            } catch (Error err) {
-                warning ("Error processing image data: %s", err.message);
-            }
-
-            buffer.unmap (map_info);
-
-            return pix;
         }
     }
 }

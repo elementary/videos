@@ -64,7 +64,8 @@ public class Audience.Objects.MediaItem : Object {
         var poster_file = get_native_poster_file ();
         if (poster_file.query_exists ()) {
             poster = manager.get_poster_from_file (poster_file.get_path ());
-        } else if (uri != null) {
+        }
+        if (uri != null) {
             hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, uri, uri.length);
 
             thumbnail_large_path = Path.build_filename (GLib.Environment.get_user_cache_dir (), "thumbnails", "large", hash_file_poster + ".png");
@@ -126,13 +127,19 @@ public class Audience.Objects.MediaItem : Object {
     }
 
     public void trash () {
-        // trashed ();
+        for (int i = 0; i < children.get_n_items (); i++) {
+            ((MediaItem) children.get_item (i)).trash ();
+        }
 
-        // try {
-        //     video_file.trash ();
-        //     Services.LibraryManager.get_instance ().deleted_items (video.video_file.get_path ());
-        // } catch (Error e) {
-        //     warning (e.message);
-        // }
+        if (uri != null) {
+            try {
+                var file = File.new_for_uri (uri);
+                file.trash ();
+            } catch (Error e) {
+                warning (e.message);
+            }
+        }
+
+        trashed ();
     }
 }
