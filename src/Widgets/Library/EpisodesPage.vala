@@ -27,11 +27,7 @@ public class Audience.EpisodesPage : Gtk.Box {
     private Gtk.ListView view_episodes;
     private Granite.Placeholder alert_view;
 
-    private Objects.Video poster_source;
-
     construct {
-        poster_source = null;
-
         var navigation_button = new Gtk.Button.with_label (_("Library")) {
             valign = Gtk.Align.CENTER
         };
@@ -148,23 +144,17 @@ public class Audience.EpisodesPage : Gtk.Box {
         poster.set_pixbuf (item.poster);
     }
 
-    private void update_poster (Objects.Video episode) {
-        poster.set_pixbuf (episode.poster);
-    }
-
     private void play_video (uint position) {
         var video = (Objects.MediaItem) filter_model.get_item (position);
 
-        // if (video.video_file.query_exists ()) {
-            string uri = video.uri;
-            bool from_beginning = uri != settings.get_string ("current-video");
+        bool from_beginning = video.uri != settings.get_string ("current-video");
 
-            var playback_manager = PlaybackManager.get_default ();
-            playback_manager.clear_playlist ();
-            // playback_manager.append_to_playlist (video.video_file);
+        var playback_manager = PlaybackManager.get_default ();
+        playback_manager.clear_playlist ();
+        // playback_manager.append_to_playlist (video.video_file);
 
-            var window = App.get_instance ().mainwindow;
-            window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
+        var window = App.get_instance ().mainwindow;
+        window.play_file (video.uri, Window.NavigationPage.EPISODES, from_beginning);
 
             //TODO: Causes crash
             // if (settings.get_boolean ("autoqueue-next")) {
@@ -201,37 +191,5 @@ public class Audience.EpisodesPage : Gtk.Box {
             }
         }
         return true;
-    }
-
-    private int episode_sort_func (Object item1, Object item2) {
-        // var library_item1 = (LibraryItem)item1;
-        // var library_item2 = (LibraryItem)item2;
-        // if (library_item1 != null && library_item2 != null) {
-        //     return library_item1.episodes.first ().file.collate (library_item2.episodes.first ().file);
-        // }
-        return 0;
-    }
-
-    private void add_item (Audience.Objects.Video episode) {
-        // if (items.get_n_items () > 0 ) {
-        //     var first = (LibraryItem)items.get_item (0);
-        //     if (first != null && first.episodes.first ().video_file.get_parent ().get_path () == episode.video_file.get_parent ().get_path ()) {
-        //         items.insert_sorted (new Audience.LibraryItem (episode, LibraryItemStyle.ROW), episode_sort_func);
-        //     }
-        // }
-    }
-
-    private async void remove_item_from_path (string path ) {
-        // for (int i = 0; i < items.get_n_items (); i++) {
-        //     var item = (LibraryItem)items.get_item (i);
-        //     if (item.episodes.size == 0 || item.episodes.first ().video_file.get_path ().has_prefix (path)) {
-        //         items.remove (i);
-        //     }
-        // }
-
-        // var leaflet = (Adw.Leaflet) get_ancestor (typeof (Adw.Leaflet));
-        // if (leaflet.visible_child == this && items.get_n_items () == 0) {
-        //     leaflet.navigate (Adw.NavigationDirection.BACK);
-        // }
     }
 }

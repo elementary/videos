@@ -50,13 +50,7 @@ public class Audience.EpisodeItem : Gtk.Box {
 
         move_to_trash.clicked.connect (() => {
             context_menu.popdown ();
-            // video.trashed ();
-            // try {
-            //     video.video_file.trash ();
-            //     Services.LibraryManager.get_instance ().deleted_items (video.video_file.get_path ());
-            // } catch (Error e) {
-            //     warning (e.message);
-            // }
+            video.trash ();
         });
     }
 

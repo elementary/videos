@@ -87,9 +87,9 @@ public class Audience.WelcomePage : Granite.Placeholder {
             disk_button.visible = disk_manager.has_media_volumes ();
         });
 
-        library_manager.video_file_detected.connect ((vid) => {
-            library_button.visible = library_manager.has_items;
-        });
+        // library_manager.video_file_detected.connect ((vid) => {
+        //     library_button.visible = library_manager.has_items;
+        // });
 
         library_manager.video_file_deleted.connect ((vid) => {
             library_button.visible = library_manager.has_items;

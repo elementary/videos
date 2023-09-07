@@ -110,8 +110,6 @@ public class Audience.LibraryPage : Gtk.Box {
         view_movies.activate.connect (play_video);
 
         manager = Audience.Services.LibraryManager.get_instance ();
-        manager.video_file_detected.connect (add_item);
-        manager.video_file_deleted.connect (remove_item_from_path);
 
         manager.begin_scan ();
 
@@ -166,64 +164,6 @@ public class Audience.LibraryPage : Gtk.Box {
         } else {
             show_episodes (selected);
         }
-        // if (selected.episodes.size == 1) {
-        //     string uri = selected.episodes.first ().video_file.get_uri ();
-        //     bool same_video = uri == settings.get_string ("current-video");
-        //     bool playback_complete = settings.get_int64 ("last-stopped") == 0.0;
-        //     bool from_beginning = !same_video || playback_complete;
-
-        //     if (from_beginning) {
-        //         PlaybackManager.get_default ().clear_playlist ();
-        //     }
-
-        //     PlaybackManager.get_default ().append_to_playlist (File.new_for_uri (uri));
-
-        //     var window = (Audience.Window) ((Gtk.Application) Application.get_default ()).active_window;
-        //     window.play_file (uri, Window.NavigationPage.LIBRARY, from_beginning);
-        // } else {
-        // }
-    }
-
-    public void add_item (Audience.Objects.Video video) {
-        // for (int i = 0; i < items.get_n_items (); i++) {
-        //     var item = (LibraryItem)items.get_item (i);
-        //     if (video.container != "" && item.episodes.first ().container == video.container) {
-        //         item.add_episode (video);
-        //         items.sort (video_sort_func);
-        //         return;
-        //     }
-        // }
-
-        // var new_container = video;
-        // items.insert_sorted (new_container, video_sort_func);
-
-        // if (posters_initialized) {
-        //     video.initialize_poster.begin ();
-        // }
-    }
-
-    private async void remove_item (LibraryItem item) {
-        // foreach (var video in item.episodes) {
-        //     manager.clear_cache.begin (video.poster_cache_file);
-        // }
-
-        // uint pos;
-        // items.find (item, out pos);
-        // items.remove (pos);
-    }
-
-    private async void remove_item_from_path (string path ) {
-        // for (int i = 0; i < items.get_n_items (); i++) {
-        //     var item = (LibraryItem)items.get_item (i);
-        //     if (item.episodes.size == 0 || item.episodes.first ().video_file.get_path ().has_prefix (path)) {
-        //         remove_item.begin (item);
-        //     }
-        // }
-
-        // var leaflet = (Adw.Leaflet) get_ancestor (typeof (Adw.Leaflet));
-        // if (leaflet.visible_child == this && items.get_n_items () == 0) {
-        //     leaflet.navigate (Adw.NavigationDirection.BACK);
-        // }
     }
 
     private async void poster_initialisation () {
@@ -264,20 +204,13 @@ public class Audience.LibraryPage : Gtk.Box {
     }
 
     public bool has_child () {
-        // for (int i = 0; i < items.get_n_items (); i++) {
-        //     var item = (LibraryItem)items.get_item (i);
-        //     if (item.get_child_visible ()) {
-        //         return true;
-        //     }
-        // }
-
         return view_movies.model.get_n_items () > 0;
     }
 
     public Audience.Window.NavigationPage prepare_to_play (string file) {
-        // if (!File.new_for_uri (file).has_prefix (File.new_for_path (Environment.get_user_special_dir (UserDirectory.VIDEOS)))) {
-        //     return Window.NavigationPage.WELCOME;
-        // }
+        if (!File.new_for_uri (file).has_prefix (File.new_for_path (Environment.get_user_special_dir (UserDirectory.VIDEOS)))) {
+            return Window.NavigationPage.WELCOME;
+        }
 
         // for (int i = 0; i < items.get_n_items (); i++) {
         //     var item = (LibraryItem)items.get_item (i);

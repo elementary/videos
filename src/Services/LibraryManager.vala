@@ -25,7 +25,7 @@ namespace Audience.Services {
 
     public class LibraryManager : Object {
 
-        public signal void video_file_detected (Audience.Objects.Video video);
+        // public signal void video_file_detected (Audience.Objects.Video video);
         public signal void video_file_deleted (string path);
         public signal void video_moved_to_trash (string path);
         public signal void finished ();
