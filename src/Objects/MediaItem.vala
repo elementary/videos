@@ -61,11 +61,7 @@ public class Audience.Objects.MediaItem : Object {
             title = this.title.replace (info.fetch (0) + ")", "").strip ();
         }
 
-        if (uri != null) {
-            hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, uri, uri.length);
-        } else {
-            hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, title, title.length);
-        }
+        hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, uri ?? title);
 
         var poster_file = get_native_poster_file ();
         if (poster_file.query_exists ()) {
