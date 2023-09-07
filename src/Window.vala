@@ -124,7 +124,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         var manager = Audience.Services.LibraryManager.get_instance ();
 
-        manager.video_moved_to_trash.connect ((video) => {
+        manager.video_file_deleted.connect ((video) => {
             app_notification.title = _("Video '%s' Removed.").printf (Path.get_basename (video));
 
             /* we don't have access to trash when inside an flatpak sandbox

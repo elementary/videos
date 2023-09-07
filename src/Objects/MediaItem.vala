@@ -29,7 +29,7 @@ public class Audience.Objects.MediaItem : Object {
     public string title { get; construct set; }
     public Gdk.Pixbuf? poster { get; construct set; default = null; }
 
-    public string mime_type { get; construct; default = "video"; }
+    public string mime_type { get; construct; }
 
     private Audience.Services.LibraryManager manager;
     private string hash_file_poster;
@@ -40,8 +40,8 @@ public class Audience.Objects.MediaItem : Object {
         Object (title: title, uri: uri);
     }
 
-    public MediaItem.video (string uri, string title, MediaItem? parent) {
-        Object (uri: uri, title: title, parent: parent);
+    public MediaItem.video (string uri, string title, MediaItem? parent, string mime_type) {
+        Object (uri: uri, title: title, parent: parent, mime_type: mime_type);
     }
 
     construct {
@@ -78,7 +78,7 @@ public class Audience.Objects.MediaItem : Object {
                 Gee.ArrayList<string> mimes = new Gee.ArrayList<string> ();
 
                 uris.add (uri);
-                mimes.add ("video/webm");
+                mimes.add (mime_type);
 
                 manager.thumbler.instand (uris, mimes, "large");
                 manager.thumbler.instand (uris, mimes, "normal");
