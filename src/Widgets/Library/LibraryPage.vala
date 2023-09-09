@@ -157,7 +157,7 @@ public class Audience.LibraryPage : Gtk.Box {
                 PlaybackManager.get_default ().clear_playlist ();
             }
 
-            PlaybackManager.get_default ().append_to_playlist (File.new_for_uri (uri));
+            PlaybackManager.get_default ().append_to_playlist ({ uri });
 
             var window = (Audience.Window) ((Gtk.Application) Application.get_default ()).active_window;
             window.play_file (uri, Window.NavigationPage.LIBRARY, from_beginning);
