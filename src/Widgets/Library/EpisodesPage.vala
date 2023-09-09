@@ -147,11 +147,6 @@ public class Audience.EpisodesPage : Gtk.Box {
     private void play_video (uint position) {
         var video = (Objects.MediaItem) filter_model.get_item (position);
 
-        bool from_beginning = video.uri != settings.get_string ("current-video");
-
-        var playback_manager = PlaybackManager.get_default ();
-        playback_manager.clear_playlist ();
-
         string[] videos = { video.uri };
 
         if (settings.get_boolean ("autoqueue-next")) {
@@ -161,7 +156,11 @@ public class Audience.EpisodesPage : Gtk.Box {
             }
         }
 
+        var playback_manager = PlaybackManager.get_default ();
+        playback_manager.clear_playlist ();
         playback_manager.append_to_playlist (videos);
+
+        bool from_beginning = video.uri != settings.get_string ("current-video");
 
         var window = App.get_instance ().mainwindow;
         window.play_file (video.uri, Window.NavigationPage.EPISODES, from_beginning);
