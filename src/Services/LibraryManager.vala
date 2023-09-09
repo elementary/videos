@@ -91,7 +91,7 @@ namespace Audience.Services {
                         detect_video_files.begin ();
                     }
                 } else if (is_file_valid (file_info)) {
-                    create_video_object (src, file_info.get_content_type ());
+                    create_video_object (src);
                 }
             }
         }
@@ -128,7 +128,7 @@ namespace Audience.Services {
 
                         if (is_file_valid (file_info)) {
                             var file = File.new_build_filename (source, file_info.get_name ());
-                            create_video_object (file, file_info.get_content_type ());
+                            create_video_object (file);
                         }
                     }
                     if (videos_found) {
@@ -147,21 +147,22 @@ namespace Audience.Services {
             return !file_info.get_is_hidden () && mime_type.contains ("video");
         }
 
-        private void create_video_object (File file, string mime_type) {
+        private void create_video_object (File file) {
             var title = get_title (file.get_path ());
 
-            Objects.MediaItem? item = null;
             if (file.get_parent ().get_path () != Environment.get_user_special_dir (UserDirectory.VIDEOS)) {
                 var parent_file = file.get_parent ();
                 var parent_name = get_title (parent_file.get_path ());
+
                 if (!(parent_name in shows)) {
                     shows[parent_name] = new Objects.MediaItem.show (parent_name);
                     library_items.insert_sorted (shows[parent_name], library_item_sort_func);
                     shows[parent_name].trashed.connect (() => remove_item (shows.take (parent_name)));
                 }
-                item = new Audience.Objects.MediaItem.video (file.get_uri (), title, shows[parent_name], mime_type);
+
+                shows[parent_name].add_item (new Audience.Objects.MediaItem.video (file.get_uri (), title, shows[parent_name]));
             } else {
-                item = new Audience.Objects.MediaItem.video (file.get_uri (), title, null, mime_type);
+                var item = new Audience.Objects.MediaItem.video (file.get_uri (), title, null);
                 library_items.insert_sorted (item, library_item_sort_func);
                 item.trashed.connect (() => remove_item (item));
             }

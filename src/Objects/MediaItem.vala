@@ -29,8 +29,6 @@ public class Audience.Objects.MediaItem : Object {
     public string title { get; construct set; }
     public Gdk.Pixbuf? poster { get; construct set; default = null; }
 
-    public string mime_type { get; construct; }
-
     private Audience.Services.LibraryManager manager;
     private string hash_file_poster;
     private string thumbnail_large_path;
@@ -40,8 +38,8 @@ public class Audience.Objects.MediaItem : Object {
         Object (title: title, uri: uri);
     }
 
-    public MediaItem.video (string uri, string title, MediaItem? parent, string mime_type) {
-        Object (uri: uri, title: title, parent: parent, mime_type: mime_type);
+    public MediaItem.video (string uri, string title, MediaItem? parent) {
+        Object (uri: uri, title: title, parent: parent);
     }
 
     construct {
@@ -78,17 +76,19 @@ public class Audience.Objects.MediaItem : Object {
                 Gee.ArrayList<string> mimes = new Gee.ArrayList<string> ();
 
                 uris.add (uri);
-                mimes.add (mime_type);
+
+                try {
+                    var file_info = File.new_for_uri (uri).query_info (FileAttribute.STANDARD_CONTENT_TYPE, 0);
+                    mimes.add (file_info.get_content_type ());
+                } catch (Error e) {
+                    warning ("Failed to query file info: %s", e.message);
+                }
 
                 manager.thumbler.instand (uris, mimes, "large");
                 manager.thumbler.instand (uris, mimes, "normal");
             } else {
                 update_poster ();
             }
-        }
-
-        if (parent != null) {
-            parent.add_item (this);
         }
     }
 
