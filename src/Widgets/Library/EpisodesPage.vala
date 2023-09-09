@@ -151,15 +151,13 @@ public class Audience.EpisodesPage : Gtk.Box {
 
         var playback_manager = PlaybackManager.get_default ();
         playback_manager.clear_playlist ();
-        // playback_manager.append_to_playlist (video.video_file);
-        
-        string[] videos = { uri };
 
-            //TODO: Causes crash
+        string[] videos = { video.uri };
+
         if (settings.get_boolean ("autoqueue-next")) {
             // Add next from the current view to the queue
-            for (position++; position < items.get_n_items (); position++) {
-                videos += ((MediaItem) filter_model.get_item (position)).uri;
+            for (position++; position < filter_model.get_n_items (); position++) {
+                videos += ((Objects.MediaItem) filter_model.get_item (position)).uri;
             }
         }
 
