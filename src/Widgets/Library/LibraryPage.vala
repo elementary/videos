@@ -66,16 +66,6 @@ public class Audience.LibraryPage : Gtk.Box {
 
         var factory = new Gtk.SignalListItemFactory ();
 
-        factory.setup.connect ((obj) => {
-            var item = (Gtk.ListItem) obj;
-            item.child = new LibraryItem ();
-        });
-
-        factory.bind.connect ((obj) => {
-            var item = (Gtk.ListItem) obj;
-            ((LibraryItem) item.child).bind ((Objects.MediaItem) item.item);
-        });
-
         view_movies = new Gtk.GridView (selection_model, factory) {
             // column_spacing = 12,
             // row_spacing = 12,
@@ -106,6 +96,16 @@ public class Audience.LibraryPage : Gtk.Box {
         orientation = VERTICAL;
         append (header_bar);
         append (stack);
+
+        factory.setup.connect ((obj) => {
+            var item = (Gtk.ListItem) obj;
+            item.child = new LibraryItem (THUMBNAIL);
+        });
+
+        factory.bind.connect ((obj) => {
+            var item = (Gtk.ListItem) obj;
+            ((LibraryItem) item.child).bind ((Objects.MediaItem) item.item);
+        });
 
         view_movies.activate.connect (play_video);
 

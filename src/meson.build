@@ -16,7 +16,6 @@ executable(
     'Services/Thumbnailer.vala',
     'Widgets/UnsupportedFileDialog.vala',
     'Widgets/WelcomePage.vala',
-    'Widgets/Library/EpisodeItem.vala',
     'Widgets/Library/EpisodesPage.vala',
     'Widgets/Library/LibraryItem.vala',
     'Widgets/Library/LibraryPage.vala',

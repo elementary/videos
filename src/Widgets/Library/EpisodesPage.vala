@@ -72,16 +72,6 @@ public class Audience.EpisodesPage : Gtk.Box {
 
         var factory = new Gtk.SignalListItemFactory ();
 
-        factory.setup.connect ((obj) => {
-            var item = (Gtk.ListItem) obj;
-            item.child = new EpisodeItem ();
-        });
-
-        factory.bind.connect ((obj) => {
-            var item = (Gtk.ListItem) obj;
-            ((EpisodeItem) item.child).bind ((Objects.MediaItem) item.item);
-        });
-
         view_episodes = new Gtk.ListView (selection_model, factory) {
             margin_top = 24,
             margin_bottom = 24,
@@ -118,6 +108,16 @@ public class Audience.EpisodesPage : Gtk.Box {
 
         navigation_button.clicked.connect (() => {
             ((Adw.Leaflet)get_ancestor (typeof (Adw.Leaflet))).navigate (Adw.NavigationDirection.BACK);
+        });
+
+        factory.setup.connect ((obj) => {
+            var item = (Gtk.ListItem) obj;
+            item.child = new LibraryItem (ROW);
+        });
+
+        factory.bind.connect ((obj) => {
+            var item = (Gtk.ListItem) obj;
+            ((LibraryItem) item.child).bind ((Objects.MediaItem) item.item);
         });
 
         view_episodes.activate.connect (play_video);
