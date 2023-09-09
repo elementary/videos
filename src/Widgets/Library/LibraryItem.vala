@@ -149,7 +149,6 @@ public class Audience.LibraryItem : Gtk.Box {
             });
 
             poster.set_pixbuf (item.poster);
-            spinner_stack.visible_child_name = "poster";
         }
     }
 
