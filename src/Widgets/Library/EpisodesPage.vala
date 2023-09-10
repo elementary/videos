@@ -19,8 +19,7 @@
  */
 
 public class Audience.EpisodesPage : Gtk.Box {
-    public Gtk.Picture poster { get; private set; }
-
+    private Gtk.Picture poster;
     private Gtk.FilterListModel filter_model;
     private Gtk.SearchEntry search_entry;
     private Gtk.HeaderBar header_bar;
