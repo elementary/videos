@@ -21,12 +21,6 @@
 public class Audience.LibraryPage : Gtk.Box {
     public signal void show_episodes (Objects.MediaItem item, bool setup_only = false);
 
-    public bool has_items {
-        get {
-            return view_movies.model.get_n_items () > 0;
-        }
-    }
-
     private Audience.Services.LibraryManager manager;
     private Gtk.SearchEntry search_entry;
     private Granite.Placeholder alert_view;
