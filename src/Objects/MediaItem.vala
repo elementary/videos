@@ -14,11 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
- * Authored by: Leonhard Kargl <leo.kargl@proton.me>
- *
  */
 
-// This can be a show or a video
+/* This can be a show or a video */
 public class Audience.Objects.MediaItem : Object {
     public signal void trashed ();
 
