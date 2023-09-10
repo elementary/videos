@@ -28,9 +28,8 @@ public class Audience.Objects.MediaItem : Object {
     public Gdk.Pixbuf? poster { get; construct set; default = null; }
 
     private Audience.Services.LibraryManager manager;
-    private string hash_file_poster;
+    private File native_poster_file;
     private string thumbnail_large_path;
-    private string thumbnail_normal_path;
 
     public MediaItem.show (string title, string? uri = null) {
         Object (title: title, uri: uri);
@@ -57,17 +56,16 @@ public class Audience.Objects.MediaItem : Object {
             title = this.title.replace (info.fetch (0) + ")", "").strip ();
         }
 
-        hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, uri ?? title);
+        var hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, uri ?? title);
 
-        var poster_file = get_native_poster_file ();
-        if (poster_file.query_exists ()) {
-            poster = manager.get_poster_from_file (poster_file.get_path ());
+        native_poster_file = File.new_build_filename (GLib.Environment.get_user_data_dir (), hash_file_poster + ".jpg");
+
+        if (native_poster_file.query_exists ()) {
+            poster = manager.get_poster_from_file (native_poster_file.get_path ());
         } else if (uri != null) {
             thumbnail_large_path = Path.build_filename (GLib.Environment.get_user_cache_dir (), "thumbnails", "large", hash_file_poster + ".png");
-            thumbnail_normal_path = Path.build_filename (GLib.Environment.get_user_cache_dir (), "thumbnails", "normal", hash_file_poster + ".png");
 
-            if (!FileUtils.test (thumbnail_large_path, FileTest.EXISTS) ||
-                !FileUtils.test (thumbnail_normal_path, FileTest.EXISTS)) {
+            if (!FileUtils.test (thumbnail_large_path, FileTest.EXISTS)) {
 
                 // Call DBUS to create a new THUMBNAIL
                 Gee.ArrayList<string> uris = new Gee.ArrayList<string> ();
@@ -83,7 +81,6 @@ public class Audience.Objects.MediaItem : Object {
                 }
 
                 manager.thumbler.instand (uris, mimes, "large");
-                manager.thumbler.instand (uris, mimes, "normal");
             } else {
                 update_poster ();
             }
@@ -124,14 +121,10 @@ public class Audience.Objects.MediaItem : Object {
 
         poster = new_poster;
         try {
-            yield new_poster_file.copy_async (get_native_poster_file (), OVERWRITE);
+            yield new_poster_file.copy_async (native_poster_file, OVERWRITE);
         } catch (Error e) {
             warning ("Failed to copy custom poster: %s", e.message);
         }
-    }
-
-    private File get_native_poster_file () {
-        return File.new_build_filename (GLib.Environment.get_user_data_dir (), hash_file_poster + ".jpg");
     }
 
     public void trash () {
