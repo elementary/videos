@@ -33,7 +33,6 @@ public class Audience.LibraryPage : Gtk.Box {
     private Gtk.ScrolledWindow scrolled_window;
     private Gtk.GridView view_movies;
     private Gtk.Stack stack;
-    private bool posters_initialized = false;
 
     public static LibraryPage instance = null;
     public static LibraryPage get_instance () {
@@ -67,8 +66,6 @@ public class Audience.LibraryPage : Gtk.Box {
         var factory = new Gtk.SignalListItemFactory ();
 
         view_movies = new Gtk.GridView (selection_model, factory) {
-            // column_spacing = 12,
-            // row_spacing = 12,
             margin_top = 24,
             margin_bottom = 24,
             margin_start = 24,
@@ -114,11 +111,7 @@ public class Audience.LibraryPage : Gtk.Box {
         manager.begin_scan ();
 
         map.connect (() => {
-            if (!posters_initialized) {
-                posters_initialized = true;
-                poster_initialisation.begin ();
-            }
-            if (search_entry.text != "" && !has_child ()) {
+            if (search_entry.text != "" && view_movies.model.get_n_items () == 0) {
                 search_entry.text = "";
             }
         });
@@ -166,16 +159,6 @@ public class Audience.LibraryPage : Gtk.Box {
         }
     }
 
-    private async void poster_initialisation () {
-        // for (int i = 0; i < items.get_n_items (); i++) {
-        //     var item = (LibraryItem)items.get_item (i);
-        //     var first_episode = item.episodes.first ();
-        //     if (!first_episode.poster_initialized) {
-        //         first_episode.initialize_poster.begin ();
-        //     }
-        // }
-    }
-
     private bool video_filter_func (Object obj) {
         if (search_entry.text.length == 0) {
             return true;
@@ -201,10 +184,6 @@ public class Audience.LibraryPage : Gtk.Box {
         } else {
             stack.visible_child = scrolled_window;
         }
-    }
-
-    public bool has_child () {
-        return view_movies.model.get_n_items () > 0;
     }
 
     public Audience.Window.NavigationPage prepare_to_play (string file) {
