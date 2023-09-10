@@ -212,25 +212,24 @@ public class Audience.LibraryPage : Gtk.Box {
             return Window.NavigationPage.WELCOME;
         }
 
-        // for (int i = 0; i < items.get_n_items (); i++) {
-        //     var item = (LibraryItem)items.get_item (i);
-        //     var episodes = item.episodes;
-        //     foreach (var episode in episodes) {
-        //         string ep_file = episode.video_file.get_uri ();
-        //         if (ep_file == file) {
-        //             if (episodes.size > 1) {
-        //                 var first_episode = episodes.first ();
-        //                 if (!first_episode.poster_initialized) {
-        //                     first_episode.initialize_poster.begin ();
-        //                 }
-        //                 // show_episodes (item, true);
-        //                 return Window.NavigationPage.EPISODES;
-        //             } else {
-        //                 return Window.NavigationPage.LIBRARY;
-        //             }
-        //         }
-        //     }
-        // }
+        for (int i = 0; i < manager.library_items.get_n_items (); i++) {
+            var item = (Objects.MediaItem) manager.library_items.get_item (i);
+
+            if (item.uri != null && item.uri == file) {
+                return Window.NavigationPage.LIBRARY;
+            }
+
+            if (item.children.get_n_items () > 0) {
+                for (int j = 0; j < item.children.get_n_items (); j++) {
+                    var episode = (Objects.MediaItem) item.children.get_item (j);
+                    if (episode.uri == file) {
+                        show_episodes (item, true);
+                        return Window.NavigationPage.EPISODES;
+                    }
+                }
+            }
+        }
+
         return Window.NavigationPage.WELCOME;
     }
 }
