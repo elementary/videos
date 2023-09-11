@@ -77,8 +77,7 @@ namespace Audience.Services {
                         item.monitor.cancel ();
                     }
                 }
-            }
-            else if (event == GLib.FileMonitorEvent.CHANGES_DONE_HINT) {
+            } else if (event == GLib.FileMonitorEvent.CHANGES_DONE_HINT) {
                 FileInfo file_info;
                 try {
                     file_info = src.query_info (FileAttribute.STANDARD_CONTENT_TYPE + "," + FileAttribute.STANDARD_IS_HIDDEN + "," + FileAttribute.STANDARD_TYPE, 0);
@@ -130,6 +129,7 @@ namespace Audience.Services {
                         if (is_file_valid (file_info)) {
                             var file = File.new_build_filename (source, file_info.get_name ());
                             create_video_object (file);
+                            videos_found = true;
                         }
                     }
                     if (videos_found) {
@@ -186,8 +186,9 @@ namespace Audience.Services {
             }
 
             uint position;
-            library_items.find (item, out position);
-            library_items.remove (position);
+            if (library_items.find (item, out position)) {
+                library_items.remove (position);
+            }
         }
 
         public void undo_delete_item () {
