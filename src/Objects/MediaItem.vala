@@ -56,7 +56,6 @@ public class Audience.Objects.MediaItem : Object {
             title = title.replace (info.fetch (0) + ")", "").strip ();
         }
 
-
         var hash_file_poster = GLib.Checksum.compute_for_string (ChecksumType.MD5, uri ?? title);
 
         custom_poster_file = File.new_build_filename (GLib.Environment.get_user_data_dir (), hash_file_poster + ".jpg");
