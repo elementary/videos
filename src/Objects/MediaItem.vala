@@ -24,7 +24,7 @@ public class Audience.Objects.MediaItem : Object {
     public MediaItem? parent { get; construct; }
     public ListStore children { get; construct; }
 
-    public string title { get; construct set; }
+    public string title { get; construct; }
     public Gdk.Pixbuf? poster { get; construct set; default = null; }
 
     private Audience.Services.LibraryManager manager;
@@ -52,7 +52,7 @@ public class Audience.Objects.MediaItem : Object {
 
         // exclude YEAR from Title
         MatchInfo info;
-        if (manager.regex_year.match (this.title, 0, out info)) {
+        if (manager.regex_year.match (title, 0, out info)) {
             title = title.replace (info.fetch (0) + ")", "").strip ();
         }
 
