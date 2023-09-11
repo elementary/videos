@@ -156,7 +156,7 @@ namespace Audience.Services {
                 var parent_name = get_title (parent_file.get_path ());
 
                 if (!(parent_name in shows)) {
-                    shows[parent_name] = new Objects.MediaItem.show (parent_name);
+                    shows[parent_name] = new Objects.MediaItem.show (parent_name, parent_file.get_uri ());
                     library_items.insert_sorted (shows[parent_name], library_item_sort_func);
                     shows[parent_name].trashed.connect (() => remove_item (shows.take (parent_name)));
                 }
