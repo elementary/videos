@@ -124,8 +124,8 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         var manager = Audience.Services.LibraryManager.get_instance ();
 
-        manager.video_file_deleted.connect ((video) => {
-            app_notification.title = _("Video '%s' Removed.").printf (Path.get_basename (video));
+        manager.media_item_trashed.connect ((item) => {
+            app_notification.title = _("Video '%s' Removed.").printf (item.title);
 
             /* we don't have access to trash when inside an flatpak sandbox
              * so we don't allow the user to restore in this case.

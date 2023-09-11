@@ -24,7 +24,8 @@ namespace Audience.Services {
     public const int POSTER_HEIGHT = 240;
 
     public class LibraryManager : Object {
-        public signal void video_file_deleted (string path);
+        public signal void media_item_trashed (Objects.MediaItem item);
+        public signal void video_file_deleted (string uri);
         public signal void finished ();
 
         public Regex regex_year { get; construct set; }
@@ -70,7 +71,7 @@ namespace Audience.Services {
 
         private void monitored_directory_changed (FileMonitor monitor, File src, File? dest, FileMonitorEvent event) {
             if (event == GLib.FileMonitorEvent.DELETED) {
-                video_file_deleted (src.get_path ());
+                video_file_deleted (src.get_uri ());
                 foreach (DirectoryMonitoring item in monitoring_directories) {
                     if (item.path == src.get_path ()) {
                         item.monitor.cancel ();
@@ -179,8 +180,11 @@ namespace Audience.Services {
         }
 
         public void remove_item (Objects.MediaItem item) {
-            trashed_files.add (item.uri);
-            video_file_deleted (item.uri);
+            if (item.uri != null) {
+                trashed_files.add (item.uri);
+                media_item_trashed (item);
+            }
+
             uint position;
             library_items.find (item, out position);
             library_items.remove (position);
