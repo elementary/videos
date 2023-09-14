@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-29 17:07+0000\n"
-"PO-Revision-Date: 2023-07-16 15:07+0000\n"
+"PO-Revision-Date: 2023-09-09 09:08+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
-"Language-Team: French <https://l10n.elementary.io/projects/videos/videos/fr/"
-">\n"
+"Language-Team: French <https://l10n.elementary.io/projects/videos/videos/fr/>"
+"\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,12 +39,11 @@ msgid "“%s” added to playlist"
 msgstr "« %s » a été ajouté à la liste de lecture"
 
 #: src/Window.vala:161
-#, fuzzy, c-format
-#| msgid "“%s” added to playlist"
+#, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
-msgstr[0] "« %s » a été ajouté à la liste de lecture"
-msgstr[1] "« %s » a été ajouté à la liste de lecture"
+msgstr[0] "%u élément ajouté à la liste de lecture"
+msgstr[1] "%u éléments ajoutés à la liste de lecture"
 
 #: src/Window.vala:348 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
@@ -206,15 +205,15 @@ msgstr "Effacer la liste de lecture"
 
 #: src/Widgets/Player/PlaylistPopover.vala:125
 msgid "Repeat None"
-msgstr ""
+msgstr "Répétition désactivée"
 
 #: src/Widgets/Player/PlaylistPopover.vala:129
 msgid "Repeat All"
-msgstr ""
+msgstr "Tout répéter"
 
 #: src/Widgets/Player/PlaylistPopover.vala:133
 msgid "Repeat One"
-msgstr ""
+msgstr "Répéter une fois"
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
