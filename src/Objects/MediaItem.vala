@@ -112,8 +112,9 @@ public class Audience.Objects.MediaItem : Object {
     public void add_item (MediaItem item) {
         item.trashed.connect (() => {
             uint position;
-            children.find (item, out position);
-            children.remove (position);
+            if (children.find (item, out position)) {
+                children.remove (position);
+            }
         });
 
         children.insert_sorted (item, Services.LibraryManager.library_item_sort_func);
