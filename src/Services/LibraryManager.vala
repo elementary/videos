@@ -26,7 +26,6 @@ namespace Audience.Services {
     public class LibraryManager : Object {
         public signal void media_item_trashed (Objects.MediaItem item);
         public signal void video_file_deleted (string uri);
-        public signal void finished ();
 
         public Regex regex_year { get; construct set; }
         public DbusThumbnailer thumbler { get; construct set; }
