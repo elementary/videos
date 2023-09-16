@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-29 17:07+0000\n"
-"PO-Revision-Date: 2023-07-11 17:07+0000\n"
+"PO-Revision-Date: 2023-09-12 10:08+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/videos/videos/ca/"
 ">\n"
@@ -39,12 +39,11 @@ msgid "“%s” added to playlist"
 msgstr "S'ha afegit %s a la llista de reproducció."
 
 #: src/Window.vala:161
-#, fuzzy, c-format
-#| msgid "“%s” added to playlist"
+#, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
-msgstr[0] "S'ha afegit %s a la llista de reproducció."
-msgstr[1] "S'ha afegit %s a la llista de reproducció."
+msgstr[0] "S'ha afegit %u element a la llista de reproducció."
+msgstr[1] "S'han afegit %u elements a la llista de reproducció."
 
 #: src/Window.vala:348 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
@@ -206,15 +205,15 @@ msgstr "Neteja la llista de reproducció"
 
 #: src/Widgets/Player/PlaylistPopover.vala:125
 msgid "Repeat None"
-msgstr ""
+msgstr "Sense repetició"
 
 #: src/Widgets/Player/PlaylistPopover.vala:129
 msgid "Repeat All"
-msgstr ""
+msgstr "Repeteix-ho tot"
 
 #: src/Widgets/Player/PlaylistPopover.vala:133
 msgid "Repeat One"
-msgstr ""
+msgstr "Repeteix-ne un"
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
