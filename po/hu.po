@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-29 17:07+0000\n"
-"PO-Revision-Date: 2023-07-11 17:07+0000\n"
+"PO-Revision-Date: 2023-09-26 22:08+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/videos/"
 "hu/>\n"
@@ -39,12 +39,11 @@ msgid "“%s” added to playlist"
 msgstr "\"%s\" hozzáadva a lejátszási listához"
 
 #: src/Window.vala:161
-#, fuzzy, c-format
-#| msgid "“%s” added to playlist"
+#, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
-msgstr[0] "\"%s\" hozzáadva a lejátszási listához"
-msgstr[1] "\"%s\" hozzáadva a lejátszási listához"
+msgstr[0] "\"%u\" elem hozzáadva a lejátszási listához"
+msgstr[1] "\"%u\" elem hozzáadva a lejátszási listához"
 
 #: src/Window.vala:348 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
@@ -206,15 +205,15 @@ msgstr "Lejátszási lista törlése"
 
 #: src/Widgets/Player/PlaylistPopover.vala:125
 msgid "Repeat None"
-msgstr ""
+msgstr "Nincs ismétlés"
 
 #: src/Widgets/Player/PlaylistPopover.vala:129
 msgid "Repeat All"
-msgstr ""
+msgstr "Összes ismétlése"
 
 #: src/Widgets/Player/PlaylistPopover.vala:133
 msgid "Repeat One"
-msgstr ""
+msgstr "Egy ismétlése"
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
