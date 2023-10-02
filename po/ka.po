@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-29 17:07+0000\n"
-"PO-Revision-Date: 2023-07-18 21:29+0000\n"
+"PO-Revision-Date: 2023-10-03 18:08+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementary.io/projects/videos/videos/"
 "ka/>\n"
@@ -39,12 +39,11 @@ msgid "“%s” added to playlist"
 msgstr "\"%s\" დაემატა დასაკრავ სიას"
 
 #: src/Window.vala:161
-#, fuzzy, c-format
-#| msgid "“%s” added to playlist"
+#, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
-msgstr[0] "\"%s\" დაემატა დასაკრავ სიას"
-msgstr[1] "\"%s\" დაემატა დასაკრავ სიას"
+msgstr[0] "დასაკრავ სიას %u ელემენტი დაემატა"
+msgstr[1] "დასაკრავ სიას %u ელემენტი დაემატა"
 
 #: src/Window.vala:348 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
@@ -206,15 +205,15 @@ msgstr "დასაკრავი სიის გასუფთავებ�
 
 #: src/Widgets/Player/PlaylistPopover.vala:125
 msgid "Repeat None"
-msgstr ""
+msgstr "არ გაიმეორო"
 
 #: src/Widgets/Player/PlaylistPopover.vala:129
 msgid "Repeat All"
-msgstr ""
+msgstr "ყველას გამეორება"
 
 #: src/Widgets/Player/PlaylistPopover.vala:133
 msgid "Repeat One"
-msgstr ""
+msgstr "ერთის გამეორება"
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
