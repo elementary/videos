@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-29 17:07+0000\n"
+"POT-Creation-Date: 2023-10-12 16:20+0000\n"
 "PO-Revision-Date: 2021-07-11 09:18+0000\n"
 "Last-Translator: HelaBasa <R45XvezA@pm.me>\n"
 "Language-Team: Sinhala <https://l10n.elementary.io/projects/videos/videos/si/"
@@ -13,69 +13,72 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.4.2\n"
 
-#: src/Application.vala:103 src/Window.vala:442
+#: src/Application.vala:103 src/Window.vala:438
 msgid "Videos"
 msgstr "දෘශ්‍යක"
 
-#: src/Window.vala:128
+#: src/Window.vala:123
 #, c-format
 msgid "Video '%s' Removed."
 msgstr ""
 
-#: src/Window.vala:134
+#: src/Window.vala:129
 msgid "Restore"
 msgstr ""
 
-#: src/Window.vala:158
+#: src/Window.vala:153
 #, c-format
 msgid "“%s” added to playlist"
 msgstr ""
 
-#: src/Window.vala:161
+#: src/Window.vala:156
 #, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Window.vala:348 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:342 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "සියලුම ගොනු"
 
-#: src/Window.vala:352
+#: src/Window.vala:346
 msgid "Video files"
 msgstr "දෘශ්‍යක ගොනු"
 
-#: src/Window.vala:356 src/Widgets/Library/LibraryItem.vala:192
+#: src/Window.vala:350 src/Widgets/Library/LibraryItem.vala:192
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "විවෘත කරන්න"
 
-#: src/Window.vala:359 src/Widgets/Library/LibraryItem.vala:195
+#: src/Window.vala:353 src/Widgets/Library/LibraryItem.vala:195
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "විවෘත කරන්න (_O)"
 
-#: src/Window.vala:360 src/Widgets/Library/LibraryItem.vala:196
+#: src/Window.vala:354 src/Widgets/Library/LibraryItem.vala:196
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "අවලංගු කරන්න (_C)"
 
-#: src/Window.vala:424
+#: src/Window.vala:418
 msgid "Episodes"
 msgstr ""
 
-#: src/Window.vala:426 src/Window.vala:444
-#: src/Widgets/Library/EpisodesPage.vala:36
+#: src/Window.vala:420 src/Window.vala:440
 msgid "Library"
 msgstr ""
 
-#: src/Window.vala:428 src/Widgets/Library/LibraryPage.vala:50
+#: src/Window.vala:422
 msgid "Back"
 msgstr "ආපසු"
 
 #: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
+msgstr ""
+
+#: src/Widgets/HeaderBar.vala:39
+msgid "Unfullscreen"
 msgstr ""
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
@@ -138,26 +141,26 @@ msgstr ""
 msgid "Resume last video"
 msgstr ""
 
-#: src/Widgets/Library/EpisodesPage.vala:42
-#: src/Widgets/Library/LibraryPage.vala:56
+#: src/Widgets/Library/EpisodesPage.vala:36
+#: src/Widgets/Library/LibraryPage.vala:51
 msgid "Search Videos"
 msgstr "දෘශ්‍යක සොයන්න"
 
-#: src/Widgets/Library/EpisodesPage.vala:50
+#: src/Widgets/Library/EpisodesPage.vala:44
 msgid "Play one video"
 msgstr "දෘශ්‍යකයක් ධාවනය කරන්න"
 
-#: src/Widgets/Library/EpisodesPage.vala:51
+#: src/Widgets/Library/EpisodesPage.vala:45
 msgid "Automatically play next videos"
 msgstr "ස්වයංක්‍රීයව ඊලඟ දෘශ්‍යකය ධාවනය කරන්න"
 
-#: src/Widgets/Library/EpisodesPage.vala:97
-#: src/Widgets/Library/LibraryPage.vala:91
+#: src/Widgets/Library/EpisodesPage.vala:87
+#: src/Widgets/Library/LibraryPage.vala:82
 msgid "Try changing search terms."
 msgstr ""
 
-#: src/Widgets/Library/EpisodesPage.vala:194
-#: src/Widgets/Library/LibraryPage.vala:247
+#: src/Widgets/Library/EpisodesPage.vala:180
+#: src/Widgets/Library/LibraryPage.vala:234
 #, c-format
 msgid "No Results for “%s”"
 msgstr "“%s” සඳහා ප්‍රතිඵල නැත"
