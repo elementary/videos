@@ -26,7 +26,6 @@ namespace Audience {
     };
 
     public class PlayerPage : Gtk.Box {
-        private Gtk.HeaderBar header_bar;
         private Audience.Widgets.BottomBar bottom_bar;
         private Gtk.Revealer windowcontrols_revealer;
         private Gtk.Revealer bottom_bar_revealer;
@@ -36,15 +35,7 @@ namespace Audience {
         construct {
             var playback_manager = PlaybackManager.get_default ();
 
-            var navigation_button = new Gtk.Button.with_label ("") {
-                valign = Gtk.Align.CENTER
-            };
-            navigation_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
-
-            header_bar = new Gtk.HeaderBar () {
-                show_title_buttons = true
-            };
-            header_bar.pack_start (navigation_button);
+            var header_bar = new HeaderBar (false);
 
             windowcontrols_revealer = new Gtk.Revealer () {
                 transition_type = SLIDE_DOWN,
@@ -75,16 +66,9 @@ namespace Audience {
 
             append (overlay);
 
-            map.connect (() => {
-                update_actions_enabled (true);
-                navigation_button.label = ((Window)get_root ()).get_adjacent_page_name ();
-            });
+            map.connect (() => update_actions_enabled (true));
 
             unmap.connect (() => update_actions_enabled (false));
-
-            navigation_button.clicked.connect (() => {
-                ((Adw.Leaflet)get_ancestor (typeof (Adw.Leaflet))).navigate (Adw.NavigationDirection.BACK);
-            });
 
             var motion_controller = new Gtk.EventControllerMotion ();
             add_controller (motion_controller);

@@ -87,15 +87,10 @@ public class Audience.Window : Gtk.ApplicationWindow {
             }
         });
 
-        var welcome_page_header_bar = new Gtk.HeaderBar () {
-            show_title_buttons = true
-        };
-        welcome_page_header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
-
         var welcome_page = new WelcomePage ();
 
         welcome_page_box = new Gtk.Box (VERTICAL, 0);
-        welcome_page_box.append (welcome_page_header_bar);
+        welcome_page_box.append (new HeaderBar ());
         welcome_page_box.append (welcome_page);
         welcome_page_box.add_css_class (Granite.STYLE_CLASS_VIEW);
 
@@ -193,12 +188,10 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     private void action_fullscreen () {
-        if (leaflet.visible_child == player_page) {
-            if (fullscreened) {
-                unfullscreen ();
-            } else {
-                fullscreen ();
-            }
+        if (fullscreened) {
+            unfullscreen ();
+        } else {
+            fullscreen ();
         }
     }
 
@@ -250,6 +243,14 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     public void handle_key_press (uint keyval, uint keycode, Gdk.ModifierType state) {
+        if (keyval == Gdk.Key.Escape) {
+            if (fullscreened) {
+                unfullscreen ();
+            } else {
+                destroy ();
+            }
+        }
+
         if (leaflet.visible_child == player_page) {
             if (match_keycode (Gdk.Key.space, keycode) || match_keycode (Gdk.Key.p, keycode)) {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
@@ -262,13 +263,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
             bool shift_pressed = SHIFT_MASK in state;
             switch (keyval) {
-                case Gdk.Key.Escape:
-                    if (fullscreened) {
-                        unfullscreen ();
-                    } else {
-                        destroy ();
-                    }
-                    break;
                 case Gdk.Key.Down:
                     player_page.seek_jump_seconds (shift_pressed ? -5 : -60);
                     break;
@@ -418,14 +412,16 @@ public class Audience.Window : Gtk.ApplicationWindow {
         PlaybackManager.get_default ().play_file (uri, from_beginning);
     }
 
-    public string get_adjacent_page_name () {
+    public string? get_adjacent_page_name () {
         var previous_child = leaflet.get_adjacent_child (Adw.NavigationDirection.BACK);
         if (previous_child == episodes_page) {
             return _("Episodes");
         } else if (previous_child == library_page) {
             return _("Library");
-        } else {
+        } else if (previous_child == welcome_page_box) {
             return _("Back");
+        } else {
+            return null;
         }
     }
 

@@ -47,22 +47,13 @@ public class Audience.LibraryPage : Gtk.Box {
     construct {
         items = new ListStore (typeof (LibraryItem));
 
-        var navigation_button = new Gtk.Button.with_label (_("Back")) {
-            valign = Gtk.Align.CENTER
-        };
-        navigation_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
-
         search_entry = new Gtk.SearchEntry () {
             placeholder_text = _("Search Videos"),
             valign = CENTER
         };
 
-        var header_bar = new Gtk.HeaderBar () {
-            show_title_buttons = true,
-        };
-        header_bar.pack_start (navigation_button);
-        header_bar.pack_end (search_entry);
-        header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
+        var header_bar = new HeaderBar ();
+        header_bar.header_bar.pack_end (search_entry);
 
         view_movies = new Gtk.FlowBox () {
             column_spacing = 12,
@@ -116,10 +107,6 @@ public class Audience.LibraryPage : Gtk.Box {
             if (search_entry.text != "" && !has_child ()) {
                 search_entry.text = "";
             }
-        });
-
-        navigation_button.clicked.connect (() => {
-            ((Adw.Leaflet)get_ancestor (typeof (Adw.Leaflet))).navigate (Adw.NavigationDirection.BACK);
         });
 
         search_entry.search_changed.connect (() => filter ());
