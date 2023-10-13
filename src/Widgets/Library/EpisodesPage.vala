@@ -27,11 +27,6 @@ public class Audience.EpisodesPage : Gtk.Box {
     private Granite.Placeholder alert_view;
 
     construct {
-        var navigation_button = new Gtk.Button.with_label (_("Library")) {
-            valign = Gtk.Align.CENTER
-        };
-        navigation_button.add_css_class (Granite.STYLE_CLASS_BACK_BUTTON);
-
         search_entry = new Gtk.SearchEntry () {
             placeholder_text = _("Search Videos"),
             valign = CENTER
@@ -47,13 +42,9 @@ public class Audience.EpisodesPage : Gtk.Box {
         };
         settings.bind ("autoqueue-next", autoqueue_next, "active", SettingsBindFlags.DEFAULT);
 
-        header_bar = new Gtk.HeaderBar () {
-            show_title_buttons = true
-        };
-        header_bar.pack_start (navigation_button);
-        header_bar.pack_end (search_entry);
-        header_bar.pack_end (autoqueue_next);
-        header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
+        var header_bar = new HeaderBar ();
+        header_bar.header_bar.pack_end (search_entry);
+        header_bar.header_bar.pack_end (autoqueue_next);
 
         poster = new Gtk.Picture () {
             height_request = Audience.Services.POSTER_HEIGHT,
@@ -104,10 +95,6 @@ public class Audience.EpisodesPage : Gtk.Box {
         orientation = VERTICAL;
         append (header_bar);
         append (grid);
-
-        navigation_button.clicked.connect (() => {
-            ((Adw.Leaflet)get_ancestor (typeof (Adw.Leaflet))).navigate (Adw.NavigationDirection.BACK);
-        });
 
         factory.setup.connect ((obj) => {
             var item = (Gtk.ListItem) obj;

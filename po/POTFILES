@@ -7,6 +7,7 @@ src/Services/DirectoryMonitoring.vala
 src/Services/LibraryManager.vala
 src/Services/PlaybackManager.vala
 src/Services/Thumbnailer.vala
+src/Widgets/HeaderBar.vala
 src/Widgets/UnsupportedFileDialog.vala
 src/Widgets/WelcomePage.vala
 src/Widgets/Library/EpisodesPage.vala

@@ -14,6 +14,7 @@ executable(
     'Services/LibraryManager.vala',
     'Services/PlaybackManager.vala',
     'Services/Thumbnailer.vala',
+    'Widgets/HeaderBar.vala',
     'Widgets/UnsupportedFileDialog.vala',
     'Widgets/WelcomePage.vala',
     'Widgets/Library/EpisodesPage.vala',
