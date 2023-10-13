@@ -22,7 +22,6 @@ public class Audience.EpisodesPage : Gtk.Box {
     private Gtk.Picture poster;
     private Gtk.FilterListModel filter_model;
     private Gtk.SearchEntry search_entry;
-    private Gtk.HeaderBar header_bar;
     private Gtk.ListView view_episodes;
     private Granite.Placeholder alert_view;
 
