@@ -6,6 +6,11 @@
     </enum>
 
   <schema path="/io/elementary/videos/" id="io.elementary.videos" gettext-domain="audience">
+        <key name="force-dark-mode" type="b">
+            <default>false</default>
+            <summary>Whether to force dark mode</summary>
+            <description>Whether to always use dark mode or follow system style</description>
+        </key>
         <key enum="io.elementary.videos.repeat-mode" name="repeat-mode">
           <default>'disabled'</default>
           <summary>An index representing the repeat mode</summary>
