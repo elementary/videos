@@ -72,7 +72,7 @@ jobs:
       with:
         token: ${{ secrets.GIT_USER_TOKEN }}
 
-    - name: configure Git
+    - name: Configure Git
       run: |
         git config --global --add safe.directory "$GITHUB_WORKSPACE"
     - name: Update Translation Files
