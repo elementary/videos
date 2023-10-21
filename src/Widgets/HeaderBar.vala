@@ -34,25 +34,6 @@ public class Audience.HeaderBar : Gtk.Box {
         };
         navigation_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
 
-        var force_dark_mode_button = new Granite.SwitchModelButton (_("Always use Dark Mode"));
-
-        var popover_content = new Gtk.Box (VERTICAL, 0) {
-            margin_bottom = 3,
-            margin_top = 3
-        };
-        popover_content.append (force_dark_mode_button);
-
-        var popover = new Gtk.Popover () {
-            child = popover_content
-        };
-
-        var menu_button = new Gtk.MenuButton () {
-            primary = true,
-            popover = popover,
-            icon_name = "open-menu"
-        };
-        menu_button.add_css_class (Granite.STYLE_CLASS_LARGE_ICONS);
-
         unfullscreen_button = new Gtk.Button.from_icon_name ("view-restore-symbolic") {
             visible = false,
             tooltip_text = _("Unfullscreen")
@@ -64,15 +45,12 @@ public class Audience.HeaderBar : Gtk.Box {
         };
         header_bar.pack_start (navigation_button);
         header_bar.pack_end (unfullscreen_button);
-        header_bar.pack_end (menu_button);
 
         if (flat) {
             header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
         }
 
         append (header_bar);
-
-        settings.bind ("force-dark-mode", force_dark_mode_button, "active", DEFAULT);
 
         map.connect (() => {
             var adjacent_page_name = ((Window) get_root ()).get_adjacent_page_name ();

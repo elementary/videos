@@ -65,14 +65,14 @@ namespace Audience {
 
             Granite.init ();
 
-            check_color_scheme ();
-            Granite.Settings.get_default ().notify["prefers-color-scheme"].connect (check_color_scheme);
+            unowned var granite_settings = Granite.Settings.get_default ();
+            unowned var gtk_settings = Gtk.Settings.get_default ();
 
-            settings.changed.connect ((key) => {
-                if (key == "force-dark-mode") {
-                    check_color_scheme ();
-                }
-            });
+            granite_settings.notify["prefers-color-scheme"].connect (() =>
+                gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == DARK
+            );
+
+            gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == DARK;
         }
 
         public override void activate () {
@@ -144,16 +144,6 @@ namespace Audience {
                 connection.register_object ("/org/mpris/MediaPlayer2", new Videos.MprisPlayer (connection));
             } catch (IOError e) {
                 warning ("could not create MPRIS player: %s\n", e.message);
-            }
-        }
-
-        private void check_color_scheme () {
-            var gtk_settings = Gtk.Settings.get_default ();
-
-            if (settings.get_boolean ("force-dark-mode")) {
-                gtk_settings.gtk_application_prefer_dark_theme = true;
-            } else {
-                gtk_settings.gtk_application_prefer_dark_theme = Granite.Settings.get_default ().prefers_color_scheme == DARK;
             }
         }
     }
