@@ -48,7 +48,7 @@ public class Audience.WelcomePage : Granite.Placeholder {
         disk_button.visible = disk_manager.has_media_volumes ();
 
         var library_manager = Services.LibraryManager.get_instance ();
-        library_button.visible = library_manager.has_items;
+        library_button.visible = library_manager.library_items.get_n_items () > 0;
 
         update_replay_button ();
         update_replay_title ();
@@ -86,12 +86,8 @@ public class Audience.WelcomePage : Granite.Placeholder {
             disk_button.visible = disk_manager.has_media_volumes ();
         });
 
-        library_manager.video_file_detected.connect ((vid) => {
-            library_button.visible = library_manager.has_items;
-        });
-
-        library_manager.video_file_deleted.connect ((vid) => {
-            library_button.visible = library_manager.has_items;
+        library_manager.library_items.items_changed.connect (() => {
+            library_button.visible = library_manager.library_items.get_n_items () > 0;
         });
     }
 

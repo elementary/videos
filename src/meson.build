@@ -7,7 +7,7 @@ executable(
     'DiskManager.vala',
     'Utils.vala',
     'Window.vala',
-    'Objects/Video.vala',
+    'Objects/MediaItem.vala',
     'DBus/MprisPlayer.vala',
     'DBus/MprisRoot.vala',
     'Services/DirectoryMonitoring.vala',

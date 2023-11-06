@@ -78,12 +78,12 @@ public class Audience.Window : Gtk.ApplicationWindow {
         library_page = LibraryPage.get_instance ();
 
         library_page.show_episodes.connect ((item, setup_only) => {
-            episodes_page.set_episodes_items (item.episodes);
+            episodes_page.set_show (item);
             if (!setup_only) {
                 leaflet.append (episodes_page);
                 leaflet.visible_child = episodes_page;
 
-                title = item.get_title ();
+                title = item.title;
             }
         });
 
@@ -119,8 +119,8 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         var manager = Audience.Services.LibraryManager.get_instance ();
 
-        manager.video_moved_to_trash.connect ((video) => {
-            app_notification.title = _("Video '%s' Removed.").printf (Path.get_basename (video));
+        manager.media_item_trashed.connect ((item) => {
+            app_notification.title = _("Video '%s' Removed.").printf (item.title);
 
             /* we don't have access to trash when inside an flatpak sandbox
              * so we don't allow the user to restore in this case.

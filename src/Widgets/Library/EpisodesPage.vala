@@ -19,19 +19,13 @@
  */
 
 public class Audience.EpisodesPage : Gtk.Box {
-    public Gtk.Picture poster { get; private set; }
-
-    private ListStore items;
+    private Gtk.Picture poster;
+    private Gtk.FilterListModel filter_model;
     private Gtk.SearchEntry search_entry;
-    private Gtk.FlowBox view_episodes;
+    private Gtk.ListView view_episodes;
     private Granite.Placeholder alert_view;
 
-    private Objects.Video poster_source;
-
     construct {
-        items = new ListStore (typeof (LibraryItem));
-        poster_source = null;
-
         search_entry = new Gtk.SearchEntry () {
             placeholder_text = _("Search Videos"),
             valign = CENTER
@@ -62,20 +56,20 @@ public class Audience.EpisodesPage : Gtk.Box {
         };
         poster.add_css_class (Granite.STYLE_CLASS_CARD);
 
-        view_episodes = new Gtk.FlowBox () {
-            homogeneous = true,
+        filter_model = new Gtk.FilterListModel (null, new Gtk.CustomFilter (episodes_filter_func));
+        var selection_model = new Gtk.NoSelection (filter_model);
+
+        var factory = new Gtk.SignalListItemFactory ();
+
+        view_episodes = new Gtk.ListView (selection_model, factory) {
             margin_top = 24,
             margin_bottom = 24,
             margin_start = 24,
             margin_end = 24,
-            max_children_per_line = 1,
-            selection_mode = Gtk.SelectionMode.NONE,
+            single_click_activate = true,
             valign = Gtk.Align.START
         };
-        view_episodes.set_filter_func (episodes_filter_func);
-        view_episodes.bind_model (items, (item) => {
-            return (LibraryItem)item;
-        });
+        view_episodes.add_css_class (Granite.STYLE_CLASS_BACKGROUND);
 
         var scrolled_window = new Gtk.ScrolledWindow () {
             hexpand = true,
@@ -101,11 +95,17 @@ public class Audience.EpisodesPage : Gtk.Box {
         append (header_bar);
         append (grid);
 
-        view_episodes.child_activated.connect (play_video);
+        factory.setup.connect ((obj) => {
+            var item = (Gtk.ListItem) obj;
+            item.child = new LibraryItem (ROW);
+        });
 
-        var manager = Audience.Services.LibraryManager.get_instance ();
-        manager.video_file_deleted.connect (remove_item_from_path);
-        manager.video_file_detected.connect (add_item);
+        factory.bind.connect ((obj) => {
+            var item = (Gtk.ListItem) obj;
+            ((LibraryItem) item.child).bind ((Objects.MediaItem) item.item);
+        });
+
+        view_episodes.activate.connect (play_video);
 
         search_entry.search_changed.connect (filter);
 
@@ -124,59 +124,36 @@ public class Audience.EpisodesPage : Gtk.Box {
         search_entry.grab_focus ();
     }
 
-    public void set_episodes_items (Gee.ArrayList<Audience.Objects.Video> episodes) {
-        items.remove_all ();
-
-        foreach (Audience.Objects.Video episode in episodes) {
-            items.insert_sorted (new Audience.LibraryItem (episode, LibraryItemStyle.ROW), episode_sort_func);
-        }
-
-        if (poster_source != null) {
-            poster_source.poster_changed.disconnect (update_poster);
-        }
-        poster_source = episodes.first ();
-        update_poster (poster_source);
-        poster_source.poster_changed.connect (update_poster);
-
-        search_entry.text = "";
+    public void set_show (Objects.MediaItem item) {
+        filter_model.model = item.children;
+        poster.set_pixbuf (item.poster);
     }
 
-    private void update_poster (Objects.Video episode) {
-        poster.set_pixbuf (episode.poster);
-    }
+    private void play_video (uint position) {
+        var video = (Objects.MediaItem) filter_model.get_item (position);
 
-    private void play_video (Gtk.FlowBoxChild item) {
-        var selected = (item as Audience.LibraryItem);
-        var video = selected.episodes.first ();
-        if (video.video_file.query_exists ()) {
-            string uri = video.video_file.get_uri ();
-            bool from_beginning = uri != settings.get_string ("current-video");
+        string[] videos = { video.uri };
 
-            var playback_manager = PlaybackManager.get_default ();
-            playback_manager.clear_playlist ();
-
-            string[] videos = { uri };
-
-            if (settings.get_boolean ("autoqueue-next")) {
-                // Add next from the current view to the queue
-                uint played_index;
-                items.find (selected, out played_index);
-                for (played_index++; played_index < items.get_n_items (); played_index++) {
-                    var library_item = (LibraryItem)items.get_item (played_index);
-                    videos += library_item.video.video_file.get_uri ();
-                }
+        if (settings.get_boolean ("autoqueue-next")) {
+            // Add next from the current view to the queue
+            for (position++; position < filter_model.get_n_items (); position++) {
+                videos += ((Objects.MediaItem) filter_model.get_item (position)).uri;
             }
-
-            playback_manager.append_to_playlist (videos);
-
-            var window = App.get_instance ().mainwindow;
-            window.play_file (uri, Window.NavigationPage.EPISODES, from_beginning);
         }
+
+        var playback_manager = PlaybackManager.get_default ();
+        playback_manager.clear_playlist ();
+        playback_manager.append_to_playlist (videos);
+
+        bool from_beginning = video.uri != settings.get_string ("current-video");
+
+        var window = App.get_instance ().mainwindow;
+        window.play_file (video.uri, Window.NavigationPage.EPISODES, from_beginning);
     }
 
     private void filter () {
-         view_episodes.invalidate_filter ();
-         if (!has_child ()) {
+         filter_model.model.items_changed (0, filter_model.model.get_n_items (), filter_model.model.get_n_items ());
+         if (filter_model.get_n_items () == 0) {
             alert_view.title = _("No Results for “%s”").printf (search_entry.text);
             alert_view.visible = true;
          } else {
@@ -184,13 +161,13 @@ public class Audience.EpisodesPage : Gtk.Box {
          }
     }
 
-    private bool episodes_filter_func (Gtk.FlowBoxChild child) {
+    private bool episodes_filter_func (Object obj) {
         if (search_entry.text.length == 0) {
             return true;
         }
 
         string[] filter_elements = search_entry.text.split (" ");
-        var video_title = ((LibraryItem)(child)).get_title ();
+        var video_title = ((Objects.MediaItem) obj).title;
 
         foreach (string filter_element in filter_elements) {
             if (!video_title.down ().contains (filter_element.down ())) {
@@ -198,47 +175,5 @@ public class Audience.EpisodesPage : Gtk.Box {
             }
         }
         return true;
-    }
-
-    private int episode_sort_func (Object item1, Object item2) {
-        var library_item1 = (LibraryItem)item1;
-        var library_item2 = (LibraryItem)item2;
-        if (library_item1 != null && library_item2 != null) {
-            return library_item1.episodes.first ().file.collate (library_item2.episodes.first ().file);
-        }
-        return 0;
-    }
-
-    private void add_item (Audience.Objects.Video episode) {
-        if (items.get_n_items () > 0 ) {
-            var first = (LibraryItem)items.get_item (0);
-            if (first != null && first.episodes.first ().video_file.get_parent ().get_path () == episode.video_file.get_parent ().get_path ()) {
-                items.insert_sorted (new Audience.LibraryItem (episode, LibraryItemStyle.ROW), episode_sort_func);
-            }
-        }
-    }
-
-    private async void remove_item_from_path (string path ) {
-        for (int i = 0; i < items.get_n_items (); i++) {
-            var item = (LibraryItem)items.get_item (i);
-            if (item.episodes.size == 0 || item.episodes.first ().video_file.get_path ().has_prefix (path)) {
-                items.remove (i);
-            }
-        }
-
-        var leaflet = (Adw.Leaflet) get_ancestor (typeof (Adw.Leaflet));
-        if (leaflet.visible_child == this && items.get_n_items () == 0) {
-            leaflet.navigate (Adw.NavigationDirection.BACK);
-        }
-    }
-
-    private bool has_child () {
-        for (int i = 0; i < items.get_n_items (); i++) {
-            var item = (LibraryItem)items.get_item (i);
-            if (item.get_child_visible ()) {
-                return true;
-            }
-        }
-        return false;
     }
 }
