@@ -24,19 +24,17 @@ namespace Audience.Services {
     public const int POSTER_HEIGHT = 240;
 
     public class LibraryManager : Object {
-
-        public signal void video_file_detected (Audience.Objects.Video video);
-        public signal void video_file_deleted (string path);
-        public signal void video_moved_to_trash (string path);
-        public signal void finished ();
+        public signal void media_item_trashed (Objects.MediaItem item);
+        public signal void video_file_deleted (string uri);
 
         public Regex regex_year { get; construct set; }
         public DbusThumbnailer thumbler { get; construct set; }
 
-        public bool has_items { get; private set; }
         public bool is_scanning { get; private set; }
 
-        private Gee.ArrayList<string> poster_hash;
+        public ListStore library_items { get; construct; } // Has toplevel items i.e. shows and standalone videos
+
+        private HashTable<string, Objects.MediaItem> shows;
         private Gee.ArrayList<DirectoryMonitoring> monitoring_directories;
         private Gee.Queue<string> unchecked_directories;
 
@@ -51,12 +49,10 @@ namespace Audience.Services {
             return instance;
         }
 
-        private LibraryManager () {
-        }
-
         construct {
+            library_items = new ListStore (typeof (Objects.MediaItem));
+            shows = new HashTable<string, Objects.MediaItem> (str_hash, str_equal);
             trashed_files = new Gee.ArrayList<string> ();
-            poster_hash = new Gee.ArrayList<string> ();
             monitoring_directories = new Gee.ArrayList<DirectoryMonitoring> ();
             unchecked_directories = new Gee.UnrolledLinkedList<string> ();
             try {
@@ -65,8 +61,6 @@ namespace Audience.Services {
                 warning (e.message);
             }
             thumbler = new DbusThumbnailer ();
-
-            finished.connect (() => { clear_unused_cache_files.begin (); });
         }
 
         public void begin_scan () {
@@ -76,14 +70,13 @@ namespace Audience.Services {
 
         private void monitored_directory_changed (FileMonitor monitor, File src, File? dest, FileMonitorEvent event) {
             if (event == GLib.FileMonitorEvent.DELETED) {
-                video_file_deleted (src.get_path ());
+                video_file_deleted (src.get_uri ());
                 foreach (DirectoryMonitoring item in monitoring_directories) {
                     if (item.path == src.get_path ()) {
                         item.monitor.cancel ();
                     }
                 }
-            }
-            else if (event == GLib.FileMonitorEvent.CHANGES_DONE_HINT) {
+            } else if (event == GLib.FileMonitorEvent.CHANGES_DONE_HINT) {
                 FileInfo file_info;
                 try {
                     file_info = src.query_info (FileAttribute.STANDARD_CONTENT_TYPE + "," + FileAttribute.STANDARD_IS_HIDDEN + "," + FileAttribute.STANDARD_TYPE, 0);
@@ -97,8 +90,7 @@ namespace Audience.Services {
                         detect_video_files.begin ();
                     }
                 } else if (is_file_valid (file_info)) {
-                    string src_path = src.get_path ();
-                    create_video_object (file_info, Path.get_dirname (src_path), Path.get_basename (src_path));
+                    create_video_object (src);
                 }
             }
         }
@@ -114,7 +106,6 @@ namespace Audience.Services {
         }
 
         public async void detect_video_files () throws GLib.Error {
-
             is_scanning = true;
 
             while (!unchecked_directories.is_empty) {
@@ -135,7 +126,8 @@ namespace Audience.Services {
                         }
 
                         if (is_file_valid (file_info)) {
-                            create_video_object (file_info, source);
+                            var file = File.new_build_filename (source, file_info.get_name ());
+                            create_video_object (file);
                             videos_found = true;
                         }
                     }
@@ -147,7 +139,6 @@ namespace Audience.Services {
                 }
             }
 
-            finished ();
             is_scanning = false;
         }
 
@@ -156,49 +147,47 @@ namespace Audience.Services {
             return !file_info.get_is_hidden () && mime_type.contains ("video");
         }
 
-        private void create_video_object (FileInfo file_info, string source, string name = "") {
-            if (name == "") {
-                name = file_info.get_name ();
-            }
-            var video = new Audience.Objects.Video (source, name, file_info.get_content_type ());
-            video_file_detected (video);
-            poster_hash.add (video.hash_file_poster + ".jpg");
-            poster_hash.add (video.hash_episode_poster + ".jpg");
-            has_items = true;
-        }
+        private void create_video_object (File file) {
+            var title = get_title (file.get_path ());
 
-        public async void clear_cache (string cache_file) {
-            File file = File.new_for_path (cache_file);
-            if (file.query_exists ()) {
-                try {
-                    yield file.delete_async (Priority.DEFAULT, null);
-                } catch (Error e) {
-                    warning (e.message);
+            if (file.get_parent ().get_path () != Environment.get_user_special_dir (UserDirectory.VIDEOS)) {
+                var parent_file = file.get_parent ();
+                var parent_name = get_title (parent_file.get_path ());
+
+                if (!(parent_name in shows)) {
+                    shows[parent_name] = new Objects.MediaItem.show (parent_name, parent_file.get_uri ());
+                    library_items.insert_sorted (shows[parent_name], library_item_sort_func);
+                    shows[parent_name].trashed.connect (() => remove_item (shows.take (parent_name)));
                 }
+
+                shows[parent_name].add_item (new Audience.Objects.MediaItem.video (file.get_uri (), title, shows[parent_name]));
+            } else {
+                var item = new Audience.Objects.MediaItem.video (file.get_uri (), title, null);
+                library_items.insert_sorted (item, library_item_sort_func);
+                item.trashed.connect (() => remove_item (item));
             }
         }
 
-        public async void clear_unused_cache_files () {
-            File directory = File.new_for_path (((Audience.App) Application.get_default ()).get_cache_directory ());
-            directory.enumerate_children_async.begin (FileAttribute.STANDARD_NAME, 0, Priority.DEFAULT, null, (obj, res) => {
-                try {
-                    FileEnumerator children = directory.enumerate_children_async.end (res);
-                    FileInfo file_info;
-                    while ((file_info = children.next_file ()) != null) {
-                        if (!poster_hash.contains (file_info.get_name ())) {
-                            File to_delete = children.get_child (file_info);
-                            Process.spawn_command_line_async ("rm " + to_delete.get_path ());
-                        }
-                    }
-                } catch (Error e) {
-                    warning (e.message);
-                }
-            });
+        public static int library_item_sort_func (Object item1, Object item2) {
+            var library_item1 = (Objects.MediaItem) item1;
+            var library_item2 = (Objects.MediaItem) item2;
+            if (library_item1 != null && library_item2 != null) {
+                return library_item1.title.collate (library_item2.title);
+            }
+
+            return 0;
         }
 
-        public void deleted_items (string path) {
-            trashed_files.add (path);
-            video_moved_to_trash (path);
+        public void remove_item (Objects.MediaItem item) {
+            if (item.uri != null) {
+                trashed_files.add (item.uri);
+                media_item_trashed (item);
+            }
+
+            uint position;
+            if (library_items.find (item, out position)) {
+                library_items.remove (position);
+            }
         }
 
         public void undo_delete_item () {

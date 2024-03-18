@@ -1,47 +1,12 @@
-headerbar.osd,
 mediacontrols {
     padding: 1em;
 }
 
-headerbar.osd {
-    background: linear-gradient(
-        to top,
-        transparent,
-        alpha(black, 0.1) 1.5em
-    );
-    box-shadow: none;
-    margin: 0;
-}
-
-headerbar.osd button.text-button {
-    background-color: @SILVER_100;
-    box-shadow:
-        0 1px 3px alpha(black, 0.3),
-        0 3px 0.7em alpha(black, 0.05);
-    color: @BLACK_500;
-    font-weight: 600;
-    -gtk-icon-shadow: none;
-    min-height: 2.25em;
-    padding-bottom: 0;
-    padding-top: 0;
-    text-shadow: none;
-}
-
-headerbar.osd label.title {
-    font-size: 1.25em;
-}
-
-headerbar.osd label.title,
 mediacontrols > label {
     color: @fg_color;
     text-shadow:
         0 1px 3px alpha(black, 0.4),
         0 0 1em alpha(black, 0.25);
-}
-
-headerbar.osd windowcontrols button {
-    background: alpha(BLACK, 0.5);
-    border-radius: 2em;
 }
 
 mediacontrols {
@@ -54,7 +19,6 @@ mediacontrols {
     font-weight: bold;
 }
 
-headerbar.osd windowcontrols button,
 mediacontrols > button,
 mediacontrols > menubutton {
     -gtk-icon-shadow:

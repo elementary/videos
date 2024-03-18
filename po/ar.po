@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-24 15:10+0000\n"
+"POT-Creation-Date: 2023-10-12 16:20+0000\n"
 "PO-Revision-Date: 2021-08-31 13:00+0000\n"
 "Last-Translator: aalhaif <aalhaif@hotmail.com>\n"
 "Language-Team: Arabic <https://l10n.elementary.io/projects/videos/videos/ar/"
@@ -21,63 +21,77 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 
-#: src/Application.vala:105 src/Window.vala:435
+#: src/Application.vala:103 src/Window.vala:438
 msgid "Videos"
 msgstr "فيديوهات"
 
-#: src/Window.vala:128
+#: src/Window.vala:123
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "تمت إزالة الفيديو '%s'."
 
-#: src/Window.vala:134
+#: src/Window.vala:129
 msgid "Restore"
 msgstr "استعادة"
 
-#: src/Window.vala:157
+#: src/Window.vala:153
 #, c-format
 msgid "“%s” added to playlist"
 msgstr ""
 
-#: src/Window.vala:341 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:156
+#, c-format
+msgid "%u item added to playlist"
+msgid_plural "%u items added to playlist"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: src/Window.vala:342 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "كل الملفات"
 
-#: src/Window.vala:345
+#: src/Window.vala:346
 msgid "Video files"
 msgstr "ملفات فيديو"
 
-#: src/Window.vala:349 src/Widgets/Library/LibraryItem.vala:192
+#: src/Window.vala:350 src/Widgets/Library/LibraryItem.vala:192
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "افتح"
 
-#: src/Window.vala:352 src/Widgets/Library/LibraryItem.vala:195
+#: src/Window.vala:353 src/Widgets/Library/LibraryItem.vala:195
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "_فتح"
 
-#: src/Window.vala:353 src/Widgets/Library/LibraryItem.vala:196
+#: src/Window.vala:354 src/Widgets/Library/LibraryItem.vala:196
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "_إلغاء"
 
-#: src/Window.vala:417
+#: src/Window.vala:418
 msgid "Episodes"
 msgstr "الحلقات"
 
-#: src/Window.vala:419 src/Window.vala:437
-#: src/Widgets/Library/EpisodesPage.vala:36
+#: src/Window.vala:420 src/Window.vala:440
 msgid "Library"
 msgstr "المكتبة"
 
-#: src/Window.vala:421 src/Widgets/Library/LibraryPage.vala:50
+#: src/Window.vala:422
 msgid "Back"
 msgstr "الخلف"
 
-#: src/Services/PlaybackManager.vala:149
+#: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr "فيديو جاري تشغيله"
+
+#: src/Widgets/HeaderBar.vala:39
+msgid "Unfullscreen"
+msgstr "الغاء الشاشة الكاملة"
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
@@ -109,7 +123,7 @@ msgstr "لا يوجد مقاطع فيديو مفتوحة"
 msgid "Select a source to begin playing."
 msgstr "حدد مصدر لبدء التشغيل."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:33
+#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
 msgstr "افتح ملفًا"
 
@@ -117,11 +131,11 @@ msgstr "افتح ملفًا"
 msgid "Open a saved file."
 msgstr "افتح ملفًا محفوظا."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:117
+#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:116
 msgid "Replay last video"
 msgstr "إعادة تشغيل الفيديو الماضي"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "شغّل من اسطوانة"
 
@@ -137,30 +151,30 @@ msgstr "تصفح المكتبة"
 msgid "Watch a movie from your library"
 msgstr "شاهد مقطع فيديو من مكتبتك"
 
-#: src/Widgets/WelcomePage.vala:120
+#: src/Widgets/WelcomePage.vala:119
 msgid "Resume last video"
 msgstr "استئناف الفيديو الأخير"
 
-#: src/Widgets/Library/EpisodesPage.vala:42
-#: src/Widgets/Library/LibraryPage.vala:56
+#: src/Widgets/Library/EpisodesPage.vala:36
+#: src/Widgets/Library/LibraryPage.vala:51
 msgid "Search Videos"
 msgstr "البحث عن مقاطع الفيديو"
 
-#: src/Widgets/Library/EpisodesPage.vala:50
+#: src/Widgets/Library/EpisodesPage.vala:44
 msgid "Play one video"
 msgstr "تشغيل فيديو واحد"
 
-#: src/Widgets/Library/EpisodesPage.vala:51
+#: src/Widgets/Library/EpisodesPage.vala:45
 msgid "Automatically play next videos"
 msgstr "تشغيل الفيديوهات القادمة تلقائيا"
 
-#: src/Widgets/Library/EpisodesPage.vala:97
-#: src/Widgets/Library/LibraryPage.vala:91
+#: src/Widgets/Library/EpisodesPage.vala:87
+#: src/Widgets/Library/LibraryPage.vala:82
 msgid "Try changing search terms."
 msgstr "حاول تغيير مصطلحات البحث."
 
-#: src/Widgets/Library/EpisodesPage.vala:191
-#: src/Widgets/Library/LibraryPage.vala:247
+#: src/Widgets/Library/EpisodesPage.vala:180
+#: src/Widgets/Library/LibraryPage.vala:234
 #, c-format
 msgid "No Results for “%s”"
 msgstr "لا توجد نتائج ل \"%s\""
@@ -193,18 +207,21 @@ msgstr "الإعدادات"
 msgid "Pause"
 msgstr "إيقاف مؤقت"
 
-#: src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/Player/PlaylistPopover.vala:37
 msgid "Clear Playlist"
 msgstr "مسح قائمة التشغيل"
 
-#: src/Widgets/Player/PlaylistPopover.vala:47
-#: src/Widgets/Player/PlaylistPopover.vala:115
-msgid "Enable Repeat"
-msgstr "فعل التكرار"
+#: src/Widgets/Player/PlaylistPopover.vala:125
+msgid "Repeat None"
+msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:112
-msgid "Disable Repeat"
-msgstr "الغاء تفعيل التكرار"
+#: src/Widgets/Player/PlaylistPopover.vala:129
+msgid "Repeat All"
+msgstr ""
+
+#: src/Widgets/Player/PlaylistPopover.vala:133
+msgid "Repeat One"
+msgstr ""
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
@@ -238,8 +255,11 @@ msgstr "تسلسل %u"
 msgid "Default"
 msgstr "المبدئي"
 
-#~ msgid "Unfullscreen"
-#~ msgstr "الغاء الشاشة الكاملة"
+#~ msgid "Enable Repeat"
+#~ msgstr "فعل التكرار"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "الغاء تفعيل التكرار"
 
 #~ msgid "External Subtitles"
 #~ msgstr "الترجمة الخارجية"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-24 15:10+0000\n"
-"PO-Revision-Date: 2023-07-16 15:07+0000\n"
+"POT-Creation-Date: 2023-10-12 16:20+0000\n"
+"PO-Revision-Date: 2023-09-09 09:08+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/videos/videos/fr/"
 ">\n"
@@ -20,63 +20,73 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:105 src/Window.vala:435
+#: src/Application.vala:103 src/Window.vala:438
 msgid "Videos"
 msgstr "Vidéos"
 
-#: src/Window.vala:128
+#: src/Window.vala:123
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Vidéo « %s » supprimée."
 
-#: src/Window.vala:134
+#: src/Window.vala:129
 msgid "Restore"
 msgstr "Rétablir"
 
-#: src/Window.vala:157
+#: src/Window.vala:153
 #, c-format
 msgid "“%s” added to playlist"
 msgstr "« %s » a été ajouté à la liste de lecture"
 
-#: src/Window.vala:341 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:156
+#, c-format
+msgid "%u item added to playlist"
+msgid_plural "%u items added to playlist"
+msgstr[0] "%u élément ajouté à la liste de lecture"
+msgstr[1] "%u éléments ajoutés à la liste de lecture"
+
+#: src/Window.vala:342 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "Tous les fichiers"
 
-#: src/Window.vala:345
+#: src/Window.vala:346
 msgid "Video files"
 msgstr "Fichiers vidéo"
 
-#: src/Window.vala:349 src/Widgets/Library/LibraryItem.vala:192
+#: src/Window.vala:350 src/Widgets/Library/LibraryItem.vala:192
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "Ouvrir"
 
-#: src/Window.vala:352 src/Widgets/Library/LibraryItem.vala:195
+#: src/Window.vala:353 src/Widgets/Library/LibraryItem.vala:195
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "_Ouvrir"
 
-#: src/Window.vala:353 src/Widgets/Library/LibraryItem.vala:196
+#: src/Window.vala:354 src/Widgets/Library/LibraryItem.vala:196
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "_Annuler"
 
-#: src/Window.vala:417
+#: src/Window.vala:418
 msgid "Episodes"
 msgstr "Épisodes"
 
-#: src/Window.vala:419 src/Window.vala:437
-#: src/Widgets/Library/EpisodesPage.vala:36
+#: src/Window.vala:420 src/Window.vala:440
 msgid "Library"
 msgstr "Bibliothèque"
 
-#: src/Window.vala:421 src/Widgets/Library/LibraryPage.vala:50
+#: src/Window.vala:422
 msgid "Back"
 msgstr "Retour"
 
-#: src/Services/PlaybackManager.vala:149
+#: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr "Une vidéo est en cours de lecture"
+
+#: src/Widgets/HeaderBar.vala:39
+msgid "Unfullscreen"
+msgstr "Quitter le mode plein écran"
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
@@ -108,7 +118,7 @@ msgstr "Aucun fichier vidéo ouvert"
 msgid "Select a source to begin playing."
 msgstr "Sélectionnez une source pour commencer la lecture."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:33
+#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
 msgstr "Ouvrir un fichier"
 
@@ -116,11 +126,11 @@ msgstr "Ouvrir un fichier"
 msgid "Open a saved file."
 msgstr "Ouvrir un fichier sauvegardé."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:117
+#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:116
 msgid "Replay last video"
 msgstr "Rejouer la dernière vidéo"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "Lire le disque"
 
@@ -136,30 +146,30 @@ msgstr "Explorer la bibliothèque"
 msgid "Watch a movie from your library"
 msgstr "Regarder un film de votre bibliothèque"
 
-#: src/Widgets/WelcomePage.vala:120
+#: src/Widgets/WelcomePage.vala:119
 msgid "Resume last video"
 msgstr "Reprendre la lecture de la dernière vidéo"
 
-#: src/Widgets/Library/EpisodesPage.vala:42
-#: src/Widgets/Library/LibraryPage.vala:56
+#: src/Widgets/Library/EpisodesPage.vala:36
+#: src/Widgets/Library/LibraryPage.vala:51
 msgid "Search Videos"
 msgstr "Rechercher des vidéos"
 
-#: src/Widgets/Library/EpisodesPage.vala:50
+#: src/Widgets/Library/EpisodesPage.vala:44
 msgid "Play one video"
 msgstr "Lire une vidéo"
 
-#: src/Widgets/Library/EpisodesPage.vala:51
+#: src/Widgets/Library/EpisodesPage.vala:45
 msgid "Automatically play next videos"
 msgstr "Lire automatiquement les prochaines vidéos"
 
-#: src/Widgets/Library/EpisodesPage.vala:97
-#: src/Widgets/Library/LibraryPage.vala:91
+#: src/Widgets/Library/EpisodesPage.vala:87
+#: src/Widgets/Library/LibraryPage.vala:82
 msgid "Try changing search terms."
 msgstr "Essayez de modifier les termes de la recherche."
 
-#: src/Widgets/Library/EpisodesPage.vala:191
-#: src/Widgets/Library/LibraryPage.vala:247
+#: src/Widgets/Library/EpisodesPage.vala:180
+#: src/Widgets/Library/LibraryPage.vala:234
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Aucun résultat pour « %s »"
@@ -192,18 +202,21 @@ msgstr "Paramètres"
 msgid "Pause"
 msgstr "Mettre en pause"
 
-#: src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/Player/PlaylistPopover.vala:37
 msgid "Clear Playlist"
 msgstr "Effacer la liste de lecture"
 
-#: src/Widgets/Player/PlaylistPopover.vala:47
-#: src/Widgets/Player/PlaylistPopover.vala:115
-msgid "Enable Repeat"
-msgstr "Activer la lecture en boucle"
+#: src/Widgets/Player/PlaylistPopover.vala:125
+msgid "Repeat None"
+msgstr "Répétition désactivée"
 
-#: src/Widgets/Player/PlaylistPopover.vala:112
-msgid "Disable Repeat"
-msgstr "Désactiver la lecture en boucle"
+#: src/Widgets/Player/PlaylistPopover.vala:129
+msgid "Repeat All"
+msgstr "Tout répéter"
+
+#: src/Widgets/Player/PlaylistPopover.vala:133
+msgid "Repeat One"
+msgstr "Répéter une fois"
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
@@ -237,8 +250,11 @@ msgstr "Piste %u"
 msgid "Default"
 msgstr "Par défaut"
 
-#~ msgid "Unfullscreen"
-#~ msgstr "Quitter le mode plein écran"
+#~ msgid "Enable Repeat"
+#~ msgstr "Activer la lecture en boucle"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "Désactiver la lecture en boucle"
 
 #~ msgid "External Subtitles"
 #~ msgstr "Sous-titres externes"
