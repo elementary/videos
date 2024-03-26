@@ -22,12 +22,13 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
     public bool should_stay_revealed {
         get {
             var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-            return hovered || playlist_popover.visible || settings_popover.visible ||
+            return hovered || volume_popover.visible || playlist_popover.visible || settings_popover.visible ||
                 !play_pause_action.get_state ().get_boolean ();
         }
     }
 
     private Videos.SeekBar seek_bar;
+    private Gtk.Popover volume_popover;
     private PlaylistPopover playlist_popover;
     private SettingsPopover settings_popover;
     private bool hovered;
@@ -56,6 +57,14 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
             direction = UP
         };
 
+        var volume_button = new Gtk.ScaleButton (0, 1, 0.02) {
+            icons = {"audio-volume-muted", "audio-volume-high", "audio-volume-low", "audio-volume-medium"}
+        };
+        PlaybackManager.get_default ().bind_property ("volume", volume_button, "value", BIDIRECTIONAL | SYNC_CREATE);
+
+        volume_popover = (Gtk.Popover) volume_button.get_popup ();
+        volume_popover.position = TOP;
+
         seek_bar = new Videos.SeekBar ();
 
         var main_actionbar = new Gtk.ActionBar () {
@@ -63,6 +72,7 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
         };
         main_actionbar.pack_start (play_button);
         main_actionbar.set_center_widget (seek_bar);
+        main_actionbar.pack_end (volume_button);
         main_actionbar.pack_end (settings_button);
         main_actionbar.pack_end (playlist_button);
 

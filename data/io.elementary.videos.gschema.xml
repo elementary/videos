@@ -6,6 +6,11 @@
     </enum>
 
   <schema path="/io/elementary/videos/" id="io.elementary.videos" gettext-domain="audience">
+        <key name="volume" type="d">
+            <default>1</default>
+            <summary>Current volume</summary>
+            <description>Volume of the currently playing video.</description>
+        </key>
         <key enum="io.elementary.videos.repeat-mode" name="repeat-mode">
           <default>'disabled'</default>
           <summary>An index representing the repeat mode</summary>

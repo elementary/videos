@@ -14,6 +14,7 @@ public class Audience.PlaybackManager : Object {
     public bool playing { get; private set; }
     public int64 duration { get; private set; default = 0; }
     public int64 position { get; private set; default = 0; }
+    public double volume { get; set; }
 
     public Gtk.StringList play_queue { get; private set; }
 
@@ -44,6 +45,9 @@ public class Audience.PlaybackManager : Object {
 
         playbin = Gst.ElementFactory.make ("playbin", "bin");
         playbin.video_sink = gtksink;
+
+        playbin.bind_property ("volume", this, "volume", BIDIRECTIONAL | SYNC_CREATE);
+        settings.bind ("volume", this, "volume", DEFAULT);
 
         var bus = playbin.get_bus ();
         bus.add_signal_watch ();
