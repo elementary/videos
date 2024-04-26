@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-12 16:20+0000\n"
-"PO-Revision-Date: 2021-07-12 01:15+0000\n"
-"Last-Translator: lucaspifonseca <lucaspifonseca@gmail.com>\n"
+"PO-Revision-Date: 2024-04-27 21:13+0000\n"
+"Last-Translator: Matheus Torres Carvalho <matheustcarvalho@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "videos/videos/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.0.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: src/Application.vala:103 src/Window.vala:438
@@ -36,14 +36,14 @@ msgstr "Recuperar"
 #: src/Window.vala:153
 #, c-format
 msgid "“%s” added to playlist"
-msgstr ""
+msgstr "“%s” adicionado à lista de reprodução"
 
 #: src/Window.vala:156
 #, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u item adicionado à lista de reprodução"
+msgstr[1] "%u itens adicionados à lista de reprodução"
 
 #: src/Window.vala:342 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
@@ -208,15 +208,15 @@ msgstr "Limpar a lista de reprodução"
 
 #: src/Widgets/Player/PlaylistPopover.vala:125
 msgid "Repeat None"
-msgstr ""
+msgstr "Não repetir nenhum"
 
 #: src/Widgets/Player/PlaylistPopover.vala:129
 msgid "Repeat All"
-msgstr ""
+msgstr "Repetir tudo"
 
 #: src/Widgets/Player/PlaylistPopover.vala:133
 msgid "Repeat One"
-msgstr ""
+msgstr "Repetir um"
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
