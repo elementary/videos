@@ -1,6 +1,6 @@
 app-id: io.elementary.videos
 runtime: io.elementary.Platform
-runtime-version: '7.2'
+runtime-version: '8'
 sdk: io.elementary.Sdk
 command: io.elementary.videos
 sdk-extensions:
@@ -27,7 +27,7 @@ add-extensions:
   org.freedesktop.Platform.ffmpeg-full:
     no-autodownload: true
     directory: lib/ffmpeg
-    version: '22.08'
+    version: '23.08'
     add-ld-path: '.'
 
 modules:
@@ -46,7 +46,7 @@ modules:
     sources:
     - type: git
       url: https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs
-      branch: '0.10'
+      branch: '0.12'
     build-options:
       build-args:
         - "--share=network"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-15 14:37+0000\n"
-"PO-Revision-Date: 2023-07-09 18:33+0000\n"
+"POT-Creation-Date: 2023-10-12 16:20+0000\n"
+"PO-Revision-Date: 2024-02-19 12:12+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/videos/"
 "ja/>\n"
@@ -17,68 +17,75 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.0.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:105 src/Window.vala:97 src/Window.vala:503
+#: src/Application.vala:103 src/Window.vala:438
 msgid "Videos"
 msgstr "ビデオ"
 
-#: src/Window.vala:133
+#: src/Window.vala:123
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "動画 '%s' が削除されました。"
 
-#: src/Window.vala:139
+#: src/Window.vala:129
 msgid "Restore"
 msgstr "復元"
 
-#: src/Window.vala:193
+#: src/Window.vala:153
 #, c-format
 msgid "“%s” added to playlist"
 msgstr "“%s” をプレイリストに追加しました"
 
-#: src/Window.vala:402 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:156
+#, c-format
+msgid "%u item added to playlist"
+msgid_plural "%u items added to playlist"
+msgstr[0] "%u項目をプレイリストに追加しました"
+
+#: src/Window.vala:342 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "すべてのファイル"
 
-#: src/Window.vala:406
+#: src/Window.vala:346
 msgid "Video files"
 msgstr "動画ファイル"
 
-#: src/Window.vala:410 src/Widgets/Library/LibraryItem.vala:175
+#: src/Window.vala:350 src/Widgets/Library/LibraryItem.vala:192
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "開く"
 
-#: src/Window.vala:413 src/Widgets/Library/LibraryItem.vala:178
+#: src/Window.vala:353 src/Widgets/Library/LibraryItem.vala:195
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "開く(_O)"
 
-#: src/Window.vala:414 src/Widgets/Library/LibraryItem.vala:179
+#: src/Window.vala:354 src/Widgets/Library/LibraryItem.vala:196
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "キャンセル(_C)"
 
-#: src/Window.vala:478
+#: src/Window.vala:418
 msgid "Episodes"
 msgstr "エピソード"
 
-#: src/Window.vala:480 src/Window.vala:505
-#: src/Widgets/Library/EpisodesPage.vala:36
-#: src/Widgets/Library/LibraryPage.vala:62
-#: src/Widgets/Player/PlayerPage.vala:66
+#: src/Window.vala:420 src/Window.vala:440
 msgid "Library"
 msgstr "ライブラリ"
 
-#: src/Window.vala:482 src/Widgets/Library/LibraryPage.vala:50
+#: src/Window.vala:422
 msgid "Back"
 msgstr "戻る"
 
-#: src/Services/PlaybackManager.vala:147
+#: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr "動画が再生中です"
+
+#: src/Widgets/HeaderBar.vala:39
+msgid "Unfullscreen"
+msgstr "全画面表示の解除"
 
 #: src/Widgets/UnsupportedFileDialog.vala:25
 msgid "Unrecognized file format"
@@ -89,11 +96,11 @@ msgstr "ファイル形式を認識できません"
 msgid "Videos might not be able to play the file '%s'."
 msgstr "“ビデオ”はファイル '%s' を再生できない可能性があります。"
 
-#: src/Widgets/UnsupportedFileDialog.vala:37
+#: src/Widgets/UnsupportedFileDialog.vala:36
 msgid "Play Anyway"
 msgstr "強制的に再生"
 
-#: src/Widgets/UnsupportedFileDialog.vala:40
+#: src/Widgets/UnsupportedFileDialog.vala:39
 #, c-format
 msgid ""
 "Unable to play file at: %s\n"
@@ -102,83 +109,83 @@ msgstr ""
 "以下のファイルを再生できません: %s\n"
 "指定されたファイルは動画 (\"%s\") ではありません。"
 
-#: src/Widgets/WelcomePage.vala:24
+#: src/Widgets/WelcomePage.vala:27
 msgid "No Videos Open"
-msgstr "開いている動画はありません"
+msgstr "開いている動画なし"
 
-#: src/Widgets/WelcomePage.vala:25
+#: src/Widgets/WelcomePage.vala:28
 msgid "Select a source to begin playing."
 msgstr "再生を開始するにはソースを選択してください。"
 
-#: src/Widgets/WelcomePage.vala:30 src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
 msgstr "ファイルを開く"
 
-#: src/Widgets/WelcomePage.vala:30
+#: src/Widgets/WelcomePage.vala:36
 msgid "Open a saved file."
 msgstr "保存されたファイルを開きます。"
 
-#: src/Widgets/WelcomePage.vala:31 src/Widgets/WelcomePage.vala:109
+#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:116
 msgid "Replay last video"
 msgstr "最後の動画をリプレイ"
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:41
+#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "ディスクを再生"
 
-#: src/Widgets/WelcomePage.vala:32
+#: src/Widgets/WelcomePage.vala:38
 msgid "Watch a DVD or open a file from disc"
 msgstr "DVD を見たり、ディスクからファイルを開いたりします"
 
-#: src/Widgets/WelcomePage.vala:33
+#: src/Widgets/WelcomePage.vala:39
 msgid "Browse Library"
 msgstr "ライブラリを探す"
 
-#: src/Widgets/WelcomePage.vala:33
+#: src/Widgets/WelcomePage.vala:39
 msgid "Watch a movie from your library"
 msgstr "ライブラリにある映画を見ます"
 
-#: src/Widgets/WelcomePage.vala:112
+#: src/Widgets/WelcomePage.vala:119
 msgid "Resume last video"
 msgstr "最後の動画を再開します"
 
-#: src/Widgets/Library/EpisodesPage.vala:42
-#: src/Widgets/Library/LibraryPage.vala:56
+#: src/Widgets/Library/EpisodesPage.vala:36
+#: src/Widgets/Library/LibraryPage.vala:51
 msgid "Search Videos"
 msgstr "動画を検索"
 
-#: src/Widgets/Library/EpisodesPage.vala:50
+#: src/Widgets/Library/EpisodesPage.vala:44
 msgid "Play one video"
 msgstr "連続再生しない"
 
-#: src/Widgets/Library/EpisodesPage.vala:51
+#: src/Widgets/Library/EpisodesPage.vala:45
 msgid "Automatically play next videos"
 msgstr "次の動画を自動的に再生"
 
-#: src/Widgets/Library/EpisodesPage.vala:98
-#: src/Widgets/Library/LibraryPage.vala:93
+#: src/Widgets/Library/EpisodesPage.vala:87
+#: src/Widgets/Library/LibraryPage.vala:82
 msgid "Try changing search terms."
 msgstr "検索用語を変更してみてください。"
 
-#: src/Widgets/Library/EpisodesPage.vala:194
-#: src/Widgets/Library/LibraryPage.vala:248
+#: src/Widgets/Library/EpisodesPage.vala:180
+#: src/Widgets/Library/LibraryPage.vala:234
 #, c-format
 msgid "No Results for “%s”"
-msgstr "“%s” という検索結果はありません"
+msgstr "“%s” の検索結果なし"
 
-#: src/Widgets/Library/LibraryItem.vala:79
+#: src/Widgets/Library/LibraryItem.vala:78
 msgid "Move to Trash"
 msgstr "ゴミ箱に移動"
 
-#: src/Widgets/Library/LibraryItem.vala:87
+#: src/Widgets/Library/LibraryItem.vala:102
 msgid "Set Artwork"
 msgstr "アートワークを設定"
 
-#: src/Widgets/Library/LibraryItem.vala:171
+#: src/Widgets/Library/LibraryItem.vala:188
 msgid "Image files"
 msgstr "画像ファイル"
 
-#: src/Widgets/Player/BottomBar.vala:38 src/Widgets/Player/BottomBar.vala:94
+#: src/Widgets/Player/BottomBar.vala:38 src/Widgets/Player/BottomBar.vala:92
 msgid "Play"
 msgstr "再生"
 
@@ -186,30 +193,29 @@ msgstr "再生"
 msgid "Playlist"
 msgstr "プレイリスト"
 
-#: src/Widgets/Player/BottomBar.vala:54
+#: src/Widgets/Player/BottomBar.vala:55
 msgid "Settings"
 msgstr "設定"
 
-#: src/Widgets/Player/BottomBar.vala:97
+#: src/Widgets/Player/BottomBar.vala:95
 msgid "Pause"
 msgstr "一時停止"
 
-#: src/Widgets/Player/PlayerPage.vala:72
-msgid "Unfullscreen"
-msgstr "全画面表示の解除"
-
-#: src/Widgets/Player/PlaylistPopover.vala:45
+#: src/Widgets/Player/PlaylistPopover.vala:37
 msgid "Clear Playlist"
 msgstr "プレイリストを消去"
 
-#: src/Widgets/Player/PlaylistPopover.vala:51
-#: src/Widgets/Player/PlaylistPopover.vala:121
-msgid "Enable Repeat"
-msgstr "リピートを有効にする"
+#: src/Widgets/Player/PlaylistPopover.vala:125
+msgid "Repeat None"
+msgstr "繰り返さない"
 
-#: src/Widgets/Player/PlaylistPopover.vala:118
-msgid "Disable Repeat"
-msgstr "リピートを無効にする"
+#: src/Widgets/Player/PlaylistPopover.vala:129
+msgid "Repeat All"
+msgstr "すべて繰り返す"
+
+#: src/Widgets/Player/PlaylistPopover.vala:133
+msgid "Repeat One"
+msgstr "1ファイルのみ繰り返す"
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
@@ -223,7 +229,7 @@ msgstr "字幕:"
 msgid "External Subtitles:"
 msgstr "外部字幕:"
 
-#: src/Widgets/Player/SettingsPopover.vala:105
+#: src/Widgets/Player/SettingsPopover.vala:103
 #: src/Widgets/Player/SettingsPopover.vala:186
 msgid "None"
 msgstr "なし"
@@ -242,6 +248,12 @@ msgstr "トラック %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "デフォルト"
+
+#~ msgid "Enable Repeat"
+#~ msgstr "リピートを有効にする"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "リピートを無効にする"
 
 #~ msgid "External Subtitles"
 #~ msgstr "外部字幕"

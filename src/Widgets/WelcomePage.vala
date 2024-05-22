@@ -44,7 +44,7 @@ public class Audience.WelcomePage : Granite.Placeholder {
         replay_button_description = (Gtk.Label)replay_button_title.get_next_sibling ();
 
         var library_manager = Services.LibraryManager.get_instance ();
-        library_button.visible = library_manager.has_items;
+        library_button.visible = library_manager.library_items.get_n_items () > 0;
 
         update_replay_button ();
         update_replay_title ();
@@ -56,8 +56,7 @@ public class Audience.WelcomePage : Granite.Placeholder {
 
         replay_button.clicked.connect (() => {
             var window = (Audience.Window)get_root ();
-            PlaybackManager.get_default ().append_to_playlist (File.new_for_uri (current_video));
-            settings.set_string ("current-video", current_video);
+            PlaybackManager.get_default ().append_to_playlist ({ current_video });
             window.resume_last_videos ();
         });
 
@@ -70,12 +69,8 @@ public class Audience.WelcomePage : Granite.Placeholder {
 
         settings.changed["last-stopped"].connect (update_replay_title);
 
-        library_manager.video_file_detected.connect ((vid) => {
-            library_button.visible = library_manager.has_items;
-        });
-
-        library_manager.video_file_deleted.connect ((vid) => {
-            library_button.visible = library_manager.has_items;
+        library_manager.library_items.items_changed.connect (() => {
+            library_button.visible = library_manager.library_items.get_n_items () > 0;
         });
     }
 

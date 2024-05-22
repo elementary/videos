@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-15 14:37+0000\n"
-"PO-Revision-Date: 2023-06-16 10:07+0000\n"
+"POT-Creation-Date: 2023-10-12 16:20+0000\n"
+"PO-Revision-Date: 2024-02-10 15:11+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/videos/"
 "extra/nb/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.0.2\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
 msgid "Videos"
@@ -63,15 +63,16 @@ msgstr "Forbedringer"
 
 #: data/videos.metainfo.xml.in:59
 msgid "Updated flatter design"
-msgstr ""
+msgstr "Oppdatert flatter-design"
 
 #: data/videos.metainfo.xml.in:60
+#, fuzzy
 msgid "Send an app notification when adding items to the play queue"
-msgstr ""
+msgstr "Send programmerknad ved tillegg av elementer i spillelisten"
 
 #: data/videos.metainfo.xml.in:61
 msgid "More accurate playback position save and restore"
-msgstr ""
+msgstr "Mer nøyaktig lagring og gjenoppretting av avspillingsposisjon"
 
 #: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
 #: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98

@@ -78,24 +78,19 @@ public class Audience.Window : Gtk.ApplicationWindow {
         library_page = LibraryPage.get_instance ();
 
         library_page.show_episodes.connect ((item, setup_only) => {
-            episodes_page.set_episodes_items (item.episodes);
+            episodes_page.set_show (item);
             if (!setup_only) {
                 leaflet.append (episodes_page);
                 leaflet.visible_child = episodes_page;
 
-                title = item.get_title ();
+                title = item.title;
             }
         });
-
-        var welcome_page_header_bar = new Gtk.HeaderBar () {
-            show_title_buttons = true
-        };
-        welcome_page_header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
 
         var welcome_page = new WelcomePage ();
 
         welcome_page_box = new Gtk.Box (VERTICAL, 0);
-        welcome_page_box.append (welcome_page_header_bar);
+        welcome_page_box.append (new HeaderBar ());
         welcome_page_box.append (welcome_page);
         welcome_page_box.add_css_class (Granite.STYLE_CLASS_VIEW);
 
@@ -124,8 +119,8 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         var manager = Audience.Services.LibraryManager.get_instance ();
 
-        manager.video_moved_to_trash.connect ((video) => {
-            app_notification.title = _("Video '%s' Removed.").printf (Path.get_basename (video));
+        manager.media_item_trashed.connect ((item) => {
+            app_notification.title = _("Video '%s' Removed.").printf (item.title);
 
             /* we don't have access to trash when inside an flatpak sandbox
              * so we don't allow the user to restore in this case.
@@ -146,32 +141,24 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         var playback_manager = PlaybackManager.get_default ();
 
-        //playlist wants us to open a file
-        playback_manager.play.connect ((file) => {
-            open_files ({ File.new_for_uri (file.get_uri ()) });
+        playback_manager.play_queue.items_changed.connect ((pos, removed, added) => {
+            if (playback_manager.play_queue.get_n_items () == 1) {
+                return;
+            }
+
+            app_notification.set_default_action (null);
+
+            if (added == 1) {
+                var title = Audience.get_title (playback_manager.play_queue.get_string (pos));
+                app_notification.title = _("“%s” added to playlist").printf (title);
+                app_notification.send_notification ();
+            } else if (added > 1) {
+                app_notification.title = ngettext ("%u item added to playlist", "%u items added to playlist", added).printf (added);
+                app_notification.send_notification ();
+            }
         });
 
         playback_manager.ended.connect (on_player_ended);
-
-        playback_manager.item_added.connect ((item_title) => {
-            app_notification.title = _("“%s” added to playlist").printf (item_title);
-            app_notification.set_default_action (null);
-            app_notification.send_notification ();
-        });
-
-        notify["maximized"].connect (() => {
-            if (leaflet.visible_child == player_page && maximized) {
-                fullscreen ();
-            }
-        });
-
-        notify["fullscreened"].connect (() => {
-            player_page.fullscreened = fullscreened;
-
-            if (!fullscreened) {
-                unmaximize ();
-            }
-        });
 
         var key_controller = new Gtk.EventControllerKey ();
         overlay.add_controller (key_controller);
@@ -201,12 +188,10 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     private void action_fullscreen () {
-        if (leaflet.visible_child == player_page) {
-            if (player_page.fullscreened) {
-                unfullscreen ();
-            } else {
-                fullscreen ();
-            }
+        if (fullscreened) {
+            unfullscreen ();
+        } else {
+            fullscreen ();
         }
     }
 
@@ -258,6 +243,14 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     public void handle_key_press (uint keyval, uint keycode, Gdk.ModifierType state) {
+        if (keyval == Gdk.Key.Escape) {
+            if (fullscreened) {
+                unfullscreen ();
+            } else {
+                destroy ();
+            }
+        }
+
         if (leaflet.visible_child == player_page) {
             if (match_keycode (Gdk.Key.space, keycode) || match_keycode (Gdk.Key.p, keycode)) {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
@@ -270,13 +263,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
             bool shift_pressed = SHIFT_MASK in state;
             switch (keyval) {
-                case Gdk.Key.Escape:
-                    if (player_page.fullscreened) {
-                        unfullscreen ();
-                    } else {
-                        destroy ();
-                    }
-                    break;
                 case Gdk.Key.Down:
                     player_page.seek_jump_seconds (shift_pressed ? -5 : -60);
                     break;
@@ -314,17 +300,18 @@ public class Audience.Window : Gtk.ApplicationWindow {
         }
 
         string[] videos = {};
+
         foreach (var file in files) {
             if (file.query_file_type (0) == FileType.DIRECTORY) {
                 Audience.recurse_over_dir (file, (file_ret) => {
-                    PlaybackManager.get_default ().append_to_playlist (file);
                     videos += file_ret.get_uri ();
                 });
             } else {
-                PlaybackManager.get_default ().append_to_playlist (file);
                 videos += file.get_uri ();
             }
         }
+
+        PlaybackManager.get_default ().append_to_playlist (videos);
 
         if (force_play && videos.length > 0) {
             string videofile = videos [0];
@@ -393,7 +380,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
     private void on_player_ended () {
         leaflet.navigate (Adw.NavigationDirection.BACK);
-        unfullscreen ();
     }
 
     public void play_file (string uri, NavigationPage origin, bool from_beginning = true) {
@@ -401,19 +387,18 @@ public class Audience.Window : Gtk.ApplicationWindow {
         leaflet.visible_child = player_page;
 
         PlaybackManager.get_default ().play_file (uri, from_beginning);
-        if (maximized) {
-            fullscreen ();
-        }
     }
 
-    public string get_adjacent_page_name () {
+    public string? get_adjacent_page_name () {
         var previous_child = leaflet.get_adjacent_child (Adw.NavigationDirection.BACK);
         if (previous_child == episodes_page) {
             return _("Episodes");
         } else if (previous_child == library_page) {
             return _("Library");
-        } else {
+        } else if (previous_child == welcome_page_box) {
             return _("Back");
+        } else {
+            return null;
         }
     }
 
