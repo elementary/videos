@@ -1,3 +1,7 @@
+gridview {
+    padding: 1em;
+}
+
 popover.preview contents {
     background: black;
     border: none;
