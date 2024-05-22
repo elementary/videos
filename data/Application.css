@@ -2,6 +2,11 @@ player-page {
     background: black;
 }
 
+navigation-view-page.episodes toolbarview > revealer.bottom-bar,
+navigation-view-page.episodes toolbarview > scrolledwindow > viewport {
+    padding: 1em;
+}
+
 popover.preview contents {
     background: black;
     border: none;

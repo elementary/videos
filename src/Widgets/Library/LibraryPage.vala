@@ -81,7 +81,7 @@ public class Audience.LibraryPage : Gtk.Box {
 
         factory.setup.connect ((obj) => {
             var item = (Gtk.ListItem) obj;
-            item.child = new LibraryItem (THUMBNAIL);
+            item.child = new LibraryItem ();
         });
 
         factory.bind.connect ((obj) => {

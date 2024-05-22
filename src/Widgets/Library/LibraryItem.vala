@@ -19,24 +19,11 @@
  */
 
 public class Audience.LibraryItem : Gtk.Box {
-    public enum Style {
-        THUMBNAIL,
-        ROW
-    }
-
-    public Style style { get; construct; }
-
     private Gtk.Label title_label;
     private Gtk.Picture poster;
     private Gtk.Stack spinner_stack;
 
     private Objects.MediaItem? item;
-
-    public LibraryItem (Style style) {
-        Object (
-            style: style
-        );
-    }
 
     construct {
         var move_to_trash = new Gtk.Button () {
@@ -58,59 +45,54 @@ public class Audience.LibraryItem : Gtk.Box {
 
         title_label = new Gtk.Label ("");
 
-        if (style == THUMBNAIL) {
-            title_label.ellipsize = END;
-            title_label.wrap = true;
-            title_label.max_width_chars = 0;
-            title_label.justify = CENTER;
+        title_label.ellipsize = END;
+        title_label.wrap = true;
+        title_label.max_width_chars = 0;
+        title_label.justify = CENTER;
 
-            var new_cover = new Gtk.Button () {
-                child = new Gtk.Label (_("Set Artwork")) { halign = START }
-            };
-            new_cover.add_css_class (Granite.STYLE_CLASS_MENUITEM);
-            context_menu_box.append (new Gtk.Separator (HORIZONTAL));
-            context_menu_box.append (new_cover);
+        var new_cover = new Gtk.Button () {
+            child = new Gtk.Label (_("Set Artwork")) { halign = START }
+        };
+        new_cover.add_css_class (Granite.STYLE_CLASS_MENUITEM);
+        context_menu_box.append (new Gtk.Separator (HORIZONTAL));
+        context_menu_box.append (new_cover);
 
-            poster = new Gtk.Picture () {
-                hexpand = true,
-                vexpand = true
-            };
+        poster = new Gtk.Picture () {
+            hexpand = true,
+            vexpand = true
+        };
 
-            var spinner = new Gtk.Spinner () {
-                spinning = true,
-                hexpand = true,
-                vexpand = true,
-                halign = Gtk.Align.CENTER,
-                valign = Gtk.Align.CENTER,
-                height_request = 32,
-                width_request = 32
-            };
+        var spinner = new Gtk.Spinner () {
+            spinning = true,
+            hexpand = true,
+            vexpand = true,
+            halign = Gtk.Align.CENTER,
+            valign = Gtk.Align.CENTER,
+            height_request = 32,
+            width_request = 32
+        };
 
-            spinner_stack = new Gtk.Stack () {
-                height_request = Audience.Services.POSTER_HEIGHT,
-                width_request = Audience.Services.POSTER_WIDTH,
-                halign = CENTER,
-                valign = CENTER,
-                overflow = HIDDEN
-            };
-            spinner_stack.add_css_class (Granite.STYLE_CLASS_CARD);
-            spinner_stack.add_css_class (Granite.STYLE_CLASS_ROUNDED);
-            spinner_stack.add_named (spinner, "spinner");
-            spinner_stack.add_named (poster, "poster");
+        spinner_stack = new Gtk.Stack () {
+            height_request = Audience.Services.POSTER_HEIGHT,
+            width_request = Audience.Services.POSTER_WIDTH,
+            halign = CENTER,
+            valign = CENTER,
+            overflow = HIDDEN
+        };
+        spinner_stack.add_css_class (Granite.STYLE_CLASS_CARD);
+        spinner_stack.add_css_class (Granite.STYLE_CLASS_ROUNDED);
+        spinner_stack.add_named (spinner, "spinner");
+        spinner_stack.add_named (poster, "poster");
 
-            append (spinner_stack);
-            append (title_label);
+        append (spinner_stack);
+        append (title_label);
 
-            new_cover.clicked.connect (() => {
-                context_menu.popdown ();
-                set_new_cover ();
-            });
-            map.connect (poster_visibility);
-            poster.notify ["paintable"].connect (poster_visibility);
-        } else {
-            append (title_label);
-            title_label.halign = START;
-        }
+        new_cover.clicked.connect (() => {
+            context_menu.popdown ();
+            set_new_cover ();
+        });
+        map.connect (poster_visibility);
+        poster.notify ["paintable"].connect (poster_visibility);
 
         orientation = VERTICAL;
         spacing = 12;
@@ -145,13 +127,11 @@ public class Audience.LibraryItem : Gtk.Box {
 
         title_label.label = item.title;
 
-        if (style == THUMBNAIL) {
-            item.notify["poster"].connect (() => {
-                poster.set_pixbuf (item.poster);
-            });
-
+        item.notify["poster"].connect (() => {
             poster.set_pixbuf (item.poster);
-        }
+        });
+
+        poster.set_pixbuf (item.poster);
     }
 
     private void poster_visibility () {

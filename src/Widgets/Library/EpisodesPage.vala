@@ -18,11 +18,10 @@
  *
  */
 
-public class Audience.EpisodesPage : Gtk.Box {
+public class Audience.EpisodesPage : Adw.NavigationPage {
     private Gtk.Picture poster;
     private Gtk.FilterListModel filter_model;
     private Gtk.SearchEntry search_entry;
-    private Gtk.ListView view_episodes;
     private Granite.Placeholder alert_view;
 
     construct {
@@ -35,47 +34,41 @@ public class Audience.EpisodesPage : Gtk.Box {
             "media-playlist-repeat-one-symbolic",
             "media-playlist-consecutive-symbolic"
         ) {
+            halign = END,
             primary_icon_tooltip_text = _("Play one video"),
-            secondary_icon_tooltip_text = _("Automatically play next videos"),
-            valign = Gtk.Align.CENTER
+            secondary_icon_tooltip_text = _("Automatically play next videos")
         };
         settings.bind ("autoqueue-next", autoqueue_next, "active", SettingsBindFlags.DEFAULT);
 
         var header_bar = new HeaderBar ();
-        header_bar.header_bar.pack_end (search_entry);
-        header_bar.header_bar.pack_end (autoqueue_next);
 
         poster = new Gtk.Picture () {
-            height_request = Audience.Services.POSTER_HEIGHT,
-            width_request = Audience.Services.POSTER_WIDTH,
-            margin_top = 24,
-            margin_bottom = 24,
-            margin_start = 24,
-            margin_end = 0,
-            valign = Gtk.Align.START
+            hexpand = true,
+            content_fit = COVER
         };
         poster.add_css_class (Granite.STYLE_CLASS_CARD);
+        poster.add_css_class (Granite.STYLE_CLASS_ROUNDED);
+
+        var aspect_ratio = (float) 16 / 9;
+
+        var aspect_frame = new Gtk.AspectFrame (0.5f, 0.5f, aspect_ratio, false) {
+            child = poster,
+            margin_bottom = 12,
+            margin_start = 12,
+            margin_end = 12
+        };
 
         filter_model = new Gtk.FilterListModel (null, new Gtk.CustomFilter (episodes_filter_func));
         var selection_model = new Gtk.NoSelection (filter_model);
 
         var factory = new Gtk.SignalListItemFactory ();
 
-        view_episodes = new Gtk.ListView (selection_model, factory) {
-            margin_top = 24,
-            margin_bottom = 24,
-            margin_start = 24,
-            margin_end = 24,
-            single_click_activate = true,
-            valign = Gtk.Align.START
+        var view_episodes = new Gtk.GridView (selection_model, factory) {
+            hexpand = true,
+            orientation = HORIZONTAL,
+            single_click_activate = true
         };
         view_episodes.add_css_class (Granite.STYLE_CLASS_BACKGROUND);
-
-        var scrolled_window = new Gtk.ScrolledWindow () {
-            hexpand = true,
-            vexpand = true,
-            child = view_episodes
-        };
 
         alert_view = new Granite.Placeholder ("") {
             description = _("Try changing search terms."),
@@ -84,20 +77,33 @@ public class Audience.EpisodesPage : Gtk.Box {
         };
 
         var grid = new Gtk.Grid () {
-            hexpand = true,
-            vexpand = true
+            row_spacing = 12
         };
-        grid.attach (poster, 0, 1);
-        grid.attach (scrolled_window, 1, 1);
-        grid.attach (alert_view, 1, 1);
+        grid.attach (search_entry, 0, 0);
+        grid.attach (view_episodes, 0, 1);
+        grid.attach (alert_view, 0, 1);
 
-        orientation = VERTICAL;
-        append (header_bar);
-        append (grid);
+        var scrolled_window = new Gtk.ScrolledWindow () {
+            child = grid,
+            hscrollbar_policy = NEVER
+        };
+
+        var toolbarview = new Adw.ToolbarView () {
+            content = scrolled_window
+        };
+        toolbarview.add_top_bar (header_bar);
+        toolbarview.add_top_bar (aspect_frame);
+        toolbarview.add_bottom_bar (autoqueue_next);
+
+        child = toolbarview;
+        title = _("Episodes");
+        add_css_class ("episodes");
 
         factory.setup.connect ((obj) => {
             var item = (Gtk.ListItem) obj;
-            item.child = new LibraryItem (ROW);
+            item.child = new LibraryItem () {
+                valign = START
+            };
         });
 
         factory.bind.connect ((obj) => {
