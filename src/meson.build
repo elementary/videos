@@ -42,7 +42,7 @@ executable(
         dependency('gstreamer-pbutils-1.0'),
         dependency('gstreamer-video-1.0'),
         dependency('gstreamer-tag-1.0'),
-        dependency('gtk4'),
+        dependency('gtk4', version: '>= 4.8'),
         dependency('libadwaita-1'),
 
         meson.get_compiler('vala').find_library('posix'),

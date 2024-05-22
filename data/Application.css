@@ -54,6 +54,10 @@ mediacontrols scale:hover slider {
     box-shadow: 0 1px 3px alpha(black, 0.25);
 }
 
+player-page {
+    background: black;
+}
+
 popover.preview contents {
     background: black;
     border: none;
