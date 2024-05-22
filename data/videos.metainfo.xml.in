@@ -54,6 +54,21 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="8.0.0" date="2024-05-21" urgency="medium">
+      <description>
+        <p>Improvements:</p>
+        <ul>
+          <li>Respect dark style preference</li>
+          <li>Support repeat one and repeat all</li>
+          <li>Performance improvements</li>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/videos/issues/357">Use translation on now playing screen</issue>
+      </issues>
+    </release>
+
     <release version="3.0.0" date="2023-08-10" urgency="medium">
       <description>
         <p>Improvements:</p>
@@ -102,20 +117,7 @@
       </description>
     </release>
 
-    <release version="2.8.3" date="2022-01-10" urgency="medium">
-      <description>
-        <p>Fixes:</p>
-        <ul>
-          <li>Fix a crash with certain video codecs</li>
-        </ul>
-        <p>Other updates:</p>
-        <ul>
-          <li>Update to 6.1 Flatpak runtime</li>
-          <li>Translation updates</li>
-        </ul>
-      </description>
-    </release>
-
+    <release version="2.8.3" date="2022-01-10" urgency="medium" />
     <release version="2.8.2" date="2021-12-17" urgency="medium" />
     <release version="2.8.1" date="2021-12-17" urgency="medium" />
     <release version="2.8.0" date="2021-10-28" urgency="medium" />
