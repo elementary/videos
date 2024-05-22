@@ -31,6 +31,10 @@ namespace Audience {
 
         private uint hiding_timer = 0;
 
+        class construct {
+            set_css_name ("player-page");
+        }
+
         construct {
             var playback_manager = PlaybackManager.get_default ();
 
@@ -39,9 +43,9 @@ namespace Audience {
             bottom_bar = new Widgets.BottomBar ();
 
             var picture = new Gtk.Picture.for_paintable (playback_manager.gst_video_widget) {
+                content_fit = CONTAIN,
                 hexpand = true,
-                vexpand = true,
-                keep_aspect_ratio = false
+                vexpand = true
             };
 
             toolbarview = new Adw.ToolbarView () {
