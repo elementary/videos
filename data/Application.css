@@ -2,6 +2,10 @@ gridview {
     padding: 1em;
 }
 
+player-page {
+    background: black;
+}
+
 popover.preview contents {
     background: black;
     border: none;
