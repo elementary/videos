@@ -27,8 +27,7 @@ namespace Audience {
 
     public class PlayerPage : Gtk.Box {
         private Audience.Widgets.BottomBar bottom_bar;
-        private Gtk.Revealer windowcontrols_revealer;
-        private Gtk.Revealer bottom_bar_revealer;
+        private Adw.ToolbarView toolbarview;
 
         private uint hiding_timer = 0;
 
@@ -37,20 +36,7 @@ namespace Audience {
 
             var header_bar = new HeaderBar (false);
 
-            windowcontrols_revealer = new Gtk.Revealer () {
-                transition_type = SLIDE_DOWN,
-                valign = START,
-                child = header_bar
-            };
-
             bottom_bar = new Widgets.BottomBar ();
-
-            bottom_bar_revealer = new Gtk.Revealer () {
-                transition_type = SLIDE_UP,
-                valign = END,
-                child = bottom_bar,
-                hexpand = true
-            };
 
             var picture = new Gtk.Picture.for_paintable (playback_manager.gst_video_widget) {
                 hexpand = true,
@@ -58,13 +44,14 @@ namespace Audience {
                 keep_aspect_ratio = false
             };
 
-            var overlay = new Gtk.Overlay () {
-                child = picture
+            toolbarview = new Adw.ToolbarView () {
+                content = picture,
+                top_bar_style = RAISED
             };
-            overlay.add_overlay (windowcontrols_revealer);
-            overlay.add_overlay (bottom_bar_revealer);
+            toolbarview.add_top_bar (header_bar);
+            toolbarview.add_bottom_bar (bottom_bar);
 
-            append (overlay);
+            append (toolbarview);
 
             map.connect (() => update_actions_enabled (true));
 
@@ -131,8 +118,8 @@ namespace Audience {
                 hiding_timer = 0;
             }
 
-            bottom_bar_revealer.reveal_child = true;
-            windowcontrols_revealer.reveal_child = true;
+            toolbarview.reveal_bottom_bars = true;
+            toolbarview.reveal_top_bars = true;
             set_cursor (null);
 
             if (bottom_bar.should_stay_revealed) {
@@ -142,8 +129,8 @@ namespace Audience {
             hiding_timer = Timeout.add (2000, () => {
                 hiding_timer = 0;
 
-                windowcontrols_revealer.reveal_child = false;
-                bottom_bar_revealer.reveal_child = false;
+                toolbarview.reveal_top_bars = false;
+                toolbarview.reveal_bottom_bars = false;
                 set_cursor (new Gdk.Cursor.from_name ("none", null));
 
                 return Source.REMOVE;
