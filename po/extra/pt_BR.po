@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-12 16:20+0000\n"
-"PO-Revision-Date: 2021-07-15 15:49+0000\n"
-"Last-Translator: Mário Victor Ribeiro Silva <mariovictorrs@gmail.com>\n"
+"PO-Revision-Date: 2024-04-27 21:13+0000\n"
+"Last-Translator: Matheus Torres Carvalho <matheustcarvalho@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "videos/extra/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.0.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -64,15 +64,16 @@ msgstr "Melhorias:"
 
 #: data/videos.metainfo.xml.in:59
 msgid "Updated flatter design"
-msgstr ""
+msgstr "Design mais plano atualizado"
 
 #: data/videos.metainfo.xml.in:60
 msgid "Send an app notification when adding items to the play queue"
 msgstr ""
+"Enviar uma notificação da aplicação ao adicionar itens à fila de reprodução"
 
 #: data/videos.metainfo.xml.in:61
 msgid "More accurate playback position save and restore"
-msgstr ""
+msgstr "Posição de reprodução mais precisa, salvar e restaurar"
 
 #: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
 #: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
@@ -91,27 +92,27 @@ msgstr "Novas características:"
 
 #: data/videos.metainfo.xml.in:83
 msgid "Control playback from the sound indicator"
-msgstr ""
+msgstr "Controlar a reprodução a partir do indicador de som"
 
 #: data/videos.metainfo.xml.in:87
 msgid "Make playback duration more accurate"
-msgstr ""
+msgstr "Tornar a duração da reprodução mais precisa"
 
 #: data/videos.metainfo.xml.in:97
 msgid "Update to Flatpak Platform 7"
-msgstr ""
+msgstr "Atualização para a Plataforma Flatpak 7"
 
 #: data/videos.metainfo.xml.in:105
 msgid "Fixes:"
-msgstr ""
+msgstr "Correções:"
 
 #: data/videos.metainfo.xml.in:107
 msgid "Fix a crash with certain video codecs"
-msgstr ""
+msgstr "Corrige uma falha com certos codecs de vídeo"
 
 #: data/videos.metainfo.xml.in:111
 msgid "Update to 6.1 Flatpak runtime"
-msgstr ""
+msgstr "Atualização para Flatpak runtime 6.1"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
