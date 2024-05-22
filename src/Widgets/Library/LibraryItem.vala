@@ -90,9 +90,11 @@ public class Audience.LibraryItem : Gtk.Box {
                 height_request = Audience.Services.POSTER_HEIGHT,
                 width_request = Audience.Services.POSTER_WIDTH,
                 halign = CENTER,
-                valign = CENTER
+                valign = CENTER,
+                overflow = HIDDEN
             };
             spinner_stack.add_css_class (Granite.STYLE_CLASS_CARD);
+            spinner_stack.add_css_class (Granite.STYLE_CLASS_ROUNDED);
             spinner_stack.add_named (spinner, "spinner");
             spinner_stack.add_named (poster, "poster");
 
