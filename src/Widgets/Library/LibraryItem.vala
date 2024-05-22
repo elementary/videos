@@ -72,6 +72,7 @@ public class Audience.LibraryItem : Gtk.Box {
             context_menu_box.append (new_cover);
 
             poster = new Gtk.Picture () {
+                content_fit = COVER,
                 hexpand = true,
                 vexpand = true
             };
