@@ -3,7 +3,7 @@ mediacontrols {
 }
 
 mediacontrols > label {
-    color: @fg_color;
+    color: white;
     text-shadow:
         0 1px 3px alpha(black, 0.4),
         0 0 1em alpha(black, 0.25);
@@ -20,7 +20,8 @@ mediacontrols {
 }
 
 mediacontrols > button,
-mediacontrols > menubutton {
+mediacontrols > menubutton > button {
+    color: white;
     -gtk-icon-shadow:
         0 1px 3px alpha(black, 0.4),
         0 0 1em alpha(black, 0.25);
@@ -31,18 +32,18 @@ mediacontrols > label {
 }
 
 mediacontrols scale trough {
-    background-color: alpha(@fg_color, 0.25);
+    background-color: alpha(white, 0.25);
     border: none;
     box-shadow: 0 0 1em alpha(black, 0.05);
 }
 
 mediacontrols scale highlight {
-    background-color: @fg_color;
+    background-color: white;
     box-shadow: 0 1px 3px alpha(black, 0.1);
 }
 
 mediacontrols scale slider {
-    background-color: transparent;
+    background: transparent;
     box-shadow: none;
     min-width: 3px;
     transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
