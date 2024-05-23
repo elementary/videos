@@ -18,15 +18,10 @@ public class Audience.HeaderBar : Gtk.Box {
         }
     }
 
-    public bool flat { get; construct; }
     public Gtk.HeaderBar header_bar { get; construct; }
 
     private Gtk.Button unfullscreen_button;
     private unowned GLib.Binding binding;
-
-    public HeaderBar (bool flat = true) {
-        Object (flat: flat);
-    }
 
     construct {
         var navigation_button = new Gtk.Button.with_label ("") {
@@ -45,10 +40,7 @@ public class Audience.HeaderBar : Gtk.Box {
         };
         header_bar.pack_start (navigation_button);
         header_bar.pack_end (unfullscreen_button);
-
-        if (flat) {
-            header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
-        }
+        header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
 
         append (header_bar);
 

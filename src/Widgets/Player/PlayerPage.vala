@@ -38,7 +38,7 @@ namespace Audience {
         construct {
             var playback_manager = PlaybackManager.get_default ();
 
-            var header_bar = new HeaderBar (false);
+            var header_bar = new HeaderBar ();
 
             bottom_bar = new Widgets.BottomBar ();
 
@@ -49,6 +49,8 @@ namespace Audience {
             };
 
             toolbarview = new Adw.ToolbarView () {
+                extend_content_to_bottom_edge = true,
+                extend_content_to_top_edge = true,
                 content = picture,
                 top_bar_style = RAISED
             };
