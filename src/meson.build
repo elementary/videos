@@ -25,7 +25,6 @@ executable(
     'Widgets/Player/PlaylistItem.vala',
     'Widgets/Player/PlaylistPopover.vala',
     'Widgets/Player/PreviewPopover.vala',
-    'Widgets/Player/SeekBar.vala',
     'Widgets/Player/SettingsPopover.vala',
 
     vala_args: [
@@ -38,7 +37,7 @@ executable(
         dependency('gee-0.8'),
         dependency('glib-2.0'),
         dependency('gobject-2.0'),
-        dependency('granite-7'),
+        dependency('granite-7', version: '>=7.3.0'),
         dependency('gstreamer-1.0'),
         dependency('gstreamer-pbutils-1.0'),
         dependency('gstreamer-video-1.0'),
