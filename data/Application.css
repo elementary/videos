@@ -1,3 +1,7 @@
+gridview {
+    padding: 1em;
+}
+
 mediacontrols {
     padding: 1em;
 }
@@ -56,6 +60,10 @@ mediacontrols scale:hover slider {
 
 player-page {
     background: black;
+}
+
+player-page .raised.top-bar {
+    background-color: alpha(@bg_color, 0.8);
 }
 
 popover.preview contents {
