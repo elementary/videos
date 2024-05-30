@@ -21,7 +21,7 @@
 
 namespace Audience.Services {
     public const int POSTER_WIDTH = 300;
-    public const int POSTER_HEIGHT = (int) (300 * 9 / 16);
+    public const int POSTER_HEIGHT = (int) (POSTER_WIDTH * 9 / 16);
 
     public class LibraryManager : Object {
         public signal void media_item_trashed (Objects.MediaItem item);
