@@ -25,6 +25,7 @@ public class Audience.HeaderBar : Gtk.Box {
 
     construct {
         var navigation_button = new Gtk.Button.with_label ("") {
+            action_name = Window.ACTION_PREFIX + Window.ACTION_BACK,
             valign = Gtk.Align.CENTER
         };
         navigation_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
@@ -34,8 +35,12 @@ public class Audience.HeaderBar : Gtk.Box {
             tooltip_text = _("Unfullscreen")
         };
 
+        var title_label = new Gtk.Label ("");
+        title_label.add_css_class (Granite.STYLE_CLASS_TITLE_LABEL);
+
         header_bar = new Gtk.HeaderBar () {
             show_title_buttons = true,
+            title_widget = title_label,
             hexpand = true
         };
         header_bar.pack_start (navigation_button);
@@ -45,10 +50,15 @@ public class Audience.HeaderBar : Gtk.Box {
         append (header_bar);
 
         map.connect (() => {
-            var adjacent_page_name = ((Window) get_root ()).get_adjacent_page_name ();
-            if (adjacent_page_name != null) {
+            var current_page = (Adw.NavigationPage) get_ancestor (typeof (Adw.NavigationPage));
+            var navigation_view = (Adw.NavigationView) get_ancestor (typeof (Adw.NavigationView));
+
+            current_page.bind_property ("title", title_label, "label", SYNC_CREATE);
+
+            var previous_page = navigation_view.get_previous_page (current_page);
+            if (previous_page != null) {
                 navigation_button.visible = true;
-                navigation_button.label = adjacent_page_name;
+                navigation_button.label = previous_page.title;
             } else {
                 navigation_button.visible = false;
             }
@@ -57,8 +67,6 @@ public class Audience.HeaderBar : Gtk.Box {
         });
 
         unmap.connect (() => binding.unbind ());
-
-        navigation_button.clicked.connect (() => ((Adw.Leaflet) get_ancestor (typeof (Adw.Leaflet))).navigate (BACK));
 
         unfullscreen_button.clicked.connect (() => ((Window) get_root ()).unfullscreen ());
     }
