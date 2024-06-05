@@ -15,27 +15,31 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Audience.WelcomePage : Granite.Placeholder {
+public class Audience.WelcomePage : Adw.NavigationPage {
     private string current_video;
     private Gtk.Button replay_button;
     private Gtk.Image replay_button_image;
     private Gtk.Label replay_button_title;
     private Gtk.Label replay_button_description;
 
-    public WelcomePage () {
-        Object (
-            title: _("No Videos Open"),
-            description: _("Select a source to begin playing.")
-        );
-    }
-
     construct {
-        hexpand = true;
-        vexpand = true;
+        var placeholder = new Granite.Placeholder (_("No Videos Open")) {
+            description = _("Select a source to begin playing."),
+            hexpand = true,
+            vexpand = true
+        };
 
-        var open_button = append_button (new ThemedIcon ("document-open"), _("Open file"), _("Open a saved file."));
-        replay_button = append_button (new ThemedIcon ("media-playlist-repeat"), _("Replay last video"), "");
-        var library_button = append_button (new ThemedIcon ("folder-videos"), _("Browse Library"), _("Watch a movie from your library"));
+        var open_button = placeholder.append_button (new ThemedIcon ("document-open"), _("Open file"), _("Open a saved file."));
+        replay_button = placeholder.append_button (new ThemedIcon ("media-playlist-repeat"), _("Replay last video"), "");
+        var library_button = placeholder.append_button (new ThemedIcon ("folder-videos"), _("Browse Library"), _("Watch a movie from your library"));
+
+        var box = new Gtk.Box (VERTICAL, 0);
+        box.append (new HeaderBar ());
+        box.append (placeholder);
+        box.add_css_class (Granite.STYLE_CLASS_VIEW);
+
+        child = box;
+        title = _("Home");
 
         //A hacky way to update the labels and icon of the replay button
         var replay_button_grid = (Gtk.Grid)replay_button.child;
@@ -81,7 +85,7 @@ public class Audience.WelcomePage : Granite.Placeholder {
         if (current_video != "") {
             var last_file = File.new_for_uri (current_video);
             if (last_file.query_exists ()) {
-                replay_button_description.label = get_title (last_file.get_basename ());
+                replay_button_description.label = Audience.get_title (last_file.get_basename ());
 
                 show_replay_button = true;
             }

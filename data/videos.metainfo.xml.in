@@ -61,6 +61,7 @@
           <li>Respect dark style preference</li>
           <li>Support repeat one and repeat all</li>
           <li>Performance improvements</li>
+          <li>Drop support for optical media</li>
           <li>Translation updates</li>
         </ul>
       </description>

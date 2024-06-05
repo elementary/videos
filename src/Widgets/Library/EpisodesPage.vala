@@ -18,7 +18,7 @@
  *
  */
 
-public class Audience.EpisodesPage : Gtk.Box {
+public class Audience.EpisodesPage : Adw.NavigationPage {
     private Gtk.Picture poster;
     private Gtk.FilterListModel filter_model;
     private Gtk.SearchEntry search_entry;
@@ -91,9 +91,12 @@ public class Audience.EpisodesPage : Gtk.Box {
         grid.attach (scrolled_window, 1, 1);
         grid.attach (alert_view, 1, 1);
 
-        orientation = VERTICAL;
-        append (header_bar);
-        append (grid);
+        var box = new Gtk.Box (VERTICAL, 0);
+        box.append (header_bar);
+        box.append (grid);
+
+        child = box;
+        title = _("Episodes");
 
         factory.setup.connect ((obj) => {
             var item = (Gtk.ListItem) obj;
