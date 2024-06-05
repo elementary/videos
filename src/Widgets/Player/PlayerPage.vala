@@ -25,7 +25,7 @@ namespace Audience {
         "asc"
     };
 
-    public class PlayerPage : Gtk.Box {
+    public class PlayerPage : Adw.NavigationPage {
         private Audience.Widgets.BottomBar bottom_bar;
         private Adw.ToolbarView toolbarview;
 
@@ -57,7 +57,7 @@ namespace Audience {
             toolbarview.add_top_bar (header_bar);
             toolbarview.add_bottom_bar (bottom_bar);
 
-            append (toolbarview);
+            child = toolbarview;
 
             map.connect (() => update_actions_enabled (true));
 
@@ -94,6 +94,10 @@ namespace Audience {
             secondary_gesture_click.pressed.connect (() => {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
                 ((SimpleAction) play_pause_action).activate (null);
+            });
+
+            playback_manager.uri_changed.connect ((uri) => {
+                title = Audience.get_title (uri);
             });
         }
 

@@ -18,7 +18,7 @@
  *
  */
 
-public class Audience.LibraryPage : Gtk.Box {
+public class Audience.LibraryPage : Adw.NavigationPage {
     public signal void show_episodes (Objects.MediaItem item, bool setup_only = false);
 
     private Audience.Services.LibraryManager manager;
@@ -76,7 +76,8 @@ public class Audience.LibraryPage : Gtk.Box {
         };
         toolbarview.add_top_bar (header_bar);
 
-        append (toolbarview);
+        child = toolbarview;
+        title = _("Library");
 
         factory.setup.connect ((obj) => {
             var item = (Gtk.ListItem) obj;

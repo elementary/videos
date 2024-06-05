@@ -206,8 +206,6 @@ public class Audience.PlaybackManager : Object {
 
         playbin.uri = uri;
 
-        ((Gtk.Application) Application.get_default ()).active_window.title = get_title (uri);
-
         /* Set progress before subtitle uri else it gets reset to zero */
         if (from_beginning) {
             seek (0);
