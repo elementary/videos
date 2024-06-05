@@ -4,7 +4,6 @@ executable(
     gresource,
     'Application.vala',
     'Consts.vala',
-    'DiskManager.vala',
     'Utils.vala',
     'Window.vala',
     'Objects/MediaItem.vala',

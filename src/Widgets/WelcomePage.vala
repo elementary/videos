@@ -31,7 +31,6 @@ public class Audience.WelcomePage : Adw.NavigationPage {
 
         var open_button = placeholder.append_button (new ThemedIcon ("document-open"), _("Open file"), _("Open a saved file."));
         replay_button = placeholder.append_button (new ThemedIcon ("media-playlist-repeat"), _("Replay last video"), "");
-        var disk_button = placeholder.append_button (new ThemedIcon ("media-cdrom"), _("Play from Disc"), _("Watch a DVD or open a file from disc"));
         var library_button = placeholder.append_button (new ThemedIcon ("folder-videos"), _("Browse Library"), _("Watch a movie from your library"));
 
         var box = new Gtk.Box (VERTICAL, 0);
@@ -47,9 +46,6 @@ public class Audience.WelcomePage : Adw.NavigationPage {
         replay_button_image = (Gtk.Image)replay_button_grid.get_first_child ();
         replay_button_title = (Gtk.Label)replay_button_image.get_next_sibling ();
         replay_button_description = (Gtk.Label)replay_button_title.get_next_sibling ();
-
-        var disk_manager = DiskManager.get_default ();
-        disk_button.visible = disk_manager.has_media_volumes ();
 
         var library_manager = Services.LibraryManager.get_instance ();
         library_button.visible = library_manager.library_items.get_n_items () > 0;
@@ -68,11 +64,6 @@ public class Audience.WelcomePage : Adw.NavigationPage {
             window.resume_last_videos ();
         });
 
-        disk_button.clicked.connect (() => {
-            var window = (Audience.Window)get_root ();
-            window.run_open_dvd ();
-        });
-
         library_button.clicked.connect (() => {
             var window = (Audience.Window)get_root ();
             window.show_library ();
@@ -81,14 +72,6 @@ public class Audience.WelcomePage : Adw.NavigationPage {
         settings.changed["current-video"].connect (update_replay_button);
 
         settings.changed["last-stopped"].connect (update_replay_title);
-
-        disk_manager.volume_found.connect ((vol) => {
-            disk_button.visible = disk_manager.has_media_volumes ();
-        });
-
-        disk_manager.volume_removed.connect ((vol) => {
-            disk_button.visible = disk_manager.has_media_volumes ();
-        });
 
         library_manager.library_items.items_changed.connect (() => {
             library_button.visible = library_manager.library_items.get_n_items () > 0;

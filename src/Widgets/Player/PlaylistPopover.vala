@@ -21,16 +21,11 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     private const int HEIGHT_OFFSET = 300;
 
     private Gtk.ListBox playlist;
-    private Gtk.Button dvd;
     private Gtk.Button repeat_button;
 
     construct {
         var fil = new Gtk.Button.from_icon_name ("document-open-symbolic") {
             tooltip_text = _("Open file")
-        };
-
-        dvd = new Gtk.Button.from_icon_name ("media-optical-symbolic") {
-            tooltip_text = _("Play from Disc")
         };
 
         var clear_playlist_button = new Gtk.Button.from_icon_name ("edit-delete-symbolic") {
@@ -67,7 +62,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         grid.attach (playlist_scrolled, 0, 0, 7);
         grid.attach (fil, 0, 1);
         grid.attach (clear_playlist_button, 1, 1);
-        grid.attach (dvd, 2, 1);
         grid.attach (repeat_button, 6, 1);
 
         position = TOP;
@@ -80,11 +74,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         fil.clicked.connect (() => {
             popdown ();
             ((Audience.Window)((Gtk.Application) Application.get_default ()).active_window).run_open_file (false, false);
-        });
-
-        dvd.clicked.connect (() => {
-            popdown ();
-            ((Audience.Window)((Gtk.Application) Application.get_default ()).active_window).run_open_dvd ();
         });
 
         clear_playlist_button.clicked.connect (() => {
@@ -101,16 +90,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
         });
 
         playback_manager.uri_changed.connect (set_current);
-
-        var disk_manager = DiskManager.get_default ();
-        set_dvd_visibility (disk_manager.has_media_volumes ());
-        disk_manager.volume_found.connect ((vol) => {
-            set_dvd_visibility (disk_manager.has_media_volumes ());
-        });
-
-        disk_manager.volume_removed.connect ((vol) => {
-            set_dvd_visibility (disk_manager.has_media_volumes ());
-        });
 
         map.connect (() => {
             var window_height = ((Gtk.Application) Application.get_default ()).active_window.default_height;
@@ -133,10 +112,6 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
                 repeat_button.tooltip_text = _("Repeat One");
                 break;
         }
-    }
-
-    private void set_dvd_visibility (bool visible) {
-        dvd.visible = visible;
     }
 
     private Gtk.Widget widget_create_func (Object item) {
