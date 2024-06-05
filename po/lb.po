@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-12 16:20+0000\n"
+"POT-Creation-Date: 2024-06-05 19:10+0000\n"
 "PO-Revision-Date: 2024-05-18 18:13+0000\n"
 "Last-Translator: Arno <arnoant21@gmail.com>\n"
 "Language-Team: Luxembourgish <https://l10n.elementary.io/projects/videos/"
@@ -20,71 +20,59 @@ msgstr ""
 "X-Generator: Weblate 5.5\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:103 src/Window.vala:438
+#: src/Application.vala:110
 msgid "Videos"
 msgstr "Videoen"
 
-#: src/Window.vala:123
+#: src/Window.vala:103
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Video »%s« gouf geläscht."
 
-#: src/Window.vala:129
+#: src/Window.vala:109
 msgid "Restore"
 msgstr "Restauréieren"
 
-#: src/Window.vala:153
+#: src/Window.vala:140
 #, c-format
 msgid "“%s” added to playlist"
 msgstr "»%s« zur Wiedergabeliste hinzugefügt op d'Playlist bäigefüügt"
 
-#: src/Window.vala:156
+#: src/Window.vala:143
 #, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
 msgstr[0] "%u Element op d'Playlist bäigefüügt"
 msgstr[1] "%u Elementer op d'Playlist bäigefüügt"
 
-#: src/Window.vala:342 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:324 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "All Dateien"
 
-#: src/Window.vala:346
+#: src/Window.vala:328
 msgid "Video files"
 msgstr "Video Dateien"
 
-#: src/Window.vala:350 src/Widgets/Library/LibraryItem.vala:192
+#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:172
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "Opmaachen"
 
-#: src/Window.vala:353 src/Widgets/Library/LibraryItem.vala:195
+#: src/Window.vala:335 src/Widgets/Library/LibraryItem.vala:175
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "_Opmaachen"
 
-#: src/Window.vala:354 src/Widgets/Library/LibraryItem.vala:196
+#: src/Window.vala:336 src/Widgets/Library/LibraryItem.vala:176
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "_Ofbriechen"
-
-#: src/Window.vala:418
-msgid "Episodes"
-msgstr "Folgen"
-
-#: src/Window.vala:420 src/Window.vala:440
-msgid "Library"
-msgstr "Bibliothéik"
-
-#: src/Window.vala:422
-msgid "Back"
-msgstr "Zréck"
 
 #: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr "E Video spillt"
 
-#: src/Widgets/HeaderBar.vala:39
+#: src/Widgets/HeaderBar.vala:35
 msgid "Unfullscreen"
 msgstr "Vollbildschierm verloossen"
 
@@ -110,95 +98,107 @@ msgstr ""
 "Datei kann bei »%s« net ofgespillt ginn\n"
 "Datei ass kee Video (»%s«)."
 
-#: src/Widgets/WelcomePage.vala:27
+#: src/Widgets/WelcomePage.vala:26
 msgid "No Videos Open"
 msgstr "Keing Viedeon oppen"
 
-#: src/Widgets/WelcomePage.vala:28
+#: src/Widgets/WelcomePage.vala:27
 msgid "Select a source to begin playing."
 msgstr "Wiel eing Quell aus."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:29
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:29
 msgid "Open file"
 msgstr "Datei opmaachen"
 
-#: src/Widgets/WelcomePage.vala:36
+#: src/Widgets/WelcomePage.vala:32
 msgid "Open a saved file."
 msgstr "Gespäichert Datei opmaachen."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:116
+#: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:116
 msgid "Replay last video"
 msgstr "Leschten Video widderhuelen"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:33
+#: src/Widgets/WelcomePage.vala:34 src/Widgets/Player/PlaylistPopover.vala:33
 msgid "Play from Disc"
 msgstr "Vum Disk ofspillen"
 
-#: src/Widgets/WelcomePage.vala:38
+#: src/Widgets/WelcomePage.vala:34
 msgid "Watch a DVD or open a file from disc"
 msgstr "DVD ofspillen oder Datei vun engem CD/DVD opmaachen"
 
-#: src/Widgets/WelcomePage.vala:39
+#: src/Widgets/WelcomePage.vala:35
 msgid "Browse Library"
 msgstr "Browst Bibliothéik"
 
-#: src/Widgets/WelcomePage.vala:39
+#: src/Widgets/WelcomePage.vala:35
 msgid "Watch a movie from your library"
 msgstr "Kuckt e Film aus Ärer Bibliothéik"
+
+#: src/Widgets/WelcomePage.vala:43
+msgid "Home"
+msgstr ""
 
 #: src/Widgets/WelcomePage.vala:119
 msgid "Resume last video"
 msgstr "Leschten Video resuméieren"
 
-#: src/Widgets/Library/EpisodesPage.vala:36
-#: src/Widgets/Library/LibraryPage.vala:51
+#: src/Widgets/Library/EpisodesPage.vala:30
+#: src/Widgets/Library/LibraryPage.vala:41
 msgid "Search Videos"
 msgstr "Videoen sichen"
 
-#: src/Widgets/Library/EpisodesPage.vala:44
+#: src/Widgets/Library/EpisodesPage.vala:38
 msgid "Play one video"
 msgstr "E Video ofspillen"
 
-#: src/Widgets/Library/EpisodesPage.vala:45
+#: src/Widgets/Library/EpisodesPage.vala:39
 msgid "Automatically play next videos"
 msgstr "Automatesch nächst Videoen ofspillen"
 
-#: src/Widgets/Library/EpisodesPage.vala:87
-#: src/Widgets/Library/LibraryPage.vala:82
+#: src/Widgets/Library/EpisodesPage.vala:81
+#: src/Widgets/Library/LibraryPage.vala:66
 msgid "Try changing search terms."
 msgstr "Probéiert aner Sichbegrëffer ze benotzen."
 
-#: src/Widgets/Library/EpisodesPage.vala:180
-#: src/Widgets/Library/LibraryPage.vala:234
+#: src/Widgets/Library/EpisodesPage.vala:99
+msgid "Episodes"
+msgstr "Folgen"
+
+#: src/Widgets/Library/EpisodesPage.vala:160
+#: src/Widgets/Library/LibraryPage.vala:164
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Keng Resultater fir »%s«"
 
-#: src/Widgets/Library/LibraryItem.vala:78
+#: src/Widgets/Library/LibraryItem.vala:43
 msgid "Move to Trash"
 msgstr "An d'Poubelle réckelen"
 
-#: src/Widgets/Library/LibraryItem.vala:102
+#: src/Widgets/Library/LibraryItem.vala:68
 msgid "Set Artwork"
 msgstr "Grafiken wielen"
 
-#: src/Widgets/Library/LibraryItem.vala:188
+#: src/Widgets/Library/LibraryItem.vala:168
 msgid "Image files"
 msgstr "Bilddateien"
 
-#: src/Widgets/Player/BottomBar.vala:38 src/Widgets/Player/BottomBar.vala:92
+#: src/Widgets/Library/LibraryPage.vala:80
+msgid "Library"
+msgstr "Bibliothéik"
+
+#: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:104
 msgid "Play"
 msgstr "Ofspillen"
 
-#: src/Widgets/Player/BottomBar.vala:46
+#: src/Widgets/Player/BottomBar.vala:51
 msgid "Playlist"
 msgstr "Playlist"
 
-#: src/Widgets/Player/BottomBar.vala:55
+#: src/Widgets/Player/BottomBar.vala:60
 msgid "Settings"
 msgstr "Astellungen"
 
-#: src/Widgets/Player/BottomBar.vala:95
+#: src/Widgets/Player/BottomBar.vala:107
 msgid "Pause"
 msgstr "Paus"
 
@@ -249,6 +249,9 @@ msgstr "Spur %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "Standard"
+
+#~ msgid "Back"
+#~ msgstr "Zréck"
 
 #~ msgid "Enable Repeat"
 #~ msgstr "Widderhuelen un"
