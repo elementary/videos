@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 19:10+0000\n"
+"POT-Creation-Date: 2024-06-08 01:58+0000\n"
 "PO-Revision-Date: 2022-08-06 09:31+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/videos/videos/ko/"
@@ -44,25 +44,25 @@ msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
 msgstr[0] ""
 
-#: src/Window.vala:324 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:320 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "모든 파일"
 
-#: src/Window.vala:328
+#: src/Window.vala:324
 msgid "Video files"
 msgstr "비디오 파일"
 
-#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:172
+#: src/Window.vala:328 src/Widgets/Library/LibraryItem.vala:172
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "열기"
 
-#: src/Window.vala:335 src/Widgets/Library/LibraryItem.vala:175
+#: src/Window.vala:331 src/Widgets/Library/LibraryItem.vala:175
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "_열기"
 
-#: src/Window.vala:336 src/Widgets/Library/LibraryItem.vala:176
+#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:176
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "_취소"
@@ -105,7 +105,7 @@ msgstr "비디오를 실행 중이지 않음"
 msgid "Select a source to begin playing."
 msgstr "보고 싶은 비디오를 선택하세요."
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:29
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:28
 msgid "Open file"
 msgstr "파일 열기"
 
@@ -113,31 +113,23 @@ msgstr "파일 열기"
 msgid "Open a saved file."
 msgstr "저장된 파일을 엽니다."
 
-#: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:116
+#: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:99
 msgid "Replay last video"
 msgstr "마지막 비디오 다시 재생"
 
-#: src/Widgets/WelcomePage.vala:34 src/Widgets/Player/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr "디스크 롬 재생하기"
-
 #: src/Widgets/WelcomePage.vala:34
-msgid "Watch a DVD or open a file from disc"
-msgstr "DVD를 재생하거나, 디스크 롬에서 파일 재생하기"
-
-#: src/Widgets/WelcomePage.vala:35
 msgid "Browse Library"
 msgstr "라이브러리 탐색"
 
-#: src/Widgets/WelcomePage.vala:35
+#: src/Widgets/WelcomePage.vala:34
 msgid "Watch a movie from your library"
 msgstr "라이브러리에 있는 영화 보기"
 
-#: src/Widgets/WelcomePage.vala:43
+#: src/Widgets/WelcomePage.vala:42
 msgid "Home"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:119
+#: src/Widgets/WelcomePage.vala:102
 msgid "Resume last video"
 msgstr "마지막으로 재생한 비디오를 계속 재생하기"
 
@@ -201,19 +193,19 @@ msgstr "설정"
 msgid "Pause"
 msgstr "일시정지"
 
-#: src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/Player/PlaylistPopover.vala:32
 msgid "Clear Playlist"
 msgstr "재생목록 비우기"
 
-#: src/Widgets/Player/PlaylistPopover.vala:125
+#: src/Widgets/Player/PlaylistPopover.vala:104
 msgid "Repeat None"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:129
+#: src/Widgets/Player/PlaylistPopover.vala:108
 msgid "Repeat All"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:133
+#: src/Widgets/Player/PlaylistPopover.vala:112
 msgid "Repeat One"
 msgstr ""
 
@@ -248,6 +240,12 @@ msgstr "트랙 %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "기본"
+
+#~ msgid "Play from Disc"
+#~ msgstr "디스크 롬 재생하기"
+
+#~ msgid "Watch a DVD or open a file from disc"
+#~ msgstr "DVD를 재생하거나, 디스크 롬에서 파일 재생하기"
 
 #~ msgid "Back"
 #~ msgstr "뒤로"

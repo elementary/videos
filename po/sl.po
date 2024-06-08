@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 19:10+0000\n"
+"POT-Creation-Date: 2024-06-08 01:58+0000\n"
 "PO-Revision-Date: 2019-12-20 21:07+0000\n"
 "Last-Translator: Marko <marko.dolar@gmail.com>\n"
 "Language-Team: Slovenian <https://l10n.elementary.io/projects/videos/videos/"
@@ -48,25 +48,25 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: src/Window.vala:324 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:320 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "Vse datoteke"
 
-#: src/Window.vala:328
+#: src/Window.vala:324
 msgid "Video files"
 msgstr "Video datoteke"
 
-#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:172
+#: src/Window.vala:328 src/Widgets/Library/LibraryItem.vala:172
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "Odpri"
 
-#: src/Window.vala:335 src/Widgets/Library/LibraryItem.vala:175
+#: src/Window.vala:331 src/Widgets/Library/LibraryItem.vala:175
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "_Odpri"
 
-#: src/Window.vala:336 src/Widgets/Library/LibraryItem.vala:176
+#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:176
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "_Prekliči"
@@ -107,7 +107,7 @@ msgstr "Ni odprtega posnetka"
 msgid "Select a source to begin playing."
 msgstr "Izberite vir za začetek predvajanja."
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:29
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:28
 msgid "Open file"
 msgstr "Odpri datoteko"
 
@@ -115,31 +115,23 @@ msgstr "Odpri datoteko"
 msgid "Open a saved file."
 msgstr "Odpri datoteko na disku."
 
-#: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:116
+#: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:99
 msgid "Replay last video"
 msgstr "Predvajaj zadnji video"
 
-#: src/Widgets/WelcomePage.vala:34 src/Widgets/Player/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr "Predvajaj s CDja"
-
 #: src/Widgets/WelcomePage.vala:34
-msgid "Watch a DVD or open a file from disc"
-msgstr "Oglejte si DVD ali odprite datoteko z diska"
-
-#: src/Widgets/WelcomePage.vala:35
 msgid "Browse Library"
 msgstr "Prebrskaj knjižnico"
 
-#: src/Widgets/WelcomePage.vala:35
+#: src/Widgets/WelcomePage.vala:34
 msgid "Watch a movie from your library"
 msgstr "Oglejte si posnetek z vaše knjižnice"
 
-#: src/Widgets/WelcomePage.vala:43
+#: src/Widgets/WelcomePage.vala:42
 msgid "Home"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:119
+#: src/Widgets/WelcomePage.vala:102
 msgid "Resume last video"
 msgstr "Nadaljuj zadnji video"
 
@@ -203,19 +195,19 @@ msgstr "Nastavitve"
 msgid "Pause"
 msgstr "Premor"
 
-#: src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/Player/PlaylistPopover.vala:32
 msgid "Clear Playlist"
 msgstr "Počisti seznam predvajanja"
 
-#: src/Widgets/Player/PlaylistPopover.vala:125
+#: src/Widgets/Player/PlaylistPopover.vala:104
 msgid "Repeat None"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:129
+#: src/Widgets/Player/PlaylistPopover.vala:108
 msgid "Repeat All"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:133
+#: src/Widgets/Player/PlaylistPopover.vala:112
 msgid "Repeat One"
 msgstr ""
 
@@ -250,6 +242,12 @@ msgstr "Sled %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "Privzeto"
+
+#~ msgid "Play from Disc"
+#~ msgstr "Predvajaj s CDja"
+
+#~ msgid "Watch a DVD or open a file from disc"
+#~ msgstr "Oglejte si DVD ali odprite datoteko z diska"
 
 #~ msgid "Back"
 #~ msgstr "Nazaj"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 19:10+0000\n"
+"POT-Creation-Date: 2024-06-08 01:58+0000\n"
 "PO-Revision-Date: 2020-09-21 11:14+0000\n"
 "Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/videos/videos/nl/"
@@ -45,25 +45,25 @@ msgid_plural "%u items added to playlist"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Window.vala:324 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:320 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "Alle bestanden"
 
-#: src/Window.vala:328
+#: src/Window.vala:324
 msgid "Video files"
 msgstr "Videobestanden"
 
-#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:172
+#: src/Window.vala:328 src/Widgets/Library/LibraryItem.vala:172
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "Openen"
 
-#: src/Window.vala:335 src/Widgets/Library/LibraryItem.vala:175
+#: src/Window.vala:331 src/Widgets/Library/LibraryItem.vala:175
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "_Open"
 
-#: src/Window.vala:336 src/Widgets/Library/LibraryItem.vala:176
+#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:176
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "_Annuleer"
@@ -106,7 +106,7 @@ msgstr "Geen geopende video's"
 msgid "Select a source to begin playing."
 msgstr "Selecteer een bron om te beginnen met afspelen."
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:29
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:28
 msgid "Open file"
 msgstr "Bestand openen"
 
@@ -114,31 +114,23 @@ msgstr "Bestand openen"
 msgid "Open a saved file."
 msgstr "Een opgeslagen bestand openen."
 
-#: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:116
+#: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:99
 msgid "Replay last video"
 msgstr "Speel laatste video opnieuw af"
 
-#: src/Widgets/WelcomePage.vala:34 src/Widgets/Player/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr "Afspelen vanaf schijf"
-
 #: src/Widgets/WelcomePage.vala:34
-msgid "Watch a DVD or open a file from disc"
-msgstr "Kijk een DVD of open een bestand van de schijf"
-
-#: src/Widgets/WelcomePage.vala:35
 msgid "Browse Library"
 msgstr "Doorblader bibliotheek"
 
-#: src/Widgets/WelcomePage.vala:35
+#: src/Widgets/WelcomePage.vala:34
 msgid "Watch a movie from your library"
 msgstr "Bekijk een film vanuit uw bibliotheek"
 
-#: src/Widgets/WelcomePage.vala:43
+#: src/Widgets/WelcomePage.vala:42
 msgid "Home"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:119
+#: src/Widgets/WelcomePage.vala:102
 msgid "Resume last video"
 msgstr "Laatst afgespeelde video hervatten"
 
@@ -202,19 +194,19 @@ msgstr "Instellingen"
 msgid "Pause"
 msgstr "Pauzeer"
 
-#: src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/Player/PlaylistPopover.vala:32
 msgid "Clear Playlist"
 msgstr "Afspeellijst leegmaken"
 
-#: src/Widgets/Player/PlaylistPopover.vala:125
+#: src/Widgets/Player/PlaylistPopover.vala:104
 msgid "Repeat None"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:129
+#: src/Widgets/Player/PlaylistPopover.vala:108
 msgid "Repeat All"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:133
+#: src/Widgets/Player/PlaylistPopover.vala:112
 msgid "Repeat One"
 msgstr ""
 
@@ -249,6 +241,12 @@ msgstr "Track %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "Standaard"
+
+#~ msgid "Play from Disc"
+#~ msgstr "Afspelen vanaf schijf"
+
+#~ msgid "Watch a DVD or open a file from disc"
+#~ msgstr "Kijk een DVD of open een bestand van de schijf"
 
 #~ msgid "Back"
 #~ msgstr "Terug"

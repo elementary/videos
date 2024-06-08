@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 19:10+0000\n"
+"POT-Creation-Date: 2024-06-08 01:58+0000\n"
 "PO-Revision-Date: 2016-07-30 14:30+0000\n"
 "Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Burmese <my@li.org>\n"
@@ -43,25 +43,25 @@ msgid_plural "%u items added to playlist"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Window.vala:324 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:320 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "ဖိုင်အားလုံး"
 
-#: src/Window.vala:328
+#: src/Window.vala:324
 msgid "Video files"
 msgstr "ရုပ်သံဖိုင်များ"
 
-#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:172
+#: src/Window.vala:328 src/Widgets/Library/LibraryItem.vala:172
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "ဖွင့်"
 
-#: src/Window.vala:335 src/Widgets/Library/LibraryItem.vala:175
+#: src/Window.vala:331 src/Widgets/Library/LibraryItem.vala:175
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "_O ဖွင့်"
 
-#: src/Window.vala:336 src/Widgets/Library/LibraryItem.vala:176
+#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:176
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "_C ပယ်ဖျက်။"
@@ -102,7 +102,7 @@ msgstr "ဗီဒီယို မပွင့်ပါ"
 msgid "Select a source to begin playing."
 msgstr "ဖွင့်မည့်ဖိုင်နေရာကို ရွေးပါ"
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:29
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:28
 msgid "Open file"
 msgstr "ဖိုင် ဖွင့်ပါ"
 
@@ -110,31 +110,23 @@ msgstr "ဖိုင် ဖွင့်ပါ"
 msgid "Open a saved file."
 msgstr "သိမ်းပြီးသားဖိုင်ကို ဖွင့်မည်"
 
-#: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:116
+#: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:99
 msgid "Replay last video"
 msgstr "ယခင်နောက်ဆုံး ဗီဒီယိုကို ပြန်ဖွင့်"
 
-#: src/Widgets/WelcomePage.vala:34 src/Widgets/Player/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr "အခွေဖြင့် ဖွင့်"
-
 #: src/Widgets/WelcomePage.vala:34
-msgid "Watch a DVD or open a file from disc"
-msgstr "အခွေ/DVD က ဖိုင်ကိုကြည့်မည်"
-
-#: src/Widgets/WelcomePage.vala:35
 msgid "Browse Library"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:35
+#: src/Widgets/WelcomePage.vala:34
 msgid "Watch a movie from your library"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:43
+#: src/Widgets/WelcomePage.vala:42
 msgid "Home"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:119
+#: src/Widgets/WelcomePage.vala:102
 msgid "Resume last video"
 msgstr "ယခင်နောက်ဆုံး ဗီဒီယိုကို ဆက်ဖွင့်"
 
@@ -199,20 +191,20 @@ msgstr "အပြင်​အဆင်​များ"
 msgid "Pause"
 msgstr "ခဏနား"
 
-#: src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/Player/PlaylistPopover.vala:32
 #, fuzzy
 msgid "Clear Playlist"
 msgstr "ဖွင့်ရန်စာရင်း"
 
-#: src/Widgets/Player/PlaylistPopover.vala:125
+#: src/Widgets/Player/PlaylistPopover.vala:104
 msgid "Repeat None"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:129
+#: src/Widgets/Player/PlaylistPopover.vala:108
 msgid "Repeat All"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:133
+#: src/Widgets/Player/PlaylistPopover.vala:112
 msgid "Repeat One"
 msgstr ""
 
@@ -247,6 +239,12 @@ msgstr ""
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "မူလအတိုင်း"
+
+#~ msgid "Play from Disc"
+#~ msgstr "အခွေဖြင့် ဖွင့်"
+
+#~ msgid "Watch a DVD or open a file from disc"
+#~ msgstr "အခွေ/DVD က ဖိုင်ကိုကြည့်မည်"
 
 #~ msgid "Enable Repeat"
 #~ msgstr "Repeat ဖွင့်"

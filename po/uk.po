@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 19:10+0000\n"
+"POT-Creation-Date: 2024-06-08 01:58+0000\n"
 "PO-Revision-Date: 2023-08-31 14:08+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/videos/videos/"
@@ -47,25 +47,25 @@ msgstr[0] "%u елемент додано в добірку"
 msgstr[1] "%u елементи додано в добірку"
 msgstr[2] "%u елементів додано в добірку"
 
-#: src/Window.vala:324 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:320 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "Всі файли"
 
-#: src/Window.vala:328
+#: src/Window.vala:324
 msgid "Video files"
 msgstr "Відеофайли"
 
-#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:172
+#: src/Window.vala:328 src/Widgets/Library/LibraryItem.vala:172
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "Відкрити"
 
-#: src/Window.vala:335 src/Widgets/Library/LibraryItem.vala:175
+#: src/Window.vala:331 src/Widgets/Library/LibraryItem.vala:175
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "_Відкрити"
 
-#: src/Window.vala:336 src/Widgets/Library/LibraryItem.vala:176
+#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:176
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "_Скасувати"
@@ -108,7 +108,7 @@ msgstr "Немає відкритих відео"
 msgid "Select a source to begin playing."
 msgstr "Виберіть джерело для початку програвання."
 
-#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:29
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:28
 msgid "Open file"
 msgstr "Відкрити файл"
 
@@ -116,31 +116,23 @@ msgstr "Відкрити файл"
 msgid "Open a saved file."
 msgstr "Відкрити збережений файл."
 
-#: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:116
+#: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:99
 msgid "Replay last video"
 msgstr "Повторити останнє відео"
 
-#: src/Widgets/WelcomePage.vala:34 src/Widgets/Player/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr "Відтворити з диску"
-
 #: src/Widgets/WelcomePage.vala:34
-msgid "Watch a DVD or open a file from disc"
-msgstr "Дивитися DVD або відкрити файл з диску"
-
-#: src/Widgets/WelcomePage.vala:35
 msgid "Browse Library"
 msgstr "Переглянути бібліотеку"
 
-#: src/Widgets/WelcomePage.vala:35
+#: src/Widgets/WelcomePage.vala:34
 msgid "Watch a movie from your library"
 msgstr "Дивитись фільм з вашої бібліотеки"
 
-#: src/Widgets/WelcomePage.vala:43
+#: src/Widgets/WelcomePage.vala:42
 msgid "Home"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:119
+#: src/Widgets/WelcomePage.vala:102
 msgid "Resume last video"
 msgstr "Відновити попереднє відео"
 
@@ -204,19 +196,19 @@ msgstr "Налаштування"
 msgid "Pause"
 msgstr "Пауза"
 
-#: src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/Player/PlaylistPopover.vala:32
 msgid "Clear Playlist"
 msgstr "Очистити добірку"
 
-#: src/Widgets/Player/PlaylistPopover.vala:125
+#: src/Widgets/Player/PlaylistPopover.vala:104
 msgid "Repeat None"
 msgstr "Не повторювати"
 
-#: src/Widgets/Player/PlaylistPopover.vala:129
+#: src/Widgets/Player/PlaylistPopover.vala:108
 msgid "Repeat All"
 msgstr "Повторювати все"
 
-#: src/Widgets/Player/PlaylistPopover.vala:133
+#: src/Widgets/Player/PlaylistPopover.vala:112
 msgid "Repeat One"
 msgstr "Повторювати одне"
 
@@ -251,6 +243,12 @@ msgstr "Доріжка %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "Типово"
+
+#~ msgid "Play from Disc"
+#~ msgstr "Відтворити з диску"
+
+#~ msgid "Watch a DVD or open a file from disc"
+#~ msgstr "Дивитися DVD або відкрити файл з диску"
 
 #~ msgid "Back"
 #~ msgstr "Назад"
