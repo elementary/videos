@@ -1,5 +1,4 @@
 src/Application.vala
-src/DiskManager.vala
 src/Utils.vala
 src/Window.vala
 src/Services/DirectoryMonitoring.vala
