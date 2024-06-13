@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-08 01:58+0000\n"
-"PO-Revision-Date: 2020-09-29 06:14+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2024-06-13 06:16+0000\n"
+"Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/videos/videos/es/"
 ">\n"
 "Language: es\n"
@@ -17,17 +17,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 5.5.5\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: src/Application.vala:110
 msgid "Videos"
-msgstr "Vídeos"
+msgstr "Videos"
 
 #: src/Window.vala:103
 #, c-format
 msgid "Video '%s' Removed."
-msgstr "Se quitó el vídeo «%s»."
+msgstr "Se quitó el video «%s»."
 
 #: src/Window.vala:109
 msgid "Restore"
@@ -36,14 +36,14 @@ msgstr "Restaurar"
 #: src/Window.vala:140
 #, c-format
 msgid "“%s” added to playlist"
-msgstr ""
+msgstr "Se agregó «%s» a la lista de reproducción"
 
 #: src/Window.vala:143
 #, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u elemento agregado a la lista de reproducción"
+msgstr[1] "%u elementos agregados a la lista de reproducción"
 
 #: src/Window.vala:320 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
@@ -51,7 +51,7 @@ msgstr "Todos los archivos"
 
 #: src/Window.vala:324
 msgid "Video files"
-msgstr "Archivos de vídeo"
+msgstr "Archivos de video"
 
 #: src/Window.vala:328 src/Widgets/Library/LibraryItem.vala:172
 #: src/Widgets/Player/SettingsPopover.vala:123
@@ -70,7 +70,7 @@ msgstr "_Cancelar"
 
 #: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
-msgstr "Está reproduciéndose un vídeo"
+msgstr "Está reproduciéndose un video"
 
 #: src/Widgets/HeaderBar.vala:35
 msgid "Unfullscreen"
@@ -83,7 +83,7 @@ msgstr "Formato de archivo no reconocido"
 #: src/Widgets/UnsupportedFileDialog.vala:26
 #, c-format
 msgid "Videos might not be able to play the file '%s'."
-msgstr "Es posible que Vídeos no pueda reproducir el archivo «%s»."
+msgstr "Es posible que Videos no pueda reproducir el archivo «%s»."
 
 #: src/Widgets/UnsupportedFileDialog.vala:36
 msgid "Play Anyway"
@@ -95,12 +95,12 @@ msgid ""
 "Unable to play file at: %s\n"
 "The file is not a video (\"%s\")."
 msgstr ""
-"No se puede reproducir el vídeo en: %s\n"
-"El archivo no es un vídeo («%s»)."
+"No se puede reproducir el video en: %s\n"
+"El archivo no es un video («%s»)."
 
 #: src/Widgets/WelcomePage.vala:26
 msgid "No Videos Open"
-msgstr "No hay vídeos abiertos"
+msgstr "No hay videos abiertos"
 
 #: src/Widgets/WelcomePage.vala:27
 msgid "Select a source to begin playing."
@@ -116,36 +116,36 @@ msgstr "Abrir un archivo guardado."
 
 #: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:99
 msgid "Replay last video"
-msgstr "Repetir el último vídeo"
+msgstr "Repetir el último video"
 
 #: src/Widgets/WelcomePage.vala:34
 msgid "Browse Library"
-msgstr "Explorar videoteca"
+msgstr "Explorar biblioteca"
 
 #: src/Widgets/WelcomePage.vala:34
 msgid "Watch a movie from your library"
-msgstr "Ver una película de su videoteca"
+msgstr "Ver una película de su biblioteca"
 
 #: src/Widgets/WelcomePage.vala:42
 msgid "Home"
-msgstr ""
+msgstr "Principal"
 
 #: src/Widgets/WelcomePage.vala:102
 msgid "Resume last video"
-msgstr "Continuar la reproducción del último vídeo"
+msgstr "Continuar la reproducción del último video"
 
 #: src/Widgets/Library/EpisodesPage.vala:30
 #: src/Widgets/Library/LibraryPage.vala:41
 msgid "Search Videos"
-msgstr "Buscar vídeos"
+msgstr "Buscar videos"
 
 #: src/Widgets/Library/EpisodesPage.vala:38
 msgid "Play one video"
-msgstr "Reproducir un vídeo"
+msgstr "Reproducir un video"
 
 #: src/Widgets/Library/EpisodesPage.vala:39
 msgid "Automatically play next videos"
-msgstr "Reproducir vídeos posteriores automáticamente"
+msgstr "Reproducir automáticamente los videos siguientes"
 
 #: src/Widgets/Library/EpisodesPage.vala:81
 #: src/Widgets/Library/LibraryPage.vala:66
@@ -164,7 +164,7 @@ msgstr "No hay resultados para «%s»"
 
 #: src/Widgets/Library/LibraryItem.vala:43
 msgid "Move to Trash"
-msgstr "Mover a la papelera"
+msgstr "Enviar a la papelera"
 
 #: src/Widgets/Library/LibraryItem.vala:68
 msgid "Set Artwork"
@@ -176,7 +176,7 @@ msgstr "Archivos de imágenes"
 
 #: src/Widgets/Library/LibraryPage.vala:80
 msgid "Library"
-msgstr "Videoteca"
+msgstr "Biblioteca"
 
 #: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:104
 msgid "Play"
@@ -196,19 +196,19 @@ msgstr "Pausar"
 
 #: src/Widgets/Player/PlaylistPopover.vala:32
 msgid "Clear Playlist"
-msgstr "Vaciar lista de reproducción"
+msgstr "Limpiar lista de reproducción"
 
 #: src/Widgets/Player/PlaylistPopover.vala:104
 msgid "Repeat None"
-msgstr ""
+msgstr "No repetir"
 
 #: src/Widgets/Player/PlaylistPopover.vala:108
 msgid "Repeat All"
-msgstr ""
+msgstr "Repetir todo"
 
 #: src/Widgets/Player/PlaylistPopover.vala:112
 msgid "Repeat One"
-msgstr ""
+msgstr "Repetir una vez"
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
