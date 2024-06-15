@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-08 01:58+0000\n"
-"PO-Revision-Date: 2023-11-14 16:10+0000\n"
+"PO-Revision-Date: 2024-06-16 21:16+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/videos/"
 "videos/nb/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.5.5\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: src/Application.vala:110
@@ -128,7 +128,7 @@ msgstr "Se en film fra biblioteket ditt"
 
 #: src/Widgets/WelcomePage.vala:42
 msgid "Home"
-msgstr ""
+msgstr "Hjem"
 
 #: src/Widgets/WelcomePage.vala:102
 msgid "Resume last video"
