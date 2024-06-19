@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-08 01:58+0000\n"
-"PO-Revision-Date: 2024-06-06 21:21+0000\n"
+"PO-Revision-Date: 2024-06-19 20:43+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/videos/"
 "ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5\n"
+"X-Generator: Weblate 5.5.5\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: src/Application.vala:110
@@ -36,7 +36,7 @@ msgstr "復元"
 #: src/Window.vala:140
 #, c-format
 msgid "“%s” added to playlist"
-msgstr "“%s” をプレイリストに追加しました"
+msgstr "“%s”をプレイリストに追加しました"
 
 #: src/Window.vala:143
 #, c-format
@@ -159,7 +159,7 @@ msgstr "エピソード"
 #: src/Widgets/Library/LibraryPage.vala:164
 #, c-format
 msgid "No Results for “%s”"
-msgstr "“%s” の検索結果なし"
+msgstr "“%s”の検索結果なし"
 
 #: src/Widgets/Library/LibraryItem.vala:43
 msgid "Move to Trash"
