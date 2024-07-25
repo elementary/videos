@@ -18,7 +18,7 @@
  *
  */
 
-public class Audience.LibraryPage : Gtk.Box {
+public class Audience.LibraryPage : Adw.NavigationPage {
     public signal void show_episodes (Objects.MediaItem item, bool setup_only = false);
 
     private Audience.Services.LibraryManager manager;
@@ -51,10 +51,6 @@ public class Audience.LibraryPage : Gtk.Box {
         var factory = new Gtk.SignalListItemFactory ();
 
         view_movies = new Gtk.GridView (selection_model, factory) {
-            margin_top = 24,
-            margin_bottom = 24,
-            margin_start = 24,
-            margin_end = 24,
             single_click_activate = true,
             valign = Gtk.Align.START
         };
@@ -75,9 +71,13 @@ public class Audience.LibraryPage : Gtk.Box {
         stack.add_child (scrolled_window);
         stack.add_child (alert_view);
 
-        orientation = VERTICAL;
-        append (header_bar);
-        append (stack);
+        var toolbarview = new Adw.ToolbarView () {
+            content = stack
+        };
+        toolbarview.add_top_bar (header_bar);
+
+        child = toolbarview;
+        title = _("Library");
 
         factory.setup.connect ((obj) => {
             var item = (Gtk.ListItem) obj;

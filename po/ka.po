@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-12 16:20+0000\n"
-"PO-Revision-Date: 2023-10-03 18:08+0000\n"
+"POT-Creation-Date: 2024-06-08 01:58+0000\n"
+"PO-Revision-Date: 2024-06-19 05:16+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementary.io/projects/videos/videos/"
 "ka/>\n"
@@ -17,74 +17,62 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.5.5\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
-#: src/Application.vala:103 src/Window.vala:438
+#: src/Application.vala:110
 msgid "Videos"
 msgstr "ვიდეოები"
 
-#: src/Window.vala:123
+#: src/Window.vala:103
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "ვიდეო '%s წაიშალა."
 
-#: src/Window.vala:129
+#: src/Window.vala:109
 msgid "Restore"
 msgstr "აღდგენა"
 
-#: src/Window.vala:153
+#: src/Window.vala:140
 #, c-format
 msgid "“%s” added to playlist"
 msgstr "\"%s\" დაემატა დასაკრავ სიას"
 
-#: src/Window.vala:156
+#: src/Window.vala:143
 #, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
 msgstr[0] "დასაკრავ სიას %u ელემენტი დაემატა"
 msgstr[1] "დასაკრავ სიას %u ელემენტი დაემატა"
 
-#: src/Window.vala:342 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:320 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "ყველა ფაილი"
 
-#: src/Window.vala:346
+#: src/Window.vala:324
 msgid "Video files"
 msgstr "ვიდეო ფაილები"
 
-#: src/Window.vala:350 src/Widgets/Library/LibraryItem.vala:192
+#: src/Window.vala:328 src/Widgets/Library/LibraryItem.vala:172
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "გახსნა"
 
-#: src/Window.vala:353 src/Widgets/Library/LibraryItem.vala:195
+#: src/Window.vala:331 src/Widgets/Library/LibraryItem.vala:175
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "გახ_სნა"
 
-#: src/Window.vala:354 src/Widgets/Library/LibraryItem.vala:196
+#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:176
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "_გაუქმება"
-
-#: src/Window.vala:418
-msgid "Episodes"
-msgstr "ეპიზოდები"
-
-#: src/Window.vala:420 src/Window.vala:440
-msgid "Library"
-msgstr "ბიბლიოთეკა"
-
-#: src/Window.vala:422
-msgid "Back"
-msgstr "უკან"
 
 #: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr "მიმდინარეობს ვიდეოს დაკვრა"
 
-#: src/Widgets/HeaderBar.vala:39
+#: src/Widgets/HeaderBar.vala:35
 msgid "Unfullscreen"
 msgstr "მთელი ეკრანიდან გამოსვლა"
 
@@ -110,111 +98,115 @@ msgstr ""
 "ფაილის დაკვრა შეუძლებელია: %s \n"
 "ფაილი ვიდეო არაა (\"%s\")."
 
-#: src/Widgets/WelcomePage.vala:27
+#: src/Widgets/WelcomePage.vala:26
 msgid "No Videos Open"
 msgstr "ვიდეო არაა გახსნილი"
 
-#: src/Widgets/WelcomePage.vala:28
+#: src/Widgets/WelcomePage.vala:27
 msgid "Select a source to begin playing."
 msgstr "აირჩიეთ წყარო რათა დაიწყოთ დაკვრა."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:29
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:28
 msgid "Open file"
 msgstr "ფაილის გახსნა"
 
-#: src/Widgets/WelcomePage.vala:36
+#: src/Widgets/WelcomePage.vala:32
 msgid "Open a saved file."
 msgstr "შენახული ფაილის გახსნა."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:116
+#: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:99
 msgid "Replay last video"
 msgstr "ბოლო ვიდეოს ხელახლა დაკვრა"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr "დაკვრა დისკიდან"
-
-#: src/Widgets/WelcomePage.vala:38
-msgid "Watch a DVD or open a file from disc"
-msgstr "უყურეთ DVD-ს ან გახსენით ფაილი დისკიდან"
-
-#: src/Widgets/WelcomePage.vala:39
+#: src/Widgets/WelcomePage.vala:34
 msgid "Browse Library"
 msgstr "ბიბლიოთეკის დათვალიერება"
 
-#: src/Widgets/WelcomePage.vala:39
+#: src/Widgets/WelcomePage.vala:34
 msgid "Watch a movie from your library"
 msgstr "ბიბლიოთეკიდან ვიდეოს ყურება"
 
-#: src/Widgets/WelcomePage.vala:119
+#: src/Widgets/WelcomePage.vala:42
+msgid "Home"
+msgstr "საწყისი"
+
+#: src/Widgets/WelcomePage.vala:102
 msgid "Resume last video"
 msgstr "ბოლო ვიდეოს გაგრძელება"
 
-#: src/Widgets/Library/EpisodesPage.vala:36
-#: src/Widgets/Library/LibraryPage.vala:51
+#: src/Widgets/Library/EpisodesPage.vala:30
+#: src/Widgets/Library/LibraryPage.vala:41
 msgid "Search Videos"
 msgstr "ვიდეოების ძებნა"
 
-#: src/Widgets/Library/EpisodesPage.vala:44
+#: src/Widgets/Library/EpisodesPage.vala:38
 msgid "Play one video"
 msgstr "ერთი ვიდეოს დაკვრა"
 
-#: src/Widgets/Library/EpisodesPage.vala:45
+#: src/Widgets/Library/EpisodesPage.vala:39
 msgid "Automatically play next videos"
 msgstr "შემდეგი ვიდეოს ავტომატური დაკვრა"
 
-#: src/Widgets/Library/EpisodesPage.vala:87
-#: src/Widgets/Library/LibraryPage.vala:82
+#: src/Widgets/Library/EpisodesPage.vala:81
+#: src/Widgets/Library/LibraryPage.vala:66
 msgid "Try changing search terms."
 msgstr "სცადეთ ძებნის პირობების შეცვალოთ."
 
-#: src/Widgets/Library/EpisodesPage.vala:180
-#: src/Widgets/Library/LibraryPage.vala:234
+#: src/Widgets/Library/EpisodesPage.vala:99
+msgid "Episodes"
+msgstr "ეპიზოდები"
+
+#: src/Widgets/Library/EpisodesPage.vala:160
+#: src/Widgets/Library/LibraryPage.vala:164
 #, c-format
 msgid "No Results for “%s”"
 msgstr "\"%s\"-სთვის შედეგები არ მოიძებნა"
 
-#: src/Widgets/Library/LibraryItem.vala:78
+#: src/Widgets/Library/LibraryItem.vala:43
 msgid "Move to Trash"
 msgstr "ნაგვის ყუთში გადატანა"
 
-#: src/Widgets/Library/LibraryItem.vala:102
+#: src/Widgets/Library/LibraryItem.vala:68
 msgid "Set Artwork"
 msgstr "ყდის დაყენება"
 
-#: src/Widgets/Library/LibraryItem.vala:188
+#: src/Widgets/Library/LibraryItem.vala:168
 msgid "Image files"
 msgstr "გამოსახულების ფაილები"
 
-#: src/Widgets/Player/BottomBar.vala:38 src/Widgets/Player/BottomBar.vala:92
+#: src/Widgets/Library/LibraryPage.vala:80
+msgid "Library"
+msgstr "ბიბლიოთეკა"
+
+#: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:104
 msgid "Play"
 msgstr "დაკვრა"
 
-#: src/Widgets/Player/BottomBar.vala:46
+#: src/Widgets/Player/BottomBar.vala:51
 msgid "Playlist"
 msgstr "დასაკრავი სია"
 
-#: src/Widgets/Player/BottomBar.vala:55
+#: src/Widgets/Player/BottomBar.vala:60
 msgid "Settings"
 msgstr "პარამეტრები"
 
-#: src/Widgets/Player/BottomBar.vala:95
+#: src/Widgets/Player/BottomBar.vala:107
 msgid "Pause"
 msgstr "პაუზა"
 
-#: src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/Player/PlaylistPopover.vala:32
 msgid "Clear Playlist"
 msgstr "დასაკრავი სიის გასუფთავება"
 
-#: src/Widgets/Player/PlaylistPopover.vala:125
+#: src/Widgets/Player/PlaylistPopover.vala:104
 msgid "Repeat None"
 msgstr "არ გაიმეორო"
 
-#: src/Widgets/Player/PlaylistPopover.vala:129
+#: src/Widgets/Player/PlaylistPopover.vala:108
 msgid "Repeat All"
 msgstr "ყველას გამეორება"
 
-#: src/Widgets/Player/PlaylistPopover.vala:133
+#: src/Widgets/Player/PlaylistPopover.vala:112
 msgid "Repeat One"
 msgstr "ერთის გამეორება"
 
@@ -249,6 +241,15 @@ msgstr "ტრეკი %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "ნაგულისხმევი"
+
+#~ msgid "Play from Disc"
+#~ msgstr "დაკვრა დისკიდან"
+
+#~ msgid "Watch a DVD or open a file from disc"
+#~ msgstr "უყურეთ DVD-ს ან გახსენით ფაილი დისკიდან"
+
+#~ msgid "Back"
+#~ msgstr "უკან"
 
 #~ msgid "Enable Repeat"
 #~ msgstr "გამეორების ჩართვა"

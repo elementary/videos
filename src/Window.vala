@@ -21,12 +21,12 @@
  */
 
 public class Audience.Window : Gtk.ApplicationWindow {
-    private Adw.Leaflet leaflet;
+    private Adw.NavigationView navigation_view;
     private Granite.Toast app_notification;
     private EpisodesPage episodes_page;
     private LibraryPage library_page;
-    private Gtk.Box welcome_page_box;
     private PlayerPage player_page;
+    private WelcomePage welcome_page;
 
     public enum NavigationPage { WELCOME, LIBRARY, EPISODES }
 
@@ -53,8 +53,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
     };
 
     static construct {
-        action_accelerators[ACTION_BACK] = "<Alt>Left";
-        action_accelerators[ACTION_BACK] = "Back";
         action_accelerators[ACTION_FULLSCREEN] = "F";
         action_accelerators[ACTION_FULLSCREEN] = "F11";
         action_accelerators[ACTION_OPEN_FILE] = "<Control>O";
@@ -77,37 +75,19 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         library_page = LibraryPage.get_instance ();
 
-        library_page.show_episodes.connect ((item, setup_only) => {
-            episodes_page.set_show (item);
-            if (!setup_only) {
-                leaflet.append (episodes_page);
-                leaflet.visible_child = episodes_page;
-
-                title = item.title;
-            }
-        });
-
-        var welcome_page = new WelcomePage ();
-
-        welcome_page_box = new Gtk.Box (VERTICAL, 0);
-        welcome_page_box.append (new HeaderBar ());
-        welcome_page_box.append (welcome_page);
-        welcome_page_box.add_css_class (Granite.STYLE_CLASS_VIEW);
+        welcome_page = new WelcomePage ();
 
         player_page = new PlayerPage ();
 
         episodes_page = new EpisodesPage ();
 
-        leaflet = new Adw.Leaflet () {
-            can_navigate_back = true,
-            can_unfold = false
-        };
-        leaflet.append (welcome_page_box);
+        navigation_view = new Adw.NavigationView ();
+        navigation_view.add (welcome_page);
 
         app_notification = new Granite.Toast ("");
 
         var overlay = new Gtk.Overlay () {
-            child = leaflet
+            child = navigation_view
         };
         overlay.add_overlay (app_notification);
 
@@ -135,7 +115,14 @@ public class Audience.Window : Gtk.ApplicationWindow {
             app_notification.send_notification ();
         });
 
-        leaflet.notify["visible-child"].connect (() => {
+        library_page.show_episodes.connect ((item, setup_only) => {
+            episodes_page.set_show (item);
+            if (!setup_only) {
+                navigation_view.push (episodes_page);
+            }
+        });
+
+        navigation_view.notify["visible-page"].connect (() => {
             update_navigation ();
         });
 
@@ -165,7 +152,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
         key_controller.key_released.connect (handle_key_press);
 
         var drop_target = new Gtk.DropTarget (typeof (Gdk.FileList), COPY);
-        leaflet.add_controller (drop_target);
+        navigation_view.add_controller (drop_target);
         drop_target.drop.connect ((val) => {
             if (val.type () != typeof (Gdk.FileList)) {
                 return false;
@@ -184,7 +171,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     private void action_back () {
-        leaflet.navigate (Adw.NavigationDirection.BACK);
+        navigation_view.pop ();
     }
 
     private void action_fullscreen () {
@@ -204,9 +191,9 @@ public class Audience.Window : Gtk.ApplicationWindow {
     }
 
     private void action_search () {
-        if (leaflet.visible_child == library_page) {
+        if (navigation_view.visible_page == library_page) {
             library_page.search ();
-        } else if (leaflet.visible_child == episodes_page) {
+        } else if (navigation_view.visible_page == episodes_page) {
             episodes_page.search ();
         } else {
             Gdk.Display.get_default ().beep ();
@@ -219,10 +206,6 @@ public class Audience.Window : Gtk.ApplicationWindow {
          */
         if (!is_sandboxed ()) {
             Audience.Services.LibraryManager.get_instance ().undo_delete_item ();
-
-            if (leaflet.visible_child != episodes_page) {
-                leaflet.visible_child = library_page;
-            }
         }
     }
 
@@ -251,7 +234,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
             }
         }
 
-        if (leaflet.visible_child == player_page) {
+        if (navigation_view.visible_page == player_page) {
             if (match_keycode (Gdk.Key.space, keycode) || match_keycode (Gdk.Key.p, keycode)) {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
                 ((SimpleAction) play_pause_action).activate (null);
@@ -284,7 +267,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
                 default:
                     break;
             }
-        } else if (leaflet.visible_child == welcome_page_box) {
+        } else if (navigation_view.visible_page == welcome_page) {
             bool ctrl_pressed = CONTROL_MASK in state;
             if (match_keycode (Gdk.Key.p, keycode) || match_keycode (Gdk.Key.space, keycode)) {
                 resume_last_videos ();
@@ -328,13 +311,8 @@ public class Audience.Window : Gtk.ApplicationWindow {
         }
     }
 
-    public void run_open_dvd () {
-        read_first_disk.begin ();
-    }
-
     public void show_library () {
-        leaflet.append (library_page);
-        leaflet.visible_child = library_page;
+        navigation_view.push (library_page);
     }
 
     public void run_open_file (bool clear_playlist = false, bool force_play = true) {
@@ -382,47 +360,14 @@ public class Audience.Window : Gtk.ApplicationWindow {
         file.show ();
     }
 
-    private async void read_first_disk () {
-        var disk_manager = DiskManager.get_default ();
-        if (disk_manager.get_volumes ().is_empty) {
-            return;
-        }
-
-        var volume = disk_manager.get_volumes ().first ();
-        if (volume.can_mount () == true && volume.get_mount ().can_unmount () == false) {
-            try {
-                yield volume.mount (MountMountFlags.NONE, null);
-            } catch (Error e) {
-                critical (e.message);
-            }
-        }
-
-        var root = volume.get_mount ().get_default_location ();
-        play_file (root.get_uri ().replace ("file:///", "dvd:///"), NavigationPage.WELCOME);
-    }
-
     private void on_player_ended () {
-        leaflet.navigate (Adw.NavigationDirection.BACK);
+        navigation_view.pop ();
     }
 
     public void play_file (string uri, NavigationPage origin, bool from_beginning = true) {
-        leaflet.append (player_page);
-        leaflet.visible_child = player_page;
+        navigation_view.push (player_page);
 
         PlaybackManager.get_default ().play_file (uri, from_beginning);
-    }
-
-    public string? get_adjacent_page_name () {
-        var previous_child = leaflet.get_adjacent_child (Adw.NavigationDirection.BACK);
-        if (previous_child == episodes_page) {
-            return _("Episodes");
-        } else if (previous_child == library_page) {
-            return _("Library");
-        } else if (previous_child == welcome_page_box) {
-            return _("Back");
-        } else {
-            return null;
-        }
     }
 
     private void update_navigation () {
@@ -432,19 +377,11 @@ public class Audience.Window : Gtk.ApplicationWindow {
         }
 
         var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
-        ((SimpleAction) play_pause_action).set_state (false);
 
-        if (leaflet.visible_child == welcome_page_box) {
-            title = _("Videos");
-        } else if (leaflet.visible_child == library_page) {
-            title = _("Library");
-        } else if (leaflet.visible_child == player_page) {
+        if (navigation_view.visible_page == player_page) {
             ((SimpleAction) play_pause_action).set_state (true);
-        }
-
-        var next_child = leaflet.get_adjacent_child (Adw.NavigationDirection.FORWARD);
-        if (next_child != null) {
-            leaflet.remove (next_child);
+        } else {
+            ((SimpleAction) play_pause_action).set_state (false);
         }
     }
 }

@@ -122,21 +122,6 @@ public class Audience.Widgets.PreviewPopover : Gtk.Popover {
         });
     }
 
-    public void update_pointing (int x) {
-        var pointing = pointing_to;
-        pointing.x = x;
-
-        // changing the width properly updates arrow position when popover hits the edge
-        if (pointing.width == 0) {
-            pointing.width = 2;
-            pointing.x -= 1;
-        } else {
-            pointing.width = 0;
-        }
-
-        set_pointing_to (pointing);
-    }
-
     public void schedule_show () {
         if (show_timer_id > 0) {
             return;

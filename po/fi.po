@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-12 16:20+0000\n"
+"POT-Creation-Date: 2024-06-08 01:58+0000\n"
 "PO-Revision-Date: 2023-09-04 08:08+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://l10n.elementary.io/projects/videos/videos/fi/"
@@ -20,71 +20,59 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 
-#: src/Application.vala:103 src/Window.vala:438
+#: src/Application.vala:110
 msgid "Videos"
 msgstr "Videot"
 
-#: src/Window.vala:123
+#: src/Window.vala:103
 #, c-format
 msgid "Video '%s' Removed."
 msgstr "Video '%s' poistettu."
 
-#: src/Window.vala:129
+#: src/Window.vala:109
 msgid "Restore"
 msgstr "Palauta"
 
-#: src/Window.vala:153
+#: src/Window.vala:140
 #, c-format
 msgid "“%s” added to playlist"
 msgstr "“%s” lisätty soittolistalle"
 
-#: src/Window.vala:156
+#: src/Window.vala:143
 #, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
 msgstr[0] "%u kohde lisätty soittolistalle"
 msgstr[1] "%u kohdetta lisätty soittolistalle"
 
-#: src/Window.vala:342 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:320 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "Kaikki tiedostot"
 
-#: src/Window.vala:346
+#: src/Window.vala:324
 msgid "Video files"
 msgstr "Videotiedostot"
 
-#: src/Window.vala:350 src/Widgets/Library/LibraryItem.vala:192
+#: src/Window.vala:328 src/Widgets/Library/LibraryItem.vala:172
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr "Avaa"
 
-#: src/Window.vala:353 src/Widgets/Library/LibraryItem.vala:195
+#: src/Window.vala:331 src/Widgets/Library/LibraryItem.vala:175
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr "_Avaa"
 
-#: src/Window.vala:354 src/Widgets/Library/LibraryItem.vala:196
+#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:176
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
 msgstr "_Peru"
-
-#: src/Window.vala:418
-msgid "Episodes"
-msgstr "Jaksot"
-
-#: src/Window.vala:420 src/Window.vala:440
-msgid "Library"
-msgstr "Kirjasto"
-
-#: src/Window.vala:422
-msgid "Back"
-msgstr "Takaisin"
 
 #: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr "Videota toistetaan"
 
-#: src/Widgets/HeaderBar.vala:39
+#: src/Widgets/HeaderBar.vala:35
 msgid "Unfullscreen"
 msgstr "Poistu koko näytöstä"
 
@@ -110,111 +98,115 @@ msgstr ""
 "Tiedostoa sijainnissa ei voitu toistaa: %s\n"
 "Tiedosto ei ole video (\"%s\")."
 
-#: src/Widgets/WelcomePage.vala:27
+#: src/Widgets/WelcomePage.vala:26
 msgid "No Videos Open"
 msgstr "Ei avoinna olevia videoita"
 
-#: src/Widgets/WelcomePage.vala:28
+#: src/Widgets/WelcomePage.vala:27
 msgid "Select a source to begin playing."
 msgstr "Valitse lähde aloittaaksesi toiston."
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:29
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:28
 msgid "Open file"
 msgstr "Avaa tiedosto"
 
-#: src/Widgets/WelcomePage.vala:36
+#: src/Widgets/WelcomePage.vala:32
 msgid "Open a saved file."
 msgstr "Avaa tallennettu tiedosto."
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:116
+#: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:99
 msgid "Replay last video"
 msgstr "Toista uudelleen viimeisin video"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr "Toista levyltä"
-
-#: src/Widgets/WelcomePage.vala:38
-msgid "Watch a DVD or open a file from disc"
-msgstr "Katso DVD tai tiedosto levyltä"
-
-#: src/Widgets/WelcomePage.vala:39
+#: src/Widgets/WelcomePage.vala:34
 msgid "Browse Library"
 msgstr "Selaa kirjastoa"
 
-#: src/Widgets/WelcomePage.vala:39
+#: src/Widgets/WelcomePage.vala:34
 msgid "Watch a movie from your library"
 msgstr "Katso elokuva kirjastostasi"
 
-#: src/Widgets/WelcomePage.vala:119
+#: src/Widgets/WelcomePage.vala:42
+msgid "Home"
+msgstr ""
+
+#: src/Widgets/WelcomePage.vala:102
 msgid "Resume last video"
 msgstr "Jatka viimeisintä videota"
 
-#: src/Widgets/Library/EpisodesPage.vala:36
-#: src/Widgets/Library/LibraryPage.vala:51
+#: src/Widgets/Library/EpisodesPage.vala:30
+#: src/Widgets/Library/LibraryPage.vala:41
 msgid "Search Videos"
 msgstr "Etsi videoita"
 
-#: src/Widgets/Library/EpisodesPage.vala:44
+#: src/Widgets/Library/EpisodesPage.vala:38
 msgid "Play one video"
 msgstr "Toista yksi video"
 
-#: src/Widgets/Library/EpisodesPage.vala:45
+#: src/Widgets/Library/EpisodesPage.vala:39
 msgid "Automatically play next videos"
 msgstr "Toista seuraavat videot automaattisesti"
 
-#: src/Widgets/Library/EpisodesPage.vala:87
-#: src/Widgets/Library/LibraryPage.vala:82
+#: src/Widgets/Library/EpisodesPage.vala:81
+#: src/Widgets/Library/LibraryPage.vala:66
 msgid "Try changing search terms."
 msgstr "Yritä käyttää eri hakuehtoja."
 
-#: src/Widgets/Library/EpisodesPage.vala:180
-#: src/Widgets/Library/LibraryPage.vala:234
+#: src/Widgets/Library/EpisodesPage.vala:99
+msgid "Episodes"
+msgstr "Jaksot"
+
+#: src/Widgets/Library/EpisodesPage.vala:160
+#: src/Widgets/Library/LibraryPage.vala:164
 #, c-format
 msgid "No Results for “%s”"
 msgstr "Ei tuloksia haulle “%s”"
 
-#: src/Widgets/Library/LibraryItem.vala:78
+#: src/Widgets/Library/LibraryItem.vala:43
 msgid "Move to Trash"
 msgstr "Siirrä roskakoriin"
 
-#: src/Widgets/Library/LibraryItem.vala:102
+#: src/Widgets/Library/LibraryItem.vala:68
 msgid "Set Artwork"
 msgstr "Aseta kuvitus"
 
-#: src/Widgets/Library/LibraryItem.vala:188
+#: src/Widgets/Library/LibraryItem.vala:168
 msgid "Image files"
 msgstr "Kuvatiedostot"
 
-#: src/Widgets/Player/BottomBar.vala:38 src/Widgets/Player/BottomBar.vala:92
+#: src/Widgets/Library/LibraryPage.vala:80
+msgid "Library"
+msgstr "Kirjasto"
+
+#: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:104
 msgid "Play"
 msgstr "Toista"
 
-#: src/Widgets/Player/BottomBar.vala:46
+#: src/Widgets/Player/BottomBar.vala:51
 msgid "Playlist"
 msgstr "Soittolista"
 
-#: src/Widgets/Player/BottomBar.vala:55
+#: src/Widgets/Player/BottomBar.vala:60
 msgid "Settings"
 msgstr "Asetukset"
 
-#: src/Widgets/Player/BottomBar.vala:95
+#: src/Widgets/Player/BottomBar.vala:107
 msgid "Pause"
 msgstr "Keskeytä"
 
-#: src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/Player/PlaylistPopover.vala:32
 msgid "Clear Playlist"
 msgstr "Tyhjennä soittolista"
 
-#: src/Widgets/Player/PlaylistPopover.vala:125
+#: src/Widgets/Player/PlaylistPopover.vala:104
 msgid "Repeat None"
 msgstr "Ei kertausta"
 
-#: src/Widgets/Player/PlaylistPopover.vala:129
+#: src/Widgets/Player/PlaylistPopover.vala:108
 msgid "Repeat All"
 msgstr "Kertaa kaikki"
 
-#: src/Widgets/Player/PlaylistPopover.vala:133
+#: src/Widgets/Player/PlaylistPopover.vala:112
 msgid "Repeat One"
 msgstr "Kertaa yksi"
 
@@ -249,6 +241,15 @@ msgstr "Raita %u"
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr "Oletus"
+
+#~ msgid "Play from Disc"
+#~ msgstr "Toista levyltä"
+
+#~ msgid "Watch a DVD or open a file from disc"
+#~ msgstr "Katso DVD tai tiedosto levyltä"
+
+#~ msgid "Back"
+#~ msgstr "Takaisin"
 
 #~ msgid "Enable Repeat"
 #~ msgstr "Ota kertaaminen käyttöön"

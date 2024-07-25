@@ -8,21 +8,21 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-12 16:20+0000\n"
-"PO-Revision-Date: 2021-09-29 22:11+0000\n"
-"Last-Translator: Reinaldo <reinaldoplacetas@tutanota.com>\n"
-"Language-Team: Spanish <https://l10n.elementary.io/projects/videos/extra/es/"
-">\n"
+"PO-Revision-Date: 2024-06-13 06:16+0000\n"
+"Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
+"Language-Team: Spanish <https://l10n.elementary.io/projects/videos/extra/es/>"
+"\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.5.5\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
 msgid "Videos"
-msgstr "Vídeos"
+msgstr "Videos"
 
 #: data/videos.metainfo.xml.in:11 data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
@@ -34,13 +34,13 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
-"Un reproductor de vídeos moderno centrado en el contenido y no en los "
-"controles de reproducción. Recuerda el último vídeo y momento reproducido "
+"Un reproductor de videos moderno centrado en el contenido y no en los "
+"controles de reproducción. Recuerda el último video y momento reproducido "
 "para que pueda retomar la reproducción donde la dejó."
 
 #: data/videos.metainfo.xml.in:14
 msgid "Additional features include:"
-msgstr "Se incluyen, entre otras funcionalidades:"
+msgstr "Se incluyen, entre otras características:"
 
 #: data/videos.metainfo.xml.in:16
 msgid "Subtitle support"
@@ -64,15 +64,19 @@ msgstr "Mejoras:"
 
 #: data/videos.metainfo.xml.in:59
 msgid "Updated flatter design"
-msgstr ""
+msgstr "Se actualizó para un diseño más plano"
 
 #: data/videos.metainfo.xml.in:60
 msgid "Send an app notification when adding items to the play queue"
 msgstr ""
+"Ahora se envía una notificación cuando se agregan elementos a la cola de "
+"reproducción"
 
 #: data/videos.metainfo.xml.in:61
 msgid "More accurate playback position save and restore"
 msgstr ""
+"El marcador de posición de reproducción es más preciso a la hora de "
+"guardarlo y restaurarlo"
 
 #: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
 #: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
@@ -87,31 +91,31 @@ msgstr "Otras actualizaciones:"
 
 #: data/videos.metainfo.xml.in:81
 msgid "New features:"
-msgstr "Funcionalidades nuevas:"
+msgstr "Nuevas características:"
 
 #: data/videos.metainfo.xml.in:83
 msgid "Control playback from the sound indicator"
-msgstr ""
+msgstr "Se puede controlar la reproducción desde el indicador de sonido"
 
 #: data/videos.metainfo.xml.in:87
 msgid "Make playback duration more accurate"
-msgstr ""
+msgstr "El cálculo de la duración de la reproducción es más preciso"
 
 #: data/videos.metainfo.xml.in:97
 msgid "Update to Flatpak Platform 7"
-msgstr ""
+msgstr "Se actualizó a la plataforma de Flatpak 7"
 
 #: data/videos.metainfo.xml.in:105
 msgid "Fixes:"
-msgstr ""
+msgstr "Correcciones:"
 
 #: data/videos.metainfo.xml.in:107
 msgid "Fix a crash with certain video codecs"
-msgstr ""
+msgstr "Se corrigió un fallo grave con ciertos códecs de video"
 
 #: data/videos.metainfo.xml.in:111
 msgid "Update to 6.1 Flatpak runtime"
-msgstr ""
+msgstr "Se actualizó al entorno de ejecución de Flatpak 6.1"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"

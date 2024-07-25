@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-12 16:20+0000\n"
+"POT-Creation-Date: 2024-06-08 01:58+0000\n"
 "PO-Revision-Date: 2016-07-30 14:30+0000\n"
 "Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Akan <ak@li.org>\n"
@@ -18,72 +18,60 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-19 06:23+0000\n"
 "X-Generator: Launchpad (build 18354)\n"
 
-#: src/Application.vala:103 src/Window.vala:438
+#: src/Application.vala:110
 #, fuzzy
 msgid "Videos"
 msgstr "Video biara mbueɛ"
 
-#: src/Window.vala:123
+#: src/Window.vala:103
 #, c-format
 msgid "Video '%s' Removed."
 msgstr ""
 
-#: src/Window.vala:129
+#: src/Window.vala:109
 msgid "Restore"
 msgstr ""
 
-#: src/Window.vala:153
+#: src/Window.vala:140
 #, c-format
 msgid "“%s” added to playlist"
 msgstr ""
 
-#: src/Window.vala:156
+#: src/Window.vala:143
 #, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Window.vala:342 src/Widgets/Player/SettingsPopover.vala:111
+#: src/Window.vala:320 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
 msgstr "Files no nyinaa"
 
-#: src/Window.vala:346
+#: src/Window.vala:324
 msgid "Video files"
 msgstr ""
 
-#: src/Window.vala:350 src/Widgets/Library/LibraryItem.vala:192
+#: src/Window.vala:328 src/Widgets/Library/LibraryItem.vala:172
 #: src/Widgets/Player/SettingsPopover.vala:123
 msgid "Open"
 msgstr ""
 
-#: src/Window.vala:353 src/Widgets/Library/LibraryItem.vala:195
+#: src/Window.vala:331 src/Widgets/Library/LibraryItem.vala:175
 #: src/Widgets/Player/SettingsPopover.vala:126
 msgid "_Open"
 msgstr ""
 
-#: src/Window.vala:354 src/Widgets/Library/LibraryItem.vala:196
+#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:176
 #: src/Widgets/Player/SettingsPopover.vala:127
 msgid "_Cancel"
-msgstr ""
-
-#: src/Window.vala:418
-msgid "Episodes"
-msgstr ""
-
-#: src/Window.vala:420 src/Window.vala:440
-msgid "Library"
-msgstr ""
-
-#: src/Window.vala:422
-msgid "Back"
 msgstr ""
 
 #: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
 msgstr ""
 
-#: src/Widgets/HeaderBar.vala:39
+#: src/Widgets/HeaderBar.vala:35
 msgid "Unfullscreen"
 msgstr "Gyae so nyinaa kata"
 
@@ -107,113 +95,117 @@ msgid ""
 "The file is not a video (\"%s\")."
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:27
+#: src/Widgets/WelcomePage.vala:26
 msgid "No Videos Open"
 msgstr "Video biara mbueɛ"
 
-#: src/Widgets/WelcomePage.vala:28
+#: src/Widgets/WelcomePage.vala:27
 msgid "Select a source to begin playing."
 msgstr "Kyerɛ baabi a ewɔ na ɛmmɔ"
 
-#: src/Widgets/WelcomePage.vala:36 src/Widgets/Player/PlaylistPopover.vala:29
+#: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:28
 msgid "Open file"
 msgstr "Bue file"
 
-#: src/Widgets/WelcomePage.vala:36
+#: src/Widgets/WelcomePage.vala:32
 msgid "Open a saved file."
 msgstr "Bue file a w'akora dedaw"
 
-#: src/Widgets/WelcomePage.vala:37 src/Widgets/WelcomePage.vala:116
+#: src/Widgets/WelcomePage.vala:33 src/Widgets/WelcomePage.vala:99
 msgid "Replay last video"
 msgstr "San bɔ video a ɛtwa toɔ a wobɔeɛ"
 
-#: src/Widgets/WelcomePage.vala:38 src/Widgets/Player/PlaylistPopover.vala:33
-msgid "Play from Disc"
-msgstr "Bɔ firi Disc so"
-
-#: src/Widgets/WelcomePage.vala:38
-msgid "Watch a DVD or open a file from disc"
-msgstr "Hwɛ DVD anaa bue file bi firi disc so"
-
-#: src/Widgets/WelcomePage.vala:39
+#: src/Widgets/WelcomePage.vala:34
 msgid "Browse Library"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:39
+#: src/Widgets/WelcomePage.vala:34
 msgid "Watch a movie from your library"
 msgstr ""
 
-#: src/Widgets/WelcomePage.vala:119
+#: src/Widgets/WelcomePage.vala:42
+msgid "Home"
+msgstr ""
+
+#: src/Widgets/WelcomePage.vala:102
 msgid "Resume last video"
 msgstr "San toa video a ɛtwa toɔ a na worebɔ no"
 
-#: src/Widgets/Library/EpisodesPage.vala:36
-#: src/Widgets/Library/LibraryPage.vala:51
+#: src/Widgets/Library/EpisodesPage.vala:30
+#: src/Widgets/Library/LibraryPage.vala:41
 msgid "Search Videos"
 msgstr ""
 
-#: src/Widgets/Library/EpisodesPage.vala:44
+#: src/Widgets/Library/EpisodesPage.vala:38
 #, fuzzy
 msgid "Play one video"
 msgstr "San bɔ video a ɛtwa toɔ a wobɔeɛ"
 
-#: src/Widgets/Library/EpisodesPage.vala:45
+#: src/Widgets/Library/EpisodesPage.vala:39
 msgid "Automatically play next videos"
 msgstr ""
 
-#: src/Widgets/Library/EpisodesPage.vala:87
-#: src/Widgets/Library/LibraryPage.vala:82
+#: src/Widgets/Library/EpisodesPage.vala:81
+#: src/Widgets/Library/LibraryPage.vala:66
 msgid "Try changing search terms."
 msgstr ""
 
-#: src/Widgets/Library/EpisodesPage.vala:180
-#: src/Widgets/Library/LibraryPage.vala:234
+#: src/Widgets/Library/EpisodesPage.vala:99
+msgid "Episodes"
+msgstr ""
+
+#: src/Widgets/Library/EpisodesPage.vala:160
+#: src/Widgets/Library/LibraryPage.vala:164
 #, c-format
 msgid "No Results for “%s”"
 msgstr ""
 
-#: src/Widgets/Library/LibraryItem.vala:78
+#: src/Widgets/Library/LibraryItem.vala:43
 msgid "Move to Trash"
 msgstr ""
 
-#: src/Widgets/Library/LibraryItem.vala:102
+#: src/Widgets/Library/LibraryItem.vala:68
 msgid "Set Artwork"
 msgstr ""
 
-#: src/Widgets/Library/LibraryItem.vala:188
+#: src/Widgets/Library/LibraryItem.vala:168
 msgid "Image files"
 msgstr ""
 
-#: src/Widgets/Player/BottomBar.vala:38 src/Widgets/Player/BottomBar.vala:92
+#: src/Widgets/Library/LibraryPage.vala:80
+msgid "Library"
+msgstr ""
+
+#: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:104
 msgid "Play"
 msgstr "Bɔ"
 
-#: src/Widgets/Player/BottomBar.vala:46
+#: src/Widgets/Player/BottomBar.vala:51
 msgid "Playlist"
 msgstr "Nwom a w'ahehyɛ sɛ ɛmmɔ"
 
-#: src/Widgets/Player/BottomBar.vala:55
+#: src/Widgets/Player/BottomBar.vala:60
 msgid "Settings"
 msgstr "Nhyehyeɛ"
 
-#: src/Widgets/Player/BottomBar.vala:95
+#: src/Widgets/Player/BottomBar.vala:107
 msgid "Pause"
 msgstr "Gyina"
 
-#: src/Widgets/Player/PlaylistPopover.vala:37
+#: src/Widgets/Player/PlaylistPopover.vala:32
 #, fuzzy
 msgid "Clear Playlist"
 msgstr "Nwom a w'ahehyɛ sɛ ɛmmɔ"
 
-#: src/Widgets/Player/PlaylistPopover.vala:125
+#: src/Widgets/Player/PlaylistPopover.vala:104
 msgid "Repeat None"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:129
+#: src/Widgets/Player/PlaylistPopover.vala:108
 msgid "Repeat All"
 msgstr ""
 
-#: src/Widgets/Player/PlaylistPopover.vala:133
+#: src/Widgets/Player/PlaylistPopover.vala:112
 msgid "Repeat One"
 msgstr ""
 
@@ -248,6 +240,12 @@ msgstr ""
 #: src/Widgets/Player/SettingsPopover.vala:227
 msgid "Default"
 msgstr ""
+
+#~ msgid "Play from Disc"
+#~ msgstr "Bɔ firi Disc so"
+
+#~ msgid "Watch a DVD or open a file from disc"
+#~ msgstr "Hwɛ DVD anaa bue file bi firi disc so"
 
 #~ msgid "translator-credits"
 #~ msgstr ""

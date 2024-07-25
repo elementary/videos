@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-12 16:20+0000\n"
-"PO-Revision-Date: 2022-12-26 20:25+0000\n"
+"PO-Revision-Date: 2024-07-10 20:16+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
-"Language-Team: Slovak <https://l10n.elementary.io/projects/videos/extra/sk/"
-">\n"
+"Language-Team: Slovak <https://l10n.elementary.io/projects/videos/extra/sk/>"
+"\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -65,15 +65,16 @@ msgstr "Vylepšenia:"
 
 #: data/videos.metainfo.xml.in:59
 msgid "Updated flatter design"
-msgstr ""
+msgstr "Aktualizovaný plochý vzhľad"
 
 #: data/videos.metainfo.xml.in:60
 msgid "Send an app notification when adding items to the play queue"
 msgstr ""
+"Odoslať oznámenie aplikácie pri pridávaní položiek do fronty prehrávania"
 
 #: data/videos.metainfo.xml.in:61
 msgid "More accurate playback position save and restore"
-msgstr ""
+msgstr "Presnejšie ukladanie a obnovenie polohy prehrávania"
 
 #: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
 #: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98

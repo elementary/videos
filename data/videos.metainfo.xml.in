@@ -61,10 +61,12 @@
           <li>Respect dark style preference</li>
           <li>Support repeat one and repeat all</li>
           <li>Performance improvements</li>
+          <li>Drop support for optical media</li>
           <li>Translation updates</li>
         </ul>
       </description>
       <issues>
+        <issue url="https://github.com/elementary/videos/issues/276">Minimal Videos</issue>
         <issue url="https://github.com/elementary/videos/issues/357">Use translation on now playing screen</issue>
       </issues>
     </release>

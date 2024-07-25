@@ -15,37 +15,37 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Audience.WelcomePage : Granite.Placeholder {
+public class Audience.WelcomePage : Adw.NavigationPage {
     private string current_video;
     private Gtk.Button replay_button;
     private Gtk.Image replay_button_image;
     private Gtk.Label replay_button_title;
     private Gtk.Label replay_button_description;
 
-    public WelcomePage () {
-        Object (
-            title: _("No Videos Open"),
-            description: _("Select a source to begin playing.")
-        );
-    }
-
     construct {
-        hexpand = true;
-        vexpand = true;
+        var placeholder = new Granite.Placeholder (_("No Videos Open")) {
+            description = _("Select a source to begin playing."),
+            hexpand = true,
+            vexpand = true
+        };
 
-        var open_button = append_button (new ThemedIcon ("document-open"), _("Open file"), _("Open a saved file."));
-        replay_button = append_button (new ThemedIcon ("media-playlist-repeat"), _("Replay last video"), "");
-        var disk_button = append_button (new ThemedIcon ("media-cdrom"), _("Play from Disc"), _("Watch a DVD or open a file from disc"));
-        var library_button = append_button (new ThemedIcon ("folder-videos"), _("Browse Library"), _("Watch a movie from your library"));
+        var open_button = placeholder.append_button (new ThemedIcon ("document-open"), _("Open file"), _("Open a saved file."));
+        replay_button = placeholder.append_button (new ThemedIcon ("media-playlist-repeat"), _("Replay last video"), "");
+        var library_button = placeholder.append_button (new ThemedIcon ("folder-videos"), _("Browse Library"), _("Watch a movie from your library"));
+
+        var box = new Gtk.Box (VERTICAL, 0);
+        box.append (new HeaderBar ());
+        box.append (placeholder);
+        box.add_css_class (Granite.STYLE_CLASS_VIEW);
+
+        child = box;
+        title = _("Home");
 
         //A hacky way to update the labels and icon of the replay button
         var replay_button_grid = (Gtk.Grid)replay_button.child;
         replay_button_image = (Gtk.Image)replay_button_grid.get_first_child ();
         replay_button_title = (Gtk.Label)replay_button_image.get_next_sibling ();
         replay_button_description = (Gtk.Label)replay_button_title.get_next_sibling ();
-
-        var disk_manager = DiskManager.get_default ();
-        disk_button.visible = disk_manager.has_media_volumes ();
 
         var library_manager = Services.LibraryManager.get_instance ();
         library_button.visible = library_manager.library_items.get_n_items () > 0;
@@ -64,11 +64,6 @@ public class Audience.WelcomePage : Granite.Placeholder {
             window.resume_last_videos ();
         });
 
-        disk_button.clicked.connect (() => {
-            var window = (Audience.Window)get_root ();
-            window.run_open_dvd ();
-        });
-
         library_button.clicked.connect (() => {
             var window = (Audience.Window)get_root ();
             window.show_library ();
@@ -77,14 +72,6 @@ public class Audience.WelcomePage : Granite.Placeholder {
         settings.changed["current-video"].connect (update_replay_button);
 
         settings.changed["last-stopped"].connect (update_replay_title);
-
-        disk_manager.volume_found.connect ((vol) => {
-            disk_button.visible = disk_manager.has_media_volumes ();
-        });
-
-        disk_manager.volume_removed.connect ((vol) => {
-            disk_button.visible = disk_manager.has_media_volumes ();
-        });
 
         library_manager.library_items.items_changed.connect (() => {
             library_button.visible = library_manager.library_items.get_n_items () > 0;
@@ -98,7 +85,7 @@ public class Audience.WelcomePage : Granite.Placeholder {
         if (current_video != "") {
             var last_file = File.new_for_uri (current_video);
             if (last_file.query_exists ()) {
-                replay_button_description.label = get_title (last_file.get_basename ());
+                replay_button_description.label = Audience.get_title (last_file.get_basename ());
 
                 show_replay_button = true;
             }

@@ -25,46 +25,39 @@ namespace Audience {
         "asc"
     };
 
-    public class PlayerPage : Gtk.Box {
+    public class PlayerPage : Adw.NavigationPage {
         private Audience.Widgets.BottomBar bottom_bar;
-        private Gtk.Revealer windowcontrols_revealer;
-        private Gtk.Revealer bottom_bar_revealer;
+        private Adw.ToolbarView toolbarview;
 
         private uint hiding_timer = 0;
+
+        class construct {
+            set_css_name ("player-page");
+        }
 
         construct {
             var playback_manager = PlaybackManager.get_default ();
 
-            var header_bar = new HeaderBar (false);
-
-            windowcontrols_revealer = new Gtk.Revealer () {
-                transition_type = SLIDE_DOWN,
-                valign = START,
-                child = header_bar
-            };
+            var header_bar = new HeaderBar ();
 
             bottom_bar = new Widgets.BottomBar ();
 
-            bottom_bar_revealer = new Gtk.Revealer () {
-                transition_type = SLIDE_UP,
-                valign = END,
-                child = bottom_bar,
-                hexpand = true
-            };
-
             var picture = new Gtk.Picture.for_paintable (playback_manager.gst_video_widget) {
+                content_fit = CONTAIN,
                 hexpand = true,
-                vexpand = true,
-                keep_aspect_ratio = false
+                vexpand = true
             };
 
-            var overlay = new Gtk.Overlay () {
-                child = picture
+            toolbarview = new Adw.ToolbarView () {
+                extend_content_to_bottom_edge = true,
+                extend_content_to_top_edge = true,
+                content = picture,
+                top_bar_style = RAISED
             };
-            overlay.add_overlay (windowcontrols_revealer);
-            overlay.add_overlay (bottom_bar_revealer);
+            toolbarview.add_top_bar (header_bar);
+            toolbarview.add_bottom_bar (bottom_bar);
 
-            append (overlay);
+            child = toolbarview;
 
             map.connect (() => update_actions_enabled (true));
 
@@ -102,6 +95,10 @@ namespace Audience {
                 var play_pause_action = Application.get_default ().lookup_action (Audience.App.ACTION_PLAY_PAUSE);
                 ((SimpleAction) play_pause_action).activate (null);
             });
+
+            playback_manager.uri_changed.connect ((uri) => {
+                title = Audience.get_title (uri);
+            });
         }
 
         private void update_actions_enabled (bool enabled) {
@@ -131,8 +128,8 @@ namespace Audience {
                 hiding_timer = 0;
             }
 
-            bottom_bar_revealer.reveal_child = true;
-            windowcontrols_revealer.reveal_child = true;
+            toolbarview.reveal_bottom_bars = true;
+            toolbarview.reveal_top_bars = true;
             set_cursor (null);
 
             if (bottom_bar.should_stay_revealed) {
@@ -142,8 +139,8 @@ namespace Audience {
             hiding_timer = Timeout.add (2000, () => {
                 hiding_timer = 0;
 
-                windowcontrols_revealer.reveal_child = false;
-                bottom_bar_revealer.reveal_child = false;
+                toolbarview.reveal_top_bars = false;
+                toolbarview.reveal_bottom_bars = false;
                 set_cursor (new Gdk.Cursor.from_name ("none", null));
 
                 return Source.REMOVE;
