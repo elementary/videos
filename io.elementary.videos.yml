@@ -18,7 +18,7 @@ finish-args:
   - '--socket=wayland'
   - '--socket=pulseaudio'
   - '--device=dri'
-  - '--env=GST_PLUGIN_PATH_1_0=/app/lib64/gstreamer-1.0'
+  - '--env=GST_PLUGIN_PATH_1_0=/app/lib/gstreamer-1.0'
 
   - '--talk-name=org.freedesktop.thumbnails.Thumbnailer1'
 
@@ -52,7 +52,7 @@ modules:
       build-args:
         - "--share=network"
     build-commands:
-      - "cargo cinstall -p gst-plugin-gtk4 --prefix=/app"
+      - "cargo cinstall -p gst-plugin-gtk4 --prefix=/app --libdir=/app/lib"
 
   - name: videos
     buildsystem: meson
