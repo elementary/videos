@@ -18,7 +18,6 @@ finish-args:
   - '--socket=wayland'
   - '--socket=pulseaudio'
   - '--device=dri'
-  - '--env=GST_PLUGIN_PATH_1_0=/app/lib/gstreamer-1.0'
 
   - '--talk-name=org.freedesktop.thumbnails.Thumbnailer1'
 
