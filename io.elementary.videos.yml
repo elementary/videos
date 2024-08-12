@@ -51,7 +51,7 @@ modules:
       build-args:
         - "--share=network"
     build-commands:
-      - "cargo cinstall -p gst-plugin-gtk4 --prefix=/app"
+      - "cargo cinstall -p gst-plugin-gtk4 --prefix=/app --libdir=/app/lib"
 
   - name: videos
     buildsystem: meson
