@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-12 16:20+0000\n"
+"POT-Creation-Date: 2024-09-01 10:48+0000\n"
 "PO-Revision-Date: 2023-08-15 14:37+0000\n"
 "Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/videos/extra/pl/"
@@ -56,69 +56,89 @@ msgstr "Kolejka odtwarzania"
 msgid "Thumbnail previews on the seek bar"
 msgstr "Miniaturowy podgląd na pasku przewijania"
 
-#: data/videos.metainfo.xml.in:50
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
+#: data/videos.metainfo.xml.in:59
+msgid ""
+"Small hotfix release that fixes an annoying issue causing videos to play in "
+"a second window."
+msgstr ""
 
-#: data/videos.metainfo.xml.in:57
+#: data/videos.metainfo.xml.in:68 data/videos.metainfo.xml.in:85
 msgid "Improvements:"
 msgstr "Ulepszenia:"
 
-#: data/videos.metainfo.xml.in:59
+#: data/videos.metainfo.xml.in:70
+msgid "Respect dark style preference"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:71
+msgid "Support repeat one and repeat all"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:72
+#, fuzzy
+#| msgid "Window behavior improvements"
+msgid "Performance improvements"
+msgstr "Ulepszenia zachowania okna"
+
+#: data/videos.metainfo.xml.in:73
+msgid "Drop support for optical media"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:74 data/videos.metainfo.xml.in:90
+#: data/videos.metainfo.xml.in:102 data/videos.metainfo.xml.in:116
+#: data/videos.metainfo.xml.in:126
+msgid "Translation updates"
+msgstr "Aktualizacje tłumaczenia"
+
+#: data/videos.metainfo.xml.in:87
 msgid "Updated flatter design"
 msgstr "Zaktualizowany płaski design"
 
-#: data/videos.metainfo.xml.in:60
+#: data/videos.metainfo.xml.in:88
 msgid "Send an app notification when adding items to the play queue"
 msgstr ""
 "Przy dodawaniu elementów do kolejki odtwarzania wysyłana jest notyfikacja"
 
-#: data/videos.metainfo.xml.in:61
+#: data/videos.metainfo.xml.in:89
 msgid "More accurate playback position save and restore"
 msgstr "Dokładniejsze zapisywanie i przywracanie pozycji odtwarzania"
 
-#: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
-#: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
-#: data/videos.metainfo.xml.in:112
-msgid "Translation updates"
-msgstr "Aktualizacje tłumaczenia"
-
-#: data/videos.metainfo.xml.in:72 data/videos.metainfo.xml.in:85
-#: data/videos.metainfo.xml.in:95 data/videos.metainfo.xml.in:109
+#: data/videos.metainfo.xml.in:100 data/videos.metainfo.xml.in:113
+#: data/videos.metainfo.xml.in:123
 msgid "Other updates:"
 msgstr "Inne aktualizacje:"
 
-#: data/videos.metainfo.xml.in:81
+#: data/videos.metainfo.xml.in:109
 msgid "New features:"
 msgstr "Nowe funkcje:"
 
-#: data/videos.metainfo.xml.in:83
+#: data/videos.metainfo.xml.in:111
 msgid "Control playback from the sound indicator"
 msgstr "Odtwarzanie może być teraz kontrolowane z indykatora dźwięku"
 
-#: data/videos.metainfo.xml.in:87
+#: data/videos.metainfo.xml.in:115
 msgid "Make playback duration more accurate"
 msgstr "Długość odtwarzania jest teraz dokładniejsza"
 
-#: data/videos.metainfo.xml.in:97
+#: data/videos.metainfo.xml.in:125
 msgid "Update to Flatpak Platform 7"
 msgstr "Aktualizacja do Flatpak Platform 7"
-
-#: data/videos.metainfo.xml.in:105
-msgid "Fixes:"
-msgstr "Poprawki:"
-
-#: data/videos.metainfo.xml.in:107
-msgid "Fix a crash with certain video codecs"
-msgstr "Naprawiono błąd krytyczny w przypadku niektórych kodeków"
-
-#: data/videos.metainfo.xml.in:111
-msgid "Update to 6.1 Flatpak runtime"
-msgstr "Aktualizacja do 6.1 Flatpak runtime"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Odtwarzacz filmów wideo"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
+
+#~ msgid "Fixes:"
+#~ msgstr "Poprawki:"
+
+#~ msgid "Fix a crash with certain video codecs"
+#~ msgstr "Naprawiono błąd krytyczny w przypadku niektórych kodeków"
+
+#~ msgid "Update to 6.1 Flatpak runtime"
+#~ msgstr "Aktualizacja do 6.1 Flatpak runtime"
 
 #~ msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
 #~ msgstr ""
@@ -196,9 +216,6 @@ msgstr "Odtwarzacz filmów wideo"
 
 #~ msgid "Build fixes"
 #~ msgstr "Poprawki budowania"
-
-#~ msgid "Window behavior improvements"
-#~ msgstr "Ulepszenia zachowania okna"
 
 #~ msgid "Fix disappearing subtitle tracks"
 #~ msgstr "Naprawiono znikające ścieżki napisów"

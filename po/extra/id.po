@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-12 16:20+0000\n"
+"POT-Creation-Date: 2024-09-01 10:48+0000\n"
 "PO-Revision-Date: 2023-05-27 18:06+0000\n"
 "Last-Translator: Faisal Rachmadin <frachmadin@users.noreply.l10n.elementary."
 "io>\n"
@@ -54,68 +54,88 @@ msgstr "Antrean putar"
 msgid "Thumbnail previews on the seek bar"
 msgstr "Pratinjau gambar mini pada bilah pencarian"
 
-#: data/videos.metainfo.xml.in:50
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
+#: data/videos.metainfo.xml.in:59
+msgid ""
+"Small hotfix release that fixes an annoying issue causing videos to play in "
+"a second window."
+msgstr ""
 
-#: data/videos.metainfo.xml.in:57
+#: data/videos.metainfo.xml.in:68 data/videos.metainfo.xml.in:85
 msgid "Improvements:"
 msgstr "Peningkatan:"
 
-#: data/videos.metainfo.xml.in:59
-msgid "Updated flatter design"
+#: data/videos.metainfo.xml.in:70
+msgid "Respect dark style preference"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:60
-msgid "Send an app notification when adding items to the play queue"
+#: data/videos.metainfo.xml.in:71
+msgid "Support repeat one and repeat all"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:61
-msgid "More accurate playback position save and restore"
+#: data/videos.metainfo.xml.in:72
+#, fuzzy
+#| msgid "Window behavior improvements"
+msgid "Performance improvements"
+msgstr "Peningkatan perilaku jendela"
+
+#: data/videos.metainfo.xml.in:73
+msgid "Drop support for optical media"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
-#: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
-#: data/videos.metainfo.xml.in:112
+#: data/videos.metainfo.xml.in:74 data/videos.metainfo.xml.in:90
+#: data/videos.metainfo.xml.in:102 data/videos.metainfo.xml.in:116
+#: data/videos.metainfo.xml.in:126
 msgid "Translation updates"
 msgstr "Pembaruan terjemahan"
 
-#: data/videos.metainfo.xml.in:72 data/videos.metainfo.xml.in:85
-#: data/videos.metainfo.xml.in:95 data/videos.metainfo.xml.in:109
+#: data/videos.metainfo.xml.in:87
+msgid "Updated flatter design"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:88
+msgid "Send an app notification when adding items to the play queue"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:89
+msgid "More accurate playback position save and restore"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:100 data/videos.metainfo.xml.in:113
+#: data/videos.metainfo.xml.in:123
 msgid "Other updates:"
 msgstr "Pembaruan lainnya:"
 
-#: data/videos.metainfo.xml.in:81
+#: data/videos.metainfo.xml.in:109
 msgid "New features:"
 msgstr "Fitur baru:"
 
-#: data/videos.metainfo.xml.in:83
+#: data/videos.metainfo.xml.in:111
 msgid "Control playback from the sound indicator"
 msgstr "Kontrol pemutaran dari indikator suara"
 
-#: data/videos.metainfo.xml.in:87
+#: data/videos.metainfo.xml.in:115
 msgid "Make playback duration more accurate"
 msgstr "Membuat durasi pemutaran lebih akurat"
 
-#: data/videos.metainfo.xml.in:97
+#: data/videos.metainfo.xml.in:125
 msgid "Update to Flatpak Platform 7"
 msgstr "Pembaruan ke Flatform Flatpak 7"
-
-#: data/videos.metainfo.xml.in:105
-msgid "Fixes:"
-msgstr "Perbaikan:"
-
-#: data/videos.metainfo.xml.in:107
-msgid "Fix a crash with certain video codecs"
-msgstr "Memperbaiki kemogokkan dengan codec video tertentu"
-
-#: data/videos.metainfo.xml.in:111
-msgid "Update to 6.1 Flatpak runtime"
-msgstr "Pembaruan ke runtime Flatpak 6.1"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Pemutar Video"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
+
+#~ msgid "Fixes:"
+#~ msgstr "Perbaikan:"
+
+#~ msgid "Fix a crash with certain video codecs"
+#~ msgstr "Memperbaiki kemogokkan dengan codec video tertentu"
+
+#~ msgid "Update to 6.1 Flatpak runtime"
+#~ msgstr "Pembaruan ke runtime Flatpak 6.1"
 
 #~ msgid "Added support for the org.freedesktop.Platfrom.ffmpeg-full extension"
 #~ msgstr ""
@@ -191,9 +211,6 @@ msgstr "Pemutar Video"
 
 #~ msgid "Build fixes"
 #~ msgstr "Perbaikan build"
-
-#~ msgid "Window behavior improvements"
-#~ msgstr "Peningkatan perilaku jendela"
 
 #~ msgid "Fix disappearing subtitle tracks"
 #~ msgstr "Memperbaiki trek sub judul yang menghilang"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-12 16:20+0000\n"
+"POT-Creation-Date: 2024-09-01 10:48+0000\n"
 "PO-Revision-Date: 2017-04-20 00:44+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese (Hong Kong) <zh_HK@li.org>\n"
@@ -49,63 +49,69 @@ msgstr ""
 msgid "Thumbnail previews on the seek bar"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:50
-msgid "elementary, Inc."
+#: data/videos.metainfo.xml.in:59
+msgid ""
+"Small hotfix release that fixes an annoying issue causing videos to play in "
+"a second window."
 msgstr ""
 
-#: data/videos.metainfo.xml.in:57
+#: data/videos.metainfo.xml.in:68 data/videos.metainfo.xml.in:85
 msgid "Improvements:"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:59
-msgid "Updated flatter design"
+#: data/videos.metainfo.xml.in:70
+msgid "Respect dark style preference"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:60
-msgid "Send an app notification when adding items to the play queue"
+#: data/videos.metainfo.xml.in:71
+msgid "Support repeat one and repeat all"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:61
-msgid "More accurate playback position save and restore"
+#: data/videos.metainfo.xml.in:72
+msgid "Performance improvements"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:62 data/videos.metainfo.xml.in:74
-#: data/videos.metainfo.xml.in:88 data/videos.metainfo.xml.in:98
-#: data/videos.metainfo.xml.in:112
+#: data/videos.metainfo.xml.in:73
+msgid "Drop support for optical media"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:74 data/videos.metainfo.xml.in:90
+#: data/videos.metainfo.xml.in:102 data/videos.metainfo.xml.in:116
+#: data/videos.metainfo.xml.in:126
 msgid "Translation updates"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:72 data/videos.metainfo.xml.in:85
-#: data/videos.metainfo.xml.in:95 data/videos.metainfo.xml.in:109
+#: data/videos.metainfo.xml.in:87
+msgid "Updated flatter design"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:88
+msgid "Send an app notification when adding items to the play queue"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:89
+msgid "More accurate playback position save and restore"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:100 data/videos.metainfo.xml.in:113
+#: data/videos.metainfo.xml.in:123
 msgid "Other updates:"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:81
+#: data/videos.metainfo.xml.in:109
 msgid "New features:"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:83
+#: data/videos.metainfo.xml.in:111
 msgid "Control playback from the sound indicator"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:87
+#: data/videos.metainfo.xml.in:115
 msgid "Make playback duration more accurate"
 msgstr ""
 
-#: data/videos.metainfo.xml.in:97
+#: data/videos.metainfo.xml.in:125
 msgid "Update to Flatpak Platform 7"
-msgstr ""
-
-#: data/videos.metainfo.xml.in:105
-msgid "Fixes:"
-msgstr ""
-
-#: data/videos.metainfo.xml.in:107
-msgid "Fix a crash with certain video codecs"
-msgstr ""
-
-#: data/videos.metainfo.xml.in:111
-msgid "Update to 6.1 Flatpak runtime"
 msgstr ""
 
 #: data/io.elementary.videos.desktop.in:5
