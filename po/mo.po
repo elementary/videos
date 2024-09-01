@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-08 01:58+0000\n"
+"POT-Creation-Date: 2024-09-01 10:48+0000\n"
 "PO-Revision-Date: 2018-05-31 08:00+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/videos/"

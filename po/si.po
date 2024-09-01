@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-08 01:58+0000\n"
+"POT-Creation-Date: 2024-09-01 10:48+0000\n"
 "PO-Revision-Date: 2021-07-11 09:18+0000\n"
 "Last-Translator: HelaBasa <R45XvezA@pm.me>\n"
 "Language-Team: Sinhala <https://l10n.elementary.io/projects/videos/videos/si/"
