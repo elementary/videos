@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:48+0000\n"
-"PO-Revision-Date: 2023-08-14 10:08+0000\n"
+"PO-Revision-Date: 2024-09-02 20:05+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/videos/extra/"
 "uk/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -61,6 +61,8 @@ msgid ""
 "Small hotfix release that fixes an annoying issue causing videos to play in "
 "a second window."
 msgstr ""
+"Невеликий випуск виправлення, який усуває дратівливу проблему, що призводить "
+"до відтворення відео у другому вікні."
 
 #: data/videos.metainfo.xml.in:68 data/videos.metainfo.xml.in:85
 msgid "Improvements:"
@@ -68,21 +70,19 @@ msgstr "Вдосконалення:"
 
 #: data/videos.metainfo.xml.in:70
 msgid "Respect dark style preference"
-msgstr ""
+msgstr "Дотримання налаштувань темного стилю"
 
 #: data/videos.metainfo.xml.in:71
 msgid "Support repeat one and repeat all"
-msgstr ""
+msgstr "Підтримка повторення один раз і повторення всього"
 
 #: data/videos.metainfo.xml.in:72
-#, fuzzy
-#| msgid "Window behavior improvements"
 msgid "Performance improvements"
-msgstr "Поліпшено поведінку вікон"
+msgstr "Поліпшено швидкодію"
 
 #: data/videos.metainfo.xml.in:73
 msgid "Drop support for optical media"
-msgstr ""
+msgstr "Підтримка перетягування з оптичних носіїв"
 
 #: data/videos.metainfo.xml.in:74 data/videos.metainfo.xml.in:90
 #: data/videos.metainfo.xml.in:102 data/videos.metainfo.xml.in:116
