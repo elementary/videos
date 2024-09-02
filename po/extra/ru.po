@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:48+0000\n"
-"PO-Revision-Date: 2023-08-12 03:08+0000\n"
-"Last-Translator: lenemter <lenemter@gmail.com>\n"
-"Language-Team: Russian <https://l10n.elementary.io/projects/videos/extra/ru/"
-">\n"
+"PO-Revision-Date: 2024-09-02 20:05+0000\n"
+"Last-Translator: кубик круглый <megarainbow29@gmail.com>\n"
+"Language-Team: Russian <https://l10n.elementary.io/projects/videos/extra/ru/>"
+"\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -60,6 +60,8 @@ msgid ""
 "Small hotfix release that fixes an annoying issue causing videos to play in "
 "a second window."
 msgstr ""
+"Маленький исправительный релиз, исправляющий надоедливую ошибку, из-за "
+"которой видео воспроизводилось во втором окне."
 
 #: data/videos.metainfo.xml.in:68 data/videos.metainfo.xml.in:85
 msgid "Improvements:"
@@ -67,21 +69,19 @@ msgstr "Улучшения:"
 
 #: data/videos.metainfo.xml.in:70
 msgid "Respect dark style preference"
-msgstr ""
+msgstr "Следует предпочтению тёмной темы"
 
 #: data/videos.metainfo.xml.in:71
 msgid "Support repeat one and repeat all"
-msgstr ""
+msgstr "Поддержка повторения одного и повторения всего"
 
 #: data/videos.metainfo.xml.in:72
-#, fuzzy
-#| msgid "Window behavior improvements"
 msgid "Performance improvements"
-msgstr "Улучшено поведение окон"
+msgstr "Улучшения производительности"
 
 #: data/videos.metainfo.xml.in:73
 msgid "Drop support for optical media"
-msgstr ""
+msgstr "Прекращена поддержка оптических носителей"
 
 #: data/videos.metainfo.xml.in:74 data/videos.metainfo.xml.in:90
 #: data/videos.metainfo.xml.in:102 data/videos.metainfo.xml.in:116
