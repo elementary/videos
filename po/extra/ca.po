@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:48+0000\n"
-"PO-Revision-Date: 2023-08-15 14:37+0000\n"
+"PO-Revision-Date: 2024-09-02 20:05+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.elementary.io/projects/videos/extra/ca/"
-">\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/videos/extra/ca/>"
+"\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -60,6 +60,8 @@ msgid ""
 "Small hotfix release that fixes an annoying issue causing videos to play in "
 "a second window."
 msgstr ""
+"Petita versió de correcció ràpida que soluciona un problema molest que "
+"provoca que els vídeos es reprodueixin en una segona finestra."
 
 #: data/videos.metainfo.xml.in:68 data/videos.metainfo.xml.in:85
 msgid "Improvements:"
@@ -67,21 +69,19 @@ msgstr "Millores:"
 
 #: data/videos.metainfo.xml.in:70
 msgid "Respect dark style preference"
-msgstr ""
+msgstr "Respecta la preferència d'estil fosc."
 
 #: data/videos.metainfo.xml.in:71
 msgid "Support repeat one and repeat all"
-msgstr ""
+msgstr "Admet repetir-ne una i repetir-ho tot."
 
 #: data/videos.metainfo.xml.in:72
-#, fuzzy
-#| msgid "Window behavior improvements"
 msgid "Performance improvements"
-msgstr "Millores del comportament de les finestres"
+msgstr "Millores de rendiment"
 
 #: data/videos.metainfo.xml.in:73
 msgid "Drop support for optical media"
-msgstr ""
+msgstr "S'abandona el suport per a mitjans òptics."
 
 #: data/videos.metainfo.xml.in:74 data/videos.metainfo.xml.in:90
 #: data/videos.metainfo.xml.in:102 data/videos.metainfo.xml.in:116
