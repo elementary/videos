@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:48+0000\n"
-"PO-Revision-Date: 2020-05-04 08:10+0000\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"PO-Revision-Date: 2024-09-07 13:16+0000\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
 "videos/extra/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -50,6 +50,7 @@ msgid "Play queue"
 msgstr "播放佇列"
 
 #: data/videos.metainfo.xml.in:18
+#, fuzzy
 msgid "Thumbnail previews on the seek bar"
 msgstr "時間查找軸會有縮圖預覽"
 
@@ -65,19 +66,19 @@ msgstr ""
 
 #: data/videos.metainfo.xml.in:70
 msgid "Respect dark style preference"
-msgstr ""
+msgstr "遵循深色風格偏好設定"
 
 #: data/videos.metainfo.xml.in:71
 msgid "Support repeat one and repeat all"
-msgstr ""
+msgstr "支援重複單項與重複全部的功能"
 
 #: data/videos.metainfo.xml.in:72
 msgid "Performance improvements"
-msgstr ""
+msgstr "效能改善"
 
 #: data/videos.metainfo.xml.in:73
 msgid "Drop support for optical media"
-msgstr ""
+msgstr "捨棄對光碟的支援"
 
 #: data/videos.metainfo.xml.in:74 data/videos.metainfo.xml.in:90
 #: data/videos.metainfo.xml.in:102 data/videos.metainfo.xml.in:116
@@ -87,7 +88,7 @@ msgstr "翻譯更新"
 
 #: data/videos.metainfo.xml.in:87
 msgid "Updated flatter design"
-msgstr ""
+msgstr "更新成扁平化設計"
 
 #: data/videos.metainfo.xml.in:88
 msgid "Send an app notification when adding items to the play queue"
@@ -104,19 +105,20 @@ msgstr "其他更新："
 
 #: data/videos.metainfo.xml.in:109
 msgid "New features:"
-msgstr ""
+msgstr "新功能："
 
 #: data/videos.metainfo.xml.in:111
 msgid "Control playback from the sound indicator"
 msgstr ""
 
 #: data/videos.metainfo.xml.in:115
+#, fuzzy
 msgid "Make playback duration more accurate"
-msgstr ""
+msgstr "讓播放時長更準確"
 
 #: data/videos.metainfo.xml.in:125
 msgid "Update to Flatpak Platform 7"
-msgstr ""
+msgstr "更新到 Flatpak 平台 7"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
