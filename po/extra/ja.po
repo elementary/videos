@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:48+0000\n"
-"PO-Revision-Date: 2024-05-09 14:13+0000\n"
+"PO-Revision-Date: 2024-09-09 08:16+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -58,7 +58,8 @@ msgstr "シークバー上のサムネイルプレビュー"
 msgid ""
 "Small hotfix release that fixes an annoying issue causing videos to play in "
 "a second window."
-msgstr ""
+msgstr "動画が別ウィンドウで再生されてしまう不快な不具合を修正する、小さなホットフィ"
+"ックスリリース。"
 
 #: data/videos.metainfo.xml.in:68 data/videos.metainfo.xml.in:85
 msgid "Improvements:"
@@ -66,21 +67,19 @@ msgstr "改善点:"
 
 #: data/videos.metainfo.xml.in:70
 msgid "Respect dark style preference"
-msgstr ""
+msgstr "システムのダークモード設定に従うように修正"
 
 #: data/videos.metainfo.xml.in:71
 msgid "Support repeat one and repeat all"
-msgstr ""
+msgstr "1 ファイルを繰り返す/すべて繰り返す に対応"
 
 #: data/videos.metainfo.xml.in:72
-#, fuzzy
-#| msgid "Window behavior improvements"
 msgid "Performance improvements"
-msgstr "ウィンドウの挙動の改善"
+msgstr "パフォーマンスの改善"
 
 #: data/videos.metainfo.xml.in:73
 msgid "Drop support for optical media"
-msgstr ""
+msgstr "光学メディアへの対応を削除"
 
 #: data/videos.metainfo.xml.in:74 data/videos.metainfo.xml.in:90
 #: data/videos.metainfo.xml.in:102 data/videos.metainfo.xml.in:116
