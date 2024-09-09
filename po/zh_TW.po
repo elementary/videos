@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:48+0000\n"
-"PO-Revision-Date: 2024-09-07 13:16+0000\n"
+"PO-Revision-Date: 2024-09-09 14:25+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
 "videos/videos/zh_Hant/>\n"
@@ -50,7 +50,7 @@ msgstr "所有檔案"
 
 #: src/Window.vala:324
 msgid "Video files"
-msgstr "視訊檔"
+msgstr "影片檔"
 
 #: src/Window.vala:328 src/Widgets/Library/LibraryItem.vala:172
 #: src/Widgets/Player/SettingsPopover.vala:123
@@ -99,7 +99,7 @@ msgstr ""
 
 #: src/Widgets/WelcomePage.vala:26
 msgid "No Videos Open"
-msgstr "未開啟視訊"
+msgstr "未開啟影片"
 
 #: src/Widgets/WelcomePage.vala:27
 msgid "Select a source to begin playing."
@@ -131,7 +131,7 @@ msgstr "首頁"
 
 #: src/Widgets/WelcomePage.vala:102
 msgid "Resume last video"
-msgstr "恢復播放最後一次播放的視訊"
+msgstr "恢復播放最後一次播放的影片"
 
 #: src/Widgets/Library/EpisodesPage.vala:30
 #: src/Widgets/Library/LibraryPage.vala:41
