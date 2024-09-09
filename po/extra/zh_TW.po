@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:48+0000\n"
-"PO-Revision-Date: 2024-09-07 13:16+0000\n"
+"PO-Revision-Date: 2024-09-09 12:16+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
 "videos/extra/zh_Hant/>\n"
@@ -50,19 +50,18 @@ msgid "Play queue"
 msgstr "播放佇列"
 
 #: data/videos.metainfo.xml.in:18
-#, fuzzy
 msgid "Thumbnail previews on the seek bar"
-msgstr "時間查找軸會有縮圖預覽"
+msgstr "在跳轉列上提供縮圖預覽"
 
 #: data/videos.metainfo.xml.in:59
 msgid ""
 "Small hotfix release that fixes an annoying issue causing videos to play in "
 "a second window."
-msgstr ""
+msgstr "微幅錯誤修正更新，修正讓影片顯示在另一個視窗的煩人問題。"
 
 #: data/videos.metainfo.xml.in:68 data/videos.metainfo.xml.in:85
 msgid "Improvements:"
-msgstr ""
+msgstr "改善項目："
 
 #: data/videos.metainfo.xml.in:70
 msgid "Respect dark style preference"
@@ -92,11 +91,11 @@ msgstr "更新成扁平化設計"
 
 #: data/videos.metainfo.xml.in:88
 msgid "Send an app notification when adding items to the play queue"
-msgstr ""
+msgstr "將項目加入待播清單時傳送應用程式通知"
 
 #: data/videos.metainfo.xml.in:89
 msgid "More accurate playback position save and restore"
-msgstr ""
+msgstr "讓播放位置的儲存與復原更加準確"
 
 #: data/videos.metainfo.xml.in:100 data/videos.metainfo.xml.in:113
 #: data/videos.metainfo.xml.in:123
@@ -109,10 +108,9 @@ msgstr "新功能："
 
 #: data/videos.metainfo.xml.in:111
 msgid "Control playback from the sound indicator"
-msgstr ""
+msgstr "從音效指示器控制播放"
 
 #: data/videos.metainfo.xml.in:115
-#, fuzzy
 msgid "Make playback duration more accurate"
 msgstr "讓播放時長更準確"
 
