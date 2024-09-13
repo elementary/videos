@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:48+0000\n"
-"PO-Revision-Date: 2023-08-15 14:37+0000\n"
+"PO-Revision-Date: 2024-09-14 21:16+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/videos/extra/"
 "hu/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
 msgid "Videos"
@@ -58,6 +58,8 @@ msgid ""
 "Small hotfix release that fixes an annoying issue causing videos to play in "
 "a second window."
 msgstr ""
+"Egy kis javítás, amely megoldja a videók külön ablakban való lejátszásával "
+"kapcsolatos zavaró problémát."
 
 #: data/videos.metainfo.xml.in:68 data/videos.metainfo.xml.in:85
 msgid "Improvements:"
@@ -65,19 +67,19 @@ msgstr "Fejlesztések:"
 
 #: data/videos.metainfo.xml.in:70
 msgid "Respect dark style preference"
-msgstr ""
+msgstr "Sötét mód beállításának figyelembe vétele"
 
 #: data/videos.metainfo.xml.in:71
 msgid "Support repeat one and repeat all"
-msgstr ""
+msgstr "Egy ismétlése és összes ismétlése"
 
 #: data/videos.metainfo.xml.in:72
 msgid "Performance improvements"
-msgstr ""
+msgstr "Teljesítményoptimalizálások"
 
 #: data/videos.metainfo.xml.in:73
 msgid "Drop support for optical media"
-msgstr ""
+msgstr "Optikai média támogatásának megszüntetése"
 
 #: data/videos.metainfo.xml.in:74 data/videos.metainfo.xml.in:90
 #: data/videos.metainfo.xml.in:102 data/videos.metainfo.xml.in:116
