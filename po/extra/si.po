@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:48+0000\n"
+"POT-Creation-Date: 2024-12-02 12:46+0000\n"
 "PO-Revision-Date: 2021-07-11 09:18+0000\n"
 "Last-Translator: HelaBasa <R45XvezA@pm.me>\n"
 "Language-Team: Sinhala <https://l10n.elementary.io/projects/videos/extra/si/"
@@ -48,6 +48,10 @@ msgstr ""
 
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:51
+msgid "elementary, Inc."
 msgstr ""
 
 #: data/videos.metainfo.xml.in:59

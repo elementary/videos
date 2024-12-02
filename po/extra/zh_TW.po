@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:48+0000\n"
+"POT-Creation-Date: 2024-12-02 12:46+0000\n"
 "PO-Revision-Date: 2024-09-09 12:16+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
@@ -52,6 +52,10 @@ msgstr "播放佇列"
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
 msgstr "在跳轉列上提供縮圖預覽"
+
+#: data/videos.metainfo.xml.in:51
+msgid "elementary, Inc."
+msgstr ""
 
 #: data/videos.metainfo.xml.in:59
 msgid ""

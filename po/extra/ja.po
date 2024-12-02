@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:48+0000\n"
+"POT-Creation-Date: 2024-12-02 12:46+0000\n"
 "PO-Revision-Date: 2024-09-09 08:16+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
@@ -54,12 +54,17 @@ msgstr "再生キュー"
 msgid "Thumbnail previews on the seek bar"
 msgstr "シークバー上のサムネイルプレビュー"
 
+#: data/videos.metainfo.xml.in:51
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
+
 #: data/videos.metainfo.xml.in:59
 msgid ""
 "Small hotfix release that fixes an annoying issue causing videos to play in "
 "a second window."
-msgstr "動画が別ウィンドウで再生されてしまう不快な不具合を修正する、小さなホットフィ"
-"ックスリリース。"
+msgstr ""
+"動画が別ウィンドウで再生されてしまう不快な不具合を修正する、小さなホット"
+"フィックスリリース。"
 
 #: data/videos.metainfo.xml.in:68 data/videos.metainfo.xml.in:85
 msgid "Improvements:"
@@ -123,9 +128,6 @@ msgstr "Flatpak プラットフォームをバージョン 7 にアップデー�
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "ビデオプレーヤー"
-
-#~ msgid "elementary, Inc."
-#~ msgstr "elementary, Inc."
 
 #~ msgid "Fixes:"
 #~ msgstr "修正点:"

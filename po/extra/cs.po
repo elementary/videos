@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:48+0000\n"
+"POT-Creation-Date: 2024-12-02 12:46+0000\n"
 "PO-Revision-Date: 2022-01-09 23:13+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/videos/extra/cs/>\n"
@@ -52,6 +52,10 @@ msgstr "Fronta přehrávání"
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
 msgstr "Náhledy videa na vyhledávací liště"
+
+#: data/videos.metainfo.xml.in:51
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
 
 #: data/videos.metainfo.xml.in:59
 msgid ""
@@ -123,9 +127,6 @@ msgstr ""
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Přehrávač videa"
-
-#~ msgid "elementary, Inc."
-#~ msgstr "elementary, Inc."
 
 #~ msgid "Fix an issue with removing videos from library"
 #~ msgstr "Opraven problém při odebírání videí z knihovny"
