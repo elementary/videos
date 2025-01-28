@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-02 12:46+0000\n"
-"PO-Revision-Date: 2022-05-30 03:37+0000\n"
+"PO-Revision-Date: 2025-01-29 11:16+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/videos/videos/mr/"
 ">\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.9.2\n"
 
 #: src/Application.vala:110
 msgid "Videos"
@@ -29,14 +29,14 @@ msgstr "पुनर्संचयित करा"
 #: src/Window.vala:140
 #, c-format
 msgid "“%s” added to playlist"
-msgstr ""
+msgstr "प्लेलिस्टमध्ये \"%s\" जोडले"
 
 #: src/Window.vala:143
 #, c-format
 msgid "%u item added to playlist"
 msgid_plural "%u items added to playlist"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "प्लेलिस्टमध्ये %u आयटम जोडला"
+msgstr[1] "प्लेलिस्टमध्ये %u आयटम जोडले"
 
 #: src/Window.vala:320 src/Widgets/Player/SettingsPopover.vala:111
 msgid "All files"
@@ -121,7 +121,7 @@ msgstr "आपल्या लायब्ररीमधून एक चित
 
 #: src/Widgets/WelcomePage.vala:42
 msgid "Home"
-msgstr ""
+msgstr "मुख्य पृष्ठ"
 
 #: src/Widgets/WelcomePage.vala:102
 msgid "Resume last video"
@@ -193,15 +193,15 @@ msgstr "प्लेलिस्ट साफ करा"
 
 #: src/Widgets/Player/PlaylistPopover.vala:104
 msgid "Repeat None"
-msgstr ""
+msgstr "काहीही पुनरावृत्ती करू नका"
 
 #: src/Widgets/Player/PlaylistPopover.vala:108
 msgid "Repeat All"
-msgstr ""
+msgstr "सर्व पुन्हा चालवा"
 
 #: src/Widgets/Player/PlaylistPopover.vala:112
 msgid "Repeat One"
-msgstr ""
+msgstr "एक पुन्हा चालवा"
 
 #: src/Widgets/Player/SettingsPopover.vala:44
 msgid "Audio:"
