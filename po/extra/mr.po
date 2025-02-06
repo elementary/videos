@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-02 12:46+0000\n"
-"PO-Revision-Date: 2025-01-29 11:16+0000\n"
+"PO-Revision-Date: 2025-02-06 18:04+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/videos/extra/mr/>"
 "\n"
@@ -74,17 +74,15 @@ msgstr "गडद शैलीच्या प्राधान्याचा 
 
 #: data/videos.metainfo.xml.in:71
 msgid "Support repeat one and repeat all"
-msgstr ""
+msgstr "एक पुन्हा चालवण्याचे आणि सर्व पुन्हा चालवण्याचे समर्थन करा"
 
 #: data/videos.metainfo.xml.in:72
-#, fuzzy
-#| msgid "Window behavior improvements"
 msgid "Performance improvements"
-msgstr "विंडो वर्तन सुधारणा"
+msgstr "कामगिरी सुधारणा"
 
 #: data/videos.metainfo.xml.in:73
 msgid "Drop support for optical media"
-msgstr ""
+msgstr "ऑप्टिकल मीडियासाठी समर्थन ड्रॉप करा"
 
 #: data/videos.metainfo.xml.in:74 data/videos.metainfo.xml.in:90
 #: data/videos.metainfo.xml.in:102 data/videos.metainfo.xml.in:116
@@ -94,15 +92,15 @@ msgstr "भाषांतर अपडेट्स"
 
 #: data/videos.metainfo.xml.in:87
 msgid "Updated flatter design"
-msgstr ""
+msgstr "अद्ययावत फ्लॅटर डिझाइन"
 
 #: data/videos.metainfo.xml.in:88
 msgid "Send an app notification when adding items to the play queue"
-msgstr ""
+msgstr "प्ले रांगेत आयटम जोडताना ॲप सूचना पाठवा"
 
 #: data/videos.metainfo.xml.in:89
 msgid "More accurate playback position save and restore"
-msgstr ""
+msgstr "अधिक अचूक प्लेबॅक स्थिती जतन आणि पुनर्संचयित करा"
 
 #: data/videos.metainfo.xml.in:100 data/videos.metainfo.xml.in:113
 #: data/videos.metainfo.xml.in:123
