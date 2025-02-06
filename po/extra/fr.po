@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-02 12:46+0000\n"
-"PO-Revision-Date: 2023-08-18 09:08+0000\n"
+"PO-Revision-Date: 2025-02-06 18:04+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
-"Language-Team: French <https://l10n.elementary.io/projects/videos/extra/fr/"
-">\n"
+"Language-Team: French <https://l10n.elementary.io/projects/videos/extra/fr/>"
+"\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.9.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -48,7 +48,7 @@ msgstr "Support des sous-titres"
 
 #: data/videos.metainfo.xml.in:17
 msgid "Play queue"
-msgstr "Liste de lecture"
+msgstr "File d'attente"
 
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
@@ -63,6 +63,8 @@ msgid ""
 "Small hotfix release that fixes an annoying issue causing videos to play in "
 "a second window."
 msgstr ""
+"Petit correctif qui résout un problème gênant provoquant la lecture des "
+"vidéos dans une deuxième fenêtre."
 
 #: data/videos.metainfo.xml.in:68 data/videos.metainfo.xml.in:85
 msgid "Improvements:"
@@ -70,21 +72,19 @@ msgstr "Améliorations :"
 
 #: data/videos.metainfo.xml.in:70
 msgid "Respect dark style preference"
-msgstr ""
+msgstr "Respect du paramètre de thème sombre"
 
 #: data/videos.metainfo.xml.in:71
 msgid "Support repeat one and repeat all"
-msgstr ""
+msgstr "Prise en charge de la répétition simple et multiple"
 
 #: data/videos.metainfo.xml.in:72
-#, fuzzy
-#| msgid "Window behavior improvements"
 msgid "Performance improvements"
-msgstr "Améliorations du comportement des fenêtres"
+msgstr "Améliorations des performances"
 
 #: data/videos.metainfo.xml.in:73
 msgid "Drop support for optical media"
-msgstr ""
+msgstr "Arrêt de la prise en charge des supports optiques"
 
 #: data/videos.metainfo.xml.in:74 data/videos.metainfo.xml.in:90
 #: data/videos.metainfo.xml.in:102 data/videos.metainfo.xml.in:116
