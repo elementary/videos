@@ -34,7 +34,7 @@ jobs:
       - name: Install Rust SDK extension
         run: |
           flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-          flatpak install -y --arch=${{matrix.arch}} flathub org.freedesktop.Sdk.Extension.rust-stable//24.08
+          flatpak install -y --arch=${{matrix.arch}} org.freedesktop.Sdk.Extension.rust-stable//24.08
 
       - name: Build
         uses: flatpak/flatpak-github-actions/flatpak-builder@v6
@@ -75,7 +75,7 @@ jobs:
     - name: Install Rust SDK extension
       run: |
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-        flatpak install -y flathub org.freedesktop.Sdk.Extension.rust-stable//24.08
+        flatpak install -y org.freedesktop.Sdk.Extension.rust-stable//24.08
 
     - name: Configure Git
       run: |
