@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-02 12:46+0000\n"
+"POT-Creation-Date: 2025-02-24 00:44+0000\n"
 "PO-Revision-Date: 2025-02-06 18:04+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/videos/extra/mr/>"
-"\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/videos/extra/mr/"
+">\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,10 +51,6 @@ msgstr "ओळीने चालवा"
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
 msgstr "शोध बारवर लघुप्रतिमा पूर्वावलोकने"
-
-#: data/videos.metainfo.xml.in:51
-msgid "elementary, Inc."
-msgstr "एलिमेंटरी, Inc."
 
 #: data/videos.metainfo.xml.in:59
 msgid ""
@@ -126,6 +122,9 @@ msgstr "Flatpak प्लॅटफॉर्म 7 वर अपडेट कर�
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "व्हिडिओ प्लेयर"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "एलिमेंटरी, Inc."
 
 #~ msgid "Fixes:"
 #~ msgstr "निराकारणे:"
