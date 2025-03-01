@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-24 00:44+0000\n"
+"POT-Creation-Date: 2025-03-01 19:16+0000\n"
 "PO-Revision-Date: 2021-07-22 16:05+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Slovenian <https://l10n.elementary.io/projects/videos/extra/"
@@ -53,6 +53,11 @@ msgstr "Čakalna vrsta videov"
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
 msgstr "Predogled ob previjanju"
+
+#: data/videos.metainfo.xml.in:51
+#, fuzzy
+msgid "elementary, Inc."
+msgstr "elementary LLC."
 
 #: data/videos.metainfo.xml.in:59
 msgid ""
@@ -124,10 +129,6 @@ msgstr ""
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Video predvajalnik"
-
-#, fuzzy
-#~ msgid "elementary, Inc."
-#~ msgstr "elementary LLC."
 
 #~ msgid "Navigate the playlist with the keyboard"
 #~ msgstr "Krmarjenje seznama predvajanja s tipkovnico"
