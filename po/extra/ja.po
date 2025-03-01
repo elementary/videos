@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-24 00:44+0000\n"
-"PO-Revision-Date: 2024-09-09 08:16+0000\n"
+"PO-Revision-Date: 2025-03-01 19:08+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/videos/extra/ja/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.9.2\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -40,7 +40,7 @@ msgstr ""
 
 #: data/videos.metainfo.xml.in:14
 msgid "Additional features include:"
-msgstr "そのほかの機能:"
+msgstr "その他の機能:"
 
 #: data/videos.metainfo.xml.in:16
 msgid "Subtitle support"
@@ -103,7 +103,7 @@ msgstr "より正確に再生位置を保存・復元するように修正"
 #: data/videos.metainfo.xml.in:100 data/videos.metainfo.xml.in:113
 #: data/videos.metainfo.xml.in:123
 msgid "Other updates:"
-msgstr "そのほかのアップデート:"
+msgstr "その他のアップデート:"
 
 #: data/videos.metainfo.xml.in:109
 msgid "New features:"
