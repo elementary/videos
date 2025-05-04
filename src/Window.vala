@@ -354,6 +354,10 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
                 open_files (files, clear_playlist, force_play);
 
+                /* We already checked at least one file is selected so this won't fail,
+                 * but guarantee safer access to the array in case
+                 */
+                return_if_fail (files.length > 1);
                 /* Get the parent directory of the first File on behalf of opened files,
                  * because all of them should be in the same directory.
                  */
