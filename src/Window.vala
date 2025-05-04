@@ -344,11 +344,12 @@ public class Audience.Window : Gtk.ApplicationWindow {
                  * Gtk.FileDialog.open_multiple does not throw an error
                  * so handle this abnormal case by ourselves.
                  */
-                if (files_list.get_n_items () < 1) {
+                uint num_files = files_list.get_n_items ();
+                if (num_files < 1) {
                     return;
                 }
 
-                for (int i = 0; i < files_list.get_n_items (); i++) {
+                for (int i = 0; i < num_files; i++) {
                     files += (File)files_list.get_item (i);
                 }
 
