@@ -325,8 +325,8 @@ public class Audience.Window : Gtk.ApplicationWindow {
         video_filter.add_mime_type ("video/*");
 
         var filters = new ListStore (typeof (Gtk.FileFilter));
-        filters.append (all_files_filter);
         filters.append (video_filter);
+        filters.append (all_files_filter);
 
         var file_dialog = new Gtk.FileDialog () {
             title = _("Open"),
