@@ -171,14 +171,14 @@ public class Audience.LibraryItem : Gtk.Box {
         var filters = new ListStore (typeof (Gtk.FileFilter));
         filters.append (image_filter);
 
-        var filechooser = new Gtk.FileDialog () {
+        var file_dialog = new Gtk.FileDialog () {
             title = _("Open"),
             accept_label = _("_Open"),
             filters = filters
         };
 
         try {
-            var cover = yield filechooser.open (Audience.App.get_instance ().mainwindow, null);
+            var cover = yield file_dialog.open (Audience.App.get_instance ().mainwindow, null);
 
             yield item.set_custom_poster (cover);
         } catch (Error err) {
