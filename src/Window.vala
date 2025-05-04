@@ -330,11 +330,11 @@ public class Audience.Window : Gtk.ApplicationWindow {
 
         var file_dialog = new Gtk.FileDialog () {
             title = _("Open"),
-            accept_label = _("_Open")
+            accept_label = _("_Open"),
             filters = filters,
             default_filter = video_filter
             initial_folder = File.new_for_path (settings.get_string ("last-folder"))
-        );
+        };
 
         file_dialog.open_multiple.begin (this, null, (obj, res) => {
             try {
