@@ -332,7 +332,7 @@ public class Audience.Window : Gtk.ApplicationWindow {
             title = _("Open"),
             accept_label = _("_Open"),
             filters = filters,
-            default_filter = video_filter
+            default_filter = video_filter,
             initial_folder = File.new_for_path (settings.get_string ("last-folder"))
         };
 
