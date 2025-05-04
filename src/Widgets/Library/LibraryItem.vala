@@ -168,10 +168,13 @@ public class Audience.LibraryItem : Gtk.Box {
         image_filter.set_filter_name (_("Image files"));
         image_filter.add_mime_type ("image/*");
 
+        var filters = new ListStore (typeof (Gtk.FileFilter));
+        filters.append (image_filter);
+
         var filechooser = new Gtk.FileDialog () {
             title = _("Open"),
             accept_label = _("_Open"),
-            default_filter = image_filter
+            filters = filters
         };
 
         try {
