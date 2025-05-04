@@ -324,40 +324,37 @@ public class Audience.Window : Gtk.ApplicationWindow {
         video_filter.set_filter_name (_("Video files"));
         video_filter.add_mime_type ("video/*");
 
-        var file = new Gtk.FileChooserNative (
-            _("Open"),
-            this,
-            Gtk.FileChooserAction.OPEN,
-            _("_Open"),
-            _("_Cancel")
+        var filters = new ListStore (typeof (Gtk.FileFilter));
+        filters.append (all_files_filter);
+        filters.append (video_filter);
+
+        var file_dialog = new Gtk.FileDialog () {
+            title = _("Open"),
+            accept_label = _("_Open")
+            filters = filters,
+            initial_folder = File.new_for_path (settings.get_string ("last-folder"))
         );
-        file.select_multiple = true;
-        file.add_filter (video_filter);
-        file.add_filter (all_files_filter);
 
-        try {
-            file.set_current_folder (File.new_for_path (settings.get_string ("last-folder")));
-        } catch (Error e) {
-            warning ("Failed to set last folder as current folder: %s", e.message);
-        }
-
-        file.response.connect ((response) => {
-            if (response == Gtk.ResponseType.ACCEPT) {
+        file_dialog.open_multiple.begin (this, null, (obj, res) => {
+            try {
                 File[] files = {};
 
-                var files_list = file.get_files ();
+                var files_list = file_dialog.open_multiple.end (res);
                 for (int i = 0; i < files_list.get_n_items (); i++) {
                     files += (File)files_list.get_item (i);
                 }
 
                 open_files (files, clear_playlist, force_play);
-                settings.set_string ("last-folder", file.get_current_folder ().get_path ());
+
+                /* Get the parent directory of the first File on behalf of opened files,
+                 * because all of them should be in the same directory.
+                 */
+                var last_folder = files[0].get_parent ();
+                settings.set_string ("last-folder", last_folder.get_path ());
+            } catch (Error e) {
+                warning ("Failed to open video files: %s", e.message);
             }
-
-            file.destroy ();
         });
-
-        file.show ();
     }
 
     private void on_player_ended () {
