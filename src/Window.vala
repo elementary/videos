@@ -340,6 +340,14 @@ public class Audience.Window : Gtk.ApplicationWindow {
                 File[] files = {};
 
                 var files_list = file_dialog.open_multiple.end (res);
+                /* Do nothing when no files are selected.
+                 * Gtk.FileDialog.open_multiple does not throw an error
+                 * so handle this abnormal case by ourselves.
+                 */
+                if (files_list.n_items < 1) {
+                    return;
+                }
+
                 for (int i = 0; i < files_list.get_n_items (); i++) {
                     files += (File)files_list.get_item (i);
                 }
