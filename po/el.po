@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-01 19:16+0000\n"
+"POT-Creation-Date: 2025-05-07 00:46+0000\n"
 "PO-Revision-Date: 2017-01-27 19:25+0000\n"
 "Last-Translator: Christos Iatropoulos <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -51,20 +51,15 @@ msgstr "Όλα τα αρχεία"
 msgid "Video files"
 msgstr "Αρχεία βίντεο"
 
-#: src/Window.vala:328 src/Widgets/Library/LibraryItem.vala:172
-#: src/Widgets/Player/SettingsPopover.vala:123
+#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:175
+#: src/Widgets/Player/SettingsPopover.vala:127
 msgid "Open"
 msgstr "Άνοιγμα"
 
-#: src/Window.vala:331 src/Widgets/Library/LibraryItem.vala:175
-#: src/Widgets/Player/SettingsPopover.vala:126
+#: src/Window.vala:333 src/Widgets/Library/LibraryItem.vala:176
+#: src/Widgets/Player/SettingsPopover.vala:128
 msgid "_Open"
 msgstr "_Άνοιγμα"
-
-#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:176
-#: src/Widgets/Player/SettingsPopover.vala:127
-msgid "_Cancel"
-msgstr "_Ακύρωση"
 
 #: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
@@ -221,7 +216,7 @@ msgid "External Subtitles:"
 msgstr "Εξωτερικοί Υπότιτλοι:"
 
 #: src/Widgets/Player/SettingsPopover.vala:103
-#: src/Widgets/Player/SettingsPopover.vala:186
+#: src/Widgets/Player/SettingsPopover.vala:183
 msgid "None"
 msgstr "Κανένα"
 
@@ -230,15 +225,18 @@ msgid "Subtitle files"
 msgstr "Αρχεία υποτίτλων"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:184
-#: src/Widgets/Player/SettingsPopover.vala:214
+#: src/Widgets/Player/SettingsPopover.vala:181
+#: src/Widgets/Player/SettingsPopover.vala:211
 #, c-format
 msgid "Track %u"
 msgstr ""
 
-#: src/Widgets/Player/SettingsPopover.vala:227
+#: src/Widgets/Player/SettingsPopover.vala:224
 msgid "Default"
 msgstr "Προεπιλογή"
+
+#~ msgid "_Cancel"
+#~ msgstr "_Ακύρωση"
 
 #~ msgid "Play from Disc"
 #~ msgstr "Αναπαραγωγή από δίσκο"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-01 19:16+0000\n"
+"POT-Creation-Date: 2025-05-07 00:46+0000\n"
 "PO-Revision-Date: 2020-12-19 14:16+0000\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <https://l10n.elementary.io/projects/videos/videos/sr/"
@@ -55,20 +55,15 @@ msgstr "Све датотеке"
 msgid "Video files"
 msgstr "Датотеке снимака"
 
-#: src/Window.vala:328 src/Widgets/Library/LibraryItem.vala:172
-#: src/Widgets/Player/SettingsPopover.vala:123
+#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:175
+#: src/Widgets/Player/SettingsPopover.vala:127
 msgid "Open"
 msgstr "Отвори"
 
-#: src/Window.vala:331 src/Widgets/Library/LibraryItem.vala:175
-#: src/Widgets/Player/SettingsPopover.vala:126
+#: src/Window.vala:333 src/Widgets/Library/LibraryItem.vala:176
+#: src/Widgets/Player/SettingsPopover.vala:128
 msgid "_Open"
 msgstr "_Отвори"
-
-#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:176
-#: src/Widgets/Player/SettingsPopover.vala:127
-msgid "_Cancel"
-msgstr "_Откажи"
 
 #: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
@@ -225,7 +220,7 @@ msgid "External Subtitles:"
 msgstr "Спољни подтитлови:"
 
 #: src/Widgets/Player/SettingsPopover.vala:103
-#: src/Widgets/Player/SettingsPopover.vala:186
+#: src/Widgets/Player/SettingsPopover.vala:183
 msgid "None"
 msgstr "Ништа"
 
@@ -234,15 +229,18 @@ msgid "Subtitle files"
 msgstr "Датотеке титлова"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:184
-#: src/Widgets/Player/SettingsPopover.vala:214
+#: src/Widgets/Player/SettingsPopover.vala:181
+#: src/Widgets/Player/SettingsPopover.vala:211
 #, c-format
 msgid "Track %u"
 msgstr "Нумера %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:227
+#: src/Widgets/Player/SettingsPopover.vala:224
 msgid "Default"
 msgstr "Подразумевано"
+
+#~ msgid "_Cancel"
+#~ msgstr "_Откажи"
 
 #~ msgid "Play from Disc"
 #~ msgstr "Пустите са диска"

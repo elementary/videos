@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-01 19:16+0000\n"
+"POT-Creation-Date: 2025-05-07 00:46+0000\n"
 "PO-Revision-Date: 2022-08-06 09:31+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/videos/videos/ko/"
@@ -52,20 +52,15 @@ msgstr "모든 파일"
 msgid "Video files"
 msgstr "비디오 파일"
 
-#: src/Window.vala:328 src/Widgets/Library/LibraryItem.vala:172
-#: src/Widgets/Player/SettingsPopover.vala:123
+#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:175
+#: src/Widgets/Player/SettingsPopover.vala:127
 msgid "Open"
 msgstr "열기"
 
-#: src/Window.vala:331 src/Widgets/Library/LibraryItem.vala:175
-#: src/Widgets/Player/SettingsPopover.vala:126
+#: src/Window.vala:333 src/Widgets/Library/LibraryItem.vala:176
+#: src/Widgets/Player/SettingsPopover.vala:128
 msgid "_Open"
 msgstr "_열기"
-
-#: src/Window.vala:332 src/Widgets/Library/LibraryItem.vala:176
-#: src/Widgets/Player/SettingsPopover.vala:127
-msgid "_Cancel"
-msgstr "_취소"
 
 #: src/Services/PlaybackManager.vala:152
 msgid "A video is playing"
@@ -222,7 +217,7 @@ msgid "External Subtitles:"
 msgstr "외부 자막:"
 
 #: src/Widgets/Player/SettingsPopover.vala:103
-#: src/Widgets/Player/SettingsPopover.vala:186
+#: src/Widgets/Player/SettingsPopover.vala:183
 msgid "None"
 msgstr "없음"
 
@@ -231,15 +226,18 @@ msgid "Subtitle files"
 msgstr "자막 파일"
 
 #. FIXME: Using Track since lang is actually a bad pointer :/
-#: src/Widgets/Player/SettingsPopover.vala:184
-#: src/Widgets/Player/SettingsPopover.vala:214
+#: src/Widgets/Player/SettingsPopover.vala:181
+#: src/Widgets/Player/SettingsPopover.vala:211
 #, c-format
 msgid "Track %u"
 msgstr "트랙 %u"
 
-#: src/Widgets/Player/SettingsPopover.vala:227
+#: src/Widgets/Player/SettingsPopover.vala:224
 msgid "Default"
 msgstr "기본"
+
+#~ msgid "_Cancel"
+#~ msgstr "_취소"
 
 #~ msgid "Play from Disc"
 #~ msgstr "디스크 롬 재생하기"
