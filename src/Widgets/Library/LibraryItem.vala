@@ -104,7 +104,7 @@ public class Audience.LibraryItem : Gtk.Box {
 
             new_cover.clicked.connect (() => {
                 context_menu.popdown ();
-                set_new_cover ();
+                set_new_cover.begin ();
             });
             map.connect (poster_visibility);
             poster.notify ["paintable"].connect (poster_visibility);
@@ -163,28 +163,26 @@ public class Audience.LibraryItem : Gtk.Box {
         }
     }
 
-    private void set_new_cover () {
+    private async void set_new_cover () {
         var image_filter = new Gtk.FileFilter ();
         image_filter.set_filter_name (_("Image files"));
         image_filter.add_mime_type ("image/*");
 
-        var filechooser = new Gtk.FileChooserNative (
-            _("Open"),
-            Audience.App.get_instance ().mainwindow,
-            Gtk.FileChooserAction.OPEN,
-            _("_Open"),
-            _("_Cancel")
-        );
-        filechooser.add_filter (image_filter);
+        var filters = new ListStore (typeof (Gtk.FileFilter));
+        filters.append (image_filter);
 
-        filechooser.response.connect ((response) => {
-            if (response == Gtk.ResponseType.ACCEPT) {
-                item.set_custom_poster.begin (filechooser.get_file ());
-            }
+        var file_dialog = new Gtk.FileDialog () {
+            title = _("Open"),
+            accept_label = _("_Open"),
+            filters = filters
+        };
 
-            filechooser.destroy ();
-        });
+        try {
+            var cover = yield file_dialog.open (Audience.App.get_instance ().mainwindow, null);
 
-        filechooser.show ();
+            yield item.set_custom_poster (cover);
+        } catch (Error err) {
+            warning ("Failed to select new cover: %s", err.message);
+        }
     }
 }

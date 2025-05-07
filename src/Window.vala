@@ -324,40 +324,50 @@ public class Audience.Window : Gtk.ApplicationWindow {
         video_filter.set_filter_name (_("Video files"));
         video_filter.add_mime_type ("video/*");
 
-        var file = new Gtk.FileChooserNative (
-            _("Open"),
-            this,
-            Gtk.FileChooserAction.OPEN,
-            _("_Open"),
-            _("_Cancel")
-        );
-        file.select_multiple = true;
-        file.add_filter (video_filter);
-        file.add_filter (all_files_filter);
+        var filters = new ListStore (typeof (Gtk.FileFilter));
+        filters.append (video_filter);
+        filters.append (all_files_filter);
 
-        try {
-            file.set_current_folder (File.new_for_path (settings.get_string ("last-folder")));
-        } catch (Error e) {
-            warning ("Failed to set last folder as current folder: %s", e.message);
-        }
+        var file_dialog = new Gtk.FileDialog () {
+            title = _("Open"),
+            accept_label = _("_Open"),
+            filters = filters,
+            initial_folder = File.new_for_path (settings.get_string ("last-folder"))
+        };
 
-        file.response.connect ((response) => {
-            if (response == Gtk.ResponseType.ACCEPT) {
+        file_dialog.open_multiple.begin (this, null, (obj, res) => {
+            try {
                 File[] files = {};
 
-                var files_list = file.get_files ();
-                for (int i = 0; i < files_list.get_n_items (); i++) {
+                var files_list = file_dialog.open_multiple.end (res);
+                /* Do nothing when no files are selected.
+                 * Gtk.FileDialog.open_multiple does not throw an error
+                 * so handle this abnormal case by ourselves.
+                 */
+                uint num_files = files_list.get_n_items ();
+                if (num_files < 1) {
+                    return;
+                }
+
+                for (int i = 0; i < num_files; i++) {
                     files += (File)files_list.get_item (i);
                 }
 
                 open_files (files, clear_playlist, force_play);
-                settings.set_string ("last-folder", file.get_current_folder ().get_path ());
+
+                /* We already checked at least one file is selected so this won't fail,
+                 * but guarantee safer access to the array in case
+                 */
+                return_if_fail (files.length > 0);
+                /* Get the parent directory of the first File on behalf of opened files,
+                 * because all of them should be in the same directory.
+                 */
+                var last_folder = files[0].get_parent ();
+                settings.set_string ("last-folder", last_folder.get_path ());
+            } catch (Error e) {
+                warning ("Failed to open video files: %s", e.message);
             }
-
-            file.destroy ();
         });
-
-        file.show ();
     }
 
     private void on_player_ended () {

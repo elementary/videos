@@ -104,7 +104,7 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         }
     }
 
-    private void get_external_subtitle_file () {
+    private async void get_external_subtitle_file () {
         popdown ();
 
         var all_files_filter = new Gtk.FileFilter ();
@@ -119,26 +119,23 @@ public class Audience.Widgets.SettingsPopover : Gtk.Popover {
         subtitle_files_filter.add_mime_type ("text/x-ssa"); // .ssa & .ass
         // exclude .asc, mimetype is generic "application/pgp-encrypted"
 
-        var file = new Gtk.FileChooserNative (
-            _("Open"),
-            (Gtk.Window)get_root (),
-            Gtk.FileChooserAction.OPEN,
-            _("_Open"),
-            _("_Cancel")
-        );
-        file.select_multiple = false;
-        file.add_filter (subtitle_files_filter);
-        file.add_filter (all_files_filter);
+        var filters = new ListStore (typeof (Gtk.FileFilter));
+        filters.append (subtitle_files_filter);
+        filters.append (all_files_filter);
 
-        file.response.connect ((response) => {
-            if (response == Gtk.ResponseType.ACCEPT) {
-                PlaybackManager.get_default ().set_subtitle (file.get_file ().get_uri ());
-            }
+        var file_dialog = new Gtk.FileDialog () {
+            title = _("Open"),
+            accept_label = _("_Open"),
+            filters = filters
+        };
 
-            file.destroy ();
-        });
+        try {
+            var subtitle_file = yield file_dialog.open ((Gtk.Window)get_root (), null);
 
-        file.show ();
+            PlaybackManager.get_default ().set_subtitle (subtitle_file.get_uri ());
+        } catch (Error err) {
+            warning ("Failed to select subtitle file: %s", err.message);
+        }
     }
 
     private void setup () {
