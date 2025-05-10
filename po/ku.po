@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 00:46+0000\n"
+"POT-Creation-Date: 2025-05-10 17:24+0000\n"
 "PO-Revision-Date: 2018-06-13 00:08+0000\n"
 "Last-Translator: Tom Ward <tomward1234567@gmail.com>\n"
 "Language-Team: Kurdish <https://weblate.elementary.io/projects/videos/videos/"
@@ -173,7 +173,7 @@ msgstr "Pelên wêne"
 msgid "Library"
 msgstr "Pirtûkxane"
 
-#: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:104
+#: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:108
 msgid "Play"
 msgstr "Bileyîze"
 
@@ -181,11 +181,12 @@ msgstr "Bileyîze"
 msgid "Playlist"
 msgstr "Lîsteya lêdanê"
 
-#: src/Widgets/Player/BottomBar.vala:60
+#: src/Widgets/Player/BottomBar.vala:62
+#, c-format
 msgid "Settings"
 msgstr "Mîheng"
 
-#: src/Widgets/Player/BottomBar.vala:107
+#: src/Widgets/Player/BottomBar.vala:111
 msgid "Pause"
 msgstr "Raweste"
 

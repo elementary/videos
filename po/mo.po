@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 00:46+0000\n"
+"POT-Creation-Date: 2025-05-10 17:24+0000\n"
 "PO-Revision-Date: 2018-05-31 08:00+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/videos/"
@@ -166,7 +166,7 @@ msgstr "Fișiere imagine"
 msgid "Library"
 msgstr "Bibliotecă"
 
-#: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:104
+#: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:108
 msgid "Play"
 msgstr "Redare"
 
@@ -174,11 +174,12 @@ msgstr "Redare"
 msgid "Playlist"
 msgstr "Listă de redare"
 
-#: src/Widgets/Player/BottomBar.vala:60
+#: src/Widgets/Player/BottomBar.vala:62
+#, c-format
 msgid "Settings"
 msgstr "Setări"
 
-#: src/Widgets/Player/BottomBar.vala:107
+#: src/Widgets/Player/BottomBar.vala:111
 msgid "Pause"
 msgstr "Pauză"
 

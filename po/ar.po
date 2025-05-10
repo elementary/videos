@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 00:46+0000\n"
+"POT-Creation-Date: 2025-05-10 17:24+0000\n"
 "PO-Revision-Date: 2021-08-31 13:00+0000\n"
 "Last-Translator: aalhaif <aalhaif@hotmail.com>\n"
 "Language-Team: Arabic <https://l10n.elementary.io/projects/videos/videos/ar/"
@@ -178,7 +178,7 @@ msgstr "ملفات الصور"
 msgid "Library"
 msgstr "المكتبة"
 
-#: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:104
+#: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:108
 msgid "Play"
 msgstr "شغل"
 
@@ -186,11 +186,12 @@ msgstr "شغل"
 msgid "Playlist"
 msgstr "قائمة تشغيل"
 
-#: src/Widgets/Player/BottomBar.vala:60
+#: src/Widgets/Player/BottomBar.vala:62
+#, c-format
 msgid "Settings"
 msgstr "الإعدادات"
 
-#: src/Widgets/Player/BottomBar.vala:107
+#: src/Widgets/Player/BottomBar.vala:111
 msgid "Pause"
 msgstr "إيقاف مؤقت"
 

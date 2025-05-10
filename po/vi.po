@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 00:46+0000\n"
+"POT-Creation-Date: 2025-05-10 17:24+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
@@ -157,7 +157,7 @@ msgstr ""
 msgid "Library"
 msgstr ""
 
-#: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:104
+#: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:108
 msgid "Play"
 msgstr ""
 
@@ -165,11 +165,12 @@ msgstr ""
 msgid "Playlist"
 msgstr ""
 
-#: src/Widgets/Player/BottomBar.vala:60
+#: src/Widgets/Player/BottomBar.vala:62
+#, c-format
 msgid "Settings"
 msgstr ""
 
-#: src/Widgets/Player/BottomBar.vala:107
+#: src/Widgets/Player/BottomBar.vala:111
 msgid "Pause"
 msgstr ""
 
