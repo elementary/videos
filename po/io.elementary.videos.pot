@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.videos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 00:46+0000\n"
+"POT-Creation-Date: 2025-05-10 17:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -169,7 +169,7 @@ msgstr ""
 msgid "Library"
 msgstr ""
 
-#: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:104
+#: src/Widgets/Player/BottomBar.vala:43 src/Widgets/Player/BottomBar.vala:108
 msgid "Play"
 msgstr ""
 
@@ -177,11 +177,12 @@ msgstr ""
 msgid "Playlist"
 msgstr ""
 
-#: src/Widgets/Player/BottomBar.vala:60
+#: src/Widgets/Player/BottomBar.vala:62
+#, c-format
 msgid "Settings"
 msgstr ""
 
-#: src/Widgets/Player/BottomBar.vala:107
+#: src/Widgets/Player/BottomBar.vala:111
 msgid "Pause"
 msgstr ""
 
