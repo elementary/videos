@@ -57,7 +57,11 @@ public class Audience.Widgets.BottomBar : Gtk.Box {
         var settings_button = new Gtk.MenuButton () {
             icon_name = "open-menu-symbolic",
             popover = settings_popover,
-            tooltip_text = _("Settings"),
+            primary = true,
+            tooltip_markup = ("%s\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP).printf (
+                _("Settings"),
+                "F10"
+            ),
             direction = UP
         };
 
