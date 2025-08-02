@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-10 17:24+0000\n"
+"POT-Creation-Date: 2025-08-02 00:42+0000\n"
 "PO-Revision-Date: 2017-01-27 19:21+0000\n"
 "Last-Translator: Christos Iatropoulos <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -47,10 +47,6 @@ msgstr ""
 
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
-msgstr ""
-
-#: data/videos.metainfo.xml.in:51
-msgid "elementary, Inc."
 msgstr ""
 
 #: data/videos.metainfo.xml.in:59

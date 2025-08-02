@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-10 17:24+0000\n"
+"POT-Creation-Date: 2025-08-02 00:42+0000\n"
 "PO-Revision-Date: 2024-09-09 08:16+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/videos/extra/es/"
@@ -53,10 +53,6 @@ msgstr "Cola de reproducción"
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
 msgstr "Previsualizaciones en miniatura sobre la barra de posición"
-
-#: data/videos.metainfo.xml.in:51
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
 
 #: data/videos.metainfo.xml.in:59
 msgid ""
@@ -132,6 +128,9 @@ msgstr "Se actualizó a la plataforma de Flatpak 7"
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Reproductor de video"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
 
 #~ msgid "Fixes:"
 #~ msgstr "Correcciones:"
