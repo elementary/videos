@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-10 17:24+0000\n"
+"POT-Creation-Date: 2025-08-02 00:42+0000\n"
 "PO-Revision-Date: 2024-12-09 11:10+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://l10n.elementary.io/"
@@ -52,10 +52,6 @@ msgstr "播放佇列"
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
 msgstr "在跳轉列上提供縮圖預覽"
-
-#: data/videos.metainfo.xml.in:51
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
 
 #: data/videos.metainfo.xml.in:59
 msgid ""
@@ -125,6 +121,9 @@ msgstr "更新到 Flatpak 平台 7"
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "影片播放器"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
 
 #~ msgid "Minor bug fixes"
 #~ msgstr "小臭蟲修正"
