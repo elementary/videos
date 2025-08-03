@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-02 00:42+0000\n"
+"POT-Creation-Date: 2025-08-03 02:50+0000\n"
 "PO-Revision-Date: 2021-07-22 16:05+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk <https://l10n.elementary.io/projects/videos/"
@@ -52,6 +52,11 @@ msgstr "Avspelingskø"
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
 msgstr "Miniatyrbiletevising i søkefeltet"
+
+#: data/videos.metainfo.xml.in:51
+#, fuzzy
+msgid "elementary, Inc."
+msgstr "elementary LLC."
 
 #: data/videos.metainfo.xml.in:59
 msgid ""
@@ -121,10 +126,6 @@ msgstr ""
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Videoavspelar"
-
-#, fuzzy
-#~ msgid "elementary, Inc."
-#~ msgstr "elementary LLC."
 
 #~ msgid "io.elementary.videos"
 #~ msgstr "io.elementary.videos"

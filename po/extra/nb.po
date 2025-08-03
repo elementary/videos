@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-02 00:42+0000\n"
+"POT-Creation-Date: 2025-08-03 02:50+0000\n"
 "PO-Revision-Date: 2024-02-10 15:11+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/videos/"
@@ -52,6 +52,10 @@ msgstr "Avspillingskø"
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
 msgstr "Miniatyrbildevisning i søkefelt"
+
+#: data/videos.metainfo.xml.in:51
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
 
 #: data/videos.metainfo.xml.in:59
 msgid ""
@@ -124,9 +128,6 @@ msgstr "Oppdatering til Flatpak-plattform 7"
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
 msgstr "Videospiller"
-
-#~ msgid "elementary, Inc."
-#~ msgstr "elementary, Inc."
 
 #~ msgid "Fixes:"
 #~ msgstr "Fikser:"

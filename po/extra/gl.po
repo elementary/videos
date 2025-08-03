@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-02 00:42+0000\n"
+"POT-Creation-Date: 2025-08-03 02:50+0000\n"
 "PO-Revision-Date: 2019-10-16 15:23+0000\n"
 "Last-Translator: Daniel R. <riesp@pm.me>\n"
 "Language-Team: Galician <https://l10n.elementary.io/projects/videos/extra/gl/"
@@ -49,6 +49,10 @@ msgstr ""
 
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:51
+msgid "elementary, Inc."
 msgstr ""
 
 #: data/videos.metainfo.xml.in:59

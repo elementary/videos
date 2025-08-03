@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-02 00:42+0000\n"
+"POT-Creation-Date: 2025-08-03 02:50+0000\n"
 "PO-Revision-Date: 2018-07-16 20:55+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -45,6 +45,10 @@ msgstr ""
 
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:51
+msgid "elementary, Inc."
 msgstr ""
 
 #: data/videos.metainfo.xml.in:59
