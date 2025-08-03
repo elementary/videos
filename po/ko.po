@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-02 00:42+0000\n"
+"POT-Creation-Date: 2025-08-03 02:50+0000\n"
 "PO-Revision-Date: 2022-08-06 09:31+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/videos/videos/ko/"
@@ -181,7 +181,6 @@ msgid "Playlist"
 msgstr "재생목록"
 
 #: src/Widgets/Player/BottomBar.vala:62
-#, c-format
 msgid "Settings"
 msgstr "설정"
 

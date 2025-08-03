@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-02 00:42+0000\n"
+"POT-Creation-Date: 2025-08-03 02:50+0000\n"
 "PO-Revision-Date: 2019-11-19 22:24+0000\n"
 "Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/videos/videos/"
@@ -183,7 +183,6 @@ msgid "Playlist"
 msgstr "Ludlisto"
 
 #: src/Widgets/Player/BottomBar.vala:62
-#, c-format
 msgid "Settings"
 msgstr "Agordoj"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-02 00:42+0000\n"
+"POT-Creation-Date: 2025-08-03 02:50+0000\n"
 "PO-Revision-Date: 2022-10-07 13:03+0000\n"
 "Last-Translator: Aga Ismael <agaesmaeel@gmail.com>\n"
 "Language-Team: Kurdish (Central) <https://l10n.elementary.io/projects/videos/"
@@ -182,7 +182,6 @@ msgid "Playlist"
 msgstr "پلەی لیست"
 
 #: src/Widgets/Player/BottomBar.vala:62
-#, c-format
 msgid "Settings"
 msgstr "رێکخستنەکان"
 

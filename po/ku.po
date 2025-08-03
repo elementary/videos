@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-02 00:42+0000\n"
+"POT-Creation-Date: 2025-08-03 02:50+0000\n"
 "PO-Revision-Date: 2018-06-13 00:08+0000\n"
 "Last-Translator: Tom Ward <tomward1234567@gmail.com>\n"
 "Language-Team: Kurdish <https://weblate.elementary.io/projects/videos/videos/"
@@ -182,7 +182,6 @@ msgid "Playlist"
 msgstr "Lîsteya lêdanê"
 
 #: src/Widgets/Player/BottomBar.vala:62
-#, c-format
 msgid "Settings"
 msgstr "Mîheng"
 

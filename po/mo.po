@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-02 00:42+0000\n"
+"POT-Creation-Date: 2025-08-03 02:50+0000\n"
 "PO-Revision-Date: 2018-05-31 08:00+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/videos/"
@@ -175,7 +175,6 @@ msgid "Playlist"
 msgstr "Listă de redare"
 
 #: src/Widgets/Player/BottomBar.vala:62
-#, c-format
 msgid "Settings"
 msgstr "Setări"
 
