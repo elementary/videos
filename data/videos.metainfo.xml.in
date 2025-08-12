@@ -54,6 +54,17 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="8.0.2" date="2025-08-12" urgency="medium">
+      <description>
+        <p>Improvements:</p>
+        <ul>
+          <li>Open the main menu with the keyboard shortcut F10</li>
+          <li>Use the File Chooser Portal</li>
+          <li>Translation updates</li>
+        </ul>
+      </description>
+    </release>
+
     <release version="8.0.1" date="2024-08-12" urgency="high">
       <description>
         <p>Small hotfix release that fixes an annoying issue causing videos to play in a second window.</p>
