@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-03 02:50+0000\n"
+"POT-Creation-Date: 2025-08-12 20:15+0000\n"
 "PO-Revision-Date: 2024-09-02 00:57+0000\n"
 "Last-Translator: José Rafael <jrafaeldesantana@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
@@ -58,7 +58,26 @@ msgstr "Prévia de miniaturas na barra de reprodução"
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/videos.metainfo.xml.in:59
+#: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:79
+#: data/videos.metainfo.xml.in:96
+msgid "Improvements:"
+msgstr "Melhorias:"
+
+#: data/videos.metainfo.xml.in:61
+msgid "Open the main menu with the keyboard shortcut F10"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:62
+msgid "Use the File Chooser Portal"
+msgstr ""
+
+#: data/videos.metainfo.xml.in:63 data/videos.metainfo.xml.in:85
+#: data/videos.metainfo.xml.in:101 data/videos.metainfo.xml.in:113
+#: data/videos.metainfo.xml.in:127 data/videos.metainfo.xml.in:137
+msgid "Translation updates"
+msgstr "Atualizações de tradução"
+
+#: data/videos.metainfo.xml.in:70
 msgid ""
 "Small hotfix release that fixes an annoying issue causing videos to play in "
 "a second window."
@@ -66,63 +85,53 @@ msgstr ""
 "Pequena correção que corrige um problema irritante que fazia com que os "
 "vídeos fossem reproduzidos em uma segunda janela."
 
-#: data/videos.metainfo.xml.in:68 data/videos.metainfo.xml.in:85
-msgid "Improvements:"
-msgstr "Melhorias:"
-
-#: data/videos.metainfo.xml.in:70
+#: data/videos.metainfo.xml.in:81
 msgid "Respect dark style preference"
 msgstr "Respeita a preferência ao estilo escuro"
 
-#: data/videos.metainfo.xml.in:71
+#: data/videos.metainfo.xml.in:82
 msgid "Support repeat one and repeat all"
 msgstr "Suporte ao repita um e repita todos"
 
-#: data/videos.metainfo.xml.in:72
+#: data/videos.metainfo.xml.in:83
 msgid "Performance improvements"
 msgstr "Melhorias de performance"
 
-#: data/videos.metainfo.xml.in:73
+#: data/videos.metainfo.xml.in:84
 msgid "Drop support for optical media"
 msgstr "Removido suporte para mídias óticas"
 
-#: data/videos.metainfo.xml.in:74 data/videos.metainfo.xml.in:90
-#: data/videos.metainfo.xml.in:102 data/videos.metainfo.xml.in:116
-#: data/videos.metainfo.xml.in:126
-msgid "Translation updates"
-msgstr "Atualizações de tradução"
-
-#: data/videos.metainfo.xml.in:87
+#: data/videos.metainfo.xml.in:98
 msgid "Updated flatter design"
 msgstr "Design mais plano atualizado"
 
-#: data/videos.metainfo.xml.in:88
+#: data/videos.metainfo.xml.in:99
 msgid "Send an app notification when adding items to the play queue"
 msgstr ""
 "Enviar uma notificação da aplicação ao adicionar itens à fila de reprodução"
 
-#: data/videos.metainfo.xml.in:89
+#: data/videos.metainfo.xml.in:100
 msgid "More accurate playback position save and restore"
 msgstr "Posição de reprodução mais precisa, salvar e restaurar"
 
-#: data/videos.metainfo.xml.in:100 data/videos.metainfo.xml.in:113
-#: data/videos.metainfo.xml.in:123
+#: data/videos.metainfo.xml.in:111 data/videos.metainfo.xml.in:124
+#: data/videos.metainfo.xml.in:134
 msgid "Other updates:"
 msgstr "Outras atualizações:"
 
-#: data/videos.metainfo.xml.in:109
+#: data/videos.metainfo.xml.in:120
 msgid "New features:"
 msgstr "Novas características:"
 
-#: data/videos.metainfo.xml.in:111
+#: data/videos.metainfo.xml.in:122
 msgid "Control playback from the sound indicator"
 msgstr "Controlar a reprodução a partir do indicador de som"
 
-#: data/videos.metainfo.xml.in:115
+#: data/videos.metainfo.xml.in:126
 msgid "Make playback duration more accurate"
 msgstr "Tornar a duração da reprodução mais precisa"
 
-#: data/videos.metainfo.xml.in:125
+#: data/videos.metainfo.xml.in:136
 msgid "Update to Flatpak Platform 7"
 msgstr "Atualização para a Plataforma Flatpak 7"
 
