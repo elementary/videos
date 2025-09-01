@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-12 20:15+0000\n"
-"PO-Revision-Date: 2024-06-19 20:43+0000\n"
+"PO-Revision-Date: 2025-09-02 12:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://l10n.elementary.io/projects/videos/videos/"
-"ja/>\n"
+"Language-Team: Japanese <https://l10n.elementaryos.org/projects/videos/"
+"videos/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5.5\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: src/Application.vala:110
@@ -144,7 +144,7 @@ msgstr "次の動画を自動的に再生"
 #: src/Widgets/Library/EpisodesPage.vala:81
 #: src/Widgets/Library/LibraryPage.vala:66
 msgid "Try changing search terms."
-msgstr "検索語句を変更してみてください。"
+msgstr "他のキーワードを試してください。"
 
 #: src/Widgets/Library/EpisodesPage.vala:99
 msgid "Episodes"
@@ -154,7 +154,7 @@ msgstr "エピソード"
 #: src/Widgets/Library/LibraryPage.vala:164
 #, c-format
 msgid "No Results for “%s”"
-msgstr "“%s”の検索結果なし"
+msgstr "“%s”の結果なし"
 
 #: src/Widgets/Library/LibraryItem.vala:43
 msgid "Move to Trash"
