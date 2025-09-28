@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-12 20:15+0000\n"
-"PO-Revision-Date: 2021-07-25 14:14+0000\n"
+"PO-Revision-Date: 2025-09-29 13:47+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
-"Language-Team: Finnish <https://l10n.elementary.io/projects/videos/extra/fi/"
-">\n"
+"Language-Team: Finnish <https://l10n.elementaryos.org/projects/videos/extra/"
+"fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-04-19 06:24+0000\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
@@ -55,9 +55,8 @@ msgid "Thumbnail previews on the seek bar"
 msgstr "Esikatselukuvat kelatessa"
 
 #: data/videos.metainfo.xml.in:51
-#, fuzzy
 msgid "elementary, Inc."
-msgstr "elementary LLC."
+msgstr "elementary, Inc."
 
 #: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:79
 #: data/videos.metainfo.xml.in:96
