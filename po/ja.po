@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-12 20:15+0000\n"
-"PO-Revision-Date: 2025-09-02 12:55+0000\n"
+"PO-Revision-Date: 2025-10-12 23:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementaryos.org/projects/videos/"
 "videos/ja/>\n"
@@ -98,7 +98,7 @@ msgstr "開いている動画なし"
 
 #: src/Widgets/WelcomePage.vala:27
 msgid "Select a source to begin playing."
-msgstr "再生を開始するにはソースを選択してください。"
+msgstr "再生を始めるにはソースを選択してください。"
 
 #: src/Widgets/WelcomePage.vala:32 src/Widgets/Player/PlaylistPopover.vala:28
 msgid "Open file"
