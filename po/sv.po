@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-12 20:15+0000\n"
-"PO-Revision-Date: 2025-10-22 08:08+0000\n"
+"PO-Revision-Date: 2025-10-31 09:55+0000\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <https://l10n.elementaryos.org/projects/videos/videos/"
 "sv/>\n"
@@ -36,7 +36,7 @@ msgstr "Återställ"
 #: src/Window.vala:140
 #, c-format
 msgid "“%s” added to playlist"
-msgstr "\"%s\" tillagd i spellistan"
+msgstr "\"%s\" lades till i spellistan"
 
 #: src/Window.vala:143
 #, c-format
@@ -127,7 +127,7 @@ msgstr "Hem"
 
 #: src/Widgets/WelcomePage.vala:102
 msgid "Resume last video"
-msgstr "Återställ senaste videon"
+msgstr "Återuppta senaste videon"
 
 #: src/Widgets/Library/EpisodesPage.vala:30
 #: src/Widgets/Library/LibraryPage.vala:41
