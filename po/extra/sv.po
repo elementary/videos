@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-12 20:15+0000\n"
-"PO-Revision-Date: 2025-10-22 08:08+0000\n"
+"PO-Revision-Date: 2025-10-31 09:55+0000\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <https://l10n.elementaryos.org/projects/videos/extra/"
 "sv/>\n"
@@ -52,7 +52,7 @@ msgstr "Uppspelningskö"
 
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
-msgstr "Miniatyrbild i sökfältet"
+msgstr "Miniatyrbilder i sökfältet"
 
 #: data/videos.metainfo.xml.in:51
 msgid "elementary, Inc."
@@ -65,7 +65,7 @@ msgstr "Förbättringar:"
 
 #: data/videos.metainfo.xml.in:61
 msgid "Open the main menu with the keyboard shortcut F10"
-msgstr "Öppna huvudmenyn med kortkommandot F10"
+msgstr "Öppna huvudmenyn med tangentbordsgenvägen F10"
 
 #: data/videos.metainfo.xml.in:62
 msgid "Use the File Chooser Portal"
@@ -99,7 +99,7 @@ msgstr "Förbättringar av prestanda"
 
 #: data/videos.metainfo.xml.in:84
 msgid "Drop support for optical media"
-msgstr "Stöd för att släppa optiska medier"
+msgstr "Ta bort stöd för optiska medier"
 
 #: data/videos.metainfo.xml.in:98
 msgid "Updated flatter design"
