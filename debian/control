@@ -1,7 +1,7 @@
 Source: io.elementary.videos
 Section: video
 Priority: optional
-Maintainer: elementary, Inc. <builds@elementary.io>
+Maintainer: elementary <builds@elementary.io>
 Build-Depends: debhelper (>= 10.5.1),
                 intltool,
                 libadwaita-1-dev,
