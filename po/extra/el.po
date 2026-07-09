@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-12 20:15+0000\n"
-"PO-Revision-Date: 2026-06-29 18:56+0000\n"
+"PO-Revision-Date: 2026-07-09 12:53+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: Greek <https://l10n.elementaryos.org/projects/videos/extra/"
 "el/>\n"
@@ -58,7 +58,7 @@ msgstr "elementary, Inc."
 #: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:79
 #: data/videos.metainfo.xml.in:96
 msgid "Improvements:"
-msgstr ""
+msgstr "Βελτιώσεις:"
 
 #: data/videos.metainfo.xml.in:61
 msgid "Open the main menu with the keyboard shortcut F10"
