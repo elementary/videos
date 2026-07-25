@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-12 20:15+0000\n"
-"PO-Revision-Date: 2026-07-10 08:05+0000\n"
+"PO-Revision-Date: 2026-07-26 19:01+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: Greek <https://l10n.elementaryos.org/projects/videos/extra/"
 "el/>\n"
@@ -34,10 +34,14 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
+"Ένα σύγχρονο πρόγραμμα αναπαραγωγής βίντεο που εστιάζει στην προβολή "
+"περιεχομένου βίντεο αντί για τα στοιχεία ελέγχου αναπαραγωγής. Απομνημονεύει "
+"το τελευταίο βίντεο και τη θέση αναπαραγωγής, ώστε να συνεχίσετε από εκεί "
+"που σταματήσατε."
 
 #: data/videos.metainfo.xml.in:14
 msgid "Additional features include:"
-msgstr ""
+msgstr "Επιπλέον λειτουργίες περιλαμβάνουν:"
 
 #: data/videos.metainfo.xml.in:16
 msgid "Subtitle support"
@@ -45,11 +49,11 @@ msgstr "Υποστήριξη υποτίτλων"
 
 #: data/videos.metainfo.xml.in:17
 msgid "Play queue"
-msgstr ""
+msgstr "Ουρά αναπαραγωγής"
 
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
-msgstr ""
+msgstr "Προεπισκόπηση μικρογραφιών στη γραμμή προόδου"
 
 #: data/videos.metainfo.xml.in:51
 msgid "elementary, Inc."
