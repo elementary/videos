@@ -24,10 +24,10 @@ finish-args:
   - '--metadata=X-DConf=migrate-path=/io/elementary/videos/'
 
 add-extensions:
-  org.freedesktop.Platform.ffmpeg-full:
+  org.freedesktop.Platform.codecs-extra:
     no-autodownload: true
     directory: lib/ffmpeg
-    version: '23.08'
+    version: '25.08'
     add-ld-path: '.'
 
 modules:
