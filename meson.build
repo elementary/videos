@@ -1,7 +1,7 @@
 project(
     'io.elementary.videos',
     'vala', 'c',
-    version: '8.0.2',
+    version: '9.0.0',
     meson_version: '>=0.58.0'
 )
 
