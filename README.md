@@ -8,7 +8,7 @@
 Run `flatpak-builder` to configure the build environment, download dependencies, build, and install
 
 ```bash
-flatpak-builder build io.elementary.videos.yml --user --install --force-clean --install-deps-from=appcenter
+flatpak-builder build io.elementary.videos.yml --user --install --force-clean --install-deps-from=appcenter --install-deps-from=flathub
 ```
 
 Then execute with
