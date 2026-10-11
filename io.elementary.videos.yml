@@ -27,7 +27,7 @@ add-extensions:
   org.freedesktop.Platform.codecs-extra:
     no-autodownload: true
     directory: lib/ffmpeg
-    version: '25.08'
+    version: '26.08-extra'
     add-ld-path: '.'
 
 modules:
