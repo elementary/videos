@@ -115,6 +115,8 @@ namespace Audience {
                 mainwindow.application = this;
                 mainwindow.title = _("Videos");
             }
+
+            mainwindow.present ();
         }
 
         public string get_cache_directory () {
