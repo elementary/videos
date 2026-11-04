@@ -100,7 +100,7 @@ public class Audience.Widgets.PlaylistPopover : Gtk.Popover {
     private void update_repeat_button () {
         switch ((PlaybackManager.RepeatMode) settings.get_enum ("repeat-mode")) {
             case DISABLED:
-                repeat_button.icon_name = "media-playlist-no-repeat-symbolic";
+                repeat_button.icon_name = "media-playlist-repeat-disabled-symbolic";
                 repeat_button.tooltip_text = _("Repeat None");
                 break;
             case ALL:
