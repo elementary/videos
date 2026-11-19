@@ -11,9 +11,13 @@ public class Audience.Objects.MediaItem : Object {
     public MediaItem? parent { get; construct; }
     public ListStore children { get; construct; }
 
-    public string title { get; construct; }
+    public int show_episode_number { get; private set; }
+    public int show_season_number { get; private set; }
+    public string? show_name { get; private set; }
+    public string title { get; construct set; }
     public Gdk.Pixbuf? poster { get; construct set; default = null; }
 
+    private static Gst.PbUtils.Discoverer discoverer;
     private Audience.Services.LibraryManager manager;
     private File custom_poster_file;
     private string thumbnail_large_path;
@@ -24,6 +28,15 @@ public class Audience.Objects.MediaItem : Object {
 
     public MediaItem.video (string uri, string title, MediaItem? parent) {
         Object (uri: uri, title: title, parent: parent);
+    }
+
+    static construct {
+        try {
+            discoverer = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (5 * Gst.SECOND));
+            discoverer.finished.connect (discoverer.stop);
+        } catch (Error e) {
+            critical ("Could not create Gst discoverer object: %s", e.message);
+        }
     }
 
     construct {
@@ -65,6 +78,57 @@ public class Audience.Objects.MediaItem : Object {
             }
 
             manager.thumbler.instand (uris, mimes, "large");
+        }
+
+        discoverer.start ();
+        discoverer.discovered.connect (update_metadata);
+        discoverer.discover_uri_async (uri);
+    }
+
+    private void update_metadata (Gst.PbUtils.DiscovererInfo info, Error? err) {
+        if (info.get_uri () == uri) {
+            switch (info.get_result ()) {
+                case URI_INVALID:
+                    critical ("Couldn't read metadata for '%s': invalid URI.", info.get_uri ());
+                    return;
+                case ERROR:
+                    critical ("Couldn't read metadata for '%s': %s", info.get_uri (), err.message);
+                    return;
+                case TIMEOUT:
+                    critical ("Couldn't read metadata for '%s': Discovery timed out.", info.get_uri ());
+                    return;
+                case BUSY:
+                    critical ("Couldn't read metadata for '%s': Already discovering a file.", info.get_uri ());
+                    return;
+                case MISSING_PLUGINS:
+                    critical ("Couldn't read metadata for '%s': Missing plugins.", info.get_uri ());
+                    return;
+                default:
+                    break;
+            }
+
+            unowned Gst.TagList? tag_list = info.get_tags ();
+            if (tag_list == null) {
+                return;
+            }
+
+            string _show_name;
+            tag_list.get_string (Gst.Tags.SHOW_NAME, out _show_name);
+            show_name = _show_name;
+
+            int _show_episode_number;
+            tag_list.get_int (Gst.Tags.SHOW_EPISODE_NUMBER, out _show_episode_number);
+            show_episode_number = _show_episode_number;
+
+            int _show_season_number;
+            tag_list.get_int (Gst.Tags.SHOW_SEASON_NUMBER, out _show_season_number);
+            show_season_number = _show_season_number;
+
+            string _title;
+            tag_list.get_string (Gst.Tags.TITLE, out _title);
+            if (_title != null) {
+                title = _title;
+            }
         }
     }
 
