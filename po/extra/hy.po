@@ -8,21 +8,24 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-12 20:15+0000\n"
-"PO-Revision-Date: 2018-07-16 20:55+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-11-24 21:04+0000\n"
+"Last-Translator: Davit Yedigaryan <davit.yedigaryan.1993@gmail.com>\n"
+"Language-Team: Armenian <https://l10n.elementaryos.org/projects/videos/extra/"
+"hy/>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: data/videos.metainfo.xml.in:10 data/io.elementary.videos.desktop.in:4
 msgid "Videos"
-msgstr ""
+msgstr "Videos"
 
 #: data/videos.metainfo.xml.in:11 data/io.elementary.videos.desktop.in:6
 msgid "Watch videos and movies"
-msgstr ""
+msgstr "Դիտեք տեսանյութեր և ֆիլմեր"
 
 #: data/videos.metainfo.xml.in:13
 msgid ""
@@ -30,101 +33,107 @@ msgid ""
 "player controls. It remembers your last played video and playback position "
 "so you can pick up from where you left off."
 msgstr ""
+"Ժամանակակից տեսանյութերի նվագարկիչ, որը կենտրոնանում է տեսանյութի ցուցադրման "
+"վրա՝ նվագարկման կառավարման տարրերի փոխարեն։ Այն հիշում է ձեր վերջին "
+"նվագարկված տեսանյութը և նվագարկման դիրքը, որպեսզի կարողանաք շարունակել "
+"այնտեղից, որտեղ կանգ եք առել։"
 
 #: data/videos.metainfo.xml.in:14
 msgid "Additional features include:"
-msgstr ""
+msgstr "Լրացուցիչ հնարավորություններ՝"
 
 #: data/videos.metainfo.xml.in:16
 msgid "Subtitle support"
-msgstr ""
+msgstr "Ենթագրերի աջակցություն"
 
 #: data/videos.metainfo.xml.in:17
 msgid "Play queue"
-msgstr ""
+msgstr "Նվագարկման հերթ"
 
 #: data/videos.metainfo.xml.in:18
 msgid "Thumbnail previews on the seek bar"
-msgstr ""
+msgstr "Մանրապատկերների նախադիտում նվագարկման գծի վրա"
 
 #: data/videos.metainfo.xml.in:51
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/videos.metainfo.xml.in:59 data/videos.metainfo.xml.in:79
 #: data/videos.metainfo.xml.in:96
 msgid "Improvements:"
-msgstr ""
+msgstr "Բարելավումներ՝"
 
 #: data/videos.metainfo.xml.in:61
 msgid "Open the main menu with the keyboard shortcut F10"
-msgstr ""
+msgstr "Գլխավոր ցանկը բացվում է F10 ստեղնաշարային դյուրանցմամբ"
 
 #: data/videos.metainfo.xml.in:62
 msgid "Use the File Chooser Portal"
-msgstr ""
+msgstr "Օգտագործվում է File Chooser Portal-ը"
 
 #: data/videos.metainfo.xml.in:63 data/videos.metainfo.xml.in:85
 #: data/videos.metainfo.xml.in:101 data/videos.metainfo.xml.in:113
 #: data/videos.metainfo.xml.in:127 data/videos.metainfo.xml.in:137
 msgid "Translation updates"
-msgstr ""
+msgstr "Թարմացված թարգմանություններ"
 
 #: data/videos.metainfo.xml.in:70
 msgid ""
 "Small hotfix release that fixes an annoying issue causing videos to play in "
 "a second window."
 msgstr ""
+"Փոքր շտկման թողարկում, որը վերացնում է նյարդայնացնող խնդիրը, երբ "
+"տեսանյութերը նվագարկվում էին երկրորդ պատուհանում։"
 
 #: data/videos.metainfo.xml.in:81
 msgid "Respect dark style preference"
-msgstr ""
+msgstr "Հաշվի է առնվել մուգ ոճի նախապատվությունը"
 
 #: data/videos.metainfo.xml.in:82
 msgid "Support repeat one and repeat all"
-msgstr ""
+msgstr "Ավելացվել է մեկի և բոլորի կրկնման աջակցություն"
 
 #: data/videos.metainfo.xml.in:83
 msgid "Performance improvements"
-msgstr ""
+msgstr "Արտադրողականության բարելավումներ"
 
 #: data/videos.metainfo.xml.in:84
 msgid "Drop support for optical media"
-msgstr ""
+msgstr "Հեռացվել է օպտիկական կրիչների աջակցությունը"
 
 #: data/videos.metainfo.xml.in:98
 msgid "Updated flatter design"
-msgstr ""
+msgstr "Թարմացվել է ավելի հարթ դիզայնը"
 
 #: data/videos.metainfo.xml.in:99
 msgid "Send an app notification when adding items to the play queue"
-msgstr ""
+msgstr "Նվագարկման հերթում տարրեր ավելացնելիս ուղարկվում է հավելվածի ծանուցում"
 
 #: data/videos.metainfo.xml.in:100
 msgid "More accurate playback position save and restore"
-msgstr ""
+msgstr "Նվագարկման դիրքի ավելի ճշգրիտ պահպանում և վերականգնում"
 
 #: data/videos.metainfo.xml.in:111 data/videos.metainfo.xml.in:124
 #: data/videos.metainfo.xml.in:134
 msgid "Other updates:"
-msgstr ""
+msgstr "Այլ թարմացումներ՝"
 
 #: data/videos.metainfo.xml.in:120
 msgid "New features:"
-msgstr ""
+msgstr "Նոր հնարավորություններ՝"
 
 #: data/videos.metainfo.xml.in:122
 msgid "Control playback from the sound indicator"
-msgstr ""
+msgstr "Նվագարկման կառավարում ձայնի ինդիկատորից"
 
 #: data/videos.metainfo.xml.in:126
 msgid "Make playback duration more accurate"
-msgstr ""
+msgstr "Նվագարկման տևողությունը դարձել է ավելի ճշգրիտ"
 
 #: data/videos.metainfo.xml.in:136
 msgid "Update to Flatpak Platform 7"
-msgstr ""
+msgstr "Թարմացվել է Flatpak Platform 7-ին"
 
 #: data/io.elementary.videos.desktop.in:5
 msgid "Video Player"
-msgstr ""
+msgstr "Տեսանյութերի նվագարկիչ"
